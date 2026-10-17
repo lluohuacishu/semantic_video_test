@@ -1,0 +1,162 @@
+[
+  {
+    "variant": "original_forced",
+    "bytes": 45614,
+    "key_indices": [
+      0,
+      1
+    ]
+  },
+  {
+    "variant": "gop_only",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-nostdin",
+      "-framerate",
+      "25",
+      "-start_number",
+      "1",
+      "-i",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_a_glc_round2_20261017\\short\\input_720\\im%05d.png",
+      "-frames:v",
+      "50",
+      "-an",
+      "-vf",
+      "scale=in_range=pc:out_range=tv:out_color_matrix=bt709,format=yuv420p",
+      "-color_primaries",
+      "bt709",
+      "-color_trc",
+      "bt709",
+      "-colorspace",
+      "bt709",
+      "-color_range",
+      "tv",
+      "-c:v",
+      "libaom-av1",
+      "-cpu-used",
+      "6",
+      "-row-mt",
+      "1",
+      "-threads",
+      "4",
+      "-lag-in-frames",
+      "25",
+      "-g",
+      "64",
+      "-crf",
+      "50",
+      "-b:v",
+      "0",
+      "-movflags",
+      "+faststart",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_a_glc_round2_20261017\\av1_keyframe_audit\\gop_only.mp4"
+    ],
+    "bytes": 42923,
+    "frames": 50,
+    "key_indices": [
+      0
+    ],
+    "first_frames": [
+      {
+        "key_frame": 1,
+        "best_effort_timestamp_time": "0.000000",
+        "pict_type": "I"
+      },
+      {
+        "key_frame": 0,
+        "best_effort_timestamp_time": "0.040000",
+        "pict_type": "P"
+      },
+      {
+        "key_frame": 0,
+        "best_effort_timestamp_time": "0.080000",
+        "pict_type": "P"
+      },
+      {
+        "key_frame": 0,
+        "best_effort_timestamp_time": "0.120000",
+        "pict_type": "P"
+      }
+    ]
+  },
+  {
+    "variant": "gop_min",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-nostdin",
+      "-framerate",
+      "25",
+      "-start_number",
+      "1",
+      "-i",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_a_glc_round2_20261017\\short\\input_720\\im%05d.png",
+      "-frames:v",
+      "50",
+      "-an",
+      "-vf",
+      "scale=in_range=pc:out_range=tv:out_color_matrix=bt709,format=yuv420p",
+      "-color_primaries",
+      "bt709",
+      "-color_trc",
+      "bt709",
+      "-colorspace",
+      "bt709",
+      "-color_range",
+      "tv",
+      "-c:v",
+      "libaom-av1",
+      "-cpu-used",
+      "6",
+      "-row-mt",
+      "1",
+      "-threads",
+      "4",
+      "-lag-in-frames",
+      "25",
+      "-g",
+      "64",
+      "-crf",
+      "50",
+      "-b:v",
+      "0",
+      "-movflags",
+      "+faststart",
+      "-keyint_min",
+      "64",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_a_glc_round2_20261017\\av1_keyframe_audit\\gop_min.mp4"
+    ],
+    "bytes": 42923,
+    "frames": 50,
+    "key_indices": [
+      0
+    ],
+    "first_frames": [
+      {
+        "key_frame": 1,
+        "best_effort_timestamp_time": "0.000000",
+        "pict_type": "I"
+      },
+      {
+        "key_frame": 0,
+        "best_effort_timestamp_time": "0.040000",
+        "pict_type": "P"
+      },
+      {
+        "key_frame": 0,
+        "best_effort_timestamp_time": "0.080000",
+        "pict_type": "P"
+      },
+      {
+        "key_frame": 0,
+        "best_effort_timestamp_time": "0.120000",
+        "pict_type": "P"
+      }
+    ]
+  }
+]
