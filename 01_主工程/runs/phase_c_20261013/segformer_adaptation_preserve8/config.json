@@ -1,0 +1,14 @@
+{
+  "variant": "preserve8_decoder_only",
+  "reason": "naive two-class mean background initialization weakened existing class competition; first adaptation and scale diagnostics retained as negative results",
+  "steps": 1024,
+  "seed": 20261015,
+  "lr": 0.0001,
+  "encoder": "frozen pretrained SUIM",
+  "batchnorm_statistics": "frozen pretrained",
+  "loss": "binary CE on FV-vs-logsumexp(other7), fish weight8, +0.1 Dice",
+  "sampling": "25% positive fish crop512,25% random crop512,50% full-frame letterbox512",
+  "evaluation": "native-scale 512 tiles stride384, mean overlapping logits",
+  "selection": "original video96 only, checkpoints0/256/512/768/1024 and thresholds0.1/0.25/0.5/0.75/0.9; official video108 and codec reconstructions not used",
+  "test_used": false
+}

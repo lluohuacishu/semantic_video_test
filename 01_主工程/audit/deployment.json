@@ -1,0 +1,210 @@
+{
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "upstream_commit": "64b10d4c0108106e66b7c54d6e5e470200a57abf",
+    "precision": "fp32",
+    "tf32": false,
+    "deterministic": true
+  },
+  "code_version_verified": true,
+  "upstream_modified_paths": [
+    "packages/msrtc_rans/python/cpp/PyWrapper.h"
+  ],
+  "local_patch": "audit/windows_entropy_const.patch",
+  "local_patch_purpose": "const-correct C++ Python type name; no coding algorithms changed",
+  "compiler": "g++.exe (x86_64-win32-seh-rev0, Built by MinGW-Builds project) 15.2.0",
+  "entropy_tests": "7 passed; pinned official test_msrtc_rans.py",
+  "native_package_files": [
+    {
+      "path": ".venv\\Lib\\site-packages\\msrtc\\rans\\libgcc_s_seh-1.dll",
+      "sha256": "11074b8c2e7f0a66c520153fcde36bb1a28c7f20f359f37d1308347ce8094fa5",
+      "bytes": 142336
+    },
+    {
+      "path": ".venv\\Lib\\site-packages\\msrtc\\rans\\libstdc++-6.dll",
+      "sha256": "426b20a326d8a03e90fa991769703a517e8ae07685edca755e0b739a9bf66da6",
+      "bytes": 2354176
+    },
+    {
+      "path": ".venv\\Lib\\site-packages\\msrtc\\rans\\libwinpthread-1.dll",
+      "sha256": "8ce9f4c1ed09819dfc00618a81c2b47f7caf3ea5209912913607e8a3dbdeb4d0",
+      "bytes": 56320
+    },
+    {
+      "path": ".venv\\Lib\\site-packages\\msrtc\\rans\\types.py",
+      "sha256": "a509cbd3d6201b3123c87cb4400b67f6ac31d6db594fad3cc8a194bf93862810",
+      "bytes": 256
+    },
+    {
+      "path": ".venv\\Lib\\site-packages\\msrtc\\rans\\_msrtc_rans.cp312-win_amd64.pyd",
+      "sha256": "ff414bcd452154ac01d296c63b07ec9355ade2a72f9443e0b2b6bd18e4238a38",
+      "bytes": 189414
+    },
+    {
+      "path": ".venv\\Lib\\site-packages\\msrtc\\rans\\_msrtc_rans.pyi",
+      "sha256": "86cb75b61fcbf778677e94e266bdbee365aa75e4939acc2ada55a55f54f39417",
+      "bytes": 1977
+    },
+    {
+      "path": ".venv\\Lib\\site-packages\\msrtc\\rans\\__init__.py",
+      "sha256": "ba9d15200d984bd72490db226f507666041c5891658eb40d751902129078bbb4",
+      "bytes": 4489
+    }
+  ],
+  "parameters_p": 5437270,
+  "parameters_i": 45651314,
+  "strict_checkpoint_loading": true,
+  "p_weight": {
+    "source": "https://mlvideopub.blob.core.windows.net/mlvc/models/mlvc-s-psnr-v1.ckpt",
+    "sha256": "1b86b757ddb115342293efb57719d6216c6ee2e459ae796ec41723b5c05ca896",
+    "official_hash_match": true
+  },
+  "i_weight": {
+    "model": "DCVC-RT cvpr2025_image.pth.tar, used as DMCI-6.0",
+    "source": "https://huggingface.co/GSVC-Project/gsvc-asset/resolve/7718ac66480ed572b64e616cec1a59b87653da1b/models/dcvc/cvpr2025_image.pth.tar?download=true",
+    "source_kind": "GSVC research project mirror on Hugging Face; NOT Microsoft-hosted",
+    "revision": "7718ac66480ed572b64e616cec1a59b87653da1b",
+    "sha256": "555eff5f4026774f477bebdcbb3b52548e0da230803959dcebcea4d732a90dd9",
+    "bytes": 182764252,
+    "verification": "Matches Hugging Face LFS SHA256. Microsoft original checksum unavailable; official-source equivalence not yet verified.",
+    "official_reference": "https://github.com/microsoft/mlvc#prepare-auxiliary-models",
+    "official_download_attempts": [
+      "OneDrive share API returned HTTP 401",
+      "Public share page TLS access failed",
+      "MLVC blob candidate URLs returned HTTP 404"
+    ]
+  },
+  "legacy_source_checked_files": 100,
+  "legacy_changed_files": [],
+  "adapter_files": [
+    {
+      "path": "adapters\\audit_deployment.py",
+      "sha256": "62b455af7d7366872965041d32c83d131ec3dce3e844cfd851afb789077ffb38"
+    },
+    {
+      "path": "adapters\\check_clean_alignment.py",
+      "sha256": "a998dea320afd94874b7581ec832228453139515aaec93f2b28fa6fbba8f843c"
+    },
+    {
+      "path": "adapters\\check_sfishtrack_alignment.py",
+      "sha256": "0291a9c81834a9c00878736d84f6b652868dbf0510543b22be1dee5285f9df29"
+    },
+    {
+      "path": "adapters\\check_uvmulti_masks.py",
+      "sha256": "f5f65adb3e66f91a5e1a27871931ad40f1755a43d279a0359bfdce2d7555999e"
+    },
+    {
+      "path": "adapters\\common.py",
+      "sha256": "4069f6279b23658a4be1e95b27fbe74b2ecdd39d74d02193bd881e64de77dcfb"
+    },
+    {
+      "path": "adapters\\compare_baselines.py",
+      "sha256": "d256bcd04079633b5245517322307aca9c0b2ddad8c123eed682bb3534d54328"
+    },
+    {
+      "path": "adapters\\download_iframe.py",
+      "sha256": "1322d9606ee4a89013ce4c7e4674a4985ddadb9081ba06f34dd85f7913a28369"
+    },
+    {
+      "path": "adapters\\enrich_phase_b_quality.py",
+      "sha256": "cc3733a14149b218d2985c0acc892ca761634677d95072272b9e701088e390b7"
+    },
+    {
+      "path": "adapters\\evaluate_semantics.py",
+      "sha256": "f964bc474d5b1d41ab587da3e11fc2d80db89aa27443c382798d5eacc021bd02"
+    },
+    {
+      "path": "adapters\\fetch_annotation_frames.py",
+      "sha256": "90e8347714015feae7285d0ea6cd2c3e2e633b6401a2e8eeab72da8143671782"
+    },
+    {
+      "path": "adapters\\fetch_sfishtrack.py",
+      "sha256": "867a53f4c02e832e1a5da0b95b16d2bc7dc096e32fe8459b1175e613f1a57474"
+    },
+    {
+      "path": "adapters\\finish_phase_a.py",
+      "sha256": "ae6454d9e133532d60112deace632e54d1657876d45a44459180de85c7be3889"
+    },
+    {
+      "path": "adapters\\inventory_recording_groups.py",
+      "sha256": "3ea8ffc12fa0ee745c3321c9ae5310adfb3d3be5d9fbd05bfddd9a819a54af1e"
+    },
+    {
+      "path": "adapters\\make_phase_b_report.py",
+      "sha256": "f2089d6a6c131b6d74bb2dfd0d4c5871f0539079e858196b4490d87d44604405"
+    },
+    {
+      "path": "adapters\\make_report.py",
+      "sha256": "51b57620f6ed4bcadae9cf58fa4189f272756e9b0047133b1d1941f7a3107a36"
+    },
+    {
+      "path": "adapters\\match_one_budget.py",
+      "sha256": "bf52ee80deb8fa5228a7f471e460c079259e6a3d70f39fb78aab6c266e18d3a2"
+    },
+    {
+      "path": "adapters\\mlvc_file.py",
+      "sha256": "0d971aee538887c867e2c4626090086842c4e5c75cde5f315bae3dfaec08d6ac"
+    },
+    {
+      "path": "adapters\\pilot_semantic_manifest.py",
+      "sha256": "12800bc3317942aa46113d928a9c811b2253be6421338e62dc76c492d082eb82"
+    },
+    {
+      "path": "adapters\\precomputed_roi_loss.py",
+      "sha256": "3bbc5fa7ec8903dfff2344df5d7506016a541b7f41b34a38e07fba78b95676f2"
+    },
+    {
+      "path": "adapters\\preflight_uvmulti.py",
+      "sha256": "c8e859264a7da12c991169956ef93041fd5a13ecd15f4dddbb82588e1078f9e9"
+    },
+    {
+      "path": "adapters\\prepare_annotation_corpus.py",
+      "sha256": "c96637eb56b983bda3cc94e58ffd5b8775cceab33b58ee5c85cd84761fe40cff"
+    },
+    {
+      "path": "adapters\\prepare_sfishtrack.py",
+      "sha256": "ad87179a4949f8620774dd27893244ef606de2c9db71caea3a1ff285fbdad818"
+    },
+    {
+      "path": "adapters\\probe_roi_backprop.py",
+      "sha256": "eb9c1be961e107b7b0a4336ea82bf48930ad3ff6af77007cf783aa09c2675e7d"
+    },
+    {
+      "path": "adapters\\probe_roi_interface.py",
+      "sha256": "440462064e5285c1ed681d2d6606acaa5873d458936de02f2b3b620b9e14217d"
+    },
+    {
+      "path": "adapters\\review_recording_groups.py",
+      "sha256": "2f075ff1f6bdf925df251f9dc69dcfb223a1b96db79d1b9669a295db8acc491d"
+    },
+    {
+      "path": "adapters\\run_phase_b.py",
+      "sha256": "4889b5deb54f138ae6d8009b0a0a2d7e45077c4b369564e6854bacc53516c795"
+    },
+    {
+      "path": "adapters\\semantic_teacher.py",
+      "sha256": "1f1400eef8817215a6a9d1a24c60e733dd2c3c5c88ef07663ef2873702779eb1"
+    },
+    {
+      "path": "adapters\\teacher_resolution_diagnostic.py",
+      "sha256": "16376ff5f85c633ee38dc15e21b5919ba855b217517005f72946867cd2e21330"
+    },
+    {
+      "path": "adapters\\train_probe.py",
+      "sha256": "b5fbca0a7dcd1566a293cbbbedc10e160826df3f3a5e9bcfdf92ca9e75afa2d6"
+    },
+    {
+      "path": "adapters\\validate_file_failures.py",
+      "sha256": "d9ae230068b8ba00f1d1f4b6288ef39416c10437d98d555ecc6c2cea012d23b4"
+    },
+    {
+      "path": "adapters\\validate_teacher.py",
+      "sha256": "d985ffd53b9f709af1a084596c9bf25562ed655ed4445068c53cca85bb76419b"
+    }
+  ],
+  "source_rgb_reference_verification": "50/50 current extraction frames equal legacy GLC sender source RGB pixels"
+}

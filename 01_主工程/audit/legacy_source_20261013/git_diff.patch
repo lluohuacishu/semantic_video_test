@@ -1,0 +1,527 @@
+diff --git a/.gitignore b/.gitignore
+index 7047030..8b79634 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -11,6 +11,8 @@ htmlcov/
+ 
+ # 本地虚拟环境和环境变量
+ .venv/
++.venv-segformer/
++.venv-glc/
+ venv/
+ env/
+ ENV/
+@@ -44,6 +46,9 @@ runs/*
+ *.pth
+ *.onnx
+ *.safetensors
++*.pth.tar
++*.svic
++*.glcv
+ *.ckpt
+ 
+ !checkpoints/.gitkeep
+@@ -60,3 +65,7 @@ runs/*
+ *.temp
+ *.bak
+ *.log
++
++# 本机视频预览工具，不随源码提交
++tools/
++*.part
+diff --git a/README.md b/README.md
+index 884f2a5..01ff3a3 100644
+--- a/README.md
++++ b/README.md
+@@ -1,15 +1,63 @@
+ # 水下视频训练实验
+ 
+-用于学习 PyTorch，开展水下图像重建与八类语义分割实验。项目提供卷积自编码器、轻量 U-Net、SUIM 数据整理、视频抽帧，以及训练、测试和单图预测脚本。实验记录见 [首次重建训练](docs/SUIM首次训练.md)、[首次语义分割训练](docs/SUIM语义分割训练.md)、[视频逐帧分割记录](docs/视频逐帧分割.md)和[语义感知压缩原型](docs/语义感知压缩原型.md)。
++用于学习 PyTorch，开展水下图像重建、八类语义分割和联合语义源编码实验。项目包含 SUIM 数据整理、训练评估、图片／视频分割界面，以及真实图片码流的编解码和 TCP 文件收发。实验记录见 [首次重建训练](docs/SUIM首次训练.md)、[首次语义分割训练](docs/SUIM语义分割训练.md)、[视频逐帧分割记录](docs/视频逐帧分割.md)、[图片压缩与文件传输](docs/图片压缩与文件传输.md)和[联合语义编码](docs/联合语义编码.md)。
+ 
+-重建模型学习“图像 → 潜变量 → 重建图像”；分割模型使用像素标签，学习“图像 → 每个像素的类别”。两者是独立实验。目前没有量化、熵编码、码率分配或视频时序模型，不能报告真实通信压缩率，也还没有完成语义通信。
++普通 CompressAI 压缩保留为对照，其 SegFormer 只是事后评价。新联合模型将发送端预测的水下语义送入编码器，从同一份量化潜变量码流直接解码 RGB 和八类类别图，并以码率、像素和语义损失联合训练。这是理想信道下的任务导向语义源编码原型，尚未加入水声信道或视频时序编码，也不是 GLC / SQ-GAN 的复现。
++
++## 联合语义编码演示
++
++本机已有训练权重时，双击 **run_semantic_codec_demo.cmd**，打开 `http://127.0.0.1:8769/`。选择“联合语义编码”、20／30／40 kbps 等限速后拖入图片；可查看还原图片和“两端类别”。接收端类别来自码流的直接解码，没有对还原图再次分割。模型输入与权重对应，当前固定发送端分割输入为 256。
++
++首轮使用 1187 张训练图、297 张验证图，训练 12 轮。按联合验证损失选择第 6 轮权重，真实 CPU 熵码流的直接语义 mIoU 为 61.36%，原发送端预测为 62.91%；这是 256 补边、忽略 padding 的验证口径。联合文件平均 2566 字节，普通 q3 参考为 2497 字节，尚未获得文件大小优势。720p 图片已完成 20／40 kbps 文件传输；视频语义编码还未实现。
++
++操作、原理、评价口径和限制见 [联合语义编码](docs/联合语义编码.md)。权重位于 `runs/suim_joint_semantic_codec_20261002/semantic_codec_best.pt`，模型与数据不随 Git 上传；第一次克隆需要按文档准备环境并训练。
++
++## 本地演示界面
++
++已有环境和训练权重时，双击 **run_demo.cmd**，浏览器会打开 `http://127.0.0.1:8767/`。等模型就绪后，将图片或视频拖进左侧框即可开始；也可以点击选择文件。演示过程不需要联网或重新训练。
++
++- 图片支持 JPG、PNG、WebP、BMP，视频支持 MP4、AVI、MOV、MKV、WebM、M4V，具体取决于文件中的编码是否可解码。
++- 页面提供输入 / 分割结果对照、视频同步播放、类别占比、处理耗时和结果下载。
++- 可以调整模型输入尺寸、叠加比例、视频三帧投票、处理帧数上限，以及是否保存逐帧标签。
++- 原素材与每次结果单独保存在 `runs/demo_console/`。在最近记录中选中一条，修改参数后可重新处理；旧结果保留。
++
++默认加载 `runs/suim_transfer_20260911/segmentation_best.pt`。模型、数据、虚拟环境和 FFmpeg 都不在 Git 仓库内，首次克隆后需自行准备。视频预览使用本机 FFmpeg 输出浏览器兼容的无声 H.264；可通过 `FFMPEG_PATH` 或 `--ffmpeg` 指定。配置与现场操作见 [演示界面使用说明](docs/演示界面使用说明.md)。
++
++## 图片压缩与限速文件传输
++
++已有图片编码环境时，双击 **run_image_codec_demo.cmd**，打开 `http://127.0.0.1:8769/`。选择质量档位和 20／30／40 kbps 等限速，拖入 JPG、PNG、WebP 或 BMP；页面会依次编码、通过本机 TCP 发送文件、校验接收副本，再还原图片。质量档位与发送速度可分别调整。
++
++- 查看原图／还原图、PSNR、SSIM、实际文件字节数、发送速度和耗时。
++- 用“前后类别”对照同一个 SegFormer 在原图和还原图上的预测；预测一致性不是真值准确率。
++- 下载 `.svic` 压缩文件、还原 PNG 和传输记录。每次任务保存在 `runs/image_codec_console/`。
++
++采用 CompressAI 官方 `bmshj2018-hyperprior` 预训练模型，接收端只需压缩文件和预先准备好的相同模型。当前编解码统一使用 CPU，语义检查可用 GPU。20 kbps 限制的是发送方向应用层文件及传输头，允许多花时间传完；不代表压缩后视频的平均码率，也不包含 TCP/IP 包头。
++
++本机已完成 720p 图片的独立进程编解码、20／40 kbps 实测，以及固定 6 张 SUIM 验证图的三档质量对照。操作、结果和环境复建见 [图片压缩与文件传输](docs/图片压缩与文件传输.md)。图片链路暂不接收视频；视频仍可在原有模式做逐帧分割。
+ 
+ ## 环境与入口
+ 
++### SegFormer-B0 预训练试跑
++
++`setup_segformer.cmd` 配置独立的 `.venv-segformer` 环境，并从 NVIDIA 的 Hugging Face 模型页面下载权重。双击 `run_segformer.cmd` 可处理作者示例和固定抽取的 SUIM 验证图片，也可以将图片拖到该脚本上。结果包含原图、类别图、叠加图、耗时记录和本地 HTML 报告，保存在 `runs/segformer_b0_pretrained_*`。
++
++这个入口使用 ADE20K 150 类预训练权重，因此不能与 SUIM 八类模型直接比较 mIoU。来源、操作和本机试跑记录见 [SegFormer-B0 试跑](docs/SegFormer-B0试跑.md)。
++
++### SegFormer-B0 的 SUIM 八类微调
++
++`run_segformer_train.cmd` 使用相同的 SUIM 数据划分、256×256 等比缩放与补边，对公开预训练模型进行八类微调。分类层重新初始化，主干和多尺度解码器一同训练。该入口使用 `.venv-segformer`，最佳权重只按验证 mIoU 选择。
++
++本机这次的权重在 `runs/suim_segformer_b0_20260915/segmentation_best.pt`。双击 **run_segformer_demo.cmd** 可打开使用这份权重的图片／视频演示，地址为 `http://127.0.0.1:8768/`。原 `run_demo.cmd` 保留 LR-ASPP 演示。训练方法、评价口径和对照结果见 [SegFormer-B0 微调记录](docs/SegFormer-B0微调.md)。
++
++本次最佳权重来自第 39 轮，110 张测试图片的 mIoU 为 69.13%，原 LR-ASPP 为 62.65%。极小区域召回由 8.59% 提升到 24.99%，仍低于之前 FPN 的 31.26%。比较使用相同测试输入、标签和评价协议，预训练来源与学习率存在差异；这是一次迁移学习实验结果。
++
++### 原有训练环境
++
+ 环境已配置：Python 3.13.7、PyTorch 2.12.0 + CUDA 12.6、torchvision 0.27.0，以及 NumPy、Pillow、OpenCV、Matplotlib、tqdm、PyYAML、scikit-image。已识别 RTX 4060 Laptop 的 8GB 显存。
+ 
+ - 双击 **run_check.cmd**：检查依赖并运行 8 步 GPU 训练自检，报告写入 runs/environment_check.json。
+ - 双击 **open_env.cmd**：打开已经激活本项目虚拟环境的命令行，以下命令可以直接在里面执行。
++- 双击 **run_demo.cmd**：启动图片 / 视频语义分割演示界面。
+ - 双击 **run_train.cmd**：使用 data/frames 中的数据训练，默认 256×256、batch size 4、20 轮。
+ - 双击 **run_suim_train.cmd**：使用 SUIM 固定名单训练，默认 256×256、batch size 8、20 轮，使用 CUDA 和内存图片缓存。
+ - 双击 **run_segmentation_train.cmd**：训练 SUIM 八类语义分割，默认 256×256、batch size 8、最多 40 轮。
+@@ -59,13 +107,13 @@ python scripts\train_autoencoder.py --manifest data\SUIM\manifest.json --epochs
+ python scripts\prepare_suim.py --archive data\SUIM.zip
+ ~~~
+ 
+-脚本检查整个 ZIP 的 CRC，仅提取原图、合并 RGB 标签和 INFO.txt。没有使用包内的旧模型权重、二值标签副本和预计算评估结果。C
++脚本检查整个 ZIP 的 CRC，仅提取原图、合并 RGB 标签和 INFO.txt。没有使用包内的旧模型权重、二值标签副本和预计算评估结果。
+ 
+ 已有目录默认不覆盖；中断后可加 --reuse-extracted，脚本会再次核对源文件 CRC。若已有模型依赖当前划分，请保持 seed 和 validation-fraction，或使用其他输出目录保存新划分。模型评估会核对数据清单指纹。
+ 
+ ## 语义分割
+ 
+-目前有两条可复用的训练路线：TinyUNet 用于观察从零训练的小模型，LR-ASPP + MobileNetV3 使用迁移学习改善识别。已有模型和数据划分均保留。
++目前有三类可复用的训练路线：TinyUNet 用于观察从零训练的小模型，原始 LR-ASPP + MobileNetV3 用于迁移学习，新增的 `lraspp-hr4` 和 `lraspp-fpn` 用于检查高分辨率与多尺度特征对小目标的影响。已有模型和数据划分均保留。
+ 
+ ### 迁移学习版本
+ 
+@@ -86,7 +134,7 @@ python scripts\train_segmentation.py --model lraspp --pretrained checkpoints\pre
+ 
+ strong 增强增加图片/标签同步的 ±8° 旋转、最多 20% 放大和 ±2% 平移，亮度/饱和度因子范围扩大到 0.8～1.2。标签保持整数类别，补边仍为 255。输入和评价仍采用 256×256 等比缩放补边，与旧模型使用相同的计分口径。
+ 
+-评估和单图预测入口兼容两种模型，推理时无需预训练下载文件或联网。针对本次优化实验：
++评估和单图预测入口兼容这些模型，推理时无需预训练下载文件或联网。针对原迁移学习实验：
+ 
+ ~~~bat
+ python scripts\evaluate_segmentation.py --checkpoint runs\suim_transfer_20260911\segmentation_best.pt --device cuda
+@@ -96,6 +144,34 @@ python scripts\compare_segmentation_runs.py --baseline runs\suim_segmentation_20
+ 
+ compare_segmentation_runs.py 会检查输入、标签、数据清单、分辨率和评价方式一致，输出逐类前后对照与同一批固定测试图的预测差异。该比较反映组合改进，不是单因素消融；测试集此前已查看，不能把它表述为全新的未知外部数据。
+ 
++### 小目标与多尺度特征消融
++
++师姐提出的“小目标可能在下采样中丢失”可以用两类实验检查。当前 LR-ASPP 使用 MobileNetV3 的 1/8 低层特征和 1/16 高层特征，训练输入边长为 256；原图中的小目标经过缩放后可能只剩几个像素。
++
++第一组实验只改变评估分辨率，不重新训练模型，用来区分输入缩放的影响：
++
++~~~bat
++python scripts\evaluate_segmentation.py --checkpoint runs\suim_transfer_20260911\segmentation_best.pt --split test --size 384 --batch-size 4 --device cuda --output-dir runs\ablation_lraspp_384_test
++python scripts\evaluate_small_objects.py --checkpoint runs\suim_transfer_20260911\segmentation_best.pt --split test --size 256 --batch-size 8 --device cuda --output-dir runs\ablation_lraspp_256_small_objects
++python scripts\evaluate_small_objects.py --checkpoint runs\suim_transfer_20260911\segmentation_best.pt --split test --size 384 --batch-size 4 --device cuda --output-dir runs\ablation_lraspp_384_small_objects
++~~~
++
++目标统计使用标注的 8 邻域连通区域：`tiny` 为目标面积不超过有效图像的 0.1%，`small` 为 0.1%～1%，并报告区域内同类像素召回和召回达到 50% 的目标比例。已有 256→384 结果中，tiny 像素召回由 8.6% 提升到 22.8%，small 由 29.4% 提升到 37.7%，但整体 mIoU 基本没有提升，说明提高输入分辨率有帮助，却不能独立解决类别混淆。
++
++第二组实验保留同一个 MobileNetV3 主干，加入 1/4、1/8、1/16 的逐级融合解码头，模型名为 `lraspp_mobilenet_v3_large_fpn_suim_v1`：
++
++~~~bat
++python scripts\train_segmentation.py --model lraspp-fpn --pretrained checkpoints\pretrained\lraspp_mobilenet_v3_large-d234d4ea.pth --balanced-sampling --augmentation strong --epochs 60 --patience 15 --batch-size 8 --size 256 --device cuda --cache-images
++python scripts\evaluate_segmentation.py --checkpoint runs\suim_transfer_fpn_20260912\segmentation_best.pt --split test --device cuda --output-dir runs\ablation_fpn_256_test
++python scripts\evaluate_small_objects.py --checkpoint runs\suim_transfer_fpn_20260912\segmentation_best.pt --split test --device cuda --output-dir runs\ablation_fpn_256_small_objects
++~~~
++
++本机一次训练结果：原 LR-ASPP 测试 mIoU 为 62.65%，三尺度 FPN 版本为 59.20%；但 tiny 像素召回由 8.6% 提升到 31.3%，small 由 29.4% 提升到 40.3%。FPN 版本模型前向中位数约 4.11 ms，原模型约 3.79 ms（RTX 4060、256 输入、预热后单图，不含视频读写）。因此它是针对小目标的候选模型，不应在所有场景直接替换原模型；水生植物和机器人类别仍需继续调整类别损失、采样或裁剪训练。
++
++验证集上的同口径统计为：原模型到 FPN 的验证 mIoU `59.67% -> 61.64%`，tiny 像素召回 `9.3% -> 25.8%`，small 像素召回 `35.0% -> 47.8%`。模型选择仍只看验证集，测试集结果用于最后一次报告。
++
++`lraspp-hr4` 是只把低层分支改为 1/4 的简化对照，`lraspp-fpn` 才是当前推荐继续研究的多尺度版本。`run_segmentation_fpn.cmd` 可直接启动 FPN 训练。小目标报告和训练输出均保存在 `runs/`，不覆盖原来的模型。
++
+ ### 从零训练的入门版本
+ 
+ 使用相同的 1187 / 297 / 110 张训练、验证和测试划分。TinyUNet 是按 U-Net 编码器、解码器和跳跃连接思路写的缩小版本，包含 488,120 个参数，从随机权重训练，没有下载预训练权重。模型输出 8 个类别分数通道，取最高分得到像素类别。
+@@ -297,4 +373,14 @@ requirements-torch.txt      官方 CUDA 包的固定版本和来源
+ 
+ 原始数据、训练产物和虚拟环境已列入 .gitignore。
+ 
+-当前已经有独立的图像重建、图片语义分割和视频逐帧分割流程，并包含一个用类别掩码保护重要区域的压缩原型。视频脚本会记录端到端处理速度和相邻帧变化。真正的神经压缩仍需要量化、码率约束和可传输码流。
++## GLC-Video 视频文件实验
++
++使用官方 GLC-Image / GLC-Video 预训练网络，补充本地熵编码和 .glcv 容器，实现视频编码、限速 TCP 文件传输与独立进程解码。
++
++本机环境配置后，双击 **run_glc_demo.cmd**，打开 http://127.0.0.1:8770/。在网页拖入 AVI 或 MP4，可以调整质量、分辨率、帧数和传输限速，查看处理进度、同步播放输入与还原片段，并下载码流、还原视频和逐帧数据。支持停止任务、保留原视频重跑与历史记录；结果保存在 runs/glc_console/。操作步骤见 [GLC 网页界面](docs/GLC网页界面.md)。
++
++默认只处理最多 50 帧，宽度不超过 1280、q=63，以 20 kbps 在本机传完后还原。20 kbps 是文件发送速度，与压缩后视频码率分别统计。需要命令行操作时，仍可把视频拖到 run_glc_video.cmd。
++
++官方公开代码只返回估计码量；这里的真实文件接口是本项目补充实现，不是官方码流格式。接收端共享权重，只读取 .glcv，不读取原视频。输出 MP4 是观看副本，不计作传输数据。当前仅验证相同 PyTorch / GPU 环境，属于生成式神经视频源编码，尚未加入本项目的水下分割条件或物理信道。
++
++独立环境、复现命令、实际文件大小和测试限制见 [GLC-Video 说明](docs/GLC-Video.md)。原来的官方前向试跑入口 scripts/glc_video_probe.py 仍保留，用来区分估计码量与真实文件测量。
+diff --git "a/docs/\350\257\255\344\271\211\345\210\206\345\211\262\344\274\230\345\214\226\350\256\260\345\275\225.md" "b/docs/\350\257\255\344\271\211\345\210\206\345\211\262\344\274\230\345\214\226\350\256\260\345\275\225.md"
+index b401bb5..34dfa79 100644
+--- "a/docs/\350\257\255\344\271\211\345\210\206\345\211\262\344\274\230\345\214\226\350\256\260\345\275\225.md"
++++ "b/docs/\350\257\255\344\271\211\345\210\206\345\211\262\344\274\230\345\214\226\350\256\260\345\275\225.md"
+@@ -1,5 +1,7 @@
+ # 语义分割优化记录
+ 
++小目标、高分辨率和多尺度特征的后续消融已单独记录在 [小目标分割消融](小目标分割消融.md)，这里保留原来的迁移学习基线结果。
++
+ 日期：2026-09-11。项目：semantic-video-training。
+ 
+ 本次针对第一版识别弱、植物几乎全漏检的问题，加入预训练特征微调、类别平衡采样和较强数据增强。旧模型、原始数据和划分全部保留，结果用同一批图片、同一份真值和同一评价方式比较。
+diff --git a/scripts/compare_segmentation_runs.py b/scripts/compare_segmentation_runs.py
+index 992a367..2288fc4 100644
+--- a/scripts/compare_segmentation_runs.py
++++ b/scripts/compare_segmentation_runs.py
+@@ -16,6 +16,8 @@ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--baseline", type=Path, required=True, help="旧实验目录")
+     parser.add_argument("--candidate", type=Path, required=True, help="新实验目录")
++    parser.add_argument("--baseline-label", default="Baseline", help="对照图中的旧模型名称")
++    parser.add_argument("--candidate-label", default="Candidate", help="对照图中的新模型名称")
+     parser.add_argument("--output-dir", type=Path)
+     args = parser.parse_args()
+     before_dir, after_dir = args.baseline / "evaluation_test", args.candidate / "evaluation_test"
+@@ -65,7 +67,8 @@ def main():
+         "miou_change_percentage_points": 100*(after["miou"]-before["miou"]),
+         "before_pixel_accuracy": before["pixel_accuracy"], "after_pixel_accuracy": after["pixel_accuracy"],
+         "per_class": table, "manifest_sha256": after["manifest_sha256"],
+-        "note": "同图同标签同预处理同分辨率评价；训练模型、预训练、采样、增强和训练轮数不同。这是组合改进的比较，不是单因素消融。测试集在前一次实验中已被查看，当前仍以验证集选择模型；不能称为全新未知外部测试集。",
++        "baseline_label": args.baseline_label, "candidate_label": args.candidate_label,
++        "note": "同图同标签同预处理同分辨率评价；训练条件另见各实验配置，不能自动视为单因素消融。测试集此前已被查看，当前仍以验证集选择模型；不能称为全新未知外部测试集。",
+     }
+     write_json(output / "summary.json", summary)
+     import matplotlib
+@@ -92,7 +95,7 @@ def main():
+             ax.imshow(image)
+             ax.axis("off")
+         axes_row[0].set_title(Path(new["image"]).stem, fontsize=9)
+-    for ax, title in zip(axes[0], ("Input", "Ground truth", "Before: TinyUNet", "After: transfer", "After overlay")):
++    for ax, title in zip(axes[0], ("Input", "Ground truth", args.baseline_label, args.candidate_label, "Candidate overlay")):
+         ax.set_title(title, fontsize=11)
+     fig.legend(handles=[Patch(facecolor=np.array(row["rgb"])/255, edgecolor="gray", label=row["symbol"]) for row in classes],
+                loc="outside lower center", ncol=8, fontsize=10)
+diff --git a/scripts/evaluate_segmentation.py b/scripts/evaluate_segmentation.py
+index ab19bb0..c71f504 100644
+--- a/scripts/evaluate_segmentation.py
++++ b/scripts/evaluate_segmentation.py
+@@ -39,11 +39,14 @@ def main():
+     parser.add_argument("--manifest", type=Path, default=Path("data/SUIM/manifest.json"))
+     parser.add_argument("--split", choices=("validation", "test"), default="test")
+     parser.add_argument("--batch-size", type=int, default=8)
++    parser.add_argument("--size", type=int, help="覆盖模型默认输入尺寸，用于分辨率消融；必须为 8 的倍数")
+     parser.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto")
+     parser.add_argument("--output-dir", type=Path)
+     args = parser.parse_args()
+     if args.batch_size < 1:
+         parser.error("batch-size 必须为正")
++    if args.size is not None and (args.size < 32 or args.size % 8):
++        parser.error("size 必须是至少 32 的 8 倍数")
+     if args.device == "cuda" and not torch.cuda.is_available():
+         parser.error("CUDA 不可用")
+     torch.set_num_threads(4)
+@@ -53,7 +56,8 @@ def main():
+     if state["manifest_sha256"] != digest:
+         parser.error("模型与数据清单指纹不同，停止评估")
+     records = metadata["splits"][args.split]
+-    dataset = SegmentationDataset(root, records, state["size"])
++    eval_size = args.size or state["size"]
++    dataset = SegmentationDataset(root, records, eval_size)
+     loader = DataLoader(dataset, batch_size=args.batch_size, shuffle=False, num_workers=0)
+     output = args.output_dir or args.checkpoint.parent / ("evaluation_" + args.split)
+     if output.exists() and (not output.is_dir() or any(output.iterdir())):
+@@ -113,7 +117,7 @@ def main():
+     # 全部预测成背景的简单参照，不用于选模型。
+     majority[:, 0] = total_confusion.sum(axis=1)
+     summary = {
+-        "split": args.split, "images": len(dataset), "size": state["size"], "precision": "float32",
++        "split": args.split, "images": len(dataset), "size": eval_size, "model_training_size": state["size"], "precision": "float32",
+         "checkpoint": str(args.checkpoint.resolve()), "checkpoint_epoch": state["epoch"],
+         "checkpoint_sha256": hashlib.sha256(args.checkpoint.read_bytes()).hexdigest(),
+         "manifest_sha256": digest, "preprocessing": state["preprocessing"],
+@@ -121,7 +125,7 @@ def main():
+         "always_background_baseline": metrics_from_confusion(majority, metadata["classes"]),
+         "elapsed_s": round(time.perf_counter()-start, 3),
+         "preview_selection": "6 images equally spaced through the fixed sorted split; not selected by model quality",
+-        "note": "在等比缩放、居中补边后的分辨率计分，忽略补边 255；不是原始分辨率或官方论文协议。测试集未用于训练或轮次选择。逐图 mIoU 的平均不等于这里全局累计的 mIoU。",
++        "note": "在等比缩放、居中补边后的评估分辨率计分，忽略补边 255；不是原始分辨率或官方论文协议。测试集未用于训练或轮次选择。逐图 mIoU 的平均不等于这里全局累计的 mIoU。size 覆盖仅用于分辨率消融，未重新训练模型。",
+     }
+     write_json(output / "summary.json", summary)
+     print(f"{args.split}: images={len(dataset)}, mIoU={metrics['miou']*100:.2f}%, pixel_accuracy={metrics['pixel_accuracy']*100:.2f}%", flush=True)
+diff --git a/scripts/segmentation.py b/scripts/segmentation.py
+index 16ce9fb..477efa9 100644
+--- a/scripts/segmentation.py
++++ b/scripts/segmentation.py
+@@ -20,6 +20,10 @@ NUM_CLASSES = 8
+ IGNORE_INDEX = 255
+ MODEL_NAME = "tiny_unet_v1"
+ TRANSFER_MODEL_NAME = "lraspp_mobilenet_v3_large_suim_v1"
++HR_TRANSFER_MODEL_NAME = "lraspp_mobilenet_v3_large_hr4_suim_v1"
++FPN_TRANSFER_MODEL_NAME = "lraspp_mobilenet_v3_large_fpn_suim_v1"
++SEGFORMER_MODEL_NAME = "segformer_b0_suim_v1"
++TRANSFER_MODEL_NAMES = (TRANSFER_MODEL_NAME, HR_TRANSFER_MODEL_NAME, FPN_TRANSFER_MODEL_NAME)
+ PREPROCESSING = "rgb_0_1_long_edge_resize_center_pad_ignore_255"
+ 
+ 
+@@ -152,22 +156,74 @@ class TinyUNet(nn.Module):
+         return self.head(self.dec1(up(self.dec2(up(self.dec3(up(x4, x3)), x2)), x1)))
+ 
+ 
++class FusedLRASPPHead(nn.Module):
++    """把 1/16、1/8、1/4 三个尺度逐级融合的轻量解码头。"""
++    def __init__(self, num_classes: int = NUM_CLASSES):
++        super().__init__()
++        self.high_cbr = nn.Sequential(
++            nn.Conv2d(960, 128, 1, bias=False), nn.BatchNorm2d(128), nn.ReLU(inplace=True)
++        )
++        self.scale = nn.Sequential(nn.AdaptiveAvgPool2d(1), nn.Conv2d(960, 128, 1, bias=False), nn.Sigmoid())
++        self.low_proj = nn.Sequential(
++            nn.Conv2d(40, 64, 1, bias=False), nn.BatchNorm2d(64), nn.ReLU(inplace=True)
++        )
++        self.low_refine = nn.Sequential(
++            nn.Conv2d(192, 128, 3, padding=1, bias=False), nn.BatchNorm2d(128), nn.ReLU(inplace=True)
++        )
++        self.fine_proj = nn.Sequential(
++            nn.Conv2d(24, 48, 3, padding=1, bias=False), nn.BatchNorm2d(48), nn.ReLU(inplace=True)
++        )
++        self.fine_refine = nn.Sequential(
++            nn.Conv2d(176, 96, 3, padding=1, bias=False), nn.BatchNorm2d(96), nn.ReLU(inplace=True)
++        )
++        self.classifier = nn.Conv2d(96, num_classes, 1)
++
++    def forward(self, input):
++        fine, low, high = input["fine"], input["low"], input["high"]
++        context = self.high_cbr(high) * self.scale(high)
++        context = F.interpolate(context, size=low.shape[-2:], mode="bilinear", align_corners=False)
++        low_context = self.low_refine(torch.cat((context, self.low_proj(low)), dim=1))
++        low_context = F.interpolate(low_context, size=fine.shape[-2:], mode="bilinear", align_corners=False)
++        fused = self.fine_refine(torch.cat((low_context, self.fine_proj(fine)), dim=1))
++        return self.classifier(fused)
++
++
+ class TransferSegmentationModel(nn.Module):
+-    """MobileNetV3 + LR-ASPP；使用官方预训练特征，八类输出层重新学习。"""
+-    def __init__(self, pretrained_path: Path | None = None):
++    """MobileNetV3 + LR-ASPP；使用官方预训练特征，八类输出层重新学习。
++
++    ``low_layer=4`` 是 torchvision 默认的 1/8 低层特征；``low_layer=3``
++    输出 1/4 特征图，给边界和小目标保留更多空间采样点。
++    """
++    def __init__(self, pretrained_path: Path | None = None, low_layer: str = "4", fused: bool = False):
+         super().__init__()
+         from torchvision.models.segmentation import lraspp_mobilenet_v3_large
+         # 显式禁止隐式下载，推理时只需要本项目训练得到的权重。
+         self.network = lraspp_mobilenet_v3_large(weights=None, weights_backbone=None, num_classes=NUM_CLASSES)
++        if low_layer not in {"3", "4"}:
++            raise ValueError("low_layer 只支持 3（1/4）或 4（1/8）")
++        self.low_layer = low_layer
++        self.fused = fused
++        if fused:
++            self.network.backbone.return_layers = {"3": "fine", "4": "low", "16": "high"}
++            self.network.classifier = FusedLRASPPHead(NUM_CLASSES)
++        else:
++            self.network.backbone.return_layers = {low_layer: "low", "16": "high"}
++        low_channels = {"3": 24, "4": 40}[low_layer]
++        if low_layer == "3" and not fused:
++            # LR-ASPP 默认低层分类器接收 block 4 的 40 通道；改接 block 3
++            # 时必须同步修改输入通道，其他高层结构和预训练特征保持不变。
++            self.network.classifier.low_classifier = nn.Conv2d(low_channels, NUM_CLASSES, 1)
+         self.register_buffer("mean", torch.tensor([0.485, 0.456, 0.406]).view(1, 3, 1, 1))
+         self.register_buffer("std", torch.tensor([0.229, 0.224, 0.225]).view(1, 3, 1, 1))
+         if pretrained_path is not None:
+             state = torch.load(pretrained_path, map_location="cpu", weights_only=True)
+-            replaced = {"classifier.low_classifier.weight", "classifier.low_classifier.bias",
+-                        "classifier.high_classifier.weight", "classifier.high_classifier.bias"}
+-            retained = {key: value for key, value in state.items() if key not in replaced}
++            retained = {key: value for key, value in state.items() if not key.startswith("classifier.")}
+             result = self.network.load_state_dict(retained, strict=False)
+-            if set(result.missing_keys) != replaced or result.unexpected_keys:
++            # BatchNorm 的 num_batches_tracked 在 strict=False 加载时不会列入
++            # missing_keys，因此从预期缺失集合中排除这些缓冲区。
++            expected_missing = {key for key in self.network.state_dict()
++                                if key.startswith("classifier.") and not key.endswith("num_batches_tracked")}
++            if set(result.missing_keys) != expected_missing or result.unexpected_keys:
+                 raise ValueError("预训练文件与当前 LR-ASPP 结构不兼容")
+ 
+     def forward(self, image):
+@@ -175,12 +231,19 @@ class TransferSegmentationModel(nn.Module):
+ 
+ 
+ def create_segmentation_model(model_name, base_channels=16, pretrained_path=None):
++    if model_name == SEGFORMER_MODEL_NAME:
++        from segformer_suim import SegFormerSegmentationModel
++        return SegFormerSegmentationModel(pretrained_path)
+     if model_name == MODEL_NAME:
+         if pretrained_path is not None:
+             raise ValueError("TinyUNet 不接受 LR-ASPP 的预训练文件")
+         return TinyUNet(base_channels)
+     if model_name == TRANSFER_MODEL_NAME:
+-        return TransferSegmentationModel(pretrained_path)
++        return TransferSegmentationModel(pretrained_path, low_layer="4")
++    if model_name == HR_TRANSFER_MODEL_NAME:
++        return TransferSegmentationModel(pretrained_path, low_layer="3")
++    if model_name == FPN_TRANSFER_MODEL_NAME:
++        return TransferSegmentationModel(pretrained_path, low_layer="4", fused=True)
+     raise ValueError(f"不支持的分割模型：{model_name}")
+ 
+ 
+@@ -267,7 +330,7 @@ def save_comparison(samples, classes, path):
+ 
+ def load_segmentation_model(path, device):
+     state = torch.load(path, map_location="cpu", weights_only=True)
+-    if state.get("model_name") not in (MODEL_NAME, TRANSFER_MODEL_NAME) or state.get("preprocessing") != PREPROCESSING:
++    if state.get("model_name") not in (MODEL_NAME, *TRANSFER_MODEL_NAMES, SEGFORMER_MODEL_NAME) or state.get("preprocessing") != PREPROCESSING:
+         raise ValueError("不是当前版本的分割模型，不能使用重建模型或其他预处理的权重")
+     model = create_segmentation_model(state["model_name"], state.get("base_channels", 16)).to(device)
+     model.load_state_dict(state["model"])
+diff --git a/scripts/train_segmentation.py b/scripts/train_segmentation.py
+index d60ac6d..8e3663e 100644
+--- a/scripts/train_segmentation.py
++++ b/scripts/train_segmentation.py
+@@ -14,7 +14,8 @@ import torch
+ from torch.utils.data import DataLoader, WeightedRandomSampler
+ 
+ from segmentation import (
+-    MODEL_NAME, TRANSFER_MODEL_NAME, PREPROCESSING, SegmentationDataset, confusion_matrix,
++    MODEL_NAME, TRANSFER_MODEL_NAME, HR_TRANSFER_MODEL_NAME, FPN_TRANSFER_MODEL_NAME, SEGFORMER_MODEL_NAME,
++    PREPROCESSING, SegmentationDataset, confusion_matrix,
+     balanced_sampling_probabilities, create_segmentation_model,
+     manifest_info, metrics_from_confusion, save_comparison, segmentation_loss, write_json,
+ )
+@@ -73,8 +74,9 @@ def save_curves(history, path):
+ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--manifest", type=Path, default=Path("data/SUIM/manifest.json"))
+-    parser.add_argument("--model", choices=("tiny-unet", "lraspp"), default="tiny-unet")
+-    parser.add_argument("--pretrained", type=Path, help="LR-ASPP 的官方预训练文件；未提供则从随机权重训练")
++    parser.add_argument("--model", choices=("tiny-unet", "lraspp", "lraspp-hr4", "lraspp-fpn", "segformer-b0"), default="tiny-unet",
++                        help="lraspp-hr4 使用 1/4 低层特征；lraspp-fpn 融合 1/4、1/8、1/16 三个尺度")
++    parser.add_argument("--pretrained", type=Path, help="LR-ASPP 预训练文件，或 SegFormer-B0 本地预训练目录；未提供则随机初始化")
+     parser.add_argument("--epochs", type=int, default=40)
+     parser.add_argument("--batch-size", type=int, default=8)
+     parser.add_argument("--size", type=int, default=256)
+@@ -98,9 +100,17 @@ def main():
+         parser.error("learning-rate 必须在 0 和 1 之间")
+     if not 0 < args.backbone_lr_factor <= 1:
+         parser.error("backbone-lr-factor 必须在 (0,1] 内")
+-    if args.pretrained and (args.model != "lraspp" or not args.pretrained.is_file()):
+-        parser.error("pretrained 必须是存在的 LR-ASPP 权重文件，且 model=lraspp")
+-    model_name = TRANSFER_MODEL_NAME if args.model == "lraspp" else MODEL_NAME
++    if args.model == "segformer-b0" and (args.size < 64 or args.size % 32):
++        parser.error("SegFormer 的 size 必须是至少 64 的 32 倍数")
++    if args.pretrained:
++        if args.model == "segformer-b0":
++            if not args.pretrained.is_dir() or not (args.pretrained / "model.safetensors").is_file():
++                parser.error("SegFormer 的 pretrained 必须指向已准备的本地权重目录")
++        elif args.model not in ("lraspp", "lraspp-hr4", "lraspp-fpn") or not args.pretrained.is_file():
++            parser.error("LR-ASPP 的 pretrained 必须是存在的权重文件")
++    model_name = {"lraspp": TRANSFER_MODEL_NAME, "lraspp-hr4": HR_TRANSFER_MODEL_NAME,
++                  "lraspp-fpn": FPN_TRANSFER_MODEL_NAME, "segformer-b0": SEGFORMER_MODEL_NAME}.get(args.model, MODEL_NAME)
++    is_transfer = args.model in ("lraspp", "lraspp-hr4", "lraspp-fpn", "segformer-b0")
+     if args.device == "cuda" and not torch.cuda.is_available():
+         parser.error("无法使用 CUDA，请先运行 run_check.cmd")
+     device = torch.device("cuda" if args.device == "auto" and torch.cuda.is_available() else ("cpu" if args.device == "auto" else args.device))
+@@ -111,7 +121,9 @@ def main():
+         torch.cuda.manual_seed_all(args.seed)
+         torch.cuda.reset_peak_memory_stats()
+     root, metadata, digest = manifest_info(args.manifest)
+-    prefix = "suim_transfer_" if args.model == "lraspp" else "suim_segmentation_"
++    prefix = "suim_transfer_fpn_" if args.model == "lraspp-fpn" else ("suim_transfer_hr4_" if args.model == "lraspp-hr4" else ("suim_transfer_" if is_transfer else "suim_segmentation_"))
++    if args.model == "segformer-b0":
++        prefix = "suim_segformer_b0_"
+     output = args.output_dir or Path("runs") / datetime.now().strftime(prefix + "%Y%m%d-%H%M%S-%f")
+     if output.exists() and (not output.is_dir() or any(output.iterdir())):
+         parser.error(f"输出目录非空，不覆盖：{output}")
+@@ -147,20 +159,29 @@ def main():
+         "sampling_definition": "50% uniform + 50% class-balanced by training-image presence at >=0.5% labeled area; replacement, samples per epoch equal training set size",
+         "optimizer": "AdamW, weight_decay=0.0001", "scheduler": "cosine multiplier from 1 to 0.05, preserves parameter-group LR ratios",
+         "gradient_clip_norm": 1.0, "cache_images": args.cache_images, "cpu_threads": args.cpu_threads,
+-        "backbone_lr_factor": args.backbone_lr_factor if args.model == "lraspp" else None,
++        "backbone_lr_factor": args.backbone_lr_factor if is_transfer else None,
+         "pretrained_weights": str(args.pretrained.resolve()) if args.pretrained else None,
+-        "pretrained_sha256": hashlib.sha256(args.pretrained.read_bytes()).hexdigest() if args.pretrained else None,
++        "pretrained_sha256": hashlib.sha256((args.pretrained / "model.safetensors" if args.model == "segformer-b0" else args.pretrained).read_bytes()).hexdigest() if args.pretrained else None,
+     }
+     write_json(output / "config.json", config)
+     sampler = WeightedRandomSampler(probabilities, len(train_data), replacement=True) if probabilities is not None else None
+     train_loader = DataLoader(train_data, batch_size=args.batch_size, shuffle=sampler is None, sampler=sampler, num_workers=0, pin_memory=device.type == "cuda")
+     validation_loader = DataLoader(validation_data, batch_size=args.batch_size, shuffle=False, num_workers=0, pin_memory=device.type == "cuda")
+     model = create_segmentation_model(model_name, args.base_channels, args.pretrained).to(device)
+-    if args.model == "lraspp" and device.type == "cuda":
++    if is_transfer and device.type == "cuda":
+         model = model.to(memory_format=torch.channels_last)
+     weights = weights.to(device)
+     parameters = model.parameters()
+-    if args.model == "lraspp":
++    if args.model == "segformer-b0":
++        parameters = [{"params": model.network.segformer.parameters(), "lr": args.learning_rate*args.backbone_lr_factor},
++                      {"params": model.network.decode_head.parameters(), "lr": args.learning_rate}]
++        import transformers
++        config["transformers"] = transformers.__version__
++        config["model_config"] = model.network.config.to_dict()
++        config["label_handling"] = "SUIM 标签保持 0..7；背景 0 参与训练，255 只用于补边；不做 ADE20K reduce_labels"
++        config["transfer_initialization"] = "ADE20K 预训练 B0；仅最终 1x1 分类层随机初始化，主干和解码器均微调"
++        write_json(output / "config.json", config)
++    elif is_transfer:
+         parameters = [{"params": model.network.backbone.parameters(), "lr": args.learning_rate*args.backbone_lr_factor},
+                       {"params": model.network.classifier.parameters(), "lr": args.learning_rate}]
+     optimizer = torch.optim.AdamW(parameters, lr=args.learning_rate, weight_decay=1e-4)
+diff --git a/tests/test_segmentation.py b/tests/test_segmentation.py
+index c1bf1b4..f7d8b1b 100644
+--- a/tests/test_segmentation.py
++++ b/tests/test_segmentation.py
+@@ -11,7 +11,7 @@ from PIL import Image
+ 
+ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+ from segmentation import (
+-    IGNORE_INDEX, TinyUNet, SegmentationDataset, TransferSegmentationModel,
++    FPN_TRANSFER_MODEL_NAME, IGNORE_INDEX, HR_TRANSFER_MODEL_NAME, TinyUNet, SegmentationDataset, TransferSegmentationModel,
+     balanced_sampling_probabilities, color_mask, confusion_matrix, fit_image,
+     metrics_from_confusion, predict_original, segmentation_loss,
+ )
+@@ -137,6 +137,27 @@ class SegmentationTests(unittest.TestCase):
+         self.assertEqual(tuple(prediction.shape), (1, 8, 32, 32))
+         self.assertTrue(torch.isfinite(prediction).all())
+ 
++    def test_high_resolution_transfer_model_uses_quarter_scale_low_feature(self):
++        from unittest.mock import patch
++        with patch("torch.hub.download_url_to_file", side_effect=AssertionError("unexpected download")):
++            model = TransferSegmentationModel(low_layer="3").eval()
++            self.assertEqual(model.network.backbone.return_layers, {"3": "low", "16": "high"})
++            self.assertEqual(model.network.classifier.low_classifier.in_channels, 24)
++            with torch.inference_mode():
++                prediction = model(torch.rand(1, 3, 64, 64))
++        self.assertEqual(tuple(prediction.shape), (1, 8, 64, 64))
++        self.assertTrue(torch.isfinite(prediction).all())
++
++    def test_fpn_transfer_model_fuses_three_feature_scales(self):
++        from unittest.mock import patch
++        with patch("torch.hub.download_url_to_file", side_effect=AssertionError("unexpected download")):
++            model = TransferSegmentationModel(fused=True).eval()
++            self.assertEqual(model.network.backbone.return_layers, {"3": "fine", "4": "low", "16": "high"})
++            with torch.inference_mode():
++                prediction = model(torch.rand(1, 3, 64, 64))
++        self.assertEqual(tuple(prediction.shape), (1, 8, 64, 64))
++        self.assertTrue(torch.isfinite(prediction).all())
++
+ 
+ if __name__ == "__main__":
+     unittest.main()

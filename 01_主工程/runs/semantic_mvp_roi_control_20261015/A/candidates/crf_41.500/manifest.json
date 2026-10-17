@@ -1,0 +1,80 @@
+{
+  "profile": "semantic-video-layered-v1",
+  "mode": "video",
+  "width": 1280,
+  "height": 720,
+  "frames": 50,
+  "fps": "25/1",
+  "context": {
+    "file": "context.mp4",
+    "width": 640,
+    "height": 360
+  },
+  "patches": [
+    {
+      "start": 0,
+      "frames": 32,
+      "box": [
+        0,
+        0,
+        1280,
+        692
+      ],
+      "file": "roi_0000.mp4"
+    },
+    {
+      "start": 32,
+      "frames": 18,
+      "box": [
+        1058,
+        0,
+        222,
+        330
+      ],
+      "file": "roi_0001.mp4"
+    }
+  ],
+  "semantics_file": "semantics.json.gz",
+  "teacher": {
+    "target": "fish",
+    "class_id": 6,
+    "label": "鱼类",
+    "model_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+    "inference": "512 tiles, stride384, mean overlapping logits",
+    "threshold": 0.9,
+    "reliability": "limited; training video131 demo does not establish generalization"
+  },
+  "files": {
+    "context.mp4": {
+      "bytes": 21056,
+      "sha256": "ae364c1a3a5a0a5cba6f36c16a90b06c5782d88a5b8ea2bdea97c3fcd2cd7183"
+    },
+    "roi_0000.mp4": {
+      "bytes": 53940,
+      "sha256": "24f14fcc22b53386d55ebbcf4de494c22a082ea89c5e11990dd996871fa36dd0"
+    },
+    "roi_0001.mp4": {
+      "bytes": 7495,
+      "sha256": "7dae8e36025f49f513dc9dee81bdb9b70c911885b2e85a5981a4a58778342c62"
+    },
+    "semantics.json.gz": {
+      "bytes": 929,
+      "sha256": "005bce5cedaec3f4a119fabc8df1e3ed1419c2fffeb87456b6e2b5ea3e12f1d9"
+    }
+  },
+  "configuration": {
+    "background_crf": 42,
+    "roi_crf": 41.5,
+    "background_scale": 0.5,
+    "segment_frames": 32,
+    "padding": 16,
+    "min_pixels": 64,
+    "h265": "medium, P-only, keyint32, BT709 limited YUV420"
+  },
+  "fps_basis": "user-declared nominal rate; capture timestamps not available",
+  "experiment": {
+    "group": "A",
+    "predictions": "same frozen cached sender predictions",
+    "budget_matching": "complete bytes only"
+  }
+}

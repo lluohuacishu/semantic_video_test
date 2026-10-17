@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>水下图像 · 语义编码实验</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="水下语义分割首页">
+      <svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="11" fill="#137c86"/><path d="M8 13c5-5 9 5 14 0s7 0 7 0M8 20c5-5 9 5 14 0s7 0 7 0M8 27c5-5 9 5 14 0" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <span>水下图像实验<small>语义分割与联合编码</small></span>
+    </a>
+    <div class="header-state"><span class="status-dot" id="statusDot"></span><span id="modelStatus">正在连接本机服务</span><span class="local-tag">本机运行</span></div>
+  </header>
+
+  <main>
+    <div class="page-heading"><div><p class="eyebrow">SUIM · 水下图像实验</p><h1 id="pageTitle">看看模型识别到了什么</h1><p class="intro" id="pageIntro">拖入一张图片或一段视频，对照原画面查看分割结果。</p></div><button class="text-button" id="helpButton" type="button">演示说明 <span aria-hidden="true">↗</span></button></div>
+    <div id="errorBox" class="alert" role="alert" hidden></div>
+    <div id="offlineBox" class="alert" role="status" hidden>本机服务已断开。联合语义编码请重开 run_semantic_codec_demo.cmd，普通压缩使用 run_image_codec_demo.cmd。</div>
+
+    <div class="workspace">
+      <aside class="sidebar">
+        <section class="card upload-card">
+          <div class="section-label"><span class="step">01</span><h2>选择素材</h2></div>
+          <button id="dropZone" class="drop-zone" type="button" aria-label="选择或拖入图片、视频文件">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="7" y="8" width="34" height="32" rx="6" stroke="currentColor" stroke-width="1.7"/><circle cx="17" cy="18" r="3" stroke="currentColor" stroke-width="1.7"/><path d="m9 34 10-10 8 7 5-5 8 8M34 5v10M29 10h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <strong>把图片或视频拖到这里</strong><span>也可以点击选择文件</span><small>JPG / PNG / WebP / BMP<br>MP4 / AVI / MOV / MKV / WebM / M4V</small>
+          </button>
+          <input id="fileInput" type="file" accept=".jpg,.jpeg,.png,.webp,.bmp,.mp4,.avi,.mov,.mkv,.webm,.m4v" hidden>
+          <p class="hint" id="uploadHint">拖入即按下方参数开始处理。单个文件 ≤ 1 GiB，演示建议用 720p 或 1080p 短视频。</p>
+          <div id="selectedFile" class="selected-file" hidden><span id="fileName"></span><small id="fileSize"></small></div>
+        </section>
+
+        <section class="card settings-card">
+          <div class="section-label"><span class="step">02</span><h2>处理参数</h2><button id="resetSettings" class="text-button small" type="button">重置</button></div>
+          <fieldset id="settingsFields">
+            <label class="field" for="operationMode"><span>实验模式</span><select id="operationMode"><option value="segmentation">语义分割 · 图片 / 视频</option><option value="image_codec">普通图片编码 · 对照组</option><option value="semantic_codec">联合语义编码 · 图片与类别</option></select></label>
+            <div id="codecSettings" hidden>
+              <label class="field" for="codecQuality"><span>压缩质量档位</span><select id="codecQuality"><option value="1">1 · 文件较小</option><option value="3" selected>3 · 中间档位</option><option value="5">5 · 保留更多细节</option></select></label>
+              <label class="field" for="transferRate"><span>文件传输限速</span><select id="transferRate"><option value="20">20 kbps · 约 2.5 KB/s</option><option value="30">30 kbps · 约 3.75 KB/s</option><option value="40">40 kbps · 约 5 KB/s</option><option value="80">80 kbps · 初步对照</option><option value="100">100 kbps · 快速演示</option></select></label>
+              <p class="hint tight">压缩文件通过本机 TCP 收发，收完再还原图片。限速含应用层传输头，不含 TCP/IP 包头。图片保留原尺寸，最多 419 万像素。</p>
+            </div>
+            <label class="field" for="inputSize"><span id="inputSizeLabel">模型输入边长</span><select id="inputSize"><option value="256">256 px · 训练时尺寸</option><option value="384">384 px · 尝试更多细节</option><option value="512">512 px · 耗时更长</option></select></label>
+            <p class="hint tight">先等比缩小再推理，结果还原到原画面尺寸；提高尺寸不保证更准。</p>
+            <label class="field range-field" for="alpha"><span>叠加颜色浓度 <output id="alphaValue" for="alpha">45%</output></span><input id="alpha" type="range" min="0" max="100" value="45" step="5"></label>
+            <label class="field" for="temporalWindow"><span>视频帧间稳定</span><select id="temporalWindow"><option value="3">三帧投票</option><option value="1">关闭 · 每帧独立预测</option></select></label>
+            <p class="hint tight" id="temporalHint">投票可减轻跳变，运动边界可能稍有滞后。</p>
+            <details class="advanced"><summary>更多视频设置</summary><label class="field" for="maxFrames"><span>最多处理帧数</span><input id="maxFrames" type="number" min="0" max="1000000" step="1" value="0"></label><p class="hint tight">0 表示全部。长视频可先设为 100 帧试跑。</p><label class="checkbox"><input id="saveMasks" type="checkbox"><span>保存每帧的类别编号 PNG</span></label><p class="hint tight">用于后续分析，会增加文件数和处理时间。</p></details>
+          </fieldset>
+          <button id="rerunButton" class="secondary-button full-width" type="button" disabled>用当前参数重新处理</button>
+        </section>
+
+        <section class="card history-card"><div class="section-label"><h2>最近处理</h2><span class="muted small" id="historyCount"></span></div><div id="historyList" class="history-list"><p class="hint">处理过的结果会保存在这里。</p></div></section>
+      </aside>
+
+      <div class="results-column">
+        <section class="card result-card">
+          <div class="result-heading"><div><div class="section-label"><span class="step">03</span><h2>画面对照</h2></div><p id="resultSubtitle" class="muted small">原画面与预测结果并排显示</p></div><div class="tabs" role="tablist" aria-label="结果显示方式"><button id="reconstructedTab" type="button" role="tab" aria-selected="false" data-view="reconstructed" hidden>还原图片</button><button id="overlayTab" type="button" role="tab" aria-selected="true" data-view="overlay">叠加结果</button><button id="colorTab" type="button" role="tab" aria-selected="false" data-view="color">纯色类别</button></div></div>
+
+          <div id="emptyState" class="empty-state"><div class="empty-grid"><svg viewBox="0 0 128 80" aria-hidden="true"><rect x="3" y="3" width="50" height="64" rx="5"/><path d="M11 50 24 32 44 51M11 58h33M64 34h10m-4-4 4 4-4 4"/><rect x="83" y="3" width="42" height="64" rx="5"/><path class="accent" d="m87 54 10-19 12 4 12-12v36H87z"/><circle cx="17" cy="18" r="5"/></svg></div><h3>准备好素材，就可以开始了</h3><p id="emptyHint">先试一张图片，再播放一段视频。<br>完成后可在这里切换显示方式、下载结果。</p><span class="empty-note">所有处理都在这台电脑上完成</span></div>
+
+          <div id="progressPanel" class="progress-panel" role="status" aria-live="polite" hidden><div class="progress-top"><strong id="progressTitle">正在处理</strong><button id="cancelButton" class="text-button" type="button">停止</button></div><div class="progress-track"><div id="progressBar"></div></div><div class="progress-bottom"><span id="progressDetail">等待模型处理</span><span id="progressPercent">0%</span></div></div>
+
+          <div id="comparison" hidden><div class="media-grid"><div class="media-pane"><div class="media-label"><span id="inputLabel">输入画面</span><small id="inputDimensions"></small></div><div class="media-stage" id="inputStage"></div></div><div class="media-pane"><div class="media-label"><span id="outputLabel">预测叠加</span><small id="outputKind">模型输出</small></div><div class="media-stage" id="outputStage"></div></div></div><div class="playback-bar" id="playbackBar" hidden><button class="secondary-button" id="playBoth" type="button">同步播放</button><span class="hint">在右侧拖动时间轴可同步定位；预览不含声音。</span></div><p class="hint" id="mediaWarning" hidden></p></div>
+
+          <div class="legend" id="legend" aria-label="类别颜色图例"></div>
+        </section>
+
+        <section id="metricsSection" class="metrics" aria-label="处理数据" hidden></section>
+
+        <section id="detailsSection" class="card detail-card" hidden><div class="detail-grid"><div><div class="section-label"><h2>识别区域</h2><span class="muted small" id="fractionNote">像素占比</span></div><div class="class-bars" id="classBars"></div><p class="hint">占比表示被模型分到该类的像素比例，不是置信度或准确率。</p></div><div class="export-section"><div class="section-label"><h2>结果文件</h2></div><p class="hint" id="savedNote">处理结果已保存在本机。</p><a id="downloadAll" class="primary-button" download>下载全部结果 ZIP <span aria-hidden="true">↓</span></a><div class="file-links" id="fileLinks"></div><div class="run-details" id="runDetails"></div></div></div><div id="resultWarnings" class="result-warnings"></div></section>
+
+        <footer class="footnote"><span id="modelName">分割模型</span><span id="experimentNote">图片分割与视频逐帧推理。</span></footer>
+      </div>
+    </div>
+  </main>
+
+  <dialog id="helpDialog"><form method="dialog"><div class="dialog-heading"><h2>现场怎么演示</h2><button class="text-button" aria-label="关闭演示说明">关闭 ×</button></div><ol><li>双击 <b>run_semantic_codec_demo.cmd</b>，选择“联合语义编码”。普通压缩对照使用 run_image_codec_demo.cmd。</li><li>选择文件传输限速，再拖入 JPG、PNG、WebP 或 BMP。</li><li>用“还原图片”看画质；用“两端类别”比较发送端语义条件和接收端直接解码的类别图。</li><li>调整限速或叠加浓度后点击“用当前参数重新处理”，每次结果单独保留。</li></ol><p>联合模型在 SUIM 上训练，语义参与编码和损失。接收端从同一份文件直接解出图片与类别，不再对还原图运行分割模型。当前只有一份联合权重，发送端分割输入固定为 256；原尺寸编码属于跨分辨率试用。</p><p>20 kbps 限制文件发送速度，收完后解码。两端预先部署模型，权重不随每张图片传输。这是理想信道下的首轮联合语义源编码原型，视频编码仍待实现。</p><p>两端类别一致性不是真值准确率。普通压缩模式中的分割仅用于事后评价。结果保存在本机，展示无需重新训练。</p><p class="hint" id="outputPath"></p></form></dialog>
+</body>
+</html>

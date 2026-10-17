@@ -1,0 +1,38 @@
+{
+  "steps": 512,
+  "seed": 20261013,
+  "lr": 1e-05,
+  "optimizer": "Adam",
+  "gradient_clip": 1.0,
+  "crop": 256,
+  "q_values": [
+    8,
+    24,
+    40
+  ],
+  "branches": {
+    "M_RD": 1,
+    "M_ROI4": 4,
+    "M_ROI16": 16
+  },
+  "labelled_update_fraction": 0.5,
+  "fish_guided_update_fraction": 0.25,
+  "reference": "one immediately preceding published RGB frame reconstructed by frozen DMCI, no original reference bypass at deployment",
+  "loss": "native geometric YUV420 distortion with Y weight8 + bpp; lambda=768^(q/63); per-frame weights normalized to mean1",
+  "checkpoint_selection": "fixed final update512, no codec checkpoint early stopping",
+  "inference_roi_input": false,
+  "independent_seed_repetitions": 1,
+  "p_weight_sha256": "1b86b757ddb115342293efb57719d6216c6ee2e459ae796ec41723b5c05ca896",
+  "i_weight_sha256": "555eff5f4026774f477bebdcbb3b52548e0da230803959dcebcea4d732a90dd9",
+  "dataset_manifest_sha256": "63cd4fba2c6cbc7491476a5bfa2570dac37d4b96607ff68b87ec435515fd7241",
+  "evaluation_q_anchors": [
+    8,
+    24,
+    40
+  ],
+  "evaluation_gop": 32,
+  "evaluation_continuous_frames": "whole available video96 (255) and official val108 (375), including every sparse GT anchor",
+  "rate_match_policy": "for each video, use M_RD anchor complete file bytes; choose other branch Q only by absolute complete byte difference; GT metrics not used",
+  "development_validation_is_official_validation": false,
+  "test_used": false
+}

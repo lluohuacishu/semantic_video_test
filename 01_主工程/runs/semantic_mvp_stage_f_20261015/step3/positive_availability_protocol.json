@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-15",
+  "stage": "F",
+  "purpose": "supplement coverage of positive targets after the fixed first50 clip has only empty sparse GT",
+  "original_negative_case_preserved": true,
+  "eligibility": "first publisher fish-positive anchor >=50 in ascending real-frame order",
+  "clip_if_available": "50 consecutive frames; start=max(50,anchor-24), capped at609; disjoint from0..49",
+  "not_chosen_using_model_probabilities_encoding_quality_or_task_gain": true,
+  "same_video": "video6; an additional clip, not a second independent video",
+  "if_none": "record no suitable positive case in this video; do not call positive protection validated",
+  "script_sha256": "356a31f12cadb04e63b9af7b364d34a07d2e5ef9dc37bb09b001d591150f9a5d"
+}

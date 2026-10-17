@@ -1,0 +1,1957 @@
+{
+  "teacher_checkpoint": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\runs\\suim_segformer_b0_20260915\\segmentation_best.pt",
+  "teacher_sha256": "ff00cb439a4af290dc3efde8ae76d4acfad797784483b669ab6db79aaf5b1476",
+  "teacher_frozen": true,
+  "training_performed": false,
+  "input_size": 256,
+  "model_training_size": 256,
+  "preprocessing": "rgb_0_1_long_edge_resize_center_pad_ignore_255",
+  "prediction_grid": "crop padding from logits, bilinear resize logits to source RGB dimensions, argmax",
+  "classes": [
+    {
+      "index": 0,
+      "symbol": "BW",
+      "name_zh": "背景水体",
+      "rgb": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 1,
+      "symbol": "HD",
+      "name_zh": "潜水员",
+      "rgb": [
+        0,
+        0,
+        255
+      ]
+    },
+    {
+      "index": 2,
+      "symbol": "PF",
+      "name_zh": "水生植物",
+      "rgb": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "symbol": "WR",
+      "name_zh": "沉船与遗迹",
+      "rgb": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "index": 4,
+      "symbol": "RO",
+      "name_zh": "机器人与仪器",
+      "rgb": [
+        255,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "symbol": "RI",
+      "name_zh": "珊瑚礁与无脊椎动物",
+      "rgb": [
+        255,
+        0,
+        255
+      ]
+    },
+    {
+      "index": 6,
+      "symbol": "FV",
+      "name_zh": "鱼与脊椎动物",
+      "rgb": [
+        255,
+        255,
+        0
+      ]
+    },
+    {
+      "index": 7,
+      "symbol": "SR",
+      "name_zh": "海床与岩石",
+      "rgb": [
+        255,
+        255,
+        255
+      ]
+    }
+  ],
+  "manifest_sha256": "769e07665893bb6c963de0b10fc869b78b66863ffe0aeed00a5dfae0967fe62e",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "upstream_commit": "64b10d4c0108106e66b7c54d6e5e470200a57abf",
+    "precision": "fp32",
+    "tf32": false,
+    "deterministic": true
+  },
+  "sequences": [
+    {
+      "name": "sfishtrack_027",
+      "ground_truth_kind": "fish_binary",
+      "evaluation_role": "evaluation_only_no_weight_updates",
+      "exclude_rectangles": [],
+      "streams": [
+        {
+          "name": "reference",
+          "frames": 20,
+          "input_frames_dir": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\data\\phase_b_annotation_corpus\\sfishtrack_027\\reference",
+          "complete_file_bytes": null,
+          "complete_file_sha256": null,
+          "source_prediction_agreement_full_frame": {
+            "mean_iou_present_union": 1.0,
+            "pixel_agreement": 1.0,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "BW",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 15803735,
+                "predicted_pixels": 15803735
+              },
+              {
+                "class_id": 1,
+                "symbol": "HD",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 251911,
+                "predicted_pixels": 251911
+              },
+              {
+                "class_id": 2,
+                "symbol": "PF",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 8990,
+                "predicted_pixels": 8990
+              },
+              {
+                "class_id": 3,
+                "symbol": "WR",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 1856060,
+                "predicted_pixels": 1856060
+              },
+              {
+                "class_id": 4,
+                "symbol": "RO",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 5,
+                "symbol": "RI",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 6,
+                "symbol": "FV",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 511304,
+                "predicted_pixels": 511304
+              },
+              {
+                "class_id": 7,
+                "symbol": "SR",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              }
+            ],
+            "confusion_matrix": [
+              [
+                15803735,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                251911,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                8990,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                1856060,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                511304,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          "source_prediction_agreement_exclusions": {
+            "mean_iou_present_union": 1.0,
+            "pixel_agreement": 1.0,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "BW",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 15803735,
+                "predicted_pixels": 15803735
+              },
+              {
+                "class_id": 1,
+                "symbol": "HD",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 251911,
+                "predicted_pixels": 251911
+              },
+              {
+                "class_id": 2,
+                "symbol": "PF",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 8990,
+                "predicted_pixels": 8990
+              },
+              {
+                "class_id": 3,
+                "symbol": "WR",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 1856060,
+                "predicted_pixels": 1856060
+              },
+              {
+                "class_id": 4,
+                "symbol": "RO",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 5,
+                "symbol": "RI",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 6,
+                "symbol": "FV",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 511304,
+                "predicted_pixels": 511304
+              },
+              {
+                "class_id": 7,
+                "symbol": "SR",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              }
+            ],
+            "confusion_matrix": [
+              [
+                15803735,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                251911,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                8990,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                1856060,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                511304,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          "teacher_roi_rgb_psnr_db": null,
+          "teacher_roi_valid_pixels": 619597,
+          "mean_change_map_disagreement_vs_source_prediction": 0.0,
+          "seconds": 3.638338400000066,
+          "per_frame": [
+            {
+              "frame": 0,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 25998,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9457413554191589,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 5670
+            },
+            {
+              "frame": 1,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 79826,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9634866118431091,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 20670
+            },
+            {
+              "frame": 2,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 36265,
+              "predicted_fv_pixels": 40791,
+              "mean_confidence": 0.9651899933815002,
+              "fish_gt_iou": 0.8194892139846268,
+              "fish_gt_f1": 0.9007904061052058,
+              "ground_truth_fish_pixels": 47265
+            },
+            {
+              "frame": 3,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 1548,
+              "predicted_fv_pixels": 83068,
+              "mean_confidence": 0.9725162982940674,
+              "fish_gt_iou": 0.7682089087819239,
+              "fish_gt_f1": 0.8689119311259712,
+              "ground_truth_fish_pixels": 64680
+            },
+            {
+              "frame": 4,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 69319,
+              "predicted_fv_pixels": 77890,
+              "mean_confidence": 0.9752718210220337,
+              "fish_gt_iou": 0.7187933425797504,
+              "fish_gt_f1": 0.8363929796247731,
+              "ground_truth_fish_pixels": 85691
+            },
+            {
+              "frame": 5,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 95341,
+              "mean_confidence": 0.9574264287948608,
+              "fish_gt_iou": 0.8865266472519218,
+              "fish_gt_f1": 0.9398506493860697,
+              "ground_truth_fish_pixels": 87986
+            },
+            {
+              "frame": 6,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 680,
+              "predicted_fv_pixels": 93613,
+              "mean_confidence": 0.9390171766281128,
+              "fish_gt_iou": 0.8860583651897809,
+              "fish_gt_f1": 0.9395874290461027,
+              "ground_truth_fish_pixels": 86962
+            },
+            {
+              "frame": 7,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 87832,
+              "mean_confidence": 0.95426344871521,
+              "fish_gt_iou": 0.8769587032033964,
+              "fish_gt_f1": 0.9344464550090475,
+              "ground_truth_fish_pixels": 82380
+            },
+            {
+              "frame": 8,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 2977,
+              "predicted_fv_pixels": 32769,
+              "mean_confidence": 0.9407714009284973,
+              "fish_gt_iou": 0.8162904541745989,
+              "fish_gt_f1": 0.8988545332035637,
+              "ground_truth_fish_pixels": 34016
+            },
+            {
+              "frame": 9,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 15418,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9204230904579163,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 15102
+            },
+            {
+              "frame": 10,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9558539390563965,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 11,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 65,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9544204473495483,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 12,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 13919,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9423585534095764,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 13,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 32,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9553521275520325,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 14,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 569,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9503151178359985,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 15,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9514909386634827,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 889
+            },
+            {
+              "frame": 16,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9553518295288086,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1156
+            },
+            {
+              "frame": 17,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 5295,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9467828869819641,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1289
+            },
+            {
+              "frame": 18,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9555016160011292,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 480
+            },
+            {
+              "frame": 19,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9573774337768555,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 301
+            }
+          ],
+          "fish_ground_truth": {
+            "mean_iou_present_union": 0.8778363606707252,
+            "pixel_agreement": 0.9923897026909723,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "non-fish",
+                "iou": 0.9921980469003765,
+                "f1": 0.9960837462360922,
+                "recall": 0.9967302628311063,
+                "precision": 0.9954380678071878,
+                "target_pixels": 17897463,
+                "predicted_pixels": 17920696
+              },
+              {
+                "class_id": 1,
+                "symbol": "fish",
+                "iou": 0.763474674441074,
+                "f1": 0.8658754055348757,
+                "recall": 0.8470582953097727,
+                "precision": 0.8855475411888035,
+                "target_pixels": 534537,
+                "predicted_pixels": 511304
+              }
+            ],
+            "confusion_matrix": [
+              [
+                17838943,
+                58520
+              ],
+              [
+                81753,
+                452784
+              ]
+            ]
+          },
+          "fish_gt_iou": 0.763474674441074,
+          "fish_gt_f1": 0.8658754055348757,
+          "ground_truth_fish_rgb_psnr_db": null,
+          "mean_fish_change_map_error_vs_gt": 0.013329507035818713,
+          "duration_seconds": 4.0,
+          "video_kbps": null,
+          "theoretical_transfer_seconds_at_20kbps": null
+        },
+        {
+          "name": "mlvc_q21",
+          "frames": 20,
+          "input_frames_dir": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\phase_b_codecs\\sfishtrack_027\\mlvc_q21\\receiver\\rgb",
+          "complete_file_bytes": 10976,
+          "complete_file_sha256": "0b87b7a6717d3ac0ce34d24daeac581637be78f70cea926883378bd06b42540b",
+          "source_prediction_agreement_full_frame": {
+            "mean_iou_present_union": 0.24772142586674314,
+            "pixel_agreement": 0.8880111219618055,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "BW",
+                "iou": 0.9383556219543349,
+                "f1": 0.968197591119264,
+                "recall": 0.9964069886011123,
+                "precision": 0.9415414971314796,
+                "target_pixels": 15803735,
+                "predicted_pixels": 16724650
+              },
+              {
+                "class_id": 1,
+                "symbol": "HD",
+                "iou": 0.1261947404819747,
+                "f1": 0.2241082042843984,
+                "recall": 0.5650011313519457,
+                "precision": 0.13977505182764252,
+                "target_pixels": 251911,
+                "predicted_pixels": 1018279
+              },
+              {
+                "class_id": 2,
+                "symbol": "PF",
+                "iou": 0.005066230407937094,
+                "f1": 0.010081386190601208,
+                "recall": 0.01067853170189099,
+                "precision": 0.00954748881153655,
+                "target_pixels": 8990,
+                "predicted_pixels": 10055
+              },
+              {
+                "class_id": 3,
+                "symbol": "WR",
+                "iou": 0.005962091742723835,
+                "f1": 0.01185351176085599,
+                "recall": 0.005962091742723835,
+                "precision": 1.0,
+                "target_pixels": 1856060,
+                "predicted_pixels": 11066
+              },
+              {
+                "class_id": 4,
+                "symbol": "RO",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 5,
+                "symbol": "RI",
+                "iou": 0.0,
+                "f1": 0.0,
+                "recall": null,
+                "precision": 0.0,
+                "target_pixels": 0,
+                "predicted_pixels": 1214
+              },
+              {
+                "class_id": 6,
+                "symbol": "FV",
+                "iou": 0.6584712964802315,
+                "f1": 0.7940701752001413,
+                "recall": 0.9140882918967972,
+                "precision": 0.7019106003628368,
+                "target_pixels": 511304,
+                "predicted_pixels": 665864
+              },
+              {
+                "class_id": 7,
+                "symbol": "SR",
+                "iou": 0.0,
+                "f1": 0.0,
+                "recall": null,
+                "precision": 0.0,
+                "target_pixels": 0,
+                "predicted_pixels": 872
+              }
+            ],
+            "confusion_matrix": [
+              [
+                15746952,
+                16574,
+                384,
+                0,
+                0,
+                0,
+                39825,
+                0
+              ],
+              [
+                46899,
+                142330,
+                8498,
+                0,
+                0,
+                1214,
+                52970,
+                0
+              ],
+              [
+                8450,
+                0,
+                96,
+                0,
+                0,
+                0,
+                444,
+                0
+              ],
+              [
+                900721,
+                837076,
+                1077,
+                11066,
+                0,
+                0,
+                105248,
+                872
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                21628,
+                22299,
+                0,
+                0,
+                0,
+                0,
+                467377,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          "source_prediction_agreement_exclusions": {
+            "mean_iou_present_union": 0.24772142586674314,
+            "pixel_agreement": 0.8880111219618055,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "BW",
+                "iou": 0.9383556219543349,
+                "f1": 0.968197591119264,
+                "recall": 0.9964069886011123,
+                "precision": 0.9415414971314796,
+                "target_pixels": 15803735,
+                "predicted_pixels": 16724650
+              },
+              {
+                "class_id": 1,
+                "symbol": "HD",
+                "iou": 0.1261947404819747,
+                "f1": 0.2241082042843984,
+                "recall": 0.5650011313519457,
+                "precision": 0.13977505182764252,
+                "target_pixels": 251911,
+                "predicted_pixels": 1018279
+              },
+              {
+                "class_id": 2,
+                "symbol": "PF",
+                "iou": 0.005066230407937094,
+                "f1": 0.010081386190601208,
+                "recall": 0.01067853170189099,
+                "precision": 0.00954748881153655,
+                "target_pixels": 8990,
+                "predicted_pixels": 10055
+              },
+              {
+                "class_id": 3,
+                "symbol": "WR",
+                "iou": 0.005962091742723835,
+                "f1": 0.01185351176085599,
+                "recall": 0.005962091742723835,
+                "precision": 1.0,
+                "target_pixels": 1856060,
+                "predicted_pixels": 11066
+              },
+              {
+                "class_id": 4,
+                "symbol": "RO",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 5,
+                "symbol": "RI",
+                "iou": 0.0,
+                "f1": 0.0,
+                "recall": null,
+                "precision": 0.0,
+                "target_pixels": 0,
+                "predicted_pixels": 1214
+              },
+              {
+                "class_id": 6,
+                "symbol": "FV",
+                "iou": 0.6584712964802315,
+                "f1": 0.7940701752001413,
+                "recall": 0.9140882918967972,
+                "precision": 0.7019106003628368,
+                "target_pixels": 511304,
+                "predicted_pixels": 665864
+              },
+              {
+                "class_id": 7,
+                "symbol": "SR",
+                "iou": 0.0,
+                "f1": 0.0,
+                "recall": null,
+                "precision": 0.0,
+                "target_pixels": 0,
+                "predicted_pixels": 872
+              }
+            ],
+            "confusion_matrix": [
+              [
+                15746952,
+                16574,
+                384,
+                0,
+                0,
+                0,
+                39825,
+                0
+              ],
+              [
+                46899,
+                142330,
+                8498,
+                0,
+                0,
+                1214,
+                52970,
+                0
+              ],
+              [
+                8450,
+                0,
+                96,
+                0,
+                0,
+                0,
+                444,
+                0
+              ],
+              [
+                900721,
+                837076,
+                1077,
+                11066,
+                0,
+                0,
+                105248,
+                872
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                21628,
+                22299,
+                0,
+                0,
+                0,
+                0,
+                467377,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          "teacher_roi_rgb_psnr_db": 32.819179330661356,
+          "teacher_roi_valid_pixels": 619597,
+          "mean_change_map_disagreement_vs_source_prediction": 0.046521952668128655,
+          "seconds": 2.94688110000061,
+          "per_frame": [
+            {
+              "frame": 0,
+              "source_prediction_agreement_hd_iou": 0.3724588472944514,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 69801,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9810967445373535,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 5670
+            },
+            {
+              "frame": 1,
+              "source_prediction_agreement_hd_iou": 0.907844939769105,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 79977,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9830643534660339,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 20670
+            },
+            {
+              "frame": 2,
+              "source_prediction_agreement_hd_iou": 0.14227974787085598,
+              "source_prediction_agreement_fv_iou": 0.7087011081098327,
+              "predicted_hd_pixels": 11215,
+              "predicted_fv_pixels": 39547,
+              "mean_confidence": 0.9487131834030151,
+              "fish_gt_iou": 0.7879106168262795,
+              "fish_gt_f1": 0.8813758466571442,
+              "ground_truth_fish_pixels": 47265
+            },
+            {
+              "frame": 3,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": 0.7739664046151236,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 105125,
+              "mean_confidence": 0.9816293716430664,
+              "fish_gt_iou": 0.6121084960742801,
+              "fish_gt_f1": 0.7593887105797827,
+              "ground_truth_fish_pixels": 64680
+            },
+            {
+              "frame": 4,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": 0.5887571223421504,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 127889,
+              "mean_confidence": 0.9769026637077332,
+              "fish_gt_iou": 0.6416476429850655,
+              "fish_gt_f1": 0.7817117707650529,
+              "ground_truth_fish_pixels": 85691
+            },
+            {
+              "frame": 5,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 0.6406268160778871,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 144622,
+              "mean_confidence": 0.9598711729049683,
+              "fish_gt_iou": 0.6026898908609856,
+              "fish_gt_f1": 0.7520979501994772,
+              "ground_truth_fish_pixels": 87986
+            },
+            {
+              "frame": 6,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": 0.644696048741539,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 135031,
+              "mean_confidence": 0.9637564420700073,
+              "fish_gt_iou": 0.5984173728966108,
+              "fish_gt_f1": 0.7487623483623358,
+              "ground_truth_fish_pixels": 86962
+            },
+            {
+              "frame": 7,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": 0.7539760383533014,
+              "predicted_hd_pixels": 5347,
+              "predicted_fv_pixels": 103511,
+              "mean_confidence": 0.9490293264389038,
+              "fish_gt_iou": 0.679383864847773,
+              "fish_gt_f1": 0.8090870456342696,
+              "ground_truth_fish_pixels": 82380
+            },
+            {
+              "frame": 8,
+              "source_prediction_agreement_hd_iou": 0.04115516478655165,
+              "source_prediction_agreement_fv_iou": 0.3084499740798341,
+              "predicted_hd_pixels": 72336,
+              "predicted_fv_pixels": 10139,
+              "mean_confidence": 0.9658938050270081,
+              "fish_gt_iou": 0.2879185625947964,
+              "fish_gt_f1": 0.4471067829237912,
+              "ground_truth_fish_pixels": 34016
+            },
+            {
+              "frame": 9,
+              "source_prediction_agreement_hd_iou": 0.1440217051549743,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 76082,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.978768527507782,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 15102
+            },
+            {
+              "frame": 10,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 61577,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9809660911560059,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 11,
+              "source_prediction_agreement_hd_iou": 0.0009349289454001496,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 69524,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9808588027954102,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 12,
+              "source_prediction_agreement_hd_iou": 0.19569221252126479,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 71127,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9803642630577087,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 13,
+              "source_prediction_agreement_hd_iou": 0.0004426063984287473,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 72299,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9801281690597534,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 14,
+              "source_prediction_agreement_hd_iou": 0.007500757985209401,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 75859,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9803762435913086,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 15,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 71550,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9787837862968445,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 889
+            },
+            {
+              "frame": 16,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 70803,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9769824147224426,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1156
+            },
+            {
+              "frame": 17,
+              "source_prediction_agreement_hd_iou": 0.07627594750716662,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 69419,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9768247604370117,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1289
+            },
+            {
+              "frame": 18,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 69827,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9754560589790344,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 480
+            },
+            {
+              "frame": 19,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 71536,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9767951369285583,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 301
+            }
+          ],
+          "fish_ground_truth": {
+            "mean_iou_present_union": 0.7824593814707812,
+            "pixel_agreement": 0.9828193901909722,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "non-fish",
+                "iou": 0.9823974093358716,
+                "f1": 0.9911205540416714,
+                "recall": 0.9874842596405983,
+                "precision": 0.9947837278741984,
+                "target_pixels": 17897463,
+                "predicted_pixels": 17766136
+              },
+              {
+                "class_id": 1,
+                "symbol": "fish",
+                "iou": 0.5825213536056909,
+                "f1": 0.73619398850884,
+                "recall": 0.8266294007711347,
+                "precision": 0.6635949683418836,
+                "target_pixels": 534537,
+                "predicted_pixels": 665864
+              }
+            ],
+            "confusion_matrix": [
+              [
+                17673463,
+                224000
+              ],
+              [
+                92673,
+                441864
+              ]
+            ]
+          },
+          "fish_gt_iou": 0.5825213536056909,
+          "fish_gt_f1": 0.73619398850884,
+          "ground_truth_fish_rgb_psnr_db": 32.57708320107069,
+          "mean_fish_change_map_error_vs_gt": 0.020407472130847953,
+          "duration_seconds": 4.0,
+          "video_kbps": 21.952,
+          "theoretical_transfer_seconds_at_20kbps": 4.3904
+        },
+        {
+          "name": "hevc_matched",
+          "frames": 20,
+          "input_frames_dir": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\phase_b_rate_match\\hevc_rgb",
+          "complete_file_bytes": 10947,
+          "complete_file_sha256": "175166a2cc472f1f389a8de6f7436dcf43aec98273ab79316c9d6eedd887ddb6",
+          "source_prediction_agreement_full_frame": {
+            "mean_iou_present_union": 0.5230142187889604,
+            "pixel_agreement": 0.9620642361111111,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "BW",
+                "iou": 0.9683605669863116,
+                "f1": 0.9839259973277505,
+                "recall": 0.9890860609849507,
+                "precision": 0.9788194943660088,
+                "target_pixels": 15803735,
+                "predicted_pixels": 15969496
+              },
+              {
+                "class_id": 1,
+                "symbol": "HD",
+                "iou": 0.07989364444769377,
+                "f1": 0.14796576470001355,
+                "recall": 0.08242196648816447,
+                "precision": 0.7225682965025231,
+                "target_pixels": 251911,
+                "predicted_pixels": 28735
+              },
+              {
+                "class_id": 2,
+                "symbol": "PF",
+                "iou": 0.0,
+                "f1": 0.0,
+                "recall": 0.0,
+                "precision": 0.0,
+                "target_pixels": 8990,
+                "predicted_pixels": 364
+              },
+              {
+                "class_id": 3,
+                "symbol": "WR",
+                "iou": 0.7514563803986796,
+                "f1": 0.8580931718409425,
+                "recall": 0.8682477937135653,
+                "precision": 0.8481733315298141,
+                "target_pixels": 1856060,
+                "predicted_pixels": 1899989
+              },
+              {
+                "class_id": 4,
+                "symbol": "RO",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 5,
+                "symbol": "RI",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 6,
+                "symbol": "FV",
+                "iou": 0.8153605021121169,
+                "f1": 0.898290451029941,
+                "recall": 0.9177143147716427,
+                "precision": 0.8796717758747394,
+                "target_pixels": 511304,
+                "predicted_pixels": 533416
+              },
+              {
+                "class_id": 7,
+                "symbol": "SR",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              }
+            ],
+            "confusion_matrix": [
+              [
+                15631254,
+                816,
+                364,
+                166987,
+                0,
+                0,
+                4314,
+                0
+              ],
+              [
+                54475,
+                20763,
+                0,
+                116905,
+                0,
+                0,
+                59768,
+                0
+              ],
+              [
+                5469,
+                0,
+                0,
+                3521,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                244437,
+                0,
+                0,
+                1611520,
+                0,
+                0,
+                103,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                33861,
+                7156,
+                0,
+                1056,
+                0,
+                0,
+                469231,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          "source_prediction_agreement_exclusions": {
+            "mean_iou_present_union": 0.5230142187889604,
+            "pixel_agreement": 0.9620642361111111,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "BW",
+                "iou": 0.9683605669863116,
+                "f1": 0.9839259973277505,
+                "recall": 0.9890860609849507,
+                "precision": 0.9788194943660088,
+                "target_pixels": 15803735,
+                "predicted_pixels": 15969496
+              },
+              {
+                "class_id": 1,
+                "symbol": "HD",
+                "iou": 0.07989364444769377,
+                "f1": 0.14796576470001355,
+                "recall": 0.08242196648816447,
+                "precision": 0.7225682965025231,
+                "target_pixels": 251911,
+                "predicted_pixels": 28735
+              },
+              {
+                "class_id": 2,
+                "symbol": "PF",
+                "iou": 0.0,
+                "f1": 0.0,
+                "recall": 0.0,
+                "precision": 0.0,
+                "target_pixels": 8990,
+                "predicted_pixels": 364
+              },
+              {
+                "class_id": 3,
+                "symbol": "WR",
+                "iou": 0.7514563803986796,
+                "f1": 0.8580931718409425,
+                "recall": 0.8682477937135653,
+                "precision": 0.8481733315298141,
+                "target_pixels": 1856060,
+                "predicted_pixels": 1899989
+              },
+              {
+                "class_id": 4,
+                "symbol": "RO",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 5,
+                "symbol": "RI",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 6,
+                "symbol": "FV",
+                "iou": 0.8153605021121169,
+                "f1": 0.898290451029941,
+                "recall": 0.9177143147716427,
+                "precision": 0.8796717758747394,
+                "target_pixels": 511304,
+                "predicted_pixels": 533416
+              },
+              {
+                "class_id": 7,
+                "symbol": "SR",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              }
+            ],
+            "confusion_matrix": [
+              [
+                15631254,
+                816,
+                364,
+                166987,
+                0,
+                0,
+                4314,
+                0
+              ],
+              [
+                54475,
+                20763,
+                0,
+                116905,
+                0,
+                0,
+                59768,
+                0
+              ],
+              [
+                5469,
+                0,
+                0,
+                3521,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                244437,
+                0,
+                0,
+                1611520,
+                0,
+                0,
+                103,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                33861,
+                7156,
+                0,
+                1056,
+                0,
+                0,
+                469231,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          "teacher_roi_rgb_psnr_db": 35.84424336092028,
+          "teacher_roi_valid_pixels": 619597,
+          "mean_change_map_disagreement_vs_source_prediction": 0.03421349597953216,
+          "seconds": 3.023782199998095,
+          "per_frame": [
+            {
+              "frame": 0,
+              "source_prediction_agreement_hd_iou": 0.07200553888760673,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 1872,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9666196703910828,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 5670
+            },
+            {
+              "frame": 1,
+              "source_prediction_agreement_hd_iou": 0.038345902337584246,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 3061,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9723230600357056,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 20670
+            },
+            {
+              "frame": 2,
+              "source_prediction_agreement_hd_iou": 0.07200538358008075,
+              "source_prediction_agreement_fv_iou": 0.7551060955257093,
+              "predicted_hd_pixels": 3560,
+              "predicted_fv_pixels": 47547,
+              "mean_confidence": 0.968285322189331,
+              "fish_gt_iou": 0.8900783445966151,
+              "fish_gt_f1": 0.9418428047082648,
+              "ground_truth_fish_pixels": 47265
+            },
+            {
+              "frame": 3,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": 0.7798966358807484,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 65710,
+              "mean_confidence": 0.9775171279907227,
+              "fish_gt_iou": 0.88316002310803,
+              "fish_gt_f1": 0.9379553646752051,
+              "ground_truth_fish_pixels": 64680
+            },
+            {
+              "frame": 4,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": 0.5919737591819764,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 128866,
+              "mean_confidence": 0.9781968593597412,
+              "fish_gt_iou": 0.6628587371831138,
+              "fish_gt_f1": 0.7972520122857796,
+              "ground_truth_fish_pixels": 85691
+            },
+            {
+              "frame": 5,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 0.9673107807076621,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 94534,
+              "mean_confidence": 0.9582661986351013,
+              "fish_gt_iou": 0.8851671676014006,
+              "fish_gt_f1": 0.939086127547666,
+              "ground_truth_fish_pixels": 87986
+            },
+            {
+              "frame": 6,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": 0.9500875192277091,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 90212,
+              "mean_confidence": 0.9621252417564392,
+              "fish_gt_iou": 0.8666989769578456,
+              "fish_gt_f1": 0.9285899736981724,
+              "ground_truth_fish_pixels": 86962
+            },
+            {
+              "frame": 7,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 0.9270413091652935,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 81738,
+              "mean_confidence": 0.9623438119888306,
+              "fish_gt_iou": 0.8501967238988535,
+              "fish_gt_f1": 0.919033865876991,
+              "ground_truth_fish_pixels": 82380
+            },
+            {
+              "frame": 8,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": 0.7490279465370595,
+              "predicted_hd_pixels": 6271,
+              "predicted_fv_pixels": 24809,
+              "mean_confidence": 0.9526299238204956,
+              "fish_gt_iou": 0.6250448907428382,
+              "fish_gt_f1": 0.7692647683807905,
+              "ground_truth_fish_pixels": 34016
+            },
+            {
+              "frame": 9,
+              "source_prediction_agreement_hd_iou": 0.8103363311568313,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 13971,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9577646851539612,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 15102
+            },
+            {
+              "frame": 10,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9670036435127258,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 11,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9647969007492065,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 12,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9631928205490112,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 13,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9628761410713196,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 14,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9625205993652344,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 15,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9625873565673828,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 889
+            },
+            {
+              "frame": 16,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9629565477371216,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1156
+            },
+            {
+              "frame": 17,
+              "source_prediction_agreement_hd_iou": 0.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9592156410217285,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1289
+            },
+            {
+              "frame": 18,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.960462212562561,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 480
+            },
+            {
+              "frame": 19,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9615484476089478,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 301
+            }
+          ],
+          "fish_ground_truth": {
+            "mean_iou_present_union": 0.8702140573772383,
+            "pixel_agreement": 0.9916833224826389,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "non-fish",
+                "iou": 0.9914717210385504,
+                "f1": 0.995717599767371,
+                "recall": 0.9957487829420293,
+                "precision": 0.9956864185457353,
+                "target_pixels": 17897463,
+                "predicted_pixels": 17898584
+              },
+              {
+                "class_id": 1,
+                "symbol": "fish",
+                "iou": 0.7489563937159261,
+                "f1": 0.8564609116693338,
+                "recall": 0.8555628515893193,
+                "precision": 0.8573608590668447,
+                "target_pixels": 534537,
+                "predicted_pixels": 533416
+              }
+            ],
+            "confusion_matrix": [
+              [
+                17821377,
+                76086
+              ],
+              [
+                77207,
+                457330
+              ]
+            ]
+          },
+          "fish_gt_iou": 0.7489563937159261,
+          "fish_gt_f1": 0.8564609116693338,
+          "ground_truth_fish_rgb_psnr_db": 36.203375752327986,
+          "mean_fish_change_map_error_vs_gt": 0.01565635279605263,
+          "duration_seconds": 4.0,
+          "video_kbps": 21.894,
+          "theoretical_transfer_seconds_at_20kbps": 4.3788
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Source prediction agreement is not ground-truth accuracy",
+    "Fish GT only, no eight-class video mIoU or true diver accuracy",
+    "Change-map disagreement is unwarped and includes motion; not a complete temporal stability measure",
+    "Rates not yet exactly matched",
+    "Evaluation sequences not used to update any weights"
+  ]
+}

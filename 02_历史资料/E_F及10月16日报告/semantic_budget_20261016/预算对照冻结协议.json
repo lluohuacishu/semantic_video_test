@@ -1,0 +1,169 @@
+{
+  "date": "2026-10-16",
+  "scope": "one bounded allocation follow-up, no new stage or architecture",
+  "video": "video6 source50..99, one development video, not independent validation",
+  "GT_scope": "three fixed publisher labels60/75/90; remaining47 frames unlabeled, not background",
+  "target_complete_file_bytes": 99269,
+  "baseline": "reuse exact previously received E42/ROI31 packet and H265 B4 MP4; no new baseline transfer",
+  "new_variants": {
+    "BG38": 38.0,
+    "BG34": 34.0
+  },
+  "fixed_configuration": {
+    "background_crf": 42.0,
+    "roi_crf": 31.0,
+    "background_scale": 0.5,
+    "segment_frames": 32,
+    "padding": 16,
+    "min_pixels": 64,
+    "h265": "medium, P-only, keyint32, BT709 limited YUV420",
+    "roi_layout": "halves"
+  },
+  "fixed_patches": [
+    {
+      "file": "roi_0000.mp4",
+      "start": 0,
+      "frames": 32,
+      "box": [
+        64,
+        522,
+        318,
+        198
+      ],
+      "partition": "left"
+    },
+    {
+      "file": "roi_0001.mp4",
+      "start": 0,
+      "frames": 32,
+      "box": [
+        880,
+        50,
+        400,
+        636
+      ],
+      "partition": "right"
+    },
+    {
+      "file": "roi_0002.mp4",
+      "start": 32,
+      "frames": 18,
+      "box": [
+        798,
+        0,
+        460,
+        720
+      ],
+      "partition": "right"
+    }
+  ],
+  "fixed_teacher": {
+    "target": "fish",
+    "class_id": 6,
+    "label": "鱼类",
+    "model_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+    "inference": "512 tiles, stride384, mean overlapping logits",
+    "threshold": 0.9,
+    "reliability": "limited; training video131 demo does not establish generalization"
+  },
+  "fixed_semantic_gzip_sha256": "03f52d418f0e4434b393e4045a56913839d51846849ccca6b93217ddaf8ec4f0",
+  "change_only": "background CRF and byte-matched ROI CRF; stream hashes/bytes updated accordingly",
+  "byte_selection": {
+    "start_ROI_CRF": 31.0,
+    "range": [
+      0.0,
+      51.0
+    ],
+    "preferred_relative_error": 0.01,
+    "valid_comparison_max_relative_error": 0.02,
+    "max_complete_packets_per_variant": 10,
+    "algorithm": "initial31, high51 floor check if oversized, up to8 bisections; choose closest bytes only",
+    "no_padding": true,
+    "no_quality_GT_probability_or_human_scores_used": true,
+    "infeasible_policy": "keep closest feasible candidate and label unmatched, do not change spatial/temporal configuration"
+  },
+  "context_geometry": "fixed640x360 reconstructed to1280x720; more bytes do not restore original background resolution",
+  "selection_gate": "finish both byte-only selections before decoding/evaluating either new variant",
+  "network": "both selected new packets20 decimal kbps TCP loopback to separate receiver processes",
+  "metrics": [
+    "all50 pooled RGB PSNR",
+    "outside geometric ROI all50 PSNR (not GT background)",
+    "GT fish and GT background3-frame PSNR",
+    "GT background ring32px PSNR",
+    "fixed0.9 TP/FP/FN",
+    "GT probability mean/quantiles/max",
+    "3-label pixel AP"
+  ],
+  "ring_definition": "65x65 maximum-filter dilation of binary GT, subtract all GT fish, three labeled frames only",
+  "human_ratings": "existing ratings apply only to old E/H265; no ratings inferred for new variants",
+  "causality_limit": "two fixed background settings; cannot separate all context/ROI-loss effects or establish generalization",
+  "selection_file_hashes": {
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\continuation_20261016\\budget_experiment.py": "93920a9fb1b6910f0952babaf8f6e7f9d3c6077be9dc5eeef9c193fb8f2d8346",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\continuation_20261016\\budget_evaluate.py": "ca11e62409b4422141c5c0e751abecb4d7794a64e3d794d819b8f425ab846cb9",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\data\\phase_f_external_20261015\\positive_case\\manifest.json": "fc0d12d3316df9dd010e3137a865f62dd148b2e67b0ee88f9cce3afad515cdf5",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\E\\selection.json": "dc5b62ed159596885b5fc38042878dafb926f44e2f23757c6f972f551d0c5f5c",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\H265\\selection.json": "4c4f69f7514244965dd56207ee25d1d35d32c63a0b3cc7fbefa2f09c72d933de",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\outputs\\semantic_review_20261016\\单人核对汇总.json": "f32b48c2bc8a5d95bc1c0e9f53109f2d737507d7e0c7316bdeaab0ed912c5156",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\continuation_20261016\\probability_diagnosis.py": "29a13150ddf334d13d9dc26f7c199318ec2c6f915b8008600c5ca3d092d66d0b",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\semantic_mvp\\teacher.py": "4767a0df2ebe7ef91d5ba50e93f123382c89ba9411fb7799f6500dad297a914e",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\semantic_mvp\\system.py": "753f7e6ea391a4136abb033b47aded4799dd818cf4aa8fb7e4fa2fea08f39e77",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\semantic_mvp\\roi_layout.py": "def94db467c0de0c6426d92963ac700919a552286b81b3edaa7b2f0fc2747c4a",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\semantic_mvp\\runtime.py": "11e3a486ff3a63d9f22b571f6027bb6ee85179ae9a69ad678697ca803eb893a7",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\phase_c_20261013\\fixed_teacher.json": "46ae65e9709bbe628e07efe44fae754839c44c6d95a1c2a53cfa17049b135d66",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\phase_c_20261013\\segformer_adaptation_preserve8\\best.pt": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\阶段F_首轮总结与后续方向_2026-10-15.md": "61bfd3111adcb0660c89efe1fe1bcd14cfebac997b90487586184c6cb37d3d41"
+  },
+  "source_png_sha256": {
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00000.png": "7655c2a5e5736493aaa72bf50ff510abd52b0b9bf30ae9de16e291b937f4d324",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00001.png": "b3d765dc29fd6865772fdb6cd28b2270198df4ab62b8f8b32886c788caff8ae4",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00002.png": "b8f49e7506cc0bc283bf297439ead1bc8b5df315e2a063b48843573526f784ea",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00003.png": "79744f8c03bda9b47b2689bd82de95e2c21f631a895c7dc98093d40a51908a12",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00004.png": "16821d1fc64e2c98d72da1855919895b52b1b180ec6a37fab636dc7efb5eadc3",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00005.png": "74355212b6e11c06f8e66ba01e48f6c1eab655a60b6ba7e43eb04200132cdf5b",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00006.png": "fb298b0e3854ad4c1aa96181da6131eedc61a6122d358b6c495aa2227e48febc",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00007.png": "ff15b58e97419cab5327580857ba6f9a66b26ca06f2a7cdfd2bc7d61779697de",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00008.png": "b4b96d69be705578ea3e39546f5bd437368f70a2febdac8243bba587d096d12e",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00009.png": "c689c40709f81f5dc4d13b3b098eeed0c36fa4f344582c1017f06e457a2c59a6",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00010.png": "43a0406052008fd3a49ba6a01bf053a389968b01160714a6c41de9e9f707e40b",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00011.png": "861c4841ef867791a1acf94e9c6bd739f616f7502328067d877d56bbbcc310bb",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00012.png": "550c1caca42a7c8ce0d43c3527405627054695d1a4ed13f643377c60104ca7fb",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00013.png": "2aea666535c03d2c067915421974f91c10e7f60aeb55763fc24652f1834f1b72",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00014.png": "fd51b9a631c3cd5b1d7355d0a16650a2b61b02c7fd57d9f61ba5694f2ebd40b3",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00015.png": "fe2c0cb97d69b261614b9691c0f031e1b3bda41bbc763fab1975628dae40f18c",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00016.png": "ef478e9a0a6a6d65250b410ba08a73bfee72ddf711ae1b6d19f6c20337726198",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00017.png": "7cbf191e4e4b32c83aed12c701db9af91f29b5b1b735bbd67d0e072b5c8a5311",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00018.png": "2160ffbf46e955b1aacda75a5b482500652c746adfb2a16b86d6c0543e8538a0",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00019.png": "971efcffb6f8e21953212eac01511f97f45464e1424dc7b562f212c89a4d8391",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00020.png": "6a831c68790614df4cd4a5e25320b503993963d254ec43b6e8380afa111cc917",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00021.png": "767b9d0997eb7aac1dce7d6274261c43535e2ff0e9b06f25e4f9b3e0d9abc4c1",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00022.png": "a6855a0e381e6fd2187051b2996e019882ce89793409a9e8263f8fdde9c39a15",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00023.png": "535b1f97e7d1df84062c42d795857b36818f90f4b3b2c7137c1761272413ead6",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00024.png": "d38abbe13a7adf5ae79d588f50d1a46cad8752656c44f60eebd0d1e34e413203",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00025.png": "48b2e9d6e61cccbb41e0f4f33d9bf553d868151ac5f2a8774647ea7975101373",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00026.png": "80859f21ac1030a80f0b4cf5c2b3e991d07e305c4cc3b41fb452e3aa7ca88ea2",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00027.png": "8ebe4a4fa30b865c97dd4a4546443e72a23e96802264db0229863501ca38bbb6",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00028.png": "a54771b06e94bd541929596f1a57ff09c2ad70e994a99dc748af8d42a320b651",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00029.png": "d70dd637990ad308d8cd654135629a83e383dbbf271929750093a7a123959cd9",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00030.png": "213a49d020a182b119ce741ae87837d6b07fc3f81284ea0a49acb836c2163fdf",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00031.png": "154755518dc27e322a544b3562f8379d05727ed6a0db9a56deae91a24d405750",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00032.png": "4b0e2bf579733526b3a679507852c9c1017f153dee17ab8dbde98df4b94b322f",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00033.png": "a3bc48d8faf556c59a2391bdce81fc466e58a09d7f70b984382db7ed6f984bbf",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00034.png": "2bc124a419879d1a089ff13c0838957b2280423d31bd1487a7ac58180062c653",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00035.png": "e4aa974a75a21ab839f2bd7f2ed1d075c34c5cbb3dbb1e4278c37a58ab798481",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00036.png": "15124715b0410e66f3322de487320879db1a00e28d5ee1d12f5ffafe583eb720",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00037.png": "5136ccaaf81f1bb99197dc495d387aa2da046c2447361b514681fb679eb5dee7",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00038.png": "cb1fbc16a1b6d67bbc9a675574b8d2c83ba7822c7d63de6f5d28732f62c79758",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00039.png": "c527e01f1659e74d3bdf345bea43c2c2be79c92d0c2936587437cf03bf2b6f08",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00040.png": "00c5d09cb985da2489ad6086edfe330b49a31f360291f2141371a23f65b4f643",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00041.png": "453b8af52abbd9e879e2300ad601ab1853ee384b2f7ac4218bba2665a10ae5a8",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00042.png": "9bc641882ecd62de0ce58b31e362732cbd11cc0daee98e67ae67b7ec9049d23c",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00043.png": "1db527810676139f95af60563fed79e689ec87bcb4fda7446dd244aa7ad2f856",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00044.png": "0679e6b827b783e8a93aaa8529bddd4c988d41fdf2feadf22f2c14725dbaaecc",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00045.png": "298ae0e5b2fe9ca461988c5d91420a6b8653f05df2e50be9f620fd43c4bbc87a",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00046.png": "ef43f7f6d1f16f30a451aca1d9d5db1755bf7caa334f4b77927a3f97ee2fe750",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00047.png": "411086919eaa35929f9aee114dcd619d888776983cb0ca2f0b50c3a64ca5a575",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00048.png": "b468ccf8cb16c8c854185ea6fe3afa527fcd30e875dec6f558516bce8f891472",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_f_20261015\\step3\\positive_case\\initial_crf32\\private_frames\\00049.png": "37a2fbd1c90ee6f52f5af1d96df9a34fd2aa0943a410539bcb75c3212afd5ed8"
+  },
+  "ffmpeg_version": "ffmpeg version 9.0.1-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+}

@@ -1,0 +1,62 @@
+{
+  "success": true,
+  "profile": "semantic-video-layered-v2",
+  "mode": "video",
+  "independent_process_pid": 6928,
+  "inputs": "received packet only; standard FFmpeg; no source, GT, teacher or sender reference state",
+  "file_bytes": 26189,
+  "file_sha256": "3d1a804a6d2d729f1b936ca4cbc562e81b560fa4aaf2dc6bae425cf9bdeb67b3",
+  "frames": 5,
+  "width": 1280,
+  "height": 720,
+  "fps": "25/1",
+  "fps_basis": "user-declared nominal rate; capture timestamps not available",
+  "target": "fish",
+  "target_present_frames": 4,
+  "roi_segments": 1,
+  "decoded_rgb_sha256": [
+    "e5bfc1f34ff8b07e4f019d64f58ad6ee652b9d35802aee2d643c9d2b58c55237",
+    "b7d253ecfc3a7b7e93c280f7b7753563b83181e2e98f564c8a745afa15270b9f",
+    "f10e73de4323a0a6733700dc06895bf46e75d2770b792932db77e30bc66fe69e",
+    "d7a1cc7ab9766cbc8a24910c28ecba8456124cbb05c1889a0c5e89ace16a287d",
+    "129ce8103ba9c0274e5d59426fac4edc90a02086a09aeaf6bcc4722b22adc8ce"
+  ],
+  "decode_and_preview_seconds": 0.9574299000014435,
+  "commands": [
+    [
+      "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+      "-v",
+      "error",
+      "-i",
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_e_20261015\\fresh_cli\\receiver\\received_streams\\context.mp4",
+      "-an",
+      "-fps_mode",
+      "passthrough",
+      "-vf",
+      "scale=1280:720:flags=lanczos",
+      "-start_number",
+      "0",
+      "-compression_level",
+      "1",
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_e_20261015\\fresh_cli\\receiver\\context_rgb\\%05d.png"
+    ],
+    [
+      "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+      "-v",
+      "error",
+      "-i",
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_e_20261015\\fresh_cli\\receiver\\received_streams\\roi_0000.mp4",
+      "-an",
+      "-fps_mode",
+      "passthrough",
+      "-start_number",
+      "0",
+      "-compression_level",
+      "1",
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_e_20261015\\fresh_cli\\receiver\\roi_rgb_0000\\%05d.png"
+    ]
+  ],
+  "semantic_results_are": "sender predictions transmitted as data; overlay is not receiver-side detection accuracy",
+  "preview_files_are": "generated after reception; not transmitted",
+  "roi_layout": "halves"
+}

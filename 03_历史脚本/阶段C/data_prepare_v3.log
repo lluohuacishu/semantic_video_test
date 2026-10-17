@@ -1,0 +1,44 @@
+DOWNLOAD video131: 834 RGB/GT/source entries
+DOWNLOADED video131: 1/834; received 0.3 MiB
+DOWNLOADED video131: 101/834; received 0.3 MiB
+DOWNLOAD video91: 343 RGB/GT/source entries
+DOWNLOADED video91: 1/343; received 0.6 MiB
+DOWNLOADED video131: 201/834; received 0.3 MiB
+DOWNLOADED video91: 101/343; received 0.6 MiB
+DOWNLOADED video91: 201/343; received 0.6 MiB
+DOWNLOADED video131: 301/834; received 0.3 MiB
+DOWNLOADED video91: 301/343; received 0.6 MiB
+DOWNLOAD_OK video91: 0.6 MiB
+DOWNLOADED video131: 401/834; received 0.3 MiB
+DOWNLOADED video131: 501/834; received 0.3 MiB
+DOWNLOAD video24: 647 RGB/GT/source entries
+DOWNLOADED video24: 1/647; received 1.9 MiB
+DOWNLOADED video131: 601/834; received 0.3 MiB
+DOWNLOADED video24: 101/647; received 1.9 MiB
+DOWNLOADED video24: 201/647; received 1.9 MiB
+DOWNLOADED video131: 701/834; received 0.3 MiB
+DOWNLOADED video24: 301/647; received 1.9 MiB
+DOWNLOADED video24: 401/647; received 1.9 MiB
+DOWNLOADED video131: 801/834; received 0.3 MiB
+DOWNLOAD_OK video131: 0.3 MiB
+DOWNLOADED video24: 501/647; received 1.9 MiB
+DOWNLOADED video24: 601/647; received 1.9 MiB
+DOWNLOAD_OK video24: 1.9 MiB
+DOWNLOAD video96: 291 RGB/GT/source entries
+DOWNLOADED video96: 1/291; received 0.4 MiB
+DOWNLOADED video96: 101/291; received 0.4 MiB
+DOWNLOADED video96: 201/291; received 0.4 MiB
+DOWNLOAD_OK video96: 0.4 MiB
+DOWNLOAD video109: 0 RGB/GT/source entries
+DOWNLOAD_OK video109: 3.9 MiB
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Documents\Codex\2026-10-12\wo-d\work\phase_c\prepare_uvmulti.py", line 248, in <module>
+    if __name__=="__main__": main()
+                             ^^^^^^
+  File "C:\Users\lenovo\Documents\Codex\2026-10-12\wo-d\work\phase_c\prepare_uvmulti.py", line 235, in main
+    videos = [inspect_video(v,role) for v,role in ROLES.items()]
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Documents\Codex\2026-10-12\wo-d\work\phase_c\prepare_uvmulti.py", line 150, in inspect_video
+    if not ids or ids != list(range(ids[0],ids[-1]+1)): raise ValueError(f"Non-continuous source video{video}")
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Non-continuous source video109

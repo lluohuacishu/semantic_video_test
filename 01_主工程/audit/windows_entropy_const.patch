@@ -1,0 +1,13 @@
+diff --git a/packages/msrtc_rans/python/cpp/PyWrapper.h b/packages/msrtc_rans/python/cpp/PyWrapper.h
+index ed19134..a9106ea 100644
+--- a/packages/msrtc_rans/python/cpp/PyWrapper.h
++++ b/packages/msrtc_rans/python/cpp/PyWrapper.h
+@@ -557,7 +557,7 @@ inline bool AddPyType(PyObject* module, PyType_Spec& typeSpec)
+     if (PyType_Ready(reinterpret_cast<PyTypeObject*>(typeObject.Get())) < 0) {
+         return false;
+     }
+-    auto name = strrchr(typeSpec.name, '.');
++    const char* name = strrchr(typeSpec.name, '.');
+     if (name) {
+         name++;
+     } else {

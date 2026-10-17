@@ -1,0 +1,12 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>语义通信原型 · 接收结果</title>
+<style>body{margin:0;background:#101a25;color:#eaf1f7;font:16px/1.65 "Microsoft YaHei",sans-serif}main{max-width:1120px;margin:40px auto;padding:0 24px}h1{font-size:28px;margin-bottom:8px}p{color:#b9cad9}.cards{display:flex;gap:16px;flex-wrap:wrap}.card{padding:18px;background:#1c2b3b;border-radius:12px;flex:1;min-width:170px}strong{font-size:24px;color:#67e7bb}.media{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:28px 0}video{width:100%;border-radius:10px;background:#000}a{color:#67e7bb}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:8px;border-bottom:1px solid #304456}details{margin-top:24px}@media(max-width:750px){.media{grid-template-columns:1fr}}</style>
+<main><p>发送端识别 → 目标区域编码 → TCP 限速传输 → 独立接收端恢复</p><h1>语义通信原型已完成接收</h1>
+<p>目标：潜水员。本次只传类别、位置和置信度，接收端按坐标绘制目标分布。</p><div class="cards">
+<div class="card">完整通信包<br><strong>1.40 KiB</strong></div>
+<div class="card">传输耗时<br><strong>0.62 秒 / 20 kbps</strong></div>
+<div class="card">目标记录帧<br><strong>5</strong></div>
+<div class="card">目标出现帧<br><strong>5 / 5</strong></div></div>
+<div class="media"><div><h3>目标分布（从收到的坐标绘制）</h3><video controls preload="metadata" poster="poster.jpg" src="semantic_overlay.mp4"></video></div></div>
+<p><a href="message.scv" download>下载完整通信包</a> · <a href="target_information.json">逐帧目标信息</a> · <a href="decode.json">独立解码记录</a> · <a href="transfer.json">传输记录</a></p>
+<p>这是语义通信工程原型。绿色框来自发送端模型预测；连接区域数量不代表真实物体数量。当前采用本机 TCP 限速链路，采用视频声明的播放帧率。</p>
+<details><summary>查看逐帧目标信息</summary><table><tr><th>帧号（从0开始）</th><th>潜水员</th><th>连接区域</th><th>目标像素</th></tr><tr><td>0</td><td>有</td><td>2</td><td>52075</td></tr><tr><td>1</td><td>有</td><td>2</td><td>36591</td></tr><tr><td>2</td><td>有</td><td>1</td><td>60343</td></tr><tr><td>3</td><td>有</td><td>1</td><td>60794</td></tr><tr><td>4</td><td>有</td><td>1</td><td>42497</td></tr></table></details></main></html>

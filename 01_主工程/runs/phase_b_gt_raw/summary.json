@@ -1,0 +1,2632 @@
+{
+  "teacher_checkpoint": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\runs\\suim_segformer_b0_20260915\\segmentation_best.pt",
+  "teacher_sha256": "ff00cb439a4af290dc3efde8ae76d4acfad797784483b669ab6db79aaf5b1476",
+  "teacher_frozen": true,
+  "training_performed": false,
+  "input_size": 256,
+  "preprocessing": "rgb_0_1_long_edge_resize_center_pad_ignore_255",
+  "prediction_grid": "crop padding from logits, bilinear resize logits to source RGB dimensions, argmax",
+  "classes": [
+    {
+      "index": 0,
+      "symbol": "BW",
+      "name_zh": "背景水体",
+      "rgb": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 1,
+      "symbol": "HD",
+      "name_zh": "潜水员",
+      "rgb": [
+        0,
+        0,
+        255
+      ]
+    },
+    {
+      "index": 2,
+      "symbol": "PF",
+      "name_zh": "水生植物",
+      "rgb": [
+        0,
+        255,
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "symbol": "WR",
+      "name_zh": "沉船与遗迹",
+      "rgb": [
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "index": 4,
+      "symbol": "RO",
+      "name_zh": "机器人与仪器",
+      "rgb": [
+        255,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "symbol": "RI",
+      "name_zh": "珊瑚礁与无脊椎动物",
+      "rgb": [
+        255,
+        0,
+        255
+      ]
+    },
+    {
+      "index": 6,
+      "symbol": "FV",
+      "name_zh": "鱼与脊椎动物",
+      "rgb": [
+        255,
+        255,
+        0
+      ]
+    },
+    {
+      "index": 7,
+      "symbol": "SR",
+      "name_zh": "海床与岩石",
+      "rgb": [
+        255,
+        255,
+        255
+      ]
+    }
+  ],
+  "manifest_sha256": "869538f96b9bc43d24189be9c92467037619d77bfd538f93046bd1afbc9a0632",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "upstream_commit": "64b10d4c0108106e66b7c54d6e5e470200a57abf",
+    "precision": "fp32",
+    "tf32": false,
+    "deterministic": true
+  },
+  "sequences": [
+    {
+      "name": "sfishtrack_001",
+      "ground_truth_kind": "fish_binary",
+      "evaluation_role": "evaluation_only_no_weight_updates",
+      "exclude_rectangles": [],
+      "streams": [
+        {
+          "name": "reference",
+          "frames": 50,
+          "input_frames_dir": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\data\\phase_b_annotation_corpus\\sfishtrack_001\\reference",
+          "complete_file_bytes": null,
+          "complete_file_sha256": null,
+          "source_prediction_agreement_full_frame": {
+            "mean_iou_present_union": 1.0,
+            "pixel_agreement": 1.0,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "BW",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 24132533,
+                "predicted_pixels": 24132533
+              },
+              {
+                "class_id": 1,
+                "symbol": "HD",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 1122542,
+                "predicted_pixels": 1122542
+              },
+              {
+                "class_id": 2,
+                "symbol": "PF",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 3,
+                "symbol": "WR",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 4,
+                "symbol": "RO",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 5,
+                "symbol": "RI",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 3520729,
+                "predicted_pixels": 3520729
+              },
+              {
+                "class_id": 6,
+                "symbol": "FV",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 22060,
+                "predicted_pixels": 22060
+              },
+              {
+                "class_id": 7,
+                "symbol": "SR",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 17282136,
+                "predicted_pixels": 17282136
+              }
+            ],
+            "confusion_matrix": [
+              [
+                24132533,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1122542,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                3520729,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                22060,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                17282136
+              ]
+            ]
+          },
+          "source_prediction_agreement_exclusions": {
+            "mean_iou_present_union": 1.0,
+            "pixel_agreement": 1.0,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "BW",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 24132533,
+                "predicted_pixels": 24132533
+              },
+              {
+                "class_id": 1,
+                "symbol": "HD",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 1122542,
+                "predicted_pixels": 1122542
+              },
+              {
+                "class_id": 2,
+                "symbol": "PF",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 3,
+                "symbol": "WR",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 4,
+                "symbol": "RO",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 5,
+                "symbol": "RI",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 3520729,
+                "predicted_pixels": 3520729
+              },
+              {
+                "class_id": 6,
+                "symbol": "FV",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 22060,
+                "predicted_pixels": 22060
+              },
+              {
+                "class_id": 7,
+                "symbol": "SR",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 17282136,
+                "predicted_pixels": 17282136
+              }
+            ],
+            "confusion_matrix": [
+              [
+                24132533,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1122542,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                3520729,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                22060,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                17282136
+              ]
+            ]
+          },
+          "teacher_roi_rgb_psnr_db": null,
+          "teacher_roi_valid_pixels": 972363,
+          "mean_change_map_disagreement_vs_source_prediction": 0.0,
+          "seconds": 7.917430100000274,
+          "per_frame": [
+            {
+              "frame": 0,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 25526,
+              "predicted_fv_pixels": 1822,
+              "mean_confidence": 0.9320943355560303,
+              "fish_gt_iou": 0.6264005602240896,
+              "fish_gt_f1": 0.7702906350914962,
+              "ground_truth_fish_pixels": 2823
+            },
+            {
+              "frame": 1,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 25048,
+              "predicted_fv_pixels": 1460,
+              "mean_confidence": 0.9317651391029358,
+              "fish_gt_iou": 0.5646460364561254,
+              "fish_gt_f1": 0.7217556217827147,
+              "ground_truth_fish_pixels": 2231
+            },
+            {
+              "frame": 2,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 22507,
+              "predicted_fv_pixels": 43,
+              "mean_confidence": 0.930496096611023,
+              "fish_gt_iou": 0.023143164693218515,
+              "fish_gt_f1": 0.04523934771173067,
+              "ground_truth_fish_pixels": 1858
+            },
+            {
+              "frame": 3,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 21654,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9391089081764221,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1736
+            },
+            {
+              "frame": 4,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 22365,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9225124716758728,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1359
+            },
+            {
+              "frame": 5,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 22685,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9218266010284424,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1141
+            },
+            {
+              "frame": 6,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 22272,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9540576338768005,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1289
+            },
+            {
+              "frame": 7,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 23097,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9420541524887085,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1242
+            },
+            {
+              "frame": 8,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 21779,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9238060116767883,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1222
+            },
+            {
+              "frame": 9,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 20106,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9202022552490234,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1140
+            },
+            {
+              "frame": 10,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 21037,
+              "predicted_fv_pixels": 180,
+              "mean_confidence": 0.9111090898513794,
+              "fish_gt_iou": 0.16483516483516483,
+              "fish_gt_f1": 0.2830188679245283,
+              "ground_truth_fish_pixels": 1092
+            },
+            {
+              "frame": 11,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 21567,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9056192636489868,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1954
+            },
+            {
+              "frame": 12,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 22700,
+              "predicted_fv_pixels": 1131,
+              "mean_confidence": 0.9047109484672546,
+              "fish_gt_iou": 0.26210892236384703,
+              "fish_gt_f1": 0.41535071612192437,
+              "ground_truth_fish_pixels": 4315
+            },
+            {
+              "frame": 13,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 22509,
+              "predicted_fv_pixels": 2622,
+              "mean_confidence": 0.9268519878387451,
+              "fish_gt_iou": 0.4928300295234078,
+              "fish_gt_f1": 0.660262748975844,
+              "ground_truth_fish_pixels": 4457
+            },
+            {
+              "frame": 14,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 23896,
+              "predicted_fv_pixels": 1766,
+              "mean_confidence": 0.9371420741081238,
+              "fish_gt_iou": 0.31604696673189825,
+              "fish_gt_f1": 0.48029739776951674,
+              "ground_truth_fish_pixels": 3614
+            },
+            {
+              "frame": 15,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 24612,
+              "predicted_fv_pixels": 1736,
+              "mean_confidence": 0.8818941712379456,
+              "fish_gt_iou": 0.29043280182232345,
+              "fish_gt_f1": 0.4501323918799647,
+              "ground_truth_fish_pixels": 3929
+            },
+            {
+              "frame": 16,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 25432,
+              "predicted_fv_pixels": 2151,
+              "mean_confidence": 0.864172101020813,
+              "fish_gt_iou": 0.38597194388777556,
+              "fish_gt_f1": 0.5569693464430306,
+              "ground_truth_fish_pixels": 4765
+            },
+            {
+              "frame": 17,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 26660,
+              "predicted_fv_pixels": 1261,
+              "mean_confidence": 0.8684951663017273,
+              "fish_gt_iou": 0.1759318423855165,
+              "fish_gt_f1": 0.29922115558775586,
+              "ground_truth_fish_pixels": 4260
+            },
+            {
+              "frame": 18,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 24060,
+              "predicted_fv_pixels": 2211,
+              "mean_confidence": 0.862688422203064,
+              "fish_gt_iou": 0.37840230139411374,
+              "fish_gt_f1": 0.5490447904960668,
+              "ground_truth_fish_pixels": 4018
+            },
+            {
+              "frame": 19,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 22890,
+              "predicted_fv_pixels": 607,
+              "mean_confidence": 0.8755412697792053,
+              "fish_gt_iou": 0.09844208624971777,
+              "fish_gt_f1": 0.17923946557040082,
+              "ground_truth_fish_pixels": 4258
+            },
+            {
+              "frame": 20,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 22421,
+              "predicted_fv_pixels": 905,
+              "mean_confidence": 0.8925624489784241,
+              "fish_gt_iou": 0.1634549988664702,
+              "fish_gt_f1": 0.28098207326578334,
+              "ground_truth_fish_pixels": 4227
+            },
+            {
+              "frame": 21,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 22385,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8891142010688782,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 3930
+            },
+            {
+              "frame": 22,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 22831,
+              "predicted_fv_pixels": 515,
+              "mean_confidence": 0.8830363154411316,
+              "fish_gt_iou": 0.09775685405704791,
+              "fish_gt_f1": 0.1781029263370333,
+              "ground_truth_fish_pixels": 3449
+            },
+            {
+              "frame": 23,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 22352,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8975138068199158,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 3962
+            },
+            {
+              "frame": 24,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 21991,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8856484889984131,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 3088
+            },
+            {
+              "frame": 25,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 22300,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9227153658866882,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 3341
+            },
+            {
+              "frame": 26,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 21093,
+              "predicted_fv_pixels": 661,
+              "mean_confidence": 0.9623255729675293,
+              "fish_gt_iou": 0.1661639014580191,
+              "fish_gt_f1": 0.2849752101746066,
+              "ground_truth_fish_pixels": 3978
+            },
+            {
+              "frame": 27,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 19156,
+              "predicted_fv_pixels": 1476,
+              "mean_confidence": 0.9652784466743469,
+              "fish_gt_iou": 0.21034825870646767,
+              "fish_gt_f1": 0.3475830318974022,
+              "ground_truth_fish_pixels": 4606
+            },
+            {
+              "frame": 28,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 20946,
+              "predicted_fv_pixels": 653,
+              "mean_confidence": 0.9018791913986206,
+              "fish_gt_iou": 0.07103990326481258,
+              "fish_gt_f1": 0.13265594129268982,
+              "ground_truth_fish_pixels": 2890
+            },
+            {
+              "frame": 29,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 22069,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9191329479217529,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 3054
+            },
+            {
+              "frame": 30,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 23076,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8904920816421509,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 3441
+            },
+            {
+              "frame": 31,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 24115,
+              "predicted_fv_pixels": 5,
+              "mean_confidence": 0.8871397972106934,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 3393
+            },
+            {
+              "frame": 32,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 22588,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8910093903541565,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 3041
+            },
+            {
+              "frame": 33,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 24005,
+              "predicted_fv_pixels": 183,
+              "mean_confidence": 0.9003158807754517,
+              "fish_gt_iou": 0.013693419551160137,
+              "fish_gt_f1": 0.02701688555347092,
+              "ground_truth_fish_pixels": 2482
+            },
+            {
+              "frame": 34,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 24343,
+              "predicted_fv_pixels": 436,
+              "mean_confidence": 0.9033523797988892,
+              "fish_gt_iou": 0.09139344262295082,
+              "fish_gt_f1": 0.16748028539241458,
+              "ground_truth_fish_pixels": 2227
+            },
+            {
+              "frame": 35,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 24604,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8973872065544128,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1845
+            },
+            {
+              "frame": 36,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 22921,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.894747793674469,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 749
+            },
+            {
+              "frame": 37,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 22790,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8943964838981628,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 623
+            },
+            {
+              "frame": 38,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 22579,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9017387628555298,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 657
+            },
+            {
+              "frame": 39,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 21398,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9242476224899292,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1046
+            },
+            {
+              "frame": 40,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 22270,
+              "predicted_fv_pixels": 6,
+              "mean_confidence": 0.9242309331893921,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 977
+            },
+            {
+              "frame": 41,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 21839,
+              "predicted_fv_pixels": 111,
+              "mean_confidence": 0.9069858193397522,
+              "fish_gt_iou": 0.0624390243902439,
+              "fish_gt_f1": 0.11753902662993572,
+              "ground_truth_fish_pixels": 978
+            },
+            {
+              "frame": 42,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 21772,
+              "predicted_fv_pixels": 119,
+              "mean_confidence": 0.9064273834228516,
+              "fish_gt_iou": 0.01090909090909091,
+              "fish_gt_f1": 0.02158273381294964,
+              "ground_truth_fish_pixels": 993
+            },
+            {
+              "frame": 43,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 21840,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9381515979766846,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1019
+            },
+            {
+              "frame": 44,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 21609,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9404445886611938,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 859
+            },
+            {
+              "frame": 45,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 21250,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9396998882293701,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 553
+            },
+            {
+              "frame": 46,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 20407,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9634693264961243,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 602
+            },
+            {
+              "frame": 47,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 19459,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.960026204586029,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 349
+            },
+            {
+              "frame": 48,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 20275,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9350951910018921,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 180
+            },
+            {
+              "frame": 49,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 19456,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9289408326148987,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 477
+            }
+          ],
+          "fish_ground_truth": {
+            "mean_iou_present_union": 0.5722975551769667,
+            "pixel_agreement": 0.9977755859375,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "non-fish",
+                "iou": 0.997774734126199,
+                "f1": 0.9988861277321268,
+                "recall": 0.9999038166179517,
+                "precision": 0.9978705083206066,
+                "target_pixels": 45964281,
+                "predicted_pixels": 46057940
+              },
+              {
+                "class_id": 1,
+                "symbol": "fish",
+                "iou": 0.1468203762277343,
+                "f1": 0.2560477286088591,
+                "recall": 0.15242959237463166,
+                "precision": 0.7995920217588395,
+                "target_pixels": 115719,
+                "predicted_pixels": 22060
+              }
+            ],
+            "confusion_matrix": [
+              [
+                45959860,
+                4421
+              ],
+              [
+                98080,
+                17639
+              ]
+            ]
+          },
+          "fish_gt_iou": 0.1468203762277343,
+          "fish_gt_f1": 0.2560477286088591,
+          "ground_truth_fish_rgb_psnr_db": null,
+          "mean_fish_change_map_error_vs_gt": 0.003517795138888889,
+          "duration_seconds": 10.0,
+          "video_kbps": null,
+          "theoretical_transfer_seconds_at_20kbps": null
+        }
+      ]
+    },
+    {
+      "name": "sfishtrack_027",
+      "ground_truth_kind": "fish_binary",
+      "evaluation_role": "evaluation_only_no_weight_updates",
+      "exclude_rectangles": [],
+      "streams": [
+        {
+          "name": "reference",
+          "frames": 20,
+          "input_frames_dir": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\data\\phase_b_annotation_corpus\\sfishtrack_027\\reference",
+          "complete_file_bytes": null,
+          "complete_file_sha256": null,
+          "source_prediction_agreement_full_frame": {
+            "mean_iou_present_union": 1.0,
+            "pixel_agreement": 1.0,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "BW",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 15803735,
+                "predicted_pixels": 15803735
+              },
+              {
+                "class_id": 1,
+                "symbol": "HD",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 251911,
+                "predicted_pixels": 251911
+              },
+              {
+                "class_id": 2,
+                "symbol": "PF",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 8990,
+                "predicted_pixels": 8990
+              },
+              {
+                "class_id": 3,
+                "symbol": "WR",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 1856060,
+                "predicted_pixels": 1856060
+              },
+              {
+                "class_id": 4,
+                "symbol": "RO",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 5,
+                "symbol": "RI",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 6,
+                "symbol": "FV",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 511304,
+                "predicted_pixels": 511304
+              },
+              {
+                "class_id": 7,
+                "symbol": "SR",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              }
+            ],
+            "confusion_matrix": [
+              [
+                15803735,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                251911,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                8990,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                1856060,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                511304,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          "source_prediction_agreement_exclusions": {
+            "mean_iou_present_union": 1.0,
+            "pixel_agreement": 1.0,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "BW",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 15803735,
+                "predicted_pixels": 15803735
+              },
+              {
+                "class_id": 1,
+                "symbol": "HD",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 251911,
+                "predicted_pixels": 251911
+              },
+              {
+                "class_id": 2,
+                "symbol": "PF",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 8990,
+                "predicted_pixels": 8990
+              },
+              {
+                "class_id": 3,
+                "symbol": "WR",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 1856060,
+                "predicted_pixels": 1856060
+              },
+              {
+                "class_id": 4,
+                "symbol": "RO",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 5,
+                "symbol": "RI",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 6,
+                "symbol": "FV",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 511304,
+                "predicted_pixels": 511304
+              },
+              {
+                "class_id": 7,
+                "symbol": "SR",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              }
+            ],
+            "confusion_matrix": [
+              [
+                15803735,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                251911,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                8990,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                1856060,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                511304,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          "teacher_roi_rgb_psnr_db": null,
+          "teacher_roi_valid_pixels": 619597,
+          "mean_change_map_disagreement_vs_source_prediction": 0.0,
+          "seconds": 3.8998684999987745,
+          "per_frame": [
+            {
+              "frame": 0,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 25998,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9457413554191589,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 5670
+            },
+            {
+              "frame": 1,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 79826,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9634866118431091,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 20670
+            },
+            {
+              "frame": 2,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 36265,
+              "predicted_fv_pixels": 40791,
+              "mean_confidence": 0.9651899933815002,
+              "fish_gt_iou": 0.8194892139846268,
+              "fish_gt_f1": 0.9007904061052058,
+              "ground_truth_fish_pixels": 47265
+            },
+            {
+              "frame": 3,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 1548,
+              "predicted_fv_pixels": 83068,
+              "mean_confidence": 0.9725162982940674,
+              "fish_gt_iou": 0.7682089087819239,
+              "fish_gt_f1": 0.8689119311259712,
+              "ground_truth_fish_pixels": 64680
+            },
+            {
+              "frame": 4,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 69319,
+              "predicted_fv_pixels": 77890,
+              "mean_confidence": 0.9752718210220337,
+              "fish_gt_iou": 0.7187933425797504,
+              "fish_gt_f1": 0.8363929796247731,
+              "ground_truth_fish_pixels": 85691
+            },
+            {
+              "frame": 5,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 95341,
+              "mean_confidence": 0.9574264287948608,
+              "fish_gt_iou": 0.8865266472519218,
+              "fish_gt_f1": 0.9398506493860697,
+              "ground_truth_fish_pixels": 87986
+            },
+            {
+              "frame": 6,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 680,
+              "predicted_fv_pixels": 93613,
+              "mean_confidence": 0.9390171766281128,
+              "fish_gt_iou": 0.8860583651897809,
+              "fish_gt_f1": 0.9395874290461027,
+              "ground_truth_fish_pixels": 86962
+            },
+            {
+              "frame": 7,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 87832,
+              "mean_confidence": 0.95426344871521,
+              "fish_gt_iou": 0.8769587032033964,
+              "fish_gt_f1": 0.9344464550090475,
+              "ground_truth_fish_pixels": 82380
+            },
+            {
+              "frame": 8,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 2977,
+              "predicted_fv_pixels": 32769,
+              "mean_confidence": 0.9407714009284973,
+              "fish_gt_iou": 0.8162904541745989,
+              "fish_gt_f1": 0.8988545332035637,
+              "ground_truth_fish_pixels": 34016
+            },
+            {
+              "frame": 9,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 15418,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9204230904579163,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 15102
+            },
+            {
+              "frame": 10,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9558539390563965,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 11,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 65,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9544204473495483,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 12,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 13919,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9423585534095764,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 13,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 32,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9553521275520325,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 14,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 569,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9503151178359985,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 15,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9514909386634827,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 889
+            },
+            {
+              "frame": 16,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9553518295288086,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1156
+            },
+            {
+              "frame": 17,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 5295,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9467828869819641,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1289
+            },
+            {
+              "frame": 18,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9555016160011292,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 480
+            },
+            {
+              "frame": 19,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.9573774337768555,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 301
+            }
+          ],
+          "fish_ground_truth": {
+            "mean_iou_present_union": 0.8778363606707252,
+            "pixel_agreement": 0.9923897026909723,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "non-fish",
+                "iou": 0.9921980469003765,
+                "f1": 0.9960837462360922,
+                "recall": 0.9967302628311063,
+                "precision": 0.9954380678071878,
+                "target_pixels": 17897463,
+                "predicted_pixels": 17920696
+              },
+              {
+                "class_id": 1,
+                "symbol": "fish",
+                "iou": 0.763474674441074,
+                "f1": 0.8658754055348757,
+                "recall": 0.8470582953097727,
+                "precision": 0.8855475411888035,
+                "target_pixels": 534537,
+                "predicted_pixels": 511304
+              }
+            ],
+            "confusion_matrix": [
+              [
+                17838943,
+                58520
+              ],
+              [
+                81753,
+                452784
+              ]
+            ]
+          },
+          "fish_gt_iou": 0.763474674441074,
+          "fish_gt_f1": 0.8658754055348757,
+          "ground_truth_fish_rgb_psnr_db": null,
+          "mean_fish_change_map_error_vs_gt": 0.013329507035818713,
+          "duration_seconds": 4.0,
+          "video_kbps": null,
+          "theoretical_transfer_seconds_at_20kbps": null
+        }
+      ]
+    },
+    {
+      "name": "sfishtrack_054",
+      "ground_truth_kind": "fish_binary",
+      "evaluation_role": "evaluation_only_no_weight_updates",
+      "exclude_rectangles": [],
+      "streams": [
+        {
+          "name": "reference",
+          "frames": 50,
+          "input_frames_dir": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\data\\phase_b_annotation_corpus\\sfishtrack_054\\reference",
+          "complete_file_bytes": null,
+          "complete_file_sha256": null,
+          "source_prediction_agreement_full_frame": {
+            "mean_iou_present_union": 1.0,
+            "pixel_agreement": 1.0,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "BW",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 17514980,
+                "predicted_pixels": 17514980
+              },
+              {
+                "class_id": 1,
+                "symbol": "HD",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 2341,
+                "predicted_pixels": 2341
+              },
+              {
+                "class_id": 2,
+                "symbol": "PF",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 15622855,
+                "predicted_pixels": 15622855
+              },
+              {
+                "class_id": 3,
+                "symbol": "WR",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 12920276,
+                "predicted_pixels": 12920276
+              },
+              {
+                "class_id": 4,
+                "symbol": "RO",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 5,
+                "symbol": "RI",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 6,
+                "symbol": "FV",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 19548,
+                "predicted_pixels": 19548
+              },
+              {
+                "class_id": 7,
+                "symbol": "SR",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              }
+            ],
+            "confusion_matrix": [
+              [
+                17514980,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                2341,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                15622855,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                12920276,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                19548,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          "source_prediction_agreement_exclusions": {
+            "mean_iou_present_union": 1.0,
+            "pixel_agreement": 1.0,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "BW",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 17514980,
+                "predicted_pixels": 17514980
+              },
+              {
+                "class_id": 1,
+                "symbol": "HD",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 2341,
+                "predicted_pixels": 2341
+              },
+              {
+                "class_id": 2,
+                "symbol": "PF",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 15622855,
+                "predicted_pixels": 15622855
+              },
+              {
+                "class_id": 3,
+                "symbol": "WR",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 12920276,
+                "predicted_pixels": 12920276
+              },
+              {
+                "class_id": 4,
+                "symbol": "RO",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 5,
+                "symbol": "RI",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              },
+              {
+                "class_id": 6,
+                "symbol": "FV",
+                "iou": 1.0,
+                "f1": 1.0,
+                "recall": 1.0,
+                "precision": 1.0,
+                "target_pixels": 19548,
+                "predicted_pixels": 19548
+              },
+              {
+                "class_id": 7,
+                "symbol": "SR",
+                "iou": null,
+                "f1": null,
+                "recall": null,
+                "precision": null,
+                "target_pixels": 0,
+                "predicted_pixels": 0
+              }
+            ],
+            "confusion_matrix": [
+              [
+                17514980,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                2341,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                15622855,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                12920276,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                19548,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          "teacher_roi_rgb_psnr_db": null,
+          "teacher_roi_valid_pixels": 1489,
+          "mean_change_map_disagreement_vs_source_prediction": 0.0,
+          "seconds": 7.823261500001536,
+          "per_frame": [
+            {
+              "frame": 0,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8596078157424927,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 3505
+            },
+            {
+              "frame": 1,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8669882416725159,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 3008
+            },
+            {
+              "frame": 2,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8503609895706177,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 2338
+            },
+            {
+              "frame": 3,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8571844100952148,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1568
+            },
+            {
+              "frame": 4,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8585675954818726,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 692
+            },
+            {
+              "frame": 5,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 4,
+              "mean_confidence": 0.847690224647522,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 293
+            },
+            {
+              "frame": 6,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8713535070419312,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 350
+            },
+            {
+              "frame": 7,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8730315566062927,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 691
+            },
+            {
+              "frame": 8,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8746106028556824,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 420
+            },
+            {
+              "frame": 9,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8647276759147644,
+              "fish_gt_iou": null,
+              "fish_gt_f1": null,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 10,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.7938202023506165,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1278
+            },
+            {
+              "frame": 11,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8421967625617981,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1191
+            },
+            {
+              "frame": 12,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8755536079406738,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 2436
+            },
+            {
+              "frame": 13,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 169,
+              "mean_confidence": 0.8655962347984314,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1891
+            },
+            {
+              "frame": 14,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 527,
+              "mean_confidence": 0.8605913519859314,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1192
+            },
+            {
+              "frame": 15,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 712,
+              "mean_confidence": 0.8762547373771667,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 583
+            },
+            {
+              "frame": 16,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 806,
+              "mean_confidence": 0.8897466659545898,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 119
+            },
+            {
+              "frame": 17,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 811,
+              "mean_confidence": 0.8745325803756714,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 0
+            },
+            {
+              "frame": 18,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 698,
+              "mean_confidence": 0.8448670506477356,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1104
+            },
+            {
+              "frame": 19,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 344,
+              "mean_confidence": 0.8386043310165405,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 880
+            },
+            {
+              "frame": 20,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.828889787197113,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1986
+            },
+            {
+              "frame": 21,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8274781703948975,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1885
+            },
+            {
+              "frame": 22,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8145663738250732,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1609
+            },
+            {
+              "frame": 23,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 377,
+              "mean_confidence": 0.8040180206298828,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1344
+            },
+            {
+              "frame": 24,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 543,
+              "mean_confidence": 0.8085883259773254,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1762
+            },
+            {
+              "frame": 25,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 934,
+              "mean_confidence": 0.8503904938697815,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1787
+            },
+            {
+              "frame": 26,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 1439,
+              "mean_confidence": 0.8094367384910583,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1285
+            },
+            {
+              "frame": 27,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 1033,
+              "mean_confidence": 0.8177993297576904,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1533
+            },
+            {
+              "frame": 28,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 786,
+              "mean_confidence": 0.8223679065704346,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1724
+            },
+            {
+              "frame": 29,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 780,
+              "mean_confidence": 0.8218541741371155,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 4099
+            },
+            {
+              "frame": 30,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 780,
+              "mean_confidence": 0.8137089014053345,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 4171
+            },
+            {
+              "frame": 31,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 521,
+              "mean_confidence": 0.8033093214035034,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 4441
+            },
+            {
+              "frame": 32,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 154,
+              "mean_confidence": 0.8161376118659973,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 4551
+            },
+            {
+              "frame": 33,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 75,
+              "mean_confidence": 0.802941083908081,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 6875
+            },
+            {
+              "frame": 34,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 3,
+              "mean_confidence": 0.7971579432487488,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 4899
+            },
+            {
+              "frame": 35,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8315374255180359,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 4274
+            },
+            {
+              "frame": 36,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8026551604270935,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 4160
+            },
+            {
+              "frame": 37,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 2063,
+              "predicted_fv_pixels": 1014,
+              "mean_confidence": 0.8129448890686035,
+              "fish_gt_iou": 0.1539746158984636,
+              "fish_gt_f1": 0.26685962373371924,
+              "ground_truth_fish_pixels": 2441
+            },
+            {
+              "frame": 38,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 1118,
+              "mean_confidence": 0.8598408102989197,
+              "fish_gt_iou": 0.17970401691331925,
+              "fish_gt_f1": 0.3046594982078853,
+              "ground_truth_fish_pixels": 3346
+            },
+            {
+              "frame": 39,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 525,
+              "mean_confidence": 0.8823917508125305,
+              "fish_gt_iou": 0.12944092536491325,
+              "fish_gt_f1": 0.22921238722262863,
+              "ground_truth_fish_pixels": 3576
+            },
+            {
+              "frame": 40,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 998,
+              "mean_confidence": 0.8843958377838135,
+              "fish_gt_iou": 0.18062966915688367,
+              "fish_gt_f1": 0.30598870056497174,
+              "ground_truth_fish_pixels": 3427
+            },
+            {
+              "frame": 41,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 1236,
+              "mean_confidence": 0.9127510190010071,
+              "fish_gt_iou": 0.1927003573251659,
+              "fish_gt_f1": 0.3231328910763963,
+              "ground_truth_fish_pixels": 3437
+            },
+            {
+              "frame": 42,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 1103,
+              "mean_confidence": 0.910723090171814,
+              "fish_gt_iou": 0.11598075895243186,
+              "fish_gt_f1": 0.2078544061302682,
+              "ground_truth_fish_pixels": 3073
+            },
+            {
+              "frame": 43,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 911,
+              "mean_confidence": 0.9069401621818542,
+              "fish_gt_iou": 0.07783328950828293,
+              "fish_gt_f1": 0.14442546962673822,
+              "ground_truth_fish_pixels": 3188
+            },
+            {
+              "frame": 44,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 753,
+              "mean_confidence": 0.9034024477005005,
+              "fish_gt_iou": 0.04175755687129947,
+              "fish_gt_f1": 0.08016751420879449,
+              "ground_truth_fish_pixels": 2590
+            },
+            {
+              "frame": 45,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": 1.0,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 394,
+              "mean_confidence": 0.8965753316879272,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1630
+            },
+            {
+              "frame": 46,
+              "source_prediction_agreement_hd_iou": 1.0,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 278,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.847533106803894,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 984
+            },
+            {
+              "frame": 47,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8021143078804016,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 1004
+            },
+            {
+              "frame": 48,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8515718579292297,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 2049
+            },
+            {
+              "frame": 49,
+              "source_prediction_agreement_hd_iou": null,
+              "source_prediction_agreement_fv_iou": null,
+              "predicted_hd_pixels": 0,
+              "predicted_fv_pixels": 0,
+              "mean_confidence": 0.8350896835327148,
+              "fish_gt_iou": 0.0,
+              "fish_gt_f1": 0.0,
+              "ground_truth_fish_pixels": 2132
+            }
+          ],
+          "fish_ground_truth": {
+            "mean_iou_present_union": 0.5143900768555819,
+            "pixel_agreement": 0.9973842230902777,
+            "per_class": [
+              {
+                "class_id": 0,
+                "symbol": "non-fish",
+                "iou": 0.9973840012867411,
+                "f1": 0.9986902875403159,
+                "recall": 0.9996597652369258,
+                "precision": 0.9977226884356237,
+                "target_pixels": 45971199,
+                "predicted_pixels": 46060452
+              },
+              {
+                "class_id": 1,
+                "symbol": "fish",
+                "iou": 0.031396152424422626,
+                "f1": 0.060880879477050856,
+                "recall": 0.035909596419150557,
+                "precision": 0.1998669940658891,
+                "target_pixels": 108801,
+                "predicted_pixels": 19548
+              }
+            ],
+            "confusion_matrix": [
+              [
+                45955558,
+                15641
+              ],
+              [
+                104894,
+                3907
+              ]
+            ]
+          },
+          "fish_gt_iou": 0.031396152424422626,
+          "fish_gt_f1": 0.060880879477050856,
+          "ground_truth_fish_rgb_psnr_db": null,
+          "mean_fish_change_map_error_vs_gt": 0.002727310976473923,
+          "duration_seconds": 10.0,
+          "video_kbps": null,
+          "theoretical_transfer_seconds_at_20kbps": null
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Source prediction agreement is not ground-truth accuracy",
+    "Fish GT only, no eight-class video mIoU or true diver accuracy",
+    "Change-map disagreement is unwarped and includes motion; not a complete temporal stability measure",
+    "Rates not yet exactly matched",
+    "Evaluation sequences not used to update any weights"
+  ]
+}

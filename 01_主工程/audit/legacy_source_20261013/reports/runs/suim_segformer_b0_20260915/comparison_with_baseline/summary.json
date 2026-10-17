@@ -1,0 +1,74 @@
+{
+  "baseline": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\runs\\suim_transfer_20260911",
+  "candidate": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\runs\\suim_segformer_b0_20260915",
+  "same_inputs_and_ground_truth_verified": true,
+  "images": 110,
+  "size": 256,
+  "before_miou": 0.6265245100458425,
+  "after_miou": 0.6913470879035677,
+  "miou_change_percentage_points": 6.482257785772516,
+  "before_pixel_accuracy": 0.8273061588699878,
+  "after_pixel_accuracy": 0.8656458839611179,
+  "per_class": [
+    {
+      "class": "背景水体",
+      "symbol": "BW",
+      "before_iou_percent": 87.46965035317385,
+      "after_iou_percent": 89.65883507004153,
+      "change_percentage_points": 2.189184716867687
+    },
+    {
+      "class": "潜水员",
+      "symbol": "HD",
+      "before_iou_percent": 69.23332699981,
+      "after_iou_percent": 75.30750713830209,
+      "change_percentage_points": 6.074180138492091
+    },
+    {
+      "class": "水生植物",
+      "symbol": "PF",
+      "before_iou_percent": 22.956102709623835,
+      "after_iou_percent": 32.80542504568437,
+      "change_percentage_points": 9.849322336060537
+    },
+    {
+      "class": "沉船与遗迹",
+      "symbol": "WR",
+      "before_iou_percent": 64.2049475342226,
+      "after_iou_percent": 76.54422262362063,
+      "change_percentage_points": 12.339275089398027
+    },
+    {
+      "class": "机器人与仪器",
+      "symbol": "RO",
+      "before_iou_percent": 67.88178733031674,
+      "after_iou_percent": 67.02084184715979,
+      "change_percentage_points": -0.8609454831569607
+    },
+    {
+      "class": "珊瑚礁与无脊椎动物",
+      "symbol": "RI",
+      "before_iou_percent": 61.52532652249717,
+      "after_iou_percent": 67.76366052683954,
+      "change_percentage_points": 6.238334004342372
+    },
+    {
+      "class": "鱼与脊椎动物",
+      "symbol": "FV",
+      "before_iou_percent": 64.26244217133322,
+      "after_iou_percent": 74.24932261588566,
+      "change_percentage_points": 9.986880444552437
+    },
+    {
+      "class": "海床与岩石",
+      "symbol": "SR",
+      "before_iou_percent": 63.686024415696565,
+      "after_iou_percent": 69.72785545532054,
+      "change_percentage_points": 6.041831039623968
+    }
+  ],
+  "manifest_sha256": "6057f22a1aac6ffb0c24f6a24a50234765a0df14167cef15fd71c8694af3904e",
+  "baseline_label": "LR-ASPP",
+  "candidate_label": "SegFormer-B0",
+  "note": "同图同标签同预处理同分辨率评价；训练条件另见各实验配置，不能自动视为单因素消融。测试集此前已被查看，当前仍以验证集选择模型；不能称为全新未知外部测试集。"
+}

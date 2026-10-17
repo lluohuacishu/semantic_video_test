@@ -1,0 +1,30 @@
+{
+  "all_50_composited_frames_checked": true,
+  "two_simultaneous_roi_frames": 32,
+  "each_roi_pixel_equals_received_decoded_patch": true,
+  "non_roi_pixels_equal_received_context": true,
+  "no_roi_v2_packet_accepted": true,
+  "invalid_packets": [
+    {
+      "case": "spatial_overlap",
+      "rejected": true,
+      "reason": "Overlapping ROI spatial regions or too many layers"
+    },
+    {
+      "case": "cross_partition",
+      "rejected": true,
+      "reason": "ROI crosses its spatial partition"
+    },
+    {
+      "case": "unknown_version",
+      "rejected": true,
+      "reason": "Unsupported communication profile"
+    },
+    {
+      "case": "legacy_temporal_overlap",
+      "rejected": true,
+      "reason": "Overlapping ROI temporal segments"
+    }
+  ],
+  "legacy_exact_rgb_check": "see old-package CLI validation"
+}

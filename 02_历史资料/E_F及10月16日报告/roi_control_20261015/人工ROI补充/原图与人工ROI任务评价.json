@@ -1,0 +1,338 @@
+[
+  {
+    "group": "original",
+    "file_bytes": null,
+    "matched_within_2_percent": null,
+    "gt": {
+      "tp": 471,
+      "fp": 373,
+      "fn": 954,
+      "iou": 0.26195773081201335,
+      "recall": 0.33052631578947367,
+      "precision": 0.5580568720379147
+    },
+    "gt_frames": 4,
+    "positive_gt_frames": 3,
+    "positive_frame_task_hit_fraction": 0.3333333333333333,
+    "positive_frame_mean_iou": 0.1577889447236181,
+    "positive_frame_mean_recall": 0.15939086294416244,
+    "global_rgb_psnr_db": null,
+    "gt_fish_rgb_psnr_db": null,
+    "gt_background_rgb_psnr_db": null,
+    "per_gt_frame": [
+      {
+        "source_frame": 420,
+        "gt_pixels": 0,
+        "metrics": {
+          "tp": 0,
+          "fp": 156,
+          "fn": 0,
+          "iou": 0.0,
+          "recall": null,
+          "precision": 0.0
+        },
+        "components": []
+      },
+      {
+        "source_frame": 435,
+        "gt_pixels": 255,
+        "metrics": {
+          "tp": 0,
+          "fp": 17,
+          "fn": 255,
+          "iou": 0.0,
+          "recall": 0.0,
+          "precision": 0.0
+        },
+        "components": [
+          {
+            "component": 1,
+            "area": 255,
+            "size_group": "le_256",
+            "task_recall": 0.0
+          }
+        ]
+      },
+      {
+        "source_frame": 450,
+        "gt_pixels": 185,
+        "metrics": {
+          "tp": 0,
+          "fp": 190,
+          "fn": 185,
+          "iou": 0.0,
+          "recall": 0.0,
+          "precision": 0.0
+        },
+        "components": [
+          {
+            "component": 1,
+            "area": 185,
+            "size_group": "le_256",
+            "task_recall": 0.0
+          }
+        ]
+      },
+      {
+        "source_frame": 465,
+        "gt_pixels": 985,
+        "metrics": {
+          "tp": 471,
+          "fp": 10,
+          "fn": 514,
+          "iou": 0.4733668341708543,
+          "recall": 0.4781725888324873,
+          "precision": 0.9792099792099792
+        },
+        "components": [
+          {
+            "component": 1,
+            "area": 184,
+            "size_group": "le_256",
+            "task_recall": 0.0
+          },
+          {
+            "component": 2,
+            "area": 801,
+            "size_group": "257_1024",
+            "task_recall": 0.5880149812734082
+          }
+        ]
+      }
+    ],
+    "teacher": {
+      "target": "fish",
+      "class_id": 6,
+      "label": "鱼类",
+      "model_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+      "inference": "512 tiles, stride384, mean overlapping logits",
+      "threshold": 0.9,
+      "reliability": "limited; training video131 demo does not establish generalization"
+    },
+    "task_predictions_independently_computed_from_received_video": true
+  },
+  {
+    "group": "C",
+    "file_bytes": 99340,
+    "matched_within_2_percent": true,
+    "gt": {
+      "tp": 699,
+      "fp": 5866,
+      "fn": 726,
+      "iou": 0.09587162254834727,
+      "recall": 0.4905263157894737,
+      "precision": 0.10647372429550647
+    },
+    "gt_frames": 4,
+    "positive_gt_frames": 3,
+    "positive_frame_task_hit_fraction": 0.3333333333333333,
+    "positive_frame_mean_iou": 0.11954848640328374,
+    "positive_frame_mean_recall": 0.2365482233502538,
+    "global_rgb_psnr_db": 22.121730479793776,
+    "gt_fish_rgb_psnr_db": 27.399174635151432,
+    "gt_background_rgb_psnr_db": 22.283693408595443,
+    "per_gt_frame": [
+      {
+        "source_frame": 420,
+        "gt_pixels": 0,
+        "metrics": {
+          "tp": 0,
+          "fp": 2640,
+          "fn": 0,
+          "iou": 0.0,
+          "recall": null,
+          "precision": 0.0
+        },
+        "components": []
+      },
+      {
+        "source_frame": 435,
+        "gt_pixels": 255,
+        "metrics": {
+          "tp": 0,
+          "fp": 1176,
+          "fn": 255,
+          "iou": 0.0,
+          "recall": 0.0,
+          "precision": 0.0
+        },
+        "components": [
+          {
+            "component": 1,
+            "area": 255,
+            "size_group": "le_256",
+            "task_recall": 0.0
+          }
+        ]
+      },
+      {
+        "source_frame": 450,
+        "gt_pixels": 185,
+        "metrics": {
+          "tp": 0,
+          "fp": 1086,
+          "fn": 185,
+          "iou": 0.0,
+          "recall": 0.0,
+          "precision": 0.0
+        },
+        "components": [
+          {
+            "component": 1,
+            "area": 185,
+            "size_group": "le_256",
+            "task_recall": 0.0
+          }
+        ]
+      },
+      {
+        "source_frame": 465,
+        "gt_pixels": 985,
+        "metrics": {
+          "tp": 699,
+          "fp": 964,
+          "fn": 286,
+          "iou": 0.3586454592098512,
+          "recall": 0.7096446700507614,
+          "precision": 0.42032471437161756
+        },
+        "components": [
+          {
+            "component": 1,
+            "area": 184,
+            "size_group": "le_256",
+            "task_recall": 0.0
+          },
+          {
+            "component": 2,
+            "area": 801,
+            "size_group": "257_1024",
+            "task_recall": 0.8726591760299626
+          }
+        ]
+      }
+    ],
+    "teacher": {
+      "target": "fish",
+      "class_id": 6,
+      "label": "鱼类",
+      "model_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+      "inference": "512 tiles, stride384, mean overlapping logits",
+      "threshold": 0.9,
+      "reliability": "limited; training video131 demo does not establish generalization"
+    },
+    "task_predictions_independently_computed_from_received_video": true
+  },
+  {
+    "group": "D",
+    "file_bytes": 99536,
+    "matched_within_2_percent": true,
+    "gt": {
+      "tp": 52,
+      "fp": 5868,
+      "fn": 1373,
+      "iou": 0.0071301247771836,
+      "recall": 0.036491228070175435,
+      "precision": 0.008783783783783784
+    },
+    "gt_frames": 4,
+    "positive_gt_frames": 3,
+    "positive_frame_task_hit_fraction": 0.6666666666666666,
+    "positive_frame_mean_iou": 0.009146776368162636,
+    "positive_frame_mean_recall": 0.020503632925251317,
+    "global_rgb_psnr_db": 22.01508620567339,
+    "gt_fish_rgb_psnr_db": 26.642742863981354,
+    "gt_background_rgb_psnr_db": 22.16436896609684,
+    "per_gt_frame": [
+      {
+        "source_frame": 420,
+        "gt_pixels": 0,
+        "metrics": {
+          "tp": 0,
+          "fp": 3075,
+          "fn": 0,
+          "iou": 0.0,
+          "recall": null,
+          "precision": 0.0
+        },
+        "components": []
+      },
+      {
+        "source_frame": 435,
+        "gt_pixels": 255,
+        "metrics": {
+          "tp": 3,
+          "fp": 66,
+          "fn": 252,
+          "iou": 0.009345794392523364,
+          "recall": 0.011764705882352941,
+          "precision": 0.043478260869565216
+        },
+        "components": [
+          {
+            "component": 1,
+            "area": 255,
+            "size_group": "le_256",
+            "task_recall": 0.011764705882352941
+          }
+        ]
+      },
+      {
+        "source_frame": 450,
+        "gt_pixels": 185,
+        "metrics": {
+          "tp": 0,
+          "fp": 1004,
+          "fn": 185,
+          "iou": 0.0,
+          "recall": 0.0,
+          "precision": 0.0
+        },
+        "components": [
+          {
+            "component": 1,
+            "area": 185,
+            "size_group": "le_256",
+            "task_recall": 0.0
+          }
+        ]
+      },
+      {
+        "source_frame": 465,
+        "gt_pixels": 985,
+        "metrics": {
+          "tp": 49,
+          "fp": 1723,
+          "fn": 936,
+          "iou": 0.01809453471196455,
+          "recall": 0.049746192893401014,
+          "precision": 0.027652370203160272
+        },
+        "components": [
+          {
+            "component": 1,
+            "area": 184,
+            "size_group": "le_256",
+            "task_recall": 0.0
+          },
+          {
+            "component": 2,
+            "area": 801,
+            "size_group": "257_1024",
+            "task_recall": 0.06117353308364544
+          }
+        ]
+      }
+    ],
+    "teacher": {
+      "target": "fish",
+      "class_id": 6,
+      "label": "鱼类",
+      "model_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+      "inference": "512 tiles, stride384, mean overlapping logits",
+      "threshold": 0.9,
+      "reliability": "limited; training video131 demo does not establish generalization"
+    },
+    "task_predictions_independently_computed_from_received_video": true
+  }
+]

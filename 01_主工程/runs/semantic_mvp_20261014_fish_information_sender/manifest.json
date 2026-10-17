@@ -1,0 +1,36 @@
+{
+  "profile": "semantic-video-layered-v1",
+  "width": 1280,
+  "height": 720,
+  "frames": 50,
+  "fps": "25/1",
+  "context": null,
+  "patches": [],
+  "semantics_file": "semantics.json.gz",
+  "teacher": {
+    "target": "fish",
+    "class_id": 6,
+    "label": "鱼类",
+    "model_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+    "inference": "512 tiles, stride384, mean overlapping logits",
+    "threshold": 0.9,
+    "reliability": "limited; training video131 demo does not establish generalization"
+  },
+  "files": {
+    "semantics.json.gz": {
+      "bytes": 929,
+      "sha256": "005bce5cedaec3f4a119fabc8df1e3ed1419c2fffeb87456b6e2b5ea3e12f1d9"
+    }
+  },
+  "configuration": {
+    "background_crf": 42,
+    "roi_crf": 32,
+    "background_scale": 0.5,
+    "segment_frames": 32,
+    "padding": 16,
+    "min_pixels": 64,
+    "h265": "medium, P-only, keyint32, BT709 limited YUV420"
+  },
+  "fps_basis": "user-declared nominal rate; capture timestamps not available",
+  "mode": "information"
+}

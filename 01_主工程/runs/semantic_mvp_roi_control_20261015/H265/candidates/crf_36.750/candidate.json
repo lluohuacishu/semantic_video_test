@@ -1,0 +1,53 @@
+{
+  "group": "H265",
+  "crf": 36.75,
+  "file": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_roi_control_20261015\\H265\\candidates\\crf_36.750\\video.mp4",
+  "file_bytes": 203111,
+  "sha256": "1bcb726e8b6920a41386e1670b475c53bf37352a6482ce75d51616b9d83a50d9",
+  "relative_budget_difference": 1.03111,
+  "parts": {
+    "full_frame_mp4": 203111
+  },
+  "profile": "native full-frame H265 MP4; medium B4; no semantic metadata",
+  "candidate_encode_seconds": 0.7516843000003064,
+  "shared_context_and_predictions_cached": true,
+  "commands": [
+    [
+      "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+      "-v",
+      "error",
+      "-framerate",
+      "25/1",
+      "-start_number",
+      "0",
+      "-i",
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_20261014_fish\\sender\\private_frames\\%05d.png",
+      "-an",
+      "-vf",
+      "scale=in_range=full:out_range=tv:out_color_matrix=bt709",
+      "-c:v",
+      "libx265",
+      "-preset",
+      "medium",
+      "-crf",
+      "36.75",
+      "-x265-params",
+      "keyint=32:min-keyint=32:scenecut=0:bframes=4:pools=4:frame-threads=2:log-level=error",
+      "-pix_fmt",
+      "yuv420p",
+      "-color_range",
+      "tv",
+      "-colorspace",
+      "bt709",
+      "-color_trc",
+      "bt709",
+      "-color_primaries",
+      "bt709",
+      "-map_metadata",
+      "-1",
+      "-frames:v",
+      "50",
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_roi_control_20261015\\H265\\candidates\\crf_36.750\\video.mp4"
+    ]
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "selection": "highest validation mIoU during 60-epoch run, patience=15; test set evaluated after selection",
+  "comparison": "same fixed SUIM manifest; 256x256 aspect-preserving resize and center padding; ignore=255; class IDs=0..7",
+  "baseline": "runs/suim_transfer_20260911/segmentation_best.pt",
+  "secondary_reference": "runs/suim_transfer_fpn_20260912/segmentation_best.pt",
+  "caveat": "pretraining source and model-specific learning rate differ; this is a practical transfer-learning comparison, not an isolated architecture ablation",
+  "sources": {
+    "scripts/segformer_suim.py": "c2395e3c5abbfbf7d355e234a7b7f7199c320f41a41d913df570d8522f4e861d",
+    "scripts/segmentation.py": "bf0cb5dbf7ac4622eb473f98b039781bda8e449bb441caa9b2bd7ea4755db204",
+    "scripts/train_segmentation.py": "2ef65d3b20305d027114673365de9ec52ca480dc8b2998d2879b1f70e765eb9b",
+    "scripts/evaluate_segmentation.py": "757d3ff84f8e11bec0c42214d34e2c4104852d804c0cff309c04ba23892e4ebd",
+    "scripts/evaluate_small_objects.py": "0f16167a0b67650de224926b56ae1a8ed6f736f50ae31afbf274f8e63fabbd77",
+    "requirements-segformer.txt": "ef60c1857ca57af4bc36050a8cb755cf365d641dc4f8f1eadf39e9c47898bb51",
+    "run_segformer_train.cmd": "0128a32443695bd420790b804ae7e7cf81787f1daa8ecd0fe1c349b3d319fae3"
+  },
+  "pretrained_revision": "489d5cd81a0b59fab9b7ea758d3548ebe99677da"
+}

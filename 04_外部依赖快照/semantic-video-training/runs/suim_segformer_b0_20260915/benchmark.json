@@ -1,0 +1,36 @@
+{
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "results": [
+    {
+      "label": "before",
+      "model_name": "lraspp_mobilenet_v3_large_suim_v1",
+      "checkpoint": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\runs\\suim_transfer_20260911\\segmentation_best.pt",
+      "batch_size": 1,
+      "size": 256,
+      "precision": "float32",
+      "memory_format": "contiguous",
+      "mean_ms": 7.624917736053467,
+      "median_ms": 7.474175930023193,
+      "p95_ms": 11.162470245361327,
+      "repeats": 50,
+      "peak_cuda_allocated_mib": 23.0
+    },
+    {
+      "label": "after",
+      "model_name": "segformer_b0_suim_v1",
+      "checkpoint": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\runs\\suim_segformer_b0_20260915\\segmentation_best.pt",
+      "batch_size": 1,
+      "size": 256,
+      "precision": "float32",
+      "memory_format": "contiguous",
+      "mean_ms": 10.467781744003297,
+      "median_ms": 10.353007793426514,
+      "p95_ms": 14.801561403274537,
+      "repeats": 50,
+      "peak_cuda_allocated_mib": 60.8
+    }
+  ],
+  "source_image": "train_val/images/d_r_125_.jpg",
+  "manifest_sha256": "6057f22a1aac6ffb0c24f6a24a50234765a0df14167cef15fd71c8694af3904e",
+  "note": "CUDA Event、预热后、缓存单图输入，仅模型前向。包括模型内部归一化和输出上采样；不含磁盘读取、预处理、显存传入传出、原图尺寸恢复、视频编解码或网络。不是端到端实时延迟。"
+}

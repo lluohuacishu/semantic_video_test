@@ -1,0 +1,32 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>连续人工ROI核对 · video131</title>
+<style>body{margin:0;background:#101c27;color:#e4eff7;font:15px/1.6 "Microsoft YaHei",sans-serif}main{max-width:1420px;margin:22px auto;padding:0 20px}h1{font-size:25px;margin:5px 0}p{color:#b4c8d8}.bar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:12px 0}button,select{background:#25435a;color:#e7f3fb;border:1px solid #4e6a7d;border-radius:7px;padding:9px 13px;font:inherit;cursor:pointer}button.strong{background:#237f65;border-color:#3cb68b}button.secondary{background:#5b4a2e}#viewport{background:#07111a;overflow:auto;max-height:68vh;border:1px solid #3b5264;border-radius:8px}canvas{display:block;touch-action:none;cursor:crosshair}.state{background:#1d3346;padding:10px 14px;border-radius:8px}#message{color:#77e6ba}#frames{display:flex;gap:5px;flex-wrap:wrap;margin:12px 0}#frames button{font-size:12px;padding:4px 7px}#frames button.known{border-color:#54bd92}#frames button.active{background:#458aa6}#help{font-size:13px}input{background:#162c3b;color:#e4eff7;border:1px solid #536a7a;padding:6px}</style>
+<main><h1>连续人工 ROI 核对</h1><p>video131 原始420–469帧。4帧已有发布者标注，其他46帧需要人工查看。画框只用于ROI控制，不会生成像素级分割GT。</p>
+<div class="state"><span id="progress">读取中…</span>　<span id="message"></span></div>
+<div class="bar"><button id="prev">← 上一帧</button><strong id="current"></strong><button id="next">下一帧 →</button><label>放大 <select id="zoom"><option value="fit">适应宽度</option><option value="1">原始大小</option><option value="2">2倍</option><option value="4">4倍</option></select></label><button id="save" class="strong">保存核对结果</button></div>
+<div id="viewport"><canvas id="canvas" width="1280" height="720"></canvas></div>
+<div class="bar"><button id="confirm" class="strong">确认本帧所有鱼已框出</button><button id="empty" class="secondary">确认本帧无鱼</button><button id="clear">清除本帧框，恢复待核对</button><button id="uncertain">不确定，保留待核对</button><button id="undo">撤回上次画框</button></div>
+<p id="frameState"></p><div id="frames"></div><p id="help">在图上拖动绘制[x,y,w,h]框，可使用放大查看小鱼。画框后仍须点击确认；不能确定就保留待核对。切换帧不会自动确认。左右方向键切换帧。绿色框是已有发布者框，黄色框是人工草稿；本页不显示模型预测以免将预测误认作GT。</p></main>
+<script>
+let data,token,index=0,image=new Image(),start=null,draft=null,dirty=false,undo=[];const $=id=>document.getElementById(id);const canvas=$('canvas'),ctx=canvas.getContext('2d');
+function row(){return data.frames[index]}function markDirty(){dirty=true;$('message').textContent='存在未保存更改。'}
+function summary(){let done=data.frames.filter(r=>r.status==='publisher_verified'||r.status==='human_reviewed').length;$('progress').textContent=`已核对 ${done}/50 帧；待核对 ${50-done} 帧。${done===50?'人工ROI输入已齐备。':'人工ROI组仍待连续核对。'}`;}
+function invalidate(){row().status='unreviewed';row().no_fish=null;markDirty();}
+function draw(){ctx.clearRect(0,0,1280,720);if(image.complete&&image.naturalWidth)ctx.drawImage(image,0,0,1280,720);ctx.lineWidth=3;ctx.strokeStyle=row().status==='publisher_verified'?'#4ce7a1':'#ffe069';for(const b of row().boxes)ctx.strokeRect(...b);if(draft){ctx.strokeStyle='#ffffff';ctx.setLineDash([7,5]);ctx.strokeRect(...draft);ctx.setLineDash([]);}}
+function refresh(){const r=row();$('current').textContent=`原始帧 ${String(r.source_frame).padStart(5,'0')}（${index+1}/50）`;$('frameState').textContent=`状态：${r.status==='publisher_verified'?'发布者已标注':r.status==='human_reviewed'?'人工已确认':'待人工核对'}；目标框 ${r.boxes.length} 个${r.no_fish===true?'；已明确无鱼':''}`;summary();$('frames').innerHTML='';data.frames.forEach((r,i)=>{let b=document.createElement('button');b.textContent=r.source_frame;b.className=(r.status!=='unreviewed'?'known ':'')+(i===index?'active':'');b.onclick=()=>load(i);$('frames').appendChild(b)});}
+function resize(){let value=$('zoom').value;let scale=value==='fit'?Math.min(1,($('viewport').clientWidth-2)/1280):Number(value);canvas.style.width=1280*scale+'px';canvas.style.height=720*scale+'px';}
+function load(i){index=Math.max(0,Math.min(49,i));undo=[];start=draft=null;image=new Image();image.onload=draw;image.src='/'+row().image;resize();refresh();}
+function point(e){let r=canvas.getBoundingClientRect();return [Math.max(0,Math.min(1280,Math.round((e.clientX-r.left)*1280/r.width))),Math.max(0,Math.min(720,Math.round((e.clientY-r.top)*720/r.height)))];}
+canvas.onpointerdown=e=>{start=point(e);canvas.setPointerCapture(e.pointerId)};
+canvas.onpointermove=e=>{if(!start)return;let p=point(e);draft=[Math.min(start[0],p[0]),Math.min(start[1],p[1]),Math.abs(p[0]-start[0]),Math.abs(p[1]-start[1])];draw()};
+canvas.onpointerup=e=>{if(draft&&draft[2]>=2&&draft[3]>=2){undo.push(JSON.parse(JSON.stringify(row())));row().boxes.push(draft);invalidate()}start=draft=null;draw();refresh()};
+$('prev').onclick=()=>load(index-1);$('next').onclick=()=>load(index+1);$('zoom').onchange=resize;window.onresize=resize;
+$('confirm').onclick=()=>{if(!row().boxes.length){$('message').textContent='当前没有框。确认无鱼请使用“确认本帧无鱼”。';return;}row().status='human_reviewed';row().no_fish=false;markDirty();draw();refresh()};
+$('empty').onclick=()=>{undo.push(JSON.parse(JSON.stringify(row())));row().boxes=[];row().status='human_reviewed';row().no_fish=true;markDirty();draw();refresh()};
+$('clear').onclick=()=>{undo.push(JSON.parse(JSON.stringify(row())));row().boxes=[];invalidate();draw();refresh()};
+$('uncertain').onclick=()=>{invalidate();draw();refresh()};
+$('undo').onclick=()=>{if(!undo.length)return;data.frames[index]=undo.pop();markDirty();draw();refresh()};
+$('save').onclick=async()=>{try{let response=await fetch('/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token,data})});let result=await response.json();if(!response.ok)throw Error(result.error);dirty=false;$('message').textContent=`已保存，${result.summary.confirmed}/50帧已核对。`;summary()}catch(e){$('message').textContent=e.message}};
+document.onkeydown=e=>{if(['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(e.key==='ArrowLeft'){e.preventDefault();load(index-1)}if(e.key==='ArrowRight'){e.preventDefault();load(index+1)}};
+window.onbeforeunload=e=>{if(dirty){e.preventDefault();e.returnValue='存在未保存的核对结果。'}};
+fetch('/api/annotations').then(r=>r.json()).then(r=>{data=r.data;token=r.token;load(0)}).catch(e=>$('message').textContent=e.message);
+</script></html>

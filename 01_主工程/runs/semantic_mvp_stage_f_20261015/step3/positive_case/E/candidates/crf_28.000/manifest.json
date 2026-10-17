@@ -1,0 +1,95 @@
+{
+  "profile": "semantic-video-layered-v2",
+  "mode": "video",
+  "width": 1280,
+  "height": 720,
+  "frames": 50,
+  "fps": "25/1",
+  "context": {
+    "file": "context.mp4",
+    "width": 640,
+    "height": 360
+  },
+  "patches": [
+    {
+      "file": "roi_0000.mp4",
+      "start": 0,
+      "frames": 32,
+      "box": [
+        64,
+        522,
+        318,
+        198
+      ],
+      "partition": "left"
+    },
+    {
+      "file": "roi_0001.mp4",
+      "start": 0,
+      "frames": 32,
+      "box": [
+        880,
+        50,
+        400,
+        636
+      ],
+      "partition": "right"
+    },
+    {
+      "file": "roi_0002.mp4",
+      "start": 32,
+      "frames": 18,
+      "box": [
+        798,
+        0,
+        460,
+        720
+      ],
+      "partition": "right"
+    }
+  ],
+  "semantics_file": "semantics.json.gz",
+  "teacher": {
+    "target": "fish",
+    "class_id": 6,
+    "label": "鱼类",
+    "model_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+    "inference": "512 tiles, stride384, mean overlapping logits",
+    "threshold": 0.9,
+    "reliability": "limited; training video131 demo does not establish generalization"
+  },
+  "files": {
+    "context.mp4": {
+      "bytes": 12600,
+      "sha256": "e1e7536a0b46807e018e3bb8cf34e377e68bbeba5ebb6c74351e05e3c6c1cc9b"
+    },
+    "roi_0000.mp4": {
+      "bytes": 26584,
+      "sha256": "acf87da1345d6c9755fc44fb037c264d024b289b2ecbdaf73052ca5a82e09003"
+    },
+    "roi_0001.mp4": {
+      "bytes": 60074,
+      "sha256": "c2d1c432b4f1aefd88d165d13fca33fda72f665683011a1e41a29ea1ab2dd036"
+    },
+    "roi_0002.mp4": {
+      "bytes": 54295,
+      "sha256": "d95fa69beed4b2a5aa786279b0da7156bc30bc7f49a7578951bcb1d47b43df2a"
+    },
+    "semantics.json.gz": {
+      "bytes": 1419,
+      "sha256": "03f52d418f0e4434b393e4045a56913839d51846849ccca6b93217ddaf8ec4f0"
+    }
+  },
+  "configuration": {
+    "background_crf": 42.0,
+    "roi_crf": 28.0,
+    "background_scale": 0.5,
+    "segment_frames": 32,
+    "padding": 16,
+    "min_pixels": 64,
+    "h265": "medium, P-only, keyint32, BT709 limited YUV420",
+    "roi_layout": "halves"
+  },
+  "fps_basis": "user-declared nominal rate; capture timestamps not available",
+  "roi_layout": "halves"
+}

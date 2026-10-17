@@ -1,0 +1,354 @@
+{
+  "split": "test",
+  "images": 110,
+  "size": 256,
+  "model_training_size": 256,
+  "precision": "float32",
+  "checkpoint": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\runs\\suim_segformer_b0_20260915\\segmentation_best.pt",
+  "checkpoint_epoch": 39,
+  "checkpoint_sha256": "ff00cb439a4af290dc3efde8ae76d4acfad797784483b669ab6db79aaf5b1476",
+  "manifest_sha256": "6057f22a1aac6ffb0c24f6a24a50234765a0df14167cef15fd71c8694af3904e",
+  "preprocessing": "rgb_0_1_long_edge_resize_center_pad_ignore_255",
+  "device": "cuda",
+  "miou": 0.6913470879035677,
+  "pixel_accuracy": 0.8656458839611179,
+  "mean_class_accuracy": 0.8017050625941794,
+  "valid_pixels": 5267200,
+  "per_class": [
+    {
+      "index": 0,
+      "symbol": "BW",
+      "name_zh": "背景水体",
+      "rgb": [
+        0,
+        0,
+        0
+      ],
+      "iou": 0.8965883507004153,
+      "dice": 0.9454749106407859,
+      "recall": 0.9432708817544296,
+      "true_pixels": 2094903,
+      "predicted_pixels": 2085136
+    },
+    {
+      "index": 1,
+      "symbol": "HD",
+      "name_zh": "潜水员",
+      "rgb": [
+        0,
+        0,
+        255
+      ],
+      "iou": 0.7530750713830209,
+      "dice": 0.8591475444219413,
+      "recall": 0.9071475037716785,
+      "true_pixels": 144498,
+      "predicted_pixels": 160644
+    },
+    {
+      "index": 2,
+      "symbol": "PF",
+      "name_zh": "水生植物",
+      "rgb": [
+        0,
+        255,
+        0
+      ],
+      "iou": 0.3280542504568437,
+      "dice": 0.49403742406455875,
+      "recall": 0.3961717713145197,
+      "true_pixels": 194398,
+      "predicted_pixels": 117380
+    },
+    {
+      "index": 3,
+      "symbol": "WR",
+      "name_zh": "沉船与遗迹",
+      "rgb": [
+        0,
+        255,
+        255
+      ],
+      "iou": 0.7654422262362063,
+      "dice": 0.8671393658325179,
+      "recall": 0.8692793478747705,
+      "true_pixels": 446540,
+      "predicted_pixels": 448744
+    },
+    {
+      "index": 4,
+      "symbol": "RO",
+      "name_zh": "机器人与仪器",
+      "rgb": [
+        255,
+        0,
+        0
+      ],
+      "iou": 0.6702084184715978,
+      "dice": 0.802544653780279,
+      "recall": 0.7739256276348078,
+      "true_pixels": 31786,
+      "predicted_pixels": 29519
+    },
+    {
+      "index": 5,
+      "symbol": "RI",
+      "name_zh": "珊瑚礁与无脊椎动物",
+      "rgb": [
+        255,
+        0,
+        255
+      ],
+      "iou": 0.6776366052683954,
+      "dice": 0.8078467090433857,
+      "recall": 0.8405912522697588,
+      "true_pixels": 1004512,
+      "predicted_pixels": 1085944
+    },
+    {
+      "index": 6,
+      "symbol": "FV",
+      "name_zh": "鱼与脊椎动物",
+      "rgb": [
+        255,
+        255,
+        0
+      ],
+      "iou": 0.7424932261588566,
+      "dice": 0.8522193544426052,
+      "recall": 0.8766231873497049,
+      "true_pixels": 411690,
+      "predicted_pixels": 435268
+    },
+    {
+      "index": 7,
+      "symbol": "SR",
+      "name_zh": "海床与岩石",
+      "rgb": [
+        255,
+        255,
+        255
+      ],
+      "iou": 0.6972785545532053,
+      "dice": 0.8216430387135342,
+      "recall": 0.8066309287837652,
+      "true_pixels": 938873,
+      "predicted_pixels": 904565
+    }
+  ],
+  "metric_definition": "混淆矩阵先跨全部图片累计；行=真值、列=预测。mIoU 对并集非空的类别等权平均，含背景。标签 255 不计分。",
+  "confusion_matrix": [
+    [
+      1976061,
+      11761,
+      4604,
+      13351,
+      1464,
+      44454,
+      15791,
+      27417
+    ],
+    [
+      5163,
+      131081,
+      7,
+      1203,
+      1933,
+      1014,
+      3544,
+      553
+    ],
+    [
+      12252,
+      4,
+      77015,
+      11282,
+      17,
+      72127,
+      10079,
+      11622
+    ],
+    [
+      4790,
+      1926,
+      4097,
+      388168,
+      1002,
+      20850,
+      2026,
+      23681
+    ],
+    [
+      1119,
+      4924,
+      0,
+      751,
+      24600,
+      9,
+      2,
+      381
+    ],
+    [
+      14252,
+      4001,
+      26273,
+      13977,
+      226,
+      844384,
+      25858,
+      75541
+    ],
+    [
+      13054,
+      5063,
+      1211,
+      1127,
+      0,
+      22292,
+      360897,
+      8046
+    ],
+    [
+      58445,
+      1884,
+      4173,
+      18885,
+      277,
+      80814,
+      17071,
+      757324
+    ]
+  ],
+  "always_background_baseline": {
+    "miou": 0.04971576454283111,
+    "pixel_accuracy": 0.39772611634264887,
+    "mean_class_accuracy": 0.125,
+    "valid_pixels": 5267200,
+    "per_class": [
+      {
+        "index": 0,
+        "symbol": "BW",
+        "name_zh": "背景水体",
+        "rgb": [
+          0,
+          0,
+          0
+        ],
+        "iou": 0.39772611634264887,
+        "dice": 0.5691045072311539,
+        "recall": 1.0,
+        "true_pixels": 2094903,
+        "predicted_pixels": 5267200
+      },
+      {
+        "index": 1,
+        "symbol": "HD",
+        "name_zh": "潜水员",
+        "rgb": [
+          0,
+          0,
+          255
+        ],
+        "iou": 0.0,
+        "dice": 0.0,
+        "recall": 0.0,
+        "true_pixels": 144498,
+        "predicted_pixels": 0
+      },
+      {
+        "index": 2,
+        "symbol": "PF",
+        "name_zh": "水生植物",
+        "rgb": [
+          0,
+          255,
+          0
+        ],
+        "iou": 0.0,
+        "dice": 0.0,
+        "recall": 0.0,
+        "true_pixels": 194398,
+        "predicted_pixels": 0
+      },
+      {
+        "index": 3,
+        "symbol": "WR",
+        "name_zh": "沉船与遗迹",
+        "rgb": [
+          0,
+          255,
+          255
+        ],
+        "iou": 0.0,
+        "dice": 0.0,
+        "recall": 0.0,
+        "true_pixels": 446540,
+        "predicted_pixels": 0
+      },
+      {
+        "index": 4,
+        "symbol": "RO",
+        "name_zh": "机器人与仪器",
+        "rgb": [
+          255,
+          0,
+          0
+        ],
+        "iou": 0.0,
+        "dice": 0.0,
+        "recall": 0.0,
+        "true_pixels": 31786,
+        "predicted_pixels": 0
+      },
+      {
+        "index": 5,
+        "symbol": "RI",
+        "name_zh": "珊瑚礁与无脊椎动物",
+        "rgb": [
+          255,
+          0,
+          255
+        ],
+        "iou": 0.0,
+        "dice": 0.0,
+        "recall": 0.0,
+        "true_pixels": 1004512,
+        "predicted_pixels": 0
+      },
+      {
+        "index": 6,
+        "symbol": "FV",
+        "name_zh": "鱼与脊椎动物",
+        "rgb": [
+          255,
+          255,
+          0
+        ],
+        "iou": 0.0,
+        "dice": 0.0,
+        "recall": 0.0,
+        "true_pixels": 411690,
+        "predicted_pixels": 0
+      },
+      {
+        "index": 7,
+        "symbol": "SR",
+        "name_zh": "海床与岩石",
+        "rgb": [
+          255,
+          255,
+          255
+        ],
+        "iou": 0.0,
+        "dice": 0.0,
+        "recall": 0.0,
+        "true_pixels": 938873,
+        "predicted_pixels": 0
+      }
+    ],
+    "metric_definition": "混淆矩阵先跨全部图片累计；行=真值、列=预测。mIoU 对并集非空的类别等权平均，含背景。标签 255 不计分。"
+  },
+  "elapsed_s": 7.909,
+  "preview_selection": "6 images equally spaced through the fixed sorted split; not selected by model quality",
+  "note": "在等比缩放、居中补边后的评估分辨率计分，忽略补边 255；不是原始分辨率或官方论文协议。测试集未用于训练或轮次选择。逐图 mIoU 的平均不等于这里全局累计的 mIoU。size 覆盖仅用于分辨率消融，未重新训练模型。"
+}

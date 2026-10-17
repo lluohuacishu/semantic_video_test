@@ -1,0 +1,74 @@
+{
+  "profile": "semantic-video-layered-v1",
+  "width": 1280,
+  "height": 720,
+  "frames": 50,
+  "fps": "5/1",
+  "context": {
+    "file": "context.mp4",
+    "width": 640,
+    "height": 360
+  },
+  "patches": [
+    {
+      "file": "roi_0000.mp4",
+      "start": 0,
+      "frames": 32,
+      "box": [
+        190,
+        0,
+        768,
+        658
+      ]
+    },
+    {
+      "file": "roi_0001.mp4",
+      "start": 32,
+      "frames": 18,
+      "box": [
+        262,
+        4,
+        696,
+        716
+      ]
+    }
+  ],
+  "semantics_file": "semantics.json.gz",
+  "teacher": {
+    "target": "diver",
+    "class_id": 1,
+    "label": "潜水员",
+    "model_sha256": "ff00cb439a4af290dc3efde8ae76d4acfad797784483b669ab6db79aaf5b1476",
+    "inference": "long edge 256, letterbox, argmax class1 and confidence>=0.7",
+    "threshold": 0.7,
+    "reliability": "demo has no manual GT; consistency only"
+  },
+  "files": {
+    "context.mp4": {
+      "bytes": 38441,
+      "sha256": "9238475eeea7bf42c0bd1acf8b1fb2fd92767f837550bac8bb54c398178c9a18"
+    },
+    "roi_0000.mp4": {
+      "bytes": 160194,
+      "sha256": "c9b99d218395e98f0ef309283be1989e3f3ce25c5188d0a24bed79d3a7c73190"
+    },
+    "roi_0001.mp4": {
+      "bytes": 90672,
+      "sha256": "ecba13695e61dfa68bc796dae156fddd960bbb07c1b67b1a9727aeb43cd1713c"
+    },
+    "semantics.json.gz": {
+      "bytes": 1456,
+      "sha256": "8818289df985f1ce6f6476b1d81c691eb1b5c7ed8972113aab358f880cca59fb"
+    }
+  },
+  "configuration": {
+    "background_crf": 42,
+    "roi_crf": 32,
+    "background_scale": 0.5,
+    "segment_frames": 32,
+    "padding": 16,
+    "min_pixels": 64,
+    "h265": "medium, P-only, keyint32, BT709 limited YUV420"
+  },
+  "fps_basis": "video avg_frame_rate; v1 profile assumes CFR"
+}

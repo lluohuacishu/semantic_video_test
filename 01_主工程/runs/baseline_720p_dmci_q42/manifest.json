@@ -1,0 +1,491 @@
+{
+  "profile": "mlvc-s-fp32-yuv420-v1",
+  "container": "local MLVCV001; official MLVC entropy streams",
+  "upstream_commit": "64b10d4c0108106e66b7c54d6e5e470200a57abf",
+  "p_weight_sha256": "1b86b757ddb115342293efb57719d6216c6ee2e459ae796ec41723b5c05ca896",
+  "i_weight_sha256": "555eff5f4026774f477bebdcbb3b52548e0da230803959dcebcea4d732a90dd9",
+  "width": 1280,
+  "height": 720,
+  "padded_width": 1280,
+  "padded_height": 720,
+  "fps": "5/1",
+  "frame_count": 50,
+  "intra_period": 32,
+  "initialization": "dmci-6.0",
+  "i_frame_pass_count": 1,
+  "color": "BT.709 full-range, chroma average downsample and nearest upsample, replicate padding bottom-right",
+  "p_model_config": {
+    "type": "DMC-6.1sb",
+    "yuv420": true,
+    "activation": "LeakyReLU",
+    "input_offset": -0.5,
+    "feature_channels": 48,
+    "spatial_prior_channels": 128,
+    "memory_activation": "identity",
+    "zero_init_residual": true,
+    "recon_channels": 192,
+    "hidden_channels": 192,
+    "hyperprior_num_blocks": 2,
+    "y_scale_repeat": 4,
+    "z_channels": 48,
+    "y_channels": 48,
+    "chunk_mode": "gated",
+    "ffn_gate_activation": "ReLU1",
+    "chain_feature_adaptors": true,
+    "hyperprior_variant": "mini",
+    "feature_extractor_num_conv1_layers": 1,
+    "feature_extractor_num_conv2_layers": 1
+  },
+  "frames": [
+    {
+      "index": 0,
+      "type": "I",
+      "reset": true,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 4339,
+      "sha256": "61cdb51fd48b21c75a761c454375f422fc2fc04e4f0bdb751e00403429d28978"
+    },
+    {
+      "index": 1,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 1,
+      "bytes": 3917,
+      "sha256": "ff721d940a201cd202492bc818e149fe615024c23dd1c8aa19204a2a4fc30e58"
+    },
+    {
+      "index": 2,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1888,
+      "sha256": "7020a3c42593841d09cc56513e6f3ba274d6d4fd3bc91af772dbfeb1d1cf82c2"
+    },
+    {
+      "index": 3,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 2345,
+      "sha256": "f9c9c660a2aeaf66d99c6974883fcc4e91bb024c49445ddc7dc601408de33332"
+    },
+    {
+      "index": 4,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1739,
+      "sha256": "db9fbcf2356d902138f86c04147c0bac9974585b8377719ae4a7afa4f376a752"
+    },
+    {
+      "index": 5,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 2020,
+      "sha256": "84b442462ddab4f0b40e7d69e1bfb20ef8e16e0bbcc494d13a916f4f3540c642"
+    },
+    {
+      "index": 6,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1490,
+      "sha256": "40200432f1fc4b506f0dbdd510884a24ab4ba1c3794248df5efee875e0d200d4"
+    },
+    {
+      "index": 7,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 1790,
+      "sha256": "f404a69d961c0a6f2675246de0d5df09bed3072fc706e3bc258c8e061d0b8bda"
+    },
+    {
+      "index": 8,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1550,
+      "sha256": "75c1c3746455b60390001e4450b26c1179697454fb32c484dc2143dd1dcc0b5b"
+    },
+    {
+      "index": 9,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 1,
+      "bytes": 2092,
+      "sha256": "458f1b93e85c2ff42673b724a30c3d3da3879b1dab36ce353ddab3f1304a5019"
+    },
+    {
+      "index": 10,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1459,
+      "sha256": "fe9e3e5f4dbf48fa982a196108c35b22eb15610e734019a2365236b171af42fa"
+    },
+    {
+      "index": 11,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 1563,
+      "sha256": "afcfe5008d85f56380b829aa06a3ee9ccf2d66d275419dec28a8a37528af4a97"
+    },
+    {
+      "index": 12,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1451,
+      "sha256": "da6eaf0c9fbbace8ebfcdb3269cbed61c3b8e938b420fd75c49b07dac6c2c4b4"
+    },
+    {
+      "index": 13,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 1869,
+      "sha256": "c064d6316dc363303f5bb82e273260688c2f2ea26c20ba743a10bc13a2dd8ea3"
+    },
+    {
+      "index": 14,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1453,
+      "sha256": "5db7f4771aab6d56cc5f4242d3edde625c0ca3096d113548ea3f146bf627158c"
+    },
+    {
+      "index": 15,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 1856,
+      "sha256": "e4b30835bcca954b19a49ea2ab31d49178d644721824a52572684cae5afd1b5c"
+    },
+    {
+      "index": 16,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1517,
+      "sha256": "84c3764356ebf1f2e56fb75f44e8dafa28483c8146522590b0fb02a50af31374"
+    },
+    {
+      "index": 17,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 1,
+      "bytes": 2455,
+      "sha256": "32fe6023bae5237bff2d6b81b83c2ecdf9928ed1420f2eff1107ef9dba4883d2"
+    },
+    {
+      "index": 18,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1399,
+      "sha256": "e73c7d0120e7b8d78facf72bc555064c3ceb00aa46122fc4475e0c2ff13638bc"
+    },
+    {
+      "index": 19,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 2278,
+      "sha256": "86e33b959dbc9f458317596797d89a239adcea5a736c266923d6eb9435de8d20"
+    },
+    {
+      "index": 20,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1495,
+      "sha256": "d74ad23493c433ec43e8d1ca5e61f270af472fb225e1564fa833da9fd36caf88"
+    },
+    {
+      "index": 21,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 1849,
+      "sha256": "0052aedb05aafd15fda7de1c72f8bed79ae5208da94cd7fec003ef63c33a1fb3"
+    },
+    {
+      "index": 22,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1583,
+      "sha256": "6a448268eb342af81ec53d96e9e482ed3c6962913bf474a70ddd5675ad20fa99"
+    },
+    {
+      "index": 23,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 1863,
+      "sha256": "297743ab54c3a5d8fa9461f3880ebdb80370225e08a853b0d7269ab685ae77e4"
+    },
+    {
+      "index": 24,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1874,
+      "sha256": "014f93f284d4a36699cce73682a2463eec4275b7e92f0af39c7a689300dddf2c"
+    },
+    {
+      "index": 25,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 1,
+      "bytes": 2764,
+      "sha256": "ce48ae85c747b914f312ea88d5dc1695bcbc3810211107fd8cbc522707fea62c"
+    },
+    {
+      "index": 26,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 2184,
+      "sha256": "12a4beac64ddf3e85ef6a5244be27e0ac44b210705dfe06d0e137de08d0f69a3"
+    },
+    {
+      "index": 27,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 2228,
+      "sha256": "ed8004b6e7d6370b993e0ef84a9d3021dd73215a1fd086488d16e60efa5ef8b2"
+    },
+    {
+      "index": 28,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1533,
+      "sha256": "bf44b8d679cf8373f0f7ba619bf8ad8ea0690c73b0da378d88178dde635de8ad"
+    },
+    {
+      "index": 29,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 1807,
+      "sha256": "de14fe44459cfd46b147eaa30e299bf8460a04a191d1ea551612745775b456c7"
+    },
+    {
+      "index": 30,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1373,
+      "sha256": "754cc1a5775db8e9a7ed7753f21e2b9f5117b7faa847b418df23833206c2724f"
+    },
+    {
+      "index": 31,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 1985,
+      "sha256": "e702abc30efdde05f191ad802b08aceaa9b371a9aa06b6f54b266567d1ff66ab"
+    },
+    {
+      "index": 32,
+      "type": "I",
+      "reset": true,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 4643,
+      "sha256": "2a3a555816758c36bb0aaadd6e7086871592e8db0427ea0645cc9fb119f105a3"
+    },
+    {
+      "index": 33,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 1,
+      "bytes": 4358,
+      "sha256": "3aeb4d51377e84c967f006b6fac92ad4de6664f409be5cc2b85ba3bf8ff9ba58"
+    },
+    {
+      "index": 34,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 3735,
+      "sha256": "12fe30239eb941623013512be38f31ef2bb8daeb0e3188755a44e7abad50c114"
+    },
+    {
+      "index": 35,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 4676,
+      "sha256": "63a111505e21c0c808a5b565963380b3cdc608c1e325913810ce5bf0d19b218f"
+    },
+    {
+      "index": 36,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 2133,
+      "sha256": "4cfcf5551e002a188c2506d0b62853985727267dfd7ae6b89e1ac971c8df2e06"
+    },
+    {
+      "index": 37,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 1972,
+      "sha256": "b842f212efdbf67f6ced36c74bf7e05a30e14170b3b83ceb827fbbcc1ae7e1aa"
+    },
+    {
+      "index": 38,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1762,
+      "sha256": "f9e7aebeeef5211d63a908891b43f599c8ecfac56b30ba5e481faab676509b3f"
+    },
+    {
+      "index": 39,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 1971,
+      "sha256": "d5c58a045a6ffc3bb5327b6afd3dc918c419b3aa1f0f93f09d6d3a2497535642"
+    },
+    {
+      "index": 40,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1585,
+      "sha256": "b2fb2b6208b10253ff2ca1a8cdf6a7115fdb38eb97521ea9cbe0310ece135b2e"
+    },
+    {
+      "index": 41,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 1,
+      "bytes": 2582,
+      "sha256": "6cbf858050a1720f6f275d697e1f3f21e60654a02c020c1c474dc2bd539c3c45"
+    },
+    {
+      "index": 42,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1661,
+      "sha256": "c033518964f0aad1a9a89d9adc772e3bd990b23f8d9304c3ed3ff234404d5448"
+    },
+    {
+      "index": 43,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 1843,
+      "sha256": "02ec3452bd313aefd0995d6b2fdc9328be26743666419182f79bc3d4fe7fe531"
+    },
+    {
+      "index": 44,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1393,
+      "sha256": "01e227e50a62b0388e8a0e2f735d653fcf82dd36ef0445c6887f9fe7d6749a01"
+    },
+    {
+      "index": 45,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 2064,
+      "sha256": "7cf9a8c3ac3cfac1b35bc1d00e962b4c190dc1f3979b8a10468abaedd032148f"
+    },
+    {
+      "index": 46,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1586,
+      "sha256": "b7943abccbdb818648830abb7980f25d4792ab2d007510ad6ef37a6fb4654536"
+    },
+    {
+      "index": 47,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 2,
+      "bytes": 1874,
+      "sha256": "80076dc1ad20edcd6bbc57ab0194f583830978a3cb4cb92b730f43600fb00ef0"
+    },
+    {
+      "index": 48,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 0,
+      "bytes": 1463,
+      "sha256": "4854c82ae43219517438a51ac900cb23c5e94c0944fbf3c3e6b750f7575b8df8"
+    },
+    {
+      "index": 49,
+      "type": "P",
+      "reset": false,
+      "q_index": 42,
+      "fa_idx": 1,
+      "bytes": 2181,
+      "sha256": "a39a35d8e4624b40ce1103fa71b53aa63d889e2a0402c95c2cece7fbe958cb53"
+    }
+  ]
+}

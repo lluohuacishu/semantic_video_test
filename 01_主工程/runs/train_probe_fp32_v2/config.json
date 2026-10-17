@@ -1,0 +1,28 @@
+{
+  "purpose": "feasibility only; fixed two-frame sample, not held-out evaluation",
+  "batch_size": 1,
+  "frames": 2,
+  "gradient_frames": 1,
+  "reference": "frozen DMCI reconstruction",
+  "crop": 256,
+  "q_index": 32,
+  "lambda": 29.21327871789784,
+  "rate_weight": 1.0,
+  "loss": "bpp + lambda*(6*MSE_Y + MSE_U420 + MSE_V420)/8",
+  "lr": 1e-05,
+  "precision": "fp32",
+  "checkpointing": false,
+  "steps": 20,
+  "p_weight_sha256": "1b86b757ddb115342293efb57719d6216c6ee2e459ae796ec41723b5c05ca896",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "upstream_commit": "64b10d4c0108106e66b7c54d6e5e470200a57abf",
+    "precision": "fp32",
+    "tf32": false,
+    "deterministic": true
+  }
+}

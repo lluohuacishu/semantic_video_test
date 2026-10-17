@@ -1,0 +1,77 @@
+{
+  "profile": "mlvc-s-fp32-yuv420-v1",
+  "container": "local MLVCV001; official MLVC entropy streams",
+  "upstream_commit": "64b10d4c0108106e66b7c54d6e5e470200a57abf",
+  "p_weight_sha256": "1b86b757ddb115342293efb57719d6216c6ee2e459ae796ec41723b5c05ca896",
+  "i_weight_sha256": "555eff5f4026774f477bebdcbb3b52548e0da230803959dcebcea4d732a90dd9",
+  "width": 256,
+  "height": 144,
+  "padded_width": 256,
+  "padded_height": 144,
+  "fps": "5/1",
+  "frame_count": 4,
+  "intra_period": 32,
+  "initialization": "dmci-6.0",
+  "i_frame_pass_count": 1,
+  "color": "BT.709 full-range, chroma average downsample and nearest upsample, replicate padding bottom-right",
+  "p_model_config": {
+    "type": "DMC-6.1sb",
+    "yuv420": true,
+    "activation": "LeakyReLU",
+    "input_offset": -0.5,
+    "feature_channels": 48,
+    "spatial_prior_channels": 128,
+    "memory_activation": "identity",
+    "zero_init_residual": true,
+    "recon_channels": 192,
+    "hidden_channels": 192,
+    "hyperprior_num_blocks": 2,
+    "y_scale_repeat": 4,
+    "z_channels": 48,
+    "y_channels": 48,
+    "chunk_mode": "gated",
+    "ffn_gate_activation": "ReLU1",
+    "chain_feature_adaptors": true,
+    "hyperprior_variant": "mini",
+    "feature_extractor_num_conv1_layers": 1,
+    "feature_extractor_num_conv2_layers": 1
+  },
+  "frames": [
+    {
+      "index": 0,
+      "type": "I",
+      "reset": true,
+      "q_index": 0,
+      "fa_idx": 0,
+      "bytes": 155,
+      "sha256": "0f1df6018872aa93c8d27e057af00aea73bbe149edb5cb6803541ff57bfdf1d6"
+    },
+    {
+      "index": 1,
+      "type": "P",
+      "reset": false,
+      "q_index": 0,
+      "fa_idx": 1,
+      "bytes": 73,
+      "sha256": "b1169bf20ef9e9f4e05ccfad3665525dff845b02e0086c60a7f335f34d29b5ef"
+    },
+    {
+      "index": 2,
+      "type": "P",
+      "reset": false,
+      "q_index": 0,
+      "fa_idx": 0,
+      "bytes": 14,
+      "sha256": "89559e6efe945fc3fc687e9b263055f935cbbdedce3a4030cf8dfd06cfefddd5"
+    },
+    {
+      "index": 3,
+      "type": "P",
+      "reset": false,
+      "q_index": 0,
+      "fa_idx": 2,
+      "bytes": 27,
+      "sha256": "9ef225cd59993c3bb394c8e19477ed00eac6a830423b13f812c1c162eb505a2d"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-16",
+  "purpose": "human readability follow-up; no answers prefilled or AI ratings",
+  "all_cases": "seven previously fixed labeled frames; ten GT8-connected regions, not ten verified fish",
+  "discovery": {
+    "frames": [
+      0,
+      15,
+      30,
+      45,
+      60,
+      75,
+      90
+    ],
+    "tasks_per_observer": 7,
+    "one_version_per_frame_per_observer": true,
+    "assignment": "balanced rotating3-cohort assignment; three observers cover three conditions at every frame; separate shuffled order per observer",
+    "limitation": "one observer is an exploratory unpaired comparison; repeated frame versions deliberately avoided in discovery",
+    "display": "960x540 CSS pixels for1280x720 originals; no extra image zoom; record viewport and devicePixelRatio",
+    "response": "found with source-coordinate click points / none / uncertain",
+    "scoring_if_done": "maximum one-to-one matching to GT connected-component bounding boxes expanded8 source pixels; geometry proxy, not pixel recall or verified fish-instance recall"
+  },
+  "recognition": {
+    "tasks_per_observer": 30,
+    "all_methods_all_components": true,
+    "display": "same240x180 source crop,480x360 CSS pixels; cue is a bounding rectangle, no GT silhouette",
+    "response": [
+      "recognizable as fish with basic outline",
+      "uncertain",
+      "not recognizable"
+    ],
+    "known_location_not_unprompted_discovery": true
+  },
+  "order": "all7 discovery tasks confirmed before any prompted crop; committed discovery answers cannot be rewritten after seeing cues",
+  "blinding": "no method, real frame number, probability, PSNR, source path, or GT feedback in public tasks",
+  "exposure": "record prior familiarity with these images/GT; prior-exposed discovery is not naive",
+  "saving": "current draft autosaved; each confirm is durable; no final global-save button",
+  "reviewer_count": "one is exploratory; independent extra observers optional; do not infer population significance",
+  "QA": "separate QA answer directory and visible QA mode; never mixed into actual human results",
+  "unstarted_human_results": true,
+  "asset_builder_sha256": "f873b2b3e8775cd190bcb65a03eba074550d07c725c03efc8b2b2273435a3f84",
+  "server_sha256": "3ce375f8208a00d8bca6e4f6a9feccf8c07c2148bfc70ed2487d6ab145841b37",
+  "page_sha256": "c674cb5e8c00318d996752fd69f6e068d80cead30a790b3ad01e33a911239cab",
+  "source_probability_protocol_sha256": "16a071b5e1e493eb6e34e4457b15629474cc3022cc26259710c7a539c21f1568",
+  "randomization_secret_sha256": "04e9678067e2004772337dbedbe23e48f2ec54da6f922fb5b718dd2e112587e2"
+}

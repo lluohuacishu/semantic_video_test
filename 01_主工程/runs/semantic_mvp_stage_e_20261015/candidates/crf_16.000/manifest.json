@@ -1,0 +1,100 @@
+{
+  "profile": "semantic-video-layered-v2",
+  "mode": "video",
+  "roi_layout": "halves",
+  "width": 1280,
+  "height": 720,
+  "frames": 50,
+  "fps": "25/1",
+  "fps_basis": "user-declared nominal rate; capture timestamps not available",
+  "context": {
+    "file": "context.mp4",
+    "width": 640,
+    "height": 360
+  },
+  "patches": [
+    {
+      "start": 0,
+      "frames": 32,
+      "box": [
+        0,
+        34,
+        108,
+        658
+      ],
+      "partition": "left",
+      "file": "roi_0000.mp4"
+    },
+    {
+      "start": 0,
+      "frames": 32,
+      "box": [
+        1166,
+        0,
+        114,
+        88
+      ],
+      "partition": "right",
+      "file": "roi_0001.mp4"
+    },
+    {
+      "start": 32,
+      "frames": 18,
+      "box": [
+        1058,
+        0,
+        222,
+        330
+      ],
+      "partition": "right",
+      "file": "roi_0002.mp4"
+    }
+  ],
+  "semantics_file": "semantics.json.gz",
+  "teacher": {
+    "target": "fish",
+    "class_id": 6,
+    "label": "鱼类",
+    "model_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+    "inference": "512 tiles, stride384, mean overlapping logits",
+    "threshold": 0.9,
+    "reliability": "limited; training video131 demo does not establish generalization"
+  },
+  "files": {
+    "context.mp4": {
+      "bytes": 21056,
+      "sha256": "ae364c1a3a5a0a5cba6f36c16a90b06c5782d88a5b8ea2bdea97c3fcd2cd7183"
+    },
+    "roi_0000.mp4": {
+      "bytes": 495659,
+      "sha256": "2253eedcba9b49f82aa3b357cf786310acf66bdaf18d75cd49f928827918b151"
+    },
+    "roi_0001.mp4": {
+      "bytes": 75460,
+      "sha256": "d8a68d38520ee549204a14efc43fe946741ba808c214d1b0af7d92fb9067e365"
+    },
+    "roi_0002.mp4": {
+      "bytes": 287594,
+      "sha256": "dd2939f5077a4c2d746843fcac533a2c8ebe2c76d67a26985b2ead4c406f8435"
+    },
+    "semantics.json.gz": {
+      "bytes": 929,
+      "sha256": "005bce5cedaec3f4a119fabc8df1e3ed1419c2fffeb87456b6e2b5ea3e12f1d9"
+    }
+  },
+  "configuration": {
+    "background_crf": 42,
+    "roi_crf": 16.0,
+    "background_scale": 0.5,
+    "segment_frames": 32,
+    "padding": 16,
+    "min_pixels": 64,
+    "h265": "medium, P-only, keyint32, BT709 limited YUV420",
+    "roi_layout": "halves"
+  },
+  "experiment": {
+    "stage": "E",
+    "roi_source": "unchanged automatic predictions only",
+    "selection": "complete file bytes only"
+  }
+}

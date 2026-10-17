@@ -1,0 +1,215 @@
+{
+  "profile": "semantic-video-layered-v1",
+  "mode": "video",
+  "width": 1280,
+  "height": 720,
+  "frames": 50,
+  "fps": "25/1",
+  "context": {
+    "file": "context.mp4",
+    "width": 640,
+    "height": 360
+  },
+  "patches": [
+    {
+      "start": 0,
+      "frames": 4,
+      "box": [
+        0,
+        462,
+        40,
+        230
+      ],
+      "file": "roi_0000.mp4"
+    },
+    {
+      "start": 4,
+      "frames": 4,
+      "box": [
+        0,
+        34,
+        108,
+        544
+      ],
+      "file": "roi_0001.mp4"
+    },
+    {
+      "start": 8,
+      "frames": 4,
+      "box": [
+        0,
+        414,
+        74,
+        228
+      ],
+      "file": "roi_0002.mp4"
+    },
+    {
+      "start": 16,
+      "frames": 4,
+      "box": [
+        1232,
+        18,
+        48,
+        70
+      ],
+      "file": "roi_0003.mp4"
+    },
+    {
+      "start": 20,
+      "frames": 4,
+      "box": [
+        0,
+        422,
+        36,
+        60
+      ],
+      "file": "roi_0004.mp4"
+    },
+    {
+      "start": 24,
+      "frames": 4,
+      "box": [
+        1176,
+        0,
+        48,
+        48
+      ],
+      "file": "roi_0005.mp4"
+    },
+    {
+      "start": 28,
+      "frames": 4,
+      "box": [
+        1166,
+        0,
+        46,
+        50
+      ],
+      "file": "roi_0006.mp4"
+    },
+    {
+      "start": 36,
+      "frames": 4,
+      "box": [
+        1114,
+        10,
+        166,
+        320
+      ],
+      "file": "roi_0007.mp4"
+    },
+    {
+      "start": 40,
+      "frames": 4,
+      "box": [
+        1092,
+        14,
+        76,
+        64
+      ],
+      "file": "roi_0008.mp4"
+    },
+    {
+      "start": 44,
+      "frames": 4,
+      "box": [
+        1058,
+        0,
+        96,
+        76
+      ],
+      "file": "roi_0009.mp4"
+    },
+    {
+      "start": 48,
+      "frames": 2,
+      "box": [
+        1060,
+        0,
+        88,
+        80
+      ],
+      "file": "roi_0010.mp4"
+    }
+  ],
+  "semantics_file": "semantics.json.gz",
+  "teacher": {
+    "target": "fish",
+    "class_id": 6,
+    "label": "鱼类",
+    "model_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+    "inference": "512 tiles, stride384, mean overlapping logits",
+    "threshold": 0.9,
+    "reliability": "limited; training video131 demo does not establish generalization"
+  },
+  "files": {
+    "context.mp4": {
+      "bytes": 21056,
+      "sha256": "ae364c1a3a5a0a5cba6f36c16a90b06c5782d88a5b8ea2bdea97c3fcd2cd7183"
+    },
+    "roi_0000.mp4": {
+      "bytes": 5241,
+      "sha256": "6ee7d290d30d79edf4ebb9ab07f3ad207ec0f2640ec1ac0fca7ece220331cfaf"
+    },
+    "roi_0001.mp4": {
+      "bytes": 12114,
+      "sha256": "082947ecedf27b2c0e31cce471073f831bc09ea0ac01eec0bb2b1c7eba4d6374"
+    },
+    "roi_0002.mp4": {
+      "bytes": 6564,
+      "sha256": "894601769ee45fa8594cba884815f112a0d8c9b97715145f549b141e980efc90"
+    },
+    "roi_0003.mp4": {
+      "bytes": 3712,
+      "sha256": "f205c16ab39b82baf2db1dca3a03dda236cdf0d9a680058571845a3835cabdb1"
+    },
+    "roi_0004.mp4": {
+      "bytes": 3927,
+      "sha256": "7693f8d2541aa1938749b5e6b7d61e773ab860dfda5ffed1cc331a026de59fcc"
+    },
+    "roi_0005.mp4": {
+      "bytes": 3848,
+      "sha256": "e96622b85f524005d7b06eb494852d5bc498e6996901afe401b4751ec7f66992"
+    },
+    "roi_0006.mp4": {
+      "bytes": 3751,
+      "sha256": "d049fda6e9fcc83ed6de022a0519f94fa287410d67728b100b483ee2f3bad0a8"
+    },
+    "roi_0007.mp4": {
+      "bytes": 9903,
+      "sha256": "b1471f91e63719c3e99d3b26b7bda774026c74485b092505ba2e7df1753e1050"
+    },
+    "roi_0008.mp4": {
+      "bytes": 4103,
+      "sha256": "a9dc5c6a4568819f7f8a967768cece658e09c5f3830be039cc468d587f8201a1"
+    },
+    "roi_0009.mp4": {
+      "bytes": 4589,
+      "sha256": "0385bef995b38ca8cd967765dc0fcc4308feb7ac22a731de8059f0af3e3a115d"
+    },
+    "roi_0010.mp4": {
+      "bytes": 4302,
+      "sha256": "47d2b12cf645ecd6c1b6b052a92107ced51f0c93582bac0acfa6d5ddf81191ac"
+    },
+    "semantics.json.gz": {
+      "bytes": 929,
+      "sha256": "005bce5cedaec3f4a119fabc8df1e3ed1419c2fffeb87456b6e2b5ea3e12f1d9"
+    }
+  },
+  "configuration": {
+    "background_crf": 42,
+    "roi_crf": 32.0,
+    "background_scale": 0.5,
+    "segment_frames": 4,
+    "padding": 16,
+    "min_pixels": 64,
+    "h265": "medium, P-only, keyint32, BT709 limited YUV420"
+  },
+  "fps_basis": "user-declared nominal rate; capture timestamps not available",
+  "experiment": {
+    "group": "B",
+    "predictions": "same frozen cached sender predictions",
+    "budget_matching": "complete bytes only"
+  }
+}

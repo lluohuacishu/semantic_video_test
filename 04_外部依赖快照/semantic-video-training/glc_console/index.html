@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GLC-Video · 视频编解码</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="GLC-Video 首页"><span class="mark">G</span><strong>GLC-Video</strong><span class="brand-note">视频文件实验</span></a>
+    <div class="environment"><span id="environmentDot" class="dot"></span><span id="environmentText">正在连接本机服务…</span></div>
+  </header>
+  <main>
+    <div class="page-heading"><div><h1>视频编码与还原</h1><p>上传视频，查看真实码流、传输时间与重建画面。</p></div><button id="helpButton" class="text-button">使用说明 <span aria-hidden="true">↗</span></button></div>
+    <div id="alert" class="alert" role="alert" hidden></div>
+    <div class="workspace">
+      <aside>
+        <section class="card control-card">
+          <div class="section-heading"><h2>输入与参数</h2><span class="quiet">本机处理</span></div>
+          <input id="fileInput" type="file" accept=".mp4,.avi,.mov,.mkv,.webm,.m4v" hidden>
+          <button id="dropZone" class="drop-zone" type="button">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 31v7h32v-7M24 32V8m-9 9 9-9 9 9"/></svg>
+            <strong>拖入视频，或点击选择</strong><small>MP4、AVI、MOV、MKV 等 · 最大 1 GiB</small>
+          </button>
+          <div class="file-info"><strong id="fileName">尚未选择视频</strong><span id="fileMeta">输入与还原结果会自动保留</span></div>
+          <form id="settingsForm">
+            <fieldset id="settings">
+              <label class="field range-field" for="quality"><span>重建质量 <output id="qualityValue" for="quality">q = 63</output></span><input id="quality" type="range" min="0" max="63" step="1" value="63"><small>数值越大通常越清晰，文件也更大。</small></label>
+              <div class="two-fields">
+                <label class="field" for="width">最大宽度<select id="width"><option value="320">320 px · 快速测试</option><option value="640">640 px</option><option value="960">960 px</option><option value="1280" selected>1280 px</option><option value="1920">1920 px</option></select></label>
+                <label class="field" for="frames">最多处理帧数<input id="frames" type="number" min="1" max="10000" step="1" value="50" required></label>
+              </div>
+              <label class="field" for="kbps">文件传输速度 <span class="input-unit"><input id="kbps" type="number" min="1" max="1000" step="1" value="20" required><span>kbps</span></span></label>
+              <div class="rate-presets" aria-label="常用传输速度"><button type="button" data-rate="20" aria-pressed="true">20 kbps</button><button type="button" data-rate="30" aria-pressed="false">30 kbps</button><button type="button" data-rate="40" aria-pressed="false">40 kbps</button></div>
+              <p class="hint">传输越慢，等待越久；不会因这个参数改变画质。建议先用 1280 px、50 帧。</p>
+              <details class="advanced"><summary>更多参数</summary>
+                <label class="field" for="startFrame">起始帧（从 0 计）<input id="startFrame" type="number" min="0" max="1000000" value="0" required></label>
+                <div class="two-fields"><label class="field" for="intraPeriod">I 帧间隔<input id="intraPeriod" type="number" min="1" max="10000" value="32" required></label><label class="field" for="resetInterval">参考重置间隔<input id="resetInterval" type="number" min="0" max="10000" value="32" required></label></div>
+                <p class="hint">保留源帧率，只处理画面。最大宽度按比例缩小，不放大低清素材。重置间隔 0 表示不做周期重置。</p>
+              </details>
+            </fieldset>
+            <button id="startButton" class="primary-button" type="submit" disabled>开始实验 <span aria-hidden="true">→</span></button>
+          </form>
+        </section>
+        <section class="card history-card"><div class="section-heading"><h2>最近实验</h2><button id="refreshButton" class="text-button small">刷新</button></div><div id="history" class="history-list"><p class="hint">还没有新任务</p></div><div id="examples" class="example-list"></div></section>
+      </aside>
+      <div class="results-column">
+        <section id="progressPanel" class="card progress-panel" hidden aria-live="polite">
+          <div class="progress-title"><div><strong id="phase">等待开始</strong><div id="progressDetail" class="quiet"></div></div><button id="cancelButton" class="secondary-button">停止任务</button></div>
+          <ol class="stages"><li data-stage="encoding">01 编码</li><li data-stage="transfer">02 文件传输</li><li data-stage="decoding">03 解码</li><li data-stage="verifying">04 核验</li></ol>
+          <progress id="progress" max="100" value="0" aria-label="任务总体进度"></progress><div class="progress-foot"><span id="elapsed">处理中</span><span id="percent">0%</span></div>
+        </section>
+        <section class="card result-card">
+          <div class="section-heading"><div><h2>画面对比</h2><p id="resultTitle" class="quiet">等待视频</p></div><span id="verifiedBadge" class="badge" hidden>接收校验通过</span></div>
+          <div id="emptyState" class="empty-state"><svg viewBox="0 0 160 80" aria-hidden="true"><rect x="4" y="8" width="58" height="58" rx="8"/><rect x="98" y="8" width="58" height="58" rx="8"/><path d="M71 37h18m-6-6 6 6-6 6M26 25l17 12-17 12Z M120 25l17 12-17 12Z"/></svg><strong id="emptyTitle">从一段短视频开始</strong><p id="emptyText">选择视频、调整参数，然后开始实验。<br>也可以先查看左侧已有的 720p 结果。</p></div>
+          <div id="comparison" hidden>
+            <div class="media-grid"><div><div class="media-label"><strong>输入片段</strong><span id="inputSize"></span></div><video id="inputVideo" controls playsinline preload="metadata" aria-label="输入片段"></video></div><div><div class="media-label"><strong>接收端还原</strong><span>从 .glcv 独立解码</span></div><video id="outputVideo" controls playsinline preload="metadata" aria-label="接收端还原视频"></video></div></div>
+            <div class="playback-bar"><button id="playButton" class="secondary-button">同步播放</button><button id="rewindButton" class="text-button small">回到开头</button><span id="clipInfo" class="quiet"></span></div>
+            <p class="preview-note">这里的 MP4 用于观看；实际传输的是下面可下载的 .glcv 压缩文件。</p>
+          </div>
+        </section>
+        <section id="results" hidden>
+          <div class="metrics">
+            <article class="metric"><span>实际码流大小</span><strong id="fileBytes">—</strong><small id="bpp">含文件头与校验</small></article>
+            <article class="metric"><span>压缩后视频码率</span><strong id="videoRate">—</strong><small>文件大小 × 8 ÷ 视频时长</small></article>
+            <article class="metric"><span>文件传输耗时</span><strong id="transferTime">—</strong><small id="transferRate">TCP 应用层限速</small></article>
+            <article class="metric"><span>平均 PSNR</span><strong id="psnr">—</strong><small>输入与还原帧的像素差异指标</small></article>
+          </div>
+          <section class="card details-card">
+            <div class="section-heading"><h2>处理与保存</h2><span id="qualityTag" class="quiet"></span></div>
+            <div class="timings"><div><span>编码处理</span><strong id="encodeTime">—</strong></div><div><span>解码处理</span><strong id="decodeTime">—</strong></div><div><span>编码峰值分配显存</span><strong id="gpuMemory">—</strong></div><div><span>实测应用层发送速度</span><strong id="actualRate">—</strong></div></div>
+            <p class="hint">处理时间包含网络推理、熵编码和逐帧校验，不含模型加载、视频抽帧与预览制作。两端重建一致不表示与原视频无损一致。</p>
+            <div id="downloads" class="downloads"></div><p class="path-note">保存位置：<span id="resultDirectory"></span></p>
+          </section>
+          <section class="card frame-card"><div class="section-heading"><h2>逐帧数据</h2><span class="quiet">查看运动帧和 I 帧的变化</span></div><div class="table-scroll"><table><thead><tr><th>帧</th><th>类型</th><th>帧记录大小</th><th>PSNR</th><th>编码</th><th>解码</th></tr></thead><tbody id="frameRows"></tbody></table></div><div class="pagination"><span id="pageInfo" class="quiet"></span><div><button id="previousPage" class="text-button small">上一页</button><button id="nextPage" class="text-button small">下一页</button></div></div></section>
+        </section>
+        <footer>官方 GLC 预训练网络 · 本地码流扩展 · 离线文件传输实验 <button id="aboutButton" class="text-button small">说明</button></footer>
+      </div>
+    </div>
+  </main>
+  <dialog id="helpDialog"><div class="section-heading"><h2>怎么使用</h2><button id="closeHelp" class="text-button" aria-label="关闭说明">关闭</button></div><ol><li>拖入 AVI 或 MP4 等视频，第一次建议只处理 50 帧。</li><li>q 控制重建质量与码量；kbps 控制文件发送速度，二者独立。</li><li>点击开始，等待编码、TCP 传输、独立解码与核验完成。720p 的短片也可能需要几分钟。</li><li>同步播放输入与还原片段，下载还原视频、码流或逐帧数据。历史记录可重新打开；改参数后可使用同一份视频重跑。</li></ol><p>每次结果保存在项目 runs/glc_console 下。开始编码后，刷新网页不会终止后台任务。停止任务后，已上传的原视频和之前的结果保留。</p><hr><p>使用的是官方 GLC 模型与权重；熵编码和 .glcv 文件格式由本项目补充。目前验证的是相同 PyTorch / GPU 环境下的独立编解码，尚未加入水下语义分割约束或物理信道。它不能直接等同于完整的水下语义通信系统。</p><p>平均 PSNR 不能反映所有运动失真和语义变化。已有 q=0 示例中，部分人物姿态会偏离输入，展示时建议先看 q=63。</p></dialog>
+</body>
+</html>

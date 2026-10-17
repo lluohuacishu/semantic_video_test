@@ -1,0 +1,42 @@
+{
+  "teacher": {
+    "architecture": "preserved_8class",
+    "checkpoint": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\phase_c_20261013\\segformer_adaptation_preserve8\\best.pt",
+    "checkpoint_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+    "inference": "tiles512",
+    "threshold": 0.9,
+    "selected_step": 1024,
+    "selection_data": "original official-train video96 held out for development",
+    "official_val108_used_for_selection": false,
+    "codec_task_scores_used_for_selection": false,
+    "development_original_fish_iou": 0.2422100249877197,
+    "reliability": "limited",
+    "frozen_before_codec_task_evaluation": true
+  },
+  "rows": [
+    {
+      "video": "video96",
+      "official_split": "train",
+      "labelled_frames": 18,
+      "tp": 11341,
+      "fp": 21713,
+      "fn": 13769,
+      "fish_iou": 0.2422100249877197,
+      "fish_recall": 0.451652727996814,
+      "fish_precision": 0.34310522175833486,
+      "fish_f1": 0.38996630218004263
+    },
+    {
+      "video": "video108",
+      "official_split": "val",
+      "labelled_frames": 26,
+      "tp": 248,
+      "fp": 1158,
+      "fn": 1022,
+      "fish_iou": 0.10214168039538715,
+      "fish_recall": 0.1952755905511811,
+      "fish_precision": 0.1763869132290185,
+      "fish_f1": 0.18535127055306427
+    }
+  ]
+}

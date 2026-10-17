@@ -1,0 +1,36 @@
+{
+  "profile": "semantic-video-layered-v1",
+  "mode": "information",
+  "width": 1280,
+  "height": 720,
+  "frames": 5,
+  "fps": "5/1",
+  "context": null,
+  "patches": [],
+  "semantics_file": "semantics.json.gz",
+  "teacher": {
+    "target": "diver",
+    "class_id": 1,
+    "label": "潜水员",
+    "model_sha256": "ff00cb439a4af290dc3efde8ae76d4acfad797784483b669ab6db79aaf5b1476",
+    "inference": "long edge 256, letterbox, argmax class1 and confidence>=0.7",
+    "threshold": 0.7,
+    "reliability": "demo has no manual GT; consistency only"
+  },
+  "files": {
+    "semantics.json.gz": {
+      "bytes": 375,
+      "sha256": "a97e7f719382b216ee59ae5517a4d64ef468945ba256e8a32cf295516254ea68"
+    }
+  },
+  "configuration": {
+    "background_crf": 42,
+    "roi_crf": 32,
+    "background_scale": 0.5,
+    "segment_frames": 32,
+    "padding": 16,
+    "min_pixels": 64,
+    "h265": "medium, P-only, keyint32, BT709 limited YUV420"
+  },
+  "fps_basis": "video avg_frame_rate; v1 profile assumes CFR"
+}

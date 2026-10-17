@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>画面人工核对</title>
+<style>
+:root{color-scheme:light;--ink:#172c35;--muted:#586872;--line:#d7e0e3;--accent:#126f65}
+*{box-sizing:border-box}body{margin:0;background:#edf2f3;color:var(--ink);font:15px/1.65 "Microsoft YaHei",sans-serif}
+main{max-width:1040px;margin:24px auto;padding:0 22px 220px}h1{font-size:26px;margin:0 0 6px}h2{font-size:19px;margin:0 0 12px}
+p{margin:8px 0}.muted{color:var(--muted)}.card{background:white;border:1px solid var(--line);border-radius:10px;padding:22px;margin-top:18px}
+label.field{display:block;margin:15px 0 5px;font-weight:600}input[type=text],select{width:100%;max-width:480px;font:inherit;padding:10px;border:1px solid #9dabb3;border-radius:5px;background:white}
+button,.button{border:0;border-radius:6px;padding:10px 17px;font:inherit;font-weight:600;background:var(--accent);color:white;cursor:pointer}
+button.secondary{background:#e5edef;color:#21434c;border:1px solid #bccdd2}button:disabled{opacity:.5;cursor:wait}
+.hidden{display:none!important}.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.spread{justify-content:space-between}
+.pill{font-size:12px;border-radius:4px;padding:3px 8px;background:#e0eeeb;color:#15554c}
+.qa{background:#fff2cd;color:#6c4d00;border:1px solid #d7af48;padding:8px 12px;margin:12px 0}
+.error{color:#9a2828;margin-top:10px;white-space:pre-wrap}.hint{background:#f0f5f5;border-left:3px solid #83aba4;padding:9px 12px;font-size:14px}
+.progress{height:6px;border-radius:4px;background:#dce6e8;margin-top:12px;overflow:hidden}.progress span{display:block;height:100%;background:var(--accent)}
+.choices{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.choice{border:1px solid #b8c9ce;border-radius:7px;padding:10px 13px;cursor:pointer;background:white}
+.choice:has(input:checked){border-color:var(--accent);background:#e4f2ed}.choice input{margin:0 7px 0 0}
+.image-well{width:100%;overflow:auto;background:#23343d;border:1px solid #53656e;border-radius:4px;margin-top:12px}
+canvas{display:block;touch-action:manipulation;cursor:crosshair}canvas.crop{image-rendering:pixelated;cursor:default;margin:auto}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);border-top:1px solid #c7d5d9;padding:12px 22px;z-index:5}
+.bottom>div{max-width:996px;margin:auto}.save-status{font-size:13px;color:var(--muted)}.count{font-weight:600}a{color:var(--accent)}
+.bottom .choices{margin:0 0 7px}.bottom .choice{padding:6px 12px}.bottom #point-tools{font-size:12px;margin-bottom:5px}.bottom #point-tools button{font-size:12px;padding:3px 9px}
+@media(max-width:650px){main{padding:0 12px 260px}.card{padding:16px}.bottom{padding:10px 12px}.choice{padding:9px}}
+</style>
+</head>
+<body><main>
+<h1>画面人工核对</h1>
+<p class="muted">先从整幅画面找鱼，再判断指定位置的目标是否可辨认。每次确认都会保存，可退出后继续。</p>
+<button id="switch" class="secondary hidden" type="button">切换观察者（保留已保存答卷）</button>
+<div id="qa" class="qa hidden">界面测试模式：使用合成测试图，答卷不计入人工评价。</div>
+<div id="message" class="error" role="alert"></div>
+<section id="start" class="card">
+<h2>开始或继续核对</h2>
+<p>同一位观察者请沿用同一个代号。请独立作答，开始前先不要查看带有目标框的报告对照图。</p>
+<form id="start-form">
+<label class="field" for="alias">观察者代号</label>
+<input id="alias" type="text" maxlength="32" placeholder="例如：观察者1" required autocomplete="off">
+<label class="field" for="exposure">你是否看过本批图像，或已知道目标位置？</label>
+<select id="exposure" required><option value="">请选择</option><option value="no">没有看过，也不知道位置</option><option value="yes">看过图像、目标框或对照报告</option><option value="unsure">不确定</option></select>
+<p class="muted">如实选择即可；已看过也可以参与，记录会保留这一情况。</p>
+<button type="submit" id="begin">开始核对</button>
+</form></section>
+<section id="review" class="hidden">
+<div class="card">
+<div class="row spread"><h2 id="phase-title"></h2><span id="participant" class="pill"></span></div>
+<div id="instructions" class="hint"></div>
+<div class="progress"><span id="progress"></span></div>
+<div class="image-well" id="image-well"><canvas id="canvas"></canvas></div>
+<p class="muted" id="scale-note"></p>
+</div></section>
+<section id="done" class="card hidden"><h2>37项已全部保存</h2>
+<p>整幅画面的7项判断、局部画面的30项判断均已保存，无需再点最终保存。</p>
+<p class="muted">本页不揭示目标或画面来源。请告知研究记录负责人你使用的观察者代号，以便汇总。</p>
+<button id="export" type="button" class="secondary">下载自己的答卷</button>
+</section>
+</main>
+<footer id="footer" class="bottom hidden"><div>
+<div id="choices" class="choices" role="group" aria-label="本张画面判断"></div>
+<div id="point-tools" class="row">
+<span id="point-count" class="count">已标记0处</span><button type="button" id="undo" class="secondary">撤销最后一处</button><button type="button" id="clear" class="secondary">清除标记</button>
+</div>
+<div class="row spread">
+<div><span id="overall"></span><div id="save-status" class="save-status" aria-live="polite"></div></div>
+<button id="next" type="button">确认并下一张</button>
+</div></div></footer>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const storeKey="human_review_20261016_"+location.port;
+let state=null,choice=null,points=[],currentImage=null,busy=false,started=0;
+let draftTimer=null,pendingDraft=Promise.resolve(),drawnTask=null;
+function error(message){$("message").textContent=message||"";}
+async function api(url,data){
+  const response=await fetch(url,data?{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)}:{});
+  const result=await response.json();
+  if(!response.ok)throw new Error(result.error||"保存失败，请稍后重试");
+  return result;
+}
+function displayInfo(){
+  const b=$("canvas").getBoundingClientRect();
+  return {image_css_width:b.width,image_css_height:b.height,device_pixel_ratio:devicePixelRatio,
+          viewport_width:innerWidth,viewport_height:innerHeight};
+}
+function payload(){
+  return {session:state.session,task_id:state.task.id,choice:choice,points:points,
+          display:displayInfo(),elapsed_ms:Math.round(performance.now()-started)};
+}
+function saveDraft(){
+  if(!state||state.complete||busy)return;
+  clearTimeout(draftTimer);$("save-status").textContent="正在保存草稿…";
+  draftTimer=setTimeout(()=>{
+    const content=payload();
+    pendingDraft=pendingDraft.catch(()=>{}).then(()=>api("/api/draft",content)).then(()=>{
+      $("save-status").textContent="草稿已保存；确认后进入下一张。";
+    }).catch(e=>{error(e.message);$("save-status").textContent="草稿尚未保存，请保留页面。";});
+  },250);
+}
+function redraw(){
+  const task=state.task,canvas=$("canvas"),ctx=canvas.getContext("2d");
+  if(!currentImage||drawnTask!==task.id)return;
+  ctx.clearRect(0,0,canvas.width,canvas.height);ctx.drawImage(currentImage,0,0);
+  if(task.phase==="recognition"){
+    const b=task.cue_box;ctx.strokeStyle="#ff6fc9";ctx.lineWidth=.7;
+    ctx.strokeRect(b[0]-.5,b[1]-.5,b[2]+1,b[3]+1);
+  }else{
+    points.forEach((p,i)=>{
+      ctx.beginPath();ctx.arc(p[0],p[1],6,0,Math.PI*2);ctx.strokeStyle="white";ctx.lineWidth=3;ctx.stroke();
+      ctx.beginPath();ctx.arc(p[0],p[1],6,0,Math.PI*2);ctx.strokeStyle="#d8473c";ctx.lineWidth=1.5;ctx.stroke();
+      ctx.fillStyle="white";ctx.font="bold 16px sans-serif";ctx.fillText(String(i+1),p[0]+9,p[1]-8);
+    });
+  }
+  $("point-count").textContent="已标记"+points.length+"处";
+}
+function setChoice(value,save=true){
+  choice=value;
+  if(state.task.phase==="discovery"&&value==="none"){points=[];redraw();}
+  document.querySelectorAll("input[name=choice]").forEach(input=>input.checked=input.value===value);
+  if(save)saveDraft();
+}
+async function render(){
+  error("");$("qa").classList.toggle("hidden",!state.qa_mode);
+  $("start").classList.add("hidden");
+  $("switch").classList.remove("hidden");
+  $("review").classList.toggle("hidden",state.complete);
+  $("done").classList.toggle("hidden",!state.complete);
+  $("footer").classList.toggle("hidden",state.complete);
+  if(state.complete)return;
+  const task=state.task;
+  choice=state.draft&&state.draft.task_id===task.id?state.draft.choice:null;
+  points=state.draft&&state.draft.task_id===task.id?state.draft.points.slice():[];
+  $("phase-title").textContent=(task.phase==="discovery"?"整幅画面找鱼":"已知位置辨认")+" "+task.phase_index+"/"+task.phase_total;
+  $("participant").textContent=state.alias;
+  $("instructions").textContent=task.phase==="discovery"?
+    "观察整幅画面。发现鱼时点击可疑目标中心；没有发现或无法确定时选择对应选项。不要凭记忆补全，也不要额外放大。":
+    "粉色框只提示目标位置。请判断能否确认是鱼并辨认基本轮廓；看不清可以选不确定，不必猜测。";
+  $("scale-note").textContent=task.phase==="discovery"?
+    "整幅画面统一显示为960×540；若窗口较窄可横向滚动。请保持浏览器缩放一致。":
+    "局部画面统一显示为480×360（源裁剪240×180），不进行额外放大。";
+  $("progress").style.width=(state.done/state.total*100)+"%";
+  $("overall").textContent=(task.phase==="discovery"?"整幅找鱼 ":"局部辨认 ")+task.phase_index+"/"+task.phase_total+" · 已确认 "+state.done+"/"+state.total;
+  $("save-status").textContent=state.draft?"已恢复本张草稿。":"请选择判断，然后确认。";
+  $("point-tools").classList.toggle("hidden",task.phase!=="discovery");
+  const options=task.phase==="discovery"?
+    [["found","发现鱼（请点位置）"],["none","未发现鱼"],["uncertain","不确定"]]:
+    [["recognizable","可辨认是鱼及基本轮廓"],["uncertain","不确定"],["not_recognizable","无法辨认"]];
+  $("choices").replaceChildren();
+  options.forEach(pair=>{
+    const label=document.createElement("label");label.className="choice";
+    const input=document.createElement("input");input.type="radio";input.name="choice";input.value=pair[0];input.checked=choice===pair[0];
+    input.addEventListener("change",()=>setChoice(pair[0]));
+    label.append(input,document.createTextNode(pair[1]));$("choices").append(label);
+  });
+  const canvas=$("canvas");canvas.width=task.natural_width;canvas.height=task.natural_height;
+  canvas.style.width=task.display_width+"px";canvas.style.height=task.display_height+"px";
+  canvas.classList.toggle("crop",task.phase==="recognition");
+  drawnTask=null;currentImage=null;
+  const img=new Image();
+  await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(new Error("画面加载失败，请刷新后继续"));img.src=task.image_url;});
+  currentImage=img;drawnTask=task.id;started=performance.now();redraw();
+  requestAnimationFrame(()=>{
+    const rect=canvas.getBoundingClientRect();
+    const usable=innerHeight-$("footer").getBoundingClientRect().height;
+    const top=window.scrollY+rect.top-Math.max(4,(usable-rect.height)/2);
+    window.scrollTo({top:Math.max(0,top),behavior:"instant"});
+  });
+}
+$("start-form").addEventListener("submit",async e=>{
+  e.preventDefault();$("begin").disabled=true;error("");
+  try{state=await api("/api/start",{alias:$("alias").value,prior_exposure:$("exposure").value});
+      localStorage.setItem(storeKey,state.session);await render();}
+  catch(e){error(e.message);}finally{$("begin").disabled=false;}
+});
+$("switch").addEventListener("click",async()=>{
+  if(busy||!state)return;
+  clearTimeout(draftTimer);busy=true;
+  try{
+    await pendingDraft.catch(()=>{});
+    if(!state.complete)await api("/api/draft",payload());
+    localStorage.removeItem(storeKey);state=null;choice=null;points=[];currentImage=null;
+    $("review").classList.add("hidden");$("done").classList.add("hidden");$("footer").classList.add("hidden");
+    $("switch").classList.add("hidden");$("start").classList.remove("hidden");
+    $("alias").value="";$("exposure").value="";error("");window.scrollTo(0,0);
+  }catch(e){error(e.message);}finally{busy=false;}
+});
+$("canvas").addEventListener("click",event=>{
+  if(!state||state.complete||state.task.phase!=="discovery"||busy||!currentImage)return;
+  const b=$("canvas").getBoundingClientRect();
+  const p=[Math.max(0,Math.min(1279,(event.clientX-b.left)/b.width*1280)),
+           Math.max(0,Math.min(719,(event.clientY-b.top)/b.height*720))];
+  const old=points.findIndex(q=>Math.hypot(p[0]-q[0],p[1]-q[1])<8);
+  if(old>=0)points.splice(old,1);else if(points.length<30)points.push(p);
+  if(points.length&&choice!=="uncertain")setChoice("found",false);
+  redraw();saveDraft();
+});
+$("undo").addEventListener("click",()=>{points.pop();redraw();saveDraft();});
+$("clear").addEventListener("click",()=>{points=[];redraw();saveDraft();});
+$("next").addEventListener("click",async()=>{
+  if(busy||!state||state.complete)return;
+  error("");
+  if(!choice){error("请先选择你的判断。");return;}
+  if(state.task.phase==="discovery"&&choice==="found"&&!points.length){error("发现鱼后，请点击至少一个位置。");return;}
+  clearTimeout(draftTimer);await pendingDraft.catch(()=>{});
+  busy=true;$("next").disabled=true;
+  try{state=await api("/api/answer",payload());await render();}
+  catch(e){error(e.message);}finally{busy=false;$("next").disabled=false;}
+});
+$("export").addEventListener("click",async()=>{
+  try{
+    const result=await api("/api/export?session="+state.session);
+    const blob=new Blob([JSON.stringify(result,null,2)],{type:"application/json"});
+    const anchor=document.createElement("a");anchor.href=URL.createObjectURL(blob);anchor.download="人工核对答卷.json";
+    anchor.click();setTimeout(()=>URL.revokeObjectURL(anchor.href),1000);
+  }catch(e){error(e.message);}
+});
+(async()=>{
+  try{
+    const health=await api("/health");$("qa").classList.toggle("hidden",!health.qa_mode);
+    const saved=localStorage.getItem(storeKey);
+    if(saved){state=await api("/api/state?session="+saved);await render();}
+  }catch(e){error("可填写原观察者代号重新继续："+e.message);}
+})();
+</script></body></html>

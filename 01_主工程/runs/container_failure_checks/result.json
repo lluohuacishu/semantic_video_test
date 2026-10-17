@@ -1,0 +1,21 @@
+{
+  "all_expected_failures_rejected": true,
+  "checks": [
+    {
+      "case": "truncated",
+      "rejected": true,
+      "error": "Packet SHA256 mismatch"
+    },
+    {
+      "case": "corrupted",
+      "rejected": true,
+      "error": "Packet SHA256 mismatch"
+    },
+    {
+      "case": "wrong_weights",
+      "rejected": true,
+      "error": "P-frame weight hash mismatch",
+      "exit_code": 1
+    }
+  ]
+}

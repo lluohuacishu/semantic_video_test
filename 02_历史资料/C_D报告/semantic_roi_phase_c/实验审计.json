@@ -1,0 +1,56 @@
+{
+  "paired_schedule_verified": true,
+  "control_results": [
+    {
+      "branch": "M_RD",
+      "updates": 512,
+      "changed_parameter_tensors": 275,
+      "peak_allocated_MiB": 241.0126953125,
+      "peak_reserved_MiB": 282.0,
+      "seconds": 49.97058180000022,
+      "paired_samples_verified": true
+    },
+    {
+      "branch": "M_ROI4",
+      "updates": 512,
+      "changed_parameter_tensors": 275,
+      "peak_allocated_MiB": 283.5234375,
+      "peak_reserved_MiB": 316.0,
+      "seconds": 69.61054480000166,
+      "paired_samples_verified": true
+    },
+    {
+      "branch": "M_ROI16",
+      "updates": 512,
+      "changed_parameter_tensors": 275,
+      "peak_allocated_MiB": 325.66015625,
+      "peak_reserved_MiB": 352.0,
+      "seconds": 55.26626599999872,
+      "paired_samples_verified": true
+    }
+  ],
+  "schedule_sha256": "e6ee95aee90c5ea379cb4bca45877890116d507e837f1ef50bab8d71196d555c",
+  "protocol_sha256": "e404844b6abfd262d02f35f62df6990ed4afb86d79ad35dadbd98a059a16cfe9",
+  "data_manifest_sha256": "63cd4fba2c6cbc7491476a5bfa2570dac37d4b96607ff68b87ec435515fd7241",
+  "fixed_teacher": {
+    "architecture": "preserved_8class",
+    "checkpoint": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\phase_c_20261013\\segformer_adaptation_preserve8\\best.pt",
+    "checkpoint_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+    "inference": "tiles512",
+    "threshold": 0.9,
+    "selected_step": 1024,
+    "selection_data": "original official-train video96 held out for development",
+    "official_val108_used_for_selection": false,
+    "codec_task_scores_used_for_selection": false,
+    "development_original_fish_iou": 0.2422100249877197,
+    "reliability": "limited",
+    "frozen_before_codec_task_evaluation": true
+  },
+  "cold_decode": {
+    "all_selected_files_verified": true,
+    "unique_files": 24,
+    "rows": 24,
+    "decoded_without_original_RGB_or_GT": true
+  },
+  "test_used": false
+}

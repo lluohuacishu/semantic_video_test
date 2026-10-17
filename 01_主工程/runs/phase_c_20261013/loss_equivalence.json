@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "case": "random",
+      "ordinary_loss": 0.06176137179136276,
+      "roi1_loss": 0.06176137179136276,
+      "loss_abs_difference": 0.0,
+      "gradient_max_abs_difference": 0.0
+    },
+    {
+      "case": "empty",
+      "ordinary_loss": 0.0612124428153038,
+      "roi1_loss": 0.0612124428153038,
+      "loss_abs_difference": 0.0,
+      "gradient_max_abs_difference": 0.0
+    },
+    {
+      "case": "full",
+      "ordinary_loss": 0.061319250613451004,
+      "roi1_loss": 0.061319250613451004,
+      "loss_abs_difference": 0.0,
+      "gradient_max_abs_difference": 0.0
+    }
+  ],
+  "batch_size": 1,
+  "same_native_profile": true,
+  "stage_a_arithmetic_probe_is_not_the_baseline": true,
+  "upstream_batch2_issue": "get_roi_weights_wrapper broadcasts per-batch weights into last dimension; this experiment is locked to verified batch1, upstream left unchanged"
+}

@@ -1,0 +1,46 @@
+{
+  "stage": "F",
+  "step": 2,
+  "date": "2026-10-15",
+  "scope": "61 frozen frame-box observations, 50 frames; geometric diagnosis only",
+  "comparisons": {
+    "A": "unchanged predictions, 32-frame single rectangle, already received packet",
+    "E": "same predictions, 32-frame left/right rectangles, already received packet",
+    "same_frame_E_geometry": "same kept predictions and padding, one frame only; diagnostic, not encoded"
+  },
+  "full_coverage_rule": "covered rectangle pixels / all rectangle pixels >= 95/100",
+  "coverage_classes": [
+    "missed: 0",
+    "partial: >0 and <0.95",
+    "full95: >=0.95"
+  ],
+  "size_groups_bbox_pixels": [
+    "<=512",
+    "513..2048",
+    ">2048"
+  ],
+  "size_thresholds_not_fish_mask_pixel_thresholds": true,
+  "edge_rule": "minimum bbox gap to image boundary <=16 pixels; touching means gap=0",
+  "frame_success_rule": "all annotated rectangles individually >=95%; positive frames only",
+  "negative_frame_rule": "frozen human/publisher no_fish=True, no boxes",
+  "weighting": "each frame-box observation equal weight; no independent-fish inference",
+  "no_per_frame_bitrate_estimate_from_area": true,
+  "no_training_inference_encoding_or_parameter_search": true,
+  "annotations_unchanged": true,
+  "input_sha256": {
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_f_20261015\\coverage_audit.py": "1183acd1cca0c3609e1490e17307c48cb7e55f6ee06497a3c26d02597ff21208",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_roi_control_20261015\\manual_roi_snapshot.json": "9e4da19c6b20fd1e4326638917a1caaec1eb38a7abc2254adc6477e89334338e",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_roi_control_20261015\\A\\selection.json": "b3127833a2af28f5d9b8dbde7ad2f11084f9ee2949e0cc52072261e06d39da3b",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_e_20261015\\selection.json": "572b91daa388738cb5b8cfd0dc5a1750349bae1a4846a2047c447d2bac9d3315",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\semantic_mvp\\roi_layout.py": "def94db467c0de0c6426d92963ac700919a552286b81b3edaa7b2f0fc2747c4a",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\semantic_mvp\\system.py": "753f7e6ea391a4136abb033b47aded4799dd818cf4aa8fb7e4fa2fea08f39e77",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\semantic_mvp\\teacher.py": "4767a0df2ebe7ef91d5ba50e93f123382c89ba9411fb7799f6500dad297a914e",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\phase_c_20261013\\fixed_teacher.json": "46ae65e9709bbe628e07efe44fae754839c44c6d95a1c2a53cfa17049b135d66",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_roi_control_20261015\\A\\network\\receiver\\decode.json": "449f257f7fbf72506dddda5563431c79ac5e1e3f323136835cbf25610d3a5bc5",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_stage_e_20261015\\network\\receiver\\decode.json": "ceac94e54112f7b3d50584eb83c1e84f2f132c4b716db133ca472f4f4701aaba",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_20261014_fish\\sender\\source_audit.json": "79c7a54ef2857fc00d5d6c5ee4571a26476e893a595ad5fcd2b6637cf2c7a639",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\outputs\\semantic_roi_phase_e\\ROI与逐帧覆盖.json": "75b2ef8ca5cde8a3d87d403a4be6a44acf1d700c80a6fc2eb6ce021564f7ec87",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\phase_c_20261013\\segformer_adaptation_preserve8\\best.pt": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9"
+  },
+  "source_clip": "video131 real consecutive source frames 420..469; seen diagnostic clip"
+}

@@ -1,0 +1,16 @@
+{
+  "task": "binary fish / non-fish; UVMulti colors mapped explicitly",
+  "initialization": "legacy SUIM SegFormer-B0 encoder and decoder, binary classifier initialized from fish row and mean non-fish rows",
+  "initial_legacy_weight_sha256": "ff00cb439a4af290dc3efde8ae76d4acfad797784483b669ab6db79aaf5b1476",
+  "steps": 512,
+  "seed": 20261014,
+  "lr": 2e-05,
+  "optimizer": "AdamW",
+  "input_size": 512,
+  "loss": "cross-entropy class weights [1,4] + 0.5 fish Dice",
+  "sampling": "50% fish-directed crop, 25% random crop, 25% full image; train video GT only",
+  "selection": "macro per-video fish IoU on ORIGINAL development images every128 steps; no reconstructed codec images or final test used",
+  "dataset_manifest_sha256": "63cd4fba2c6cbc7491476a5bfa2570dac37d4b96607ff68b87ec435515fd7241",
+  "development_validation_is_official_validation": false,
+  "test_used": false
+}

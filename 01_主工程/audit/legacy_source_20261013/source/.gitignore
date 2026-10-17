@@ -1,0 +1,71 @@
+# Python 缓存和测试产物
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# 本地虚拟环境和环境变量
+.venv/
+.venv-segformer/
+.venv-glc/
+venv/
+env/
+ENV/
+.env
+.env.*
+!.env.example
+
+# 编辑器和操作系统文件
+.idea/
+.vscode/*
+!.vscode/settings.json
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 数据集、视频帧和用户素材
+data/SUIM.zip
+data/SUIM/
+data/raw/*
+data/frames/*
+data/masks/*
+
+!data/raw/.gitkeep
+!data/frames/.gitkeep
+!data/masks/.gitkeep
+
+# 模型权重和训练输出
+checkpoints/*
+runs/*
+*.pt
+*.pth
+*.onnx
+*.safetensors
+*.pth.tar
+*.svic
+*.glcv
+*.ckpt
+
+!checkpoints/.gitkeep
+!runs/.gitkeep
+
+# 本地视频和临时文件，避免误传大文件
+*.avi
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.m4v
+*.tmp
+*.temp
+*.bak
+*.log
+
+# 本机视频预览工具，不随源码提交
+tools/
+*.part

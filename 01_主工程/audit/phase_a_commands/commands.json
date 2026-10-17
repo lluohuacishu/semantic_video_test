@@ -1,0 +1,267 @@
+[
+  {
+    "name": "decode_q63",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/mlvc_file.py",
+      "decode",
+      "--file",
+      "runs/baseline_720p_dmci_q63/video.mlvcv",
+      "--output",
+      "runs/baseline_720p_dmci_q63/receiver",
+      "--i-weight",
+      "checkpoints/DMCI-6.0-mirror.pth.tar",
+      "--preview"
+    ],
+    "exit_code": 0,
+    "seconds": 12.074719400000049
+  },
+  {
+    "name": "verify_q63",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/mlvc_file.py",
+      "verify",
+      "--run",
+      "runs/baseline_720p_dmci_q63",
+      "--decoded",
+      "runs/baseline_720p_dmci_q63/receiver"
+    ],
+    "exit_code": 0,
+    "seconds": 5.452464200000122
+  },
+  {
+    "name": "encode_q21",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/mlvc_file.py",
+      "encode",
+      "--source",
+      "C:\\Users\\lenovo\\Desktop\\临时\\语义\\test5_5fps_reconstructed.avi",
+      "--run",
+      "runs/baseline_720p_dmci_q21",
+      "--q-index",
+      "21",
+      "--i-weight",
+      "checkpoints/DMCI-6.0-mirror.pth.tar"
+    ],
+    "exit_code": 0,
+    "seconds": 14.069823899999847
+  },
+  {
+    "name": "decode_q21",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/mlvc_file.py",
+      "decode",
+      "--file",
+      "runs/baseline_720p_dmci_q21/video.mlvcv",
+      "--output",
+      "runs/baseline_720p_dmci_q21/receiver",
+      "--i-weight",
+      "checkpoints/DMCI-6.0-mirror.pth.tar",
+      "--preview"
+    ],
+    "exit_code": 0,
+    "seconds": 12.14825219999966
+  },
+  {
+    "name": "verify_q21",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/mlvc_file.py",
+      "verify",
+      "--run",
+      "runs/baseline_720p_dmci_q21",
+      "--decoded",
+      "runs/baseline_720p_dmci_q21/receiver"
+    ],
+    "exit_code": 0,
+    "seconds": 5.416464400000223
+  },
+  {
+    "name": "encode_q42",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/mlvc_file.py",
+      "encode",
+      "--source",
+      "C:\\Users\\lenovo\\Desktop\\临时\\语义\\test5_5fps_reconstructed.avi",
+      "--run",
+      "runs/baseline_720p_dmci_q42",
+      "--q-index",
+      "42",
+      "--i-weight",
+      "checkpoints/DMCI-6.0-mirror.pth.tar"
+    ],
+    "exit_code": 0,
+    "seconds": 13.897185100000115
+  },
+  {
+    "name": "decode_q42",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/mlvc_file.py",
+      "decode",
+      "--file",
+      "runs/baseline_720p_dmci_q42/video.mlvcv",
+      "--output",
+      "runs/baseline_720p_dmci_q42/receiver",
+      "--i-weight",
+      "checkpoints/DMCI-6.0-mirror.pth.tar",
+      "--preview"
+    ],
+    "exit_code": 0,
+    "seconds": 12.038983099999768
+  },
+  {
+    "name": "verify_q42",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/mlvc_file.py",
+      "verify",
+      "--run",
+      "runs/baseline_720p_dmci_q42",
+      "--decoded",
+      "runs/baseline_720p_dmci_q42/receiver"
+    ],
+    "exit_code": 0,
+    "seconds": 5.4339836999997715
+  },
+  {
+    "name": "train_probe",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/train_probe.py",
+      "--frames",
+      "runs/baseline_720p_dmci_q0/reference",
+      "--output",
+      "runs/train_probe_fp32",
+      "--i-weight",
+      "checkpoints/DMCI-6.0-mirror.pth.tar",
+      "--steps",
+      "20"
+    ],
+    "exit_code": 0,
+    "seconds": 5.079949299999953
+  },
+  {
+    "name": "probe_encode",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/mlvc_file.py",
+      "encode",
+      "--source",
+      "C:\\Users\\lenovo\\Desktop\\临时\\语义\\test5_5fps_reconstructed.avi",
+      "--run",
+      "runs/probe_weight_bitstream",
+      "--frames",
+      "4",
+      "--width",
+      "256",
+      "--height",
+      "256",
+      "--q-index",
+      "32",
+      "--weight",
+      "runs/train_probe_fp32/probe_finetuned.ckpt",
+      "--i-weight",
+      "checkpoints/DMCI-6.0-mirror.pth.tar"
+    ],
+    "exit_code": 1,
+    "seconds": 2.58920420000004
+  },
+  {
+    "name": "train_probe_v2",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/train_probe.py",
+      "--frames",
+      "runs/baseline_720p_dmci_q0/reference",
+      "--output",
+      "runs/train_probe_fp32_v2",
+      "--i-weight",
+      "checkpoints/DMCI-6.0-mirror.pth.tar",
+      "--steps",
+      "20"
+    ],
+    "exit_code": 0,
+    "seconds": 5.053928899999846
+  },
+  {
+    "name": "probe_encode_v2",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/mlvc_file.py",
+      "encode",
+      "--source",
+      "C:\\Users\\lenovo\\Desktop\\临时\\语义\\test5_5fps_reconstructed.avi",
+      "--run",
+      "runs/probe_weight_bitstream_v2",
+      "--frames",
+      "4",
+      "--width",
+      "256",
+      "--height",
+      "256",
+      "--q-index",
+      "32",
+      "--weight",
+      "runs/train_probe_fp32_v2/probe_finetuned.ckpt",
+      "--i-weight",
+      "checkpoints/DMCI-6.0-mirror.pth.tar"
+    ],
+    "exit_code": 0,
+    "seconds": 4.025910700000168
+  },
+  {
+    "name": "probe_decode_v2",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/mlvc_file.py",
+      "decode",
+      "--file",
+      "runs/probe_weight_bitstream_v2/video.mlvcv",
+      "--output",
+      "runs/probe_weight_bitstream_v2/receiver",
+      "--weight",
+      "runs/train_probe_fp32_v2/probe_finetuned.ckpt",
+      "--i-weight",
+      "checkpoints/DMCI-6.0-mirror.pth.tar"
+    ],
+    "exit_code": 0,
+    "seconds": 3.7196702000001096
+  },
+  {
+    "name": "probe_verify_v2",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/mlvc_file.py",
+      "verify",
+      "--run",
+      "runs/probe_weight_bitstream_v2",
+      "--decoded",
+      "runs/probe_weight_bitstream_v2/receiver"
+    ],
+    "exit_code": 0,
+    "seconds": 2.677534899999955
+  },
+  {
+    "name": "comparison",
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\.venv\\Scripts\\python.exe",
+      "adapters/compare_baselines.py",
+      "--reference",
+      "runs/baseline_720p_dmci_q0/reference",
+      "--output",
+      "runs/comparison_native",
+      "--mlvc-runs",
+      "runs/baseline_720p_dmci_q0",
+      "runs/baseline_720p_dmci_q21",
+      "runs/baseline_720p_dmci_q42",
+      "runs/baseline_720p_dmci_q63"
+    ],
+    "exit_code": 0,
+    "seconds": 28.485134000000016
+  }
+]

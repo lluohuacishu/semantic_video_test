@@ -1,0 +1,60 @@
+{
+  "base_protocol_sha256": "142639d880a0484955f92fd7dda91737e7fe21affa79500df1e20cd43bb737ed",
+  "direction_sha256": "6f2a533b8ed1bc0e210d8e5417d0b0d48897ef722cfe8f9776a84d2eb7bd4823",
+  "prepared_at_utc": "2026-10-15T07:45:53.665529+00:00",
+  "annotation_source": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\outputs\\roi_control_20261015\\连续人工ROI核对\\annotations.json",
+  "annotation_snapshot": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\semantic_mvp_roi_control_20261015\\manual_roi_snapshot.json",
+  "annotation_snapshot_sha256": "9e4da19c6b20fd1e4326638917a1caaec1eb38a7abc2254adc6477e89334338e",
+  "reviewed_by": "human user; assistant applied confirmation flags and saved per user's explicit statement",
+  "user_attestation_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\outputs\\roi_control_20261015\\连续人工ROI核对\\人工核对完成声明_20261015.json",
+  "confirmed_frames": 50,
+  "positive_frames": 38,
+  "no_fish_frames": 12,
+  "boxes": 61,
+  "boxes_unchanged_after_user_statement": true,
+  "publisher_roi_box_differences": [
+    {
+      "frame": 450,
+      "publisher_boxes": [
+        [
+          1246,
+          298,
+          25,
+          12
+        ]
+      ],
+      "user_boxes": [
+        [
+          1246,
+          298,
+          25,
+          12
+        ],
+        [
+          1162,
+          7,
+          61,
+          39
+        ]
+      ]
+    }
+  ],
+  "pixel_gt": "unchanged four publisher fish masks only; manual boxes are not segmentation GT",
+  "semantic_messages": "unchanged frozen model prediction messages for every layered group; C/D human ROI coordinates are charged in manifest",
+  "target_complete_bytes": 100000,
+  "tolerance": 0.02,
+  "groups": {
+    "C": {
+      "window": 32,
+      "source": "continuous reviewed human/publisher ROI; diagnostic only"
+    },
+    "D": {
+      "window": 4,
+      "source": "same reviewed ROI; diagnostic only"
+    }
+  },
+  "profile": "same fixed background CRF42 and ROI P-only medium encoding as A/B",
+  "no_new_training": true,
+  "input_is_known_training_clip": true,
+  "interpretation": "human ROI diagnosis; not deployed performance and not a strict oracle upper bound"
+}
