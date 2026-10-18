@@ -1,0 +1,79 @@
+{
+  "status": "frozen_before_B2",
+  "selection": "Reuse existing per-target Teacher profiles unchanged; no outcome-based selection",
+  "targets": {
+    "fish": {
+      "target": "fish",
+      "class_id": 6,
+      "label": "鱼类",
+      "model_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+      "inference": "512 tiles, stride384, mean overlapping logits",
+      "threshold": 0.9,
+      "reliability": "limited; training video131 demo does not establish generalization",
+      "checkpoint": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\phase_c_20261013\\segformer_adaptation_preserve8\\best.pt",
+      "checkpoint_bytes": 14941395,
+      "checkpoint_sha256_verified": true,
+      "loaded_strictly": true,
+      "parameters_require_grad": false,
+      "mask_rule": "class6 probability >= 0.9 (no argmax requirement)"
+    },
+    "diver": {
+      "target": "diver",
+      "class_id": 1,
+      "label": "潜水员",
+      "model_sha256": "ff00cb439a4af290dc3efde8ae76d4acfad797784483b669ab6db79aaf5b1476",
+      "inference": "long edge 256, letterbox, argmax class1 and confidence>=0.7",
+      "threshold": 0.7,
+      "reliability": "demo has no manual GT; consistency only",
+      "checkpoint": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\runs\\suim_segformer_b0_20260915\\segmentation_best.pt",
+      "checkpoint_bytes": 14957579,
+      "checkpoint_sha256_verified": true,
+      "loaded_strictly": true,
+      "parameters_require_grad": false,
+      "mask_rule": "argmax == class1 and winning probability >= 0.7"
+    }
+  },
+  "labels": [
+    "BW",
+    "HD",
+    "PF",
+    "WR",
+    "RO",
+    "RI",
+    "FV",
+    "SR"
+  ],
+  "normalization": {
+    "rgb_range": [
+      0,
+      1
+    ],
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "roi": {
+    "layout": "halves",
+    "segment_frames": 32,
+    "padding": 16,
+    "min_pixels": 64,
+    "connectivity": 8
+  },
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "torch": "2.12.0+cu126",
+  "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "training_performed": false,
+  "inference_or_quality_evaluation_performed": false,
+  "limitations": [
+    "Fish and diver use different checkpoints and preprocessing; report separately.",
+    "Known small-fish misses remain; thresholds were not lowered.",
+    "No B2 semantic benefit has been measured."
+  ]
+}

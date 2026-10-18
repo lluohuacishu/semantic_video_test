@@ -1,0 +1,73 @@
+{
+  "original_runner_log": {
+    "available": false,
+    "reason": "Abrupt interruption before original finally block; no original return codes or command timings invented."
+  },
+  "recovery_commands": [
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\07_新阶段B_GLC语义保护与传输\\resume_b0_b1.py",
+        "--run",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b0_b1_r2"
+      ],
+      "cwd": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test",
+      "started_at": "2026-10-18T14:40:07.843870+08:00",
+      "baseline_code_commit": "33d657b555759296e11711cc427dbebd9775ad9d",
+      "recovery_script_sha256": "b5e74741622820343fdf0e2cd49c54ccd63111e24a2abc5ceb05d907b0e6ff65"
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\07_新阶段B_GLC语义保护与传输\\receiver_baseline.py",
+        "--config",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b0_b1_r2\\rate_40kbps\\receiver\\deployment.json",
+        "--output",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b0_b1_r2\\rate_40kbps\\receiver"
+      ],
+      "cwd": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b0_b1_r2\\rate_40kbps\\receiver",
+      "returncode": 0,
+      "log": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b0_b1_r2\\rate_40kbps\\receiver_process.log",
+      "seconds": 342.9238191000004
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-count_frames",
+        "-select_streams",
+        "v:0",
+        "-show_entries",
+        "stream=width,height,avg_frame_rate,nb_read_frames,duration",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b0_b1_r2\\rate_40kbps\\receiver\\decoded\\reconstruction_preview.mp4"
+      ],
+      "log": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b0_b1_r2\\rate_40kbps\\playback_probe.json",
+      "returncode": 0,
+      "seconds": 1.3492995999986306
+    },
+    {
+      "argv": [
+        "C:/Users/lenovo/Desktop/works/Python/video-baseline/tools/ffmpeg-9.0.1-essentials_build/bin/ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b0_b1_r2\\rate_40kbps\\receiver\\decoded\\reconstruction_preview.mp4",
+        "-f",
+        "null",
+        "-"
+      ],
+      "log": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b0_b1_r2\\rate_40kbps\\playback_decode.log",
+      "returncode": 0,
+      "seconds": 0.2290757000009762
+    }
+  ],
+  "original_per_rate_evidence": [
+    "rate_20kbps/result.json",
+    "rate_30kbps/result.json"
+  ],
+  "reproduction_instructions": "B0_B1复现说明.md"
+}

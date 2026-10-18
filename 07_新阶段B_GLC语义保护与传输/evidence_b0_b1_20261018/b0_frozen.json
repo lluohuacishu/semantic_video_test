@@ -1,0 +1,220 @@
+{
+  "status": "B0_frozen",
+  "config": {
+    "stage": "new_B",
+    "created_date": "2026-10-18",
+    "status": "B0_B1_implementation_ready_results_recorded_separately",
+    "decision": "User selected GLC-Video; new stage A closed.",
+    "a_evidence_commit": "e5ab01f2c16a4fd0d24786b84d2d0a96f2567c44",
+    "purpose": "First B0/B1 integration baseline; not an optimal codec configuration.",
+    "source": {
+      "role": "previously_used_development_clip",
+      "video_id": "video91",
+      "source_start_index": 0,
+      "frames": 250,
+      "width": 1280,
+      "height": 720,
+      "fps": 15,
+      "duration_seconds": 16.666666666666668,
+      "a_inputs_manifest": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_a_glc_round2_20261017\\long91\\inputs.json",
+      "a_inputs_manifest_sha256": "1ba54ab8a531a336fdecf80f1b7fb3aacefda2c3b386f813c4c95bd5f3fd3d44"
+    },
+    "codec": {
+      "name": "GLC-Video",
+      "quality": 0,
+      "intra_period": 64,
+      "reset_interval": 32,
+      "upstream_revision": "126db25f9c093508cd0c99cee32b53fd60074f9a",
+      "official_bitstream_format": false,
+      "container": "existing local glcv/rANS research adapter",
+      "arithmetic_profile": {
+        "implementation": "glcv-lab-f32-v1",
+        "torch": "2.5.1+cu124",
+        "cuda": "12.4",
+        "cudnn": 90100,
+        "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+        "capability": [
+          8,
+          9
+        ],
+        "tf32": false,
+        "deterministic": true
+      },
+      "expected_weight_hashes_from_a": {
+        "GLC_image.pth.tar": "139c1d49a56b5c14b0fbd7e0c43b53a4f0b093d35aa11c79ed9d0b9bfede4c94",
+        "GLC_Video.pth.tar": "c55a46f33b92945dcdc24bbbc023909368de78fce7830d3137e4d2ef7249ee62"
+      }
+    },
+    "baseline_stream": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_a_glc_round2_20261017\\long91\\glc_720_g64\\stream.glcv",
+      "bytes": 168338,
+      "sha256": "5fcfb4dec8e130d3db7fc1f45af5d3d7b8ef45eead8d4367433da2a784bf3db0",
+      "measurement_stage": "A; not a B transfer result"
+    },
+    "adapter": {
+      "repository_path": "04_外部依赖快照/semantic-video-training/scripts/glc_video_codec.py",
+      "runtime_path": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\scripts\\glc_video_codec.py",
+      "sha256": "308253789adcd35fc2e46e6fd837e837b8fb6381dbded338adfc46de46e54c58",
+      "repository_runtime_match_checked": true
+    },
+    "runtime_dependencies": {
+      "glc_python": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+      "segmentation_python": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-segformer\\Scripts\\python.exe",
+      "glc_repo": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\tools\\GLC",
+      "weights": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\checkpoints\\glc",
+      "ffmpeg": "C:/Users/lenovo/Desktop/works/Python/video-baseline/tools/ffmpeg-9.0.1-essentials_build/bin/ffmpeg.exe"
+    },
+    "transport_plan": {
+      "implementation": "01_主工程/semantic_mvp/transport.py",
+      "rates_kbps": [
+        20,
+        30,
+        40
+      ],
+      "rate_layer": "sender application bytes including complete file and transmission header",
+      "excluded_from_current_rate_accounting": [
+        "TCP/IP headers",
+        "link-layer overhead",
+        "reverse acknowledgements"
+      ],
+      "first_environment": "same-host loopback; no physical-channel claim",
+      "real_transfers_completed_in_stage_b": 0,
+      "existing_implementation_max_file_bytes": 268435456,
+      "user_file_size_limit_bytes": null,
+      "user_duration_limit_seconds": null
+    },
+    "semantic_plan": {
+      "target_profiles": {
+        "fish": {
+          "model_checkpoint": "C:/Users/lenovo/Desktop/works/work/semantic-video-mlvc/runs/phase_c_20261013/segformer_adaptation_preserve8/best.pt",
+          "model_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+          "class_id": 6,
+          "threshold": 0.9,
+          "inference": "Existing Teacher fish profile: tiles512, stride384, mean overlapping logits; class6 probability >= 0.9"
+        },
+        "diver": {
+          "model_checkpoint": "C:/Users/lenovo/Desktop/works/work/semantic-video-training/runs/suim_segformer_b0_20260915/segmentation_best.pt",
+          "model_sha256": "ff00cb439a4af290dc3efde8ae76d4acfad797784483b669ab6db79aaf5b1476",
+          "class_id": 1,
+          "threshold": 0.7,
+          "inference": "Existing Teacher diver profile: long edge256, center letterbox; argmax class1 and confidence >= 0.7"
+        }
+      },
+      "freeze_status": "profiles_selected_before_B2; each B0 run verifies checkpoint hashes and strict loading",
+      "selection_reason": "Reuse existing target-specific Teacher behavior without tuning on B outcomes; keep the known fish small-target limitation",
+      "roi": {
+        "layout": "halves",
+        "segment_frames": 32,
+        "padding": 16,
+        "min_pixels": 64
+      },
+      "targets": [
+        "fish",
+        "diver"
+      ],
+      "enhancement": "source-derived ROI H.265 patches over full-frame GLC; proposed, not implemented",
+      "ground_truth_at_sender": false
+    },
+    "output_policy": {
+      "new_directory_pattern": "work/stage_b_<date>_<step>",
+      "preserve_stage_a": true,
+      "upload_media_or_weights": false
+    }
+  },
+  "code_commit": "33d657b555759296e11711cc427dbebd9775ad9d",
+  "branch": "codex/glc-b0-b1",
+  "git_status_at_start": "",
+  "code_hashes": {
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_codec.py": "308253789adcd35fc2e46e6fd837e837b8fb6381dbded338adfc46de46e54c58",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\04_外部依赖快照\\semantic-video-training\\scripts\\glc_container.py": "4df5da71f83fca81b275f349c4cf2c3021642726be889e7e733ebd0d4863061f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\04_外部依赖快照\\semantic-video-training\\scripts\\glc_entropy.py": "766905d2031c42d15e5c164653996313fa19dd2e6f14e7dc0ac33e70632be0e3",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_probe.py": "013594d16777ee2f112589bbccbe8fc4936eb6459328b306084aad23afb39e20",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\01_主工程\\semantic_mvp\\transport.py": "55dba6d56062f129383db95002e5286fbb80bc024b07489e36f0d90f5615f576",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\07_新阶段B_GLC语义保护与传输\\receiver_baseline.py": "d74fe8e1ab539a83ffd5d55d9bb0434dbb5f939e5694e54de96c2db5ec1b0ae9",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\07_新阶段B_GLC语义保护与传输\\run_b0_b1.py": "634b9dc6f397c812f04c134765b5dec2ef38dc94d6cc7dc231084c2f3510ca08",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\07_新阶段B_GLC语义保护与传输\\freeze_semantics.py": "3594346a187034f2fd055094393f601ae9edba13684dd8d715f9afc23f947c1c",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\01_主工程\\semantic_mvp\\teacher.py": "4767a0df2ebe7ef91d5ba50e93f123382c89ba9411fb7799f6500dad297a914e",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\01_主工程\\semantic_mvp\\roi_layout.py": "def94db467c0de0c6426d92963ac700919a552286b81b3edaa7b2f0fc2747c4a",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\01_主工程\\adapters\\semantic_teacher.py": "1f1400eef8817215a6a9d1a24c60e733dd2c3c5c88ef07663ef2873702779eb1",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\01_主工程\\adapters\\common.py": "4069f6279b23658a4be1e95b27fbe74b2ecdd39d74d02193bd881e64de77dcfb"
+  },
+  "adapter_matches": [
+    {
+      "repository": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_codec.py",
+      "runtime": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\scripts\\glc_video_codec.py",
+      "sha256": "308253789adcd35fc2e46e6fd837e837b8fb6381dbded338adfc46de46e54c58",
+      "match": true
+    },
+    {
+      "repository": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\04_外部依赖快照\\semantic-video-training\\scripts\\glc_container.py",
+      "runtime": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\scripts\\glc_container.py",
+      "sha256": "4df5da71f83fca81b275f349c4cf2c3021642726be889e7e733ebd0d4863061f",
+      "match": true
+    },
+    {
+      "repository": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\04_外部依赖快照\\semantic-video-training\\scripts\\glc_entropy.py",
+      "runtime": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\scripts\\glc_entropy.py",
+      "sha256": "766905d2031c42d15e5c164653996313fa19dd2e6f14e7dc0ac33e70632be0e3",
+      "match": true
+    },
+    {
+      "repository": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\github_upload_20261017\\semantic_video_test\\04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_probe.py",
+      "runtime": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\scripts\\glc_video_probe.py",
+      "sha256": "013594d16777ee2f112589bbccbe8fc4936eb6459328b306084aad23afb39e20",
+      "match": true
+    }
+  ],
+  "header": {
+    "arithmetic": {
+      "capability": [
+        8,
+        9
+      ],
+      "cuda": "12.4",
+      "cudnn": 90100,
+      "deterministic": true,
+      "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "implementation": "glcv-lab-f32-v1",
+      "tf32": false,
+      "torch": "2.5.1+cu124"
+    },
+    "entropy": "python-byte-rans-gaussian128-v1",
+    "fps": 15.0,
+    "frames": 250,
+    "height": 720,
+    "intra_period": 64,
+    "q": 0,
+    "reset_interval": 32,
+    "revision": "126db25f9c093508cd0c99cee32b53fd60074f9a",
+    "table_sha256": "a6b6e078b8554d60a065e59a35bd1b0c181b0b4f4bfcf73cd78403bb73e375ac",
+    "weights": {
+      "GLC_Video.pth.tar": "c55a46f33b92945dcdc24bbbc023909368de78fce7830d3137e4d2ef7249ee62",
+      "GLC_image.pth.tar": "139c1d49a56b5c14b0fbd7e0c43b53a4f0b093d35aa11c79ed9d0b9bfede4c94"
+    },
+    "width": 1280
+  },
+  "checked_source_frames": 250,
+  "shared_weights": {
+    "GLC_image.pth.tar": {
+      "url": "https://github.com/jzyustc/GLC/releases/download/GLC-Image/GLC_image.pth.tar",
+      "sha256": "139c1d49a56b5c14b0fbd7e0c43b53a4f0b093d35aa11c79ed9d0b9bfede4c94",
+      "bytes": 667371692
+    },
+    "GLC_Video.pth.tar": {
+      "url": "https://github.com/jzyustc/GLC/releases/download/GLC-Video/GLC_Video.pth.tar",
+      "sha256": "c55a46f33b92945dcdc24bbbc023909368de78fce7830d3137e4d2ef7249ee62",
+      "bytes": 502245134
+    }
+  },
+  "byte_ledger": {
+    "glc_codebook_bytes": 8568,
+    "glc_entropy_bytes": 137534,
+    "glc_container_and_checksums_bytes": 22236,
+    "glc_file_bytes": 168338,
+    "roi_bytes": 0,
+    "semantic_message_bytes": 0,
+    "roi_position_time_bytes": 0,
+    "outer_package_bytes": 0,
+    "shared_GLC_weight_bytes_not_sent": 1169616826
+  }
+}

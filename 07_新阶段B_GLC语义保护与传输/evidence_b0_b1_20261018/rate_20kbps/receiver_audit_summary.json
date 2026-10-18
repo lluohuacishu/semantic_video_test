@@ -1,0 +1,77 @@
+{
+  "scope": "Python file opens and explicit subprocess arguments; not OS isolation; native DLL reads are not audited",
+  "python_open_attempts_by_category": {
+    "python_runtime_or_installed_package": 2088,
+    "declared_shared_model": 6,
+    "decoder_code_or_configuration": 12,
+    "pinned_adapter_or_transport_code": 13,
+    "receiver_directory": 2309
+  },
+  "shared_model_allowlist": {
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\checkpoints\\glc\\GLC_image.pth.tar": "139c1d49a56b5c14b0fbd7e0c43b53a4f0b093d35aa11c79ed9d0b9bfede4c94",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\checkpoints\\glc\\GLC_Video.pth.tar": "c55a46f33b92945dcdc24bbbc023909368de78fce7830d3137e4d2ef7249ee62"
+  },
+  "denied_reads": [],
+  "external_source_or_sender_cache_reads": [],
+  "subprocesses": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\tools\\GLC",
+        "rev-parse",
+        "HEAD"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\tools\\GLC",
+        "diff",
+        "HEAD",
+        "--"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-framerate",
+        "15.0",
+        "-start_number",
+        "1",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b0_b1_r2\\rate_20kbps\\receiver\\decoded\\frames\\im%05d.png",
+        "-an",
+        "-vf",
+        "pad=ceil(iw/2)*2:ceil(ih/2)*2",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "fast",
+        "-crf",
+        "16",
+        "-pix_fmt",
+        "yuv420p",
+        "-movflags",
+        "+faststart",
+        "-y",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b0_b1_r2\\rate_20kbps\\receiver\\decoded\\reconstruction_preview.mp4"
+      ],
+      "allowed": true
+    }
+  ],
+  "full_local_audit": {
+    "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b0_b1_r2\\rate_20kbps\\receiver\\receiver_read_audit.json",
+    "bytes": 1286271,
+    "sha256": "f7af9bee07ee7e00521709ac20cc3dc92c3b5982765e677b3c7970779ab0e282"
+  },
+  "receiver_pid": 42036,
+  "evaluator_pid": 36312
+}
