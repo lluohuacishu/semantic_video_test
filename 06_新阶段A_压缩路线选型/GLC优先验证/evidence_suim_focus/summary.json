@@ -1,0 +1,53 @@
+{
+  "dataset": "SUIM",
+  "split": "validation",
+  "selection": "Largest annotated target in each fixed category: fish-only, diver-only, and jointly fish+diver; chosen by label counts before codec outcomes.",
+  "samples": [
+    {
+      "id": "train_val/f_r_1036_",
+      "fish_gt_pixels": 207803,
+      "diver_gt_pixels": 0
+    },
+    {
+      "id": "train_val/n_l_28_",
+      "fish_gt_pixels": 0,
+      "diver_gt_pixels": 165294
+    },
+    {
+      "id": "train_val/d_r_46_",
+      "fish_gt_pixels": 372176,
+      "diver_gt_pixels": 194327
+    }
+  ],
+  "codec": "Existing CompressAI bmshj2018-hyperprior pretrained model; CPU entropy coding; q1/q3/q5; no training.",
+  "semantic_evaluator": "Existing SUIM SegFormer-B0 at 256 input; same model before/after; label IoU calculated at original image size.",
+  "quality_means": [
+    {
+      "quality": 1,
+      "mean_bytes": 6369.666666666667,
+      "mean_psnr_db": 31.053241221906053,
+      "mean_ssim": 0.8722664912541708,
+      "mean_segmentation_pixel_agreement": 0.9469420733667695
+    },
+    {
+      "quality": 3,
+      "mean_bytes": 11702.0,
+      "mean_psnr_db": 34.8534420837239,
+      "mean_ssim": 0.9273638129234314,
+      "mean_segmentation_pixel_agreement": 0.9781651475694444
+    },
+    {
+      "quality": 5,
+      "mean_bytes": 20625.666666666668,
+      "mean_psnr_db": 38.36371805354347,
+      "mean_ssim": 0.9593252936999003,
+      "mean_segmentation_pixel_agreement": 0.9904292454346707
+    }
+  ],
+  "limitations": [
+    "Three targeted validation images, not a dataset-level result.",
+    "Predicted class IoU is model output compared with human labels and is not an independent recognition score.",
+    "No human image or video rating.",
+    "No SUIM video is available in this experiment."
+  ]
+}

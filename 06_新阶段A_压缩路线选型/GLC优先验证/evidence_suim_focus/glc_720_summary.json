@@ -1,0 +1,55 @@
+{
+  "run": "glc_720_g64",
+  "file_bytes": 168338,
+  "frames": 250,
+  "fps": 15,
+  "duration_seconds": 16.666666666666668,
+  "source_same_rgb_frames": 250,
+  "receiver_same_rgb_frames": 250,
+  "source_media_reads": [],
+  "all_frame_checksums_match": true,
+  "header": {
+    "width": 1280,
+    "height": 720,
+    "fps": 15.0,
+    "frames": 250,
+    "q": 0,
+    "intra_period": 64,
+    "reset_interval": 32,
+    "revision": "126db25f9c093508cd0c99cee32b53fd60074f9a",
+    "entropy": "python-byte-rans-gaussian128-v1",
+    "table_sha256": "a6b6e078b8554d60a065e59a35bd1b0c181b0b4f4bfcf73cd78403bb73e375ac",
+    "arithmetic": {
+      "implementation": "glcv-lab-f32-v1",
+      "torch": "2.5.1+cu124",
+      "cuda": "12.4",
+      "cudnn": 90100,
+      "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "capability": [
+        8,
+        9
+      ],
+      "tf32": false,
+      "deterministic": true
+    },
+    "weights": {
+      "GLC_image.pth.tar": "139c1d49a56b5c14b0fbd7e0c43b53a4f0b093d35aa11c79ed9d0b9bfede4c94",
+      "GLC_Video.pth.tar": "c55a46f33b92945dcdc24bbbc023909368de78fce7830d3137e4d2ef7249ee62"
+    }
+  },
+  "full_psnr_db": 31.166537623656705,
+  "fish_psnr_db": 25.634478860356044,
+  "fish_pixels": 42459,
+  "temporal_error_delta_mae_mean": 4.579467028995612,
+  "payload_wait_seconds": {
+    "20": 67.3352,
+    "30": 44.89013333333333,
+    "40": 33.6676
+  },
+  "limitations": [
+    "Target PSNR is a pixel diagnostic, not a recognition score.",
+    "Error-delta is not an established perceptual flicker score.",
+    "720p uses more bytes than the previous 540p point; not an equal-budget codec comparison."
+  ],
+  "source": "video91 existing 250-frame development clip; not an independent holdout."
+}
