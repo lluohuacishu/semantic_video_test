@@ -1,0 +1,15 @@
+{
+  "stage": "B2_first_development_clip",
+  "baseline_config": "b0_baseline.json",
+  "baseline_evidence": "../evidence_b0_b1_20261018/b0_frozen.json",
+  "targets": ["fish", "diver"],
+  "roi": {"layout": "halves", "segment_frames": 32, "padding": 16, "min_pixels": 64},
+  "roi_crf": 32,
+  "roi_crf_reason": "Unchanged semantic_mvp/system.py default; selected before B2 results, no search.",
+  "rates_kbps": [20, 30, 40],
+  "compositor": "hard_replace_disjoint_rectangles_v1",
+  "fixed_diagnostic_crop_xyxy": [256, 576, 512, 720],
+  "crop_provenance": "Existing A video91 fish-stripe diagnostic; fixed before B2 inference and not used to select transmitted ROI.",
+  "slow_view_source_frame_range": [210, 249],
+  "semantic_benefit_acceptance": "B3 independent clips, matched-budget controls and real human review remain pending."
+}
