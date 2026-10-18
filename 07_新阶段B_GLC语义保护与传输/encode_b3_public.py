@@ -26,6 +26,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--reuse-glc-run", type=Path,
+                        help="Reuse a completed encode from this exact source/hash/GLC configuration")
     parser.add_argument("--baseline-config", type=Path, default=Path(__file__).parent / "configs/b0_baseline.json")
     parser.add_argument("--frames", type=int, required=True)
     parser.add_argument("--q", type=int, default=0)
@@ -54,16 +56,47 @@ def main():
 
     glc = output / "glc"
     glc.mkdir()
-    argv = [deps["glc_python"], "-B", adapter, "encode", "--input", args.input,
-            "--output", glc / "stream.glcv", "--workdir", glc / "sender",
-            "--frames", args.frames, "--start-frame", 0, "--width", 1280,
-            "--q", args.q, "--intra-period", args.intra_period, "--reset-interval", args.reset_interval,
-            "--repo", deps["glc_repo"], "--weights", deps["weights"], "--ffmpeg", deps["ffmpeg"], "--device", "cuda"]
     start = time.perf_counter()
-    run(argv, output / "glc_encode.log")
+    source_sha256 = sha(args.input)
+    argv = None
+    if args.reuse_glc_run:
+        prior = args.reuse_glc_run.resolve()
+        prior_packet = prior / "stream.glcv"
+        prior_work = prior / "sender"
+        prior_source = prior_work / "source"
+        prior_info = read(prior_work / "encode.json")
+        header = prior_info["header"]
+        require(Path(prior_info["input"]["input_path"]).resolve() == args.input.resolve(),
+                "Completed GLC input path differs")
+        require(prior_info["input"]["input_bytes"] == args.input.stat().st_size
+                and int(header["frames"]) == args.frames and int(header["q"]) == args.q
+                and int(header["intra_period"]) == args.intra_period
+                and int(header["reset_interval"]) == args.reset_interval,
+                "Completed GLC run configuration differs")
+        require(prior_packet.is_file() and sha(prior_packet) == prior_info["file_sha256"]
+                and prior_packet.stat().st_size == prior_info["file_bytes"], "Completed GLC stream changed")
+        require(len(list(prior_source.glob("im*.png"))) == args.frames, "Completed GLC source extraction incomplete")
+        shutil.copyfile(prior_packet, glc / "stream.glcv")
+        shutil.copytree(prior_source, glc / "source")
+        source_info = prior_info["input"]
+        header = prior_info["header"]
+        write(output / "glc_reuse.json", {"source_run": str(prior), "stream": str(prior_packet),
+              "stream_sha256": sha(prior_packet), "input_sha256": source_sha256,
+              "reuse_reason": "prior GLC encoding completed successfully; downstream sender failed before Teacher inference"})
+    else:
+        argv = [deps["glc_python"], "-B", adapter, "encode", "--input", args.input,
+                "--output", glc / "stream.glcv", "--workdir", glc / "sender",
+                "--frames", args.frames, "--start-frame", 0, "--width", 1280,
+                "--q", args.q, "--intra-period", args.intra_period, "--reset-interval", args.reset_interval,
+                "--repo", deps["glc_repo"], "--weights", deps["weights"], "--ffmpeg", deps["ffmpeg"], "--device", "cuda"]
+        run(argv, output / "glc_encode.log")
+        prior_work = glc / "sender"
+        prior_source = prior_work / "source"
+        prior_info = read(prior_work / "encode.json")
+        source_info = prior_info["input"]
+        header = prior_info["header"]
     source_dir = glc / "source"
     require(source_dir.is_dir(), "GLC source frames missing")
-    source_info = read(glc / "encode.json")["input"]
     require(source_info["processed_frames"] == args.frames and [source_info["width"], source_info["height"]] == [1280, 720], "GLC source geometry/count mismatch")
     fps = runtime.fps_string(source_info["fps"])
     frames = output / "private_frames"
@@ -78,7 +111,7 @@ def main():
             mapping.append({"frame": index, "png_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
                             "rgb_sha256": hashlib.sha256(rgb.tobytes()).hexdigest()})
     write(output / "source_audit.json", {"role": "public_source_candidate_contiguous_window", "input": str(args.input.resolve()),
-          "input_sha256": sha(args.input), "width": 1280, "height": 720, "fps": source_info["fps"],
+          "input_sha256": source_sha256, "width": 1280, "height": 720, "fps": source_info["fps"],
           "frames": args.frames, "mapping": mapping, "ground_truth_read": False})
 
     records = [{"frame": i, "targets": {}} for i in range(args.frames)]
@@ -120,13 +153,22 @@ def main():
     packet = output / "message.scv"
     ledger = glc_layered.write_packet(streams, manifest, packet)
     write(output / "manifest.json", manifest)
+    write(output / "run_identity.json", {"code_commit": git("rev-parse", "HEAD"),
+          "script_sha256": sha(__file__), "adapter_sha256": sha(adapter), "input": str(args.input.resolve()),
+          "input_sha256": source_sha256, "input_bytes": args.input.stat().st_size,
+          "glc_quality": args.q, "intra_period": args.intra_period, "reset_interval": args.reset_interval,
+          "roi_crf": args.roi_crf, "roi_config": {"layout": "halves", "segment_frames": 32, "padding": 16,
+          "min_pixels": 64}, "model_profiles": profiles, "training": False,
+          "reused_completed_glc": args.reuse_glc_run is not None})
     write(output / "encode.json", {"status": "B3_public_candidate_sender_complete", "packet": str(packet),
           "packet_sha256": sha(packet), "packet_bytes": packet.stat().st_size, "byte_ledger": ledger,
           "frames": args.frames, "fps": fps, "patches": len(patches), "source_predictions": {
           target: {"present_frames": sum(row["targets"][target]["pixels"] > 0 for row in records),
                    "component_instances": sum(len(row["targets"][target]["regions"]) for row in records)} for target in profiles},
           "elapsed_seconds": time.perf_counter() - start, "semantic_benefit": "not_evaluated",
-          "ground_truth_used": False, "source_exposure_verified": False})
+          "ground_truth_used": False, "source_exposure_verified": False,
+          "glc_header": header, "code_commit": git("rev-parse", "HEAD"),
+          "run_identity_sha256": sha(output / "run_identity.json")})
     print(f"Encoded {args.input.name}: {args.frames} frames, {packet.stat().st_size} packet bytes, {len(patches)} patches", flush=True)
 
 
