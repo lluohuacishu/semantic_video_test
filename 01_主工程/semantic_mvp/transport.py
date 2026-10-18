@@ -72,7 +72,7 @@ def receive_connection(connection, output: Path, event=None):
     return {"bytes": size, "sha256": expected_hash, "verified": True}
 
 
-def send_file(source: Path, host: str, port: int, kbps: float, *, event=None, progress=None, trace=None):
+def send_file(source: Path, host: str, port: int, kbps: float, *, event=None, progress=None, trace=None, schedule_trace=None):
     if not math.isfinite(kbps) or not 1 <= kbps <= 100000:
         raise ValueError("传输速度应为 1～100000 kbps")
     size = source.stat().st_size
@@ -83,6 +83,7 @@ def send_file(source: Path, host: str, port: int, kbps: float, *, event=None, pr
     header = json.dumps({"bytes": size, "sha256": digest}, separators=(",", ":")).encode()
     prefix = struct.pack("!I", len(header)) + header
     rows = []
+    schedule_rows = []
     with socket.create_connection((host, port), timeout=5) as connection, source.open("rb") as handle:
         connection.settimeout(0.5)
         started = time.monotonic()
@@ -101,8 +102,12 @@ def send_file(source: Path, host: str, port: int, kbps: float, *, event=None, pr
                 else:
                     event.wait(min(remaining, 0.1))
             check_cancel(event)
+            send_started = time.monotonic()
             connection.sendall(data)
             sent += len(data)
+            if schedule_trace is not None:
+                schedule_rows.append((len(data), sent, deadline - started,
+                                      send_started - started, time.monotonic() - started))
 
         paced_send(prefix)
         while chunk := handle.read(1024):
@@ -125,6 +130,12 @@ def send_file(source: Path, host: str, port: int, kbps: float, *, event=None, pr
             writer = csv.writer(handle)
             writer.writerow(("elapsed_seconds", "file_bytes_sent", "application_bytes_sent", "average_kbps"))
             writer.writerows(rows)
+    if schedule_trace is not None:
+        with Path(schedule_trace).open("x", encoding="utf-8-sig", newline="") as handle:
+            writer = csv.writer(handle)
+            writer.writerow(("chunk_bytes", "cumulative_application_bytes", "scheduled_seconds",
+                             "send_started_seconds", "send_finished_seconds"))
+            writer.writerows(schedule_rows)
     return {"protocol": "TCP", "host": host, "port": port, "limit_kbps": kbps,
             "file_bytes": size, "application_bytes": sent, "sha256": digest, "verified": True,
             "elapsed_seconds": elapsed, "average_file_kbps": size * 8 / elapsed / 1000,

@@ -1,7 +1,7 @@
 {
   "stage": "new_B",
   "created_date": "2026-10-18",
-  "status": "planning_only_not_executed",
+  "status": "B0_B1_implementation_ready_results_recorded_separately",
   "decision": "User selected GLC-Video; new stage A closed.",
   "a_evidence_commit": "e5ab01f2c16a4fd0d24786b84d2d0a96f2567c44",
   "purpose": "First B0/B1 integration baseline; not an optimal codec configuration.",
@@ -82,10 +82,25 @@
     "user_duration_limit_seconds": null
   },
   "semantic_plan": {
-    "model_checkpoint": null,
-    "model_sha256": null,
-    "prediction_threshold": null,
-    "freeze_status": "select and record existing model in B0 before evaluating B2",
+    "target_profiles": {
+      "fish": {
+        "model_checkpoint": "C:/Users/lenovo/Desktop/works/work/semantic-video-mlvc/runs/phase_c_20261013/segformer_adaptation_preserve8/best.pt",
+        "model_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+        "class_id": 6,
+        "threshold": 0.9,
+        "inference": "Existing Teacher fish profile: tiles512, stride384, mean overlapping logits; class6 probability >= 0.9"
+      },
+      "diver": {
+        "model_checkpoint": "C:/Users/lenovo/Desktop/works/work/semantic-video-training/runs/suim_segformer_b0_20260915/segmentation_best.pt",
+        "model_sha256": "ff00cb439a4af290dc3efde8ae76d4acfad797784483b669ab6db79aaf5b1476",
+        "class_id": 1,
+        "threshold": 0.7,
+        "inference": "Existing Teacher diver profile: long edge256, center letterbox; argmax class1 and confidence >= 0.7"
+      }
+    },
+    "freeze_status": "profiles_selected_before_B2; each B0 run verifies checkpoint hashes and strict loading",
+    "selection_reason": "Reuse existing target-specific Teacher behavior without tuning on B outcomes; keep the known fish small-target limitation",
+    "roi": {"layout": "halves", "segment_frames": 32, "padding": 16, "min_pixels": 64},
     "targets": [
       "fish",
       "diver"
