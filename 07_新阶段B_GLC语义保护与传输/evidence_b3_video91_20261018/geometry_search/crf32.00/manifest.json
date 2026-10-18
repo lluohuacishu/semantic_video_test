@@ -1,0 +1,315 @@
+{
+  "profile": "semantic-video-glc-roi-v1",
+  "version": 1,
+  "mode": "video",
+  "width": 1280,
+  "height": 720,
+  "frames": 250,
+  "fps": "15/1",
+  "base": {
+    "file": "base.glcv",
+    "codec": "glcv-lab-f32-v1"
+  },
+  "patches": [
+    {
+      "file": "roi_0000.mp4",
+      "start": 0,
+      "frames": 32,
+      "box": [
+        0,
+        180,
+        640,
+        360
+      ],
+      "partition": "left"
+    },
+    {
+      "file": "roi_0001.mp4",
+      "start": 0,
+      "frames": 32,
+      "box": [
+        640,
+        180,
+        640,
+        360
+      ],
+      "partition": "right"
+    },
+    {
+      "file": "roi_0002.mp4",
+      "start": 32,
+      "frames": 32,
+      "box": [
+        0,
+        180,
+        640,
+        360
+      ],
+      "partition": "left"
+    },
+    {
+      "file": "roi_0003.mp4",
+      "start": 32,
+      "frames": 32,
+      "box": [
+        640,
+        180,
+        640,
+        360
+      ],
+      "partition": "right"
+    },
+    {
+      "file": "roi_0004.mp4",
+      "start": 64,
+      "frames": 32,
+      "box": [
+        0,
+        180,
+        640,
+        360
+      ],
+      "partition": "left"
+    },
+    {
+      "file": "roi_0005.mp4",
+      "start": 64,
+      "frames": 32,
+      "box": [
+        640,
+        180,
+        640,
+        360
+      ],
+      "partition": "right"
+    },
+    {
+      "file": "roi_0006.mp4",
+      "start": 96,
+      "frames": 32,
+      "box": [
+        0,
+        180,
+        640,
+        360
+      ],
+      "partition": "left"
+    },
+    {
+      "file": "roi_0007.mp4",
+      "start": 96,
+      "frames": 32,
+      "box": [
+        640,
+        180,
+        640,
+        360
+      ],
+      "partition": "right"
+    },
+    {
+      "file": "roi_0008.mp4",
+      "start": 128,
+      "frames": 32,
+      "box": [
+        0,
+        180,
+        640,
+        360
+      ],
+      "partition": "left"
+    },
+    {
+      "file": "roi_0009.mp4",
+      "start": 128,
+      "frames": 32,
+      "box": [
+        640,
+        180,
+        640,
+        360
+      ],
+      "partition": "right"
+    },
+    {
+      "file": "roi_0010.mp4",
+      "start": 160,
+      "frames": 32,
+      "box": [
+        0,
+        180,
+        640,
+        360
+      ],
+      "partition": "left"
+    },
+    {
+      "file": "roi_0011.mp4",
+      "start": 160,
+      "frames": 32,
+      "box": [
+        640,
+        180,
+        640,
+        360
+      ],
+      "partition": "right"
+    },
+    {
+      "file": "roi_0012.mp4",
+      "start": 192,
+      "frames": 32,
+      "box": [
+        0,
+        180,
+        640,
+        360
+      ],
+      "partition": "left"
+    },
+    {
+      "file": "roi_0013.mp4",
+      "start": 192,
+      "frames": 32,
+      "box": [
+        640,
+        180,
+        640,
+        360
+      ],
+      "partition": "right"
+    },
+    {
+      "file": "roi_0014.mp4",
+      "start": 224,
+      "frames": 26,
+      "box": [
+        0,
+        180,
+        640,
+        360
+      ],
+      "partition": "left"
+    },
+    {
+      "file": "roi_0015.mp4",
+      "start": 224,
+      "frames": 26,
+      "box": [
+        640,
+        180,
+        640,
+        360
+      ],
+      "partition": "right"
+    }
+  ],
+  "targets": {
+    "fish": {
+      "target": "fish",
+      "class_id": 6,
+      "label": "鱼类",
+      "model_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+      "inference": "512 tiles, stride384, mean overlapping logits",
+      "threshold": 0.9,
+      "reliability": "limited; training video131 demo does not establish generalization"
+    },
+    "diver": {
+      "target": "diver",
+      "class_id": 1,
+      "label": "潜水员",
+      "model_sha256": "ff00cb439a4af290dc3efde8ae76d4acfad797784483b669ab6db79aaf5b1476",
+      "inference": "long edge 256, letterbox, argmax class1 and confidence>=0.7",
+      "threshold": 0.7,
+      "reliability": "demo has no manual GT; consistency only"
+    }
+  },
+  "semantics_file": "semantics.json.gz",
+  "roi_layout": "halves",
+  "compositor": "hard_replace_disjoint_rectangles_v1",
+  "configuration": {
+    "roi": {
+      "layout": "halves",
+      "segment_frames": 32,
+      "padding": 16,
+      "min_pixels": 64
+    },
+    "roi_crf": 32.0,
+    "h265": "existing runtime.encode_h265: medium, zerolatency, P-only, keyint32, BT709 limited YUV420",
+    "selection": "fixed_center_half_height_band; predictions transmitted but not used for geometry"
+  },
+  "files": {
+    "base.glcv": {
+      "bytes": 168338,
+      "sha256": "5fcfb4dec8e130d3db7fc1f45af5d3d7b8ef45eead8d4367433da2a784bf3db0"
+    },
+    "roi_0000.mp4": {
+      "bytes": 11756,
+      "sha256": "1df862ec5e478d5d4218cf182d30cc24de2945341b4ecf4d9609922063e061b2"
+    },
+    "roi_0001.mp4": {
+      "bytes": 17204,
+      "sha256": "282517091d2206029d492251639f88c9e41f982e9eedc42cfa2e83c3602e2064"
+    },
+    "roi_0002.mp4": {
+      "bytes": 10639,
+      "sha256": "d8b5a7668b42b7b7cf8ecb55aa2cf2c78c7afb47cd7ac446cf64c3b72c7d6b4c"
+    },
+    "roi_0003.mp4": {
+      "bytes": 10256,
+      "sha256": "c454f788e87fdf41e2247f3291473accced4fdded65f042b0ad2d3fc7769e4e5"
+    },
+    "roi_0004.mp4": {
+      "bytes": 11403,
+      "sha256": "a3a6b5e634055ab79b7a790a2269fb20a4f28d449494426f21c6c1c76d82f07b"
+    },
+    "roi_0005.mp4": {
+      "bytes": 10534,
+      "sha256": "db4162631f1ad1803cd58fc052189d0b24c9c9c76d498d8aaba3ca09da0e29dc"
+    },
+    "roi_0006.mp4": {
+      "bytes": 14190,
+      "sha256": "e3608f6cfd39b8f6daeab7cb0f71388e68f4f0e94763cae967f24fba5a649bdd"
+    },
+    "roi_0007.mp4": {
+      "bytes": 12847,
+      "sha256": "818909a7b29582544010d30b603aa0aeeda34e01aecf964cca2e01e61c20bdec"
+    },
+    "roi_0008.mp4": {
+      "bytes": 20187,
+      "sha256": "3f48beb39ec9b50ec330d5054f7665a46db8c9e95e39e0b4dc6a4b721280bce0"
+    },
+    "roi_0009.mp4": {
+      "bytes": 16594,
+      "sha256": "29d77bb2c8dc0a879f6aadd5c67d83492aa038fb6d468d38423b455779698910"
+    },
+    "roi_0010.mp4": {
+      "bytes": 31156,
+      "sha256": "a77c2e9836e71541614d78147d0e1e927ccb017006fb79c316d16b4fde617d92"
+    },
+    "roi_0011.mp4": {
+      "bytes": 23793,
+      "sha256": "97082a7e02037e38f9d2a02bf4bc22ad3bdecf114703d9476885a82c13a0c772"
+    },
+    "roi_0012.mp4": {
+      "bytes": 27693,
+      "sha256": "d4d129e18a6d42fd0661de8de13819b83d62c16876e4b089d966c0ad2f1f2bd2"
+    },
+    "roi_0013.mp4": {
+      "bytes": 20330,
+      "sha256": "db291f62dfb1c4da65984f21e0d57646e053a696283ea1635b42233bef4492fe"
+    },
+    "roi_0014.mp4": {
+      "bytes": 24627,
+      "sha256": "eae66899c545042f1d03fccb621deb9111626bca024c134553a3fde0ece269d2"
+    },
+    "roi_0015.mp4": {
+      "bytes": 21306,
+      "sha256": "447e1daea32afd13e0aa1435dee6c961d61ff89651e63c674569b5c13b81d4b9"
+    },
+    "semantics.json.gz": {
+      "bytes": 11469,
+      "sha256": "8c3366a1581f5c56194207d548932999eb867fe53f62f6ba90c41252f86aeb7e"
+    }
+  }
+}

@@ -3,9 +3,20 @@ import unittest
 import numpy as np
 from encode_b3_controls import next_integer, closest
 from evaluate_b3_controls import rect_mask, edges
+from collect_b3_evidence import archive_payload
+from pathlib import Path
+import gzip
 
 
 class BudgetTests(unittest.TestCase):
+    def test_evidence_compression_is_deterministic_and_byte_exact(self):
+        source=(b"read-audit-path,"*20000)+bytes(range(256))
+        path,payload,kind=archive_payload(Path("audit.json"),source)
+        self.assertEqual((path,kind),("audit.json.gz","gzip"))
+        self.assertLess(len(payload),len(source))
+        self.assertEqual(gzip.decompress(payload),source)
+        self.assertEqual(payload,archive_payload(Path("audit.json"),source)[1])
+
     def test_increasing_and_decreasing_brackets(self):
         self.assertEqual(next_integer([{"q":0,"b":100},{"q":63,"b":900}],500,"q","b",0,63),31)
         self.assertEqual(next_integer([{"q":0,"b":900},{"q":128,"b":100}],500,"q","b",0,204),64)
