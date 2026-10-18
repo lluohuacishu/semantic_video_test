@@ -1,0 +1,122 @@
+{
+  "created_date": "2026-10-18",
+  "purpose": "Traceable candidates for independent continuous-video evaluation; this registry does not certify annotation quality or model-blindness.",
+  "selection_protocol": {
+    "freeze_before_model_evaluation": true,
+    "minimum_duration_seconds": 10,
+    "selection": "Inspect source media only for target presence, continuity and scene cuts; freeze one contiguous source-time window per capture before running the semantic models or computing quality metrics.",
+    "independence_rule": "Require distinct source page, credited creator and capture event; shared uploader or separate edits alone do not establish independence.",
+    "model_exposure": "Pretraining exposure cannot be verified for public web videos. No new training or threshold tuning is allowed on these candidates.",
+    "allowed_uses": "Research evaluation with attribution under the source page license. Preserve credit and license in derived outputs."
+  },
+  "candidates": [
+    {
+      "id": "commons_kanagawa_diver_fish_20250321",
+      "local_filename": "commons_kanagawa_diver_fish_20250321.webm",
+      "page": "https://commons.wikimedia.org/wiki/File:Scuba_diver_with_fish_-_kanagawa_-_2025_march_21.webm",
+      "download": "https://upload.wikimedia.org/wikipedia/commons/3/31/Scuba_diver_with_fish_-_kanagawa_-_2025_march_21.webm",
+      "title": "Scuba diver with fish - kanagawa - 2025 march 21.webm",
+      "capture_date": "2025-03-21",
+      "location": "Kanagawa, Japan (from title/description)",
+      "creator": "Nesnad",
+      "source_claim": "Own work",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "expected_bytes": 19386615,
+      "commons_sha1": "9b5927e1e4bd81d2a8ce1eeeed273fc06740c259",
+      "expected_duration_seconds": 35.846,
+      "expected_size": [1920, 1080],
+      "expected_semantics": ["scuba diver", "fish"]
+    },
+    {
+      "id": "commons_common_nase_drina_20140901",
+      "local_filename": "commons_common_nase_drina_20140901.webm",
+      "page": "https://commons.wikimedia.org/wiki/File:Common_nase_swimming_in_the_shallow_water.webm",
+      "download": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Common_nase_swimming_in_the_shallow_water.webm",
+      "title": "Common nase swimming in the shallow water.webm",
+      "capture_date": "2014-09-01T11:30:20",
+      "location": "Drina river, Bosnia and Herzegovina (file metadata/categories)",
+      "creator": "Liquid Art",
+      "source_claim": "Own work",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "expected_bytes": 96438517,
+      "commons_sha1": "b143f15f7b3791fd0311a19d72171a167f902e38",
+      "expected_duration_seconds": 30.0,
+      "expected_size": [1920, 1080],
+      "expected_semantics": ["fish"]
+    },
+    {
+      "id": "commons_redsea_triggerfish_20141119",
+      "local_filename": "commons_redsea_triggerfish_20141119.webm",
+      "page": "https://commons.wikimedia.org/wiki/File:Rotzahn-Dr%C3%BCckerfisch_(Odonus_niger)_DSCF5283.webm",
+      "download": "https://upload.wikimedia.org/wikipedia/commons/1/14/Rotzahn-Dr%C3%BCckerfisch_%28Odonus_niger%29_DSCF5283.webm",
+      "title": "Rotzahn-Drückerfisch (Odonus niger) DSCF5283.webm",
+      "capture_date": "2014-11-19T07:49:52",
+      "location": "Sharm El Sheikh, Red Sea, Egypt (file description)",
+      "creator": "Kora27",
+      "source_claim": "Own work",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "expected_bytes": 176182203,
+      "commons_sha1": "7fabf2e87b23e323748b67b02db2380b99f3679a",
+      "expected_duration_seconds": 29.537,
+      "expected_size": [1920, 1080],
+      "expected_semantics": ["fish"]
+    },
+    {
+      "id": "commons_madeira_garajau_20161025",
+      "local_filename": "commons_madeira_garajau_20161025.webm",
+      "page": "https://commons.wikimedia.org/wiki/File:Madeira_Garajau.webm",
+      "download": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Madeira_Garajau.webm",
+      "title": "Madeira Garajau.webm",
+      "capture_date": "2016-10-25",
+      "location": "Reserva Natural Parcial do Garajau, Madeira",
+      "creator": "Victor Marafona (original YouTube source linked on the Commons page)",
+      "source_claim": "Imported from the creator's YouTube video; Commons license CC BY 3.0",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "expected_bytes": 87718865,
+      "commons_sha1": "03ba80d97ceaee82c4c8d79e11f4670d7ed56caf",
+      "expected_duration_seconds": 109.397,
+      "expected_size": [1920, 1080],
+      "expected_semantics": ["scuba diving", "underwater fish expected; verify visually"]
+    }
+  ],
+  "selected_windows": [
+    {
+      "id": "commons_kanagawa_diver_fish_20250321",
+      "source_start_seconds": 0.0,
+      "source_duration_seconds": 15.0,
+      "output_fps": 15,
+      "output_width": 1280,
+      "cut_guard": "Before first detected scene cut at 18.385 s; continuous source interval selected before model execution.",
+      "expected_targets": ["fish", "diver"]
+    },
+    {
+      "id": "commons_common_nase_drina_20140901",
+      "source_start_seconds": 0.0,
+      "source_duration_seconds": 15.0,
+      "output_fps": 15,
+      "output_width": 1280,
+      "cut_guard": "No scene cut detected at threshold 0.35; first 15 s retained as one source interval.",
+      "expected_targets": ["fish"]
+    },
+    {
+      "id": "commons_redsea_triggerfish_20141119",
+      "source_start_seconds": 0.0,
+      "source_duration_seconds": 15.0,
+      "output_fps": 15,
+      "output_width": 1280,
+      "cut_guard": "No scene cut detected at threshold 0.35; first 15 s retained as one source interval.",
+      "expected_targets": ["fish"]
+    }
+  ],
+  "excluded_candidates": [
+    {
+      "id": "commons_madeira_garajau_20161025",
+      "reason": "Decoded frames show repeated horizontal block corruption in visual QA; preserved as a source audit negative and excluded from evaluation."
+    }
+  ],
+  "status": "three source windows selected for candidate diagnostics; not yet certified as model-blind holdout; Madeira excluded after visual QA"
+}
