@@ -73,7 +73,7 @@
       "capture_date": "2016-10-25",
       "location": "Reserva Natural Parcial do Garajau, Madeira",
       "creator": "Victor Marafona (original YouTube source linked on the Commons page)",
-      "source_claim": "Imported from the creator's YouTube video; Commons license CC BY 3.0",
+      "source_claim": "Imported from the creator's YouTube video; Commons license CC BY 3.0 (original source identity is linked on the file page)",
       "license": "CC BY 3.0",
       "license_url": "https://creativecommons.org/licenses/by/3.0",
       "expected_bytes": 87718865,
@@ -110,13 +110,22 @@
       "output_width": 1280,
       "cut_guard": "No scene cut detected at threshold 0.35; first 15 s retained as one source interval.",
       "expected_targets": ["fish"]
+    },
+    {
+      "id": "commons_madeira_garajau_20161025",
+      "source_start_seconds": 12.0,
+      "source_duration_seconds": 10.0,
+      "output_fps": 15,
+      "output_width": 1280,
+      "cut_guard": "No scene cut detected in the 12–22 s interval at threshold 0.10; selected the dive footage after the opening title/card sequence.",
+      "expected_targets": ["fish", "diver"]
     }
   ],
   "excluded_candidates": [
     {
-      "id": "commons_madeira_garajau_20161025",
-      "reason": "Decoded frames show repeated horizontal block corruption in visual QA; preserved as a source audit negative and excluded from evaluation."
+      "id": "commons_madeira_garajau_20161025_opening",
+      "reason": "Opening title and montage transitions are unsuitable for a single continuous evaluation window; later 12–22 s interval is selected separately."
     }
   ],
-  "status": "three source windows selected for candidate diagnostics; not yet certified as model-blind holdout; Madeira excluded after visual QA"
+  "status": "four source windows selected for candidate diagnostics; Kanagawa semantic masks exist from prior sender preparation, other windows were frozen using source-only scene/cut review; source exposure and water-environment representativeness are not fully certified"
 }
