@@ -1,0 +1,114 @@
+{
+  "frames": 250,
+  "data_role": "previously_used_development_clip",
+  "methods": [
+    {
+      "method": "GLC_base",
+      "rgb_psnr_db": {
+        "full": 31.166537623656705,
+        "outside_transmitted_ROI": 31.973804611303002,
+        "inside_transmitted_ROI": 30.266302694591257,
+        "fixed_stripe_crop": 29.395471775922523,
+        "fish_raw_source_prediction": 23.903696357987393,
+        "fish_kept_source_prediction": 23.84071278930939,
+        "diver_raw_source_prediction": null,
+        "diver_kept_source_prediction": null
+      },
+      "sample_counts_RGB_values": {
+        "full": 691200000,
+        "outside_transmitted_ROI": 398057088,
+        "inside_transmitted_ROI": 293142912,
+        "fixed_stripe_crop": 4423680,
+        "fish_raw_source_prediction": 1169331,
+        "fish_kept_source_prediction": 1142880,
+        "diver_raw_source_prediction": 0,
+        "diver_kept_source_prediction": 0
+      },
+      "error_change_mae_0_255": {
+        "all": 4.579467028995612,
+        "window_boundaries": 5.0453210772156085,
+        "non_boundaries": 4.56599191189834,
+        "fixed_stripe_crop": 7.400791961582977
+      },
+      "ROI_edge_error_difference_mae_0_255": 2.9522592539131156
+    },
+    {
+      "method": "GLC_auto_ROI",
+      "rgb_psnr_db": {
+        "full": 33.22561080130295,
+        "outside_transmitted_ROI": 31.973804611303002,
+        "inside_transmitted_ROI": 35.85082258259287,
+        "fixed_stripe_crop": 34.818971010362816,
+        "fish_raw_source_prediction": 30.395882277651562,
+        "fish_kept_source_prediction": 30.367040586279185,
+        "diver_raw_source_prediction": null,
+        "diver_kept_source_prediction": null
+      },
+      "sample_counts_RGB_values": {
+        "full": 691200000,
+        "outside_transmitted_ROI": 398057088,
+        "inside_transmitted_ROI": 293142912,
+        "fixed_stripe_crop": 4423680,
+        "fish_raw_source_prediction": 1169331,
+        "fish_kept_source_prediction": 1142880,
+        "diver_raw_source_prediction": 0,
+        "diver_kept_source_prediction": 0
+      },
+      "error_change_mae_0_255": {
+        "all": 3.736881880821899,
+        "window_boundaries": 4.422597449570106,
+        "non_boundaries": 3.7170471329655457,
+        "fixed_stripe_crop": 4.5407860910790605
+      },
+      "ROI_edge_error_difference_mae_0_255": 4.983535993797411
+    }
+  ],
+  "source_prediction_coverage": {
+    "fish": {
+      "raw": {
+        "pixels": 389777,
+        "covered_pixels": 389129,
+        "coverage": 0.9983375109357402,
+        "present_frames": 225
+      },
+      "kept": {
+        "pixels": 380960,
+        "covered_pixels": 380960,
+        "coverage": 1.0,
+        "present_frames": 193
+      }
+    },
+    "diver": {
+      "raw": {
+        "pixels": 0,
+        "covered_pixels": 0,
+        "coverage": null,
+        "present_frames": 0
+      },
+      "kept": {
+        "pixels": 0,
+        "covered_pixels": 0,
+        "coverage": null,
+        "present_frames": 0
+      }
+    }
+  },
+  "fixed_crop_xyxy": [
+    256,
+    576,
+    512,
+    720
+  ],
+  "fixed_crop_source_frames": [
+    210,
+    249
+  ],
+  "ground_truth_available": false,
+  "human_viewing_scores": null,
+  "matched_budget_control": "B3 pending",
+  "limitations": [
+    "ROI masks are model predictions used for transmission selection; their PSNR is not independent task accuracy.",
+    "Temporal error changes and ROI-edge error differences are diagnostics, not validated perceptual flicker scores.",
+    "No ground-truth recall, object-count accuracy, diver quality score, or semantic-budget advantage is inferred."
+  ]
+}

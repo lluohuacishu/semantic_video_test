@@ -1,0 +1,80 @@
+{
+  "scope": "Python file opens and explicit subprocess arguments; not OS isolation; native DLL reads are not audited",
+  "denied_reads": [],
+  "external_source_or_sender_cache_reads": [],
+  "subprocesses": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\tools\\GLC",
+        "rev-parse",
+        "HEAD"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\tools\\GLC",
+        "diff",
+        "HEAD",
+        "--"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-framerate",
+        "15.0",
+        "-start_number",
+        "1",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network\\rate_40kbps\\receiver\\base_decoded\\frames\\im%05d.png",
+        "-an",
+        "-vf",
+        "pad=ceil(iw/2)*2:ceil(ih/2)*2",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "fast",
+        "-crf",
+        "16",
+        "-pix_fmt",
+        "yuv420p",
+        "-movflags",
+        "+faststart",
+        "-y",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network\\rate_40kbps\\receiver\\base_decoded\\reconstruction_preview.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network\\rate_40kbps\\receiver\\received_streams\\roi_0000.mp4"
+      ],
+      "allowed": true
+    }
+  ],
+  "full_local_audit": {
+    "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network\\rate_40kbps\\receiver\\receiver_read_audit.json",
+    "bytes": 1317982,
+    "sha256": "2a200e29842a886e122c0dc1f1447b48261b3336d37efa3d6803fc79de2555c6"
+  }
+}

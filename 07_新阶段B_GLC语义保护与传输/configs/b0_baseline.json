@@ -1,8 +1,9 @@
 {
   "stage": "new_B",
   "created_date": "2026-10-18",
-  "status": "B0_B1_passed_B2_pending",
-  "latest_results": "07_新阶段B_GLC语义保护与传输/evidence_b0_b1_20261018/summary.json",
+  "status": "B0_B1_passed_B2_first_clip_passed_B3_pending",
+  "latest_results": "07_新阶段B_GLC语义保护与传输/evidence_b2_video91_20261018/network/summary.json",
+  "b0_b1_results": "07_新阶段B_GLC语义保护与传输/evidence_b0_b1_20261018/summary.json",
   "result_tracking_note": "This current index is updated after acceptance. The run config.json and b0_frozen.json retain their original pre-run snapshot; use summary.json for results.",
   "decision": "User selected GLC-Video; new stage A closed.",
   "a_evidence_commit": "e5ab01f2c16a4fd0d24786b84d2d0a96f2567c44",
@@ -78,9 +79,9 @@
       "reverse acknowledgements"
     ],
     "first_environment": "same-host loopback; no physical-channel claim",
-    "real_transfers_completed_in_stage_b": 5,
-    "accepted_transfer_and_independent_decode_trials": 3,
-    "attempt_accounting": "Three accepted rates plus one transfer whose decoder failed and one transfer whose decode was interrupted; small-file unit tests excluded.",
+    "real_transfers_completed_in_b0_b1": 5,
+    "accepted_transfer_and_independent_decode_trials_in_b0_b1": 3,
+    "attempt_accounting": "These counts cover B0+B1 only: three accepted rates plus one transfer whose decoder failed and one whose decode was interrupted; small-file unit tests excluded. B2 made three additional actual transfers, with three accepted independent decodes after recovery; recovery did not retransmit.",
     "existing_implementation_max_file_bytes": 268435456,
     "user_file_size_limit_bytes": null,
     "user_duration_limit_seconds": null
@@ -109,7 +110,7 @@
       "fish",
       "diver"
     ],
-    "enhancement": "source-derived ROI H.265 patches over full-frame GLC; proposed, not implemented",
+    "enhancement": "source-derived ROI H.265 patches over full-frame GLC; implemented and accepted on B2 first development clip; B3 semantic-benefit validation pending",
     "ground_truth_at_sender": false
   },
   "output_policy": {

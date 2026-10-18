@@ -1,0 +1,645 @@
+{
+  "scope": "Python file opens and explicit subprocess arguments; not OS isolation; native DLL reads are not audited",
+  "python_open_attempts_by_category": {
+    "python_runtime_or_installed_package": 2088,
+    "declared_shared_model": 6,
+    "decoder_code_or_configuration": 12,
+    "pinned_adapter_or_transport_code": 27,
+    "receiver_directory": 3821
+  },
+  "shared_model_allowlist": {
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\checkpoints\\glc\\GLC_image.pth.tar": "139c1d49a56b5c14b0fbd7e0c43b53a4f0b093d35aa11c79ed9d0b9bfede4c94",
+    "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\checkpoints\\glc\\GLC_Video.pth.tar": "c55a46f33b92945dcdc24bbbc023909368de78fce7830d3137e4d2ef7249ee62"
+  },
+  "denied_reads": [],
+  "external_source_or_sender_cache_reads": [],
+  "subprocesses": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\tools\\GLC",
+        "rev-parse",
+        "HEAD"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\tools\\GLC",
+        "diff",
+        "HEAD",
+        "--"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-framerate",
+        "15.0",
+        "-start_number",
+        "1",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\base_decoded\\frames\\im%05d.png",
+        "-an",
+        "-vf",
+        "pad=ceil(iw/2)*2:ceil(ih/2)*2",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "fast",
+        "-crf",
+        "16",
+        "-pix_fmt",
+        "yuv420p",
+        "-movflags",
+        "+faststart",
+        "-y",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\base_decoded\\reconstruction_preview.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0000.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0000.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0000\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0001.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0001.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0001\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0002.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0002.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0002\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0003.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0003.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0003\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0004.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0004.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0004\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0005.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0005.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0005\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0006.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0006.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0006\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0007.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0007.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0007\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0008.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0008.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0008\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0009.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0009.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0009\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0010.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0010.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0010\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0011.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0011.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0011\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0012.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0012.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0012\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0013.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0013.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0013\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0014.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0014.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0014\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=codec_name,width,height,avg_frame_rate,nb_read_frames,pix_fmt,color_range,color_space,color_transfer,color_primaries",
+        "-of",
+        "json",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0015.mp4"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\received_streams\\roi_0015.mp4",
+        "-an",
+        "-fps_mode",
+        "passthrough",
+        "-start_number",
+        "0",
+        "-compression_level",
+        "1",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\roi_rgb_0015\\%05d.png"
+      ],
+      "allowed": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+        "-v",
+        "error",
+        "-framerate",
+        "15/1",
+        "-start_number",
+        "0",
+        "-i",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\rgb\\%05d.png",
+        "-an",
+        "-c:v",
+        "libx264",
+        "-crf",
+        "18",
+        "-pix_fmt",
+        "yuv420p",
+        "-movflags",
+        "+faststart",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\enhanced_preview.mp4"
+      ],
+      "allowed": true
+    }
+  ],
+  "full_local_audit": {
+    "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\work\\stage_b_20261018_b2_video91\\network_retry2\\rate_20kbps\\receiver\\receiver_read_audit.json",
+    "bytes": 1536314,
+    "sha256": "d9b1c133a123329273f8191704f0c1947477c021f45e7f1bf3d3f1bb419ad6b5"
+  },
+  "receiver_pid": 12916,
+  "evaluator_pid": 14668
+}

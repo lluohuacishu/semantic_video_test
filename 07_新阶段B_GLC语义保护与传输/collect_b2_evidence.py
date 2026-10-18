@@ -27,6 +27,8 @@ def main():
     require([r["rate_kbps"] for r in summary["results"]] == [20, 30, 40], "Missing rate")
     evaluated = read(evaluation / "completion.json")
     require(evaluated["status"] == "B2_diagnostics_complete" and evaluated["enhanced_rgb_sequence_sha256"] == summary["results"][0]["enhanced_rgb_sequence_sha256"], "Evaluation uses different RGB")
+    tests = read(run / "validation_tests.json")
+    require(tests["returncode"] == 0 and tests["log_sha256"] == sha(run / "validation_tests.log"), "Missing or invalid test evidence")
     require(not args.report.exists(), "Report already exists")
     output.mkdir(parents=True, exist_ok=False)
 
@@ -46,6 +48,8 @@ def main():
         copy(network / name, Path("network") / name)
     for name in ("metrics.json", "prediction_coverage.json", "per_frame_metrics.json", "per_frame_metrics.csv", "viewing.json", "completion.json", "commands.json"):
         copy(evaluation / name, Path("evaluation") / name)
+    for name in ("validation_tests.json", "validation_tests.log"):
+        copy(run / name, Path("validation") / name)
     copy(result_directory(40) / "receiver/target_information.json", Path("sender_predictions_received.json"))
     write(output / "accepted_result_directories.json", {str(rate): str(result_directory(rate)) for rate in (20, 30, 40)})
     artifacts = [record(sender / "message.scv")]
@@ -98,6 +102,7 @@ def main():
         previous_recovery = summary["recovery"].get("previous_recovery")
         if previous_recovery:
             previous = Path(previous_recovery)
+            copy(run / "recovery_native_failure_event.json", Path("previous_recovery/native_failure_event.json"))
             for name in ("failure.json", "environment.json", "commands.json", "progress.json"):
                 copy(previous / name, Path("previous_recovery") / name)
             for path in sorted(previous.glob("rate_*kbps/receiver_process.log")):
@@ -121,6 +126,10 @@ def main():
     encoded = read(sender / "encode.json")
     methods = {r["method"]: r for r in metrics["methods"]}
     before, after = methods["GLC_base"], methods["GLC_auto_ROI"]
+    frame_metrics = read(evaluation / "per_frame_metrics.json")
+    raw_fish_frames = [r for r in frame_metrics if r["GLC_base_fish_raw_source_prediction_psnr_db"] is not None]
+    raw_fish_regressions = [r for r in raw_fish_frames if r["GLC_auto_ROI_fish_raw_source_prediction_psnr_db"] < r["GLC_base_fish_raw_source_prediction_psnr_db"]]
+    regression_rows = "\n".join(f"| {r['frame']} | {r['GLC_base_fish_raw_source_prediction_psnr_db']:.4f} | {r['GLC_auto_ROI_fish_raw_source_prediction_psnr_db']:.4f} |" for r in raw_fish_regressions)
     numeric = lambda value: "无预测像素／不适用" if value is None else f"{value:.4f}"
     metric_keys = {"全画面": "full", "源端原始鱼类预测掩码": "fish_raw_source_prediction", "过滤后的鱼类预测掩码": "fish_kept_source_prediction",
                    "A既有固定鱼纹裁剪（帧210–249）": "fixed_stripe_crop", "传输ROI矩形内": "inside_transmitted_ROI", "传输ROI矩形外": "outside_transmitted_ROI"}
@@ -157,7 +166,7 @@ def main():
 
 新profile为`semantic-video-glc-roi-v1`，保留旧封包解析入口并显式分派GLC。包成员、版本、哈希、尺寸、帧数、帧率、ROI时间窗与空间分区均需核验；接收端从实际收到的GLC基础层和ROI视频重建，再按固定矩形直接贴回。基础层未更换，补丁外RGB逐像素保持不变。
 
-发送执行提交：`{first_source_commit}`；接受的独立解码执行提交：`{decode_commits}`。各档与提交的对应关系见汇总JSON；评价脚本SHA-256及命令另行记录。24项测试通过，覆盖旧v1/v2解析、新GLC分派、错版／坏包／重复成员、越界路径、窗口与分区、语义帧序、颜色标签缺失／冲突和外部读取限制。
+发送执行提交：`{first_source_commit}`；接受的独立解码执行提交：`{decode_commits}`。各档与提交的对应关系见汇总JSON；评价脚本SHA-256及命令另行记录。{tests['tests_run']}项测试通过，原始测试输出归档于`validation`；覆盖旧v1/v2解析、新GLC分派、错版／坏包／重复成员、越界路径、窗口与分区、语义帧序、颜色标签缺失／冲突和外部读取限制。
 
 ## 文件与代价
 
@@ -205,6 +214,12 @@ raw为固定阈值后的掩码，kept为剔除小于64像素连通区域后的�
 基础层与增强层文件大小不同。鱼区掩码来自同一个源端选择模型，属于开发诊断，不能视为独立任务准确率。固定鱼纹裁剪沿用A阶段预先选定的坐标与帧范围，不参与本次传输ROI选取。上述PSNR变化不能替代鱼纹、轮廓和运动的真实观看核对。
 
 本片全画面PSNR增加{after['rgb_psnr_db']['full'] - before['rgb_psnr_db']['full']:.4f} dB，固定鱼纹裁剪增加{after['rgb_psnr_db']['fixed_stripe_crop'] - before['rgb_psnr_db']['fixed_stripe_crop']:.4f} dB；这说明当前增加补充字节后的接收RGB误差下降，不等于已证明语义选区优于相同预算的非语义方案。
+
+**局部负例：原始鱼类预测掩码的{len(raw_fish_frames)}个有效帧中，有{len(raw_fish_regressions)}帧PSNR下降。** 以下是按全部逐帧记录筛出的退步帧，没有用平均值覆盖它们；预测掩码中的局部退步不等同于已确认真实鱼的感知退步，仍需结合源图核对。
+
+| 源帧 | GLC基础预测鱼区PSNR dB | 增强预测鱼区PSNR dB |
+|---:|---:|---:|
+{regression_rows}
 
 ## 窗口与边界诊断
 
