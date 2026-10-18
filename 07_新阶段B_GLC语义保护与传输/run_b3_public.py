@@ -55,7 +55,7 @@ def verify_one(rate, directory, packet, expected_manifest, journal, source_dir, 
             == [f"{i:05d}.png" for i in range(count)], "Enhanced RGB sequence incomplete")
     rows, enhanced_hashes = [], []
     for index in range(count):
-        with Image.open(source_dir / f"im{index:05d}.png") as image:
+        with Image.open(source_dir / f"{index:05d}.png") as image:
             source = np.asarray(image.convert("RGB"))
         with Image.open(receiver / "base_decoded/frames" / f"im{index+1:05d}.png") as image:
             base = np.asarray(image.convert("RGB"))
@@ -176,7 +176,7 @@ def main():
             log.close()
             journal.finish(command, code, transfer["elapsed_seconds"])
             require(code == 0, f"Receiver failed at {rate} kbps")
-            source_dir = Path(read(sender / "source_audit.json")["extracted_frames_dir"])
+            source_dir = sender / "private_frames"
             masks = sender / "private_masks"
             result = verify_one(rate, directory, packet, manifest, journal, source_dir, masks, args.source_id)
             results.append(result)
