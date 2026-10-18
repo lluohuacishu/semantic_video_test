@@ -13,7 +13,7 @@ import zipfile
 from b2_common import git, sha, write
 
 HERE = Path(__file__).resolve().parent
-ADAPTERS = HERE.parent.parent / "01_主工程/adapters"
+ADAPTERS = HERE.parent / "01_主工程/adapters"
 sys.path.insert(0, str(ADAPTERS))
 from fetch_sfishtrack import RangeFile
 
