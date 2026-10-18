@@ -34,6 +34,8 @@ def main():
     parser.add_argument("--roi-crf", type=float, default=32)
     args = parser.parse_args()
     baseline = read(args.baseline_config)
+    require(Path(sys.executable).resolve() == Path(baseline["runtime_dependencies"]["segmentation_python"]).resolve(),
+            "Run the public sender from the frozen segmentation Python")
     require(not git("status", "--porcelain"), "Commit executed code before public candidate encoding")
     require(args.input.is_file() and 1 <= args.frames <= 10000, "Invalid input or frame count")
     output = args.output.resolve()
