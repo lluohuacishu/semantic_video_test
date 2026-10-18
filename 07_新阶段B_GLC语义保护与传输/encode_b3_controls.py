@@ -112,11 +112,12 @@ def geometry_search(config, baseline, output, journal):
             planned.append({"file": f"roi_{len(planned):04d}.mp4", "start": start, "frames": min(segment, n-start), "box": box, "partition": part})
     write(output / "frozen_geometry.json", {"patches": planned, "uses_predictions_for_selection": False})
     target = config["target_supplement_bytes"]
-    rows, units = [], int(config["geometry"]["first_crf"]*4)
+    scale = round(1 / config["geometry"]["step"])
+    rows, units = [], round(config["geometry"]["first_crf"]*scale)
     reason = "trial_limit"
     for trial in range(config["geometry"]["max_trials"]):
-        crf = units/4
-        directory = output / f"crf{crf:05.2f}"
+        crf = units/scale
+        directory = output / f"crf{crf:06.3f}"
         streams = directory / "sender_streams"
         streams.mkdir(parents=True)
         for name in ("base.glcv", "semantics.json.gz"):
@@ -134,7 +135,7 @@ def geometry_search(config, baseline, output, journal):
         ledger = glc_layered.write_packet(streams, manifest, packet)
         write(directory / "manifest.json", manifest)
         write(directory / "encode.json", {"status": "B3_fixed_geometry_sender_complete", "byte_ledger": ledger, "packet_sha256": sha(packet)})
-        row = {"crf_quarter_units": units, "crf": crf, "file_bytes": packet.stat().st_size, "supplement_bytes": packet.stat().st_size-config["base_bytes"],
+        row = {"crf_search_units": units, "crf_step": config["geometry"]["step"], "crf": crf, "file_bytes": packet.stat().st_size, "supplement_bytes": packet.stat().st_size-config["base_bytes"],
                "packet": str(packet), "sha256": sha(packet), "byte_ledger": ledger}
         rows.append(row)
         write(output / "trials.json", rows)
@@ -143,9 +144,9 @@ def geometry_search(config, baseline, output, journal):
             reason = "first_within_tolerance"
             break
         if len(rows) == 1:
-            units = int((config["geometry"]["max_crf"] if row["supplement_bytes"] > target else config["geometry"]["min_crf"])*4)
+            units = round((config["geometry"]["max_crf"] if row["supplement_bytes"] > target else config["geometry"]["min_crf"])*scale)
         else:
-            units = next_integer(rows, target, "crf_quarter_units", "supplement_bytes", 0, 204)
+            units = next_integer(rows, target, "crf_search_units", "supplement_bytes", 0, round(51*scale))
             if units is None:
                 reason = "no_unmeasured_quarter_CRF_in_observed_bracket"
                 break
