@@ -61,7 +61,7 @@ def main():
     run(argv, output / "glc_encode.log")
     source_dir = glc / "source"
     require(source_dir.is_dir(), "GLC source frames missing")
-    source_info = read(glc / "encode.json")["source"]
+    source_info = read(glc / "encode.json")["input"]
     require(source_info["processed_frames"] == args.frames and [source_info["width"], source_info["height"]] == [1280, 720], "GLC source geometry/count mismatch")
     fps = runtime.fps_string(source_info["fps"])
     frames = output / "private_frames"
