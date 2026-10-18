@@ -161,6 +161,9 @@ def install_read_guard(output):
     return accessed
 
 def unpack_packet(packet,output):
+    from glc_layered import PROFILE as GLC_PROFILE, packet_profile, unpack_packet as unpack_glc
+    if packet_profile(packet)==GLC_PROFILE:
+        return unpack_glc(packet,output)
     directory=output/"received_streams";directory.mkdir()
     with zipfile.ZipFile(packet,"r") as archive:
         entries=archive.infolist()
@@ -238,7 +241,13 @@ def unpack_packet(packet,output):
                 raise ValueError("Semantic box outside frame")
     return manifest,semantics,directory
 
-def decode_packet(packet,output):
+def decode_packet(packet,output,*,glc_deployment=None,run_command=None,authorize=None):
+    from glc_layered import PROFILE as GLC_PROFILE, packet_profile
+    if packet_profile(packet)==GLC_PROFILE:
+        if glc_deployment is None or run_command is None or authorize is None:
+            raise ValueError("GLC profile requires declared shared deployment and audited receiver_b2.py entrypoint")
+        from glc_layered_decoder import decode as decode_glc
+        return decode_glc(packet,output,glc_deployment,run_command,authorize)
     require_runtime()
     started=time.perf_counter()
     manifest,semantics,streams=unpack_packet(packet,output)
