@@ -13,6 +13,17 @@ import runtime
 from glc_layered import PROFILE, require, unpack_packet
 
 
+def validate_roi_colour(probe):
+    require(probe.get("color_range") == "tv" and probe.get("color_space") == "bt709", "ROI range/matrix mismatch")
+    # Existing runtime/x265 output signals range and matrix but may omit these
+    # optional tags. Absence is recorded, never relabelled as verified BT709.
+    for key in ("color_transfer", "color_primaries"):
+        require(probe.get(key) in (None, "bt709"), f"Conflicting ROI colour tag: {key}")
+    return {"range": probe["color_range"], "matrix": probe["color_space"],
+            "transfer": probe.get("color_transfer"), "primaries": probe.get("color_primaries"),
+            "missing_optional_tags": [key for key in ("color_transfer", "color_primaries") if key not in probe]}
+
+
 def decode(packet, output, deployment, run_command, authorize):
     tick = time.perf_counter()
     packet, output = Path(packet), Path(output)
@@ -49,7 +60,7 @@ def decode(packet, output, deployment, run_command, authorize):
         require(probe["codec_name"] == "hevc" and probe["pix_fmt"] == "yuv420p", "ROI codec/pixel format mismatch")
         require([probe["width"], probe["height"], int(probe["nb_read_frames"])] == [patch["box"][2], patch["box"][3], patch["frames"]]
                 and runtime.fps_string(probe["avg_frame_rate"]) == fps, "ROI geometry/frame count/timing mismatch")
-        require(probe["color_range"] == "tv" and all(probe[k] == "bt709" for k in ("color_space", "color_transfer", "color_primaries")), "ROI colour declaration mismatch")
+        colour = validate_roi_colour(probe)
         directory = output / f"roi_rgb_{index:04d}"
         runtime.decode_png(stream, directory)
         files = sorted(directory.glob("*.png"))
@@ -60,7 +71,7 @@ def decode(packet, output, deployment, run_command, authorize):
                 require(image.size == tuple(patch["box"][2:]), "Decoded ROI dimensions mismatch")
                 hashes.append(hashlib.sha256(np.asarray(image.convert("RGB")).tobytes()).hexdigest())
             patch_frames.setdefault(patch["start"] + local, []).append((path, patch["box"]))
-        patch_checks.append({"file": patch["file"], "probe": probe, "decoded_rgb_sha256": hashes})
+        patch_checks.append({"file": patch["file"], "probe": probe, "colour_signalling": colour, "decoded_rgb_sha256": hashes})
     frames = output / "rgb"
     frames.mkdir()
     base_hashes, enhanced_hashes = [], []

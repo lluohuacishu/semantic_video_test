@@ -141,6 +141,19 @@ class PacketTests(unittest.TestCase):
 
 
 class LayeredGuardTests(unittest.TestCase):
+    def test_missing_optional_colour_tags_are_recorded(self):
+        from glc_layered_decoder import validate_roi_colour
+        result = validate_roi_colour({"color_range": "tv", "color_space": "bt709"})
+        self.assertIsNone(result["transfer"])
+        self.assertIsNone(result["primaries"])
+        self.assertEqual(result["missing_optional_tags"], ["color_transfer", "color_primaries"])
+
+    def test_wrong_matrix_range_and_conflicting_tags_rejected(self):
+        from glc_layered_decoder import validate_roi_colour
+        for change in ({"color_range": "pc"}, {"color_space": "bt2020nc"}, {"color_transfer": "smpte2084"}, {"color_primaries": "bt2020"}):
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                validate_roi_colour({"color_range": "tv", "color_space": "bt709", **change})
+
     def test_external_ffmpeg_inputs_and_unregistered_commands_denied(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)

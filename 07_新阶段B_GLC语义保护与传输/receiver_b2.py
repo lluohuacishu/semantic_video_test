@@ -51,6 +51,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--decode-existing", action="store_true", help="Decode a preserved actual TCP receipt copied into this fresh receiver directory")
     args = parser.parse_args()
     output = args.output.resolve()
     require(args.config.resolve().is_relative_to(output), "Deployment must be receiver-local")
@@ -64,16 +65,23 @@ def main():
         for path, digest in {**config["code_hashes"], **config["shared_models"]}.items():
             require(sha(path) == digest, f"Shared dependency changed: {path}")
         sys.path.insert(0, str(Path(config["transport"]).parent))
-        from transport import receive_connection
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as listener:
-            listener.bind(("127.0.0.1", 0))
-            listener.listen(1)
-            listener.settimeout(120)
-            write(output / "ready.json", {"port": listener.getsockname()[1], "pid": os.getpid()})
-            connection, _ = listener.accept()
-            with connection:
-                received = receive_connection(connection, output / "message.scv")
-        write(output / "receive.json", {**received, "pid": os.getpid(), "source": "actual TCP reception"})
+        if args.decode_existing:
+            receipt = read(output / "receive.json")
+            require(receipt["verified"] and sha(output / "message.scv") == receipt["sha256"], "Preserved actual receipt differs")
+            require((output / "message.scv").stat().st_size == receipt["bytes"], "Preserved receipt size differs")
+            write(output / "decode_input.json", {"source": "preserved actual TCP receipt; no cached RGB input", "original_receiving_pid": receipt["pid"],
+                  "decoder_pid": os.getpid(), "file_sha256": receipt["sha256"]})
+        else:
+            from transport import receive_connection
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as listener:
+                listener.bind(("127.0.0.1", 0))
+                listener.listen(1)
+                listener.settimeout(120)
+                write(output / "ready.json", {"port": listener.getsockname()[1], "pid": os.getpid()})
+                connection, _ = listener.accept()
+                with connection:
+                    received = receive_connection(connection, output / "message.scv")
+            write(output / "receive.json", {**received, "pid": os.getpid(), "source": "actual TCP reception"})
         if config.get("wait_for_decode_gate"):
             deadline = time.monotonic() + 3600
             while not (output / "decode_allowed.json").exists():
