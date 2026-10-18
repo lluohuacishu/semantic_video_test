@@ -176,7 +176,7 @@ def main():
             log.close()
             journal.finish(command, code, transfer["elapsed_seconds"])
             require(code == 0, f"Receiver failed at {rate} kbps")
-            source_dir = sender / "glc" / "source"
+            source_dir = Path(read(sender / "source_audit.json")["extracted_frames_dir"])
             masks = sender / "private_masks"
             result = verify_one(rate, directory, packet, manifest, journal, source_dir, masks, args.source_id)
             results.append(result)

@@ -80,6 +80,7 @@ def main():
         shutil.copytree(prior_source, glc / "source")
         source_info = prior_info["input"]
         header = prior_info["header"]
+        source_dir = glc / "source"
         write(output / "glc_reuse.json", {"source_run": str(prior), "stream": str(prior_packet),
               "stream_sha256": sha(prior_packet), "input_sha256": source_sha256,
               "reuse_reason": "prior GLC encoding completed successfully; downstream sender failed before Teacher inference"})
@@ -95,7 +96,7 @@ def main():
         prior_info = read(prior_work / "encode.json")
         source_info = prior_info["input"]
         header = prior_info["header"]
-    source_dir = glc / "source"
+        source_dir = prior_source
     require(source_dir.is_dir(), "GLC source frames missing")
     require(source_info["processed_frames"] == args.frames and [source_info["width"], source_info["height"]] == [1280, 720], "GLC source geometry/count mismatch")
     fps = runtime.fps_string(source_info["fps"])
@@ -112,7 +113,8 @@ def main():
                             "rgb_sha256": hashlib.sha256(rgb.tobytes()).hexdigest()})
     write(output / "source_audit.json", {"role": "public_source_candidate_contiguous_window", "input": str(args.input.resolve()),
           "input_sha256": source_sha256, "width": 1280, "height": 720, "fps": source_info["fps"],
-          "frames": args.frames, "mapping": mapping, "ground_truth_read": False})
+          "frames": args.frames, "extracted_frames_dir": str(source_dir.resolve()),
+          "mapping": mapping, "ground_truth_read": False})
 
     records = [{"frame": i, "targets": {}} for i in range(args.frames)]
     profiles = {}
