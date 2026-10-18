@@ -4,6 +4,7 @@ import csv
 import os
 from pathlib import Path
 import socket
+import subprocess
 import sys
 import tempfile
 import threading
@@ -21,7 +22,7 @@ class ReadGuardTests(unittest.TestCase):
         self.output = self.root / "receiver"
         self.output.mkdir()
         self.model = self.root / "weights/model.pth.tar"
-        self.config = {"shared_models": {str(self.model): "expected"}, "code_hashes": {},
+        self.config = {"shared_models": {str(self.model): "expected"}, "code_hashes": {}, "fps": 15,
                        "glc_repo": str(self.root / "decoder_code"), "ffmpeg": str(self.root / "ffmpeg.exe")}
         self.policy = ReadPolicy(self.output, self.config)
 
@@ -45,6 +46,13 @@ class ReadGuardTests(unittest.TestCase):
     def test_subprocess_cannot_open_sender_media(self):
         with self.assertRaises(PermissionError):
             self.policy.hook("subprocess.Popen", (self.config["ffmpeg"], [self.config["ffmpeg"], "-i", str(self.root / "source.mp4"), str(self.output / "preview.mp4")], None, {}))
+
+    def test_windows_quoted_command_and_none_executable(self):
+        command = ["git", "-C", self.config["glc_repo"], "rev-parse", "HEAD"]
+        self.policy.hook("subprocess.Popen", (None, subprocess.list2cmdline(command), None, {}))
+        self.assertTrue(self.policy.commands[-1]["allowed"])
+        with self.assertRaises(PermissionError):
+            self.policy.hook("subprocess.Popen", (None, subprocess.list2cmdline(command + ["--unexpected"]), None, {}))
 
 
 class PacingTests(unittest.TestCase):

@@ -226,7 +226,7 @@ def trial(config, frozen, packets, mapping, rate, output, commands):
     receiver.mkdir()
     deps = config["runtime_dependencies"]
     adapter = str((ROOT / config["adapter"]["repository_path"]).resolve())
-    deployment = {"adapter": adapter, "glc_repo": str(Path(deps["glc_repo"]).resolve()),
+    deployment = {"adapter": adapter, "fps": config["source"]["fps"], "glc_repo": str(Path(deps["glc_repo"]).resolve()),
                   "weights": str(Path(deps["weights"]).resolve()), "ffmpeg": str(Path(deps["ffmpeg"]).resolve()),
                   "transport": str((ROOT / config["transport_plan"]["implementation"]).resolve()),
                   "shared_models": {str((Path(deps["weights"]) / n).resolve()): r["sha256"] for n, r in frozen["shared_weights"].items()},

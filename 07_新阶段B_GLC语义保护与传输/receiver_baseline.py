@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path
 import socket
+import subprocess
 import sys
 import time
 from types import SimpleNamespace
@@ -71,15 +72,22 @@ class ReadPolicy:
                 raise PermissionError(f"B1 receiver refused undeclared external input: {path}")
         elif event == "subprocess.Popen":
             executable, argv, cwd, _env = args
-            argv = [os.fsdecode(x) for x in argv]
-            git_args = [["git", "-C", self.config["glc_repo"], "rev-parse", "HEAD"],
-                        ["git", "-C", self.config["glc_repo"], "diff", "HEAD", "--"]]
-            allowed = argv in git_args
-            if Path(os.fsdecode(executable)).resolve() == Path(self.config["ffmpeg"]).resolve():
-                inputs = [Path(argv[i + 1]).resolve() for i, value in enumerate(argv[:-1]) if value == "-i"]
-                allowed = bool(inputs) and all(p.is_relative_to(self.output) for p in inputs)
-                allowed = allowed and Path(argv[-1]).resolve().is_relative_to(self.output)
-            self.commands.append({"argv": argv, "allowed": allowed})
+            # Windows audits executable=None and an already-quoted command string.
+            # Match exact permitted commands instead of parsing Windows quoting.
+            expected_commands = [["git", "-C", self.config["glc_repo"], "rev-parse", "HEAD"],
+                                 ["git", "-C", self.config["glc_repo"], "diff", "HEAD", "--"],
+                                 [self.config["ffmpeg"], "-hide_banner", "-loglevel", "error", "-nostdin",
+                                  "-framerate", str(float(self.config["fps"])), "-start_number", "1",
+                                  "-i", str(self.output / "decoded/frames/im%05d.png"), "-an",
+                                  "-vf", "pad=ceil(iw/2)*2:ceil(ih/2)*2", "-c:v", "libx264",
+                                  "-preset", "fast", "-crf", "16", "-pix_fmt", "yuv420p",
+                                  "-movflags", "+faststart", "-y", str(self.output / "decoded/reconstruction_preview.mp4")]]
+            actual = os.fsdecode(argv) if isinstance(argv, (str, bytes)) else [os.fsdecode(x) for x in argv]
+            matched = next((command for command in expected_commands
+                            if actual == (subprocess.list2cmdline(command) if isinstance(actual, str) else command)), None)
+            allowed = matched is not None and (executable is None or
+                       Path(os.fsdecode(executable)).resolve() == Path(matched[0]).resolve())
+            self.commands.append({"argv": matched or actual, "allowed": allowed})
             if not allowed:
                 raise PermissionError(f"B1 receiver refused subprocess: {argv}")
 
@@ -102,6 +110,9 @@ def main():
     config = json.loads(args.config.read_text("utf-8"))
     if not args.config.resolve().is_relative_to(output):
         raise ValueError("Receiver deployment config must be in its own directory")
+    # -B prevents writing bytecode but still attempts to read pre-existing caches.
+    # Redirect those attempts inside the receiver, avoiding unpinned external caches.
+    sys.pycache_prefix = str(output / "python_cache")
     policy = ReadPolicy(output, config)
     sys.addaudithook(policy.hook)
     try:
