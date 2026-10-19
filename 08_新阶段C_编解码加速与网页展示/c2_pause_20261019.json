@@ -1,0 +1,52 @@
+{
+  "user_requested_pause": true,
+  "c2_accepted": false,
+  "observed_local": "2026-10-19T23:23:54.6555699+08:00",
+  "matching_process_count": 0,
+  "matching_processes": [],
+  "action": "No new experiments dispatched after power-off request; existing failed and completed records preserved.",
+  "latest_regression": "C2_checks_20261019_r5",
+  "tests_passed": 108,
+  "second_full_pairs_complete": 0,
+  "next": [
+    "Inspect current PIDs and Git state; strengthen unknown-liveness handling with targeted checks.",
+    "Run combined gate8 for the new legacy runtime branch.",
+    "Run second-clip gate8 and complete pairs in fresh directories.",
+    "Run three same-session legacy versus C1+native compact pairs after the gate."
+  ],
+  "limitations": [
+    "C2 remains incomplete.",
+    "Other three presets have one pair each, not three.",
+    "Full-video cold-start and final combined comparison remain unmeasured.",
+    "Original C1 interruption causes remain unknown.",
+    "No C3/C4 work authorized."
+  ],
+  "previous_checkpoint_commit": "80a2738a258353f2b499dd70b1e0a09f6df79ffe",
+  "source_sha256": {
+    "08_新阶段C_编解码加速与网页展示\\build_c2_native.py": "59ecc0fc43c5c59c50453d3fc70f8d37ab162ccc9bd1ac24a40afc31342620cd",
+    "08_新阶段C_编解码加速与网页展示\\c2_holdout.py": "86a866784a23d9232921d874a713596123b51eab7bdebf34b1ffdf65025002f5",
+    "08_新阶段C_编解码加速与网页展示\\c2_native.py": "1f948c3dc207dfdc1cb7d74f325c98a9065b7dd2d17f41b7cb4c77153db962b4",
+    "08_新阶段C_编解码加速与网页展示\\c2_watch.py": "c327769ae92575dcca551b63abc8e60bfe923857a200413747150ec2ab409c71",
+    "08_新阶段C_编解码加速与网页展示\\c2_worker.py": "2b3322400fd7f30c89b8e1511efec03fe77aa074cc76583b4f80d8d53768dd01",
+    "08_新阶段C_编解码加速与网页展示\\check_c2.py": "7c8bc78d2f5a013882168bc945fab857727b1efa235a135fa403c879e727e7cb",
+    "08_新阶段C_编解码加速与网页展示\\export_c2_checkpoint.py": "71e4fd08e7e4f6a7d15e08a2fc323f02b37fbe880e006d1a3901c142ea896e9a",
+    "08_新阶段C_编解码加速与网页展示\\recover_c2.py": "9a0c412d2c0fdc935ba3e56a6cbbbde710a66d01833d37f16eaf5dba2eb27536",
+    "08_新阶段C_编解码加速与网页展示\\run_c2.py": "f713bcf14779ed33a711e0df7d5317f314d47b9ca4d5e7774cc5536809fbf22e",
+    "08_新阶段C_编解码加速与网页展示\\run_c2_combined.py": "76d3e4a6f14f4e43edae6966259ec6a55626fee3447e21600305a19a4e20cb31",
+    "08_新阶段C_编解码加速与网页展示\\run_c2_holdout.py": "678cd90a9d0c10472473c9c4eba9918e4235839ec7113f1af56775f8db7d3b31",
+    "08_新阶段C_编解码加速与网页展示\\run_c2_paired.py": "429f65d500640210c6c46a9b6da1df06e164a4fa599d9599780a32ad92509c24",
+    "08_新阶段C_编解码加速与网页展示\\test_c2_holdout.py": "9dc99da2b94cbd3e6e931459de29ffafefa24a497ee3aca17892a6d101a250c5",
+    "08_新阶段C_编解码加速与网页展示\\test_c2_native.py": "2739f40ed9005377d1e8b6dafd2134ac656f54c915c5d50770166cf559ab67d1",
+    "08_新阶段C_编解码加速与网页展示\\test_c2_results.py": "22d8a931b1a9d862fb8765b3bbb3ce124ca8a9ede40c38da809c3b79f7729e2a",
+    "08_新阶段C_编解码加速与网页展示\\test_c2_watch.py": "d3ec6202f7fa48caeb193ade73f8fc427c2a95dc3516317f3b3426c7a87be5e4"
+  },
+  "checks_json_sha256": "773a65e82e78597e53aa919412b0d00ca50d8a9a379dd56320f948fb912aa03f",
+  "checkpoint_json_sha256": "27a1f30d4f4c2b346a5d74f69eb2217e6d8efa2fe089577d9b909834d2b84422",
+  "failure_evidence": {
+    "worker_log": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_second_pairs_20261019_r1\\encode_process\\worker.log",
+    "worker_log_sha256": "bbcafcd3810210d294bbfe505822b56e9ecfecabf9f263f670e5bf97391d09ff",
+    "worker_log_tail": "8/125 0.24s\nencode 29/125 0.24s\nencode 30/125 0.24s\nencode 31/125 0.24s\nencode 32/125 0.24s\nencode 33/125 0.24s\nencode 34/125 0.24s\nencode 35/125 0.24s\nencode 36/125 0.24s\nencode 37/125 0.23s\nencode 38/125 0.24s\nencode 39/125 0.24s\nencode 40/125 0.24s\nencode 41/125 0.24s\nencode 42/125 0.24s\nencode 43/125 0.24s\nencode 44/125 0.24s\nencode 45/125 0.24s\nencode 46/125 0.24s\nencode 47/125 0.24s\nencode 48/125 0.24s\nencode 49/125 0.24s\nencode 50/125 0.24s\nencode 51/125 0.24s\nencode 52/125 0.24s\nencode 53/125 0.24s\nencode 54/125 0.24s\nencode 55/125 0.24s\nencode 56/125 0.24s\nencode 57/125 0.24s\nencode 58/125 0.24s\nencode 59/125 0.24s\nencode 60/125 0.24s\nencode 61/125 0.24s\nencode 62/125 0.24s\nencode 63/125 0.24s\nencode 64/125 0.24s\nencode 65/125 0.24s\nencode 66/125 0.24s\nencode 67/125 0.24s\nencode 68/125 0.24s\nencode 69/125 0.24s\nencode 70/125 0.24s\nencode 71/125 0.24s\nencode 72/125 0.23s\nencode 73/125 0.24s\nencode 74/125 0.24s\nencode 75/125 0.24s\nencode 76/125 0.24s\nencode 77/125 0.23s\nencode 78/125 0.24s\nencode 79/125 0.24s\nencode 80/125 0.24s\nencode 81/125 0.24s\nencode 82/125 0.24s\nencode 83/125 0.24s\nencode 84/125 0.24s\nencode 85/125 0.24s\nencode 86/125 0.24s\nencode 87/125 0.24s\nencode 88/125 0.24s\nencode 89/125 0.24s\nencode 90/125 0.24s\nencode 91/125 0.24s\nencode 92/125 0.24s\nencode 93/125 0.24s\nencode 94/125 0.24s\nencode 95/125 0.24s\nencode 96/125 0.23s\nencode 97/125 0.24s\nencode 98/125 0.24s\nencode 99/125 0.24s\nencode 100/125 0.23s\nencode 101/125 0.24s\nencode 102/125 0.24s\nencode 103/125 0.24s\nencode 104/125 0.24s\nencode 105/125 0.23s\nencode 106/125 0.24s\nencode 107/125 0.24s\nencode 108/125 0.24s\nencode 109/125 0.24s\nencode 110/125 0.23s\nencode 111/125 0.24s\nencode 112/125 0.24s\nencode 113/125 0.24s\nencode 114/125 0.24s\nencode 115/125 0.25s\nencode 116/125 0.24s\nencode 117/125 0.24s\nencode 118/125 0.24s\nencode 119/125 0.24s\nencode 120/125 0.24s\nencode 121/125 0.23s\nencode 122/125 0.24s\nencode 123/125 0.24s\nencode 124/125 0.24s\nencode 125/125 0.23s\nC2_TASK_DONE encode_3_native {\"bitstream_closed_seconds\": 30.78393170000345, \"checks_complete_seconds\": 30.784396100003505, \"evidence_ready_seconds\": 30.7873333000025, \"offline_view_ready_seconds\": 30.991367100003117}\nTraceback (most recent call last):\n  File \"C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py\", line 115, in <module>\n    sys.exit(main())\n             ^^^^^^\n  File \"C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py\", line 27, in main\n    with (folder / 'fatal.log').open('w', encoding='utf-8') as fatal, Heartbeat(folder) as beat:\n                                                                      ^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_watch.py\", line 118, in __exit__\n    self._flush()\n  File \"C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_watch.py\", line 97, in _flush\n    write(self.folder / 'heartbeat.json', value)\n  File \"C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_watch.py\", line 25, in write\n    os.replace(temp, path)\nPermissionError: [WinError 5] 拒绝访问。: 'C:\\\\Users\\\\lenovo\\\\Documents\\\\ChatGPT\\\\语义通信\\\\02_实验数据\\\\C_编解码加速与网页展示\\\\C2_second_pairs_20261019_r1\\\\encode_process\\\\heartbeat.json.tmp' -> 'C:\\\\Users\\\\lenovo\\\\Documents\\\\ChatGPT\\\\语义通信\\\\02_实验数据\\\\C_编解码加速与网页展示\\\\C2_second_pairs_20261019_r1\\\\encode_process\\\\heartbeat.json'\n",
+    "returncode": 1,
+    "cause_limit": "Heartbeat replace failed with WinError 5; locking process not identified; not evidence of historical C1 crash causes."
+  }
+}

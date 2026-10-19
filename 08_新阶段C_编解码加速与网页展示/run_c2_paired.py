@@ -20,6 +20,7 @@ def summarize(root):
             continue
         value = read(path)
         rows.append({'id': value['run_id'], 'role': value['role'], 'backend': value['entropy_backend'],
+                     'implementation': value.get('implementation', 'c1'),
                      'group': value['group'], 'pair': value['pair'], 'resident': value['model_was_resident'],
                      'view_seconds': value['task_seconds']['offline_view_ready_seconds'],
                      'evidence_seconds': value['task_seconds']['evidence_ready_seconds'],
@@ -45,32 +46,43 @@ def summarize(root):
                 key: {'median': median(p[key] for p in selected), 'min': min(p[key] for p in selected),
                       'max': max(p[key] for p in selected)} for key in
                 ('before_seconds', 'after_seconds', 'saved_seconds', 'reduction_percent', 'speedup')}})
+    comparison = ('Legacy PNG6 versus C1 memory display plus native rANS' if config.get('reference_implementation') == 'legacy'
+                  else 'C1 display Python versus native entropy')
     write(root / 'paired_summary.json', {'config': config, 'records': rows, 'pairs': complete_pairs, 'groups': groups,
           'validated_tasks': len(rows), 'complete_pair_count': len(complete_pairs) // 3,
-          'scope': 'Same clip/preset/C1 display/CUDA FP32; Python versus native entropy. Separate-role resident workers; warmups excluded.',
+          'scope': comparison + '; same clip/preset/CUDA FP32. Separate-role resident workers; warmups excluded.',
           'not_end_to_end': 'Sum of separately executed encode and decode; not network or browser latency.'})
     print(json.dumps({'validated_tasks': len(rows), 'groups': groups}, ensure_ascii=False), flush=True)
 
 
-def run(root, preset, pairs):
+def run(root, preset, pairs, source=None, validator=None, frames=None, reference_implementation='c1'):
+    source_args = {'input': str(source)} if source is not None else {}
+    worker_args = {'validator': validator} if validator is not None else {}
     warmups = [task(root, 'encode_warmup_' + b, 'encode', preset=preset, frames=8,
-                    backend=b, group='warmup', profile=False) for b in ('python', 'native')]
+                    backend=b, implementation=reference_implementation if b == 'python' else 'c1',
+                    group='warmup', profile=False, **source_args) for b in ('python', 'native')]
     encode = list(warmups)
     for pair in range(1, pairs + 1):
         for backend in (('python', 'native') if pair % 2 else ('native', 'python')):
             encode.append(task(root, f'encode_{pair}_{backend}', 'encode', preset=preset,
-                               backend=backend, group='paired', pair=pair, profile=False))
-    worker(root, 'encode_process', 'encode', encode)
+                               backend=backend, implementation=reference_implementation if backend == 'python' else 'c1',
+                               group='paired', pair=pair, profile=False,
+                               frames=frames, **source_args))
+    worker(root, 'encode_process', 'encode', encode, **worker_args)
     if (root / 'STOP_REQUESTED').exists():
         return
     decode = [task(root, 'decode_warmup_' + b, 'decode', preset=preset, frames=8,
                     input=str(Path(warmups[0]['output']) / 'stream.glcv'),
-                    backend=b, group='warmup', profile=False) for b in ('native', 'python')]
+                    backend=b, implementation=reference_implementation if b == 'python' else 'c1',
+                    group='warmup', profile=False) for b in ('native', 'python')]
+    stream_args = {'input': str(root / 'encode_1_python/stream.glcv')} if source is not None else {}
     for pair in range(1, pairs + 1):
         for backend in (('native', 'python') if pair % 2 else ('python', 'native')):
             decode.append(task(root, f'decode_{pair}_{backend}', 'decode', preset=preset,
-                               backend=backend, group='paired', pair=pair, profile=False))
-    worker(root, 'decode_process', 'decode', decode)
+                               backend=backend, implementation=reference_implementation if backend == 'python' else 'c1',
+                               group='paired', pair=pair, profile=False,
+                               frames=frames, **stream_args))
+    worker(root, 'decode_process', 'decode', decode, **worker_args)
 
 
 def main():

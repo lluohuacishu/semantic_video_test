@@ -1,5 +1,6 @@
 """Offline recovery after supervisor loss; never reruns inference or invents exit codes."""
 import argparse
+from functools import partial
 from pathlib import Path
 
 from c2_watch import inspect, utc, write
@@ -18,7 +19,18 @@ def recover(root, report):
             raise RuntimeError(f'Process liveness must be resolved before recovery: {folder}')
         processes.append({'folder': str(folder), **result})
     manifest = read(root / 'manifest.json')
-    validator = HERE / 'run_c1.py'
+    target = manifest.get('validation_target', 'b4_main')
+    if target == 'second_clip_python_reference':
+        from c2_holdout import validate as second_clip_validate
+        validator = HERE / 'c2_holdout.py'
+        validate_task = partial(second_clip_validate, root)
+        passed_key = 'all_rgb_and_latent_hashes_match_reference'
+    elif target == 'b4_main':
+        validator = HERE / 'run_c1.py'
+        validate_task = validate
+        passed_key = 'all_rgb_and_latent_hashes_match_b4'
+    else:
+        raise ValueError('Unknown validation target; never guess the reference clip')
     if manifest['code_sha256'][str(validator.relative_to(REPO))] != sha(validator):
         raise RuntimeError('Validator changed; inspect the immutable measurement snapshot before recovery')
     validated, excluded = [], []
@@ -37,9 +49,9 @@ def recover(root, report):
                 excluded.append({'id': task['id'], 'reason': 'Worker did not finish consistent final metadata'})
                 continue
             if not (folder / 'validation.json').exists():
-                validate(task, config['role'])
+                validate_task(task, config['role'])
             validation = read(folder / 'validation.json')
-            if not validation.get('all_rgb_and_latent_hashes_match_b4'):
+            if not validation.get(passed_key):
                 raise ValueError('Existing validation is not passing')
             validated.append({'id': task['id'], 'validation': validation})
     record = {'recovered_utc': utc(), 'root': str(root), 'processes': processes,

@@ -29,9 +29,11 @@ def main():
         try:
             # Heartbeat/fault handler are active before importing torch or loading CUDA.
             from c1_runtime import ResidentRunner, TaskCancelled, ref
+            from c1_worker import reference_task
             from c0_metrics import Timings
             from run_c0 import gpu_snapshot
             active = {'profile': False, 'timings': Timings(), 'task': None, 'backend': 'python'}
+            neural_class = ref.NeuralCodec  # legacy control temporarily patches ref.NeuralCodec
 
             def measure_entropy(entropy):
                 for name in ('indexes', 'encode', 'decode'):
@@ -45,10 +47,12 @@ def main():
                 return entropy
 
             def factory(*a, **kw):
-                codec = ref.NeuralCodec(*a, **kw)
+                codec = neural_class(*a, **kw)
                 codec.c2_backends = {'python': measure_entropy(codec.entropy)}
                 original_frame = codec.frame
                 def frame(header, index, *a, **kw):
+                    if stop.is_set():
+                        raise TaskCancelled('Stopped at a neural frame boundary')
                     if active['profile']:
                         with active['timings'].scope('frame'):
                             result = original_frame(header, index, *a, **kw)
@@ -81,10 +85,23 @@ def main():
                     raise TaskCancelled('Stopped before dispatching next task')
                 active.update(profile=task.get('profile', False), timings=Timings(), task=task['id'],
                               backend=task.get('backend', 'python'))
-                beat.update(state='running', task=task['id'], last_progress=None)
+                beat.update(state='running', task=task['id'], last_progress=None,
+                            task_state={'state': 'running', 'role': config['role']})
                 before = gpu_snapshot()
-                timing = runner.run(task, cancel_event=stop,
-                                    on_event=lambda event: beat.update(task_state=event))
+                implementation = task.get('implementation', 'c1')
+                if implementation == 'legacy':
+                    if active['backend'] != 'python':
+                        raise ValueError('Legacy reference must use Python entropy')
+                    timing = reference_task(runner, task)
+                    status = {'state': 'ready', 'role': config['role'], 'implementation': 'legacy',
+                              'task_seconds': timing['task_seconds']}
+                    write(Path(task['output']) / 'status.json', status)
+                    beat.update(task_state=status)
+                elif implementation == 'c1':
+                    timing = runner.run(task, cancel_event=stop,
+                                        on_event=lambda event: beat.update(task_state=event))
+                else:
+                    raise ValueError('Unknown pipeline implementation')
                 timing.update(run_id=task['id'], group=task.get('group'), pair=task.get('pair'),
                               task_config=task, detailed_instrumentation=active['profile'],
                               entropy_backend=active['backend'], gpu_before=before, gpu_after=gpu_snapshot(),

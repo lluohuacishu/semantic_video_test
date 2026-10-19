@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sys
 import threading
 import time
 import traceback
@@ -22,7 +23,18 @@ def write(path, value):
         handle.write('\n')
         handle.flush()
         os.fsync(handle.fileno())
-    os.replace(temp, path)
+    # Windows readers, scanners or editors may briefly deny replacement even
+    # after the new file is flushed. Retry only sharing/access conflicts, with
+    # a short bound; permanent failures still surface and invalidate the worker.
+    for attempt in range(10):
+        try:
+            os.replace(temp, path)
+            break
+        except PermissionError as exc:
+            if getattr(exc, 'winerror', None) not in (5, 32, 33) or attempt == 9:
+                raise
+            print(f'C2_WRITE_RETRY {path.name} attempt={attempt + 1} winerror={exc.winerror}', file=sys.stderr, flush=True)
+            time.sleep(min(0.01 * 2**attempt, 0.2))
 
 
 def identity(pid):
@@ -67,16 +79,27 @@ def inspect(folder):
             current.get('creation_token') == value.get('child_identity', {}).get('creation_token'))
     supervisor_same = (owner.get('creation_token') is not None and
                        owner.get('creation_token') == value['supervisor'].get('creation_token'))
-    if value.get('returncode') is not None:
+    # A Windows venv redirector can have a different PID from sys.getpid() in
+    # the actual Python worker. Check both; launcher exit is not proof that the
+    # worker has gone away.
+    heartbeat_path = Path(folder) / 'heartbeat.json'
+    heartbeat = json.loads(heartbeat_path.read_text(encoding='utf-8')) if heartbeat_path.is_file() else None
+    worker = identity(heartbeat['pid']) if heartbeat else {'alive': False}
+    worker_same = (heartbeat is not None and worker.get('creation_token') is not None and
+                   worker.get('creation_token') == heartbeat.get('identity', {}).get('creation_token'))
+    worker_alive = worker.get('alive') is True and worker_same
+    if value.get('returncode') is not None and worker_alive:
+        observed = 'orphan_running'
+    elif value.get('returncode') is not None:
         observed = value['state']
-    elif current['alive'] and same:
+    elif (current['alive'] and same) or worker_alive:
         observed = 'running' if owner['alive'] and supervisor_same else 'orphan_running'
-    elif current['alive'] is None:
+    elif current['alive'] is None or worker.get('alive') is None:
         observed = 'liveness_unknown'
     else:
         observed = 'interrupted_exit_unknown'
     return {'observed_state': observed, 'recorded': value, 'current_process': current,
-            'current_supervisor': owner, 'cause': None}
+            'current_supervisor': owner, 'current_worker': worker, 'cause': None}
 
 
 class Heartbeat:

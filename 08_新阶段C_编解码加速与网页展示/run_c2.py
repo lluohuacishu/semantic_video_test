@@ -12,14 +12,18 @@ from run_c1 import task, validate
 from c2_watch import supervise, write, inspect, utc
 
 
-def manifest(root, args):
+def manifest(root, args, source=None):
     files = list(HERE.glob('c[012]_*.py')) + [HERE / n for n in ('run_c0.py', 'run_c1.py', 'run_c2.py', 'build_c2_native.py', 'test_c2_native.py', 'test_c2_watch.py')]
     files += list((HERE / 'native').glob('*'))
     files += [HERE / name for name in ('run_c2_paired.py', 'recover_c2.py', 'check_c2.py',
                                        'export_c2_checkpoint.py', 'test_c2_results.py')]
+    files += list(HERE.glob('run_c2*.py')) + list(HERE.glob('test_c2*.py'))
+    files = list(dict.fromkeys(files))
     files += [SCRIPTS / n for n in ('glc_video_codec.py', 'glc_video_probe.py', 'glc_entropy.py',
                                   'glc_container.py', 'glc_presets.py', 'glc_presets.json')]
-    if sha(SOURCE) != INPUT_SHA:
+    source = Path(source).resolve() if source is not None else SOURCE
+    input_sha = sha(source)
+    if source == SOURCE and input_sha != INPUT_SHA:
         raise ValueError('Frozen input changed')
     for file in files:
         target = root / 'measurement_code' / file.relative_to(REPO)
@@ -37,13 +41,13 @@ def manifest(root, args):
     write(root / 'manifest.json', {'created_utc': utc(), 'phase': args.phase, 'frames': args.frames,
           'pairs': args.pairs, 'base_commit': command_text(['git', 'rev-parse', 'HEAD']),
           'code_sha256': {str(p.relative_to(REPO)): sha(p) for p in files},
-          'input': {'path': str(SOURCE), 'sha256': INPUT_SHA}, 'python': sys.executable,
+          'input': {'path': str(source), 'sha256': input_sha}, 'python': sys.executable,
           'gpu': gpu_snapshot(), 'power_scheme': command_text(['powercfg', '/getactivescheme']),
           'policy': 'Serialized separate-role C1 display workers; cold warmup explicit; profile AB/BA controls; no GPU profiler',
           'native': native, 'limitations': 'Finite C2 evidence; no extrapolated full-preset speedup claim; scopes are CPU wall spans'})
 
 
-def worker(root, name, role, tasks):
+def worker(root, name, role, tasks, validator=validate):
     folder = root / name
     config = {'role': role, 'repo': str(RUNTIME / 'tools/GLC'), 'weights': str(RUNTIME / 'checkpoints/glc'),
               'ffmpeg': str(FFMPEG), 'process_folder': str(folder), 'stop_file': str(root / 'STOP_REQUESTED'),
@@ -64,7 +68,7 @@ def worker(root, name, role, tasks):
                      read(output / 'hotspots.json').get('run_id') == item['id'] and
                      read(output / 'status.json').get('state') == 'ready')
         if ready:
-            validate(item, role)
+            validator(item, role)
             complete += 1
             print('C2_VALIDATED ' + item['id'], flush=True)
     if value['returncode'] != 0:

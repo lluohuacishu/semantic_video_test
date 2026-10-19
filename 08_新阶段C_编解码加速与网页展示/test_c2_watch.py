@@ -1,8 +1,10 @@
 import json
+import ctypes
 import os
 from pathlib import Path
 import sys
 import tempfile
+import threading
 import unittest
 from unittest.mock import patch
 
@@ -10,6 +12,63 @@ from c2_watch import Heartbeat, identity, inspect, supervise, write
 
 
 class WatchTests(unittest.TestCase):
+    @unittest.skipUnless(os.name == 'nt', 'Windows file-sharing semantics')
+    def test_real_windows_reader_lock_is_retried(self):
+        from ctypes import wintypes as w
+        kernel = ctypes.WinDLL('kernel32', use_last_error=True)
+        kernel.CreateFileW.argtypes = [w.LPCWSTR, w.DWORD, w.DWORD, w.LPVOID, w.DWORD, w.DWORD, w.HANDLE]
+        kernel.CreateFileW.restype = w.HANDLE
+        kernel.CloseHandle.argtypes = [w.HANDLE]
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'heartbeat.json'
+            write(path, {'state': 'old'})
+            handle = kernel.CreateFileW(str(path), 0x80000000, 3, None, 3, 0x80, None)
+            self.assertNotEqual(handle, ctypes.c_void_p(-1).value)
+            release = threading.Timer(0.08, lambda: kernel.CloseHandle(handle))
+            release.start()
+            try:
+                write(path, {'state': 'completed'})
+            finally:
+                release.join()
+            self.assertEqual(json.loads(path.read_text(encoding='utf-8'))['state'], 'completed')
+
+    def test_transient_windows_replace_failure_retries_and_preserves_json(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp) / 'status.json'
+            original = os.replace
+            error = PermissionError('temporary sharing conflict')
+            error.winerror = 5
+            calls = 0
+            def replace(a, b):
+                nonlocal calls
+                calls += 1
+                if calls < 3:
+                    raise error
+                return original(a, b)
+            with patch('c2_watch.os.replace', side_effect=replace), patch('c2_watch.time.sleep'):
+                write(target, {'state': 'completed'})
+            self.assertEqual(calls, 3)
+            self.assertEqual(json.loads(target.read_text(encoding='utf-8'))['state'], 'completed')
+
+    def test_permanent_replace_failure_remains_bounded_and_raises(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            error = PermissionError('persistent access denied')
+            error.winerror = 5
+            with patch('c2_watch.os.replace', side_effect=error) as replace, patch('c2_watch.time.sleep'):
+                with self.assertRaises(PermissionError):
+                    write(Path(tmp) / 'state.json', {'state': 'completed'})
+            self.assertEqual(replace.call_count, 10)
+
+    def test_actual_worker_surviving_redirector_is_detected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write(root / 'process.json', {'pid': 20, 'state': 'failed', 'returncode': 1,
+                  'child_identity': {'creation_token': 1}, 'supervisor': {'pid': 10, 'creation_token': 2}})
+            write(root / 'heartbeat.json', {'pid': 30, 'identity': {'creation_token': 3}})
+            with patch('c2_watch.identity', side_effect=[{'alive': False}, {'alive': False},
+                                                        {'alive': True, 'creation_token': 3}]):
+                self.assertEqual(inspect(root)['observed_state'], 'orphan_running')
+
     def test_current_process_identity(self):
         value = identity(os.getpid())
         self.assertTrue(value['alive'])
