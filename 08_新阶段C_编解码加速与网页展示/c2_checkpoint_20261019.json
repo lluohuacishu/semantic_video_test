@@ -1,0 +1,3623 @@
+{
+  "exported_utc": "2026-10-19T14:59:25.036847+00:00",
+  "c2_stage": "in_progress_not_accepted",
+  "stages": [
+    {
+      "root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_diagnose66_20261019_r1",
+      "evidence": {
+        "manifest.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_diagnose66_20261019_r1\\manifest.json",
+          "sha256": "d6c8fce489a126c356e4f68f52998e4d46c63840591cbe793398c154391e1e4d",
+          "data": {
+            "created_utc": "2026-10-19T14:27:39.722266+00:00",
+            "phase": "diagnose",
+            "frames": 66,
+            "pairs": 1,
+            "base_commit": {
+              "returncode": 0,
+              "stdout": "af2f67e087a8a0141208ee71ac049f660b1206e2\n",
+              "stderr": ""
+            },
+            "code_sha256": {
+              "08_新阶段C_编解码加速与网页展示\\c0_metrics.py": "d36844679f3fa3ed1902873b3d35066b471de40564ddd27d0da0dac5fa11cd12",
+              "08_新阶段C_编解码加速与网页展示\\c0_worker.py": "aefea753ab2e21093b8c031e183ab29475101f20a371efc4b00c2ee697c8ab4e",
+              "08_新阶段C_编解码加速与网页展示\\c1_io.py": "9106801e9ab57a65f3eab4c6956a022821f620d7f8093e9151a0f2d611a6100d",
+              "08_新阶段C_编解码加速与网页展示\\c1_runtime.py": "3419534425f238e55a3ba0143ef238568225a29268a35373e4179fe71cbe378c",
+              "08_新阶段C_编解码加速与网页展示\\c1_worker.py": "06093e0b0bbdc67e496dbd10e46e7270166e3764fdbe570dcb53a4548cf1948e",
+              "08_新阶段C_编解码加速与网页展示\\c2_watch.py": "e081c060fcd31df9cb86908308713ab3255079c124409cf9b033cc227672dabe",
+              "08_新阶段C_编解码加速与网页展示\\c2_worker.py": "7a76919a8a08fe6e8e1d6d8b2b3b2b9b8bc6bc3f20b1da8fec99c51e8ab4b506",
+              "08_新阶段C_编解码加速与网页展示\\run_c0.py": "ff13aa090929788bc1f4d254f44d164e9911190ca25d88440cccffcdf0ee87d7",
+              "08_新阶段C_编解码加速与网页展示\\run_c1.py": "9edea7b87e3d69bd3d764ec54e914c03f35a2c7c1d01967ca56cc4affd1199de",
+              "08_新阶段C_编解码加速与网页展示\\run_c2.py": "06a658c442a6f2a4abc5c854d596a3c7171883a125e0811e6bdef5ff3b0e667c",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_codec.py": "52fe2b88cd3f2e023825b2e0e2ada0d86e54dcccdcd4dcc8c137b8eb3272a2ae",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_probe.py": "2a741913b11f1ec59be202d1ff32cfdff9c485585a94466c5e227b7dd373b814",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_entropy.py": "766905d2031c42d15e5c164653996313fa19dd2e6f14e7dc0ac33e70632be0e3",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_container.py": "f59014583826695e0f6baeb9e81581ff31d276c22d9bdb63ad82860200fa07dc",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.py": "2cee8686c2071070a612adab6f3f1d39ecd2ef85d0e3a269ed50cd5fd28ff9c9",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.json": "53c3f17692e528de0eabef361b8afbce14f03aeb6a966bc296836f78c598f148"
+            },
+            "input": {
+              "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\A_压缩路线选型\\A2_GLC验证\\long108\\input_540.mkv",
+              "sha256": "6683af45254bdaed431658e5f7515cddaeb42df2382f18b983e6e1cba7ae436b"
+            },
+            "python": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+            "gpu": {
+              "returncode": 0,
+              "stdout": "name, driver_version, pstate, temperature.gpu, power.draw [W], power.limit [W], memory.used [MiB], memory.total [MiB], utilization.gpu [%], clocks.current.sm [MHz], clocks.current.memory [MHz]\nNVIDIA GeForce RTX 4060 Laptop GPU, 560.94, P5, 36, 5.76 W, [N/A], 3774 MiB, 8188 MiB, 2 %, 210 MHz, 810 MHz\n",
+              "stderr": ""
+            },
+            "power_scheme": {
+              "returncode": 0,
+              "stdout": "电源方案 GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (平衡)",
+              "stderr": ""
+            },
+            "policy": "Serialized separate-role C1 display workers; cold warmup explicit; profile AB/BA controls; no GPU profiler",
+            "limitations": "Small diagnostic only; no full-preset speedup claim; scopes are CPU wall spans"
+          }
+        },
+        "stage.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_diagnose66_20261019_r1\\stage.json",
+          "sha256": "00efaeb5a434f1f164e02d33b469ab031c2150982aa86a9ffdff59a5913602ec",
+          "data": {
+            "state": "complete",
+            "ended_utc": "2026-10-19T14:29:07.503284+00:00"
+          }
+        },
+        "summary.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_diagnose66_20261019_r1\\summary.json",
+          "sha256": "3fc5ca55dcf7c5d8eed1dde5a8d3e9c7c0e63be0d4283744df43d2aca0e0c68a",
+          "data": {
+            "records": [
+              {
+                "id": "decode_1_profile0",
+                "role": "decode",
+                "profile": false,
+                "resident": true,
+                "view_seconds": 13.966388900000311,
+                "entropy_seconds": null,
+                "entropy_fraction": null,
+                "scopes": {},
+                "validation": {
+                  "frames_checked": 66,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "42ee0f91770ec6d6646539b52a04a6a2224cf76919b838bedaf127f929934a48",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "5.280000",
+                      "nb_read_frames": "66"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_1_profile1",
+                "role": "decode",
+                "profile": true,
+                "resident": true,
+                "view_seconds": 14.003264399994805,
+                "entropy_seconds": 3.778573100018548,
+                "entropy_fraction": 0.269835160722949,
+                "scopes": {
+                  "entropy.decode": {
+                    "inclusive_seconds": 3.6723485000038636,
+                    "exclusive_seconds": 3.6723485000038636,
+                    "calls": 136
+                  },
+                  "entropy.indexes": {
+                    "inclusive_seconds": 0.10622460001468426,
+                    "exclusive_seconds": 0.10622460001468426,
+                    "calls": 136
+                  },
+                  "frame": {
+                    "inclusive_seconds": 13.69825949997903,
+                    "exclusive_seconds": 9.919686399960483,
+                    "calls": 66
+                  }
+                },
+                "validation": {
+                  "frames_checked": 66,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "17c14447314146086d796479f5e4c5d21850780f1b8bfa92ecd7da7f2e8c9e2b",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "5.280000",
+                      "nb_read_frames": "66"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_warmup8",
+                "role": "decode",
+                "profile": false,
+                "resident": false,
+                "view_seconds": 5.5569427000009455,
+                "entropy_seconds": null,
+                "entropy_fraction": null,
+                "scopes": {},
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "889b69b3f256cc9658472f8b09d0528dcaee26d89e51b6ed7a9aed28d5404fd9",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_1_profile0",
+                "role": "encode",
+                "profile": false,
+                "resident": true,
+                "view_seconds": 19.76936620000197,
+                "entropy_seconds": null,
+                "entropy_fraction": null,
+                "scopes": {},
+                "validation": {
+                  "frames_checked": 66,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "c0cd5f552f5b22bf88f2ddb17f5afc258d2e385d47e70cd99bb5b4660b4e7423",
+                  "stream_sha256": "6092d1b0b703d01e452e0c10d9c31429e43b48eaa41bcd2d9696656c39c78370",
+                  "stream_bytes": 15049,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "5.280000",
+                      "nb_read_frames": "66"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "5.280000",
+                      "nb_read_frames": "66"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_1_profile1",
+                "role": "encode",
+                "profile": true,
+                "resident": true,
+                "view_seconds": 19.79417310000281,
+                "entropy_seconds": 3.593401600039215,
+                "entropy_fraction": 0.18153835383195194,
+                "scopes": {
+                  "entropy.encode": {
+                    "inclusive_seconds": 3.490689700047369,
+                    "exclusive_seconds": 3.490689700047369,
+                    "calls": 136
+                  },
+                  "entropy.indexes": {
+                    "inclusive_seconds": 0.10271189999184571,
+                    "exclusive_seconds": 0.10271189999184571,
+                    "calls": 136
+                  },
+                  "frame": {
+                    "inclusive_seconds": 18.918866199979675,
+                    "exclusive_seconds": 15.32546459994046,
+                    "calls": 66
+                  }
+                },
+                "validation": {
+                  "frames_checked": 66,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "b7a72a2d694ba28ec7cea85116ae27ce15a86f4b9b9372c6f51602d3bca57cd4",
+                  "stream_sha256": "6092d1b0b703d01e452e0c10d9c31429e43b48eaa41bcd2d9696656c39c78370",
+                  "stream_bytes": 15049,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "5.280000",
+                      "nb_read_frames": "66"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "5.280000",
+                      "nb_read_frames": "66"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_warmup8",
+                "role": "encode",
+                "profile": false,
+                "resident": false,
+                "view_seconds": 6.668300899997121,
+                "entropy_seconds": null,
+                "entropy_fraction": null,
+                "scopes": {},
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "ce93cc1a12f8ca6130e2030649e0ef93e964c3716bb1212a44db88483128ae58",
+                  "stream_sha256": "dda8df0795e35b0576d7c1325418be10fb4473c1d65c6c1f7f9f989129790d41",
+                  "stream_bytes": 2535,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              }
+            ],
+            "validated_tasks": 6,
+            "interpretation": "Diagnostic evidence only. Inclusive frame and entropy scopes overlap; never add them."
+          }
+        }
+      },
+      "processes": [
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_diagnose66_20261019_r1\\decode_process\\process.json",
+          "sha256": "4673a4c55d7d660b94747a4def8523afe847dd7faf9388d2b2264673da254bc1",
+          "data": {
+            "argv": [
+              "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py",
+              "--config",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_diagnose66_20261019_r1\\decode_process_config.json"
+            ],
+            "started_utc": "2026-10-19T14:28:30.806234+00:00",
+            "state": "completed",
+            "supervisor": {
+              "pid": 29824,
+              "alive": true,
+              "creation_token": 134368936595845555
+            },
+            "pid": 37028,
+            "returncode": 0,
+            "exit_cause": null,
+            "stop_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_diagnose66_20261019_r1\\STOP_REQUESTED",
+            "child_identity": {
+              "pid": 37028,
+              "alive": true,
+              "creation_token": 134368937108150694
+            },
+            "supervisor_heartbeat_utc": "2026-10-19T14:29:06.171988+00:00",
+            "elapsed_seconds": 36.36483969999972,
+            "ended_utc": "2026-10-19T14:29:07.177341+00:00",
+            "returncode_hex": "0x00000000"
+          }
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_diagnose66_20261019_r1\\encode_process\\process.json",
+          "sha256": "4f8ba0c4d15cc6967c04bdd795d0cbb008c3b0297c7ac9a3b567ce83b1e6e68e",
+          "data": {
+            "argv": [
+              "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py",
+              "--config",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_diagnose66_20261019_r1\\encode_process_config.json"
+            ],
+            "started_utc": "2026-10-19T14:27:39.836287+00:00",
+            "state": "completed",
+            "supervisor": {
+              "pid": 29824,
+              "alive": true,
+              "creation_token": 134368936595845555
+            },
+            "pid": 36192,
+            "returncode": 0,
+            "exit_cause": null,
+            "stop_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_diagnose66_20261019_r1\\STOP_REQUESTED",
+            "child_identity": {
+              "pid": 36192,
+              "alive": true,
+              "creation_token": 134368936598431382
+            },
+            "supervisor_heartbeat_utc": "2026-10-19T14:28:28.336879+00:00",
+            "elapsed_seconds": 49.50183169999946,
+            "ended_utc": "2026-10-19T14:28:29.342407+00:00",
+            "returncode_hex": "0x00000000"
+          }
+        }
+      ]
+    },
+    {
+      "root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate8_20261019_r1",
+      "evidence": {
+        "manifest.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate8_20261019_r1\\manifest.json",
+          "sha256": "2fd7f48b3a0ac87c0e62e5e7a40460225266b2c56ab7cbcb2555a315ac380ede",
+          "data": {
+            "created_utc": "2026-10-19T14:33:22.546360+00:00",
+            "phase": "gate8",
+            "frames": 8,
+            "pairs": 1,
+            "base_commit": {
+              "returncode": 0,
+              "stdout": "af2f67e087a8a0141208ee71ac049f660b1206e2\n",
+              "stderr": ""
+            },
+            "code_sha256": {
+              "08_新阶段C_编解码加速与网页展示\\c0_metrics.py": "d36844679f3fa3ed1902873b3d35066b471de40564ddd27d0da0dac5fa11cd12",
+              "08_新阶段C_编解码加速与网页展示\\c0_worker.py": "aefea753ab2e21093b8c031e183ab29475101f20a371efc4b00c2ee697c8ab4e",
+              "08_新阶段C_编解码加速与网页展示\\c1_io.py": "9106801e9ab57a65f3eab4c6956a022821f620d7f8093e9151a0f2d611a6100d",
+              "08_新阶段C_编解码加速与网页展示\\c1_runtime.py": "3419534425f238e55a3ba0143ef238568225a29268a35373e4179fe71cbe378c",
+              "08_新阶段C_编解码加速与网页展示\\c1_worker.py": "06093e0b0bbdc67e496dbd10e46e7270166e3764fdbe570dcb53a4548cf1948e",
+              "08_新阶段C_编解码加速与网页展示\\c2_native.py": "1f948c3dc207dfdc1cb7d74f325c98a9065b7dd2d17f41b7cb4c77153db962b4",
+              "08_新阶段C_编解码加速与网页展示\\c2_watch.py": "e081c060fcd31df9cb86908308713ab3255079c124409cf9b033cc227672dabe",
+              "08_新阶段C_编解码加速与网页展示\\c2_worker.py": "0bf93f176fddb7f3976f11bf0bc97941f3ce8faba62540fedfd6c6740a6a5b39",
+              "08_新阶段C_编解码加速与网页展示\\run_c0.py": "ff13aa090929788bc1f4d254f44d164e9911190ca25d88440cccffcdf0ee87d7",
+              "08_新阶段C_编解码加速与网页展示\\run_c1.py": "9edea7b87e3d69bd3d764ec54e914c03f35a2c7c1d01967ca56cc4affd1199de",
+              "08_新阶段C_编解码加速与网页展示\\run_c2.py": "929c50c4bcc06466cfe96a87de05221709de2cc057700aacf6ebc3a18508c03d",
+              "08_新阶段C_编解码加速与网页展示\\build_c2_native.py": "5ae7554f0d3999d1eff361a1629548b8c080f3381beb637d7031c284c526d176",
+              "08_新阶段C_编解码加速与网页展示\\test_c2_native.py": "2739f40ed9005377d1e8b6dafd2134ac656f54c915c5d50770166cf559ab67d1",
+              "08_新阶段C_编解码加速与网页展示\\test_c2_watch.py": "982ae257354e52bcaca669480770842eeaccc4b4d7fe273fe3218ba14f6a54e7",
+              "08_新阶段C_编解码加速与网页展示\\native\\glc_rans.c": "c1e325ccaaef238efaabbd128a95d389a90c1136526b7bfcff8b8b786d033e32",
+              "08_新阶段C_编解码加速与网页展示\\native\\rans_byte.h": "66e9521b4485c1b36ee7527f1a6cd7c9fe7f8495f81420602fbdc26b7273bea6",
+              "08_新阶段C_编解码加速与网页展示\\native\\README.md": "a57a1ea842406ed29c55d4e55f2ea3f4ec391bf983e4b138678bb678b758cd49",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_codec.py": "52fe2b88cd3f2e023825b2e0e2ada0d86e54dcccdcd4dcc8c137b8eb3272a2ae",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_probe.py": "2a741913b11f1ec59be202d1ff32cfdff9c485585a94466c5e227b7dd373b814",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_entropy.py": "766905d2031c42d15e5c164653996313fa19dd2e6f14e7dc0ac33e70632be0e3",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_container.py": "f59014583826695e0f6baeb9e81581ff31d276c22d9bdb63ad82860200fa07dc",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.py": "2cee8686c2071070a612adab6f3f1d39ecd2ef85d0e3a269ed50cd5fd28ff9c9",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.json": "53c3f17692e528de0eabef361b8afbce14f03aeb6a966bc296836f78c598f148"
+            },
+            "input": {
+              "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\A_压缩路线选型\\A2_GLC验证\\long108\\input_540.mkv",
+              "sha256": "6683af45254bdaed431658e5f7515cddaeb42df2382f18b983e6e1cba7ae436b"
+            },
+            "python": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+            "gpu": {
+              "returncode": 0,
+              "stdout": "name, driver_version, pstate, temperature.gpu, power.draw [W], power.limit [W], memory.used [MiB], memory.total [MiB], utilization.gpu [%], clocks.current.sm [MHz], clocks.current.memory [MHz]\nNVIDIA GeForce RTX 4060 Laptop GPU, 560.94, P5, 36, 6.20 W, [N/A], 3675 MiB, 8188 MiB, 25 %, 210 MHz, 810 MHz\n",
+              "stderr": ""
+            },
+            "power_scheme": {
+              "returncode": 0,
+              "stdout": "电源方案 GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (平衡)",
+              "stderr": ""
+            },
+            "policy": "Serialized separate-role C1 display workers; cold warmup explicit; profile AB/BA controls; no GPU profiler",
+            "native": {
+              "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_native_build_20261019_r3\\glc_rans.dll",
+              "sha256": "348c44304a97cec53643d33d284f5e6f6e0c7db60ac8c811da06ce4ea36451bc",
+              "build": {
+                "created_utc": "2026-10-19T14:32:34.461670+00:00",
+                "argv": [
+                  "C:\\mingw64\\bin\\gcc.exe",
+                  "-B",
+                  "C:\\mingw64\\bin/",
+                  "-std=c11",
+                  "-O3",
+                  "-Wall",
+                  "-Wextra",
+                  "-Werror",
+                  "-shared",
+                  "-static-libgcc",
+                  "glc_rans.c",
+                  "-o",
+                  "glc_rans.dll"
+                ],
+                "returncode": 0,
+                "stdout": "",
+                "stderr": "",
+                "source_sha256": {
+                  "rans_byte.h": "66e9521b4485c1b36ee7527f1a6cd7c9fe7f8495f81420602fbdc26b7273bea6",
+                  "glc_rans.c": "c1e325ccaaef238efaabbd128a95d389a90c1136526b7bfcff8b8b786d033e32"
+                },
+                "upstream_commit": "c9d162d996fd600315af9ae8eb89d832576cb32d",
+                "compiler": "gcc.exe (x86_64-win32-seh-rev0, Built by MinGW-Builds project) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+                "library_sha256": "348c44304a97cec53643d33d284f5e6f6e0c7db60ac8c811da06ce4ea36451bc"
+              }
+            },
+            "limitations": "Finite C2 evidence; no extrapolated full-preset speedup claim; scopes are CPU wall spans"
+          }
+        },
+        "stage.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate8_20261019_r1\\stage.json",
+          "sha256": "becbb588821b4323eff97507476e990255c1327ba2eb74dbbec7a6ed871169b1",
+          "data": {
+            "state": "complete",
+            "ended_utc": "2026-10-19T14:33:47.543908+00:00"
+          }
+        },
+        "gate.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate8_20261019_r1\\gate.json",
+          "sha256": "671215598cfe5565d6fc1ddad7082de331fb9bd19a58dedb6bdedf7088b375a1",
+          "data": {
+            "passed": true,
+            "frames": 8,
+            "stream_byte_identical": true,
+            "cross_decode_directions": [
+              "python->python",
+              "python->native",
+              "native->python",
+              "native->native"
+            ]
+          }
+        },
+        "summary.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate8_20261019_r1\\summary.json",
+          "sha256": "88aa1bd5ee7e01ef23ec079dbd54a956eecd550b413d2f0074f50ce252b6547a",
+          "data": {
+            "records": [
+              {
+                "id": "decode_native_by_native",
+                "role": "decode",
+                "backend": "native",
+                "profile": true,
+                "resident": true,
+                "view_seconds": 1.3734556000054,
+                "entropy_seconds": 0.02064200001041172,
+                "entropy_fraction": 0.01502924449128939,
+                "scopes": {
+                  "entropy.decode": {
+                    "inclusive_seconds": 0.008165600018401165,
+                    "exclusive_seconds": 0.008165600018401165,
+                    "calls": 18
+                  },
+                  "entropy.indexes": {
+                    "inclusive_seconds": 0.012476399992010556,
+                    "exclusive_seconds": 0.012476399992010556,
+                    "calls": 18
+                  },
+                  "frame": {
+                    "inclusive_seconds": 1.2586434000040754,
+                    "exclusive_seconds": 1.2380013999936637,
+                    "calls": 8
+                  }
+                },
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "42a74b9aaa08858ec04f136f1b1967e32c3c58394bf35b5cc2b2d8cc337d401a",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_native_by_python",
+                "role": "decode",
+                "backend": "python",
+                "profile": true,
+                "resident": true,
+                "view_seconds": 1.737210799998138,
+                "entropy_seconds": 0.4437558000063291,
+                "entropy_fraction": 0.2554415388200469,
+                "scopes": {
+                  "entropy.decode": {
+                    "inclusive_seconds": 0.43118329999560956,
+                    "exclusive_seconds": 0.43118329999560956,
+                    "calls": 18
+                  },
+                  "entropy.indexes": {
+                    "inclusive_seconds": 0.012572500010719523,
+                    "exclusive_seconds": 0.012572500010719523,
+                    "calls": 18
+                  },
+                  "frame": {
+                    "inclusive_seconds": 1.631332899989502,
+                    "exclusive_seconds": 1.187577099983173,
+                    "calls": 8
+                  }
+                },
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "203cfad5394accb27e54644c30ae20b1888650901a7e5dfbd8ccd3d44757aebe",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_python_by_native",
+                "role": "decode",
+                "backend": "native",
+                "profile": true,
+                "resident": false,
+                "view_seconds": 5.054832599998917,
+                "entropy_seconds": 0.02144860000407789,
+                "entropy_fraction": 0.004243187005655238,
+                "scopes": {
+                  "entropy.decode": {
+                    "inclusive_seconds": 0.008386699999391567,
+                    "exclusive_seconds": 0.008386699999391567,
+                    "calls": 18
+                  },
+                  "entropy.indexes": {
+                    "inclusive_seconds": 0.013061900004686322,
+                    "exclusive_seconds": 0.013061900004686322,
+                    "calls": 18
+                  },
+                  "frame": {
+                    "inclusive_seconds": 1.7300549000065075,
+                    "exclusive_seconds": 1.7086063000024296,
+                    "calls": 8
+                  }
+                },
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "7ed6d8af872873c968e9b56534031f202783174137fc581a4480b735a71919f2",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_python_by_python",
+                "role": "decode",
+                "backend": "python",
+                "profile": true,
+                "resident": true,
+                "view_seconds": 1.7907483000017237,
+                "entropy_seconds": 0.44007380001130514,
+                "entropy_fraction": 0.245748551044768,
+                "scopes": {
+                  "entropy.decode": {
+                    "inclusive_seconds": 0.4271028000075603,
+                    "exclusive_seconds": 0.4271028000075603,
+                    "calls": 18
+                  },
+                  "entropy.indexes": {
+                    "inclusive_seconds": 0.012971000003744848,
+                    "exclusive_seconds": 0.012971000003744848,
+                    "calls": 18
+                  },
+                  "frame": {
+                    "inclusive_seconds": 1.6753743000008399,
+                    "exclusive_seconds": 1.2353004999895347,
+                    "calls": 8
+                  }
+                },
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "16968ef9c7dc0c791ab7691b45c09afbdefe2776f1b96a14b6e76b1bb162e890",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_native",
+                "role": "encode",
+                "backend": "native",
+                "profile": true,
+                "resident": true,
+                "view_seconds": 2.199585800000932,
+                "entropy_seconds": 0.02778530000068713,
+                "entropy_fraction": 0.012632060090893184,
+                "scopes": {
+                  "entropy.encode": {
+                    "inclusive_seconds": 0.015175600012298673,
+                    "exclusive_seconds": 0.015175600012298673,
+                    "calls": 18
+                  },
+                  "entropy.indexes": {
+                    "inclusive_seconds": 0.012609699988388456,
+                    "exclusive_seconds": 0.012609699988388456,
+                    "calls": 18
+                  },
+                  "frame": {
+                    "inclusive_seconds": 1.910735899982683,
+                    "exclusive_seconds": 1.8829505999819958,
+                    "calls": 8
+                  }
+                },
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "bd8294ca5b64d0f008b0051243649af8675c014c8a12a7291d0cd3877140e5c8",
+                  "stream_sha256": "dda8df0795e35b0576d7c1325418be10fb4473c1d65c6c1f7f9f989129790d41",
+                  "stream_bytes": 2535,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_python",
+                "role": "encode",
+                "backend": "python",
+                "profile": true,
+                "resident": false,
+                "view_seconds": 6.370858900001622,
+                "entropy_seconds": 0.4425051000289386,
+                "entropy_fraction": 0.06945768333196423,
+                "scopes": {
+                  "entropy.encode": {
+                    "inclusive_seconds": 0.42924320000747684,
+                    "exclusive_seconds": 0.42924320000747684,
+                    "calls": 18
+                  },
+                  "entropy.indexes": {
+                    "inclusive_seconds": 0.01326190002146177,
+                    "exclusive_seconds": 0.01326190002146177,
+                    "calls": 18
+                  },
+                  "frame": {
+                    "inclusive_seconds": 2.779835399996955,
+                    "exclusive_seconds": 2.3373302999680163,
+                    "calls": 8
+                  }
+                },
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "bddd558b967617eb498acf491e1dc77af91144169da5c660f5fb0cb919a596cf",
+                  "stream_sha256": "dda8df0795e35b0576d7c1325418be10fb4473c1d65c6c1f7f9f989129790d41",
+                  "stream_bytes": 2535,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              }
+            ],
+            "validated_tasks": 6,
+            "interpretation": "Diagnostic evidence only. Inclusive frame and entropy scopes overlap; never add them."
+          }
+        }
+      },
+      "processes": [
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate8_20261019_r1\\decode_process\\process.json",
+          "sha256": "f1203eff75f36456d70510fb6bfd1dcf57d8798ed28eb357b26c0b945d9caa8d",
+          "data": {
+            "argv": [
+              "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py",
+              "--config",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate8_20261019_r1\\decode_process_config.json"
+            ],
+            "started_utc": "2026-10-19T14:33:34.113473+00:00",
+            "state": "completed",
+            "supervisor": {
+              "pid": 41372,
+              "alive": true,
+              "creation_token": 134368940024050206
+            },
+            "pid": 42132,
+            "returncode": 0,
+            "exit_cause": null,
+            "stop_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate8_20261019_r1\\STOP_REQUESTED",
+            "child_identity": {
+              "pid": 42132,
+              "alive": true,
+              "creation_token": 134368940141217409
+            },
+            "supervisor_heartbeat_utc": "2026-10-19T14:33:46.274424+00:00",
+            "elapsed_seconds": 13.169066299997212,
+            "ended_utc": "2026-10-19T14:33:47.288625+00:00",
+            "returncode_hex": "0x00000000"
+          }
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate8_20261019_r1\\encode_process\\process.json",
+          "sha256": "916ef317c1d3a1525f75b4711719b16768d0b9eff73f73e20049c01f3f6d41ad",
+          "data": {
+            "argv": [
+              "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py",
+              "--config",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate8_20261019_r1\\encode_process_config.json"
+            ],
+            "started_utc": "2026-10-19T14:33:22.656095+00:00",
+            "state": "completed",
+            "supervisor": {
+              "pid": 41372,
+              "alive": true,
+              "creation_token": 134368940024050206
+            },
+            "pid": 37232,
+            "returncode": 0,
+            "exit_cause": null,
+            "stop_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate8_20261019_r1\\STOP_REQUESTED",
+            "child_identity": {
+              "pid": 37232,
+              "alive": true,
+              "creation_token": 134368940026633101
+            },
+            "supervisor_heartbeat_utc": "2026-10-19T14:33:32.761181+00:00",
+            "elapsed_seconds": 11.104179899994051,
+            "ended_utc": "2026-10-19T14:33:33.764971+00:00",
+            "returncode_hex": "0x00000000"
+          }
+        }
+      ]
+    },
+    {
+      "root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate66_20261019_r1",
+      "evidence": {
+        "manifest.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate66_20261019_r1\\manifest.json",
+          "sha256": "897169c8f3dde83008efd4827969719aedd0799672da6fe3d37eb6c5bda0327c",
+          "data": {
+            "created_utc": "2026-10-19T14:34:46.131280+00:00",
+            "phase": "gate66",
+            "frames": 66,
+            "pairs": 1,
+            "base_commit": {
+              "returncode": 0,
+              "stdout": "af2f67e087a8a0141208ee71ac049f660b1206e2\n",
+              "stderr": ""
+            },
+            "code_sha256": {
+              "08_新阶段C_编解码加速与网页展示\\c0_metrics.py": "d36844679f3fa3ed1902873b3d35066b471de40564ddd27d0da0dac5fa11cd12",
+              "08_新阶段C_编解码加速与网页展示\\c0_worker.py": "aefea753ab2e21093b8c031e183ab29475101f20a371efc4b00c2ee697c8ab4e",
+              "08_新阶段C_编解码加速与网页展示\\c1_io.py": "9106801e9ab57a65f3eab4c6956a022821f620d7f8093e9151a0f2d611a6100d",
+              "08_新阶段C_编解码加速与网页展示\\c1_runtime.py": "3419534425f238e55a3ba0143ef238568225a29268a35373e4179fe71cbe378c",
+              "08_新阶段C_编解码加速与网页展示\\c1_worker.py": "06093e0b0bbdc67e496dbd10e46e7270166e3764fdbe570dcb53a4548cf1948e",
+              "08_新阶段C_编解码加速与网页展示\\c2_native.py": "1f948c3dc207dfdc1cb7d74f325c98a9065b7dd2d17f41b7cb4c77153db962b4",
+              "08_新阶段C_编解码加速与网页展示\\c2_watch.py": "e081c060fcd31df9cb86908308713ab3255079c124409cf9b033cc227672dabe",
+              "08_新阶段C_编解码加速与网页展示\\c2_worker.py": "0bf93f176fddb7f3976f11bf0bc97941f3ce8faba62540fedfd6c6740a6a5b39",
+              "08_新阶段C_编解码加速与网页展示\\run_c0.py": "ff13aa090929788bc1f4d254f44d164e9911190ca25d88440cccffcdf0ee87d7",
+              "08_新阶段C_编解码加速与网页展示\\run_c1.py": "9edea7b87e3d69bd3d764ec54e914c03f35a2c7c1d01967ca56cc4affd1199de",
+              "08_新阶段C_编解码加速与网页展示\\run_c2.py": "929c50c4bcc06466cfe96a87de05221709de2cc057700aacf6ebc3a18508c03d",
+              "08_新阶段C_编解码加速与网页展示\\build_c2_native.py": "5ae7554f0d3999d1eff361a1629548b8c080f3381beb637d7031c284c526d176",
+              "08_新阶段C_编解码加速与网页展示\\test_c2_native.py": "2739f40ed9005377d1e8b6dafd2134ac656f54c915c5d50770166cf559ab67d1",
+              "08_新阶段C_编解码加速与网页展示\\test_c2_watch.py": "982ae257354e52bcaca669480770842eeaccc4b4d7fe273fe3218ba14f6a54e7",
+              "08_新阶段C_编解码加速与网页展示\\native\\glc_rans.c": "c1e325ccaaef238efaabbd128a95d389a90c1136526b7bfcff8b8b786d033e32",
+              "08_新阶段C_编解码加速与网页展示\\native\\rans_byte.h": "66e9521b4485c1b36ee7527f1a6cd7c9fe7f8495f81420602fbdc26b7273bea6",
+              "08_新阶段C_编解码加速与网页展示\\native\\README.md": "a57a1ea842406ed29c55d4e55f2ea3f4ec391bf983e4b138678bb678b758cd49",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_codec.py": "52fe2b88cd3f2e023825b2e0e2ada0d86e54dcccdcd4dcc8c137b8eb3272a2ae",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_probe.py": "2a741913b11f1ec59be202d1ff32cfdff9c485585a94466c5e227b7dd373b814",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_entropy.py": "766905d2031c42d15e5c164653996313fa19dd2e6f14e7dc0ac33e70632be0e3",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_container.py": "f59014583826695e0f6baeb9e81581ff31d276c22d9bdb63ad82860200fa07dc",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.py": "2cee8686c2071070a612adab6f3f1d39ecd2ef85d0e3a269ed50cd5fd28ff9c9",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.json": "53c3f17692e528de0eabef361b8afbce14f03aeb6a966bc296836f78c598f148"
+            },
+            "input": {
+              "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\A_压缩路线选型\\A2_GLC验证\\long108\\input_540.mkv",
+              "sha256": "6683af45254bdaed431658e5f7515cddaeb42df2382f18b983e6e1cba7ae436b"
+            },
+            "python": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+            "gpu": {
+              "returncode": 0,
+              "stdout": "name, driver_version, pstate, temperature.gpu, power.draw [W], power.limit [W], memory.used [MiB], memory.total [MiB], utilization.gpu [%], clocks.current.sm [MHz], clocks.current.memory [MHz]\nNVIDIA GeForce RTX 4060 Laptop GPU, 560.94, P5, 36, 5.84 W, [N/A], 3513 MiB, 8188 MiB, 4 %, 210 MHz, 810 MHz\n",
+              "stderr": ""
+            },
+            "power_scheme": {
+              "returncode": 0,
+              "stdout": "电源方案 GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (平衡)",
+              "stderr": ""
+            },
+            "policy": "Serialized separate-role C1 display workers; cold warmup explicit; profile AB/BA controls; no GPU profiler",
+            "native": {
+              "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_native_build_20261019_r3\\glc_rans.dll",
+              "sha256": "348c44304a97cec53643d33d284f5e6f6e0c7db60ac8c811da06ce4ea36451bc",
+              "build": {
+                "created_utc": "2026-10-19T14:32:34.461670+00:00",
+                "argv": [
+                  "C:\\mingw64\\bin\\gcc.exe",
+                  "-B",
+                  "C:\\mingw64\\bin/",
+                  "-std=c11",
+                  "-O3",
+                  "-Wall",
+                  "-Wextra",
+                  "-Werror",
+                  "-shared",
+                  "-static-libgcc",
+                  "glc_rans.c",
+                  "-o",
+                  "glc_rans.dll"
+                ],
+                "returncode": 0,
+                "stdout": "",
+                "stderr": "",
+                "source_sha256": {
+                  "rans_byte.h": "66e9521b4485c1b36ee7527f1a6cd7c9fe7f8495f81420602fbdc26b7273bea6",
+                  "glc_rans.c": "c1e325ccaaef238efaabbd128a95d389a90c1136526b7bfcff8b8b786d033e32"
+                },
+                "upstream_commit": "c9d162d996fd600315af9ae8eb89d832576cb32d",
+                "compiler": "gcc.exe (x86_64-win32-seh-rev0, Built by MinGW-Builds project) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+                "library_sha256": "348c44304a97cec53643d33d284f5e6f6e0c7db60ac8c811da06ce4ea36451bc"
+              }
+            },
+            "limitations": "Finite C2 evidence; no extrapolated full-preset speedup claim; scopes are CPU wall spans"
+          }
+        },
+        "stage.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate66_20261019_r1\\stage.json",
+          "sha256": "221669bd373ec43092d0a5729fd096792d2c192efc8c46761cc5143de1193e6a",
+          "data": {
+            "state": "complete",
+            "ended_utc": "2026-10-19T14:36:26.105363+00:00"
+          }
+        },
+        "gate.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate66_20261019_r1\\gate.json",
+          "sha256": "0b85eef7397d8b17d9de1a64b9922de56047840a13d554c405ddcd1dadf38860",
+          "data": {
+            "passed": true,
+            "frames": 66,
+            "stream_byte_identical": true,
+            "cross_decode_directions": [
+              "python->python",
+              "python->native",
+              "native->python",
+              "native->native"
+            ]
+          }
+        },
+        "summary.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate66_20261019_r1\\summary.json",
+          "sha256": "67fd11b44b6fdf8e7339369f7d0358aa16f3ee3492d6c1cfd2fe23a622f87558",
+          "data": {
+            "records": [
+              {
+                "id": "decode_native_by_native",
+                "role": "decode",
+                "backend": "native",
+                "profile": true,
+                "resident": true,
+                "view_seconds": 10.266628900004434,
+                "entropy_seconds": 0.1637173999552033,
+                "entropy_fraction": 0.015946558656184853,
+                "scopes": {
+                  "entropy.decode": {
+                    "inclusive_seconds": 0.06541829994966974,
+                    "exclusive_seconds": 0.06541829994966974,
+                    "calls": 136
+                  },
+                  "entropy.indexes": {
+                    "inclusive_seconds": 0.09829910000553355,
+                    "exclusive_seconds": 0.09829910000553355,
+                    "calls": 136
+                  },
+                  "frame": {
+                    "inclusive_seconds": 9.974490200002037,
+                    "exclusive_seconds": 9.810772800046834,
+                    "calls": 66
+                  }
+                },
+                "validation": {
+                  "frames_checked": 66,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "de60f533da29f79851098828bdf79ea928d78ca15ef837f734cfbef7fd16fb9a",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "5.280000",
+                      "nb_read_frames": "66"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_native_by_python",
+                "role": "decode",
+                "backend": "python",
+                "profile": true,
+                "resident": true,
+                "view_seconds": 14.109772099996917,
+                "entropy_seconds": 3.951651900075376,
+                "entropy_fraction": 0.2800648991400959,
+                "scopes": {
+                  "entropy.decode": {
+                    "inclusive_seconds": 3.848022200043488,
+                    "exclusive_seconds": 3.848022200043488,
+                    "calls": 136
+                  },
+                  "entropy.indexes": {
+                    "inclusive_seconds": 0.1036297000318882,
+                    "exclusive_seconds": 0.1036297000318882,
+                    "calls": 136
+                  },
+                  "frame": {
+                    "inclusive_seconds": 13.816369600004691,
+                    "exclusive_seconds": 9.864717699929315,
+                    "calls": 66
+                  }
+                },
+                "validation": {
+                  "frames_checked": 66,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "e275ef029b8d2b85c66ac6666c2e937655d57bd2606cb9cb64ccde933edd9715",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "5.280000",
+                      "nb_read_frames": "66"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_python_by_native",
+                "role": "decode",
+                "backend": "native",
+                "profile": true,
+                "resident": false,
+                "view_seconds": 14.106957600000896,
+                "entropy_seconds": 0.16848200003732927,
+                "entropy_fraction": 0.011943184690462141,
+                "scopes": {
+                  "entropy.decode": {
+                    "inclusive_seconds": 0.06807129999651806,
+                    "exclusive_seconds": 0.06807129999651806,
+                    "calls": 136
+                  },
+                  "entropy.indexes": {
+                    "inclusive_seconds": 0.10041070004081121,
+                    "exclusive_seconds": 0.10041070004081121,
+                    "calls": 136
+                  },
+                  "frame": {
+                    "inclusive_seconds": 10.563600000008591,
+                    "exclusive_seconds": 10.395117999971262,
+                    "calls": 66
+                  }
+                },
+                "validation": {
+                  "frames_checked": 66,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "7a9e8305822db10cdead225050dda4345d570120ad016fa7dc849b8e0397bf91",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "5.280000",
+                      "nb_read_frames": "66"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_python_by_python",
+                "role": "decode",
+                "backend": "python",
+                "profile": true,
+                "resident": true,
+                "view_seconds": 14.125348200002918,
+                "entropy_seconds": 3.911338500067359,
+                "entropy_fraction": 0.27690209435449886,
+                "scopes": {
+                  "entropy.decode": {
+                    "inclusive_seconds": 3.809332600038033,
+                    "exclusive_seconds": 3.809332600038033,
+                    "calls": 136
+                  },
+                  "entropy.indexes": {
+                    "inclusive_seconds": 0.10200590002932586,
+                    "exclusive_seconds": 0.10200590002932586,
+                    "calls": 136
+                  },
+                  "frame": {
+                    "inclusive_seconds": 13.81935879997036,
+                    "exclusive_seconds": 9.908020299903,
+                    "calls": 66
+                  }
+                },
+                "validation": {
+                  "frames_checked": 66,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "2f7f11a0e2c247d5c60143890cf1d4c91498327b1da08e02a4e67f97c3b231f4",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "5.280000",
+                      "nb_read_frames": "66"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_native",
+                "role": "encode",
+                "backend": "native",
+                "profile": true,
+                "resident": true,
+                "view_seconds": 16.465509200002998,
+                "entropy_seconds": 0.22388350002438528,
+                "entropy_fraction": 0.013597119731003795,
+                "scopes": {
+                  "entropy.encode": {
+                    "inclusive_seconds": 0.1214797000066028,
+                    "exclusive_seconds": 0.1214797000066028,
+                    "calls": 136
+                  },
+                  "entropy.indexes": {
+                    "inclusive_seconds": 0.10240380001778249,
+                    "exclusive_seconds": 0.10240380001778249,
+                    "calls": 136
+                  },
+                  "frame": {
+                    "inclusive_seconds": 15.582191400018928,
+                    "exclusive_seconds": 15.358307899994543,
+                    "calls": 66
+                  }
+                },
+                "validation": {
+                  "frames_checked": 66,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "1e88cda347782766cba5a29aeede79f0e419fdc55eff1dac01f7b0c87fa74b41",
+                  "stream_sha256": "6092d1b0b703d01e452e0c10d9c31429e43b48eaa41bcd2d9696656c39c78370",
+                  "stream_bytes": 15049,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "5.280000",
+                      "nb_read_frames": "66"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "5.280000",
+                      "nb_read_frames": "66"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_python",
+                "role": "encode",
+                "backend": "python",
+                "profile": true,
+                "resident": false,
+                "view_seconds": 23.52829650000058,
+                "entropy_seconds": 3.587471299957542,
+                "entropy_fraction": 0.15247475736109725,
+                "scopes": {
+                  "entropy.encode": {
+                    "inclusive_seconds": 3.48598719995789,
+                    "exclusive_seconds": 3.48598719995789,
+                    "calls": 136
+                  },
+                  "entropy.indexes": {
+                    "inclusive_seconds": 0.10148409999965224,
+                    "exclusive_seconds": 0.10148409999965224,
+                    "calls": 136
+                  },
+                  "frame": {
+                    "inclusive_seconds": 19.328747500017926,
+                    "exclusive_seconds": 15.741276200060383,
+                    "calls": 66
+                  }
+                },
+                "validation": {
+                  "frames_checked": 66,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "d009d220916f50318646186958481f6b5cde1470f4f68d295155815fbe287610",
+                  "stream_sha256": "6092d1b0b703d01e452e0c10d9c31429e43b48eaa41bcd2d9696656c39c78370",
+                  "stream_bytes": 15049,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "5.280000",
+                      "nb_read_frames": "66"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "5.280000",
+                      "nb_read_frames": "66"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              }
+            ],
+            "validated_tasks": 6,
+            "interpretation": "Diagnostic evidence only. Inclusive frame and entropy scopes overlap; never add them."
+          }
+        }
+      },
+      "processes": [
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate66_20261019_r1\\decode_process\\process.json",
+          "sha256": "e01fb0e8ea828f376ec8ae36494f275dc3ba8fdc5d2c68bb9b31789f9d677f03",
+          "data": {
+            "argv": [
+              "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py",
+              "--config",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate66_20261019_r1\\decode_process_config.json"
+            ],
+            "started_utc": "2026-10-19T14:35:30.015744+00:00",
+            "state": "completed",
+            "supervisor": {
+              "pid": 36904,
+              "alive": true,
+              "creation_token": 134368940859900104
+            },
+            "pid": 23524,
+            "returncode": 0,
+            "exit_cause": null,
+            "stop_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate66_20261019_r1\\STOP_REQUESTED",
+            "child_identity": {
+              "pid": 23524,
+              "alive": true,
+              "creation_token": 134368941300229740
+            },
+            "supervisor_heartbeat_utc": "2026-10-19T14:36:24.591722+00:00",
+            "elapsed_seconds": 55.57725510000455,
+            "ended_utc": "2026-10-19T14:36:25.596847+00:00",
+            "returncode_hex": "0x00000000"
+          }
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate66_20261019_r1\\encode_process\\process.json",
+          "sha256": "0e29b788f9dca32da809c52344328b613dfe0639d1f6f3807f5a80315bbcc678",
+          "data": {
+            "argv": [
+              "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py",
+              "--config",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate66_20261019_r1\\encode_process_config.json"
+            ],
+            "started_utc": "2026-10-19T14:34:46.241678+00:00",
+            "state": "completed",
+            "supervisor": {
+              "pid": 36904,
+              "alive": true,
+              "creation_token": 134368940859900104
+            },
+            "pid": 36880,
+            "returncode": 0,
+            "exit_cause": null,
+            "stop_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate66_20261019_r1\\STOP_REQUESTED",
+            "child_identity": {
+              "pid": 36880,
+              "alive": true,
+              "creation_token": 134368940862483838
+            },
+            "supervisor_heartbeat_utc": "2026-10-19T14:35:27.686138+00:00",
+            "elapsed_seconds": 42.44546480000281,
+            "ended_utc": "2026-10-19T14:35:28.691270+00:00",
+            "returncode_hex": "0x00000000"
+          }
+        }
+      ]
+    },
+    {
+      "root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_compact_pairs_20261019_r1",
+      "evidence": {
+        "manifest.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_compact_pairs_20261019_r1\\manifest.json",
+          "sha256": "6b71c0cab7a70ceaf244eb313d4b9ce47e121f3df127f22c17749786f20ecfe1",
+          "data": {
+            "created_utc": "2026-10-19T14:37:28.654831+00:00",
+            "phase": "paired",
+            "frames": 125,
+            "pairs": 3,
+            "base_commit": {
+              "returncode": 0,
+              "stdout": "af2f67e087a8a0141208ee71ac049f660b1206e2\n",
+              "stderr": ""
+            },
+            "code_sha256": {
+              "08_新阶段C_编解码加速与网页展示\\c0_metrics.py": "d36844679f3fa3ed1902873b3d35066b471de40564ddd27d0da0dac5fa11cd12",
+              "08_新阶段C_编解码加速与网页展示\\c0_worker.py": "aefea753ab2e21093b8c031e183ab29475101f20a371efc4b00c2ee697c8ab4e",
+              "08_新阶段C_编解码加速与网页展示\\c1_io.py": "9106801e9ab57a65f3eab4c6956a022821f620d7f8093e9151a0f2d611a6100d",
+              "08_新阶段C_编解码加速与网页展示\\c1_runtime.py": "3419534425f238e55a3ba0143ef238568225a29268a35373e4179fe71cbe378c",
+              "08_新阶段C_编解码加速与网页展示\\c1_worker.py": "06093e0b0bbdc67e496dbd10e46e7270166e3764fdbe570dcb53a4548cf1948e",
+              "08_新阶段C_编解码加速与网页展示\\c2_native.py": "1f948c3dc207dfdc1cb7d74f325c98a9065b7dd2d17f41b7cb4c77153db962b4",
+              "08_新阶段C_编解码加速与网页展示\\c2_watch.py": "e081c060fcd31df9cb86908308713ab3255079c124409cf9b033cc227672dabe",
+              "08_新阶段C_编解码加速与网页展示\\c2_worker.py": "0bf93f176fddb7f3976f11bf0bc97941f3ce8faba62540fedfd6c6740a6a5b39",
+              "08_新阶段C_编解码加速与网页展示\\run_c0.py": "ff13aa090929788bc1f4d254f44d164e9911190ca25d88440cccffcdf0ee87d7",
+              "08_新阶段C_编解码加速与网页展示\\run_c1.py": "9edea7b87e3d69bd3d764ec54e914c03f35a2c7c1d01967ca56cc4affd1199de",
+              "08_新阶段C_编解码加速与网页展示\\run_c2.py": "929c50c4bcc06466cfe96a87de05221709de2cc057700aacf6ebc3a18508c03d",
+              "08_新阶段C_编解码加速与网页展示\\build_c2_native.py": "5ae7554f0d3999d1eff361a1629548b8c080f3381beb637d7031c284c526d176",
+              "08_新阶段C_编解码加速与网页展示\\test_c2_native.py": "2739f40ed9005377d1e8b6dafd2134ac656f54c915c5d50770166cf559ab67d1",
+              "08_新阶段C_编解码加速与网页展示\\test_c2_watch.py": "982ae257354e52bcaca669480770842eeaccc4b4d7fe273fe3218ba14f6a54e7",
+              "08_新阶段C_编解码加速与网页展示\\native\\glc_rans.c": "c1e325ccaaef238efaabbd128a95d389a90c1136526b7bfcff8b8b786d033e32",
+              "08_新阶段C_编解码加速与网页展示\\native\\rans_byte.h": "66e9521b4485c1b36ee7527f1a6cd7c9fe7f8495f81420602fbdc26b7273bea6",
+              "08_新阶段C_编解码加速与网页展示\\native\\README.md": "a57a1ea842406ed29c55d4e55f2ea3f4ec391bf983e4b138678bb678b758cd49",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_codec.py": "52fe2b88cd3f2e023825b2e0e2ada0d86e54dcccdcd4dcc8c137b8eb3272a2ae",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_probe.py": "2a741913b11f1ec59be202d1ff32cfdff9c485585a94466c5e227b7dd373b814",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_entropy.py": "766905d2031c42d15e5c164653996313fa19dd2e6f14e7dc0ac33e70632be0e3",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_container.py": "f59014583826695e0f6baeb9e81581ff31d276c22d9bdb63ad82860200fa07dc",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.py": "2cee8686c2071070a612adab6f3f1d39ecd2ef85d0e3a269ed50cd5fd28ff9c9",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.json": "53c3f17692e528de0eabef361b8afbce14f03aeb6a966bc296836f78c598f148",
+              "08_新阶段C_编解码加速与网页展示\\run_c2_paired.py": "00c161047105d817f02b01f47263fcf7a9310f55e74afe2c682662cc9385440c"
+            },
+            "input": {
+              "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\A_压缩路线选型\\A2_GLC验证\\long108\\input_540.mkv",
+              "sha256": "6683af45254bdaed431658e5f7515cddaeb42df2382f18b983e6e1cba7ae436b"
+            },
+            "python": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+            "gpu": {
+              "returncode": 0,
+              "stdout": "name, driver_version, pstate, temperature.gpu, power.draw [W], power.limit [W], memory.used [MiB], memory.total [MiB], utilization.gpu [%], clocks.current.sm [MHz], clocks.current.memory [MHz]\nNVIDIA GeForce RTX 4060 Laptop GPU, 560.94, P5, 38, 6.18 W, [N/A], 3516 MiB, 8188 MiB, 6 %, 210 MHz, 810 MHz\n",
+              "stderr": ""
+            },
+            "power_scheme": {
+              "returncode": 0,
+              "stdout": "电源方案 GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (平衡)",
+              "stderr": ""
+            },
+            "policy": "Serialized separate-role C1 display workers; cold warmup explicit; profile AB/BA controls; no GPU profiler",
+            "native": {
+              "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_native_build_20261019_r3\\glc_rans.dll",
+              "sha256": "348c44304a97cec53643d33d284f5e6f6e0c7db60ac8c811da06ce4ea36451bc",
+              "build": {
+                "created_utc": "2026-10-19T14:32:34.461670+00:00",
+                "argv": [
+                  "C:\\mingw64\\bin\\gcc.exe",
+                  "-B",
+                  "C:\\mingw64\\bin/",
+                  "-std=c11",
+                  "-O3",
+                  "-Wall",
+                  "-Wextra",
+                  "-Werror",
+                  "-shared",
+                  "-static-libgcc",
+                  "glc_rans.c",
+                  "-o",
+                  "glc_rans.dll"
+                ],
+                "returncode": 0,
+                "stdout": "",
+                "stderr": "",
+                "source_sha256": {
+                  "rans_byte.h": "66e9521b4485c1b36ee7527f1a6cd7c9fe7f8495f81420602fbdc26b7273bea6",
+                  "glc_rans.c": "c1e325ccaaef238efaabbd128a95d389a90c1136526b7bfcff8b8b786d033e32"
+                },
+                "upstream_commit": "c9d162d996fd600315af9ae8eb89d832576cb32d",
+                "compiler": "gcc.exe (x86_64-win32-seh-rev0, Built by MinGW-Builds project) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+                "library_sha256": "348c44304a97cec53643d33d284f5e6f6e0c7db60ac8c811da06ce4ea36451bc"
+              }
+            },
+            "limitations": "Finite C2 evidence; no extrapolated full-preset speedup claim; scopes are CPU wall spans",
+            "preset": "compact"
+          }
+        },
+        "stage.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_compact_pairs_20261019_r1\\stage.json",
+          "sha256": "67b2c12aac248d8ab41b478c2b75958b3cdbc566fb7065573a1a4bb30e8ea9b5",
+          "data": {
+            "state": "complete",
+            "ended_utc": "2026-10-19T14:43:41.127230+00:00"
+          }
+        },
+        "paired_summary.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_compact_pairs_20261019_r1\\paired_summary.json",
+          "sha256": "9b29a2679ae7ee9ac8ff035b498ac4fb628f10d1efe741811e29b33da7e6dd27",
+          "data": {
+            "config": {
+              "preset": "compact",
+              "pairs": 3,
+              "frames": 125,
+              "created_utc": "2026-10-19T14:37:28.756335+00:00",
+              "prior_gate": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate66_20261019_r1"
+            },
+            "records": [
+              {
+                "id": "decode_1_native",
+                "role": "decode",
+                "backend": "native",
+                "group": "paired",
+                "pair": 1,
+                "resident": true,
+                "view_seconds": 19.495501800003694,
+                "evidence_seconds": 19.39251350000268,
+                "codec_acquire_seconds": 3.5999983083456755e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "850e382f9a06f6959bbaa2dcfcc888c3b54ec360492d6dd5a0a2c9917b24ed12",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_1_python",
+                "role": "decode",
+                "backend": "python",
+                "group": "paired",
+                "pair": 1,
+                "resident": true,
+                "view_seconds": 26.471601900004316,
+                "evidence_seconds": 26.36868030000187,
+                "codec_acquire_seconds": 3.6999990697950125e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "b1f3be6c40b42e806c0b67c43e5aa2928e6ccc675efb2a1badfe384de31dbba2",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_2_native",
+                "role": "decode",
+                "backend": "native",
+                "group": "paired",
+                "pair": 2,
+                "resident": true,
+                "view_seconds": 19.33798069999466,
+                "evidence_seconds": 19.23503889999847,
+                "codec_acquire_seconds": 3.4000040614046156e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "0e5b72357cb63db29ff0f7ee83620e55b13ee5b90427b082be6e31006dbdc364",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_2_python",
+                "role": "decode",
+                "backend": "python",
+                "group": "paired",
+                "pair": 2,
+                "resident": true,
+                "view_seconds": 26.486609300001874,
+                "evidence_seconds": 26.3841614999983,
+                "codec_acquire_seconds": 3.4999975468963385e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "d2cbf040cfdbc980a5b0b61d482b4d35715ef0ec09d13a99aa08e589caf20f46",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_3_native",
+                "role": "decode",
+                "backend": "native",
+                "group": "paired",
+                "pair": 3,
+                "resident": true,
+                "view_seconds": 19.293607400002657,
+                "evidence_seconds": 19.19083949999913,
+                "codec_acquire_seconds": 3.1000017770566046e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "0bf9b9bfb71d10df8ffe8f0070a0b527d349775b1ae58ffa5e5c158477cfb86f",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_3_python",
+                "role": "decode",
+                "backend": "python",
+                "group": "paired",
+                "pair": 3,
+                "resident": true,
+                "view_seconds": 26.338964000002306,
+                "evidence_seconds": 26.23499240000092,
+                "codec_acquire_seconds": 3.5000048228539526e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "64f091ba12273917bc038a3e16901b8faec72e69573df0a986451bb0e23ed47e",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_warmup_native",
+                "role": "decode",
+                "backend": "native",
+                "group": "warmup",
+                "pair": null,
+                "resident": false,
+                "view_seconds": 5.126373799997964,
+                "evidence_seconds": 5.0715898999987985,
+                "codec_acquire_seconds": 3.294044700000086,
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "90ed28703952db6a701066c06aa9249273a57376f413a3bc8d8d480ec3ce4560",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_warmup_python",
+                "role": "decode",
+                "backend": "python",
+                "group": "warmup",
+                "pair": null,
+                "resident": true,
+                "view_seconds": 1.812582000005932,
+                "evidence_seconds": 1.7578484000041499,
+                "codec_acquire_seconds": 5.699999746866524e-06,
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "19e76622042e76a92816337290017a3e8797eb2ee52eda1355dcab310e294a8f",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_1_native",
+                "role": "encode",
+                "backend": "native",
+                "group": "paired",
+                "pair": 1,
+                "resident": true,
+                "view_seconds": 30.66076559999783,
+                "evidence_seconds": 30.456580400001258,
+                "codec_acquire_seconds": 3.2000025385059416e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": true,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "d020a8bc305242f1dfa07b33ab68b9d65bed88d99f1c334c4a78901dc7975c1e",
+                  "stream_sha256": "9676a03220ec2d28aef09fde70413ea9a08ea38cc9461509931767789036b7fd",
+                  "stream_bytes": 26397,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_1_python",
+                "role": "encode",
+                "backend": "python",
+                "group": "paired",
+                "pair": 1,
+                "resident": true,
+                "view_seconds": 37.52460020000581,
+                "evidence_seconds": 37.298718000005465,
+                "codec_acquire_seconds": 3.4000040614046156e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": true,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "e9c89dc990d03301782ddcde065d4ae334d3e6f4366a72ce9383208c391c9782",
+                  "stream_sha256": "9676a03220ec2d28aef09fde70413ea9a08ea38cc9461509931767789036b7fd",
+                  "stream_bytes": 26397,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_2_native",
+                "role": "encode",
+                "backend": "native",
+                "group": "paired",
+                "pair": 2,
+                "resident": true,
+                "view_seconds": 30.59953050000331,
+                "evidence_seconds": 30.39530260000174,
+                "codec_acquire_seconds": 3.3999967854470015e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": true,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "e894945e9c705e59f511a0eecbddb67cf8141f342c77b1f1fecac2369c086be8",
+                  "stream_sha256": "9676a03220ec2d28aef09fde70413ea9a08ea38cc9461509931767789036b7fd",
+                  "stream_bytes": 26397,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_2_python",
+                "role": "encode",
+                "backend": "python",
+                "group": "paired",
+                "pair": 2,
+                "resident": true,
+                "view_seconds": 37.580919399995764,
+                "evidence_seconds": 37.37714039999992,
+                "codec_acquire_seconds": 3.6999990697950125e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": true,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "f86b4a413e15df602c3131764af2f1990cfe90078af0c4facf90675ff407d3b4",
+                  "stream_sha256": "9676a03220ec2d28aef09fde70413ea9a08ea38cc9461509931767789036b7fd",
+                  "stream_bytes": 26397,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_3_native",
+                "role": "encode",
+                "backend": "native",
+                "group": "paired",
+                "pair": 3,
+                "resident": true,
+                "view_seconds": 30.649848999993992,
+                "evidence_seconds": 30.445026999994298,
+                "codec_acquire_seconds": 3.6999990697950125e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": true,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "0201a9f915269a6f2c7fb404c72b548033938351885973cf271d3b6f3a697947",
+                  "stream_sha256": "9676a03220ec2d28aef09fde70413ea9a08ea38cc9461509931767789036b7fd",
+                  "stream_bytes": 26397,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_3_python",
+                "role": "encode",
+                "backend": "python",
+                "group": "paired",
+                "pair": 3,
+                "resident": true,
+                "view_seconds": 37.92156380000233,
+                "evidence_seconds": 37.71758620000037,
+                "codec_acquire_seconds": 3.1999952625483274e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": true,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "6efef79342dd3919bd0bcfc34aa9d6eab2b4f2fe03c78a624adcdb096a59fe35",
+                  "stream_sha256": "9676a03220ec2d28aef09fde70413ea9a08ea38cc9461509931767789036b7fd",
+                  "stream_bytes": 26397,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_warmup_native",
+                "role": "encode",
+                "backend": "native",
+                "group": "warmup",
+                "pair": null,
+                "resident": true,
+                "view_seconds": 2.2058970000070985,
+                "evidence_seconds": 2.099355000005744,
+                "codec_acquire_seconds": 0.003305599995655939,
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "e6cc2d71d0e2914d673f9bd8cf98bf54b9332a84e1e79a127a27e6ae19b76cbf",
+                  "stream_sha256": "dda8df0795e35b0576d7c1325418be10fb4473c1d65c6c1f7f9f989129790d41",
+                  "stream_bytes": 2535,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_warmup_python",
+                "role": "encode",
+                "backend": "python",
+                "group": "warmup",
+                "pair": null,
+                "resident": false,
+                "view_seconds": 6.338385900002322,
+                "evidence_seconds": 6.23118550000072,
+                "codec_acquire_seconds": 3.2465598999988288,
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "336d1790152d498ffed8bd804f899e061acfc29d9b59884cc40b751b5451be63",
+                  "stream_sha256": "dda8df0795e35b0576d7c1325418be10fb4473c1d65c6c1f7f9f989129790d41",
+                  "stream_bytes": 2535,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              }
+            ],
+            "pairs": [
+              {
+                "pair": 1,
+                "role": "encode",
+                "before_seconds": 37.52460020000581,
+                "after_seconds": 30.66076559999783,
+                "saved_seconds": 6.863834600007976,
+                "reduction_percent": 18.291559572717087,
+                "speedup": 1.2238637707079454
+              },
+              {
+                "pair": 1,
+                "role": "decode",
+                "before_seconds": 26.471601900004316,
+                "after_seconds": 19.495501800003694,
+                "saved_seconds": 6.976100100000622,
+                "reduction_percent": 26.353146765929125,
+                "speedup": 1.3578312664924224
+              },
+              {
+                "pair": 1,
+                "role": "sum",
+                "before_seconds": 63.99620210001012,
+                "after_seconds": 50.156267400001525,
+                "saved_seconds": 13.839934700008598,
+                "reduction_percent": 21.626181313666436,
+                "speedup": 1.2759362970460633
+              },
+              {
+                "pair": 2,
+                "role": "encode",
+                "before_seconds": 37.580919399995764,
+                "after_seconds": 30.59953050000331,
+                "saved_seconds": 6.981388899992453,
+                "reduction_percent": 18.576950781021186,
+                "speedup": 1.2281534646419394
+              },
+              {
+                "pair": 2,
+                "role": "decode",
+                "before_seconds": 26.486609300001874,
+                "after_seconds": 19.33798069999466,
+                "saved_seconds": 7.148628600007214,
+                "reduction_percent": 26.989595078169216,
+                "speedup": 1.369667790598694
+              },
+              {
+                "pair": 2,
+                "role": "sum",
+                "before_seconds": 64.06752869999764,
+                "after_seconds": 49.93751119999797,
+                "saved_seconds": 14.130017499999667,
+                "reduction_percent": 22.054881445739593,
+                "speedup": 1.2829539790921787
+              },
+              {
+                "pair": 3,
+                "role": "encode",
+                "before_seconds": 37.92156380000233,
+                "after_seconds": 30.649848999993992,
+                "saved_seconds": 7.27171480000834,
+                "reduction_percent": 19.175672285982813,
+                "speedup": 1.237251243880835
+              },
+              {
+                "pair": 3,
+                "role": "decode",
+                "before_seconds": 26.338964000002306,
+                "after_seconds": 19.293607400002657,
+                "saved_seconds": 7.04535659999965,
+                "reduction_percent": 26.74879923143155,
+                "speedup": 1.3651653345034211
+              },
+              {
+                "pair": 3,
+                "role": "sum",
+                "before_seconds": 64.26052780000464,
+                "after_seconds": 49.94345639999665,
+                "saved_seconds": 14.31707140000799,
+                "reduction_percent": 22.279728925611085,
+                "speedup": 1.2866656101120175
+              }
+            ],
+            "groups": [
+              {
+                "role": "encode",
+                "n": 3,
+                "before_seconds": {
+                  "median": 37.580919399995764,
+                  "min": 37.52460020000581,
+                  "max": 37.92156380000233
+                },
+                "after_seconds": {
+                  "median": 30.649848999993992,
+                  "min": 30.59953050000331,
+                  "max": 30.66076559999783
+                },
+                "saved_seconds": {
+                  "median": 6.981388899992453,
+                  "min": 6.863834600007976,
+                  "max": 7.27171480000834
+                },
+                "reduction_percent": {
+                  "median": 18.576950781021186,
+                  "min": 18.291559572717087,
+                  "max": 19.175672285982813
+                },
+                "speedup": {
+                  "median": 1.2281534646419394,
+                  "min": 1.2238637707079454,
+                  "max": 1.237251243880835
+                }
+              },
+              {
+                "role": "decode",
+                "n": 3,
+                "before_seconds": {
+                  "median": 26.471601900004316,
+                  "min": 26.338964000002306,
+                  "max": 26.486609300001874
+                },
+                "after_seconds": {
+                  "median": 19.33798069999466,
+                  "min": 19.293607400002657,
+                  "max": 19.495501800003694
+                },
+                "saved_seconds": {
+                  "median": 7.04535659999965,
+                  "min": 6.976100100000622,
+                  "max": 7.148628600007214
+                },
+                "reduction_percent": {
+                  "median": 26.74879923143155,
+                  "min": 26.353146765929125,
+                  "max": 26.989595078169216
+                },
+                "speedup": {
+                  "median": 1.3651653345034211,
+                  "min": 1.3578312664924224,
+                  "max": 1.369667790598694
+                }
+              },
+              {
+                "role": "sum",
+                "n": 3,
+                "before_seconds": {
+                  "median": 64.06752869999764,
+                  "min": 63.99620210001012,
+                  "max": 64.26052780000464
+                },
+                "after_seconds": {
+                  "median": 49.94345639999665,
+                  "min": 49.93751119999797,
+                  "max": 50.156267400001525
+                },
+                "saved_seconds": {
+                  "median": 14.130017499999667,
+                  "min": 13.839934700008598,
+                  "max": 14.31707140000799
+                },
+                "reduction_percent": {
+                  "median": 22.054881445739593,
+                  "min": 21.626181313666436,
+                  "max": 22.279728925611085
+                },
+                "speedup": {
+                  "median": 1.2829539790921787,
+                  "min": 1.2759362970460633,
+                  "max": 1.2866656101120175
+                }
+              }
+            ],
+            "validated_tasks": 16,
+            "complete_pair_count": 3,
+            "scope": "Same clip/preset/C1 display/CUDA FP32; Python versus native entropy. Separate-role resident workers; warmups excluded.",
+            "not_end_to_end": "Sum of separately executed encode and decode; not network or browser latency."
+          }
+        }
+      },
+      "processes": [
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_compact_pairs_20261019_r1\\decode_process\\process.json",
+          "sha256": "e1dee5e57eb7ac33ee104d61e0f6f314ad136450f8afa40cf8401e9dcf57375c",
+          "data": {
+            "argv": [
+              "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py",
+              "--config",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_compact_pairs_20261019_r1\\decode_process_config.json"
+            ],
+            "started_utc": "2026-10-19T14:41:12.272724+00:00",
+            "state": "completed",
+            "supervisor": {
+              "pid": 18800,
+              "alive": true,
+              "creation_token": 134368942484843736
+            },
+            "pid": 11988,
+            "returncode": 0,
+            "exit_cause": null,
+            "stop_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_compact_pairs_20261019_r1\\STOP_REQUESTED",
+            "child_identity": {
+              "pid": 11988,
+              "alive": true,
+              "creation_token": 134368944722791902
+            },
+            "supervisor_heartbeat_utc": "2026-10-19T14:43:38.763219+00:00",
+            "elapsed_seconds": 147.50228020000213,
+            "ended_utc": "2026-10-19T14:43:39.778406+00:00",
+            "returncode_hex": "0x00000000"
+          }
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_compact_pairs_20261019_r1\\encode_process\\process.json",
+          "sha256": "cdba3f09b29c88ff8ae7d66d26a12a77437f158f734b669a349ced8dfae4de89",
+          "data": {
+            "argv": [
+              "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py",
+              "--config",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_compact_pairs_20261019_r1\\encode_process_config.json"
+            ],
+            "started_utc": "2026-10-19T14:37:28.768353+00:00",
+            "state": "completed",
+            "supervisor": {
+              "pid": 18800,
+              "alive": true,
+              "creation_token": 134368942484843736
+            },
+            "pid": 12524,
+            "returncode": 0,
+            "exit_cause": null,
+            "stop_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_compact_pairs_20261019_r1\\STOP_REQUESTED",
+            "child_identity": {
+              "pid": 12524,
+              "alive": true,
+              "creation_token": 134368942487826127
+            },
+            "supervisor_heartbeat_utc": "2026-10-19T14:41:04.026142+00:00",
+            "elapsed_seconds": 216.25951590000477,
+            "ended_utc": "2026-10-19T14:41:05.039822+00:00",
+            "returncode_hex": "0x00000000"
+          }
+        }
+      ]
+    },
+    {
+      "root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_detail_pair_20261019_r1",
+      "evidence": {
+        "manifest.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_detail_pair_20261019_r1\\manifest.json",
+          "sha256": "4621f8668c573405258dad644c370acb74f6660b6a52ef3f45bbe31f8c963e8d",
+          "data": {
+            "created_utc": "2026-10-19T14:45:38.983742+00:00",
+            "phase": "paired",
+            "frames": 125,
+            "pairs": 1,
+            "base_commit": {
+              "returncode": 0,
+              "stdout": "af2f67e087a8a0141208ee71ac049f660b1206e2\n",
+              "stderr": ""
+            },
+            "code_sha256": {
+              "08_新阶段C_编解码加速与网页展示\\c0_metrics.py": "d36844679f3fa3ed1902873b3d35066b471de40564ddd27d0da0dac5fa11cd12",
+              "08_新阶段C_编解码加速与网页展示\\c0_worker.py": "aefea753ab2e21093b8c031e183ab29475101f20a371efc4b00c2ee697c8ab4e",
+              "08_新阶段C_编解码加速与网页展示\\c1_io.py": "9106801e9ab57a65f3eab4c6956a022821f620d7f8093e9151a0f2d611a6100d",
+              "08_新阶段C_编解码加速与网页展示\\c1_runtime.py": "3419534425f238e55a3ba0143ef238568225a29268a35373e4179fe71cbe378c",
+              "08_新阶段C_编解码加速与网页展示\\c1_worker.py": "06093e0b0bbdc67e496dbd10e46e7270166e3764fdbe570dcb53a4548cf1948e",
+              "08_新阶段C_编解码加速与网页展示\\c2_native.py": "1f948c3dc207dfdc1cb7d74f325c98a9065b7dd2d17f41b7cb4c77153db962b4",
+              "08_新阶段C_编解码加速与网页展示\\c2_watch.py": "e081c060fcd31df9cb86908308713ab3255079c124409cf9b033cc227672dabe",
+              "08_新阶段C_编解码加速与网页展示\\c2_worker.py": "0bf93f176fddb7f3976f11bf0bc97941f3ce8faba62540fedfd6c6740a6a5b39",
+              "08_新阶段C_编解码加速与网页展示\\run_c0.py": "ff13aa090929788bc1f4d254f44d164e9911190ca25d88440cccffcdf0ee87d7",
+              "08_新阶段C_编解码加速与网页展示\\run_c1.py": "9edea7b87e3d69bd3d764ec54e914c03f35a2c7c1d01967ca56cc4affd1199de",
+              "08_新阶段C_编解码加速与网页展示\\run_c2.py": "e492116589639085d70ec80ad1c62f6b0140a2c0926065d7a8066d856e14e1a7",
+              "08_新阶段C_编解码加速与网页展示\\build_c2_native.py": "59ecc0fc43c5c59c50453d3fc70f8d37ab162ccc9bd1ac24a40afc31342620cd",
+              "08_新阶段C_编解码加速与网页展示\\test_c2_native.py": "2739f40ed9005377d1e8b6dafd2134ac656f54c915c5d50770166cf559ab67d1",
+              "08_新阶段C_编解码加速与网页展示\\test_c2_watch.py": "982ae257354e52bcaca669480770842eeaccc4b4d7fe273fe3218ba14f6a54e7",
+              "08_新阶段C_编解码加速与网页展示\\native\\glc_rans.c": "c1e325ccaaef238efaabbd128a95d389a90c1136526b7bfcff8b8b786d033e32",
+              "08_新阶段C_编解码加速与网页展示\\native\\rans_byte.h": "66e9521b4485c1b36ee7527f1a6cd7c9fe7f8495f81420602fbdc26b7273bea6",
+              "08_新阶段C_编解码加速与网页展示\\native\\README.md": "a57a1ea842406ed29c55d4e55f2ea3f4ec391bf983e4b138678bb678b758cd49",
+              "08_新阶段C_编解码加速与网页展示\\run_c2_paired.py": "00c161047105d817f02b01f47263fcf7a9310f55e74afe2c682662cc9385440c",
+              "08_新阶段C_编解码加速与网页展示\\recover_c2.py": "3b3a45343134a6ff2c4d50e766569d5ac8fc87703feec2965499d816babc933e",
+              "08_新阶段C_编解码加速与网页展示\\check_c2.py": "7c8bc78d2f5a013882168bc945fab857727b1efa235a135fa403c879e727e7cb",
+              "08_新阶段C_编解码加速与网页展示\\export_c2_checkpoint.py": "9eda7dfd50b6c63c167f15a964137f33b72d551f8950c75f1a09341165dde938",
+              "08_新阶段C_编解码加速与网页展示\\test_c2_results.py": "22d8a931b1a9d862fb8765b3bbb3ce124ca8a9ede40c38da809c3b79f7729e2a",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_codec.py": "52fe2b88cd3f2e023825b2e0e2ada0d86e54dcccdcd4dcc8c137b8eb3272a2ae",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_probe.py": "2a741913b11f1ec59be202d1ff32cfdff9c485585a94466c5e227b7dd373b814",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_entropy.py": "766905d2031c42d15e5c164653996313fa19dd2e6f14e7dc0ac33e70632be0e3",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_container.py": "f59014583826695e0f6baeb9e81581ff31d276c22d9bdb63ad82860200fa07dc",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.py": "2cee8686c2071070a612adab6f3f1d39ecd2ef85d0e3a269ed50cd5fd28ff9c9",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.json": "53c3f17692e528de0eabef361b8afbce14f03aeb6a966bc296836f78c598f148"
+            },
+            "input": {
+              "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\A_压缩路线选型\\A2_GLC验证\\long108\\input_540.mkv",
+              "sha256": "6683af45254bdaed431658e5f7515cddaeb42df2382f18b983e6e1cba7ae436b"
+            },
+            "python": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+            "gpu": {
+              "returncode": 0,
+              "stdout": "name, driver_version, pstate, temperature.gpu, power.draw [W], power.limit [W], memory.used [MiB], memory.total [MiB], utilization.gpu [%], clocks.current.sm [MHz], clocks.current.memory [MHz]\nNVIDIA GeForce RTX 4060 Laptop GPU, 560.94, P5, 39, 6.43 W, [N/A], 3506 MiB, 8188 MiB, 2 %, 210 MHz, 810 MHz\n",
+              "stderr": ""
+            },
+            "power_scheme": {
+              "returncode": 0,
+              "stdout": "电源方案 GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (平衡)",
+              "stderr": ""
+            },
+            "policy": "Serialized separate-role C1 display workers; cold warmup explicit; profile AB/BA controls; no GPU profiler",
+            "native": {
+              "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_native_build_20261019_r3\\glc_rans.dll",
+              "sha256": "348c44304a97cec53643d33d284f5e6f6e0c7db60ac8c811da06ce4ea36451bc",
+              "build": {
+                "created_utc": "2026-10-19T14:32:34.461670+00:00",
+                "argv": [
+                  "C:\\mingw64\\bin\\gcc.exe",
+                  "-B",
+                  "C:\\mingw64\\bin/",
+                  "-std=c11",
+                  "-O3",
+                  "-Wall",
+                  "-Wextra",
+                  "-Werror",
+                  "-shared",
+                  "-static-libgcc",
+                  "glc_rans.c",
+                  "-o",
+                  "glc_rans.dll"
+                ],
+                "returncode": 0,
+                "stdout": "",
+                "stderr": "",
+                "source_sha256": {
+                  "rans_byte.h": "66e9521b4485c1b36ee7527f1a6cd7c9fe7f8495f81420602fbdc26b7273bea6",
+                  "glc_rans.c": "c1e325ccaaef238efaabbd128a95d389a90c1136526b7bfcff8b8b786d033e32"
+                },
+                "upstream_commit": "c9d162d996fd600315af9ae8eb89d832576cb32d",
+                "compiler": "gcc.exe (x86_64-win32-seh-rev0, Built by MinGW-Builds project) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+                "library_sha256": "348c44304a97cec53643d33d284f5e6f6e0c7db60ac8c811da06ce4ea36451bc"
+              }
+            },
+            "limitations": "Finite C2 evidence; no extrapolated full-preset speedup claim; scopes are CPU wall spans",
+            "preset": "detail"
+          }
+        },
+        "stage.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_detail_pair_20261019_r1\\stage.json",
+          "sha256": "bcabb966e15b4be286b65b629da81c82d8de32b13d72ec6ba6433dcbbd5a4826",
+          "data": {
+            "state": "complete",
+            "ended_utc": "2026-10-19T14:50:34.563216+00:00"
+          }
+        },
+        "paired_summary.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_detail_pair_20261019_r1\\paired_summary.json",
+          "sha256": "8f7590e5ca6d99db14565d59357d708a4c71e0b27f0c9fc50116caff921b1667",
+          "data": {
+            "config": {
+              "preset": "detail",
+              "pairs": 1,
+              "frames": 125,
+              "created_utc": "2026-10-19T14:45:39.090608+00:00",
+              "prior_gate": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate66_20261019_r1"
+            },
+            "records": [
+              {
+                "id": "decode_1_native",
+                "role": "decode",
+                "backend": "native",
+                "group": "paired",
+                "pair": 1,
+                "resident": true,
+                "view_seconds": 43.69010469999921,
+                "evidence_seconds": 43.53674409999803,
+                "codec_acquire_seconds": 3.999994078185409e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "146bbad70ff30c9da6477d64a7c6d656c2673f67e9841c87efd50aaac87ef792",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 960,
+                      "height": 540,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_1_python",
+                "role": "decode",
+                "backend": "python",
+                "group": "paired",
+                "pair": 1,
+                "resident": true,
+                "view_seconds": 59.75745940000343,
+                "evidence_seconds": 59.5535646999997,
+                "codec_acquire_seconds": 3.5999983083456755e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "bccf841cad625b6443278895ebeba6b94fb027cd47f8f9c2327af2b8ec46abf1",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 960,
+                      "height": 540,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_warmup_native",
+                "role": "decode",
+                "backend": "native",
+                "group": "warmup",
+                "pair": null,
+                "resident": false,
+                "view_seconds": 6.836266500002239,
+                "evidence_seconds": 6.733259699998598,
+                "codec_acquire_seconds": 3.2819865999990725,
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "8a51b7d00e6add52ee73e162ba5d8cab66b5f27370969f64a4bf326d2544540e",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 960,
+                      "height": 540,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_warmup_python",
+                "role": "decode",
+                "backend": "python",
+                "group": "warmup",
+                "pair": null,
+                "resident": true,
+                "view_seconds": 3.908737800004019,
+                "evidence_seconds": 3.805902200001583,
+                "codec_acquire_seconds": 5.400004738476127e-06,
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "9b4f54a3d03e4c38b9347e036c341fc661783e87227e7bc4b8d1121579d47f9e",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 960,
+                      "height": 540,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_1_native",
+                "role": "encode",
+                "backend": "native",
+                "group": "paired",
+                "pair": 1,
+                "resident": true,
+                "view_seconds": 69.96952700000111,
+                "evidence_seconds": 69.51407990000007,
+                "codec_acquire_seconds": 3.5999983083456755e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": true,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "3595a0d5685b45f5856c621b0bf66d0a5cb425d8ad80ebc91098914a6640afbc",
+                  "stream_sha256": "95b0acc15e40b774d4f8cc9aac719f8309e11adc91677f48fb9c72d153bbbf9b",
+                  "stream_bytes": 48985,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 960,
+                      "height": 540,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    },
+                    "source_preview.mp4": {
+                      "width": 960,
+                      "height": 540,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_1_python",
+                "role": "encode",
+                "backend": "python",
+                "group": "paired",
+                "pair": 1,
+                "resident": true,
+                "view_seconds": 84.93401370000356,
+                "evidence_seconds": 84.52732290000131,
+                "codec_acquire_seconds": 3.2999960239976645e-06,
+                "validation": {
+                  "frames_checked": 125,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": true,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "fab321caf1b7e43885ba3061a9a7eef36aae78367c53bb01e2a5cf60922b2a02",
+                  "stream_sha256": "95b0acc15e40b774d4f8cc9aac719f8309e11adc91677f48fb9c72d153bbbf9b",
+                  "stream_bytes": 48985,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 960,
+                      "height": 540,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    },
+                    "source_preview.mp4": {
+                      "width": 960,
+                      "height": 540,
+                      "avg_frame_rate": "25/2",
+                      "duration": "10.000000",
+                      "nb_read_frames": "125"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_warmup_native",
+                "role": "encode",
+                "backend": "native",
+                "group": "warmup",
+                "pair": null,
+                "resident": true,
+                "view_seconds": 4.806745000001683,
+                "evidence_seconds": 4.59746680000535,
+                "codec_acquire_seconds": 0.003363099996931851,
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "b1ac517e23f5a75c013831dc1fb2440cab61dfc604488a94b3c19b9c515accb3",
+                  "stream_sha256": "b640871e82f33b05b7a1227b1cd777eb9f602f260eaaf5e3464f51270fc4c10d",
+                  "stream_bytes": 4046,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 960,
+                      "height": 540,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    },
+                    "source_preview.mp4": {
+                      "width": 960,
+                      "height": 540,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_warmup_python",
+                "role": "encode",
+                "backend": "python",
+                "group": "warmup",
+                "pair": null,
+                "resident": false,
+                "view_seconds": 9.507776400001603,
+                "evidence_seconds": 9.299466500000563,
+                "codec_acquire_seconds": 3.2566559000042616,
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "f1940ff3b48d8edac2415eb0055676f80f063ffdf18e68e27d5edbc209545b77",
+                  "stream_sha256": "b640871e82f33b05b7a1227b1cd777eb9f602f260eaaf5e3464f51270fc4c10d",
+                  "stream_bytes": 4046,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 960,
+                      "height": 540,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    },
+                    "source_preview.mp4": {
+                      "width": 960,
+                      "height": 540,
+                      "avg_frame_rate": "25/2",
+                      "duration": "0.640000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              }
+            ],
+            "pairs": [
+              {
+                "pair": 1,
+                "role": "encode",
+                "before_seconds": 84.93401370000356,
+                "after_seconds": 69.96952700000111,
+                "saved_seconds": 14.964486700002453,
+                "reduction_percent": 17.61895623213886,
+                "speedup": 1.2138714857969843
+              },
+              {
+                "pair": 1,
+                "role": "decode",
+                "before_seconds": 59.75745940000343,
+                "after_seconds": 43.69010469999921,
+                "saved_seconds": 16.067354700004216,
+                "reduction_percent": 26.887613465045156,
+                "speedup": 1.367757294479647
+              },
+              {
+                "pair": 1,
+                "role": "sum",
+                "before_seconds": 144.691473100007,
+                "after_seconds": 113.65963170000032,
+                "saved_seconds": 31.03184140000667,
+                "reduction_percent": 21.446904047039638,
+                "speedup": 1.2730243001483048
+              }
+            ],
+            "groups": [
+              {
+                "role": "encode",
+                "n": 1,
+                "before_seconds": {
+                  "median": 84.93401370000356,
+                  "min": 84.93401370000356,
+                  "max": 84.93401370000356
+                },
+                "after_seconds": {
+                  "median": 69.96952700000111,
+                  "min": 69.96952700000111,
+                  "max": 69.96952700000111
+                },
+                "saved_seconds": {
+                  "median": 14.964486700002453,
+                  "min": 14.964486700002453,
+                  "max": 14.964486700002453
+                },
+                "reduction_percent": {
+                  "median": 17.61895623213886,
+                  "min": 17.61895623213886,
+                  "max": 17.61895623213886
+                },
+                "speedup": {
+                  "median": 1.2138714857969843,
+                  "min": 1.2138714857969843,
+                  "max": 1.2138714857969843
+                }
+              },
+              {
+                "role": "decode",
+                "n": 1,
+                "before_seconds": {
+                  "median": 59.75745940000343,
+                  "min": 59.75745940000343,
+                  "max": 59.75745940000343
+                },
+                "after_seconds": {
+                  "median": 43.69010469999921,
+                  "min": 43.69010469999921,
+                  "max": 43.69010469999921
+                },
+                "saved_seconds": {
+                  "median": 16.067354700004216,
+                  "min": 16.067354700004216,
+                  "max": 16.067354700004216
+                },
+                "reduction_percent": {
+                  "median": 26.887613465045156,
+                  "min": 26.887613465045156,
+                  "max": 26.887613465045156
+                },
+                "speedup": {
+                  "median": 1.367757294479647,
+                  "min": 1.367757294479647,
+                  "max": 1.367757294479647
+                }
+              },
+              {
+                "role": "sum",
+                "n": 1,
+                "before_seconds": {
+                  "median": 144.691473100007,
+                  "min": 144.691473100007,
+                  "max": 144.691473100007
+                },
+                "after_seconds": {
+                  "median": 113.65963170000032,
+                  "min": 113.65963170000032,
+                  "max": 113.65963170000032
+                },
+                "saved_seconds": {
+                  "median": 31.03184140000667,
+                  "min": 31.03184140000667,
+                  "max": 31.03184140000667
+                },
+                "reduction_percent": {
+                  "median": 21.446904047039638,
+                  "min": 21.446904047039638,
+                  "max": 21.446904047039638
+                },
+                "speedup": {
+                  "median": 1.2730243001483048,
+                  "min": 1.2730243001483048,
+                  "max": 1.2730243001483048
+                }
+              }
+            ],
+            "validated_tasks": 8,
+            "complete_pair_count": 1,
+            "scope": "Same clip/preset/C1 display/CUDA FP32; Python versus native entropy. Separate-role resident workers; warmups excluded.",
+            "not_end_to_end": "Sum of separately executed encode and decode; not network or browser latency."
+          }
+        }
+      },
+      "processes": [
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_detail_pair_20261019_r1\\decode_process\\process.json",
+          "sha256": "e28d3a8ed783905030b4cc593b8eaec4a0271d0243dbe09e780f62e47f432453",
+          "data": {
+            "argv": [
+              "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py",
+              "--config",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_detail_pair_20261019_r1\\decode_process_config.json"
+            ],
+            "started_utc": "2026-10-19T14:48:36.463970+00:00",
+            "state": "completed",
+            "supervisor": {
+              "pid": 40732,
+              "alive": true,
+              "creation_token": 134368947388393524
+            },
+            "pid": 22756,
+            "returncode": 0,
+            "exit_cause": null,
+            "stop_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_detail_pair_20261019_r1\\STOP_REQUESTED",
+            "child_identity": {
+              "pid": 22756,
+              "alive": true,
+              "creation_token": 134368949164726973
+            },
+            "supervisor_heartbeat_utc": "2026-10-19T14:50:32.579552+00:00",
+            "elapsed_seconds": 117.11354259999644,
+            "ended_utc": "2026-10-19T14:50:33.583872+00:00",
+            "returncode_hex": "0x00000000"
+          }
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_detail_pair_20261019_r1\\encode_process\\process.json",
+          "sha256": "a845142f0046d7dfb54442ba7d09c712797f205ebd9a1cfa43bef2e3f4a15ca2",
+          "data": {
+            "argv": [
+              "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py",
+              "--config",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_detail_pair_20261019_r1\\encode_process_config.json"
+            ],
+            "started_utc": "2026-10-19T14:45:39.108762+00:00",
+            "state": "completed",
+            "supervisor": {
+              "pid": 40732,
+              "alive": true,
+              "creation_token": 134368947388393524
+            },
+            "pid": 16296,
+            "returncode": 0,
+            "exit_cause": null,
+            "stop_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_detail_pair_20261019_r1\\STOP_REQUESTED",
+            "child_identity": {
+              "pid": 16296,
+              "alive": true,
+              "creation_token": 134368947391154937
+            },
+            "supervisor_heartbeat_utc": "2026-10-19T14:48:29.763111+00:00",
+            "elapsed_seconds": 171.65593359999912,
+            "ended_utc": "2026-10-19T14:48:30.769079+00:00",
+            "returncode_hex": "0x00000000"
+          }
+        }
+      ]
+    },
+    {
+      "root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_motion_pair_20261019_r1",
+      "evidence": {
+        "manifest.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_motion_pair_20261019_r1\\manifest.json",
+          "sha256": "4ec112968e2bd7b650c6ec48c49d6aee76bebd895d69f836290ff60c99e3b854",
+          "data": {
+            "created_utc": "2026-10-19T14:51:13.181429+00:00",
+            "phase": "paired",
+            "frames": 250,
+            "pairs": 1,
+            "base_commit": {
+              "returncode": 0,
+              "stdout": "af2f67e087a8a0141208ee71ac049f660b1206e2\n",
+              "stderr": ""
+            },
+            "code_sha256": {
+              "08_新阶段C_编解码加速与网页展示\\c0_metrics.py": "d36844679f3fa3ed1902873b3d35066b471de40564ddd27d0da0dac5fa11cd12",
+              "08_新阶段C_编解码加速与网页展示\\c0_worker.py": "aefea753ab2e21093b8c031e183ab29475101f20a371efc4b00c2ee697c8ab4e",
+              "08_新阶段C_编解码加速与网页展示\\c1_io.py": "9106801e9ab57a65f3eab4c6956a022821f620d7f8093e9151a0f2d611a6100d",
+              "08_新阶段C_编解码加速与网页展示\\c1_runtime.py": "3419534425f238e55a3ba0143ef238568225a29268a35373e4179fe71cbe378c",
+              "08_新阶段C_编解码加速与网页展示\\c1_worker.py": "06093e0b0bbdc67e496dbd10e46e7270166e3764fdbe570dcb53a4548cf1948e",
+              "08_新阶段C_编解码加速与网页展示\\c2_native.py": "1f948c3dc207dfdc1cb7d74f325c98a9065b7dd2d17f41b7cb4c77153db962b4",
+              "08_新阶段C_编解码加速与网页展示\\c2_watch.py": "e081c060fcd31df9cb86908308713ab3255079c124409cf9b033cc227672dabe",
+              "08_新阶段C_编解码加速与网页展示\\c2_worker.py": "0bf93f176fddb7f3976f11bf0bc97941f3ce8faba62540fedfd6c6740a6a5b39",
+              "08_新阶段C_编解码加速与网页展示\\run_c0.py": "ff13aa090929788bc1f4d254f44d164e9911190ca25d88440cccffcdf0ee87d7",
+              "08_新阶段C_编解码加速与网页展示\\run_c1.py": "9edea7b87e3d69bd3d764ec54e914c03f35a2c7c1d01967ca56cc4affd1199de",
+              "08_新阶段C_编解码加速与网页展示\\run_c2.py": "e492116589639085d70ec80ad1c62f6b0140a2c0926065d7a8066d856e14e1a7",
+              "08_新阶段C_编解码加速与网页展示\\build_c2_native.py": "59ecc0fc43c5c59c50453d3fc70f8d37ab162ccc9bd1ac24a40afc31342620cd",
+              "08_新阶段C_编解码加速与网页展示\\test_c2_native.py": "2739f40ed9005377d1e8b6dafd2134ac656f54c915c5d50770166cf559ab67d1",
+              "08_新阶段C_编解码加速与网页展示\\test_c2_watch.py": "982ae257354e52bcaca669480770842eeaccc4b4d7fe273fe3218ba14f6a54e7",
+              "08_新阶段C_编解码加速与网页展示\\native\\glc_rans.c": "c1e325ccaaef238efaabbd128a95d389a90c1136526b7bfcff8b8b786d033e32",
+              "08_新阶段C_编解码加速与网页展示\\native\\rans_byte.h": "66e9521b4485c1b36ee7527f1a6cd7c9fe7f8495f81420602fbdc26b7273bea6",
+              "08_新阶段C_编解码加速与网页展示\\native\\README.md": "a57a1ea842406ed29c55d4e55f2ea3f4ec391bf983e4b138678bb678b758cd49",
+              "08_新阶段C_编解码加速与网页展示\\run_c2_paired.py": "00c161047105d817f02b01f47263fcf7a9310f55e74afe2c682662cc9385440c",
+              "08_新阶段C_编解码加速与网页展示\\recover_c2.py": "3b3a45343134a6ff2c4d50e766569d5ac8fc87703feec2965499d816babc933e",
+              "08_新阶段C_编解码加速与网页展示\\check_c2.py": "7c8bc78d2f5a013882168bc945fab857727b1efa235a135fa403c879e727e7cb",
+              "08_新阶段C_编解码加速与网页展示\\export_c2_checkpoint.py": "71e4fd08e7e4f6a7d15e08a2fc323f02b37fbe880e006d1a3901c142ea896e9a",
+              "08_新阶段C_编解码加速与网页展示\\test_c2_results.py": "22d8a931b1a9d862fb8765b3bbb3ce124ca8a9ede40c38da809c3b79f7729e2a",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_codec.py": "52fe2b88cd3f2e023825b2e0e2ada0d86e54dcccdcd4dcc8c137b8eb3272a2ae",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_probe.py": "2a741913b11f1ec59be202d1ff32cfdff9c485585a94466c5e227b7dd373b814",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_entropy.py": "766905d2031c42d15e5c164653996313fa19dd2e6f14e7dc0ac33e70632be0e3",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_container.py": "f59014583826695e0f6baeb9e81581ff31d276c22d9bdb63ad82860200fa07dc",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.py": "2cee8686c2071070a612adab6f3f1d39ecd2ef85d0e3a269ed50cd5fd28ff9c9",
+              "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.json": "53c3f17692e528de0eabef361b8afbce14f03aeb6a966bc296836f78c598f148"
+            },
+            "input": {
+              "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\A_压缩路线选型\\A2_GLC验证\\long108\\input_540.mkv",
+              "sha256": "6683af45254bdaed431658e5f7515cddaeb42df2382f18b983e6e1cba7ae436b"
+            },
+            "python": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+            "gpu": {
+              "returncode": 0,
+              "stdout": "name, driver_version, pstate, temperature.gpu, power.draw [W], power.limit [W], memory.used [MiB], memory.total [MiB], utilization.gpu [%], clocks.current.sm [MHz], clocks.current.memory [MHz]\nNVIDIA GeForce RTX 4060 Laptop GPU, 560.94, P5, 42, 6.61 W, [N/A], 3608 MiB, 8188 MiB, 13 %, 210 MHz, 810 MHz\n",
+              "stderr": ""
+            },
+            "power_scheme": {
+              "returncode": 0,
+              "stdout": "电源方案 GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (平衡)",
+              "stderr": ""
+            },
+            "policy": "Serialized separate-role C1 display workers; cold warmup explicit; profile AB/BA controls; no GPU profiler",
+            "native": {
+              "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_native_build_20261019_r3\\glc_rans.dll",
+              "sha256": "348c44304a97cec53643d33d284f5e6f6e0c7db60ac8c811da06ce4ea36451bc",
+              "build": {
+                "created_utc": "2026-10-19T14:32:34.461670+00:00",
+                "argv": [
+                  "C:\\mingw64\\bin\\gcc.exe",
+                  "-B",
+                  "C:\\mingw64\\bin/",
+                  "-std=c11",
+                  "-O3",
+                  "-Wall",
+                  "-Wextra",
+                  "-Werror",
+                  "-shared",
+                  "-static-libgcc",
+                  "glc_rans.c",
+                  "-o",
+                  "glc_rans.dll"
+                ],
+                "returncode": 0,
+                "stdout": "",
+                "stderr": "",
+                "source_sha256": {
+                  "rans_byte.h": "66e9521b4485c1b36ee7527f1a6cd7c9fe7f8495f81420602fbdc26b7273bea6",
+                  "glc_rans.c": "c1e325ccaaef238efaabbd128a95d389a90c1136526b7bfcff8b8b786d033e32"
+                },
+                "upstream_commit": "c9d162d996fd600315af9ae8eb89d832576cb32d",
+                "compiler": "gcc.exe (x86_64-win32-seh-rev0, Built by MinGW-Builds project) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+                "library_sha256": "348c44304a97cec53643d33d284f5e6f6e0c7db60ac8c811da06ce4ea36451bc"
+              }
+            },
+            "limitations": "Finite C2 evidence; no extrapolated full-preset speedup claim; scopes are CPU wall spans",
+            "preset": "motion"
+          }
+        },
+        "stage.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_motion_pair_20261019_r1\\stage.json",
+          "sha256": "6d76694f38e861ef829c44ffd53d13d757449b0515d95b7644a9cd75c4a04777",
+          "data": {
+            "state": "complete",
+            "ended_utc": "2026-10-19T14:55:27.797500+00:00"
+          }
+        },
+        "paired_summary.json": {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_motion_pair_20261019_r1\\paired_summary.json",
+          "sha256": "ca9c3ddd8f92f57b59bee855d50b9509bd39273c849f073e1ddeed622c49307d",
+          "data": {
+            "config": {
+              "preset": "motion",
+              "pairs": 1,
+              "frames": 250,
+              "created_utc": "2026-10-19T14:51:13.290865+00:00",
+              "prior_gate": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_gate66_20261019_r1"
+            },
+            "records": [
+              {
+                "id": "decode_1_native",
+                "role": "decode",
+                "backend": "native",
+                "group": "paired",
+                "pair": 1,
+                "resident": true,
+                "view_seconds": 38.91389519999939,
+                "evidence_seconds": 38.81166369999846,
+                "codec_acquire_seconds": 3.7999998312443495e-06,
+                "validation": {
+                  "frames_checked": 250,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "844007a9947267e462aee9e7db7be32f4a8f9a049038461b8929f69c0f0066f4",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/1",
+                      "duration": "10.000000",
+                      "nb_read_frames": "250"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_1_python",
+                "role": "decode",
+                "backend": "python",
+                "group": "paired",
+                "pair": 1,
+                "resident": true,
+                "view_seconds": 52.87033320000046,
+                "evidence_seconds": 52.76743529999658,
+                "codec_acquire_seconds": 3.4999975468963385e-06,
+                "validation": {
+                  "frames_checked": 250,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "45ea416affa39d291e94bf4aec03dc5f507b723b5cba258a95d910d5bb545f7b",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/1",
+                      "duration": "10.000000",
+                      "nb_read_frames": "250"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_warmup_native",
+                "role": "decode",
+                "backend": "native",
+                "group": "warmup",
+                "pair": null,
+                "resident": false,
+                "view_seconds": 5.147491199997603,
+                "evidence_seconds": 5.092761999992945,
+                "codec_acquire_seconds": 3.2918483999965247,
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "7226247f622f6ad57957cb5088d2a62d9a5c0ba2215dd06b80f743a504d9aa1a",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/1",
+                      "duration": "0.320000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "decode_warmup_python",
+                "role": "decode",
+                "backend": "python",
+                "group": "warmup",
+                "pair": null,
+                "resident": true,
+                "view_seconds": 1.8176527000032365,
+                "evidence_seconds": 1.7631961000006413,
+                "codec_acquire_seconds": 6.100002792663872e-06,
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": null,
+                  "result_sha256": "26d28756571765b942faecb56ae1218143fc32356b49966bd40274423771999e",
+                  "independent_decoder": true,
+                  "source_media_reads": [],
+                  "whole_file_checksum_verified": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/1",
+                      "duration": "0.320000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_1_native",
+                "role": "encode",
+                "backend": "native",
+                "group": "paired",
+                "pair": 1,
+                "resident": true,
+                "view_seconds": 61.38689809999778,
+                "evidence_seconds": 61.182600599997386,
+                "codec_acquire_seconds": 5.099995178170502e-06,
+                "validation": {
+                  "frames_checked": 250,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": true,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "5f1ea4fb39a287f9151ad2994de9b5618dd0649b99e2bca50c7d71561b59094d",
+                  "stream_sha256": "9898fb52153c373b854eda97077d198fe67edd28cc4b0303f987bb1fd5a32149",
+                  "stream_bytes": 44962,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/1",
+                      "duration": "10.000000",
+                      "nb_read_frames": "250"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/1",
+                      "duration": "10.000000",
+                      "nb_read_frames": "250"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_1_python",
+                "role": "encode",
+                "backend": "python",
+                "group": "paired",
+                "pair": 1,
+                "resident": true,
+                "view_seconds": 74.61502009999822,
+                "evidence_seconds": 74.4100075000024,
+                "codec_acquire_seconds": 4.599998646881431e-06,
+                "validation": {
+                  "frames_checked": 250,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": true,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "e77da300673704a2f3dcf9a331111c70b408ab9d3133ba5c893c8a45dbd93703",
+                  "stream_sha256": "9898fb52153c373b854eda97077d198fe67edd28cc4b0303f987bb1fd5a32149",
+                  "stream_bytes": 44962,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/1",
+                      "duration": "10.000000",
+                      "nb_read_frames": "250"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/1",
+                      "duration": "10.000000",
+                      "nb_read_frames": "250"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_warmup_native",
+                "role": "encode",
+                "backend": "native",
+                "group": "warmup",
+                "pair": null,
+                "resident": true,
+                "view_seconds": 2.231026800000109,
+                "evidence_seconds": 2.1238649999941117,
+                "codec_acquire_seconds": 0.0032144999931915663,
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "765ac181c4431a7e8ba8a7feb85f43936d46c7f17c2f91755c2a8d7e53e943ea",
+                  "stream_sha256": "e8449d00338454716bee13770e55e2d22e54c4bc07d2a54bf35d6bddb3ba742b",
+                  "stream_bytes": 2355,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/1",
+                      "duration": "0.320000",
+                      "nb_read_frames": "8"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/1",
+                      "duration": "0.320000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              },
+              {
+                "id": "encode_warmup_python",
+                "role": "encode",
+                "backend": "python",
+                "group": "warmup",
+                "pair": null,
+                "resident": false,
+                "view_seconds": 6.499428700000863,
+                "evidence_seconds": 6.391685800001142,
+                "codec_acquire_seconds": 3.3660694000063813,
+                "validation": {
+                  "frames_checked": 8,
+                  "all_rgb_and_latent_hashes_match_b4": true,
+                  "whole_stream_matches_b4": null,
+                  "input_rgb_matches_b4": true,
+                  "result_sha256": "013075f68124f23671b59f19fb976a98599b9ff3b288b641669722d4a72f931c",
+                  "stream_sha256": "e8449d00338454716bee13770e55e2d22e54c4bc07d2a54bf35d6bddb3ba742b",
+                  "stream_bytes": 2355,
+                  "prefix_payloads_match_b4": true,
+                  "previews": {
+                    "reconstruction_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/1",
+                      "duration": "0.320000",
+                      "nb_read_frames": "8"
+                    },
+                    "source_preview.mp4": {
+                      "width": 640,
+                      "height": 360,
+                      "avg_frame_rate": "25/1",
+                      "duration": "0.320000",
+                      "nb_read_frames": "8"
+                    }
+                  },
+                  "png_count": 0,
+                  "png_bytes": 0
+                }
+              }
+            ],
+            "pairs": [
+              {
+                "pair": 1,
+                "role": "encode",
+                "before_seconds": 74.61502009999822,
+                "after_seconds": 61.38689809999778,
+                "saved_seconds": 13.22812200000044,
+                "reduction_percent": 17.72849753611573,
+                "speedup": 1.2154877084431297
+              },
+              {
+                "pair": 1,
+                "role": "decode",
+                "before_seconds": 52.87033320000046,
+                "after_seconds": 38.91389519999939,
+                "saved_seconds": 13.956438000001071,
+                "reduction_percent": 26.39748447812118,
+                "speedup": 1.3586492158719
+              },
+              {
+                "pair": 1,
+                "role": "sum",
+                "before_seconds": 127.48535329999868,
+                "after_seconds": 100.30079329999717,
+                "saved_seconds": 27.18456000000151,
+                "reduction_percent": 21.32367310935772,
+                "speedup": 1.2710303588396672
+              }
+            ],
+            "groups": [
+              {
+                "role": "encode",
+                "n": 1,
+                "before_seconds": {
+                  "median": 74.61502009999822,
+                  "min": 74.61502009999822,
+                  "max": 74.61502009999822
+                },
+                "after_seconds": {
+                  "median": 61.38689809999778,
+                  "min": 61.38689809999778,
+                  "max": 61.38689809999778
+                },
+                "saved_seconds": {
+                  "median": 13.22812200000044,
+                  "min": 13.22812200000044,
+                  "max": 13.22812200000044
+                },
+                "reduction_percent": {
+                  "median": 17.72849753611573,
+                  "min": 17.72849753611573,
+                  "max": 17.72849753611573
+                },
+                "speedup": {
+                  "median": 1.2154877084431297,
+                  "min": 1.2154877084431297,
+                  "max": 1.2154877084431297
+                }
+              },
+              {
+                "role": "decode",
+                "n": 1,
+                "before_seconds": {
+                  "median": 52.87033320000046,
+                  "min": 52.87033320000046,
+                  "max": 52.87033320000046
+                },
+                "after_seconds": {
+                  "median": 38.91389519999939,
+                  "min": 38.91389519999939,
+                  "max": 38.91389519999939
+                },
+                "saved_seconds": {
+                  "median": 13.956438000001071,
+                  "min": 13.956438000001071,
+                  "max": 13.956438000001071
+                },
+                "reduction_percent": {
+                  "median": 26.39748447812118,
+                  "min": 26.39748447812118,
+                  "max": 26.39748447812118
+                },
+                "speedup": {
+                  "median": 1.3586492158719,
+                  "min": 1.3586492158719,
+                  "max": 1.3586492158719
+                }
+              },
+              {
+                "role": "sum",
+                "n": 1,
+                "before_seconds": {
+                  "median": 127.48535329999868,
+                  "min": 127.48535329999868,
+                  "max": 127.48535329999868
+                },
+                "after_seconds": {
+                  "median": 100.30079329999717,
+                  "min": 100.30079329999717,
+                  "max": 100.30079329999717
+                },
+                "saved_seconds": {
+                  "median": 27.18456000000151,
+                  "min": 27.18456000000151,
+                  "max": 27.18456000000151
+                },
+                "reduction_percent": {
+                  "median": 21.32367310935772,
+                  "min": 21.32367310935772,
+                  "max": 21.32367310935772
+                },
+                "speedup": {
+                  "median": 1.2710303588396672,
+                  "min": 1.2710303588396672,
+                  "max": 1.2710303588396672
+                }
+              }
+            ],
+            "validated_tasks": 8,
+            "complete_pair_count": 1,
+            "scope": "Same clip/preset/C1 display/CUDA FP32; Python versus native entropy. Separate-role resident workers; warmups excluded.",
+            "not_end_to_end": "Sum of separately executed encode and decode; not network or browser latency."
+          }
+        }
+      },
+      "processes": [
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_motion_pair_20261019_r1\\decode_process\\process.json",
+          "sha256": "7c383102f794ed8aae99eee9d95a88fc9b425790e56bcebf0735a8ed2b66723b",
+          "data": {
+            "argv": [
+              "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py",
+              "--config",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_motion_pair_20261019_r1\\decode_process_config.json"
+            ],
+            "started_utc": "2026-10-19T14:53:45.079243+00:00",
+            "state": "completed",
+            "supervisor": {
+              "pid": 30028,
+              "alive": true,
+              "creation_token": 134368950730264882
+            },
+            "pid": 5708,
+            "returncode": 0,
+            "exit_cause": null,
+            "stop_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_motion_pair_20261019_r1\\STOP_REQUESTED",
+            "child_identity": {
+              "pid": 5708,
+              "alive": true,
+              "creation_token": 134368952250873987
+            },
+            "supervisor_heartbeat_utc": "2026-10-19T14:55:26.144713+00:00",
+            "elapsed_seconds": 102.07426670000132,
+            "ended_utc": "2026-10-19T14:55:27.159140+00:00",
+            "returncode_hex": "0x00000000"
+          }
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_motion_pair_20261019_r1\\encode_process\\process.json",
+          "sha256": "3f3812acf16a84fe49ae6777d803b10bf33f6a0cfe9dc81064ef480e06323075",
+          "data": {
+            "argv": [
+              "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py",
+              "--config",
+              "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_motion_pair_20261019_r1\\encode_process_config.json"
+            ],
+            "started_utc": "2026-10-19T14:51:13.304162+00:00",
+            "state": "completed",
+            "supervisor": {
+              "pid": 30028,
+              "alive": true,
+              "creation_token": 134368950730264882
+            },
+            "pid": 23864,
+            "returncode": 0,
+            "exit_cause": null,
+            "stop_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_motion_pair_20261019_r1\\STOP_REQUESTED",
+            "child_identity": {
+              "pid": 23864,
+              "alive": true,
+              "creation_token": 134368950733107297
+            },
+            "supervisor_heartbeat_utc": "2026-10-19T14:53:39.741856+00:00",
+            "elapsed_seconds": 147.43944960000226,
+            "ended_utc": "2026-10-19T14:53:40.748009+00:00",
+            "returncode_hex": "0x00000000"
+          }
+        }
+      ]
+    }
+  ],
+  "build": {
+    "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_native_build_20261019_r3\\build.json",
+    "sha256": "8a04d8d3755df08a51889b1d22534f2636c5f99303a9e5d84ff643cfba16d535",
+    "data": {
+      "created_utc": "2026-10-19T14:32:34.461670+00:00",
+      "argv": [
+        "C:\\mingw64\\bin\\gcc.exe",
+        "-B",
+        "C:\\mingw64\\bin/",
+        "-std=c11",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-shared",
+        "-static-libgcc",
+        "glc_rans.c",
+        "-o",
+        "glc_rans.dll"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "source_sha256": {
+        "rans_byte.h": "66e9521b4485c1b36ee7527f1a6cd7c9fe7f8495f81420602fbdc26b7273bea6",
+        "glc_rans.c": "c1e325ccaaef238efaabbd128a95d389a90c1136526b7bfcff8b8b786d033e32"
+      },
+      "upstream_commit": "c9d162d996fd600315af9ae8eb89d832576cb32d",
+      "compiler": "gcc.exe (x86_64-win32-seh-rev0, Built by MinGW-Builds project) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+      "library_sha256": "348c44304a97cec53643d33d284f5e6f6e0c7db60ac8c811da06ce4ea36451bc"
+    }
+  },
+  "limitations": [
+    "C1 speedup evidence is compact-only.",
+    "66-frame hotspot proportions are diagnostic, not all-preset estimates.",
+    "Original C1 interruption causes remain unknown.",
+    "No training, browser or physical-link claims."
+  ],
+  "cpu_tests.log": {
+    "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_native_build_20261019_r3\\cpu_tests.log",
+    "sha256": "addd50f67682197a4881fec94422b6aa2abcc4365feccb969b06ae237467c009",
+    "text": "test_all_tables_boundaries_and_int32_escapes (test_c2_native.NativeTests.test_all_tables_boundaries_and_int32_escapes) ... ok\ntest_empty_payload (test_c2_native.NativeTests.test_empty_payload) ... ok\ntest_every_truncation_and_header_corruption (test_c2_native.NativeTests.test_every_truncation_and_header_corruption) ... ok\ntest_highly_compressible_and_worst_renormalization (test_c2_native.NativeTests.test_highly_compressible_and_worst_renormalization) ... ok\ntest_invalid_indexes_and_symbols (test_c2_native.NativeTests.test_invalid_indexes_and_symbols) ... ok\ntest_mixed_tables_random_roundtrips (test_c2_native.NativeTests.test_mixed_tables_random_roundtrips) ... ok\ntest_noncanonical_escapes (test_c2_native.NativeTests.test_noncanonical_escapes) ... ok\ntest_noncontiguous_inputs (test_c2_native.NativeTests.test_noncontiguous_inputs) ... ok\ntest_same_tables_and_indexes (test_c2_native.NativeTests.test_same_tables_and_indexes) ... ok\ntest_seeded_mutation_acceptance_and_output_match (test_c2_native.NativeTests.test_seeded_mutation_acceptance_and_output_match) ... ok\ntest_current_process_identity (test_c2_watch.WatchTests.test_current_process_identity) ... ok\ntest_heartbeat_retains_last_progress_and_terminal_state (test_c2_watch.WatchTests.test_heartbeat_retains_last_progress_and_terminal_state) ... ok\ntest_launch_failure_is_recorded (test_c2_watch.WatchTests.test_launch_failure_is_recorded) ... ok\ntest_normal_and_abrupt_exit_are_persisted (test_c2_watch.WatchTests.test_normal_and_abrupt_exit_are_persisted) ... ok\ntest_pid_reuse_and_orphan_are_not_reported_as_normal_running (test_c2_watch.WatchTests.test_pid_reuse_and_orphan_are_not_reported_as_normal_running) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 0.740s\n\nOK\n"
+  },
+  "checks": {
+    "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_checks_20261019_r2\\checks.json",
+    "sha256": "0b6faba4f14367a43940b5fee0204063e56e486c31805caa27df94246247aff9",
+    "data": {
+      "created_utc": "2026-10-19T14:45:27.661577+00:00",
+      "native_library": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_native_build_20261019_r3\\glc_rans.dll",
+      "library_sha256": "348c44304a97cec53643d33d284f5e6f6e0c7db60ac8c811da06ce4ea36451bc",
+      "results": [
+        {
+          "suite": "c",
+          "argv": [
+            "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示",
+            "-p",
+            "test_*.py",
+            "-v"
+          ],
+          "returncode": 0,
+          "log_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_checks_20261019_r2\\c_regression.log",
+          "log_sha256": "2a1d62dc509ad072df2e3b65ba9fcd9bae3b7f76d89ad99dda6fc47f08dc6262"
+        },
+        {
+          "suite": "b",
+          "argv": [
+            "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\07_新阶段B_GLC语义保护与传输",
+            "-p",
+            "test_*.py",
+            "-v"
+          ],
+          "returncode": 0,
+          "log_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_checks_20261019_r2\\b_regression.log",
+          "log_sha256": "2130fc6c704584aa702c0c969612cf21c9273edd7c25bf2eb860998ee949d9c2"
+        }
+      ],
+      "test_sources": {
+        "08_新阶段C_编解码加速与网页展示\\test_c0_metrics.py": "a3d69851436bd85df16aba3f9cfd1119083788ff828e9cd48a84da065883cf16",
+        "08_新阶段C_编解码加速与网页展示\\test_c1_runtime.py": "b6499ed0a6b07362b3c79cf20f8cb0548e5882fc61c680cbdad5a9d11a5900d8",
+        "08_新阶段C_编解码加速与网页展示\\test_c1_summary.py": "b97d7bb337a3357c37343e7b0d9058fb383dc0e2d58e0ff0daf60106dc3da936",
+        "08_新阶段C_编解码加速与网页展示\\test_c2_native.py": "2739f40ed9005377d1e8b6dafd2134ac656f54c915c5d50770166cf559ab67d1",
+        "08_新阶段C_编解码加速与网页展示\\test_c2_results.py": "22d8a931b1a9d862fb8765b3bbb3ce124ca8a9ede40c38da809c3b79f7729e2a",
+        "08_新阶段C_编解码加速与网页展示\\test_c2_watch.py": "982ae257354e52bcaca669480770842eeaccc4b4d7fe273fe3218ba14f6a54e7",
+        "07_新阶段B_GLC语义保护与传输\\test_b3.py": "ff4b06be95f2058df5492e231fb04a06d41b1967e7478deb2d0773aba2af400c",
+        "07_新阶段B_GLC语义保护与传输\\test_b4_container.py": "3f9f49daac8c8d04425b58b9eb5c9db6fb36b607b7d8b0af7308b10c169a7ee5",
+        "07_新阶段B_GLC语义保护与传输\\test_b4_presets.py": "f2ea9c0e52dea944182a288969892d795949195e02d0df746099f564453e61fe",
+        "07_新阶段B_GLC语义保护与传输\\test_baseline.py": "2233807ebc7a9b8cb14c2aa4c08b5bda275971e0c80d48cf487b67c22a17570d",
+        "07_新阶段B_GLC语义保护与传输\\test_layered.py": "7e13c450666071cd5306034fef582f010f3a547195d72303d0387c66d0fc2adb",
+        "07_新阶段B_GLC语义保护与传输\\test_public_diagnostic_input.py": "cc5018c2ef740c576c5b35f1e33da56abf85ff4feb94d403467d6549539f855a",
+        "07_新阶段B_GLC语义保护与传输\\test_public_recovery.py": "88951d9959b6530be3aa1d7eef11d6e5cd96b5a31ca9885636d38e3ac99f22aa"
+      },
+      "all_passed": true
+    }
+  },
+  "regression_logs": [
+    {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_checks_20261019_r2\\b_regression.log",
+      "sha256": "2130fc6c704584aa702c0c969612cf21c9273edd7c25bf2eb860998ee949d9c2",
+      "text": "test_edge_diagnostic_detects_patch_step (test_b3.BudgetTests.test_edge_diagnostic_detects_patch_step) ... ok\ntest_evidence_compression_is_deterministic_and_byte_exact (test_b3.BudgetTests.test_evidence_compression_is_deterministic_and_byte_exact) ... ok\ntest_geometry_area_and_window_end (test_b3.BudgetTests.test_geometry_area_and_window_end) ... ok\ntest_increasing_and_decreasing_brackets (test_b3.BudgetTests.test_increasing_and_decreasing_brackets) ... ok\ntest_no_bracket_does_not_extrapolate (test_b3.BudgetTests.test_no_bracket_does_not_extrapolate) ... ok\ntest_selection_ignores_quality_and_tie_prefers_smaller (test_b3.BudgetTests.test_selection_ignores_quality_and_tie_prefers_smaller) ... ok\ntest_changed_frame_or_order_fails_sequence_checksum (test_b4_container.CompactContainerTests.test_changed_frame_or_order_fails_sequence_checksum) ... ok\ntest_header_version_mismatch_is_rejected_before_writing (test_b4_container.CompactContainerTests.test_header_version_mismatch_is_rejected_before_writing) ... ok\ntest_quality_metric_compares_reduced_decode_to_actual_encoder_input_size (test_b4_container.CompactContainerTests.test_quality_metric_compares_reduced_decode_to_actual_encoder_input_size) ... ok\ntest_stride_samples_original_frame_indices_and_preserves_duration (test_b4_container.CompactContainerTests.test_stride_samples_original_frame_indices_and_preserves_duration) ... ok\ntest_v1_round_trip_and_magic_stay_compatible (test_b4_container.CompactContainerTests.test_v1_round_trip_and_magic_stay_compatible) ... ok\ntest_v2_corruption_fails_whole_file_checksum (test_b4_container.CompactContainerTests.test_v2_corruption_fails_whole_file_checksum) ... ok\ntest_v2_removes_per_frame_envelopes_but_keeps_file_integrity (test_b4_container.CompactContainerTests.test_v2_removes_per_frame_envelopes_but_keeps_file_integrity) ... ok\ntest_v2_round_trip_keeps_ordered_reconstruction_integrity (test_b4_container.CompactContainerTests.test_v2_round_trip_keeps_ordered_reconstruction_integrity) ... ok\ntest_v2_truncation_and_trailing_bytes_fail_after_file_hash_recalculation (test_b4_container.CompactContainerTests.test_v2_truncation_and_trailing_bytes_fail_after_file_hash_recalculation) ... ok\ntest_all_four_cli_choices_keep_same_source_time_span (test_b4_presets.PresetTests.test_all_four_cli_choices_keep_same_source_time_span) ... ok\ntest_conflicting_preset_option_exits_before_encoding (test_b4_presets.PresetTests.test_conflicting_preset_option_exits_before_encoding) ... ok\ntest_frame_count_can_change_clip_length_without_changing_preset (test_b4_presets.PresetTests.test_frame_count_can_change_clip_length_without_changing_preset) ... ok\ntest_old_cli_defaults_and_explicit_flags_still_work (test_b4_presets.PresetTests.test_old_cli_defaults_and_explicit_flags_still_work) ... ok\ntest_stride_quality_uses_sampled_input_instead_of_early_source_frames (test_b4_presets.PresetTests.test_stride_quality_uses_sampled_input_instead_of_early_source_frames) ... ok\ntest_early_start_cannot_be_hidden_by_late_finish (test_baseline.PacingTests.test_early_start_cannot_be_hidden_by_late_finish) ... ok\ntest_missing_header_bytes_rejected (test_baseline.PacingTests.test_missing_header_bytes_rejected) ... ok\ntest_on_time_and_clock_precision_reported (test_baseline.PacingTests.test_on_time_and_clock_precision_reported) ... ok\ntest_real_small_transfer_records_header_and_complete_payload (test_baseline.PacingTests.test_real_small_transfer_records_header_and_complete_payload) ... ok\ntest_model_allowlist_is_exact (test_baseline.ReadGuardTests.test_model_allowlist_is_exact) ... ok\ntest_received_file_and_outputs_allowed (test_baseline.ReadGuardTests.test_received_file_and_outputs_allowed) ... ok\ntest_source_reads_and_readwrite_modes_are_denied (test_baseline.ReadGuardTests.test_source_reads_and_readwrite_modes_are_denied) ... ok\ntest_subprocess_cannot_open_sender_media (test_baseline.ReadGuardTests.test_subprocess_cannot_open_sender_media) ... ok\ntest_windows_quoted_command_and_none_executable (test_baseline.ReadGuardTests.test_windows_quoted_command_and_none_executable) ... ok\ntest_external_ffmpeg_inputs_and_unregistered_commands_denied (test_layered.LayeredGuardTests.test_external_ffmpeg_inputs_and_unregistered_commands_denied) ... ok\ntest_missing_optional_colour_tags_are_recorded (test_layered.LayeredGuardTests.test_missing_optional_colour_tags_are_recorded) ... ok\ntest_wrong_matrix_range_and_conflicting_tags_rejected (test_layered.LayeredGuardTests.test_wrong_matrix_range_and_conflicting_tags_rejected) ... ok\ntest_corrupt_payload_rejected (test_layered.PacketTests.test_corrupt_payload_rejected) ... ok\ntest_cross_partition_and_overlapping_patches_rejected (test_layered.PacketTests.test_cross_partition_and_overlapping_patches_rejected) ... ok\ntest_duplicate_json_keys_rejected (test_layered.PacketTests.test_duplicate_json_keys_rejected) ... ok\ntest_duplicate_members_rejected (test_layered.PacketTests.test_duplicate_members_rejected) ... ok\ntest_glc_dispatch_requires_declared_shared_deployment (test_layered.PacketTests.test_glc_dispatch_requires_declared_shared_deployment) ... ok\ntest_legacy_profiles_still_unpack (test_layered.PacketTests.test_legacy_profiles_still_unpack) ... ok\ntest_path_traversal_rejected_before_extraction (test_layered.PacketTests.test_path_traversal_rejected_before_extraction) ... ok\ntest_semantic_frame_order_and_pixel_counts_rejected (test_layered.PacketTests.test_semantic_frame_order_and_pixel_counts_rejected) ... ok\ntest_unreferenced_stream_rejected (test_layered.PacketTests.test_unreferenced_stream_rejected) ... ok\ntest_valid_package_ledger_and_existing_dispatch (test_layered.PacketTests.test_valid_package_ledger_and_existing_dispatch) ... ok\ntest_window_and_even_alignment_rejected (test_layered.PacketTests.test_window_and_even_alignment_rejected) ... ok\ntest_wrong_version_rejected (test_layered.PacketTests.test_wrong_version_rejected) ... ok\ntest_changed_result_is_rejected_after_selection (test_public_diagnostic_input.DiagnosticInputTests.test_changed_result_is_rejected_after_selection) ... ok\ntest_completed_decoder_without_acceptance_is_rejected (test_public_diagnostic_input.DiagnosticInputTests.test_completed_decoder_without_acceptance_is_rejected) ... ok\ntest_missing_decode_completion_is_rejected (test_public_diagnostic_input.DiagnosticInputTests.test_missing_decode_completion_is_rejected) ... ok\ntest_one_accepted_decode_unlocks_diagnostics_without_other_rates (test_public_diagnostic_input.DiagnosticInputTests.test_one_accepted_decode_unlocks_diagnostics_without_other_rates) ... ok\ntest_single_trial_cannot_masquerade_as_three_rate_summary (test_public_diagnostic_input.DiagnosticInputTests.test_single_trial_cannot_masquerade_as_three_rate_summary) ... ok\ntest_tampered_packet_is_rejected (test_public_diagnostic_input.DiagnosticInputTests.test_tampered_packet_is_rejected) ... ok\ntest_wrong_source_is_rejected (test_public_diagnostic_input.DiagnosticInputTests.test_wrong_source_is_rejected) ... ok\ntest_missing_original_schedule_refused (test_public_recovery.PublicRecoveryTest.test_missing_original_schedule_refused) ... ok\ntest_receipt_copy_preserves_source_and_exact_traces (test_public_recovery.PublicRecoveryTest.test_receipt_copy_preserves_source_and_exact_traces) ... ok\ntest_tampered_received_bytes_refused (test_public_recovery.PublicRecoveryTest.test_tampered_received_bytes_refused) ... ok\ntest_unacknowledged_transfer_refused (test_public_recovery.PublicRecoveryTest.test_unacknowledged_transfer_refused) ... ok\n\n----------------------------------------------------------------------\nRan 55 tests in 2.049s\n\nOK\n"
+    },
+    {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_checks_20261019_r2\\c_regression.log",
+      "sha256": "2a1d62dc509ad072df2e3b65ba9fcd9bae3b7f76d89ad99dda6fc47f08dc6262",
+      "text": "test_exception_closes_scope (test_c0_metrics.TimingsTest.test_exception_closes_scope) ... ok\ntest_nested_times_are_not_double_counted (test_c0_metrics.TimingsTest.test_nested_times_are_not_double_counted) ... ok\ntest_small_sample_reports_range_and_no_fake_tail (test_c0_metrics.TimingsTest.test_small_sample_reports_range_and_no_fake_tail) ... ok\ntest_bad_sequence_checksum_cannot_publish_a_preview (test_c1_runtime.C1Tests.test_bad_sequence_checksum_cannot_publish_a_preview) ... encode 1/4 0.00s\nencode 2/4 0.00s\nencode 3/4 0.00s\nencode 4/4 0.00s\ndecode 1/4 0.00s\ndecode 2/4 0.00s\ndecode 3/4 0.00s\ndecode 4/4 0.00s\ndecode 1/4 0.00s\ndecode 2/4 0.00s\ndecode 3/4 0.00s\ndecode 4/4 0.00s\nok\ntest_cancellation_retains_status_and_allows_next_task (test_c1_runtime.C1Tests.test_cancellation_retains_status_and_allows_next_task) ... encode 1/4 0.00s\nencode 2/4 0.00s\nencode 3/4 0.00s\nencode 4/4 0.00s\nok\ntest_cold_process_endpoints_include_pre_timer_preparation (test_c1_runtime.C1Tests.test_cold_process_endpoints_include_pre_timer_preparation) ... encode 1/4 0.00s\nencode 2/4 0.00s\nencode 3/4 0.00s\nencode 4/4 0.00s\nC1_TASK_DONE c1 {\"bitstream_closed_seconds\": 0.07750719999603461, \"checks_complete_seconds\": 0.07776089999970281, \"evidence_ready_seconds\": 0.07872369999677176, \"offline_view_ready_seconds\": 0.18584529999498045}\nencode 1/4 I 84 bytes 0.00s\nencode 2/4 P 68 bytes 0.00s\nencode 3/4 P 68 bytes 0.00s\nencode 4/4 P 68 bytes 0.00s\nEncoded real stream: 847 bytes; 21.175 kbps; C:\\Users\\lenovo\\AppData\\Local\\Temp\\tmpb47h7yl7\\cold_legacy\\stream.glcv\nC1_TASK_DONE legacy {\"bitstream_closed_seconds\": 0.026072900000144728, \"checks_complete_seconds\": 0.0265060999954585, \"evidence_ready_seconds\": 0.026962299998558592, \"offline_view_ready_seconds\": 0.15341629999602446}\nok\ntest_concurrent_callers_are_serialized_on_one_model (test_c1_runtime.C1Tests.test_concurrent_callers_are_serialized_on_one_model) ... encode 1/4 0.00s\nencode 2/4 0.00s\nencode 3/4 0.00s\nencode 4/4 0.00s\nencode 1/4 0.00s\nencode 2/4 0.00s\nencode 3/4 0.00s\nencode 4/4 0.00s\nok\ntest_empty_and_beyond_eof_fail (test_c1_runtime.C1Tests.test_empty_and_beyond_eof_fail) ... ok\ntest_failed_task_does_not_poison_next_task (test_c1_runtime.C1Tests.test_failed_task_does_not_poison_next_task) ... encode 1/4 0.00s\nencode 1/4 0.00s\nencode 2/4 0.00s\nencode 3/4 0.00s\nencode 4/4 0.00s\nok\ntest_ffmpeg_exit_is_reported_and_leaves_no_ready_video (test_c1_runtime.C1Tests.test_ffmpeg_exit_is_reported_and_leaves_no_ready_video) ... ok\ntest_independent_decode_and_eof_shorter_than_request (test_c1_runtime.C1Tests.test_independent_decode_and_eof_shorter_than_request) ... encode 1/20 0.00s\nencode 2/20 0.00s\nencode 3/20 0.00s\nencode 4/20 0.00s\ndecode 1/4 0.00s\ndecode 2/4 0.00s\ndecode 3/4 0.00s\ndecode 4/4 0.00s\nok\ntest_memory_pixels_mapping_and_eof_equal_reference (test_c1_runtime.C1Tests.test_memory_pixels_mapping_and_eof_equal_reference) ... ok\ntest_mid_frame_cancellation_resets_dpb_and_closes_previews (test_c1_runtime.C1Tests.test_mid_frame_cancellation_resets_dpb_and_closes_previews) ... encode 1/4 0.00s\nencode 1/4 0.00s\nencode 2/4 0.00s\nencode 3/4 0.00s\nencode 4/4 0.00s\nok\ntest_preview_launch_failure_and_corrupt_stream_are_not_ready (test_c1_runtime.C1Tests.test_preview_launch_failure_and_corrupt_stream_are_not_ready) ... ok\ntest_raw_preview_keeps_all_frames_and_publishes_only_when_finished (test_c1_runtime.C1Tests.test_raw_preview_keeps_all_frames_and_publishes_only_when_finished) ... ok\ntest_receiver_guard_is_scoped_and_rejects_media_reads (test_c1_runtime.C1Tests.test_receiver_guard_is_scoped_and_rejects_media_reads) ... ok\ntest_resident_reset_identical_stream_and_research_pixel_evidence (test_c1_runtime.C1Tests.test_resident_reset_identical_stream_and_research_pixel_evidence) ... encode 1/4 0.00s\nencode 2/4 0.00s\nencode 3/4 0.00s\nencode 4/4 0.00s\nencode 1/4 0.00s\nencode 2/4 0.00s\nencode 3/4 0.00s\nencode 4/4 0.00s\nok\ntest_worker_rejects_existing_output_without_modifying_its_evidence (test_c1_runtime.C1Tests.test_worker_rejects_existing_output_without_modifying_its_evidence) ... encode 1/4 0.00s\nencode 2/4 0.00s\nencode 3/4 0.00s\nencode 4/4 0.00s\nok\ntest_old_cold_endpoints_are_excluded_but_outer_boundary_is_recoverable (test_c1_summary.SummaryTests.test_old_cold_endpoints_are_excluded_but_outer_boundary_is_recoverable) ... ok\ntest_outer_wall_clock_is_not_replaced_with_inner_timer (test_c1_summary.SummaryTests.test_outer_wall_clock_is_not_replaced_with_inner_timer) ... ok\ntest_overlapping_recovery_records_are_rejected (test_c1_summary.SummaryTests.test_overlapping_recovery_records_are_rejected) ... ok\ntest_all_tables_boundaries_and_int32_escapes (test_c2_native.NativeTests.test_all_tables_boundaries_and_int32_escapes) ... ok\ntest_empty_payload (test_c2_native.NativeTests.test_empty_payload) ... ok\ntest_every_truncation_and_header_corruption (test_c2_native.NativeTests.test_every_truncation_and_header_corruption) ... ok\ntest_highly_compressible_and_worst_renormalization (test_c2_native.NativeTests.test_highly_compressible_and_worst_renormalization) ... ok\ntest_invalid_indexes_and_symbols (test_c2_native.NativeTests.test_invalid_indexes_and_symbols) ... ok\ntest_mixed_tables_random_roundtrips (test_c2_native.NativeTests.test_mixed_tables_random_roundtrips) ... ok\ntest_noncanonical_escapes (test_c2_native.NativeTests.test_noncanonical_escapes) ... ok\ntest_noncontiguous_inputs (test_c2_native.NativeTests.test_noncontiguous_inputs) ... ok\ntest_same_tables_and_indexes (test_c2_native.NativeTests.test_same_tables_and_indexes) ... ok\ntest_seeded_mutation_acceptance_and_output_match (test_c2_native.NativeTests.test_seeded_mutation_acceptance_and_output_match) ... ok\ntest_aggregate_uses_matched_pair_sums_and_median_of_reductions (test_c2_results.ResultsTests.test_aggregate_uses_matched_pair_sums_and_median_of_reductions) ... ok\ntest_recovery_excludes_partial_task_without_running_validator (test_c2_results.ResultsTests.test_recovery_excludes_partial_task_without_running_validator) ... ok\ntest_recovery_refuses_live_or_unresolved_processes (test_c2_results.ResultsTests.test_recovery_refuses_live_or_unresolved_processes) ... ok\ntest_unvalidated_or_partial_pairs_are_excluded (test_c2_results.ResultsTests.test_unvalidated_or_partial_pairs_are_excluded) ... ok\ntest_zero_exit_does_not_accept_missing_task_results (test_c2_results.ResultsTests.test_zero_exit_does_not_accept_missing_task_results) ... ok\ntest_current_process_identity (test_c2_watch.WatchTests.test_current_process_identity) ... ok\ntest_heartbeat_retains_last_progress_and_terminal_state (test_c2_watch.WatchTests.test_heartbeat_retains_last_progress_and_terminal_state) ... ok\ntest_launch_failure_is_recorded (test_c2_watch.WatchTests.test_launch_failure_is_recorded) ... ok\ntest_normal_and_abrupt_exit_are_persisted (test_c2_watch.WatchTests.test_normal_and_abrupt_exit_are_persisted) ... ok\ntest_pid_reuse_and_orphan_are_not_reported_as_normal_running (test_c2_watch.WatchTests.test_pid_reuse_and_orphan_are_not_reported_as_normal_running) ... ok\n\n----------------------------------------------------------------------\nRan 41 tests in 4.420s\n\nOK\n"
+    }
+  ]
+}
