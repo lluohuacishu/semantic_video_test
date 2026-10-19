@@ -19,6 +19,7 @@ from PIL import Image, ImageDraw
 from b2_common import HERE, Journal, git, read, require, sha, write
 from evaluate_b2 import font, mask, movie, panel, rgb, score, roi_frame
 from evaluate_b3_controls import edges, rect_mask
+from public_diagnostic_input import select_diagnostic_input
 
 
 def mean(values):
@@ -26,16 +27,11 @@ def mean(values):
 
 
 def evaluate(summary_path, registry, output, baseline):
-    network = read(summary_path)
-    require(network["status"] == "B3_public_candidate_three_rate_engineering_passed", "Network not accepted")
-    require({row["rate_kbps"] for row in network["results"]} == {20, 30, 40}
-            and len(network["results"]) == 3 and network["all_rates_identical_enhanced_RGB"], "Three-rate evidence incomplete")
+    network, directories, directory, selected_rate = select_diagnostic_input(summary_path)
     source_id = network["source_id"]
     source_record = next(row for row in registry["candidates"] if row["id"] == source_id)
     window = next(row for row in registry["selected_windows"] if row["id"] == source_id)
     sender = Path(network["sender"])
-    directories = network.get("result_directories", {str(r): str(summary_path.parent / f"rate_{r}kbps") for r in (20, 30, 40)})
-    directory = Path(directories["40"])
     receiver = directory / "receiver"
     manifest, decoded = read(receiver / "received_manifest.json"), read(receiver / "decode.json")
     encode, audit = read(sender / "encode.json"), read(sender / "source_audit.json")
@@ -144,7 +140,9 @@ def evaluate(summary_path, registry, output, baseline):
               "semantic_net_benefit_confirmed": False,
               "mask_sequence_sha256": {name: digest.hexdigest() for name, digest in mask_sequence_hashes.items()},
               "network_summary": str(summary_path), "network_summary_sha256": sha(summary_path),
-              "result_directories": directories, "diagnostics_from_rate_kbps": 40,
+              "result_directories": directories, "diagnostics_from_rate_kbps": selected_rate,
+              "diagnostic_input_status": network["status"],
+              "time_estimates": network.get("time_estimates"),
               "limitations": ["Source prediction regions are also used by the ROI selector; not independent labels",
                               "Predicted components do not count real fish or divers",
                               "Temporal and edge proxies are not validated perceptual flicker scores",
@@ -202,7 +200,9 @@ def evaluate(summary_path, registry, output, baseline):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--network-summaries", type=Path, nargs="+", required=True)
+    parser.add_argument("--input-summaries", "--network-summaries", dest="input_summaries",
+                        type=Path, nargs="+", required=True,
+                        help="Single accepted-decode inputs or legacy three-rate network summaries")
     parser.add_argument("--registry", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--wait-for-network", action="store_true")
@@ -211,16 +211,16 @@ def main():
     require(not git("status", "--porcelain"), "Commit evaluator before running it")
     args.output.mkdir(parents=True, exist_ok=False)
     registry, baseline = read(args.registry), read(args.baseline_config)
-    for path in args.network_summaries:
+    for path in args.input_summaries:
         if args.wait_for_network:
             deadline = time.monotonic() + 14400
             while not path.exists():
                 require(not (path.parent / "failure.json").exists(), "Network failed; retain completed diagnostics")
                 require(time.monotonic() < deadline, "Network wait timed out")
                 time.sleep(1)
-        require(path.is_file(), "Network summary missing")
+        require(path.is_file(), "Diagnostic input summary missing")
         evaluate(path.resolve(), registry, args.output / read(path)["source_id"], baseline)
-    write(args.output / "completion.json", {"status": "B3_public_batch_diagnostics_complete", "clips": len(args.network_summaries)})
+    write(args.output / "completion.json", {"status": "B3_public_batch_diagnostics_complete", "clips": len(args.input_summaries)})
 
 
 if __name__ == "__main__":
