@@ -1,0 +1,33 @@
+--- a/08_新阶段C_编解码加速与网页展示/c1_runtime.py
++++ b/08_新阶段C_编解码加速与网页展示/c1_runtime.py
+@@ -195 +195,2 @@
+-                          "task_seconds": marks, "detailed_instrumentation": False,
++                          "task_seconds": marks, "task_timer_origin_perf_counter": started,
++                          "detailed_instrumentation": False,
+--- a/08_新阶段C_编解码加速与网页展示/c1_worker.py
++++ b/08_新阶段C_编解码加速与网页展示/c1_worker.py
+@@ -88 +88,2 @@
+-                 "task_seconds": marks, "detailed_instrumentation": False,
++                 "task_seconds": marks, "task_timer_origin_perf_counter": started,
++                 "detailed_instrumentation": False,
+@@ -99,0 +101 @@
++    output_existed = folder.exists()
+@@ -103 +105,2 @@
+-        if folder.is_dir():
++        # A rejected rerun must not append or overwrite prior task evidence.
++        if not output_existed and not isinstance(exc, FileExistsError) and folder.is_dir():
+@@ -107,0 +111 @@
++    origin = result["task_timer_origin_perf_counter"]
+@@ -111,3 +115,4 @@
+-                  process_launch_to_evidence_ready_seconds=(task_start - launch + result["task_seconds"]["evidence_ready_seconds"]) if first else None,
+-                  process_launch_to_view_ready_seconds=(task_start - launch + result["task_seconds"]["offline_view_ready_seconds"]) if first else None,
+-                  startup_before_first_task_seconds=task_start - launch if first else None,
++                  process_launch_to_evidence_ready_seconds=(origin - launch + result["task_seconds"]["evidence_ready_seconds"]) if first else None,
++                  process_launch_to_view_ready_seconds=(origin - launch + result["task_seconds"]["offline_view_ready_seconds"]) if first else None,
++                  process_launch_to_task_return_seconds=(task_start - launch + total) if first else None,
++                  startup_before_first_task_seconds=origin - launch if first else None,
+--- a/08_新阶段C_编解码加速与网页展示/run_c1.py
++++ b/08_新阶段C_编解码加速与网页展示/run_c1.py
+@@ -79 +79 @@
+-        source = B4 / GOLD[preset][2] if GOLD[preset][2] else WORKSPACE / "02_实验数据/A_压缩路线选型/A2_GLC验证/long108/source"
++        source = B4 / GOLD[preset][2] if GOLD[preset][2] else WORKSPACE / "02_实验数据/A_压缩路线选型/A2_GLC验证/long108/glc_540_g64/sender/source"

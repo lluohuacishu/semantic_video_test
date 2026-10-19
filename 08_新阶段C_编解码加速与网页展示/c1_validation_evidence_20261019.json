@@ -1,0 +1,98 @@
+{
+  "checked_utc": "2026-10-19T14:13:12.936480+00:00",
+  "counts": {
+    "formal_tasks": 52,
+    "gate_tasks": 6,
+    "formal_encodes": 26,
+    "formal_decodes": 26,
+    "formal_rgb_latent_matches": 52,
+    "formal_whole_stream_matches": 26
+  },
+  "tests": [
+    {
+      "suite": "C1_cpu_tests_final_20261019.log",
+      "tests": 21,
+      "result": "OK",
+      "sha256": "bfbce0141f73f5ab0f666c8fc3d19e04a77c7b3b61a34458152704f9fc3f778e",
+      "local_raw_log_sha256": "83a10c324cf468185c09b22b06a1a1b7827c9e83f99ac4bff73ca1159d2ec862",
+      "export_note": "UTF-8 with LF line endings for Git"
+    },
+    {
+      "suite": "C1_b_regression_final_20261019.log",
+      "tests": 55,
+      "result": "OK",
+      "sha256": "51371df961ddc11db9a7c365ee1aa2d98df965aede9df8dee944db6e3dc3a5d9",
+      "local_raw_log_sha256": "ab9508e847ba08b228805c373bc45635212af56055e936d97a7a5a51e2ff270a",
+      "export_note": "UTF-8 with LF line endings for Git"
+    }
+  ],
+  "measurement_snapshots": [
+    {
+      "root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C1_final_20261019",
+      "verified_files": 11
+    },
+    {
+      "root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C1_recovery_20261019",
+      "verified_files": 11
+    }
+  ],
+  "post_recovery_changes": [
+    {
+      "file": "08_新阶段C_编解码加速与网页展示\\c1_worker.py",
+      "measured_sha256": "d9a823b3451ea56c5e50fe8d121295e478b683864835d03419f757d68dfa5ea5",
+      "final_sha256": "06093e0b0bbdc67e496dbd10e46e7270166e3764fdbe570dcb53a4548cf1948e",
+      "reason": "After measurements, prevent worker failure metadata from altering a pre-existing output directory; covered by regression test. Neural code and successful task processing unchanged."
+    }
+  ],
+  "output_guard_regression": {
+    "test": "test_worker_rejects_existing_output_without_modifying_its_evidence",
+    "before_fix": "Reproduced: 1 failure in 21 tests; worker_failure.json was added to a pre-existing output directory",
+    "before_fix_log": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C1_regression_before_output_guard_fix_20261019.log",
+    "before_fix_log_sha256": "291ba5cb95736294e0d27d27d1089b904ef10858c7abdb7145755779e02e9016",
+    "after_fix": "21 C0/C1 tests pass; all existing filenames and file SHA-256 digests preserved"
+  },
+  "interrupted_experiments_excluded": [
+    {
+      "task": "decode66_c1",
+      "last_logged_frame": 35,
+      "planned_frames": 66,
+      "process_no_longer_running": true,
+      "returncode": null,
+      "traceback": null,
+      "application_event_log_explanation": null,
+      "classification": "interrupted; cause unknown; excluded from completed samples",
+      "recovery": "Reuse validated encode66 stream; new decoder task/output directory"
+    },
+    {
+      "observed_utc": "2026-10-19T13:53:37.995006+00:00",
+      "state": "interrupted",
+      "last_phase": "compatibility",
+      "completed_validated_tasks": 46,
+      "incomplete_task": "detail_encode",
+      "last_logged_frame": 11,
+      "requested_frames": 125,
+      "worker_pid_recorded": 30160,
+      "python_ffmpeg_processes_present_at_review": false,
+      "returncode": null,
+      "traceback": null,
+      "cause": "unknown",
+      "note": "User reported another app interruption. No process, exit code or traceback survived. Original status and partial files retained; not a successful sample.",
+      "recovery_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C1_recovery_20261019"
+    }
+  ],
+  "recovery_status": {
+    "state": "complete",
+    "completed": [
+      "detail_encode",
+      "detail_decode",
+      "motion_encode",
+      "motion_decode",
+      "detail_motion_encode",
+      "detail_motion_decode"
+    ]
+  },
+  "summary_sha256": "d5836966ef35c32292992c88a762945c636c57a51856c0ef1b233682804adfdd",
+  "measurement_to_final_patch_sha256": "6598d0d26ebc01be3c48a4056388b593339f2e3f7cd500e8a915983233e30f81",
+  "hash_convention": "Measurement code/results refer to raw local artifacts, which may use CRLF. Exported summary, logs and patch use LF; their exported artifact hashes match committed bytes.",
+  "checks": "All stored result digests, encoder stream digests, input/payload/RGB/latent validations, ready states, snapshot hashes and successful completed worker exit codes rechecked. Large assets stay local."
+}
