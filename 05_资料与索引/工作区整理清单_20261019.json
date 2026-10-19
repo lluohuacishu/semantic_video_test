@@ -930,7 +930,7 @@
       "verified": true
     }
   ],
-  "branch_cleanup_status": "pending_remote_publication",
+  "branch_cleanup_status": "completed",
   "notes": [
     "The first PowerShell Move-Item partially moved hidden Git entries. Recovery verified that the two sides had no overlapping files, completed the move, and passed Git connectivity checks.",
     "One B2 directory remains physically at its old path with a canonical junction because Windows denied renaming it.",
@@ -945,5 +945,32 @@
     "archive/20261019/stage-a-codec-selection": "a397298353d19d52c5cb13e262edb084cf0bf62c",
     "archive/20261019/upload-project-summary": "0cd893f2946a07c3d8650030c330d401812c3b76",
     "archive/20261019/main-before-b-merge": "a397298353d19d52c5cb13e262edb084cf0bf62c"
+  },
+  "branch_cleanup": {
+    "verified_at": "2026-10-19T15:45:29.873189+08:00",
+    "promotion_commit": "3c4c86c1c24266e2ecc1aaf9d5ad1ecdf4f06608",
+    "remote_heads": [
+      "main"
+    ],
+    "local_branches": [
+      "main"
+    ],
+    "deleted_remote_branches": [
+      "codex/glc-b3",
+      "codex/glc-b4",
+      "codex/glc-priority-validation"
+    ],
+    "deleted_local_branches": [
+      "codex/glc-b0-b1",
+      "codex/glc-b2",
+      "codex/glc-b3",
+      "codex/glc-b4",
+      "codex/glc-priority-validation",
+      "codex/stage-a-codec-selection",
+      "codex/upload-project-summary"
+    ],
+    "archived_tags_verified": 8,
+    "default_branch": "main",
+    "main_update": "fast_forward_no_history_rewrite"
   }
 }
