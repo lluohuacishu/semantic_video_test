@@ -9,6 +9,7 @@ from pathlib import Path
 import struct
 
 MAGIC = b"GLCVLAB1"
+MAGIC_COMPACT = b"GLCVLAB2"
 MAX_BYTES = 256 * 1024 * 1024
 MAX_HEADER = 8192
 
@@ -32,6 +33,9 @@ def validate_header(header):
             raise ValueError(f"Missing GLC header field: {key}")
     if not isinstance(header.get("weights"), dict) or not isinstance(header.get("arithmetic"), dict):
         raise ValueError("Missing model / arithmetic identifiers.")
+    if ("container_version" in header and
+            (type(header["container_version"]) is not int or header["container_version"] not in (1, 2))):
+        raise ValueError("Unsupported GLC research container version.")
 
 
 def frame_layout(header, index):
@@ -42,6 +46,65 @@ def frame_layout(header, index):
     parts = 4 if is_i else 2
     symbols_per_part = 256 * (height // 16) * (width // 16) // parts
     return (0 if is_i else 1), (z_count * 14 + 7) // 8, parts, symbols_per_part
+
+
+def container_overhead_breakdown(header, version):
+    """Count structural/header bytes separately from compressed z/y payload."""
+    if version not in (1, 2):
+        raise ValueError("Unsupported GLC research container version.")
+    raw_header = json.dumps(header, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
+    frames = header["frames"]
+    intra_frames = (frames + header["intra_period"] - 1) // header["intra_period"]
+    inter_frames = frames - intra_frames
+    result = {
+        "magic_and_header_length": 12,
+        "header_json": len(raw_header),
+        "whole_file_sha256": 32,
+        "y_stream_length_fields": 16 * intra_frames + 8 * inter_frames,
+        "frame_length_fields": 4 * frames if version == 1 else 0,
+        "frame_index_type_and_layout": 10 * frames if version == 1 else 0,
+        "per_frame_reconstruction_hashes": 64 * frames if version == 1 else 0,
+        "sequence_reconstruction_hashes": 64 if version == 2 else 0,
+    }
+    result["total"] = sum(result.values())
+    return result
+
+
+class SequenceChecksums:
+    """Domain-separated aggregate of ordered per-frame latent/RGB hashes."""
+    def __init__(self):
+        self.count = 0
+        self._digests = {
+            key: hashlib.sha256(b"GLCVLAB2/" + key.encode("ascii") + b"/ordered-frame-sha256/v1\0")
+            for key in ("latent_sha256", "rgb_sha256")
+        }
+
+    def add(self, index, frame):
+        if index != self.count:
+            raise ValueError("GLC sequence checksum frame order mismatch.")
+        values = {}
+        for key in self._digests:
+            try:
+                value = bytes.fromhex(frame[key])
+            except (KeyError, TypeError, ValueError) as exc:
+                raise ValueError(f"Missing or invalid reconstruction checksum: {key}") from exc
+            if len(value) != 32:
+                raise ValueError(f"Invalid reconstruction checksum: {key}")
+            values[key] = value
+        for key, value in values.items():
+            self._digests[key].update(struct.pack(">I", index))
+            self._digests[key].update(value)
+        self.count += 1
+
+    def values(self):
+        return {key: digest.hexdigest() for key, digest in self._digests.items()}
+
+    def packed(self):
+        return b"".join(bytes.fromhex(value) for value in self.values().values())
+
+    def verify(self, expected):
+        if self.values() != expected:
+            raise ValueError("Ordered GLC frame checksum aggregate differs from the sender.")
 
 
 def pack_frame(header, index, frame):
@@ -63,9 +126,29 @@ def pack_frame(header, index, frame):
     return struct.pack(">I", len(record)) + record
 
 
+def pack_compact_frame(header, index, frame):
+    """Pack only decoder-required payload and stream lengths for container v2."""
+    kind, z_size, parts, symbols = frame_layout(header, index)
+    if frame["kind"] != kind or len(frame["z"]) != z_size or len(frame["y"]) != parts:
+        raise ValueError("Frame does not match the declared coding structure.")
+    record = bytearray(frame["z"])
+    for stream in frame["y"]:
+        if len(stream) < 16 or struct.unpack_from(">I", stream)[0] != symbols:
+            raise ValueError("Unexpected entropy symbol count.")
+        record.extend(struct.pack(">I", len(stream)))
+        record.extend(stream)
+    return bytes(record)
+
+
 class StreamWriter:
-    def __init__(self, path, header):
+    def __init__(self, path, header, version=1):
         validate_header(header)
+        if type(version) is not int or version not in (1, 2):
+            raise ValueError("Unsupported GLC research container version.")
+        if header.get("container_version", 1) != version:
+            raise ValueError("Header and GLC container versions disagree.")
+        if version == 2 and "container_version" not in header:
+            raise ValueError("Compact streams must declare container_version=2.")
         raw_header = json.dumps(header, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
         if len(raw_header) > MAX_HEADER:
             raise ValueError("GLC header too large.")
@@ -73,10 +156,12 @@ class StreamWriter:
         self.part = self.path.with_name(self.path.name + ".part")
         if self.path.exists():
             raise FileExistsError(self.path)
-        self.header, self.count, self.size = header, 0, 0
+        self.header, self.count, self.size, self.version = header, 0, 0, version
         self.digest = hashlib.sha256()
+        self.sequence_checksums = SequenceChecksums() if version == 2 else None
         self.handle = self.part.open("xb")
-        self._write(MAGIC + struct.pack(">I", len(raw_header)) + raw_header)
+        magic = MAGIC if version == 1 else MAGIC_COMPACT
+        self._write(magic + struct.pack(">I", len(raw_header)) + raw_header)
 
     def _write(self, data):
         if self.size + len(data) + 32 > MAX_BYTES:
@@ -88,7 +173,10 @@ class StreamWriter:
     def add(self, frame):
         if self.count >= self.header["frames"]:
             raise ValueError("Too many frames.")
-        data = pack_frame(self.header, self.count, frame)
+        data = (pack_frame(self.header, self.count, frame) if self.version == 1
+                else pack_compact_frame(self.header, self.count, frame))
+        if self.sequence_checksums is not None:
+            self.sequence_checksums.add(self.count, frame)
         self._write(data)
         self.count += 1
         return len(data)
@@ -96,6 +184,8 @@ class StreamWriter:
     def finish(self):
         if self.count != self.header["frames"]:
             raise ValueError("Incomplete frame sequence.")
+        if self.sequence_checksums is not None:
+            self._write(self.sequence_checksums.packed())
         self.handle.write(self.digest.digest())
         self.handle.close()
         # The .part is on the same volume. Publishing a hard link is atomic and
@@ -135,7 +225,7 @@ def _unique_object(pairs):
     return result
 
 
-def read_stream(path):
+def read_stream(path, with_integrity=False):
     path = Path(path)
     if not 48 <= path.stat().st_size <= MAX_BYTES:
         raise ValueError("Invalid GLC file size.")
@@ -143,29 +233,52 @@ def read_stream(path):
     if hashlib.sha256(data[:-32]).digest() != data[-32:]:
         raise ValueError("GLC file checksum failed.")
     cursor = Cursor(data[:-32])
-    if cursor.take(8) != MAGIC:
+    magic = cursor.take(8)
+    if magic not in (MAGIC, MAGIC_COMPACT):
         raise ValueError("Unsupported GLC container version.")
+    compact = magic == MAGIC_COMPACT
     header_size = cursor.integer()
     if not 1 <= header_size <= MAX_HEADER:
         raise ValueError("Invalid GLC header length.")
     header = json.loads(cursor.take(header_size), object_pairs_hook=_unique_object)
     validate_header(header)
+    if header.get("container_version", 1) != (2 if compact else 1):
+        raise ValueError("Header and GLC container versions disagree.")
     frames = []
     for index in range(header["frames"]):
-        record = Cursor(cursor.take(cursor.integer()))
-        actual_index, kind, parts, z_size = struct.unpack(">IBBI", record.take(10))
         expected_kind, expected_z, expected_parts, symbols = frame_layout(header, index)
-        if (actual_index, kind, parts, z_size) != (index, expected_kind, expected_parts, expected_z):
-            raise ValueError("Invalid GLC frame order or coding structure.")
-        frame = {"kind": kind, "z": record.take(z_size), "y": []}
-        for _ in range(parts):
+        record = cursor if compact else Cursor(cursor.take(cursor.integer()))
+        if compact:
+            frame = {"kind": expected_kind, "z": record.take(expected_z), "y": []}
+        else:
+            actual_index, kind, parts, z_size = struct.unpack(">IBBI", record.take(10))
+            if (actual_index, kind, parts, z_size) != (index, expected_kind, expected_parts, expected_z):
+                raise ValueError("Invalid GLC frame order or coding structure.")
+            frame = {"kind": kind, "z": record.take(z_size), "y": []}
+        for _ in range(expected_parts):
             stream = record.take(record.integer())
             if len(stream) < 16 or struct.unpack_from(">I", stream)[0] != symbols:
                 raise ValueError("Invalid GLC entropy symbol count.")
             frame["y"].append(stream)
-        frame["latent_sha256"] = record.take(32).hex()
-        frame["rgb_sha256"] = record.take(32).hex()
-        record.done()
+        if compact:
+            frame["latent_sha256"] = None
+            frame["rgb_sha256"] = None
+        else:
+            frame["latent_sha256"] = record.take(32).hex()
+            frame["rgb_sha256"] = record.take(32).hex()
+            record.done()
         frames.append(frame)
+    sequence_checksums = None
+    if compact:
+        sequence_checksums = {
+            "latent_sha256": cursor.take(32).hex(),
+            "rgb_sha256": cursor.take(32).hex(),
+        }
     cursor.done()
+    if with_integrity:
+        return header, frames, {
+            "container_version": 2 if compact else 1,
+            "container_content_digest": data[-32:].hex(),
+            "sequence_reconstruction_checksums": sequence_checksums,
+        }
     return header, frames

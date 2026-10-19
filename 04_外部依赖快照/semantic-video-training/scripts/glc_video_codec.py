@@ -20,7 +20,8 @@ import torch
 import torch.nn.functional as F
 from PIL import Image
 
-from glc_container import StreamWriter, read_stream, validate_header
+from glc_container import (SequenceChecksums, StreamWriter, read_stream,
+                           validate_header, container_overhead_breakdown)
 from glc_entropy import ENTROPY_ID, GaussianRans, pack_indices, unpack_indices
 from glc_video_probe import (ROOT, REVISION, ASSETS, check_source, check_weights,
                              load_weights, extract_frames, make_preview, write_json)
@@ -178,7 +179,7 @@ class NeuralCodec:
                   "rgb_sha256": hashlib.sha256(rgb.tobytes()).hexdigest()}
         if packet is not None:
             for key in ("latent_sha256", "rgb_sha256"):
-                if result[key] != packet[key]:
+                if packet[key] is not None and result[key] != packet[key]:
                     raise ValueError(f"Frame {index + 1}: {key} differs; decoder arithmetic diverged.")
         return rgb, result
 
@@ -213,9 +214,12 @@ def encode(args):
                    "revision": REVISION, "entropy": ENTROPY_ID,
                    "table_sha256": codec.entropy.table_sha256, "arithmetic": codec.profile,
                    "weights": {key: value["sha256"] for key, value in ASSETS.items()}})
+    container_version = getattr(args, "container_version", 1)
+    if container_version == 2:
+        header["container_version"] = 2
     validate_header(header)
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    writer = StreamWriter(args.output, header)
+    writer = StreamWriter(args.output, header, version=container_version)
     records = []
     if args.device == "cuda":
         torch.cuda.reset_peak_memory_stats()
@@ -248,7 +252,8 @@ def encode(args):
     pipeline_seconds = time.perf_counter() - started
     size = args.output.stat().st_size
     result = {
-        "codec": "GLC official pretrained networks + local entropy coding/container v1",
+        "codec": f"GLC official pretrained networks + local entropy coding/container v{container_version}",
+        "container_version": container_version,
         "official_bitstream_format": False, "actual_bitstream": True, "training_performed": False,
         "input": source, "header": header, "weight_loading": codec.loading,
         "bitstream_path": str(args.output.resolve()), "file_bytes": size,
@@ -260,6 +265,7 @@ def encode(args):
         "peak_allocated_mib": torch.cuda.max_memory_allocated() / 2**20 if args.device == "cuda" else None,
         "peak_reserved_mib": torch.cuda.max_memory_reserved() / 2**20 if args.device == "cuda" else None,
         "container_overhead_bytes": size - sum(r["z_bytes"] + r["y_bytes"] for r in records),
+        "container_overhead_breakdown": container_overhead_breakdown(header, container_version),
         "audio": "not encoded", "frames": records,
         "input_transform": "RGB / 255; replicate right/bottom to multiples of 64; x * 2 - 1",
     }
@@ -271,7 +277,7 @@ def encode(args):
 
 def decode(args):
     started = time.perf_counter()
-    header, packets = read_stream(args.input)
+    header, packets, integrity = read_stream(args.input, with_integrity=True)
     if header["revision"] != REVISION or header["entropy"] != ENTROPY_ID:
         raise ValueError("Unsupported model or entropy coder version.")
     if header["weights"] != {key: value["sha256"] for key, value in ASSETS.items()}:
@@ -302,19 +308,35 @@ def decode(args):
     if args.device == "cuda":
         torch.cuda.reset_peak_memory_stats()
     records = []
+    sequence_checksums = SequenceChecksums() if integrity["container_version"] == 2 else None
     for index, packet in enumerate(packets):
         tick = time.perf_counter()
         rgb, checked = codec.frame(header, index, packet=packet)
         seconds = time.perf_counter() - tick
         Image.fromarray(rgb).save(frames_dir / f"im{index + 1:05d}.png")
+        has_frame_checksums = all(packet[key] is not None for key in ("latent_sha256", "rgb_sha256"))
         records.append({"frame": index + 1, "seconds": seconds, "rgb_sha256": checked["rgb_sha256"],
-                        "latent_sha256": checked["latent_sha256"], "sender_checksums_match": True})
-        print(f"decode {index + 1}/{header['frames']} verified {seconds:.2f}s", flush=True)
+                        "latent_sha256": checked["latent_sha256"],
+                        "sender_checksums_match": True if has_frame_checksums else None})
+        if sequence_checksums is not None:
+            sequence_checksums.add(index, checked)
+        status = "verified" if has_frame_checksums else "decoded (compact; no embedded frame hashes)"
+        print(f"decode {index + 1}/{header['frames']} {status} {seconds:.2f}s", flush=True)
+    if sequence_checksums is not None:
+        expected = integrity["sequence_reconstruction_checksums"]
+        sequence_checksums.verify(expected)
+        for record in records:
+            record["sender_checksums_match"] = True
     if media_reads:
         raise RuntimeError(f"Independent decoder unexpectedly read source media: {media_reads}")
     result = {"input_bitstream": str(args.input.resolve()), "input_sha256": sha256_file(args.input),
               "header": header, "independent_decoder": True, "encoder_modules_disabled": True,
-              "source_media_reads": media_reads, "all_frame_checksums_match": True,
+              "source_media_reads": media_reads,
+              "whole_file_checksum_verified": True,
+              "container_version": integrity["container_version"],
+              "sequence_reconstruction_checksums": (sequence_checksums.values() if sequence_checksums is not None else None),
+              "all_frame_checksums_match": (True if all(r["sender_checksums_match"] is True for r in records) else None),
+              "frame_checksum_verification": "ordered_aggregate" if sequence_checksums is not None else "per_frame",
               "frame_processing_seconds": sum(r["seconds"] for r in records),
               "pipeline_seconds_before_preview": time.perf_counter() - started,
               "peak_allocated_mib": torch.cuda.max_memory_allocated() / 2**20 if args.device == "cuda" else None,
@@ -340,6 +362,9 @@ def main():
     encoder.add_argument("--workdir", type=Path, required=True)
     encoder.add_argument("--frames", type=int, default=50)
     encoder.add_argument("--start-frame", type=int, default=0)
+    encoder.add_argument("--frame-stride", type=int, default=1,
+                         help="Keep every Nth source frame; output fps is source fps / N.")
+    encoder.add_argument("--container-version", type=int, choices=[1, 2], default=1)
     encoder.add_argument("--width", type=int, default=1280)
     encoder.add_argument("--q", type=int, default=63)
     encoder.add_argument("--intra-period", type=int, default=32)
@@ -348,7 +373,8 @@ def main():
     if not args.input.is_file() or not args.ffmpeg.is_file():
         parser.error("Input and FFmpeg must exist.")
     if args.command == "encode":
-        if not 1 <= args.frames <= 10000 or args.start_frame < 0 or not 0 <= args.width <= 4096:
+        if (not 1 <= args.frames <= 10000 or args.start_frame < 0 or not 0 <= args.width <= 4096
+                or not 1 <= args.frame_stride <= 10000):
             parser.error("Invalid frame count, start frame or width.")
         if not 0 <= args.q <= 63 or not 1 <= args.intra_period <= 10000 or not 0 <= args.reset_interval <= 10000:
             parser.error("Invalid q, intra-period or reset-interval.")

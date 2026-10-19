@@ -87,6 +87,9 @@ def load_weights(model, path, torch):
 def extract_frames(args, output, cv2, Image):
     source = output / "source"
     source.mkdir()
+    frame_stride = getattr(args, "frame_stride", 1)
+    if type(frame_stride) is not int or frame_stride < 1:
+        raise ValueError("Frame stride must be a positive integer.")
     reader = cv2.VideoCapture(str(args.input))
     if not reader.isOpened():
         raise ValueError(f"Cannot open video: {args.input}")
@@ -99,6 +102,7 @@ def extract_frames(args, output, cv2, Image):
             if not reader.grab():
                 raise ValueError("start-frame lies beyond the video.")
         count = 0
+        source_indices = []
         original_size = None
         while count < args.frames:
             ok, frame = reader.read()
@@ -116,7 +120,12 @@ def extract_frames(args, output, cv2, Image):
             Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)).save(
                 source / f"im{count + 1:05d}.png"
             )
+            source_indices.append(args.start_frame + count * frame_stride)
             count += 1
+            if count < args.frames:
+                for _ in range(frame_stride - 1):
+                    if not reader.grab():
+                        break
     finally:
         reader.release()
     if count == 0:
@@ -124,9 +133,11 @@ def extract_frames(args, output, cv2, Image):
     return {
         "input_path": str(args.input.resolve()), "input_bytes": args.input.stat().st_size,
         "source_width": original_size[0], "source_height": original_size[1],
-        "width": out_w, "height": out_h, "fps": fps,
+        "width": out_w, "height": out_h, "fps": fps / frame_stride,
         "reported_source_frames": reported, "processed_frames": count,
-        "start_frame": args.start_frame, "duration_seconds": count / fps,
+        "start_frame": args.start_frame, "frame_stride": frame_stride,
+        "sampled_source_frame_indices": source_indices,
+        "duration_seconds": count / (fps / frame_stride),
         "audio": "not processed", "timebase": "nominal constant frame rate",
     }
 
