@@ -1,0 +1,202 @@
+{
+  "created_at": "2026-10-19T15:24:31.287945+08:00",
+  "selection_policy": "All four presets retained; user selects before encoding or selects an existing stream before sending; no automatic downgrade.",
+  "measurement_scope": "One 10-second development clip; lossy reconstruction, no audio; weights pre-shared. KB=1000 bytes. Native RGB24 ratio excludes downsampling; unified-source ratios include it. Not a typical H264-input ratio or end-to-end latency claim.",
+  "source": {
+    "workspace_relative_path": "work/stage_a_glc_round2_20261017/long108/input_540.mkv",
+    "sha256": "6683af45254bdaed431658e5f7515cddaeb42df2382f18b983e6e1cba7ae436b",
+    "file_bytes": 106005205,
+    "ffprobe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "ffv1",
+          "width": 960,
+          "height": 540,
+          "pix_fmt": "bgr0",
+          "r_frame_rate": "25/1"
+        }
+      ],
+      "format": {
+        "duration": "10.000000",
+        "size": "106005205"
+      }
+    },
+    "reference_rgb24_bytes": 388800000
+  },
+  "presets": [
+    {
+      "preset": "detail_motion",
+      "label": "细节与流畅兼顾",
+      "width": 960,
+      "height": 540,
+      "fps": 25.0,
+      "frames": 250,
+      "duration_seconds": 10.0,
+      "file_bytes": 78758,
+      "sha256": "b7a887afeb488f6a2bf73948822535cb03f7f670d6e5742421b79880b16cd0ef",
+      "workspace_relative_stream": "work/stage_b_20261019_b4_pilot_r2/container_v2_baseline_repack/baseline_v2.glcv",
+      "independent_decode_verified": true,
+      "native_rgb24_bytes": 388800000,
+      "compression_ratio_native_rgb24_to_glcv": 4936.641357068488,
+      "compression_ratio_reference_rgb24_to_glcv_including_downsampling": 4936.641357068488,
+      "compression_ratio_source_ffv1_file_to_glcv_including_downsampling": 1345.9611087127657,
+      "video_kbps_including_container": 63.0064,
+      "reduction_vs_v2_baseline_percent": 0.0,
+      "transfer_estimate": {
+        "application_bytes_including_sender_header": 78853,
+        "sender_header_bytes": 95,
+        "ideal_seconds_by_kbps": {
+          "20": 31.5412,
+          "30": 21.027466666666665,
+          "40": 15.7706
+        },
+        "scope": "theoretical sender application bytes including file/header; excludes TCP/IP, link overhead, ACK, retries, processing; no acoustic-link measurement"
+      }
+    },
+    {
+      "preset": "detail",
+      "label": "保留空间细节",
+      "width": 960,
+      "height": 540,
+      "fps": 12.5,
+      "frames": 125,
+      "duration_seconds": 10.0,
+      "file_bytes": 48985,
+      "sha256": "95b0acc15e40b774d4f8cc9aac719f8309e11adc91677f48fb9c72d153bbbf9b",
+      "workspace_relative_stream": "work/stage_b_20261019_b4_pilot_r2/fps_only_540p_12_5/stream.glcv",
+      "independent_decode_verified": true,
+      "native_rgb24_bytes": 194400000,
+      "compression_ratio_native_rgb24_to_glcv": 3968.5618046340714,
+      "compression_ratio_reference_rgb24_to_glcv_including_downsampling": 7937.123609268143,
+      "compression_ratio_source_ffv1_file_to_glcv_including_downsampling": 2164.0339899969376,
+      "video_kbps_including_container": 39.188,
+      "reduction_vs_v2_baseline_percent": 37.803143807613196,
+      "transfer_estimate": {
+        "application_bytes_including_sender_header": 49080,
+        "sender_header_bytes": 95,
+        "ideal_seconds_by_kbps": {
+          "20": 19.632,
+          "30": 13.088,
+          "40": 9.816
+        },
+        "scope": "theoretical sender application bytes including file/header; excludes TCP/IP, link overhead, ACK, retries, processing; no acoustic-link measurement"
+      }
+    },
+    {
+      "preset": "motion",
+      "label": "保留运动流畅度",
+      "width": 640,
+      "height": 360,
+      "fps": 25.0,
+      "frames": 250,
+      "duration_seconds": 10.0,
+      "file_bytes": 44962,
+      "sha256": "9898fb52153c373b854eda97077d198fe67edd28cc4b0303f987bb1fd5a32149",
+      "workspace_relative_stream": "work/stage_b_20261019_b4_pilot_r2/resolution_only_360p_25/stream.glcv",
+      "independent_decode_verified": true,
+      "native_rgb24_bytes": 172800000,
+      "compression_ratio_native_rgb24_to_glcv": 3843.245407232774,
+      "compression_ratio_reference_rgb24_to_glcv_including_downsampling": 8647.302166273743,
+      "compression_ratio_source_ffv1_file_to_glcv_including_downsampling": 2357.662136915618,
+      "video_kbps_including_container": 35.9696,
+      "reduction_vs_v2_baseline_percent": 42.91119632291323,
+      "transfer_estimate": {
+        "application_bytes_including_sender_header": 45057,
+        "sender_header_bytes": 95,
+        "ideal_seconds_by_kbps": {
+          "20": 18.0228,
+          "30": 12.0152,
+          "40": 9.0114
+        },
+        "scope": "theoretical sender application bytes including file/header; excludes TCP/IP, link overhead, ACK, retries, processing; no acoustic-link measurement"
+      }
+    },
+    {
+      "preset": "compact",
+      "label": "优先小体积",
+      "width": 640,
+      "height": 360,
+      "fps": 12.5,
+      "frames": 125,
+      "duration_seconds": 10.0,
+      "file_bytes": 26397,
+      "sha256": "9676a03220ec2d28aef09fde70413ea9a08ea38cc9461509931767789036b7fd",
+      "workspace_relative_stream": "work/stage_b_20261019_b4_pilot_r2/joint_360p_12_5/received/stream.glcv",
+      "independent_decode_verified": true,
+      "native_rgb24_bytes": 86400000,
+      "compression_ratio_native_rgb24_to_glcv": 3273.0992158199797,
+      "compression_ratio_reference_rgb24_to_glcv_including_downsampling": 14728.946471189907,
+      "compression_ratio_source_ffv1_file_to_glcv_including_downsampling": 4015.8050157214834,
+      "video_kbps_including_container": 21.1176,
+      "reduction_vs_v2_baseline_percent": 66.48340486045863,
+      "transfer_estimate": {
+        "application_bytes_including_sender_header": 26492,
+        "sender_header_bytes": 95,
+        "ideal_seconds_by_kbps": {
+          "20": 10.5968,
+          "30": 7.064533333333333,
+          "40": 5.2984
+        },
+        "scope": "theoretical sender application bytes including file/header; excludes TCP/IP, link overhead, ACK, retries, processing; no acoustic-link measurement"
+      }
+    }
+  ],
+  "metric_corrections": [
+    {
+      "id": "fps_only_540p_12_5",
+      "previous": {
+        "reference_timeline": "250 source frames at 960x540, 25 fps; lower-rate reconstructions held for two source intervals",
+        "mean_psnr_db_vs_960x540_25fps_timeline_after_lanczos_upscale": 30.793269701582126,
+        "mean_psnr_db_vs_sampled_encoder_input_at_native_resolution": 24.02970306760607,
+        "frames_compared_at_reference_timeline": 250,
+        "metric_note": "RGB PNGs before viewing-video encoding; frame-hold playback captures temporal sampling changes"
+      },
+      "recomputed": {
+        "metric_version": 2,
+        "reference_timeline": "250 source frames at 960x540, 25 fps; lower-rate reconstructions held for two source intervals",
+        "mean_psnr_db_vs_960x540_25fps_timeline_after_lanczos_upscale": 30.793269701582126,
+        "mean_psnr_db_vs_sampled_encoder_input_at_native_resolution": 31.867826811032675,
+        "frames_compared_at_reference_timeline": 250,
+        "metric_note": "RGB PNGs before viewing-video encoding; frame-hold playback captures temporal sampling changes"
+      }
+    },
+    {
+      "id": "resolution_only_360p_25",
+      "previous": {
+        "reference_timeline": "250 source frames at 960x540, 25 fps; lower-rate reconstructions held for two source intervals",
+        "mean_psnr_db_vs_960x540_25fps_timeline_after_lanczos_upscale": 32.59222269031401,
+        "mean_psnr_db_vs_sampled_encoder_input_at_native_resolution": 32.738895975618235,
+        "frames_compared_at_reference_timeline": 250,
+        "metric_note": "RGB PNGs before viewing-video encoding; frame-hold playback captures temporal sampling changes"
+      },
+      "recomputed": {
+        "metric_version": 2,
+        "reference_timeline": "250 source frames at 960x540, 25 fps; lower-rate reconstructions held for two source intervals",
+        "mean_psnr_db_vs_960x540_25fps_timeline_after_lanczos_upscale": 32.59222269031401,
+        "mean_psnr_db_vs_sampled_encoder_input_at_native_resolution": 32.738895975618235,
+        "frames_compared_at_reference_timeline": 250,
+        "metric_note": "RGB PNGs before viewing-video encoding; frame-hold playback captures temporal sampling changes"
+      }
+    },
+    {
+      "id": "joint_360p_12_5",
+      "previous": {
+        "reference_timeline": "250 source frames at 960x540, 25 fps; lower-rate reconstructions held for two source intervals",
+        "mean_psnr_db_vs_960x540_25fps_timeline_after_lanczos_upscale": 31.328353346166185,
+        "mean_psnr_db_vs_sampled_encoder_input_at_native_resolution": 32.541339334275364,
+        "frames_compared_at_reference_timeline": 250,
+        "metric_note": "RGB PNGs before viewing-video encoding; frame-hold playback captures temporal sampling changes"
+      },
+      "recomputed": {
+        "metric_version": 2,
+        "reference_timeline": "250 source frames at 960x540, 25 fps; lower-rate reconstructions held for two source intervals",
+        "mean_psnr_db_vs_960x540_25fps_timeline_after_lanczos_upscale": 31.328353346166185,
+        "mean_psnr_db_vs_sampled_encoder_input_at_native_resolution": 32.541339334275364,
+        "frames_compared_at_reference_timeline": 250,
+        "metric_note": "RGB PNGs before viewing-video encoding; frame-hold playback captures temporal sampling changes"
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "selection_policy": "manual_before_encoding_or_sending",
+  "default_preset": null,
+  "reference_source": {"width": 960, "height": 540, "fps": 25, "frames": 250},
+  "note": "All four presets are retained. Width is a cap; aspect ratio is preserved. Output fps is source fps / frame_stride. Default frame counts cover 250 source-frame intervals (10 seconds only at 25 fps).",
+  "common": {"q": 0, "intra_period": 64, "reset_interval": 32, "container_version": 2},
+  "presets": {
+    "detail_motion": {"label": "细节与流畅兼顾", "width": 960, "frame_stride": 1, "frames": 250},
+    "detail": {"label": "保留空间细节", "width": 960, "frame_stride": 2, "frames": 125},
+    "motion": {"label": "保留运动流畅度", "width": 640, "frame_stride": 1, "frames": 250},
+    "compact": {"label": "优先小体积", "width": 640, "frame_stride": 2, "frames": 125}
+  }
+}

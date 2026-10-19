@@ -117,6 +117,7 @@ def resolution_and_time_quality(source_dir: Path, codec_input_dir: Path, decoded
         source_pixels += 1
         codec_input_pixels += 1
     return {
+        "metric_version": 2,
         "reference_timeline": "250 source frames at 960x540, 25 fps; lower-rate reconstructions held for two source intervals",
         "mean_psnr_db_vs_960x540_25fps_timeline_after_lanczos_upscale": mean_psnr_from_mse(source_mse / source_pixels),
         "mean_psnr_db_vs_sampled_encoder_input_at_native_resolution": mean_psnr_from_mse(codec_input_mse / codec_input_pixels),
@@ -268,6 +269,12 @@ def run(args) -> dict:
                     not decoder_summary.get("all_frame_checksums_match") or
                     not decoder_summary.get("whole_file_checksum_verified")):
                 raise ValueError(f"Previously accepted B4 case failed resume validation: {case_id}")
+            if row.get("timeline_quality", {}).get("metric_version") != 2:
+                row["timeline_quality"] = resolution_and_time_quality(
+                    baseline_source_dir, case_root / "encoder_work" / "source",
+                    case_root / "receiver" / "frames", stride=row["frame_stride"],
+                    reference_frames=250, width=row["width"], height=row["height"])
+                write_json(status_path, status)
             completed.append(row)
             print(f"B4 case reused: {case_id}; verified existing stream and independent decode.", flush=True)
             continue

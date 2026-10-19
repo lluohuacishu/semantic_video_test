@@ -23,6 +23,7 @@ from PIL import Image
 from glc_container import (SequenceChecksums, StreamWriter, read_stream,
                            validate_header, container_overhead_breakdown)
 from glc_entropy import ENTROPY_ID, GaussianRans, pack_indices, unpack_indices
+from glc_presets import PRESETS, apply_encode_preset
 from glc_video_probe import (ROOT, REVISION, ASSETS, check_source, check_weights,
                              load_weights, extract_frames, make_preview, write_json)
 
@@ -267,6 +268,7 @@ def encode(args):
         "container_overhead_bytes": size - sum(r["z_bytes"] + r["y_bytes"] for r in records),
         "container_overhead_breakdown": container_overhead_breakdown(header, container_version),
         "audio": "not encoded", "frames": records,
+        "selected_preset": getattr(args, "preset", None),
         "input_transform": "RGB / 255; replicate right/bottom to multiples of 64; x * 2 - 1",
     }
     write_json(output / "encode.json", result)
@@ -360,19 +362,26 @@ def main():
         child.add_argument("--ffmpeg", type=Path, default=ROOT / "tools/ffmpeg/bin/ffmpeg.exe")
         child.add_argument("--device", choices=["cuda", "cpu"], default="cuda")
     encoder.add_argument("--workdir", type=Path, required=True)
-    encoder.add_argument("--frames", type=int, default=50)
+    encoder.add_argument("--preset", choices=list(PRESETS),
+                         help="Retained B4 quality preset; output fps follows source fps / stride.")
+    encoder.add_argument("--frames", type=int,
+                         help="Output frames; default 50 without preset, or 250/125 with preset.")
     encoder.add_argument("--start-frame", type=int, default=0)
-    encoder.add_argument("--frame-stride", type=int, default=1,
+    encoder.add_argument("--frame-stride", type=int,
                          help="Keep every Nth source frame; output fps is source fps / N.")
-    encoder.add_argument("--container-version", type=int, choices=[1, 2], default=1)
-    encoder.add_argument("--width", type=int, default=1280)
-    encoder.add_argument("--q", type=int, default=63)
-    encoder.add_argument("--intra-period", type=int, default=32)
-    encoder.add_argument("--reset-interval", type=int, default=32)
+    encoder.add_argument("--container-version", type=int, choices=[1, 2])
+    encoder.add_argument("--width", type=int)
+    encoder.add_argument("--q", type=int)
+    encoder.add_argument("--intra-period", type=int)
+    encoder.add_argument("--reset-interval", type=int)
     args = parser.parse_args()
     if not args.input.is_file() or not args.ffmpeg.is_file():
         parser.error("Input and FFmpeg must exist.")
     if args.command == "encode":
+        try:
+            apply_encode_preset(args)
+        except ValueError as error:
+            parser.error(str(error))
         if (not 1 <= args.frames <= 10000 or args.start_frame < 0 or not 0 <= args.width <= 4096
                 or not 1 <= args.frame_stride <= 10000):
             parser.error("Invalid frame count, start frame or width.")
