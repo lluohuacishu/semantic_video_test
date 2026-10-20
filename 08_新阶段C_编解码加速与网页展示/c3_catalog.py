@@ -6,10 +6,11 @@ import json
 import re
 from pathlib import Path
 from urllib.parse import quote
+from c4_config import discover_workspace
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
-WORKSPACE = REPO.parents[2]
+WORKSPACE = discover_workspace(REPO)
 CATALOG = HERE / 'c3_existing_assets_20261020.json'
 
 

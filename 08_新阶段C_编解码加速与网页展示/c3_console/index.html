@@ -1,33 +1,25 @@
 <!doctype html>
-<html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GLC · 水下视频通信</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/styles.css"><script src="/app.js" defer></script></head>
-<body>
-<header><a class="brand" href="/" aria-label="GLC 首页"><span class="brand-icon">≈</span><span>GLC <small>水下视频通信</small></span></a><nav aria-label="主导航"><button class="nav active" data-view="replay">成果回放</button><button class="nav" data-view="run">运行新任务</button></nav><span class="local"><i></i> 本机研究演示</span></header>
-<main>
-<section class="intro"><div><div class="eyebrow">GLC-VIDEO / C3</div><h1>看见画质，也看清等待。</h1><p>四档视频、独立重建与真实计时，在同一处查看。</p></div><div class="status"><span id="connection">正在读取本地证据</span><small>模型按需加载 · 打开页面不启动编码</small></div></section>
-<div id="error" class="error" role="alert" hidden></div>
-<p class="boundary">研究边界：C 轮验证工程提速；语义 ROI 的等预算净收益未证实，真实水声端到端与实时编解码尚未验证。</p>
-
-<section id="replayView">
-<div class="section-top"><div><h2>成果回放 <span class="badge">历史实测</span></h2><p>直接读取已归档结果，无需重新编码。</p></div><label>素材 <select id="clip"><option value="main">主片 · long108</option><option value="second">第二片段 · long24</option></select></label></div>
-<div class="toolbar"><div class="segmented" aria-label="比较方式"><button id="sameView" class="active">同档优化对照</button><button id="qualityView">四档画质比较</button></div><label>发送预算 <select id="rate"><option value="20">20 kbps</option><option value="30">30 kbps</option><option value="40">40 kbps</option></select></label></div>
-<div id="presets" class="presets"></div>
-<p class="hint" id="viewNote"></p>
-<div id="players" class="players"></div>
-<div class="playbar"><button id="play" class="primary">同步播放</button><button id="rewind" class="quiet">回到起点</button><input id="seek" aria-label="统一播放时间" type="range" min="0" max="10" step="0.01" value="0"><span id="clock" class="mono">0.00 / 10.00 s</span><label class="speed-label">速度 <select id="speed"><option value="1">1×</option><option value="0.5">0.5×</option><option value="0.25">0.25×</option></select></label></div>
-<div class="sync-note"><span id="drift">按播放时间对齐；多播放器不是严格逐帧锁定。</span><a id="composite" hidden>打开已合成的同步对比视频 ↗</a></div>
-<div id="metrics" class="metrics"></div>
-<div class="two-col"><section class="panel"><div class="section-top"><h3>同档原生熵编码收益</h3><span class="badge">C1 → C1 + native</span></div><div id="presetPerformance"></div><p class="hint">同批配对，到 MP4 就绪；两端分别执行之和。分项中位数不直接相加。</p></section><section class="panel"><h3>一致性与证据</h3><div id="checks"></div><details><summary>下载码流与逐任务证据</summary><div id="downloads" class="downloads"></div></details><p class="hint">.glcv 是实际传输文件；MP4 是观看副本。预览画面取第 1 对，性能使用本组全部配对。</p></section></div>
-
-<section class="panel performance"><div class="section-top"><div><h2>最终组合，独立实测</h2><p>主片 compact · 同期 legacy 与 C1 + native · 常驻三对</p></div><a id="canonical" class="text-link">原始汇总 JSON ↗</a></div><div id="combined"></div><p class="hint" id="cold"></p><details><summary>计时边界与收益归因</summary><p>最终组合单独测量，不累加 C1 与 C2 的降幅。C1 主要优化 PNG 与预览流程；内存帧单独收益有限，解码曾略退化。C2 保持 FP32、CDF、权重与码流不变，以原生 rANS 替换 Python 熵运算。模型常驻成本单列，GPU 编译候选未实施。</p><p>历史常驻计时不包含浏览器、排队和真实链路。冷启动只有一对成本示例，不代表稳定冷态加速；其他三档只有单对。详细分项计时可能嵌套，不能相加。</p><div id="timingDetails" class="timing-details"></div></details></section>
-
-<section class="panel research"><h2>研究历程与边界</h2><div class="milestones"><div><b>A / 路线选择</b><p>选定 GLC，完成真实码流与独立重建验证。仍存在纹理与时序失真。</p></div><div><b>B / 压缩与传输</b><p>软件收发闭环与四档完成。ROI 增强增加字节，但用户总体观感差别不明显，等预算净收益未证实。</p></div><div><b>C / 速度与展示</b><p>C0–C2 完成有限测量与加速。C3 整合展示与单任务；C4 整轮验收尚未启动。</p></div></div><details id="historyDetails"><summary>查看 B2 历史 ROI 对照与研究报告</summary><p id="historyBytes" class="hint"></p><div id="historyVideos" class="history-videos"></div><div id="reports" class="downloads"></div></details></section>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GLC · 视频通信演示</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/styles.css"><script src="/app.js" defer></script></head>
+<body><header><a class="brand" href="/"><span class="logo">≈</span><span>GLC <small>视频通信演示</small></span></a><span id="connection">正在连接</span></header>
+<main><div class="intro"><div><span class="eyebrow">VIDEO COMPRESSION & RECONSTRUCTION</span><h1>传得更小，看得清楚。</h1><p>选择视频和画质，查看压缩后的独立重建结果。</p></div><button id="showExample" hidden>查看示例</button></div>
+<div id="error" role="alert" class="error" hidden></div>
+<div class="workspace"><section class="panel controls"><h2>开始一次演示</h2>
+<form id="taskForm"><label>视频来源<select id="source"><option value="upload">上传本机视频</option></select></label>
+<label id="fileLabel">选择视频<input id="file" type="file" accept="video/*,.mkv,.avi,.mov"><small>MP4、MOV、MKV 等 · 最大 1 GiB</small></label>
+<label>画质档位<select id="taskPreset" required><option value="">请选择画质</option></select></label>
+<p id="presetNote" class="hint">保留四档选择，按需要平衡画面与体积。</p>
+<details><summary>高级选项</summary><label>输出帧数<input id="frames" type="number" min="1" placeholder="沿用档位默认"></label><label>熵编码后端<select id="backend"><option value="native">原生 rANS</option><option value="python">Python 回退</option></select></label><p class="hint">默认采样前 250 个源帧间隔：25 fps 对应 10 秒，其他帧率时长不同。无音频。</p></details>
+<button id="prepare" type="submit" class="wide">准备视频</button></form>
+<div class="actions"><button id="start" class="primary" disabled>开始压缩与重建</button><button id="cancel" disabled>取消</button></div>
+<div class="task-status" aria-live="polite"><span id="phase">等待选择视频</span><progress id="progress" max="100" value="0"></progress><span id="taskTime" class="hint">准备视频后，点击开始运行。</span></div>
+<details id="history"><summary>最近任务</summary><button id="newJob">新建任务</button><div id="jobs"></div></details>
 </section>
-
-<section id="runView" hidden>
-<div class="section-top"><div><h2>运行新任务 <span class="badge">本次实测</span></h2><p>上传或准备素材后，再明确点击开始。单 GPU 串行处理。</p></div></div>
-<div class="run-layout"><section class="panel"><form id="taskForm"><label>素材来源<select id="source"><option value="source.main">已有主片 long108</option><option value="source.second">已有第二片段 long24</option><option value="upload">上传本机视频</option></select></label><label id="fileLabel" hidden>本机视频<input id="file" type="file" accept="video/*,.mkv,.avi,.mov"></label><label>画质档位<select id="taskPreset" required><option value="">请手动选择档位</option></select></label><div class="form-row"><label>输出帧数（可选）<input id="frames" type="number" min="1" placeholder="沿用档位默认"></label><label>熵编码后端<select id="backend"><option value="native">原生 rANS · C2</option><option value="python">Python · 回退路径</option></select></label></div><p class="hint">默认覆盖 250 个源帧间隔，仅 25 fps 素材对应约 10 秒。可填 8 帧做短功能检查；不处理音频。</p><button id="prepare" type="submit">① 准备素材</button></form><div class="run-actions"><button id="start" class="primary" disabled>② 开始运行</button><button id="cancel" disabled>停止任务</button><button id="newJob" class="quiet">新建任务</button></div><p class="hint">每端使用新进程，含冷启动；本次结果不能直接套用历史常驻 1.991×。发送时间仅按实际包与协议头估算。</p></section><section class="panel"><span class="eyebrow">当前任务</span><h3 id="phase">等待选择素材和档位</h3><p id="taskMeta" class="hint">准备素材不会启动 GPU。</p><progress id="progress" max="100" value="0"></progress><p id="taskTime" class="mono"></p><div id="taskLogs" class="downloads"></div><h3 class="history-title">任务记录</h3><div id="jobs"></div></section></div><section id="newResult" class="panel" hidden></section>
-</section>
-<footer><span>GLC 水下视频通信 · 本机成果与证据</span><span id="assetStatus"></span></footer>
-</main>
-</body></html>
+<section class="panel result-panel"><div class="result-heading"><div><span id="resultTag" class="eyebrow">预览</span><h2 id="resultTitle">输入与重建</h2></div><span id="resultMeta" class="hint"></span></div>
+<div id="empty" class="empty"><span>≈</span><p>运行完成后，在这里对比画面。</p></div>
+<div id="result" hidden><div class="players"><article><div class="player-head">输入画面 <small>同档采样</small></div><video id="sourceVideo" aria-label="输入画面" controls muted playsinline preload="auto"></video></article><article><div class="player-head">接收端重建 <small>独立解码</small></div><video id="decodedVideo" aria-label="接收端重建" controls muted playsinline preload="auto"></video></article></div>
+<div class="playbar"><button id="play">同步播放</button><button id="rewind">重新播放</button><span class="hint">按播放时间对齐</span></div>
+<div id="metrics" class="metrics"></div><div class="result-bottom"><span id="verified"></span><div id="downloads" class="downloads"></div></div>
+<details class="technical"><summary>计时与校验详情</summary><p id="timingNote" class="hint"></p><p id="checkNote" class="hint"></p><div id="evidence" class="downloads"></div></details>
+</div></section></div>
+<p class="boundary">本机演示：编码 → 完整码流本地交付 → 独立解码。发送时间为理论估算，尚未接入真实水声链路。</p>
+<footer><span>GLC-Video · 四档画质 · 独立重建</span><a id="archive" href="/archive" hidden>实验档案</a></footer></main></body></html>

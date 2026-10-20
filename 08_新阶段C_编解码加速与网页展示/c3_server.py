@@ -20,6 +20,7 @@ from urllib.request import ProxyHandler, build_opener
 
 from c3_catalog import Catalog, HERE, REPO, WORKSPACE, read_json, sha256, transmission
 from c2_watch import inspect, supervise, write
+from c4_config import load_settings, UploadCatalog
 
 LEGACY = REPO / '04_外部依赖快照/semantic-video-training'
 sys.path.insert(0, str(LEGACY))
@@ -27,12 +28,7 @@ from demo_server import Handler as BaseHandler, JobStore, MAX_UPLOAD, TERMINAL, 
 
 APP_ID = 'glc-c3-local-v1'
 STATIC = HERE / 'c3_console'
-RUNTIME = Path('C:/Users/lenovo/Desktop/works/work/semantic-video-training')
 DATA = WORKSPACE / '02_实验数据/C_编解码加速与网页展示'
-DEFAULTS = {'python': RUNTIME / '.venv-glc/Scripts/python.exe', 'repo': RUNTIME / 'tools/GLC',
-            'weights': RUNTIME / 'checkpoints/glc',
-            'ffmpeg': Path('C:/Users/lenovo/Desktop/works/Python/video-baseline/tools/ffmpeg-9.0.1-essentials_build/bin/ffmpeg.exe'),
-            'native_library': DATA / 'C2_native_build_20261019_r3/glc_rans.dll'}
 JOB_ASSETS = {'source.mp4': 'encode/encoder/source_preview.mp4',
               'decoded.mp4': 'decode/receiver/reconstruction_preview.mp4',
               'stream.glcv': 'received.glcv', 'encode.json': 'encode/encoder/encode.json',
@@ -40,7 +36,7 @@ JOB_ASSETS = {'source.mp4': 'encode/encoder/source_preview.mp4',
               'encode-timing.json': 'encode/timing.json', 'decode-timing.json': 'decode/timing.json',
               'encode.log': 'encode_process/worker.log', 'decode.log': 'decode_process/worker.log',
               'manifest.json': 'manifest.json', 'failure.json': 'failure.json',
-              'browser.json': 'browser.json'}
+              'browser.json': 'browser.json', 'events.jsonl': 'events.jsonl'}
 
 
 class DirectoryLease:
@@ -100,19 +96,30 @@ def verify_result(folder):
 
 
 class C3Store(JobStore):
+    def create(self, *args, **kwargs):
+        with self.lock:
+            job = super().create(*args, **kwargs)
+            write(self.directory / job['id'] / 'initial.json', job)
+            with (self.directory / job['id'] / 'events.jsonl').open('a', encoding='utf-8') as log:
+                log.write(json.dumps({key: job.get(key) for key in ('updated_at','status','stage','phase')}, ensure_ascii=False) + '\n')
+            return job
+
     def update(self, identifier, **changes):
         with self.lock:
             job = self.jobs[identifier]
             updated = {**job, **changes, 'updated_at': now()}
             write(self.directory / identifier / 'job.json', updated)
             self.jobs[identifier] = updated
+            if any(job.get(key) != updated.get(key) for key in ('status', 'stage', 'phase')):
+                with (self.directory / identifier / 'events.jsonl').open('a', encoding='utf-8') as log:
+                    log.write(json.dumps({key: updated.get(key) for key in ('updated_at','status','stage','phase')}, ensure_ascii=False) + '\n')
             return copy.deepcopy(updated)
 
 
 class C3App:
     def __init__(self, directory, catalog=None, runtime=None):
         self.catalog = catalog or Catalog()
-        self.runtime = {key: Path(value) for key, value in (runtime or DEFAULTS).items()}
+        self.runtime = {key: Path(value) for key, value in (runtime or load_settings()['runtime']).items()}
         self.directory = Path(directory).resolve()
         self.directory.mkdir(parents=True, exist_ok=True)
         self.lease = DirectoryLease(self.directory)
@@ -135,7 +142,8 @@ class C3App:
                 'native_available': 'native_library' not in missing,
                 'missing': missing, 'blocked_processes': self.blockers,
                 'max_upload_bytes': MAX_UPLOAD, 'presets': self.catalog.presets,
-                'execution_mode': 'separate_fresh_processes', 'gpu_started_on_open': False}
+                'execution_mode': 'separate_fresh_processes', 'gpu_started_on_open': False,
+                'history_available': bool(self.catalog.records), 'version': 'C4'}
 
     def reserve(self, value):
         options = parse_options(value.get('options'), self.catalog.presets['presets'])
@@ -183,6 +191,7 @@ class C3App:
             (self.directory / identifier / 'STOP_REQUESTED').touch()
             immediate = job['status'] in ('staged', 'queued') or (job['status'] == 'uploading' and not job.get('receiving'))
             return self.store.update(identifier, status='cancelled' if immediate else 'cancelling',
+                                     cancel_requested_at=now(),
                                      phase='已停止' if immediate else '正在等待当前帧结束并释放资源')
 
     def execute(self, role, task, folder):
@@ -226,7 +235,8 @@ class C3App:
             queue_seconds = (datetime.fromisoformat(now()) - datetime.fromisoformat(job['queued_at'])).total_seconds()
             self.store.update(identifier, status='running', phase='编码：准备模型与素材', stage='encode', started_at=now())
             source = self.source(job)
-            files = list(HERE.glob('c3_*.py')) + [HERE / n for n in ('c1_runtime.py','c1_io.py','c2_worker.py','c2_native.py','c2_watch.py')]
+            files = list(HERE.glob('c3_*.py')) + [HERE / n for n in ('c4_config.py','c1_runtime.py','c1_io.py','c2_worker.py','c2_native.py','c2_watch.py')]
+            files += [STATIC / n for n in ('index.html','app.js','styles.css')]
             files += list((LEGACY / 'scripts').glob('glc_*.py')) + [LEGACY / 'scripts/glc_presets.json']
             write(folder / 'manifest.json', {'created_at': now(), 'source_sha256': sha256(source),
                   'source_bytes': source.stat().st_size, 'source': str(source), 'options': job['options'],
@@ -350,7 +360,10 @@ class Handler(BaseHandler):
                 if name not in JOB_ASSETS or (job['status'] != 'done' and name not in ('encode.log','decode.log','failure.json','manifest.json')):
                     raise KeyError(route)
                 return self.file(self.app.directory / match[1] / JOB_ASSETS[name], download='download' in parse_qs(url.query))
-            files = {'/': 'index.html', '/app.js': 'app.js', '/styles.css': 'styles.css', '/favicon.svg':'favicon.svg'}
+            if route == '/archive' and not self.app.catalog.records:
+                return self.json({'error': '本机未配置历史素材；首页上传功能可独立使用'}, 404)
+            files = {'/': 'index.html', '/app.js': 'app.js', '/styles.css': 'styles.css', '/favicon.svg':'favicon.svg',
+                     '/archive': 'archive.html', '/archive.js': 'archive.js', '/archive.css': 'archive.css'}
             return self.file(STATIC / files[route])
         except PermissionError as exc:
             self.json({'error': str(exc)}, 403)
@@ -446,9 +459,20 @@ class Server(ThreadingHTTPServer):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port', type=int, default=8773)
-    parser.add_argument('--data-dir', type=Path, default=DATA / 'C3_web_jobs')
+    parser.add_argument('--data-dir', type=Path)
+    parser.add_argument('--config', type=Path)
+    parser.add_argument('--check', action='store_true', help='Check paths without opening a server or starting GPU work')
     parser.add_argument('--open', action='store_true')
     args = parser.parse_args()
+    try:
+        settings = load_settings(args.config)
+    except (ValueError, OSError) as exc:
+        parser.error(str(exc))
+    if args.check:
+        missing = [key for key, path in settings['runtime'].items() if not path.exists()]
+        print(json.dumps({'config': str(settings['config_path']), 'runtime': {k:str(v) for k,v in settings['runtime'].items()},
+                          'missing': missing, 'data_dir': str(settings['data_dir']), 'gpu_started': False}, ensure_ascii=False, indent=2))
+        return 1 if set(missing) - {'native_library'} else 0
     url = f'http://127.0.0.1:{args.port}/'
     try:
         with build_opener(ProxyHandler({})).open(url + 'api/config', timeout=1) as response:
@@ -463,7 +487,14 @@ def main():
         pass
     # Bind before any task store changes; a duplicate launch cannot disrupt jobs.
     with Server(('127.0.0.1', args.port), None) as server:
-        app = C3App(args.data_dir)
+        catalog = UploadCatalog()
+        if settings['history_enabled']:
+            try:
+                catalog = Catalog(workspace=settings['workspace'])
+            except (OSError, ValueError, KeyError) as exc:
+                catalog = UploadCatalog('历史素材未完整配置：' + str(exc))
+                print(catalog.payload['history_reason'], flush=True)
+        app = C3App(args.data_dir or settings['data_dir'], catalog=catalog, runtime=settings['runtime'])
         server.app = app
         print(f'C3_READY http://127.0.0.1:{args.port}/', flush=True)
         if args.open:
@@ -478,4 +509,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

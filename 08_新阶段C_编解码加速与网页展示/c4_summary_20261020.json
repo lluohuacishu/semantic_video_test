@@ -1,0 +1,594 @@
+{
+  "stage": "C4",
+  "status": "complete_with_stated_limits",
+  "created_utc": "2026-10-20T05:43:54.852583+00:00",
+  "base_commit": "dd81c83db980ebbc73c36b0069288a58ac18f546",
+  "validation_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C4_validation_20261020_r1",
+  "completed_jobs": {
+    "main_full": {
+      "job_id": "ca04e7637ce648bdaa47c63cf1512a4f",
+      "source_sha256": "6683af45254bdaed431658e5f7515cddaeb42df2382f18b983e6e1cba7ae436b",
+      "source_bytes": 106005205,
+      "input": {
+        "source_width": 960,
+        "source_height": 540,
+        "width": 640,
+        "height": 360,
+        "fps": 12.5,
+        "processed_frames": 125,
+        "frame_stride": 2,
+        "duration_seconds": 10.0,
+        "reported_source_frames": 250
+      },
+      "stream_bytes": 26397,
+      "stream_sha256": "9676a03220ec2d28aef09fde70413ea9a08ea38cc9461509931767789036b7fd",
+      "service_seconds": 60.500822800000606,
+      "queue_seconds": 0.006004,
+      "encode_to_preview_seconds": 33.64435570000023,
+      "decode_to_preview_seconds": 22.74415989999943,
+      "browser_first_observation": {
+        "recorded_at": "2026-10-20T13:21:42.452026+08:00",
+        "preview_load_seconds": 0.043,
+        "dispatch_to_preview_seconds": 60.708,
+        "after_refresh": false,
+        "source": "browser performance.now; self-reported; excludes upload and real network transfer"
+      },
+      "preview_metadata": {
+        "source": {
+          "width": 640,
+          "height": 360,
+          "avg_frame_rate": "25/2",
+          "duration": "10.000000",
+          "nb_read_frames": "125",
+          "sha256": "95e2a00e141d7f9dab8689a21ce8f05f80f50ad9212a772ec3473063e0354eae"
+        },
+        "sender_reconstruction": {
+          "width": 640,
+          "height": 360,
+          "avg_frame_rate": "25/2",
+          "duration": "10.000000",
+          "nb_read_frames": "125",
+          "sha256": "e618bca9564c5cc815e46e29e7afecc84fa1020acfd675ab4041a88a69a34231"
+        },
+        "receiver_reconstruction": {
+          "width": 640,
+          "height": 360,
+          "avg_frame_rate": "25/2",
+          "duration": "10.000000",
+          "nb_read_frames": "125",
+          "sha256": "e618bca9564c5cc815e46e29e7afecc84fa1020acfd675ab4041a88a69a34231"
+        }
+      },
+      "preview_decoded_pixel_sha256": {
+        "sender_reconstruction": "SHA256=1a9f3b881550441ce60f4f64004e30a9fa1fdafea8a4e859922e8e681ccec8e1",
+        "receiver_reconstruction": "SHA256=1a9f3b881550441ce60f4f64004e30a9fa1fdafea8a4e859922e8e681ccec8e1"
+      },
+      "source_sampling_rgb_verified": true,
+      "all_rgb_and_latent_equal": true,
+      "receiver_source_reads": [],
+      "worker_returncodes": {
+        "encode": 0,
+        "decode": 0
+      },
+      "events": [
+        {
+          "updated_at": "2026-10-20T13:20:11.178703+08:00",
+          "status": "staged",
+          "stage": null,
+          "phase": "素材已准备，请明确点击开始运行"
+        },
+        {
+          "updated_at": "2026-10-20T13:20:41.744057+08:00",
+          "status": "queued",
+          "stage": null,
+          "phase": "等待单 GPU 队列"
+        },
+        {
+          "updated_at": "2026-10-20T13:20:41.749062+08:00",
+          "status": "running",
+          "stage": "encode",
+          "phase": "编码：准备模型与素材"
+        },
+        {
+          "updated_at": "2026-10-20T13:21:17.372318+08:00",
+          "status": "running",
+          "stage": "decode",
+          "phase": "独立解码：仅接收完整码流"
+        },
+        {
+          "updated_at": "2026-10-20T13:21:42.242375+08:00",
+          "status": "running",
+          "stage": "verify",
+          "phase": "核对逐帧摘要与预览"
+        },
+        {
+          "updated_at": "2026-10-20T13:21:42.253426+08:00",
+          "status": "done",
+          "stage": "done",
+          "phase": "已完成：逐帧校验通过"
+        }
+      ],
+      "code_sha256_at_dispatch": {
+        "08_新阶段C_编解码加速与网页展示\\c3_catalog.py": "69cf4002c20758758dbf66846b11cee61b468eea34871ff67281d37895d924e4",
+        "08_新阶段C_编解码加速与网页展示\\c3_server.py": "dd5b82a807a68078d559f910d7f27abf98bca2fff4820fd587ab41376b8187be",
+        "08_新阶段C_编解码加速与网页展示\\c4_config.py": "36dccd3d7398b6afcee0d4a78f02954d9400449d37864fab82de03c6bb70c8e2",
+        "08_新阶段C_编解码加速与网页展示\\c1_runtime.py": "3419534425f238e55a3ba0143ef238568225a29268a35373e4179fe71cbe378c",
+        "08_新阶段C_编解码加速与网页展示\\c1_io.py": "9106801e9ab57a65f3eab4c6956a022821f620d7f8093e9151a0f2d611a6100d",
+        "08_新阶段C_编解码加速与网页展示\\c2_worker.py": "2b3322400fd7f30c89b8e1511efec03fe77aa074cc76583b4f80d8d53768dd01",
+        "08_新阶段C_编解码加速与网页展示\\c2_native.py": "1f948c3dc207dfdc1cb7d74f325c98a9065b7dd2d17f41b7cb4c77153db962b4",
+        "08_新阶段C_编解码加速与网页展示\\c2_watch.py": "2dd4f8a6d86a2ac3800a20bd1c591501450836482e4d509b0bc44641c9c0295e",
+        "08_新阶段C_编解码加速与网页展示\\c3_console\\index.html": "63beeda93a5b743682b88842edd44ab1cbe1b068f8f104b501ab21de4e0a67b5",
+        "08_新阶段C_编解码加速与网页展示\\c3_console\\app.js": "4f297a9051a9f9561785dc03b0212d4953a741580c71c545f36c0aef8a477a87",
+        "08_新阶段C_编解码加速与网页展示\\c3_console\\styles.css": "0ca23adbcb749b3028e749143e4b478610f1c9058ab24f47e26d115348104b9b",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_container.py": "f59014583826695e0f6baeb9e81581ff31d276c22d9bdb63ad82860200fa07dc",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_entropy.py": "766905d2031c42d15e5c164653996313fa19dd2e6f14e7dc0ac33e70632be0e3",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.py": "2cee8686c2071070a612adab6f3f1d39ecd2ef85d0e3a269ed50cd5fd28ff9c9",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_codec.py": "52fe2b88cd3f2e023825b2e0e2ada0d86e54dcccdcd4dcc8c137b8eb3272a2ae",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_probe.py": "2a741913b11f1ec59be202d1ff32cfdff9c485585a94466c5e227b7dd373b814",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_roundtrip.py": "12a8b933c9bb2e8e5ebdbdb5af8aebef47af279c2bd97b0a2a625d5487f4e357",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.json": "53c3f17692e528de0eabef361b8afbce14f03aeb6a966bc296836f78c598f148"
+      }
+    },
+    "new_source": {
+      "job_id": "4ffd95e7cb954160b33ce8b496d26d8c",
+      "source_sha256": "f576cb5c084a4f88d778e8fa59da7fe3f53474552f5b7b3a7d0e41b87220faee",
+      "source_bytes": 19541110,
+      "input": {
+        "source_width": 1280,
+        "source_height": 720,
+        "width": 640,
+        "height": 360,
+        "fps": 14.985014985014985,
+        "processed_frames": 125,
+        "frame_stride": 2,
+        "duration_seconds": 8.341666666666667,
+        "reported_source_frames": 828
+      },
+      "stream_bytes": 36225,
+      "stream_sha256": "a5c543f804fdf35059280f425386670252554d57ee4bcf8d51d87c2389e55cd9",
+      "service_seconds": 60.472561999999016,
+      "queue_seconds": 21.780299,
+      "encode_to_preview_seconds": 33.667119799998545,
+      "decode_to_preview_seconds": 22.735511400000178,
+      "browser_first_observation": {
+        "recorded_at": "2026-10-20T13:25:18.318457+08:00",
+        "preview_load_seconds": 0.021099999999627472,
+        "dispatch_to_preview_seconds": 82.52229999999888,
+        "after_refresh": false,
+        "source": "browser performance.now; self-reported; excludes upload and real network transfer"
+      },
+      "preview_metadata": {
+        "source": {
+          "width": 640,
+          "height": 360,
+          "avg_frame_rate": "15000/1001",
+          "duration": "8.341667",
+          "nb_read_frames": "125",
+          "sha256": "2d005865cf54ce2edc3c10f4698c869a16268ed200b8d6cef59ef92fffc83ac0"
+        },
+        "sender_reconstruction": {
+          "width": 640,
+          "height": 360,
+          "avg_frame_rate": "15000/1001",
+          "duration": "8.341667",
+          "nb_read_frames": "125",
+          "sha256": "9afb6f41bf121c3c3a1e64d58f9880f79fcd0b85f7baa8d8f2190c84e5c7621e"
+        },
+        "receiver_reconstruction": {
+          "width": 640,
+          "height": 360,
+          "avg_frame_rate": "15000/1001",
+          "duration": "8.341667",
+          "nb_read_frames": "125",
+          "sha256": "9afb6f41bf121c3c3a1e64d58f9880f79fcd0b85f7baa8d8f2190c84e5c7621e"
+        }
+      },
+      "preview_decoded_pixel_sha256": {
+        "sender_reconstruction": "SHA256=3d4009e543bf948bd5e65fdce983a7bc6c25394265153801d6bafa783b6f6e58",
+        "receiver_reconstruction": "SHA256=3d4009e543bf948bd5e65fdce983a7bc6c25394265153801d6bafa783b6f6e58"
+      },
+      "source_sampling_rgb_verified": true,
+      "all_rgb_and_latent_equal": true,
+      "receiver_source_reads": [],
+      "worker_returncodes": {
+        "encode": 0,
+        "decode": 0
+      },
+      "events": [
+        {
+          "updated_at": null,
+          "status": "uploading",
+          "stage": null,
+          "phase": "正在上传"
+        },
+        {
+          "updated_at": "2026-10-20T13:23:36.571947+08:00",
+          "status": "staged",
+          "stage": null,
+          "phase": "上传完成，请明确点击开始运行"
+        },
+        {
+          "updated_at": "2026-10-20T13:23:55.794327+08:00",
+          "status": "queued",
+          "stage": null,
+          "phase": "等待单 GPU 队列"
+        },
+        {
+          "updated_at": "2026-10-20T13:24:17.574626+08:00",
+          "status": "running",
+          "stage": "encode",
+          "phase": "编码：准备模型与素材"
+        },
+        {
+          "updated_at": "2026-10-20T13:24:53.376673+08:00",
+          "status": "running",
+          "stage": "decode",
+          "phase": "独立解码：仅接收完整码流"
+        },
+        {
+          "updated_at": "2026-10-20T13:25:18.042356+08:00",
+          "status": "running",
+          "stage": "verify",
+          "phase": "核对逐帧摘要与预览"
+        },
+        {
+          "updated_at": "2026-10-20T13:25:18.050367+08:00",
+          "status": "done",
+          "stage": "done",
+          "phase": "已完成：逐帧校验通过"
+        }
+      ],
+      "code_sha256_at_dispatch": {
+        "08_新阶段C_编解码加速与网页展示\\c3_catalog.py": "69cf4002c20758758dbf66846b11cee61b468eea34871ff67281d37895d924e4",
+        "08_新阶段C_编解码加速与网页展示\\c3_server.py": "c6e1f6793056c3a0968dd34540ca53fea530b7cc31f372b864f17562cd7b77cf",
+        "08_新阶段C_编解码加速与网页展示\\c4_config.py": "36dccd3d7398b6afcee0d4a78f02954d9400449d37864fab82de03c6bb70c8e2",
+        "08_新阶段C_编解码加速与网页展示\\c1_runtime.py": "3419534425f238e55a3ba0143ef238568225a29268a35373e4179fe71cbe378c",
+        "08_新阶段C_编解码加速与网页展示\\c1_io.py": "9106801e9ab57a65f3eab4c6956a022821f620d7f8093e9151a0f2d611a6100d",
+        "08_新阶段C_编解码加速与网页展示\\c2_worker.py": "2b3322400fd7f30c89b8e1511efec03fe77aa074cc76583b4f80d8d53768dd01",
+        "08_新阶段C_编解码加速与网页展示\\c2_native.py": "1f948c3dc207dfdc1cb7d74f325c98a9065b7dd2d17f41b7cb4c77153db962b4",
+        "08_新阶段C_编解码加速与网页展示\\c2_watch.py": "2dd4f8a6d86a2ac3800a20bd1c591501450836482e4d509b0bc44641c9c0295e",
+        "08_新阶段C_编解码加速与网页展示\\c3_console\\index.html": "63beeda93a5b743682b88842edd44ab1cbe1b068f8f104b501ab21de4e0a67b5",
+        "08_新阶段C_编解码加速与网页展示\\c3_console\\app.js": "4f297a9051a9f9561785dc03b0212d4953a741580c71c545f36c0aef8a477a87",
+        "08_新阶段C_编解码加速与网页展示\\c3_console\\styles.css": "0ca23adbcb749b3028e749143e4b478610f1c9058ab24f47e26d115348104b9b",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_container.py": "f59014583826695e0f6baeb9e81581ff31d276c22d9bdb63ad82860200fa07dc",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_entropy.py": "766905d2031c42d15e5c164653996313fa19dd2e6f14e7dc0ac33e70632be0e3",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.py": "2cee8686c2071070a612adab6f3f1d39ecd2ef85d0e3a269ed50cd5fd28ff9c9",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_codec.py": "52fe2b88cd3f2e023825b2e0e2ada0d86e54dcccdcd4dcc8c137b8eb3272a2ae",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_probe.py": "2a741913b11f1ec59be202d1ff32cfdff9c485585a94466c5e227b7dd373b814",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_roundtrip.py": "12a8b933c9bb2e8e5ebdbdb5af8aebef47af279c2bd97b0a2a625d5487f4e357",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.json": "53c3f17692e528de0eabef361b8afbce14f03aeb6a966bc296836f78c598f148"
+      }
+    },
+    "post_decode_cancel": {
+      "job_id": "bf663b75ef624fdcbe829c31f33238a6",
+      "source_sha256": "6683af45254bdaed431658e5f7515cddaeb42df2382f18b983e6e1cba7ae436b",
+      "source_bytes": 106005205,
+      "input": {
+        "source_width": 960,
+        "source_height": 540,
+        "width": 640,
+        "height": 360,
+        "fps": 12.5,
+        "processed_frames": 8,
+        "frame_stride": 2,
+        "duration_seconds": 0.64,
+        "reported_source_frames": 250
+      },
+      "stream_bytes": 2535,
+      "stream_sha256": "dda8df0795e35b0576d7c1325418be10fb4473c1d65c6c1f7f9f989129790d41",
+      "service_seconds": 15.315622000000076,
+      "queue_seconds": 38.538392,
+      "encode_to_preview_seconds": 5.914347100000668,
+      "decode_to_preview_seconds": 5.082329499999105,
+      "browser_first_observation": {
+        "recorded_at": "2026-10-20T13:26:30.559626+08:00",
+        "preview_load_seconds": 0.0275,
+        "dispatch_to_preview_seconds": 54.23340000000037,
+        "after_refresh": false,
+        "source": "browser performance.now; self-reported; excludes upload and real network transfer"
+      },
+      "preview_metadata": {
+        "source": {
+          "width": 640,
+          "height": 360,
+          "avg_frame_rate": "25/2",
+          "duration": "0.640000",
+          "nb_read_frames": "8",
+          "sha256": "c0c94677e87323043550adf54ca090911afde8b6235527e5514415da725fb8b6"
+        },
+        "sender_reconstruction": {
+          "width": 640,
+          "height": 360,
+          "avg_frame_rate": "25/2",
+          "duration": "0.640000",
+          "nb_read_frames": "8",
+          "sha256": "360422072238894728f11714bf2f7f592ac6b97de22686671210c59985d840de"
+        },
+        "receiver_reconstruction": {
+          "width": 640,
+          "height": 360,
+          "avg_frame_rate": "25/2",
+          "duration": "0.640000",
+          "nb_read_frames": "8",
+          "sha256": "360422072238894728f11714bf2f7f592ac6b97de22686671210c59985d840de"
+        }
+      },
+      "preview_decoded_pixel_sha256": {
+        "sender_reconstruction": "SHA256=e386973bf3a788fa799e5a9d76e1e73fdc2f2650bb0ed2593e5ce21fde441e7c",
+        "receiver_reconstruction": "SHA256=e386973bf3a788fa799e5a9d76e1e73fdc2f2650bb0ed2593e5ce21fde441e7c"
+      },
+      "source_sampling_rgb_verified": true,
+      "all_rgb_and_latent_equal": true,
+      "receiver_source_reads": [],
+      "worker_returncodes": {
+        "encode": 0,
+        "decode": 0
+      },
+      "events": [
+        {
+          "updated_at": null,
+          "status": "uploading",
+          "stage": null,
+          "phase": "正在上传"
+        },
+        {
+          "updated_at": "2026-10-20T13:25:36.024141+08:00",
+          "status": "staged",
+          "stage": null,
+          "phase": "素材已准备，请明确点击开始运行"
+        },
+        {
+          "updated_at": "2026-10-20T13:25:36.324826+08:00",
+          "status": "queued",
+          "stage": null,
+          "phase": "等待单 GPU 队列"
+        },
+        {
+          "updated_at": "2026-10-20T13:26:14.863218+08:00",
+          "status": "running",
+          "stage": "encode",
+          "phase": "编码：准备模型与素材"
+        },
+        {
+          "updated_at": "2026-10-20T13:26:22.968529+08:00",
+          "status": "running",
+          "stage": "decode",
+          "phase": "独立解码：仅接收完整码流"
+        },
+        {
+          "updated_at": "2026-10-20T13:26:30.172526+08:00",
+          "status": "running",
+          "stage": "verify",
+          "phase": "核对逐帧摘要与预览"
+        },
+        {
+          "updated_at": "2026-10-20T13:26:30.181834+08:00",
+          "status": "done",
+          "stage": "done",
+          "phase": "已完成：逐帧校验通过"
+        }
+      ],
+      "code_sha256_at_dispatch": {
+        "08_新阶段C_编解码加速与网页展示\\c3_catalog.py": "69cf4002c20758758dbf66846b11cee61b468eea34871ff67281d37895d924e4",
+        "08_新阶段C_编解码加速与网页展示\\c3_server.py": "c6e1f6793056c3a0968dd34540ca53fea530b7cc31f372b864f17562cd7b77cf",
+        "08_新阶段C_编解码加速与网页展示\\c4_config.py": "36dccd3d7398b6afcee0d4a78f02954d9400449d37864fab82de03c6bb70c8e2",
+        "08_新阶段C_编解码加速与网页展示\\c1_runtime.py": "3419534425f238e55a3ba0143ef238568225a29268a35373e4179fe71cbe378c",
+        "08_新阶段C_编解码加速与网页展示\\c1_io.py": "9106801e9ab57a65f3eab4c6956a022821f620d7f8093e9151a0f2d611a6100d",
+        "08_新阶段C_编解码加速与网页展示\\c2_worker.py": "2b3322400fd7f30c89b8e1511efec03fe77aa074cc76583b4f80d8d53768dd01",
+        "08_新阶段C_编解码加速与网页展示\\c2_native.py": "1f948c3dc207dfdc1cb7d74f325c98a9065b7dd2d17f41b7cb4c77153db962b4",
+        "08_新阶段C_编解码加速与网页展示\\c2_watch.py": "2dd4f8a6d86a2ac3800a20bd1c591501450836482e4d509b0bc44641c9c0295e",
+        "08_新阶段C_编解码加速与网页展示\\c3_console\\index.html": "63beeda93a5b743682b88842edd44ab1cbe1b068f8f104b501ab21de4e0a67b5",
+        "08_新阶段C_编解码加速与网页展示\\c3_console\\app.js": "4f297a9051a9f9561785dc03b0212d4953a741580c71c545f36c0aef8a477a87",
+        "08_新阶段C_编解码加速与网页展示\\c3_console\\styles.css": "0ca23adbcb749b3028e749143e4b478610f1c9058ab24f47e26d115348104b9b",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_container.py": "f59014583826695e0f6baeb9e81581ff31d276c22d9bdb63ad82860200fa07dc",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_entropy.py": "766905d2031c42d15e5c164653996313fa19dd2e6f14e7dc0ac33e70632be0e3",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.py": "2cee8686c2071070a612adab6f3f1d39ecd2ef85d0e3a269ed50cd5fd28ff9c9",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_codec.py": "52fe2b88cd3f2e023825b2e0e2ada0d86e54dcccdcd4dcc8c137b8eb3272a2ae",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_probe.py": "2a741913b11f1ec59be202d1ff32cfdff9c485585a94466c5e227b7dd373b814",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_roundtrip.py": "12a8b933c9bb2e8e5ebdbdb5af8aebef47af279c2bd97b0a2a625d5487f4e357",
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_presets.json": "53c3f17692e528de0eabef361b8afbce14f03aeb6a966bc296836f78c598f148"
+      }
+    }
+  },
+  "gpu_cancellation": {
+    "encode": {
+      "job_id": "8a811abd04ad4a35a7e0c6c6a858858c",
+      "role": "encode",
+      "observed_progress_before_cancel": {
+        "task": "encode",
+        "frame_completed": 29,
+        "frames": 125,
+        "utc": "2026-10-20T13:24:07.650286+08:00"
+      },
+      "last_progress_at_exit": {
+        "task": "encode",
+        "frame_completed": 67,
+        "frames": 125,
+        "utc": "2026-10-20T05:24:16.725003+00:00"
+      },
+      "cancel_requested_at": "2026-10-20T13:24:16.529440+08:00",
+      "finished_at": "2026-10-20T13:24:17.570717+08:00",
+      "cancel_to_finished_seconds": 1.041277,
+      "observed_worker_state": "cancelled",
+      "returncode": 2,
+      "forced_termination": false,
+      "launcher_alive": false,
+      "worker_alive": false,
+      "successor_job_id": "4ffd95e7cb954160b33ce8b496d26d8c",
+      "successor_started_at": "2026-10-20T13:24:17.574626+08:00",
+      "successor_done": true,
+      "incomplete_download_http_status": 404
+    },
+    "decode": {
+      "job_id": "9a9962f5e599451e9299cc4d07660687",
+      "role": "decode",
+      "observed_progress_before_cancel": {
+        "task": "decode",
+        "frame_completed": 5,
+        "frames": 125,
+        "utc": "2026-10-20T13:26:00.554667+08:00"
+      },
+      "last_progress_at_exit": {
+        "task": "decode",
+        "frame_completed": 95,
+        "frames": 125,
+        "utc": "2026-10-20T05:26:14.146742+00:00"
+      },
+      "cancel_requested_at": "2026-10-20T13:26:14.075070+08:00",
+      "finished_at": "2026-10-20T13:26:14.860217+08:00",
+      "cancel_to_finished_seconds": 0.785147,
+      "observed_worker_state": "cancelled",
+      "returncode": 2,
+      "forced_termination": false,
+      "launcher_alive": false,
+      "worker_alive": false,
+      "successor_job_id": "bf663b75ef624fdcbe829c31f33238a6",
+      "successor_started_at": "2026-10-20T13:26:14.863218+08:00",
+      "successor_done": true,
+      "incomplete_download_http_status": 404
+    }
+  },
+  "actual_browser_downloads": {
+    "main_full": {
+      "path": "C:/Users/lenovo/Downloads/received (2).glcv",
+      "sha256": "9676a03220ec2d28aef09fde70413ea9a08ea38cc9461509931767789036b7fd",
+      "bytes": 26397
+    },
+    "new_source": {
+      "path": "C:/Users/lenovo/Downloads/received (3).glcv",
+      "sha256": "a5c543f804fdf35059280f425386670252554d57ee4bcf8d51d87c2389e55cd9",
+      "bytes": 36225
+    },
+    "new_preview": {
+      "path": "C:/Users/lenovo/Downloads/reconstruction_preview.mp4",
+      "sha256": "9afb6f41bf121c3c3a1e64d58f9880f79fcd0b85f7baa8d8f2190c84e5c7621e",
+      "bytes": 3281725
+    }
+  },
+  "browser": {
+    "console_errors": [],
+    "layouts": [
+      {
+        "clientWidth": 660,
+        "height": 828,
+        "overflow": false,
+        "scrollWidth": 660,
+        "width": 675
+      },
+      {
+        "clientWidth": 1265,
+        "height": 720,
+        "overflow": false,
+        "scrollWidth": 1265,
+        "width": 1280
+      }
+    ],
+    "per_tab_refresh_restored_expected_job": true,
+    "main_playback_observation": {
+      "frames": 125,
+      "duration": 10,
+      "both_ended": true,
+      "source_and_reconstruction_currentTime": 10
+    },
+    "new_source_playback": [
+      {
+        "duration": 8.341667,
+        "ended": true,
+        "ready": 4,
+        "src": "http://127.0.0.1:8773/jobs/4ffd95e7cb954160b33ce8b496d26d8c/source.mp4",
+        "time": 8.341667
+      },
+      {
+        "duration": 8.341667,
+        "ended": true,
+        "ready": 4,
+        "src": "http://127.0.0.1:8773/jobs/4ffd95e7cb954160b33ce8b496d26d8c/decoded.mp4",
+        "time": 8.341667
+      }
+    ],
+    "archive": {
+      "presetCount": 4,
+      "returnLink": true,
+      "title": "历史实测与研究记录。"
+    },
+    "mobile_390_tested": false,
+    "downloads": [
+      "received (2).glcv",
+      "received (3).glcv",
+      "reconstruction_preview.mp4"
+    ],
+    "scope": "Local in-app browser on this machine, default actual window sizes; no viewport override."
+  },
+  "portable_configuration": {
+    "configuration_base": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C4_validation_20261020_r1\\portable_smoke",
+    "relative_runtime_paths": true,
+    "original_workspace_layout_required": false,
+    "archive_required": false,
+    "cli_path_check_passed": true,
+    "launcher_config_plus_environment_override_passed": true,
+    "upload_only_http_smoke_passed": true,
+    "gpu_started": false,
+    "jobs_created": 0,
+    "second_pc_tested": false
+  },
+  "regression": [
+    {
+      "suite": "c",
+      "tests": 98,
+      "sha256": "5ffa8df20f261198c6b56680cd2bcdf992851da81127c9c7a16a9431398ca4b8"
+    },
+    {
+      "suite": "b",
+      "tests": 55,
+      "sha256": "47d5bdc5dba63f1912d3776992dfeb961a42c94a9b0fdf1383e83aef75700e30"
+    }
+  ],
+  "regression_total": 153,
+  "provenance": {
+    "title": "Octopus",
+    "publisher": "NOAA Ocean Exploration",
+    "landing_page": "https://oceanexplorer.noaa.gov/multimedia/video-shorts-ex1202-octopus/",
+    "download_url": "https://oceanexplorer.noaa.gov/wp-content/uploads/2024/07/ex1202-octopus.mp4",
+    "downloaded_on": "2026-10-20",
+    "credit": "NOAA Ocean Exploration, Gulf of Mexico 2012",
+    "original_sha256": "f576cb5c084a4f88d778e8fa59da7fe3f53474552f5b7b3a7d0e41b87220faee",
+    "original_bytes": 19541110,
+    "input_transform": "None: uploaded the downloaded original MP4 without trimming, resampling, or transcoding.",
+    "media": {
+      "codec": "H.264",
+      "audio": "AAC, intentionally not encoded by GLC",
+      "width": 1280,
+      "height": 720,
+      "fps": "30000/1001",
+      "frames": 828,
+      "duration_seconds": 27.627604
+    },
+    "selection": "Different public filming source from prior long108/long24; selected before new encoding; no selection for performance.",
+    "evaluation_scope": "Functional upload and independent reconstruction of first 125 compact samples, 8.341667 seconds. Not semantic fidelity or generalization benchmark.",
+    "landing_page_verified": true
+  },
+  "source_sha256": {
+    "08_新阶段C_编解码加速与网页展示\\c3_server.py": "409c2563a4710fbe86b52d2a3caf1f6236a1e8807736f474fb17fb429eb1fcba",
+    "08_新阶段C_编解码加速与网页展示\\c3_catalog.py": "96eab395fcd21a6e315348a9f2e154b4562549cc15577a7c7743454c7a2dc142",
+    "08_新阶段C_编解码加速与网页展示\\c4_config.py": "9d2a4c7fe8382a3d6c479521d4bf76359bd240ddc601189563da6287f8e9bd82",
+    "08_新阶段C_编解码加速与网页展示\\check_c4.py": "9de39578767eb4ba1af2d6d5eb93aa118d2d1bad96ee794126b98ac346e50742",
+    "08_新阶段C_编解码加速与网页展示\\test_c4_config.py": "072e3db14cd92fdbafa083b04b2346780b62913b29ec7618486397daaec762d8",
+    "08_新阶段C_编解码加速与网页展示\\launch_c4.ps1": "2d7ddd52fd69ff70362359167afac062dee3c01058a573ed9a94d834b7e53be0",
+    "08_新阶段C_编解码加速与网页展示\\runtime.example.json": "328b30058c626686f82deb1d39acf46fb71f07ff17c50db07d3a8644d04615c8",
+    "08_新阶段C_编解码加速与网页展示\\c3_console\\app.js": "38c01346afcbea9a176003f823798f71d41815355e199a7dde3f23f94c39b9ea",
+    "08_新阶段C_编解码加速与网页展示\\c3_console\\archive.css": "8691b310a762ac199892879daf415e8bb9b755e7ec36e0918bfc3f9a8477564a",
+    "08_新阶段C_编解码加速与网页展示\\c3_console\\archive.html": "641fafae05da2ce874ef1e01e45f365f538bdc6330127ded08edf22bb391f50b",
+    "08_新阶段C_编解码加速与网页展示\\c3_console\\archive.js": "cd6d720884302bb7bcc07d5c8373f0e45804b4b0df2975941f91ab5e6f77f823",
+    "08_新阶段C_编解码加速与网页展示\\c3_console\\favicon.svg": "3205645eb75ccb1a0279d81f9f60f380c595c53ee0e0449819034908ae62b8d9",
+    "08_新阶段C_编解码加速与网页展示\\c3_console\\index.html": "63beeda93a5b743682b88842edd44ab1cbe1b068f8f104b501ab21de4e0a67b5",
+    "08_新阶段C_编解码加速与网页展示\\c3_console\\styles.css": "0ca23adbcb749b3028e749143e4b478610f1c9058ab24f47e26d115348104b9b"
+  },
+  "limits": [
+    "Single full-run observations, not a new speed benchmark or C2 matrix.",
+    "New NOAA input is unmodified 29.97 fps MP4; compact samples 125 frames covering 8.341667 seconds, not its entire 27.627604 seconds.",
+    "Independent receiver uses a local copy of the complete stream; no network/acoustic transfer.",
+    "Configuration relocation validated on this Windows machine; no second-PC or cross-GPU execution claim.",
+    "Cancellation tested once during encode and once during decode, followed by successful queued tasks; not a stability guarantee.",
+    "C2 strict 2x challenge and semantic ROI equal-budget benefit remain unproven. C5 not started."
+  ]
+}
