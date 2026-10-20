@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C5 语义视频传输</title><link rel="stylesheet" href="/styles.css"></head>
+<body><main>
+<header><span class="eyebrow">GLC · C5</span><h1 id="title">语义视频传输</h1>
+<p id="subtitle">正在连接本机服务…</p></header>
+<p id="notice" role="status" aria-live="polite"></p>
+<section id="sender" hidden>
+<details id="connection"><summary>接收端连接</summary><div class="row">
+<label>接收端地址<input id="peer" placeholder="http://192.168.1.20:8774"></label>
+<label>连接口令<input id="token" type="password" autocomplete="off" placeholder="从接收端页面复制"></label>
+<button id="connect">保存并检查连接</button></div><p id="connectionState"></p></details>
+<section><h2>发送视频</h2><label class="file">选择视频或已有 .glcv 码流
+<input id="file" type="file" accept=".mp4,.mkv,.mov,.avi,.webm,.glcv"></label>
+<div class="row" id="encodingOptions">
+<label>画质<select id="preset"><option value="compact">省流畅看 · 640 / 12.5 fps</option>
+<option value="motion">运动优先 · 640 / 25 fps</option><option value="detail">细节优先 · 960 / 12.5 fps</option>
+<option value="detail_motion">细节与运动 · 960 / 25 fps</option></select></label>
+<label>处理范围<select id="clip"><option value="first10">前 10 秒</option><option value="full">完整视频</option>
+<option value="segment">自定义时间段</option></select></label>
+<div id="bounds" class="row" hidden><label>开始（秒）<input id="start" type="number" min="0" value="0" step=".01"></label>
+<label>结束（秒）<input id="end" type="number" min=".01" value="10" step=".01"></label></div></div>
+<details><summary>高级设置</summary><label>发送端熵后端<select id="backend"><option value="native">Native</option><option value="python">Python 回退</option></select></label></details>
+<div class="actions"><button id="prepare" class="primary">准备文件</button><button id="startJob" disabled>开始发送</button>
+<button id="resend" disabled>复用码流再发</button></div><p class="muted">速率由接收端选择。已有码流可直接重发；视频不包含音频。</p>
+</section></section>
+<section id="receiver" hidden>
+<h2>接收设置</h2><div class="row"><label>传输速度<select id="rate">
+<option value="max">最大速度 · 快速验证</option><option value="20">20 kbps</option><option value="40">40 kbps</option></select></label>
+<button id="saveRate">保存速度</button><button id="preflight">检查本机环境</button></div>
+<p class="muted">设置用于下一项接收任务，当前任务保持预约时的速度。</p>
+<details><summary>连接信息与高级设置</summary>
+<p>发送端填写这台电脑的局域网 IPv4 地址，HTTP 端口 <span id="httpPort"></span>，数据端口 <span id="dataPort"></span>。</p>
+<button id="pairing">显示连接口令</button><output id="pairingToken"></output>
+<div class="row"><label>设备兼容<select id="policy"><option value="strict">严格匹配</option>
+<option value="device_pair_test">设备配对诊断（仅 GPU 名称可不同）</option></select></label>
+<label>接收端熵后端<select id="rxBackend"><option value="native">Native</option><option value="python">Python 回退</option></select></label>
+<button id="saveAdvanced">保存高级设置</button></div>
+<p class="muted">4060 → 4070 首次联调须显式选择设备配对诊断。每条码流仍须通过 RGB 与 latent 完整校验，失败不会发布预览。</p>
+</details></section>
+<section><div class="row spread"><h2>当前任务</h2><button id="cancel" disabled>停止任务</button></div>
+<p id="jobName">还没有选择任务</p><p id="phase">等待操作</p><progress id="progress" max="100" value="0"></progress>
+<p id="metrics" class="muted"></p><div class="players">
+<figure id="sourceBox" hidden><figcaption>发送端处理画面</figcaption><video id="sourceVideo" controls preload="metadata"></video></figure>
+<figure id="decodedBox" hidden><figcaption>接收端重建</figcaption><video id="decodedVideo" controls preload="metadata"></video></figure></div>
+<div id="downloads" class="actions"></div>
+<details><summary>任务详情</summary><button id="remote" hidden>查询原接收任务</button><pre id="details"></pre></details>
+</section>
+<section><h2>任务记录</h2><div id="history"></div></section>
+<footer>本页面分别在发送电脑与接收电脑上打开。接收端 MP4 在接收电脑本地查看。</footer>
+</main><script src="/app.js"></script></body></html>
