@@ -13,7 +13,7 @@ function action(id, fn) {
   $(id).onclick = async () => {
     $(id).disabled=true;
     try {notice(); await fn();} catch(e) {notice(e.message);}
-    finally {$(id).disabled=false;}
+    finally {$(id).disabled=false; if(config) await refresh().catch(e=>notice(e.message));}
   };
 }
 function select(id) {selected=id;sessionStorage.setItem('c5.selected',id);return refresh();}
@@ -94,6 +94,7 @@ async function preferences(){config=await api('/api/preferences',{rate_mode:$('r
 action('saveRate',preferences);action('saveAdvanced',preferences);
 action('preflight',async()=>{notice('正在检查本机环境…');const value=await api('/api/preflight',{});notice('环境已通过：'+value.environment.arithmetic.device);});
 action('pairing',async()=>{const value=await api('/api/pairing');$('pairingToken').textContent=value.token;});
+action('release',async()=>{await api('/api/release',{});notice('空闲模型已释放；下一任务会重新加载。');});
 $('clip').onchange=()=>{$('bounds').hidden=$('clip').value!=='segment';};
 $('file').onchange=()=>{$('encodingOptions').hidden=$('file').files[0]?.name.toLowerCase().endsWith('.glcv');};
 async function init(){
@@ -106,6 +107,7 @@ async function init(){
   $('connection').open=sender && !config.token_configured;
   $('rate').value=config.rate_mode;$('policy').value=config.compatibility_policy;
   $('rxBackend').value=config.backend;$('httpPort').textContent=location.port;$('dataPort').textContent=config.data_port;
+  $('workerMode').textContent=config.worker_mode==='resident'?'单角色常驻：首次任务加载模型，任务结束后保留；可在空闲时释放。':'逐任务冷启动：每项任务结束后释放模型。';
   await refresh();
   setInterval(()=>refresh().catch(e=>notice(e.message)),1500);
 }

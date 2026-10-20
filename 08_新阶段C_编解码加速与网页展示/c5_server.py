@@ -115,6 +115,11 @@ class Endpoint(C3App):
         self.policy = settings["compatibility_policy"]
         self.backend = settings["backend"]
         self.peer = None
+        self.resident = None
+        for record in self.directory.glob("resident_*/process/process.json"):
+            from c2_watch import inspect
+            if inspect(record.parent)["observed_state"] in ("running", "orphan_running", "liveness_unknown"):
+                self.blockers.append(str(record.parent))
         self.preference_file = self.directory / "endpoint.local.json"
         saved = read_json(self.preference_file) if self.preference_file.exists() else {}
         token_path = self.directory / "connection-token.txt"
@@ -159,6 +164,7 @@ class Endpoint(C3App):
                      rate_mode=self.rate_mode, compatibility_policy=self.policy, backend=self.backend,
                      preflight_ready=self.environment is not None, worker_mode=self.settings["worker_mode"],
                      peer_url=self.peer.url if self.peer else None, token_configured=bool(self.peer and self.peer.token))
+        value["execution_mode"] = "single_role_resident" if self.settings["worker_mode"] == "resident" else "separate_fresh_processes"
         return value
 
     def preflight(self):
@@ -295,6 +301,39 @@ class Endpoint(C3App):
         if self.role != "sender":
             raise ValueError("接收端由完整码流触发解码")
         return super().start(identifier)
+
+    def execute(self, role, task, folder):
+        if self.settings["worker_mode"] == "cold":
+            return super().execute(role, task, folder)
+        expected = "encode" if self.role == "sender" else "decode"
+        if role != expected or self.blockers:
+            raise RuntimeError("Resident endpoint role mismatch or blocked process")
+        from c5_resident import ResidentService
+        if self.resident is None:
+            self.resident = ResidentService(role, self.runtime, self.directory)
+        try:
+            return self.resident.execute(task, folder)
+        except BaseException:
+            if self.resident.future is not None:
+                try:
+                    self.resident.close()
+                except BaseException:
+                    self.blockers.append(str(self.resident.folder))
+            raise
+
+    def release(self):
+        with self.store.lock:
+            if any(j["status"] not in TERMINAL for j in self.store.jobs.values()):
+                raise ValueError("请先完成或取消所有任务")
+            if self.resident:
+                self.resident.close()
+                self.resident = None
+        return {"released": True}
+
+    def close(self):
+        super().close()
+        if self.resident:
+            self.resident.close()
 
     def run_decode(self, identifier):
         stop = self.store.events[identifier]
@@ -445,7 +484,9 @@ class Endpoint(C3App):
         stage = job.get("stage")
         if stage in ("encode", "decode"):
             try:
-                heartbeat = read_json(folder / (stage + "_process") / "heartbeat.json")
+                resident = folder / "resident.json"
+                process_folder = Path(read_json(resident)["process_folder"]) if resident.exists() else folder / (stage + "_process")
+                heartbeat = read_json(process_folder / "heartbeat.json")
                 job["heartbeat"] = {k: heartbeat.get(k) for k in ("state", "last_progress", "task_state")}
             except (OSError, ValueError):
                 pass
@@ -556,6 +597,8 @@ class Handler(OldHandler):
                 self.json({"stopping": True})
                 threading.Thread(target=self.server.shutdown, daemon=True).start()
                 return
+            if route == "/api/release":
+                return self.json(self.app.release())
             if route in ("/api/preflight", "/control/preflight"):
                 return self.json({"environment": self.app.preflight(),
                                   "compatibility_policy": self.app.policy, "rate_mode": self.app.rate_mode})
