@@ -1,8 +1,11 @@
-param([ValidateSet('sender','receiver')][string]$Role = 'sender', [string]$Config, [switch]$Check)
+param([ValidateSet('sender','receiver','loopback')][string]$Role = 'sender', [string]$Config, [switch]$Check)
 $ErrorActionPreference = 'Stop'
 try {
     $supplied = [bool]$Config
-    if (-not $Config) { $Config = Join-Path $PSScriptRoot ('c5_' + $Role + '.local.json') }
+    if (-not $Config) {
+        $Config = if ($Role -eq 'loopback') { Join-Path $PSScriptRoot 'runtime.local.json' }
+                  else { Join-Path $PSScriptRoot ('c5_' + $Role + '.local.json') }
+    }
     $present = Test-Path -LiteralPath $Config -PathType Leaf
     if ($supplied -and -not $present) { throw 'Endpoint configuration does not exist.' }
     $pythonPath = $env:GLC_PYTHON

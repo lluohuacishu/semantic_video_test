@@ -25,7 +25,8 @@ from c4_config import UploadCatalog
 from c5_config import load_settings, peer_url
 from c5_compat import POLICIES, check_arithmetic
 from c5_transport import acknowledge, file_info, read_header, receive_file, send_file, rate_limit
-from c5_timebase import clip_options, prepare
+from c5_timebase import clip_options, prepare, video_options
+from c5_metrics import compression_metrics
 
 sys.path.insert(0, str(REPO / "04_外部依赖快照/semantic-video-training/scripts"))
 from glc_container import read_stream, validate_header
@@ -50,7 +51,7 @@ def inspect_stream(path):
 
 
 def options(value, presets):
-    if not isinstance(value, dict) or set(value) - {"preset", "backend", "sampling_mode", "clip", "frames"}:
+    if not isinstance(value, dict) or set(value) - {"preset", "backend", "sampling_mode", "clip", "frames", "video"}:
         raise ValueError("无效编码参数")
     preset, backend = value.get("preset"), value.get("backend", "native")
     mode = value.get("sampling_mode", "time")
@@ -62,7 +63,11 @@ def options(value, presets):
             raise ValueError("按时间处理不能同时设置帧数")
         clip_options(value.get("clip"))
         result["clip"] = value.get("clip") or {"mode": "first10"}
+        if "video" in value:
+            result["video"] = video_options(value["video"])
     elif mode == "legacy_frame_stride":
+        if "video" in value:
+            raise ValueError("旧帧数模式不接受自适应视频参数")
         frames = value.get("frames")
         if type(frames) is not int or not 1 <= frames <= 10000:
             raise ValueError("旧模式需要指定 1–10000 帧")
@@ -163,7 +168,8 @@ class Endpoint(C3App):
         value.update(app="glc-c5-" + self.role, version="C5", role=self.role, data_port=self.settings["data_port"],
                      rate_mode=self.rate_mode, compatibility_policy=self.policy, backend=self.backend,
                      preflight_ready=self.environment is not None, worker_mode=self.settings["worker_mode"],
-                     peer_url=self.peer.url if self.peer else None, token_configured=bool(self.peer and self.peer.token))
+                     peer_url=self.peer.url if self.peer else None, token_configured=bool(self.peer and self.peer.token),
+                     loopback_urls=self.settings.get("loopback_urls"))
         value["execution_mode"] = "single_role_resident" if self.settings["worker_mode"] == "resident" else "separate_fresh_processes"
         return value
 
@@ -466,6 +472,7 @@ class Endpoint(C3App):
         with self.store.lock:
             if self.store.events[identifier].is_set():
                 raise InterruptedError("任务已取消")
+            result["compression"] = self.compression(identifier, result)
             write(self.directory / identifier / "result.json", result)
             self.store.update(identifier, status="done", stage="done", phase="已完成：码流、RGB 和 latent 校验通过",
                               finished_at=now(), progress=100)
@@ -477,6 +484,13 @@ class Endpoint(C3App):
               {"type": type(exc).__name__, "message": str(exc), "traceback": traceback.format_exc()})
         self.store.update(identifier, status="cancelled" if cancelled else "error", error=str(exc),
                           phase="已停止，未完成结果不计入成功" if cancelled else str(exc), finished_at=now())
+
+    def compression(self, identifier, result):
+        encoded = None
+        path = self.directory / identifier / "encode/encoder/encode.json"
+        if result.get("encoded_this_task") and path.is_file():
+            encoded = read_json(path)
+        return compression_metrics(result["header"], result["file_bytes"], encoded)
 
     def get_job(self, identifier, remote=False):
         job = self.store.get(identifier)
@@ -492,6 +506,8 @@ class Endpoint(C3App):
                 pass
         if job["status"] == "done":
             job["result"] = read_json(folder / "result.json")
+            if "compression" not in job["result"]:
+                job["result"]["compression"] = self.compression(identifier, job["result"])
             if remote:  # No media, paths or large frame arrays on the control channel.
                 job["result"].pop("timing", None)
         if not remote:
@@ -621,10 +637,18 @@ class Handler(OldHandler):
                     job = self.app.store.get(identifier)
                     if job["status"] != "staged" or job["kind"] != "video":
                         raise ValueError("请先准备视频")
+                    opts = options(value["options"], self.app.catalog.presets["presets"]) if "options" in value else job["options"]
+                    if opts == job["options"] and job.get("video_plan"):
+                        return self.json(job["video_plan"])
                     plan = prepare(self.app.source(job), self.app.runtime["ffmpeg"],
-                                   job["options"]["preset"], job["options"].get("clip"))
-                    return self.json({k: v for k, v in plan.items() if k not in
-                                      ("sampled_source_frame_indices", "sampled_source_pts", "target_source_pts", "probe")})
+                                   opts["preset"], opts.get("clip"), video=opts.get("video"))
+                    public_plan = {k: v for k, v in plan.items() if k not in
+                                   ("sampled_source_frame_indices", "sampled_source_pts", "target_source_pts", "probe")}
+                    with self.app.store.lock:
+                        if self.app.store.get(identifier)["status"] != "staged":
+                            raise ValueError("任务已经开始，无法再修改参数")
+                        self.app.store.update(identifier, options=opts, video_plan=public_plan)
+                    return self.json(public_plan)
                 function = {"start": self.app.start, "cancel": self.app.cancel,
                             "resend": self.app.resend, "remote": self.app.remote_status}[action]
                 return self.json(function(identifier))

@@ -52,6 +52,47 @@ def clip_options(value):
     return {"mode": mode, "start": str(start), "end": str(end)}
 
 
+def video_options(value):
+    """Explicit adaptive settings; missing settings retain historical sampling."""
+    if not isinstance(value, dict) or set(value) - {"fps_mode", "fps_limit", "size_mode", "long_edge"}:
+        raise ValueError("无效视频处理参数")
+    fps_mode, size_mode = value.get("fps_mode", "source"), value.get("size_mode", "source")
+    if fps_mode not in ("source", "half", "limit") or size_mode not in ("source", "half", "limit"):
+        raise ValueError("请选择有效的帧率和分辨率处理方式")
+    result = {"fps_mode": fps_mode, "size_mode": size_mode}
+    if fps_mode == "limit":
+        fps = fraction(value.get("fps_limit"), "输出帧率上限")
+        if not 0 < fps <= 240:
+            raise ValueError("帧率上限须大于 0 且不超过 240 fps")
+        result["fps_limit"] = str(fps)
+    elif "fps_limit" in value:
+        raise ValueError("只有帧率上限模式接受 fps_limit")
+    if size_mode == "limit":
+        edge = value.get("long_edge")
+        if type(edge) is not int or not 1 <= edge <= 4096:
+            raise ValueError("最长边上限须为 1–4096 的整数")
+        result["long_edge"] = edge
+    elif "long_edge" in value:
+        raise ValueError("只有尺寸上限模式接受 long_edge")
+    return result
+
+
+def source_timing(probe):
+    pts = [Fraction(p) for p in probe["pts"]]
+    duration = Fraction(probe["duration"])
+    tick = Fraction(probe.get("source_time_base", "0"))
+    try:
+        nominal = Fraction(probe.get("nominal_fps") or "0")
+    except (ValueError, ZeroDivisionError):
+        nominal = Fraction(0)
+    measured = Fraction(len(pts), 1) / duration
+    rate = nominal if nominal > 0 else measured
+    tolerance = max(min(tick, 1 / (4 * rate)), Fraction(1, 1000000))
+    # Timestamp ticks can round CFR frame intervals (e.g. 29.97 fps in Matroska).
+    variable = any(abs((b - a) - 1 / rate) > tolerance for a, b in zip(pts, pts[1:]))
+    return (measured if variable else rate), variable, tolerance
+
+
 def probe_video(source, ffmpeg, cancel=None):
     source, ffmpeg = Path(source), Path(ffmpeg)
     if not source.is_file() or not 0 < source.stat().st_size <= 1024**3:
@@ -123,11 +164,31 @@ def probe_video(source, ffmpeg, cancel=None):
             "nominal_fps": stream.get("avg_frame_rate"), "source_frames": len(pts)}
 
 
-def plan_samples(probe, preset, clip=None):
+def plan_samples(probe, preset, clip=None, video=None):
     if preset not in FPS:
         raise ValueError("Choose one of the four quality presets")
     clip = clip_options(clip)
     duration, fps = Fraction(probe["duration"]), FPS[preset]
+    source_fps, variable_fps, tick = source_timing(probe)
+    width = min(probe["width"], WIDTHS[preset])
+    height = max(1, round(probe["height"] * width / probe["width"]))
+    if video is not None:
+        video = video_options(video)
+        fps = source_fps
+        if video["fps_mode"] == "half":
+            fps /= 2
+        elif video["fps_mode"] == "limit":
+            fps = min(fps, Fraction(video["fps_limit"]))
+        scale = Fraction(1)
+        if video["size_mode"] == "half":
+            scale = Fraction(1, 2)
+        elif video["size_mode"] == "limit":
+            scale = min(scale, Fraction(video["long_edge"], max(probe["width"], probe["height"])))
+        width, height = (max(1, round(probe[key] * scale)) for key in ("width", "height"))
+        if width > 4096 or height > 2160:
+            raise ValueError("当前码流支持宽度 ≤4096、高度 ≤2160，请降低最长边上限")
+        if not 0 < fps <= 240:
+            raise ValueError("当前码流支持 0–240 fps，请降低帧率上限")
     start = Fraction(clip.get("start", 0))
     requested_end = Fraction(clip["end"]) if clip["mode"] == "segment" else (
         Fraction(10) if clip["mode"] == "first10" else duration)
@@ -139,11 +200,22 @@ def plan_samples(probe, preset, clip=None):
         raise ValueError("Selected range exceeds the 10000 output-frame limit")
     pts = [Fraction(p) for p in probe["pts"]]
     targets = [start + Fraction(i, 1) / fps for i in range(count)]
-    indices = [max(0, bisect_right(pts, target) - 1) for target in targets]
-    width = min(probe["width"], WIDTHS[preset])
-    height = max(1, round(probe["height"] * width / probe["width"]))
+    # For adaptive CFR, account for rounded PTS without duplicating a preceding
+    # frame just because its successor is one clock tick beyond the ideal grid.
+    tolerance = tick if video is not None and not variable_fps else 0
+    indices = [max(0, bisect_right(pts, target + (tolerance if (target * source_fps).denominator == 1 else 0)) - 1)
+               for target in targets]
+    if video is not None and not variable_fps:
+        samples = [(index, target) for i, (index, target) in enumerate(zip(indices, targets))
+                   if not i or index != indices[i - 1]]
+        indices, targets = map(list, zip(*samples))
+        count = len(indices)
     return {"schema_version": 1, "sampling_mode": "time", "clip": clip, "preset": preset,
-            "policy": "source frame visible at target PTS; hold until next PTS; left-closed right-open",
+            "video": video, "source_fps": str(source_fps), "source_variable_fps": variable_fps,
+            "source_width": probe["width"], "source_height": probe["height"],
+            "source_duration_seconds": float(duration), "source_frames": len(pts),
+            "policy": ("adaptive CFR with clock-tick tolerance; no upsampling" if video is not None and not variable_fps
+                       else "source frame visible at target PTS; hold until next PTS; left-closed right-open"),
             "probe": probe, "width": width, "height": height, "target_fps": str(fps), "frames": count,
             "start_seconds": float(start), "end_seconds": float(end),
             "selected_duration_seconds": float(end - start), "duration_seconds": float(count / fps),
@@ -154,8 +226,8 @@ def plan_samples(probe, preset, clip=None):
             "duplicated_output_frames": len(indices) - len(set(indices))}
 
 
-def prepare(source, ffmpeg, preset, clip=None, cancel=None):
-    return plan_samples(probe_video(source, ffmpeg, cancel), preset, clip)
+def prepare(source, ffmpeg, preset, clip=None, cancel=None, video=None):
+    return plan_samples(probe_video(source, ffmpeg, cancel), preset, clip, video)
 
 
 class TimedFrames:

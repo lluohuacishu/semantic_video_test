@@ -4,7 +4,8 @@
 <title>C5 语义视频传输</title><link rel="stylesheet" href="/styles.css"></head>
 <body><main>
 <header><span class="eyebrow">GLC · C5</span><h1 id="title">语义视频传输</h1>
-<p id="subtitle">正在连接本机服务…</p></header>
+<p id="subtitle">正在连接本机服务…</p>
+<nav id="loopbackNav" class="actions" hidden><a id="senderPage">上传与压缩</a><a id="receiverPage" target="_blank" rel="noopener">接收端重建</a></nav></header>
 <p id="notice" role="status" aria-live="polite"></p>
 <section id="sender" hidden>
 <details id="connection"><summary>接收端连接</summary><div class="row">
@@ -14,16 +15,26 @@
 <section><h2>发送视频</h2><label class="file">选择视频或已有 .glcv 码流
 <input id="file" type="file" accept=".mp4,.mkv,.mov,.avi,.webm,.glcv"></label>
 <div class="row" id="encodingOptions">
-<label>画质<select id="preset"><option value="compact">省流畅看 · 640 / 12.5 fps</option>
-<option value="motion">运动优先 · 640 / 25 fps</option><option value="detail">细节优先 · 960 / 12.5 fps</option>
-<option value="detail_motion">细节与运动 · 960 / 25 fps</option></select></label>
+<label>输出设置<select id="preset"><option value="source">保留原视频帧率与尺寸</option>
+<option value="custom">自定义帧率与尺寸</option>
+<option value="compact">省流畅看 · 最长边 640 / 原帧率一半</option>
+<option value="motion">运动优先 · 最长边 640 / 原帧率</option><option value="detail">细节优先 · 最长边 960 / 原帧率一半</option>
+<option value="detail_motion">细节与运动 · 最长边 960 / 原帧率</option></select></label>
 <label>处理范围<select id="clip"><option value="first10">前 10 秒</option><option value="full">完整视频</option>
 <option value="segment">自定义时间段</option></select></label>
 <div id="bounds" class="row" hidden><label>开始（秒）<input id="start" type="number" min="0" value="0" step=".01"></label>
-<label>结束（秒）<input id="end" type="number" min=".01" value="10" step=".01"></label></div></div>
+<label>结束（秒）<input id="end" type="number" min=".01" value="10" step=".01"></label></div>
+<div id="customVideo" class="row" hidden>
+<label>输出帧率<select id="fpsMode"><option value="source">跟随原视频</option><option value="half">原帧率的一半</option><option value="limit">指定上限</option></select></label>
+<label id="fpsLimitBox" hidden>帧率上限（fps）<input id="fpsLimit" type="number" min="0.01" max="240" step="0.01" value="5"></label>
+<label>输出尺寸<select id="sizeMode"><option value="source">保持原尺寸</option><option value="half">宽高各缩小一半</option><option value="limit">限制最长边</option></select></label>
+<label id="longEdgeBox" hidden>最长边上限（像素）<input id="longEdge" type="number" min="1" max="4096" step="1" value="640"></label>
+</div></div>
+<p class="muted">自动读取实际帧率与尺寸。自定义上限只降低帧率、等比缩小画面；原尺寸越大，显存占用和处理时间通常越高。</p>
 <details><summary>高级设置</summary><label>发送端熵后端<select id="backend"><option value="native">Native</option><option value="python">Python 回退</option></select></label></details>
-<div class="actions"><button id="prepare" class="primary">准备文件</button><button id="startJob" disabled>开始发送</button>
+<div class="actions"><button id="prepare" class="primary">准备文件</button><button id="applyOptions" disabled>更新处理参数</button><button id="startJob" disabled>开始发送</button>
 <button id="resend" disabled>复用码流再发</button></div><p class="muted">速率由接收端选择。已有码流可直接重发；视频不包含音频。</p>
+<p id="videoPlan" class="video-plan" hidden></p>
 </section></section>
 <section id="receiver" hidden>
 <h2>接收设置</h2><div class="row"><label>传输速度<select id="rate">
@@ -41,7 +52,10 @@
 </details></section>
 <section><div class="row spread"><h2>当前任务</h2><button id="cancel" disabled>停止任务</button></div>
 <p id="jobName">还没有选择任务</p><p id="phase">等待操作</p><progress id="progress" max="100" value="0"></progress>
-<p id="metrics" class="muted"></p><div class="players">
+<p id="metrics" class="muted"></p>
+<div id="compression" hidden><div id="compressionCards" class="metric-grid"></div><p id="compressionNote" class="muted"></p></div>
+<a id="receiverResult" target="_blank" rel="noopener" hidden>打开这次任务的接收端重建画面 →</a>
+<div class="players">
 <figure id="sourceBox" hidden><figcaption>发送端处理画面</figcaption><video id="sourceVideo" controls preload="metadata"></video></figure>
 <figure id="decodedBox" hidden><figcaption>接收端重建</figcaption><video id="decodedVideo" controls preload="metadata"></video></figure></div>
 <div id="downloads" class="actions"></div>
@@ -49,5 +63,5 @@
 </section>
 <section><h2>任务记录</h2><div id="history"></div></section>
 <details><summary>资源与运行模式</summary><p id="workerMode"></p><button id="release">释放空闲模型</button></details>
-<footer>本页面分别在发送电脑与接收电脑上打开。接收端 MP4 在接收电脑本地查看。</footer>
+<footer id="footer">本页面分别在发送电脑与接收电脑上打开。接收端 MP4 在接收电脑本地查看。</footer>
 </main><script src="/app.js"></script></body></html>

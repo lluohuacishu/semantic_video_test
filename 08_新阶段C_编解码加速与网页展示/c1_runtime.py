@@ -133,7 +133,8 @@ class ResidentRunner:
                 def cancel_probe():
                     if cancel_event is not None and cancel_event.is_set():
                         raise TaskCancelled("Task cancelled during PTS scan")
-                args.time_plan = prepare(args.input, self.ffmpeg, args.preset, task.get("clip"), cancel_probe)
+                args.time_plan = prepare(args.input, self.ffmpeg, args.preset, task.get("clip"), cancel_probe,
+                                         video=task.get("video"))
                 args.frames = args.time_plan["frames"]
             elif args.sampling_mode != "legacy_frame_stride":
                 raise ValueError("Unknown source sampling mode")
