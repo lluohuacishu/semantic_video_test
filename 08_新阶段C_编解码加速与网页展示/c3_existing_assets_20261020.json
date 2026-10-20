@@ -1,0 +1,637 @@
+{
+  "schema_version": 1,
+  "purpose": "C3 handoff catalog of existing local assets; not a running service or accepted browser result",
+  "created_utc": "2026-10-20T04:05:43.970386+00:00",
+  "c2_code_commit": "7e1da1dc99e4d8b04807f6d0d6f1b8161b4a00c4",
+  "path_base": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信",
+  "git_contains_media": false,
+  "verified": "All listed files exist and SHA-256 was read locally; C2 representative files checked against the final audit. No inference, media conversion or browser playback performed.",
+  "usage_notes": [
+    "Resolve asset paths against path_base; keep original experiment files read-only.",
+    "MP4 is a watching copy, not the transmitted .glcv file.",
+    "Source previews are the preset-preprocessed source; full 540p25 preview is c2.detail_motion.preprocessed_source_preview.",
+    "Representative pair 1 artifacts are for replay; performance uses all recorded pairs from the canonical summary.",
+    "No browser-ready C3 schema/API is implied by this catalog.",
+    "Do not replay historical experiment runners to open media."
+  ],
+  "main_clip_presets": [
+    {
+      "preset": "detail_motion",
+      "label": "细节与流畅兼顾",
+      "source_asset": "source.main",
+      "measured_output": {
+        "width": 960,
+        "height": 540,
+        "fps": 25.0,
+        "frames": 250,
+        "file_bytes": 78758
+      },
+      "b4_assets": {
+        "stream": "b4.detail_motion.stream",
+        "decoded_preview": "b4.detail_motion.decoded_preview",
+        "decode_result": "b4.detail_motion.decode_result"
+      },
+      "c2": {
+        "experiment": "C2_detail_motion_pair_20261019_r1",
+        "encode_task_id": "encode_1_native",
+        "decode_task_id": "decode_1_native",
+        "performance_source": {
+          "summary_asset": "evidence.c2_summary",
+          "stage_name": "C2_detail_motion_pair_20261019_r1",
+          "field": "performance",
+          "repeat_pairs": 1
+        },
+        "assets": {
+          "stream": "c2.detail_motion.stream",
+          "preprocessed_source_preview": "c2.detail_motion.preprocessed_source_preview",
+          "independent_decoded_preview": "c2.detail_motion.independent_decoded_preview",
+          "encode_result": "c2.detail_motion.encode_result",
+          "decode_result": "c2.detail_motion.decode_result",
+          "encode_timing": "c2.detail_motion.encode_timing",
+          "decode_timing": "c2.detail_motion.decode_timing",
+          "encode_validation": "c2.detail_motion.encode_validation",
+          "decode_validation": "c2.detail_motion.decode_validation"
+        }
+      }
+    },
+    {
+      "preset": "detail",
+      "label": "保留空间细节",
+      "source_asset": "source.main",
+      "measured_output": {
+        "width": 960,
+        "height": 540,
+        "fps": 12.5,
+        "frames": 125,
+        "file_bytes": 48985
+      },
+      "b4_assets": {
+        "stream": "b4.detail.stream",
+        "decoded_preview": "b4.detail.decoded_preview",
+        "decode_result": "b4.detail.decode_result",
+        "synchronized_comparison": "b4.detail.comparison"
+      },
+      "c2": {
+        "experiment": "C2_detail_pair_20261019_r1",
+        "encode_task_id": "encode_1_native",
+        "decode_task_id": "decode_1_native",
+        "performance_source": {
+          "summary_asset": "evidence.c2_summary",
+          "stage_name": "C2_detail_pair_20261019_r1",
+          "field": "performance",
+          "repeat_pairs": 1
+        },
+        "assets": {
+          "stream": "c2.detail.stream",
+          "preprocessed_source_preview": "c2.detail.preprocessed_source_preview",
+          "independent_decoded_preview": "c2.detail.independent_decoded_preview",
+          "encode_result": "c2.detail.encode_result",
+          "decode_result": "c2.detail.decode_result",
+          "encode_timing": "c2.detail.encode_timing",
+          "decode_timing": "c2.detail.decode_timing",
+          "encode_validation": "c2.detail.encode_validation",
+          "decode_validation": "c2.detail.decode_validation"
+        }
+      }
+    },
+    {
+      "preset": "motion",
+      "label": "保留运动流畅度",
+      "source_asset": "source.main",
+      "measured_output": {
+        "width": 640,
+        "height": 360,
+        "fps": 25.0,
+        "frames": 250,
+        "file_bytes": 44962
+      },
+      "b4_assets": {
+        "stream": "b4.motion.stream",
+        "decoded_preview": "b4.motion.decoded_preview",
+        "decode_result": "b4.motion.decode_result",
+        "synchronized_comparison": "b4.motion.comparison"
+      },
+      "c2": {
+        "experiment": "C2_motion_pair_20261019_r1",
+        "encode_task_id": "encode_1_native",
+        "decode_task_id": "decode_1_native",
+        "performance_source": {
+          "summary_asset": "evidence.c2_summary",
+          "stage_name": "C2_motion_pair_20261019_r1",
+          "field": "performance",
+          "repeat_pairs": 1
+        },
+        "assets": {
+          "stream": "c2.motion.stream",
+          "preprocessed_source_preview": "c2.motion.preprocessed_source_preview",
+          "independent_decoded_preview": "c2.motion.independent_decoded_preview",
+          "encode_result": "c2.motion.encode_result",
+          "decode_result": "c2.motion.decode_result",
+          "encode_timing": "c2.motion.encode_timing",
+          "decode_timing": "c2.motion.decode_timing",
+          "encode_validation": "c2.motion.encode_validation",
+          "decode_validation": "c2.motion.decode_validation"
+        }
+      }
+    },
+    {
+      "preset": "compact",
+      "label": "优先小体积",
+      "source_asset": "source.main",
+      "measured_output": {
+        "width": 640,
+        "height": 360,
+        "fps": 12.5,
+        "frames": 125,
+        "file_bytes": 26397
+      },
+      "b4_assets": {
+        "stream": "b4.compact.stream",
+        "decoded_preview": "b4.compact.decoded_preview",
+        "decode_result": "b4.compact.decode_result",
+        "synchronized_comparison": "b4.compact.comparison"
+      },
+      "c2": {
+        "experiment": "C2_compact_pairs_20261019_r1",
+        "encode_task_id": "encode_1_native",
+        "decode_task_id": "decode_1_native",
+        "performance_source": {
+          "summary_asset": "evidence.c2_summary",
+          "stage_name": "C2_compact_pairs_20261019_r1",
+          "field": "performance",
+          "repeat_pairs": 3
+        },
+        "assets": {
+          "stream": "c2.compact.stream",
+          "preprocessed_source_preview": "c2.compact.preprocessed_source_preview",
+          "independent_decoded_preview": "c2.compact.independent_decoded_preview",
+          "encode_result": "c2.compact.encode_result",
+          "decode_result": "c2.compact.decode_result",
+          "encode_timing": "c2.compact.encode_timing",
+          "decode_timing": "c2.compact.decode_timing",
+          "encode_validation": "c2.compact.encode_validation",
+          "decode_validation": "c2.compact.decode_validation"
+        }
+      }
+    }
+  ],
+  "second_clip": {
+    "experiment": "C2_second_pairs_20261020_r1",
+    "encode_task_id": "encode_1_native",
+    "decode_task_id": "decode_1_native",
+    "performance_source": {
+      "summary_asset": "evidence.c2_summary",
+      "stage_name": "C2_second_pairs_20261020_r1",
+      "field": "performance",
+      "repeat_pairs": 3
+    },
+    "assets": {
+      "stream": "c2.second.compact.stream",
+      "preprocessed_source_preview": "c2.second.compact.preprocessed_source_preview",
+      "independent_decoded_preview": "c2.second.compact.independent_decoded_preview",
+      "encode_result": "c2.second.compact.encode_result",
+      "decode_result": "c2.second.compact.decode_result",
+      "encode_timing": "c2.second.compact.encode_timing",
+      "decode_timing": "c2.second.compact.decode_timing",
+      "encode_validation": "c2.second.compact.encode_validation",
+      "decode_validation": "c2.second.compact.decode_validation"
+    },
+    "source_asset": "source.second",
+    "preset": "compact",
+    "reference": "Same-clip C1 Python reference; not main-clip B4",
+    "source_independence_proven": false,
+    "reference_stream_asset": "c2.second.reference.stream"
+  },
+  "final_combined_performance": {
+    "summary_asset": "evidence.c2_summary",
+    "stage_name": "C2_combined_pairs_20261020_r1",
+    "field": "performance",
+    "comparison": "resident legacy Python vs C1 + native; sum of encode/decode times through MP4 readiness",
+    "complete_pairs": 3,
+    "challenge_2x_met": false
+  },
+  "cold_performance": {
+    "summary_asset": "evidence.c2_summary",
+    "stage_name": "C2_cold_pair_20261020_r1",
+    "field": "cold",
+    "repeat_pairs": 1
+  },
+  "research_history": {
+    "assets": [
+      "history.b2.comparison",
+      "history.b2.fish_half_speed"
+    ],
+    "conclusion": "ROI enhancement increased bytes; overall viewing difference was not obvious to the user, equal-budget semantic net benefit is unproven.",
+    "report_repository_relative_path": "07_新阶段B_GLC语义保护与传输/B阶段收尾总结_20261019.md"
+  },
+  "assets": {
+    "evidence.c2_summary": {
+      "kind": "canonical_measurement_json",
+      "workspace_relative_path": "01_项目/代码/semantic_video_test/08_新阶段C_编解码加速与网页展示/c2_summary_20261020.json",
+      "bytes": 519385,
+      "sha256": "fb9a6ea0a443e601f41a973d86d169edfd85e36d2cda5495fa5c7c5d1647667b"
+    },
+    "evidence.presets": {
+      "kind": "preset_configuration",
+      "workspace_relative_path": "01_项目/代码/semantic_video_test/04_外部依赖快照/semantic-video-training/scripts/glc_presets.json",
+      "bytes": 899,
+      "sha256": "53c3f17692e528de0eabef361b8afbce14f03aeb6a966bc296836f78c598f148"
+    },
+    "source.main": {
+      "kind": "source_media",
+      "workspace_relative_path": "02_实验数据/A_压缩路线选型/A2_GLC验证/long108/input_540.mkv",
+      "bytes": 106005205,
+      "sha256": "6683af45254bdaed431658e5f7515cddaeb42df2382f18b983e6e1cba7ae436b"
+    },
+    "source.second": {
+      "kind": "source_media",
+      "workspace_relative_path": "02_实验数据/A_压缩路线选型/A2_GLC验证/long24/input_540.mkv",
+      "bytes": 65163406,
+      "sha256": "f65c7e5d11d3f21e371fe4265b006d6984518746ef91ecf9381d9bf73480b169"
+    },
+    "runtime.native_dll": {
+      "kind": "runtime_library",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_native_build_20261019_r3/glc_rans.dll",
+      "bytes": 38897,
+      "sha256": "348c44304a97cec53643d33d284f5e6f6e0c7db60ac8c811da06ce4ea36451bc"
+    },
+    "c2.detail_motion.stream": {
+      "kind": "transport_glcv",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_motion_pair_20261019_r1/encode_1_native/stream.glcv",
+      "bytes": 78758,
+      "sha256": "b7a887afeb488f6a2bf73948822535cb03f7f670d6e5742421b79880b16cd0ef"
+    },
+    "c2.detail_motion.preprocessed_source_preview": {
+      "kind": "watching_mp4",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_motion_pair_20261019_r1/encode_1_native/encoder/source_preview.mp4",
+      "bytes": 5136435,
+      "sha256": "bf13c51e8b5811b4d2a0bde984dc1889445918084c2f70e9a1187f23500f5cb7"
+    },
+    "c2.detail_motion.independent_decoded_preview": {
+      "kind": "watching_mp4",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_motion_pair_20261019_r1/decode_1_native/receiver/reconstruction_preview.mp4",
+      "bytes": 5258561,
+      "sha256": "aaaf7049ea8704e3a6961d9b3c263bf9c25d1a42c001a4825ae4d27c04ceeb7f"
+    },
+    "c2.detail_motion.encode_result": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_motion_pair_20261019_r1/encode_1_native/encoder/encode.json",
+      "bytes": 145369,
+      "sha256": "8eae60af1c1dbf1ede4a36a094ea688e63fecb87c7f7a7e0c146422edab3b051"
+    },
+    "c2.detail_motion.decode_result": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_motion_pair_20261019_r1/decode_1_native/receiver/decode.json",
+      "bytes": 75286,
+      "sha256": "fb1c267a8f29fdde8b70afd35edfcfbbdec5b600ec645f0fda590061424e135f"
+    },
+    "c2.detail_motion.encode_timing": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_motion_pair_20261019_r1/encode_1_native/timing.json",
+      "bytes": 2355,
+      "sha256": "a92de127ce6ccaeb350bdada0ebeb8d1465a796951c39dcb8e820bf288518b21"
+    },
+    "c2.detail_motion.decode_timing": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_motion_pair_20261019_r1/decode_1_native/timing.json",
+      "bytes": 2388,
+      "sha256": "255395aa1a06cecd6da5eeb0d7937e372830068c75a4fad47dd4606be2048850"
+    },
+    "c2.detail_motion.encode_validation": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_motion_pair_20261019_r1/encode_1_native/validation.json",
+      "bytes": 806,
+      "sha256": "dbd4b0c3ccfce45e23f64f0e8c3acbb9f3dd9e435f964913870c07c95706e1f3"
+    },
+    "c2.detail_motion.decode_validation": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_motion_pair_20261019_r1/decode_1_native/validation.json",
+      "bytes": 581,
+      "sha256": "ae927da203c1de190fe5369ed16920272efa279f2c2501c4f96f01bdb7d1d8af"
+    },
+    "b4.detail_motion.stream": {
+      "kind": "transport_glcv",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/container_v2_baseline_repack/baseline_v2.glcv",
+      "bytes": 78758,
+      "sha256": "b7a887afeb488f6a2bf73948822535cb03f7f670d6e5742421b79880b16cd0ef"
+    },
+    "b4.detail_motion.decoded_preview": {
+      "kind": "watching_mp4",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/container_v2_baseline_decode/receiver/reconstruction_preview.mp4",
+      "bytes": 5258561,
+      "sha256": "aaaf7049ea8704e3a6961d9b3c263bf9c25d1a42c001a4825ae4d27c04ceeb7f"
+    },
+    "b4.detail_motion.decode_result": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/container_v2_baseline_decode/receiver/decode.json",
+      "bytes": 74979,
+      "sha256": "c3ed9bc6dd0702b659bcce12ce90a551d2b2fd9914731eb50758d91d9352be63"
+    },
+    "c2.detail.stream": {
+      "kind": "transport_glcv",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_pair_20261019_r1/encode_1_native/stream.glcv",
+      "bytes": 48985,
+      "sha256": "95b0acc15e40b774d4f8cc9aac719f8309e11adc91677f48fb9c72d153bbbf9b"
+    },
+    "c2.detail.preprocessed_source_preview": {
+      "kind": "watching_mp4",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_pair_20261019_r1/encode_1_native/encoder/source_preview.mp4",
+      "bytes": 6455249,
+      "sha256": "9062e6d4091a206bccb442e26e5a35d3509d77238dcc22a12a091f6d56e9b0e8"
+    },
+    "c2.detail.independent_decoded_preview": {
+      "kind": "watching_mp4",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_pair_20261019_r1/decode_1_native/receiver/reconstruction_preview.mp4",
+      "bytes": 4937247,
+      "sha256": "6b8e1c33d125b3a8c17a8ff578cfacda39beb179ecf57377e28fe41d9f5c3dde"
+    },
+    "c2.detail.encode_result": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_pair_20261019_r1/encode_1_native/encoder/encode.json",
+      "bytes": 74497,
+      "sha256": "3595a0d5685b45f5856c621b0bf66d0a5cb425d8ad80ebc91098914a6640afbc"
+    },
+    "c2.detail.decode_result": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_pair_20261019_r1/decode_1_native/receiver/decode.json",
+      "bytes": 38607,
+      "sha256": "146bbad70ff30c9da6477d64a7c6d656c2673f67e9841c87efd50aaac87ef792"
+    },
+    "c2.detail.encode_timing": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_pair_20261019_r1/encode_1_native/timing.json",
+      "bytes": 2326,
+      "sha256": "6d04315a15a9d5ecee211887f2aa3244210bf7ded9027f9e2815f3a6e08f4314"
+    },
+    "c2.detail.decode_timing": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_pair_20261019_r1/decode_1_native/timing.json",
+      "bytes": 2347,
+      "sha256": "c533dda364c117dde8933b8f594ea3658cb9d1387d2400bdb72f9cdd9af86831"
+    },
+    "c2.detail.encode_validation": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_pair_20261019_r1/encode_1_native/validation.json",
+      "bytes": 806,
+      "sha256": "c1235086113a385f0957a906159b898cc6c31d453edbfa47cf2ab70b3f28fc00"
+    },
+    "c2.detail.decode_validation": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_detail_pair_20261019_r1/decode_1_native/validation.json",
+      "bytes": 581,
+      "sha256": "ed61fe29d05d4e9fe52365ae15025129eb1255e9b0f81c78ee6ce8388c75cb4d"
+    },
+    "b4.detail.stream": {
+      "kind": "transport_glcv",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/fps_only_540p_12_5/stream.glcv",
+      "bytes": 48985,
+      "sha256": "95b0acc15e40b774d4f8cc9aac719f8309e11adc91677f48fb9c72d153bbbf9b"
+    },
+    "b4.detail.decoded_preview": {
+      "kind": "watching_mp4",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/fps_only_540p_12_5/receiver/reconstruction_preview.mp4",
+      "bytes": 4937247,
+      "sha256": "6b8e1c33d125b3a8c17a8ff578cfacda39beb179ecf57377e28fe41d9f5c3dde"
+    },
+    "b4.detail.decode_result": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/fps_only_540p_12_5/receiver/decode.json",
+      "bytes": 38410,
+      "sha256": "551ee89fb031610e908a8874d28e845443abd46f3fc5ddaa766d7b1839b4fd7b"
+    },
+    "b4.detail.comparison": {
+      "kind": "watching_comparison_mp4",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/comparisons/fps_only_540p_12_5_comparison.mp4",
+      "bytes": 2284082,
+      "sha256": "968b3a314b403d23356ede55ca71395c29be4085b02d251c87e1168a13be9b15"
+    },
+    "c2.motion.stream": {
+      "kind": "transport_glcv",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_motion_pair_20261019_r1/encode_1_native/stream.glcv",
+      "bytes": 44962,
+      "sha256": "9898fb52153c373b854eda97077d198fe67edd28cc4b0303f987bb1fd5a32149"
+    },
+    "c2.motion.preprocessed_source_preview": {
+      "kind": "watching_mp4",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_motion_pair_20261019_r1/encode_1_native/encoder/source_preview.mp4",
+      "bytes": 1334059,
+      "sha256": "8192da287d1ae3a760c581ce50d440df474ce0f5f4fe1c0ab0f12063545f90b3"
+    },
+    "c2.motion.independent_decoded_preview": {
+      "kind": "watching_mp4",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_motion_pair_20261019_r1/decode_1_native/receiver/reconstruction_preview.mp4",
+      "bytes": 2132574,
+      "sha256": "3364249a8e3fa336a7f8960ff5f350591e3e94ab519026b74a43f6de33b8fb97"
+    },
+    "c2.motion.encode_result": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_motion_pair_20261019_r1/encode_1_native/encoder/encode.json",
+      "bytes": 145447,
+      "sha256": "5f1ea4fb39a287f9151ad2994de9b5618dd0649b99e2bca50c7d71561b59094d"
+    },
+    "c2.motion.decode_result": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_motion_pair_20261019_r1/decode_1_native/receiver/decode.json",
+      "bytes": 75339,
+      "sha256": "844007a9947267e462aee9e7db7be32f4a8f9a049038461b8929f69c0f0066f4"
+    },
+    "c2.motion.encode_timing": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_motion_pair_20261019_r1/encode_1_native/timing.json",
+      "bytes": 2328,
+      "sha256": "1ab205dc4d81d5fc1a9adfd6ee043c04248c6147fb5db4b9531222aefc2d6e29"
+    },
+    "c2.motion.decode_timing": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_motion_pair_20261019_r1/decode_1_native/timing.json",
+      "bytes": 2353,
+      "sha256": "f2cf6fd82ed58d11df49a8720aa3eeb13ed4ea30a50902d8b6d7f86f5f222522"
+    },
+    "c2.motion.encode_validation": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_motion_pair_20261019_r1/encode_1_native/validation.json",
+      "bytes": 806,
+      "sha256": "251702804fe787f1d0bd075045dbb71d2deeb1a4f0191cb6c6c375b13668dea9"
+    },
+    "c2.motion.decode_validation": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_motion_pair_20261019_r1/decode_1_native/validation.json",
+      "bytes": 581,
+      "sha256": "435fe30d130ce0082d5ff78bf5f54c7bde9a0f1eb45ec85653cf754dfd49f2f0"
+    },
+    "b4.motion.stream": {
+      "kind": "transport_glcv",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/resolution_only_360p_25/stream.glcv",
+      "bytes": 44962,
+      "sha256": "9898fb52153c373b854eda97077d198fe67edd28cc4b0303f987bb1fd5a32149"
+    },
+    "b4.motion.decoded_preview": {
+      "kind": "watching_mp4",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/resolution_only_360p_25/receiver/reconstruction_preview.mp4",
+      "bytes": 2132574,
+      "sha256": "3364249a8e3fa336a7f8960ff5f350591e3e94ab519026b74a43f6de33b8fb97"
+    },
+    "b4.motion.decode_result": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/resolution_only_360p_25/receiver/decode.json",
+      "bytes": 75149,
+      "sha256": "5cdc89a52178c16bdbd329e8f698e8b55b6647df41c22a8e7d7f04ebe8eaf400"
+    },
+    "b4.motion.comparison": {
+      "kind": "watching_comparison_mp4",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/comparisons/resolution_only_360p_25_comparison.mp4",
+      "bytes": 2423424,
+      "sha256": "6c00d45b588a37bc497842175f8c5fdc23bf5f67c66eb184f0bb71efec9971cb"
+    },
+    "c2.compact.stream": {
+      "kind": "transport_glcv",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_compact_pairs_20261019_r1/encode_1_native/stream.glcv",
+      "bytes": 26397,
+      "sha256": "9676a03220ec2d28aef09fde70413ea9a08ea38cc9461509931767789036b7fd"
+    },
+    "c2.compact.preprocessed_source_preview": {
+      "kind": "watching_mp4",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_compact_pairs_20261019_r1/encode_1_native/encoder/source_preview.mp4",
+      "bytes": 1710181,
+      "sha256": "95e2a00e141d7f9dab8689a21ce8f05f80f50ad9212a772ec3473063e0354eae"
+    },
+    "c2.compact.independent_decoded_preview": {
+      "kind": "watching_mp4",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_compact_pairs_20261019_r1/decode_1_native/receiver/reconstruction_preview.mp4",
+      "bytes": 1853549,
+      "sha256": "e618bca9564c5cc815e46e29e7afecc84fa1020acfd675ab4041a88a69a34231"
+    },
+    "c2.compact.encode_result": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_compact_pairs_20261019_r1/encode_1_native/encoder/encode.json",
+      "bytes": 74572,
+      "sha256": "d020a8bc305242f1dfa07b33ab68b9d65bed88d99f1c334c4a78901dc7975c1e"
+    },
+    "c2.compact.decode_result": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_compact_pairs_20261019_r1/decode_1_native/receiver/decode.json",
+      "bytes": 38646,
+      "sha256": "850e382f9a06f6959bbaa2dcfcc888c3b54ec360492d6dd5a0a2c9917b24ed12"
+    },
+    "c2.compact.encode_timing": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_compact_pairs_20261019_r1/encode_1_native/timing.json",
+      "bytes": 2336,
+      "sha256": "c61ba1efe88e282595baee4d1eb63eb0d8fcc3099935ac6a9759aadcd5b45877"
+    },
+    "c2.compact.decode_timing": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_compact_pairs_20261019_r1/decode_1_native/timing.json",
+      "bytes": 2363,
+      "sha256": "6525cc03b82cb560abe47287d0c313c9c346ed5616684651b09bad0d9112d0a8"
+    },
+    "c2.compact.encode_validation": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_compact_pairs_20261019_r1/encode_1_native/validation.json",
+      "bytes": 806,
+      "sha256": "183aeac9f08e5cf7a830962771627387f99414a608a7abf30d1929fc7173ec72"
+    },
+    "c2.compact.decode_validation": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_compact_pairs_20261019_r1/decode_1_native/validation.json",
+      "bytes": 581,
+      "sha256": "0cda23484deec5e8d0d138e6965cfca6b4c5484317d002269f92db2e6950e664"
+    },
+    "b4.compact.stream": {
+      "kind": "transport_glcv",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/joint_360p_12_5/received/stream.glcv",
+      "bytes": 26397,
+      "sha256": "9676a03220ec2d28aef09fde70413ea9a08ea38cc9461509931767789036b7fd"
+    },
+    "b4.compact.decoded_preview": {
+      "kind": "watching_mp4",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/joint_360p_12_5/receiver/reconstruction_preview.mp4",
+      "bytes": 1853549,
+      "sha256": "e618bca9564c5cc815e46e29e7afecc84fa1020acfd675ab4041a88a69a34231"
+    },
+    "b4.compact.decode_result": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/joint_360p_12_5/receiver/decode.json",
+      "bytes": 38458,
+      "sha256": "cfc099d7f9442476b7a49118dd339efcd3117bb49e886694458b6c8261ea2921"
+    },
+    "b4.compact.comparison": {
+      "kind": "watching_comparison_mp4",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B4_四档最终结果/comparisons/joint_360p_12_5_comparison.mp4",
+      "bytes": 2320320,
+      "sha256": "c86ebcd463089705563ad3d36bb8e4937769b8b74da98900c4fe9b17063fc749"
+    },
+    "c2.second.compact.stream": {
+      "kind": "transport_glcv",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_second_pairs_20261020_r1/encode_1_native/stream.glcv",
+      "bytes": 28756,
+      "sha256": "e80f24d2493bf324822eaee9a8574c23b2930a8e0382071bf95b29d14311559a"
+    },
+    "c2.second.compact.preprocessed_source_preview": {
+      "kind": "watching_mp4",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_second_pairs_20261020_r1/encode_1_native/encoder/source_preview.mp4",
+      "bytes": 1132434,
+      "sha256": "a801b6f8ede51947876f678de05f65fb2f45a14f8b1840751850c75c26424088"
+    },
+    "c2.second.compact.independent_decoded_preview": {
+      "kind": "watching_mp4",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_second_pairs_20261020_r1/decode_1_native/receiver/reconstruction_preview.mp4",
+      "bytes": 1857893,
+      "sha256": "88c0ef461fdda70dfe8a1343d0004be9ac521ccea5ee92055b8d9a30ee9e408e"
+    },
+    "c2.second.compact.encode_result": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_second_pairs_20261020_r1/encode_1_native/encoder/encode.json",
+      "bytes": 74578,
+      "sha256": "0bcaff0105d1595f0ddcc223961aa738dca25bc34dfafcbc030110243f5b3ff2"
+    },
+    "c2.second.compact.decode_result": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_second_pairs_20261020_r1/decode_1_native/receiver/decode.json",
+      "bytes": 38663,
+      "sha256": "ed2daa5c840734b1d384c817cc8fd83c5e6adeaf186cbc87f08d1a68c0c55660"
+    },
+    "c2.second.compact.encode_timing": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_second_pairs_20261020_r1/encode_1_native/timing.json",
+      "bytes": 2332,
+      "sha256": "10b2ae8722e7bae79a1ed8c156d77fca324f9d9d164a8d4a36b18085fb3a0081"
+    },
+    "c2.second.compact.decode_timing": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_second_pairs_20261020_r1/decode_1_native/timing.json",
+      "bytes": 2359,
+      "sha256": "3fd55528c378bf6b860e4ab7cbbf5072af4a98a9161c6ccb9c1568f1ce37361d"
+    },
+    "c2.second.compact.encode_validation": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_second_pairs_20261020_r1/encode_1_native/validation.json",
+      "bytes": 1247,
+      "sha256": "66f8c656a72105757f7b0b8ed13835326448840fe50af0d3173249ee4380cd29"
+    },
+    "c2.second.compact.decode_validation": {
+      "kind": "evidence_json",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_second_pairs_20261020_r1/decode_1_native/validation.json",
+      "bytes": 911,
+      "sha256": "5a1bf57ae783749151227a9804aa013cfdd7b7ff8aad35cafe5a81ac8f412237"
+    },
+    "c2.second.reference.stream": {
+      "kind": "transport_glcv",
+      "workspace_relative_path": "02_实验数据/C_编解码加速与网页展示/C2_second_pairs_20261020_r1/encode_1_python/stream.glcv",
+      "bytes": 28756,
+      "sha256": "e80f24d2493bf324822eaee9a8574c23b2930a8e0382071bf95b29d14311559a"
+    },
+    "history.b2.comparison": {
+      "kind": "historical_watching_mp4",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B2_语义增强/evaluation/video91_原图_GLC_自动ROI_同步对比.mp4",
+      "bytes": 28434910,
+      "sha256": "431e2f35eb87888945de00b844750ebe00794059ef06cb47c565f07ed71d6366"
+    },
+    "history.b2.fish_half_speed": {
+      "kind": "historical_watching_mp4",
+      "workspace_relative_path": "02_实验数据/B_GLC通信与压缩/B2_语义增强/evaluation/video91_固定鱼纹区域_三路半速.mp4",
+      "bytes": 5046023,
+      "sha256": "0c35d30d3ca4f60f570a3d80cbd6c820c622f9726ceffcd16dd62e1badf93a30"
+    }
+  }
+}

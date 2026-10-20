@@ -1,0 +1,580 @@
+{
+  "created_utc": "2026-10-20T04:47:02.993902+00:00",
+  "stage": "C3",
+  "status": "complete_with_stated_limits",
+  "base_commit": "7e1da1dc99e4d8b04807f6d0d6f1b8161b4a00c4",
+  "web_url": "http://127.0.0.1:8773/",
+  "catalog": {
+    "total": 73,
+    "available": 73
+  },
+  "regression": [
+    {
+      "suite": "c",
+      "tests": 85,
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C3_validation_20261020_r1\\c_regression_final.log",
+      "sha256": "b271be8f137421df66706353fe4d0a4a84355ea0379737316829891b909e55fd"
+    },
+    {
+      "suite": "b",
+      "tests": 55,
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C3_validation_20261020_r1\\b_regression_final.log",
+      "sha256": "4822c060649fbdf0e094b2c7ad32603b2a26aca8bae7ff2206ba801d86153bc6"
+    }
+  ],
+  "regression_total": 140,
+  "integration": {
+    "job": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C3_web_jobs\\096c0352b1ce409390dc7e3ecb3a7d04",
+    "result": {
+      "kind": "new_run",
+      "id": "096c0352b1ce409390dc7e3ecb3a7d04",
+      "preset": "compact",
+      "backend": "native",
+      "output": {
+        "input_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\A_压缩路线选型\\A2_GLC验证\\long108\\input_540.mkv",
+        "input_bytes": 106005205,
+        "source_width": 960,
+        "source_height": 540,
+        "width": 640,
+        "height": 360,
+        "fps": 12.5,
+        "reported_source_frames": 250,
+        "processed_frames": 8,
+        "start_frame": 0,
+        "frame_stride": 2,
+        "sampled_source_frame_indices": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14
+        ],
+        "duration_seconds": 0.64,
+        "audio": "not processed",
+        "timebase": "nominal constant frame rate",
+        "rgb_sha256": [
+          "a052027dca942663ed1cf3c2c0e4567442ed786d8d716693e354c034d003804b",
+          "9e224f20cddf0714e04e9c142dca31107b649437a4680a7eaf0f39499e811da1",
+          "b46316809cc386b55e0339ab3b396732fcdf32f8137646cbc05334d5397c8fd2",
+          "238c289c692e2ec9f0eda2130445d01aaddd22dca6bb16ae8214e3e6c471b691",
+          "915a5c90ad4819eef1a0c285dc5f3e1bcbfd97ea3c7aebba7c5289b66b36b15b",
+          "3401bcfd620509390755d5ac361627313dc4b2461465e07271a9ded93f20b4af",
+          "9c635b57d313497bd135843c236ac1f36d63b335e6871f84c4b01904c3668dd9",
+          "f86f886b81116780116f0ccb3e73b38198e993d47e91a3909aef3d604acbf741"
+        ]
+      },
+      "file_bytes": 2535,
+      "transport": {
+        "file_bytes": 2535,
+        "header_bytes": 94,
+        "application_bytes": 2629,
+        "measured_seconds": null,
+        "theoretical_seconds": {
+          "20": 1.0516,
+          "30": 0.7010666666666666,
+          "40": 0.5258
+        }
+      },
+      "timings": {
+        "encode": {
+          "role": "encode",
+          "preset": "compact",
+          "pid": 31748,
+          "implementation": "c1",
+          "output_mode": "display",
+          "png_level": null,
+          "model_was_resident": false,
+          "codec_acquire_seconds": 4.023216499999762,
+          "task_seconds": {
+            "bitstream_closed_seconds": 7.028727500000969,
+            "checks_complete_seconds": 7.0291213000000425,
+            "evidence_ready_seconds": 7.030746700000236,
+            "offline_view_ready_seconds": 7.139816800001427
+          },
+          "task_timer_origin_perf_counter": 10009.2032398,
+          "detailed_instrumentation": false,
+          "browser_upload_queue_load_seconds": null,
+          "transfer_measured_seconds": null,
+          "preview_feed_seconds": 0.01971140000205196,
+          "preview_overlaps_processing": true,
+          "result_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C3_web_jobs\\096c0352b1ce409390dc7e3ecb3a7d04\\encode\\encoder\\encode.json",
+          "run_id": "encode",
+          "group": null,
+          "pair": null,
+          "task_config": {
+            "id": "encode",
+            "input": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\A_压缩路线选型\\A2_GLC验证\\long108\\input_540.mkv",
+            "output": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C3_web_jobs\\096c0352b1ce409390dc7e3ecb3a7d04\\encode",
+            "output_mode": "display",
+            "profile": false,
+            "preset": "compact",
+            "frames": 8,
+            "backend": "native"
+          },
+          "entropy_backend": "native",
+          "gpu_before": {
+            "returncode": 0,
+            "stdout": "name, driver_version, pstate, temperature.gpu, power.draw [W], power.limit [W], memory.used [MiB], memory.total [MiB], utilization.gpu [%], clocks.current.sm [MHz], clocks.current.memory [MHz]\nNVIDIA GeForce RTX 4060 Laptop GPU, 560.94, P4, 41, 13.49 W, [N/A], 3908 MiB, 8188 MiB, 11 %, 555 MHz, 6000 MHz\n",
+            "stderr": ""
+          },
+          "gpu_after": {
+            "returncode": 0,
+            "stdout": "name, driver_version, pstate, temperature.gpu, power.draw [W], power.limit [W], memory.used [MiB], memory.total [MiB], utilization.gpu [%], clocks.current.sm [MHz], clocks.current.memory [MHz]\nNVIDIA GeForce RTX 4060 Laptop GPU, 560.94, P0, 47, 81.75 W, [N/A], 5554 MiB, 8188 MiB, 62 %, 2505 MHz, 8000 MHz\n",
+            "stderr": ""
+          },
+          "torch_threads": 1
+        },
+        "decode": {
+          "role": "decode",
+          "preset": "compact",
+          "pid": 26012,
+          "implementation": "c1",
+          "output_mode": "display",
+          "png_level": null,
+          "model_was_resident": false,
+          "codec_acquire_seconds": 3.7525401000002603,
+          "task_seconds": {
+            "decode_verified_seconds": 5.864051499998823,
+            "checks_complete_seconds": 5.864754700000049,
+            "evidence_ready_seconds": 5.866950300000099,
+            "offline_view_ready_seconds": 5.923775100000057
+          },
+          "task_timer_origin_perf_counter": 10018.7308864,
+          "detailed_instrumentation": false,
+          "browser_upload_queue_load_seconds": null,
+          "transfer_measured_seconds": null,
+          "preview_feed_seconds": 0.020924399999785237,
+          "preview_overlaps_processing": true,
+          "result_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C3_web_jobs\\096c0352b1ce409390dc7e3ecb3a7d04\\decode\\receiver\\decode.json",
+          "run_id": "decode",
+          "group": null,
+          "pair": null,
+          "task_config": {
+            "id": "decode",
+            "input": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C3_web_jobs\\096c0352b1ce409390dc7e3ecb3a7d04\\received.glcv",
+            "output": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C3_web_jobs\\096c0352b1ce409390dc7e3ecb3a7d04\\decode",
+            "output_mode": "display",
+            "profile": false,
+            "preset": "compact",
+            "frames": 8,
+            "backend": "native"
+          },
+          "entropy_backend": "native",
+          "gpu_before": {
+            "returncode": 0,
+            "stdout": "name, driver_version, pstate, temperature.gpu, power.draw [W], power.limit [W], memory.used [MiB], memory.total [MiB], utilization.gpu [%], clocks.current.sm [MHz], clocks.current.memory [MHz]\nNVIDIA GeForce RTX 4060 Laptop GPU, 560.94, P0, 43, 18.43 W, [N/A], 3704 MiB, 8188 MiB, 12 %, 1080 MHz, 8000 MHz\n",
+            "stderr": ""
+          },
+          "gpu_after": {
+            "returncode": 0,
+            "stdout": "name, driver_version, pstate, temperature.gpu, power.draw [W], power.limit [W], memory.used [MiB], memory.total [MiB], utilization.gpu [%], clocks.current.sm [MHz], clocks.current.memory [MHz]\nNVIDIA GeForce RTX 4060 Laptop GPU, 560.94, P0, 47, 85.22 W, [N/A], 5490 MiB, 8188 MiB, 49 %, 2505 MHz, 8000 MHz\n",
+            "stderr": ""
+          },
+          "torch_threads": 1
+        }
+      },
+      "queue_seconds": 0.016496,
+      "service_seconds": 17.84543759999906,
+      "browser_load_seconds": null,
+      "network_transfer_seconds": null,
+      "execution_mode": "separate_fresh_processes",
+      "verified": true,
+      "checks": {
+        "frames": 8,
+        "all_rgb_and_latent_equal": true,
+        "source_media_reads": [],
+        "stream_sha256": "dda8df0795e35b0576d7c1325418be10fb4473c1d65c6c1f7f9f989129790d41"
+      },
+      "videos": {
+        "source": "/jobs/096c0352b1ce409390dc7e3ecb3a7d04/source.mp4",
+        "optimized": "/jobs/096c0352b1ce409390dc7e3ecb3a7d04/decoded.mp4"
+      },
+      "downloads": [
+        {
+          "name": "source.mp4",
+          "url": "/jobs/096c0352b1ce409390dc7e3ecb3a7d04/source.mp4"
+        },
+        {
+          "name": "decoded.mp4",
+          "url": "/jobs/096c0352b1ce409390dc7e3ecb3a7d04/decoded.mp4"
+        },
+        {
+          "name": "stream.glcv",
+          "url": "/jobs/096c0352b1ce409390dc7e3ecb3a7d04/stream.glcv"
+        },
+        {
+          "name": "encode.json",
+          "url": "/jobs/096c0352b1ce409390dc7e3ecb3a7d04/encode.json"
+        },
+        {
+          "name": "decode.json",
+          "url": "/jobs/096c0352b1ce409390dc7e3ecb3a7d04/decode.json"
+        },
+        {
+          "name": "result.json",
+          "url": "/jobs/096c0352b1ce409390dc7e3ecb3a7d04/result.json"
+        },
+        {
+          "name": "encode-timing.json",
+          "url": "/jobs/096c0352b1ce409390dc7e3ecb3a7d04/encode-timing.json"
+        },
+        {
+          "name": "decode-timing.json",
+          "url": "/jobs/096c0352b1ce409390dc7e3ecb3a7d04/decode-timing.json"
+        },
+        {
+          "name": "encode.log",
+          "url": "/jobs/096c0352b1ce409390dc7e3ecb3a7d04/encode.log"
+        },
+        {
+          "name": "decode.log",
+          "url": "/jobs/096c0352b1ce409390dc7e3ecb3a7d04/decode.log"
+        },
+        {
+          "name": "manifest.json",
+          "url": "/jobs/096c0352b1ce409390dc7e3ecb3a7d04/manifest.json"
+        }
+      ]
+    },
+    "previews": {
+      "source": {
+        "sha256": "c0c94677e87323043550adf54ca090911afde8b6235527e5514415da725fb8b6",
+        "width": 640,
+        "height": 360,
+        "avg_frame_rate": "25/2",
+        "duration": "0.640000",
+        "nb_read_frames": "8"
+      },
+      "decoded": {
+        "sha256": "360422072238894728f11714bf2f7f592ac6b97de22686671210c59985d840de",
+        "width": 640,
+        "height": 360,
+        "avg_frame_rate": "25/2",
+        "duration": "0.640000",
+        "nb_read_frames": "8"
+      }
+    },
+    "processes": {
+      "encode": {
+        "observed_state": "completed",
+        "recorded": {
+          "argv": [
+            "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+            "-B",
+            "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py",
+            "--config",
+            "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C3_web_jobs\\096c0352b1ce409390dc7e3ecb3a7d04\\encode_config.json"
+          ],
+          "started_utc": "2026-10-20T04:42:27.856895+00:00",
+          "state": "completed",
+          "supervisor": {
+            "pid": 32752,
+            "alive": true,
+            "creation_token": 134369449186872656
+          },
+          "pid": 14052,
+          "returncode": 0,
+          "exit_cause": null,
+          "stop_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C3_web_jobs\\096c0352b1ce409390dc7e3ecb3a7d04\\STOP_REQUESTED",
+          "child_identity": {
+            "pid": 14052,
+            "alive": true,
+            "creation_token": 134369449478661662
+          },
+          "supervisor_heartbeat_utc": "2026-10-20T04:42:37.148690+00:00",
+          "elapsed_seconds": 9.49260669999967,
+          "ended_utc": "2026-10-20T04:42:37.354455+00:00",
+          "returncode_hex": "0x00000000"
+        },
+        "current_process": {
+          "pid": 14052,
+          "alive": false,
+          "query_error": 87
+        },
+        "current_supervisor": {
+          "pid": 32752,
+          "alive": true,
+          "creation_token": 134369449186872656
+        },
+        "current_worker": {
+          "pid": 31748,
+          "alive": false,
+          "query_error": 87
+        },
+        "heartbeat_read_error": null,
+        "cause": null
+      },
+      "decode": {
+        "observed_state": "completed",
+        "recorded": {
+          "argv": [
+            "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+            "-B",
+            "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\c2_worker.py",
+            "--config",
+            "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C3_web_jobs\\096c0352b1ce409390dc7e3ecb3a7d04\\decode_config.json"
+          ],
+          "started_utc": "2026-10-20T04:42:37.366278+00:00",
+          "state": "completed",
+          "supervisor": {
+            "pid": 32752,
+            "alive": true,
+            "creation_token": 134369449186872656
+          },
+          "pid": 29816,
+          "returncode": 0,
+          "exit_cause": null,
+          "stop_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C3_web_jobs\\096c0352b1ce409390dc7e3ecb3a7d04\\STOP_REQUESTED",
+          "child_identity": {
+            "pid": 29816,
+            "alive": true,
+            "creation_token": 134369449573736406
+          },
+          "supervisor_heartbeat_utc": "2026-10-20T04:42:45.407854+00:00",
+          "elapsed_seconds": 8.241695500000787,
+          "ended_utc": "2026-10-20T04:42:45.613009+00:00",
+          "returncode_hex": "0x00000000"
+        },
+        "current_process": {
+          "pid": 29816,
+          "alive": false,
+          "query_error": 87
+        },
+        "current_supervisor": {
+          "pid": 32752,
+          "alive": true,
+          "creation_token": 134369449186872656
+        },
+        "current_worker": {
+          "pid": 26012,
+          "alive": false,
+          "query_error": 87
+        },
+        "heartbeat_read_error": null,
+        "cause": null
+      }
+    },
+    "matches_c2_gate8_stream": true,
+    "matches_c2_source_and_frame_hashes": true,
+    "browser_download_matches": true,
+    "browser_timings": [
+      {
+        "recorded_at": "2026-10-20T12:42:45.853394+08:00",
+        "preview_load_seconds": 0.019100000001490116,
+        "dispatch_to_preview_seconds": 18.08909999999963,
+        "after_refresh": false,
+        "source": "browser performance.now; self-reported; excludes upload and real network transfer"
+      },
+      {
+        "recorded_at": "2026-10-20T12:44:08.983364+08:00",
+        "preview_load_seconds": 0.05590000000037253,
+        "dispatch_to_preview_seconds": null,
+        "after_refresh": true,
+        "source": "browser performance.now; self-reported; excludes upload and real network transfer"
+      }
+    ],
+    "json_sha256": {
+      "browser.json": "44c03b3a1b682a67873a877701a180ace298168d1cce1f9a1bbe234b7524314e",
+      "decode_config.json": "fd91441c81c50a42e25fb670c1f73a4ebeb2dabda13e574e7d86b5b310e90134",
+      "encode_config.json": "db9a3fa7fe69cd9626782d77022976e66f4b6e1fe40a7c87629a8b3c4db44550",
+      "job.json": "b374ee8ab93f069d0ff6d757bf5e001034e4c7847c1ee593c9c9e3eb3b95f06d",
+      "manifest.json": "ce735865b5eb7d7b2900f24eb3f002cfe460c7be10e3fbbc41b6deed1f4b0001",
+      "result.json": "78c864a2d39f0cb423d8a1d3caf48dd99bfe7c1e32e396ec1875fd8b97edd28e",
+      "decode\\hotspots.json": "f9549b0f2ba7a0a69cd165ad730cf3061592e3dc23c52653132ade50c226b716",
+      "decode\\status.json": "f1a26173e9626fb1d94430cc3239ed4d14413dedfb2c268a0b2048636ca8611a",
+      "decode\\timing.json": "c06663617bfbbc67b374aa92eee8c1e57ddf0febdc8227e52672b811bc608091",
+      "decode_process\\heartbeat.json": "b8fba22da6ebea94e0e2727efa67400f9c54d4d0dfedbdae2521ccec4789a624",
+      "decode_process\\process.json": "af2068ca527be3dbc10cde24373c7de3dbeb2bea3886939aecf2622fb1157dd3",
+      "encode\\hotspots.json": "b70fcd1c981acdd5f0007a5e926cbd8f3ff7658d3e3754bfd08904abddaa076f",
+      "encode\\status.json": "64ab8d3b5e294b0d5514f2eccbc5893a1e48f85f49cb6bd26a8aa626339fa661",
+      "encode\\timing.json": "44636159cd43019044c426fa36776c7de974a08472a365e8f2143f01cff87f61",
+      "encode_process\\heartbeat.json": "913309abf0063cb1a9bc3528d86cc9cdae4c2ffb306ce0c8b5da1af62acb3c54",
+      "encode_process\\process.json": "bedccb5533e39c0fdee5ce97cb9b394d3ba3b36c266857c15fbd248b0dbb9665",
+      "decode\\receiver\\decode.json": "537618e281b68b3e233940f719e0d0377a96049be5ab194f280f92254d09db72",
+      "encode\\encoder\\encode.json": "8e7a05cfd439b4ad482c2f20324b37cbac63aef1cde359bad5681d3e03be6a13"
+    }
+  },
+  "browser": {
+    "preset_checks": [
+      {
+        "metrics": "C2 编码 · 到 MP4 就绪\n141.16 s\n1 对 · 历史常驻\nC2 独立解码 · 到 MP4 就绪\n88.41 s\n不读取原始媒体\n完整通信包\n78,758 B\n.glcv · 不含预共享模型\n20 kbps 理论发送\n31.54 s\n包含 95 B 应用层头；编解码另计",
+        "preset": "细节与流畅兼顾\n960 宽度上限 · 保留帧率",
+        "videos": [
+          {
+            "duration": 10,
+            "error": null,
+            "height": 540,
+            "readyState": 4,
+            "width": 960
+          },
+          {
+            "duration": 10,
+            "error": null,
+            "height": 540,
+            "readyState": 4,
+            "width": 960
+          },
+          {
+            "duration": 10,
+            "error": null,
+            "height": 540,
+            "readyState": 4,
+            "width": 960
+          }
+        ]
+      },
+      {
+        "metrics": "C2 编码 · 到 MP4 就绪\n69.97 s\n1 对 · 历史常驻\nC2 独立解码 · 到 MP4 就绪\n43.69 s\n不读取原始媒体\n完整通信包\n48,985 B\n.glcv · 不含预共享模型\n20 kbps 理论发送\n19.63 s\n包含 95 B 应用层头；编解码另计",
+        "preset": "保留空间细节\n960 宽度上限 · 隔帧采样",
+        "videos": [
+          {
+            "duration": 10,
+            "error": null,
+            "height": 540,
+            "readyState": 4,
+            "width": 960
+          },
+          {
+            "duration": 10,
+            "error": null,
+            "height": 540,
+            "readyState": 4,
+            "width": 960
+          },
+          {
+            "duration": 10,
+            "error": null,
+            "height": 540,
+            "readyState": 4,
+            "width": 960
+          }
+        ]
+      },
+      {
+        "metrics": "C2 编码 · 到 MP4 就绪\n61.39 s\n1 对 · 历史常驻\nC2 独立解码 · 到 MP4 就绪\n38.91 s\n不读取原始媒体\n完整通信包\n44,962 B\n.glcv · 不含预共享模型\n20 kbps 理论发送\n18.02 s\n包含 95 B 应用层头；编解码另计",
+        "preset": "保留运动流畅度\n640 宽度上限 · 保留帧率",
+        "videos": [
+          {
+            "duration": 10,
+            "error": null,
+            "height": 360,
+            "readyState": 4,
+            "width": 640
+          },
+          {
+            "duration": 10,
+            "error": null,
+            "height": 360,
+            "readyState": 4,
+            "width": 640
+          },
+          {
+            "duration": 10,
+            "error": null,
+            "height": 360,
+            "readyState": 4,
+            "width": 640
+          }
+        ]
+      },
+      {
+        "metrics": "C2 编码 · 到 MP4 就绪\n30.65 s\n3 对 · 历史常驻\nC2 独立解码 · 到 MP4 就绪\n19.34 s\n不读取原始媒体\n完整通信包\n26,397 B\n.glcv · 不含预共享模型\n20 kbps 理论发送\n10.60 s\n包含 95 B 应用层头；编解码另计",
+        "preset": "优先小体积\n640 宽度上限 · 隔帧采样",
+        "videos": [
+          {
+            "duration": 10,
+            "error": null,
+            "height": 360,
+            "readyState": 4,
+            "width": 640
+          },
+          {
+            "duration": 10,
+            "error": null,
+            "height": 360,
+            "readyState": 4,
+            "width": 640
+          },
+          {
+            "duration": 10,
+            "error": null,
+            "height": 360,
+            "readyState": 4,
+            "width": 640
+          }
+        ]
+      }
+    ],
+    "integration": {
+      "error": "",
+      "phase": "已完成：逐帧校验通过",
+      "result": "本次结果 · 校验通过\n\n640 × 360 · 12.5 fps · 8 帧 · 0.64 s · 2,535 B\n\n本次输入 · 同档预处理\n本次独立重建\n本次编码 · 任务内到 MP4\n7.14 s\n新进程，含任务内模型加载\n本次独立解码 · 任务内到 MP4\n5.92 s\n进程导入等额外成本见服务总耗时\n完整通信包\n2,535 B\n与接收端摘要一致\n20 kbps 理论发送\n1.05 s\n不含物理链路或编解码\n\n排队 0.016 s；服务处理至完整结果 17.845 s。发送/接收各自新进程，含冷启动。20 kbps 理论发送 1.05 s。\n\nsource.mp4\ndecoded.mp4\nstream.glcv\nencode.json\ndecode.json\nresult.json\nencode-timing.json\ndecode-timing.json\nencode.log\ndecode.log\nmanifest.json\n\n当前浏览器预览加载 0.019 s；本次点击至两个预览可用 18.089 s。不含传输网络。",
+      "videos": [
+        {
+          "duration": 0.64,
+          "error": null,
+          "height": 360,
+          "ready": 4,
+          "width": 640
+        },
+        {
+          "duration": 0.64,
+          "error": null,
+          "height": 360,
+          "ready": 4,
+          "width": 640
+        }
+      ]
+    },
+    "cancel": {
+      "newEnabled": true,
+      "phase": "已停止",
+      "startDisabled": true
+    },
+    "second_clip": {
+      "checks": "✓完整码流与同片 C1 Python逐字节一致\n✓RGB / 潜变量摘要通过\n✓独立接收端未读取原媒体",
+      "note": "640 × 360 · 12.5 fps · 125 帧 · 10.00 s。第二片使用同片 C1 参考；摄录来源独立性未证明。",
+      "players": 2
+    },
+    "mobile": {
+      "overflow": false,
+      "playerColumns": "337.893px",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    "rate_switch": {
+      "jobCount": 3,
+      "metrics": "C2 编码 · 到 MP4 就绪\n30.65 s\n3 对 · 历史常驻\nC2 独立解码 · 到 MP4 就绪\n19.34 s\n不读取原始媒体\n完整通信包\n26,397 B\n.glcv · 不含预共享模型\n40 kbps 理论发送\n5.30 s\n包含 95 B 应用层头；编解码另计"
+    },
+    "download_path": "C:\\Users\\lenovo\\Downloads\\received (1).glcv",
+    "console_errors": [],
+    "sync_observation": "All four reached 10 seconds; displayed maximum observed currentTime drift 0.000 s (rounded), no strict frame-lock claim.",
+    "refresh": "Completed result restored; task count remained two before separate staged-cancel test."
+  },
+  "validation_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C3_validation_20261020_r1",
+  "source_sha256": {
+    "08_新阶段C_编解码加速与网页展示\\c3_catalog.py": "69cf4002c20758758dbf66846b11cee61b468eea34871ff67281d37895d924e4",
+    "08_新阶段C_编解码加速与网页展示\\c3_server.py": "2503c2b1245b4707d711c128d83a43483a7f407719278f3004bc6d827ca8c586",
+    "08_新阶段C_编解码加速与网页展示\\c3_console\\app.js": "cd6d720884302bb7bcc07d5c8373f0e45804b4b0df2975941f91ab5e6f77f823",
+    "08_新阶段C_编解码加速与网页展示\\c3_console\\favicon.svg": "3205645eb75ccb1a0279d81f9f60f380c595c53ee0e0449819034908ae62b8d9",
+    "08_新阶段C_编解码加速与网页展示\\c3_console\\index.html": "3f89412bd37bf21ad5ce461ac735417a53d2cd1b1ac346ee3f1bdbc87b083132",
+    "08_新阶段C_编解码加速与网页展示\\c3_console\\styles.css": "8691b310a762ac199892879daf415e8bb9b755e7ec36e0918bfc3f9a8477564a",
+    "08_新阶段C_编解码加速与网页展示\\check_c3.py": "2ab6eb4f2812395600f31e26ca053caeecccf7ecec3fd4f6fd4c7ac5edecce0b",
+    "08_新阶段C_编解码加速与网页展示\\test_c3_web.py": "7dbfdfa3b9c95a105b830a6fc71327b6b6edd5621aa23f6554e1f5d78b9a33b6"
+  },
+  "retained_failure": {
+    "job_id": "80b31d9b1d5e44eb8ccd1f4a829bda9e",
+    "cause": "C3 pre-created process directory owned by C2 supervise; WinError 183 before worker launch; fixed and regression added"
+  },
+  "limits": [
+    "One eight-frame integration job, not a full video speed benchmark.",
+    "New web jobs use separate fresh processes; historical resident performance is replay only.",
+    "Browser currentTime synchronization is not strict frame lock.",
+    "Active cancellation and queue recovery tested with controlled CPU fixtures; no extra real-GPU cancellation experiment.",
+    "Browser smoke checks on this machine only; no cross-browser/device or long-running stability claim.",
+    "No real network/acoustic transfer, no training, no C2 matrix rerun. C4 remains unstarted."
+  ]
+}
