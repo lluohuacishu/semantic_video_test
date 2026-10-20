@@ -108,13 +108,15 @@ class ResidentRunner:
             finally:
                 self.reset()  # also after cancellation, corrupt data, or I/O failure
 
-    def options(self, task, folder):
+    def options(self, task, folder, cancel_event=None):
         mode = task.get("output_mode", "research")
         level = task.get("png_level", 1)
         if mode not in {"research", "display"} or type(level) is not int or not 0 <= level <= 9:
             raise ValueError("Invalid output mode or PNG compression level")
         args = argparse.Namespace(input=Path(task["input"]), repo=self.repo, weights=self.weights,
                                   ffmpeg=self.ffmpeg, device=self.device, output_mode=mode, png_level=level)
+        args.sampling_mode = task.get("sampling_mode", "legacy_frame_stride")
+        args.compatibility_policy = task.get("compatibility_policy", "strict")
         if not args.input.is_file() or not self.ffmpeg.is_file():
             raise ValueError("Input and FFmpeg must exist")
         if self.role == "encode":
@@ -124,6 +126,17 @@ class ResidentRunner:
             args.frames = task.get("frames")
             args.start_frame = task.get("start_frame", 0)
             apply_encode_preset(args)
+            if args.sampling_mode == "time":
+                from c5_timebase import prepare
+                if task.get("frames") is not None or task.get("start_frame", 0):
+                    raise ValueError("Time sampling uses clip bounds, not frame-count overrides")
+                def cancel_probe():
+                    if cancel_event is not None and cancel_event.is_set():
+                        raise TaskCancelled("Task cancelled during PTS scan")
+                args.time_plan = prepare(args.input, self.ffmpeg, args.preset, task.get("clip"), cancel_probe)
+                args.frames = args.time_plan["frames"]
+            elif args.sampling_mode != "legacy_frame_stride":
+                raise ValueError("Unknown source sampling mode")
             if (type(args.frames) is not int or not 1 <= args.frames <= 10000 or
                     type(args.start_frame) is not int or args.start_frame < 0):
                 raise ValueError("Invalid frame count or start frame")
@@ -140,7 +153,7 @@ class ResidentRunner:
         """
         with self.task_scope(task.get("role", self.role)):
             folder = Path(task["output"]).resolve()
-            args = self.options(task, folder)
+            args = self.options(task, folder, cancel_event)
             folder.mkdir(parents=True, exist_ok=False)
             self.synchronize()
             started = time.perf_counter()
@@ -177,7 +190,8 @@ class ResidentRunner:
                 self.synchronize()
                 marks["checks_complete_seconds"] = time.perf_counter() - started
                 result.update(output_mode=args.output_mode, png_compress_level=args.png_level if args.output_mode == "research" else None,
-                              frame_path="opencv_memory_rgb", preview_path="ffmpeg_rawvideo_pipe",
+                              frame_path="ffmpeg_pts_rgb" if args.sampling_mode == "time" else "opencv_memory_rgb",
+                              preview_path="ffmpeg_rawvideo_pipe",
                               pipeline_seconds_before_preview=marks["checks_complete_seconds"],
                               peak_allocated_mib=ref.torch.cuda.max_memory_allocated() / 2**20 if self.device == "cuda" else None,
                               peak_reserved_mib=ref.torch.cuda.max_memory_reserved() / 2**20 if self.device == "cuda" else None)
@@ -218,7 +232,11 @@ class ResidentRunner:
         if args.output_mode == "research":
             (args.workdir / "source").mkdir()
             (args.workdir / "frames").mkdir()
-        reader = MemoryFrames(args)
+        if args.sampling_mode == "time":
+            from c5_timebase import TimedFrames
+            reader = TimedFrames(args, cancel=check_cancel)
+        else:
+            reader = MemoryFrames(args)
         packets, records, buffered_bytes = [], [], 0
         png_seconds = 0.0
         try:
@@ -302,7 +320,12 @@ class ResidentRunner:
             raise ValueError("Unsupported model or entropy coder version")
         if header["weights"] != {key: value["sha256"] for key, value in ref.ASSETS.items()}:
             raise ValueError("Stream requires different model weights")
-        if header["arithmetic"] != codec.profile:
+        compatibility = None
+        if args.compatibility_policy != "strict":
+            from c5_compat import check_arithmetic
+            compatibility = check_arithmetic(header["arithmetic"], codec.profile,
+                                             args.compatibility_policy, integrity["container_version"])
+        elif header["arithmetic"] != codec.profile:
             raise ValueError("Sender and receiver arithmetic profiles differ")
         if header["table_sha256"] != codec.entropy.table_sha256:
             raise ValueError("Entropy tables differ from sender")
@@ -332,10 +355,13 @@ class ResidentRunner:
             checksums.verify(integrity["sequence_reconstruction_checksums"])
             for record in records:
                 record["sender_checksums_match"] = True
+        if compatibility is not None:
+            compatibility["reconstruction_verified"] = True
         marks["decode_verified_seconds"] = time.perf_counter() - started
         return {"input_bitstream": str(args.input.resolve()), "input_sha256": ref.sha256_file(args.input),
                 "header": header, "independent_decoder": True, "encoder_modules_disabled": True,
                 "whole_file_checksum_verified": True, "container_version": integrity["container_version"],
+                "arithmetic_compatibility": compatibility,
                 "sequence_reconstruction_checksums": checksums.values() if checksums is not None else None,
                 "all_frame_checksums_match": True,
                 "frame_checksum_verification": "ordered_aggregate" if checksums is not None else "per_frame",
