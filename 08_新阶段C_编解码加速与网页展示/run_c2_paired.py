@@ -75,7 +75,9 @@ def run(root, preset, pairs, source=None, validator=None, frames=None, reference
                     input=str(Path(warmups[0]['output']) / 'stream.glcv'),
                     backend=b, implementation=reference_implementation if b == 'python' else 'c1',
                     group='warmup', profile=False) for b in ('native', 'python')]
-    stream_args = {'input': str(root / 'encode_1_python/stream.glcv')} if source is not None else {}
+    # Decode the actual stream from this experiment, including short gates.
+    # The historical B4 default is full-length even when task.frames is 8.
+    stream_args = {'input': str(root / 'encode_1_python/stream.glcv')}
     for pair in range(1, pairs + 1):
         for backend in (('native', 'python') if pair % 2 else ('python', 'native')):
             decode.append(task(root, f'decode_{pair}_{backend}', 'decode', preset=preset,

@@ -71,35 +71,55 @@ def identity(pid):
         return {'pid': pid, 'alive': None}
 
 
+def same_process_alive(current, recorded):
+    """Three-valued liveness: missing identity is uncertainty, not process exit."""
+    if current.get('alive') is False:
+        return False
+    expected, actual = recorded.get('creation_token'), current.get('creation_token')
+    if expected is not None and actual is not None and expected != actual:
+        return False
+    if current.get('alive') is None or expected is None or actual is None:
+        return None
+    return True
+
+
 def inspect(folder):
     value = json.loads((Path(folder) / 'process.json').read_text(encoding='utf-8'))
     current = identity(value['pid']) if value.get('pid') else {'alive': False}
     owner = identity(value['supervisor']['pid'])
-    same = (current.get('creation_token') is not None and
-            current.get('creation_token') == value.get('child_identity', {}).get('creation_token'))
-    supervisor_same = (owner.get('creation_token') is not None and
-                       owner.get('creation_token') == value['supervisor'].get('creation_token'))
+    launcher_alive = same_process_alive(current, value.get('child_identity', {}))
+    supervisor_alive = same_process_alive(owner, value['supervisor'])
     # A Windows venv redirector can have a different PID from sys.getpid() in
     # the actual Python worker. Check both; launcher exit is not proof that the
     # worker has gone away.
     heartbeat_path = Path(folder) / 'heartbeat.json'
-    heartbeat = json.loads(heartbeat_path.read_text(encoding='utf-8')) if heartbeat_path.is_file() else None
-    worker = identity(heartbeat['pid']) if heartbeat else {'alive': False}
-    worker_same = (heartbeat is not None and worker.get('creation_token') is not None and
-                   worker.get('creation_token') == heartbeat.get('identity', {}).get('creation_token'))
-    worker_alive = worker.get('alive') is True and worker_same
-    if value.get('returncode') is not None and worker_alive:
-        observed = 'orphan_running'
+    worker, worker_alive, heartbeat_error = {'alive': False}, False, None
+    try:
+        heartbeat = json.loads(heartbeat_path.read_text(encoding='utf-8'))
+        if (not isinstance(heartbeat, dict) or type(heartbeat.get('pid')) is not int or
+                heartbeat['pid'] <= 0 or not isinstance(heartbeat.get('identity'), dict)):
+            raise ValueError('Invalid heartbeat process identity')
+        worker = identity(heartbeat['pid'])
+        worker_alive = same_process_alive(worker, heartbeat['identity'])
+    except FileNotFoundError:
+        pass  # Early launch failures and generic supervised commands may have no heartbeat.
+    except (OSError, ValueError) as exc:
+        heartbeat_error = {'type': type(exc).__name__, 'message': str(exc)}
+        worker, worker_alive = {'alive': None}, None
+    if launcher_alive is True or worker_alive is True:
+        if value.get('returncode') is not None or supervisor_alive is False:
+            observed = 'orphan_running'
+        else:
+            observed = 'running' if supervisor_alive is True else 'liveness_unknown'
+    elif launcher_alive is None or worker_alive is None:
+        observed = 'liveness_unknown'
     elif value.get('returncode') is not None:
         observed = value['state']
-    elif (current['alive'] and same) or worker_alive:
-        observed = 'running' if owner['alive'] and supervisor_same else 'orphan_running'
-    elif current['alive'] is None or worker.get('alive') is None:
-        observed = 'liveness_unknown'
     else:
         observed = 'interrupted_exit_unknown'
     return {'observed_state': observed, 'recorded': value, 'current_process': current,
-            'current_supervisor': owner, 'current_worker': worker, 'cause': None}
+            'current_supervisor': owner, 'current_worker': worker,
+            'heartbeat_read_error': heartbeat_error, 'cause': None}
 
 
 class Heartbeat:

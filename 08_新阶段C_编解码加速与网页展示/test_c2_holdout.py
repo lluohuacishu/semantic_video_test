@@ -19,6 +19,17 @@ class SecondClipTests(unittest.TestCase):
                 for task in call.args[3]:
                     self.assertEqual(task['implementation'], 'legacy' if task['backend'] == 'python' else 'c1')
 
+    def test_short_main_gate_decodes_its_own_stream_instead_of_full_b4(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            with patch('run_c2_paired.worker') as worker:
+                run(root, 'compact', 1, reference_implementation='legacy', frames=8)
+            tasks = worker.call_args_list[1].args[3]
+            for task in tasks:
+                expected = root / ('encode_warmup_python' if task['group'] == 'warmup' else 'encode_1_python') / 'stream.glcv'
+                self.assertEqual(task['input'], str(expected))
+                self.assertEqual(task['frames'], 8)
+
     def test_renamed_copy_of_main_clip_is_not_a_second_source(self):
         with self.assertRaisesRegex(ValueError, 'content'):
             require_distinct_source('renamed.mkv', INPUT_SHA)

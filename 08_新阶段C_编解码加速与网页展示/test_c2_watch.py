@@ -75,6 +75,56 @@ class WatchTests(unittest.TestCase):
         self.assertIsNotNone(value['creation_token'])
         self.assertEqual(value, identity(os.getpid()))
 
+    def test_recorded_exit_does_not_override_uncertain_worker_identity(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write(root / 'process.json', {'pid': 20, 'state': 'completed', 'returncode': 0,
+                  'child_identity': {'creation_token': 1}, 'supervisor': {'pid': 10, 'creation_token': 2}})
+            write(root / 'heartbeat.json', {'pid': 30, 'identity': {'creation_token': 3}})
+            for worker in ({'alive': None, 'query_error': 5}, {'alive': True}):
+                with self.subTest(worker=worker), patch('c2_watch.identity', side_effect=[
+                        {'alive': False}, {'alive': False}, worker]):
+                    result = inspect(root)
+                    self.assertEqual(result['observed_state'], 'liveness_unknown')
+                    self.assertEqual(result['recorded']['returncode'], 0)
+            with patch('c2_watch.identity', side_effect=[{'alive': False}, {'alive': False},
+                                                        {'alive': True, 'creation_token': 99}]):
+                self.assertEqual(inspect(root)['observed_state'], 'completed')
+
+    def test_invalid_or_unreadable_heartbeat_blocks_terminal_classification(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write(root / 'process.json', {'pid': 20, 'state': 'failed', 'returncode': 1,
+                  'child_identity': {'creation_token': 1}, 'supervisor': {'pid': 10, 'creation_token': 2}})
+            for invalid in ('{', '{}', 'null', '{"pid": 0, "identity": {}}'):
+                (root / 'heartbeat.json').write_text(invalid, encoding='utf-8')
+                with self.subTest(invalid=invalid), patch('c2_watch.identity', return_value={'alive': False}):
+                    result = inspect(root)
+                    self.assertEqual(result['observed_state'], 'liveness_unknown')
+                    self.assertIsNotNone(result['heartbeat_read_error'])
+            original = Path.read_text
+            def read(path, *args, **kwargs):
+                if path.name == 'heartbeat.json':
+                    raise PermissionError('locked reader')
+                return original(path, *args, **kwargs)
+            with patch.object(Path, 'read_text', read), patch('c2_watch.identity', return_value={'alive': False}):
+                result = inspect(root)
+                self.assertEqual(result['observed_state'], 'liveness_unknown')
+                self.assertEqual(result['heartbeat_read_error']['type'], 'PermissionError')
+
+    def test_live_launcher_and_uncertain_supervisor_are_not_reported_as_finished(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            value = {'pid': 20, 'state': 'completed', 'returncode': 0,
+                     'child_identity': {'creation_token': 1}, 'supervisor': {'pid': 10, 'creation_token': 2}}
+            write(root / 'process.json', value)
+            with patch('c2_watch.identity', side_effect=[{'alive': True, 'creation_token': 1}, {'alive': False}]):
+                self.assertEqual(inspect(root)['observed_state'], 'orphan_running')
+            value.update(returncode=None, state='running')
+            write(root / 'process.json', value)
+            with patch('c2_watch.identity', side_effect=[{'alive': True, 'creation_token': 1}, {'alive': None}]):
+                self.assertEqual(inspect(root)['observed_state'], 'liveness_unknown')
+
     def test_normal_and_abrupt_exit_are_persisted(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
