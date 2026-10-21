@@ -1,9 +1,9 @@
 {
-  "schema": "d-round-status-v3",
+  "schema": "d-round-status-v4",
   "date": "2026-10-21",
   "status": "D0_pilot_ready_D1_not_started",
   "planning_only": false,
-  "objective": "固定完整传输预算，让鱼、潜水员等关键目标看得更清楚",
+  "objective": "Improve fish/diver fidelity with at most 10% per-clip complete-file growth over the frozen ordinary GLC baseline; compare against original GLC and nonsemantic controls at the same budget.",
   "branch": "codex/glc-d",
   "start_commit": "2669a0f0eb1168671f45161fd345d78ec06e364c",
   "C_round_handoff": {
@@ -28,15 +28,18 @@
         "source independence unproven",
         "diver continuous video pending",
         "video025 variable PTS excluded from first constant-rate codec pilot"
-      ]
+      ],
+      "historical_protocol_role": "Preparation provenance only; use active_protocol for future D1/D2 runs."
     },
     "D1": {
       "status": "not_started",
-      "purpose": "frozen semantic localization, temporal protection masks and failure analysis"
+      "purpose": "frozen semantic localization, temporal protection masks and failure analysis",
+      "protocol": "d1_d2_protocol_v2.json"
     },
     "D2": {
       "status": "not_started",
-      "purpose": "actual equal-budget comparison using unchanged GLC and semantic preprocessing"
+      "purpose": "Actual same-budget controls under a per-clip 10% file-growth cap, using unchanged GLC and semantic preprocessing",
+      "protocol": "d1_d2_protocol_v2.json"
     },
     "D3": {
       "status": "optional_not_started_not_required",
@@ -44,7 +47,7 @@
     },
     "D4": {
       "status": "not_started",
-      "purpose": "frozen held-out fish/diver equal-budget visual evaluation"
+      "purpose": "Frozen held-out evaluation under the per-clip growth cap with same-budget controls"
     },
     "D5": {
       "status": "not_started",
@@ -52,20 +55,21 @@
     }
   },
   "current_turn_activity": {
+    "protocol_and_document_revision": true,
     "model_loaded": false,
     "gpu_used": false,
     "training_performed": false,
     "video_experiment_performed": false,
+    "GLC_codec_experiment_performed": false,
+    "cpu_image_mask_preparation": false,
+    "cpu_mp4_decode_for_alignment": false,
     "full_archive_extracted": false,
-    "cpu_image_mask_preparation": true,
-    "cpu_mp4_decode_for_alignment": true,
-    "archive_moved_at_user_request": true,
-    "GLC_codec_experiment_performed": false
+    "archive_moved_at_user_request": false
   },
   "scope": {
     "GLC_weights_and_decoder_fixed_in_D2": true,
     "global_q_budget_matching_in_D2": "planned_bounded_not_executed",
-    "semantic_coding_research": "D0_data_and_protocol_completed",
+    "semantic_coding_research": "D0_data_completed_budget_amended_before_D1",
     "general_codec_search_and_extreme_compression": "not_resumed",
     "GPU_performance_investigation": "not_resumed",
     "C7_bitwise_RGB_fix": "not_completed_not_resumed",
@@ -73,10 +77,11 @@
     "source_frame_rate_and_dimensions_respected": true,
     "existing_models_and_releases_unchanged": true,
     "main_unchanged": true,
-    "D1_D2_protocol_frozen_but_not_executed": true
+    "D1_D2_protocol_frozen_but_not_executed": true,
+    "D0_frozen_evidence_preserved": true
   },
   "evaluation": {
-    "primary": "target visual fidelity and temporal stability under no larger complete transmission size",
+    "primary": "Target fidelity and temporal stability within 10% complete-file growth, with actual-byte matched controls and growth disclosure",
     "matched_controls": [
       "original_input_GLC",
       "nonsemantic_preprocessing_GLC",
@@ -91,17 +96,30 @@
     "diver_temporal_validation_material_pending": true,
     "semantic_gain_proven": false,
     "pair_rule": {
-      "semantic_bytes_no_greater_than_baseline": true,
-      "max_relative_size_gap": 0.02,
-      "threshold_status": "frozen_in_D0",
+      "max_relative_growth_vs_frozen_anchor": 0.1,
+      "integer_cap": "10 * S_semantic <= 11 * S0",
+      "per_clip": true,
+      "near_equal_reporting_category": {
+        "semantic_no_larger_than_each_comparator": true,
+        "max_relative_gap": 0.02,
+        "rule": "0 <= (S_comparator - S_semantic) / S_comparator <= 0.02",
+        "role": "Strict reporting category, not an eligibility gate for all practical results within the 10% cap.",
+        "X_means": "Actual A or B comparator selected under the same ceiling, not necessarily the immutable A@q32 anchor."
+      },
+      "threshold_status": "budget_amended_before_D1_D2_quality_thresholds_retained",
       "padding_to_equalize_bytes": false
     },
-    "protocol": "d0_protocol.json"
+    "protocol": "d1_d2_protocol_v2.json",
+    "reference_file_bitrate_bits_per_second": [
+      30000,
+      40000
+    ],
+    "legacy_link_scenario_is_hard_experiment_gate": false
   },
-  "plan_revision": 3,
+  "plan_revision": 4,
   "user_visual_objective": "让鱼、潜水员等关键目标看得更清楚",
   "route_selection": {
-    "route": "semantic_guided_coding_under_fixed_total_budget",
+    "route": "semantic_guided_coding_with_capped_file_growth",
     "user_preference": "倾向 D.md 的第二条路线",
     "source_path": "C:\\Users\\lenovo\\Desktop\\临时\\D.md",
     "source_sha256": "a9f7d9213654c7720ebcf0e2ab76af4ff6797e73b51f6d881aec999b7204fc20",
@@ -110,7 +128,8 @@
     "later_candidate": "semantic rate-distortion adaptation; spatial control requires separate codec and protocol design",
     "receiver_restoration": "optional_not_a_prerequisite",
     "initial_plan_commit": "38c2219c23ee405950ef2d0af3584e9dc0575d2c",
-    "simplification": "existing model + one background low-pass + current GLC; training and new modules are optional"
+    "simplification": "existing model + one background low-pass + current GLC; training and new modules are optional",
+    "file_growth_cap_user_update": "At most 10% relative to the same-clip frozen ordinary GLC baseline; 30-40 kbps is a file-rate reference, not permission to exceed that cap."
   },
   "static_code_evidence": [
     {
@@ -127,5 +146,18 @@
     "ready_manifest": "ready_manifest.json",
     "D1_inputs": "d1_development_inputs.json",
     "archive": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\原始数据\\SFISHTRACK.zip"
+  },
+  "active_protocol": "d1_d2_protocol_v2.json",
+  "active_protocol_sha256": "f44c801506cc3ebb7d69b2645e58c6f8859d344ce9e71570004de1f7f9bbdd2a",
+  "D0_completed_activity": {
+    "model_loaded": false,
+    "gpu_used": false,
+    "training_performed": false,
+    "video_experiment_performed": false,
+    "full_archive_extracted": false,
+    "cpu_image_mask_preparation": true,
+    "cpu_mp4_decode_for_alignment": true,
+    "archive_moved_at_user_request": true,
+    "GLC_codec_experiment_performed": false
   }
 }

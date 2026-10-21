@@ -1,0 +1,209 @@
+{
+  "schema": "d1-d2-protocol-v2",
+  "date": "2026-10-21",
+  "status": "amended_before_D1_D2_inference",
+  "objective": "Improve fish/diver fidelity with at most 10% per-clip complete-file growth over the frozen ordinary GLC baseline; compare against original GLC and nonsemantic controls at the same budget.",
+  "scope": {
+    "first_route": "frozen SegFormer + one sender background low-pass operator + unchanged GLC/receiver",
+    "training_required": false,
+    "receiver_enhancement_required": false,
+    "D0_authorized_work": "CPU data, annotation, timestamp and protocol preparation",
+    "D1_or_D2_executed": false,
+    "this_revision_executes_inference_or_codec": false
+  },
+  "data": {
+    "selection": "d0_selection.json",
+    "fish_development": [
+      1,
+      2,
+      3
+    ],
+    "fish_reserved_cfr": [
+      7
+    ],
+    "fish_reserved_vfr": [
+      25
+    ],
+    "vfr_policy": "Keep actual PTS; static localization is available, timed codec comparison waits for an explicit PTS-preserving path. Never reinterpret average frame rate as constant.",
+    "fish_frames_per_sequence": 64,
+    "fish_dimensions": [
+      1920,
+      1080
+    ],
+    "validated_cfr": "30000/1001",
+    "suim_diver_images": 20,
+    "suim_no_target_images": 4,
+    "suim_role": "existing validation split; development/regression only",
+    "source_independence_established": false,
+    "holdout_tuning_allowed": false,
+    "reference": "unaltered publisher RGB at original dimensions; never preprocessed input or lossy preview",
+    "GT_usage": "offline evaluation and optional oracle diagnostic; never predictor/production sender input"
+  },
+  "controls": {
+    "A": "original RGB + frozen GLC",
+    "B": "whole-frame Gaussian low-pass + same GLC",
+    "C": "predicted target protection + identical Gaussian low-pass outside protection + same GLC",
+    "O_optional": "GT protection diagnostic; not deployable performance or a guaranteed upper bound",
+    "operator_sigma_pixels": "2.0 * max(width,height) / 1920",
+    "D1_deliverable": "Freeze one prediction model, threshold and protection margin on development data before D2. Do not add extra modules to meet an innovation quota.",
+    "A_anchor": "Original RGB GLC at fixed q=32 defines S0 before semantic results; ordinary GLC also gets the same B0/B10 budget opportunity as C."
+  },
+  "codec": {
+    "weights_and_decoder": "unchanged C-round baseline",
+    "container_version": 2,
+    "intra_period": 64,
+    "reset_interval": 32,
+    "initial_q_candidates": [
+      0,
+      32,
+      63
+    ],
+    "max_q_points_per_method_per_clip": 3,
+    "baseline_budget_anchor_q": 32,
+    "selection": "Largest measured S_total within the selected B0 or B10 ceiling; ties use lower q. Choose by size only, never GT or quality. Reuse cached points across both ceilings.",
+    "cache_identical_points": true,
+    "resolution_timeline_gop_reset_same_for_all_controls": true,
+    "automatic_search_expansion": false,
+    "unmatched_policy": "The three fixed q points may not match size; report insufficient rate matching, not semantic-method failure. Any additional candidates require a versioned bounded protocol before execution."
+  },
+  "byte_accounting": {
+    "S_total": "actual complete glcv + required side information and per-clip control metadata",
+    "sender_only_mask_transmitted": false,
+    "preinstalled_models": "deployment size recorded separately; any per-clip model delta counts in S_total",
+    "mechanism_budget": "S0 = actual complete transmission bytes of original-input A at q=32 on exactly the same frames, dimensions and true timeline; register configuration and baseline file hash before semantic results.",
+    "near_equal_pair": {
+      "semantic_no_larger_than_each_comparator": true,
+      "max_relative_gap": 0.02,
+      "rule": "0 <= (S_comparator - S_semantic) / S_comparator <= 0.02",
+      "role": "Strict reporting category, not an eligibility gate for all practical results within the 10% cap.",
+      "X_means": "Actual A or B comparator selected under the same ceiling, not necessarily the immutable A@q32 anchor."
+    },
+    "unmatched_points": "Report actual complete sizes, growth versus S0, quality and matching limitations. No near-equal label without its inequality. No hidden resolution or timeline changes, padding or interpolated fake streams.",
+    "padding_to_equalize": false,
+    "estimated_region_bits_are_actual_file_bytes": false,
+    "baseline_is_uploaded_original_mp4": false,
+    "baseline_inflation_after_results_allowed": false,
+    "hard_file_growth_limit": {
+      "max_relative_increase": 0.1,
+      "integer_rule": "10 * S_semantic <= 11 * S0",
+      "ceiling_integer_rule": "(11 * S0) // 10",
+      "applies_per_clip": true,
+      "averaging_can_offset_violations": false,
+      "static_images": "Use same-image ordinary GLC A@q32 as S0; report bytes separately without inventing duration.",
+      "categories": {
+        "no_growth": "S_semantic <= S0",
+        "growth_within_10_percent": "S0 < S_semantic and 10 * S_semantic <= 11 * S0",
+        "over_limit": "10 * S_semantic > 11 * S0; diagnostic only, not an accepted deliverable"
+      }
+    },
+    "comparison_ceilings": {
+      "B0": "S0",
+      "B10": "(11 * S0) // 10",
+      "same_opportunity_for": [
+        "A",
+        "B",
+        "C",
+        "O_if_run"
+      ],
+      "actual_sizes_required": true,
+      "more_bytes_than_comparator": "Report a size/quality tradeoff; do not attribute all improvement to semantics merely because both outputs are within B10.",
+      "required_control": "Always report ordinary GLC under the same ceiling, especially B10. Beating A@q32 alone does not demonstrate semantic net benefit."
+    },
+    "link_scenarios_and_rate_reporting": {
+      "units": "Decimal: 1 kbps = 1000 bit/s; count full transmitted application files, not just neural payload.",
+      "file_bitrate_formula": "8 * S_total / true_playback_seconds",
+      "acceptable_reference_file_bitrate_bits_per_second": [
+        30000,
+        40000
+      ],
+      "reference_range_is_hard_acceptance_limit": false,
+      "below_reference_range": "No minimum rate and no padding required.",
+      "above_reference_range": "Report explicitly; satisfying relative growth alone does not establish application-rate feasibility.",
+      "relative_growth_limit_takes_precedence": true,
+      "transmission_seconds_formula": "8 * S_total / effective_application_throughput_bits_per_second",
+      "nominal_link_scenario_bits_per_second": 20000,
+      "optional_effective_fraction_scenario": 0.8,
+      "effective_fraction_is_measured": false,
+      "do_not_deduct_overhead_twice_from_measured_effective_throughput": true,
+      "semantic_encode_decode_seconds_reported_separately": true,
+      "static_images_have_video_bitrate": false,
+      "real_acoustic_link_validated": false,
+      "ten_second_examples_not_measurements": [
+        {
+          "file_bitrate_bits_per_second": 30000,
+          "bytes": 37500,
+          "send_seconds_at_20000": 15,
+          "send_seconds_at_16000": 18.75
+        },
+        {
+          "file_bitrate_bits_per_second": 32000,
+          "bytes": 40000,
+          "send_seconds_at_20000": 16,
+          "send_seconds_at_16000": 20
+        },
+        {
+          "file_bitrate_bits_per_second": 40000,
+          "bytes": 50000,
+          "send_seconds_at_20000": 20,
+          "send_seconds_at_16000": 25
+        }
+      ],
+      "legacy_D0_scenario": {
+        "link_bits_per_second": 20000,
+        "send_time_over_playback_time": 2,
+        "engineering_reserve_fraction": 0.2,
+        "reserve_is_measured_network_overhead": false,
+        "application_bytes_per_playback_second": 4000,
+        "ten_second_ceiling_bytes": 40000,
+        "64_frame_cfr_clip_duration": "8008/3750",
+        "64_frame_cfr_clip_ceiling_bytes": 8541,
+        "formula": "floor(20000 * (2*T) / 8 * 0.8)",
+        "claim": "Separate deployment feasibility check; equal-byte semantic benefit does not establish this link target or real acoustic transmission.",
+        "role": "Historical D0 link scenario only; not a hard D1/D2 quality-experiment gate."
+      }
+    }
+  },
+  "evaluation": {
+    "D1": "GT pixel precision/recall/IoU; instance coverage by target size; protection area and no-target false protection. Missing detections remain in denominator. Check missed small fish/divers, mask flicker, target exits and excessive protection area on continuous clips; static diver images do not establish temporal behavior.",
+    "D2_primary_numeric": "Per-clip pooled RGB MSE/PSNR over independent original GT target pixels; each clip has equal weight in the reported mean. Fish and diver scores separate.",
+    "MSE": "sum((decoded_RGB - original_RGB)^2 on GT region and 3 channels) / (3 * GT pixel count)",
+    "PSNR": "10*log10(255^2/MSE); zero MSE reported as lossless with MSE=0, empty region reported NA",
+    "background": "GT complement is rest-of-image, not necessarily semantic water or exhaustively labeled background. Report it separately.",
+    "target_size_bins_pixels_fraction": [
+      0.001,
+      0.01
+    ],
+    "static_images_are_video_evidence": false,
+    "visual": "Hide method names, randomize left/right, compare at same size/time and same crops against original RGB. Record better/tie/worse, missed targets, flicker, ghosting and background loss. Single user assessment is exploratory.",
+    "temporal": "Continuous playback on verified PTS only; no temporal score inferred from still images or frame-independent averages.",
+    "pilot_engineering_thresholds_not_statistical_proof": {
+      "target_mean_PSNR_gain_db_vs_A_and_B": 0.5,
+      "positive_development_clips_minimum": 2,
+      "development_clip_count": 3,
+      "worst_target_PSNR_delta_db": -0.5,
+      "mean_rest_of_image_PSNR_delta_db": -1.0,
+      "worst_rest_of_image_PSNR_delta_db": -2.0,
+      "no_obvious_new_target_distortion_or_flicker": true,
+      "visual_confirmation_required": true
+    },
+    "failure_policy": "Keep all failures; separate localization, preprocessing and size-matching failures. No automatic training or threshold relaxation after holdout.",
+    "semantic_gain_proven": false,
+    "budget_and_attribution": {
+      "practical_result": "Check the hard per-clip 10% cap and report gain versus immutable A@q32, with same-ceiling A/B results alongside it.",
+      "controlled_gain": "Apply the retained numeric/visual engineering thresholds against same-ceiling A/B controls; report actual size mismatches and restrict causal attribution accordingly.",
+      "near_equal_claim": "Use the strict near_equal_pair rule against each comparator. A larger C is not an equal-volume semantic result.",
+      "beating_B_alone_is_sufficient": false,
+      "beating_old_anchor_alone_is_sufficient": false
+    }
+  },
+  "revision": 2,
+  "provenance": {
+    "supersedes_for_future_experiments": "d0_protocol.json",
+    "original_protocol_sha256": "ffff29e309841940b6070575a0c81b96a3eb07a013088604a4c22a7d670dab3d",
+    "original_D0_evidence_unchanged": true,
+    "reason": "User accepts 30-40 kbps as a file-rate reference and caps complete-file growth at 10%; 20 kbps was a link-speed assumption.",
+    "review_source_sha256": "a70964ed93ee6662868ff7eb2077fc7b675c73a5b430d6b9900a644c19bb7d1d",
+    "run_record_rule": "Record both the unchanged D0 ready_manifest hash and this protocol hash. Do not rewrite historical D0 protocol hashes.",
+    "q_search_changed": false
+  }
+}
