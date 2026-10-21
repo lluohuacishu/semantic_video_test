@@ -23,7 +23,7 @@ from http.server import ThreadingHTTPServer
 from c3_server import C3App, Handler as OldHandler, HERE, REPO, TERMINAL, MAX_UPLOAD, now, read_json, sha256, write
 from c4_config import UploadCatalog
 from c5_config import load_settings, peer_url
-from c5_compat import POLICIES, check_arithmetic
+from c5_compat import POLICIES, check_arithmetic, reconstruction_verdict
 from c5_transport import acknowledge, file_info, read_header, receive_file, send_file, rate_limit
 from c5_timebase import clip_options, prepare, video_options
 from c5_metrics import compression_metrics
@@ -172,6 +172,8 @@ class Endpoint(C3App):
                      peer_url=self.peer.url if self.peer else None, token_configured=bool(self.peer and self.peer.token),
                      loopback_urls=self.settings.get("loopback_urls"))
         value["execution_mode"] = "single_role_resident" if self.settings["worker_mode"] == "resident" else "separate_fresh_processes"
+        value["version"] = "C7-reference-preview-v1"
+        value["supported_compatibility_policies"] = list(POLICIES)
         return value
 
     def preflight(self):
@@ -248,6 +250,7 @@ class Endpoint(C3App):
 
     def reservation(self, job):
         return {"id": job["id"], "status": job["status"], "rate_mode": job["rate_mode"],
+                "compatibility_policy": job["options"]["compatibility_policy"],
                 "ticket": self.tickets.get(job["id"]), "data_port": self.settings["data_port"]}
 
     def progress(self, identifier):
@@ -360,11 +363,18 @@ class Endpoint(C3App):
             dec = read_json(folder / "decode/receiver/decode.json")
             stream = job["stream"]
             if (dec["input_sha256"] != stream["sha256"] or not dec["independent_decoder"]
-                    or dec["source_media_reads"] or not dec["all_frame_checksums_match"]
-                    or not dec["whole_file_checksum_verified"] or
-                    dec["sequence_reconstruction_checksums"] != stream["integrity"]["sequence_reconstruction_checksums"]):
-                raise ValueError("接收端完整流/RGB/latent/独立解码核验失败")
-            result = {"role": "receiver", "verified": True, "stream_sha256": stream["sha256"],
+                    or dec["source_media_reads"] or not dec["whole_file_checksum_verified"]
+                    or dec["header"] != stream["header"]):
+                raise ValueError("接收端完整流/帧头/独立解码核验失败")
+            policy = job["options"]["compatibility_policy"]
+            verdict = reconstruction_verdict(stream["integrity"]["sequence_reconstruction_checksums"],
+                dec["sequence_reconstruction_checksums"], policy,
+                completed_frames=len(dec["frames"]), total_frames=stream["header"]["frames"])
+            if (dec["all_frame_checksums_match"] is not verdict["verified"]
+                    or (not verdict["verified"] and dec.get("reconstruction_verification") != verdict)):
+                raise ValueError("接收端重建校验状态与实际摘要不一致")
+            result = {"role": "receiver", "verified": verdict["verified"], "verification": verdict,
+                      "compatibility_policy": policy, "stream_sha256": stream["sha256"],
                       "file_bytes": stream["bytes"], "frames": len(dec["frames"]), "header": dec["header"],
                       "source_media_reads": [], "sequence_reconstruction_checksums": dec["sequence_reconstruction_checksums"],
                       "arithmetic_compatibility": dec["arithmetic_compatibility"],
@@ -447,10 +457,20 @@ class Endpoint(C3App):
             if remote_job["status"] != "done":
                 raise RuntimeError("接收端：" + remote_job.get("error", remote_job["phase"]))
             remote_result = remote_job["result"]
-            if (not remote_result["verified"] or remote_result["stream_sha256"] != description["sha256"]
-                    or remote_result["sequence_reconstruction_checksums"] != description["integrity"]["sequence_reconstruction_checksums"]):
+            policy = reservation.get("compatibility_policy", remote["compatibility_policy"])
+            if (remote_result["stream_sha256"] != description["sha256"]
+                    or remote_result["header"] != description["header"]
+                    or remote_result.get("source_media_reads") != []
+                    or remote_result.get("compatibility_policy", policy) != policy):
                 raise ValueError("两端结果摘要不一致")
-            result = {"role": "sender", "verified": True, "file_bytes": description["bytes"],
+            verdict = reconstruction_verdict(description["integrity"]["sequence_reconstruction_checksums"],
+                remote_result["sequence_reconstruction_checksums"], policy,
+                completed_frames=remote_result["frames"], total_frames=description["header"]["frames"])
+            if (remote_result["verified"] is not verdict["verified"]
+                    or (not verdict["verified"] and remote_result.get("verification") != verdict)):
+                raise ValueError("接收端声称的校验结果与实际摘要不一致")
+            result = {"role": "sender", "verified": verdict["verified"], "verification": verdict,
+                      "compatibility_policy": policy, "file_bytes": description["bytes"],
                       "stream_sha256": description["sha256"], "frames": description["header"]["frames"],
                       "header": description["header"], "receiver_job_id": reservation["id"],
                       "encoded_this_task": job["kind"] == "video", "transfer": transfer,
@@ -475,7 +495,9 @@ class Endpoint(C3App):
                 raise InterruptedError("任务已取消")
             result["compression"] = self.compression(identifier, result)
             write(self.directory / identifier / "result.json", result)
-            self.store.update(identifier, status="done", stage="done", phase="已完成：码流、RGB 和 latent 校验通过",
+            preview_only = result.get("verification", {}).get("status") == "reference_verified_preview"
+            phase = "预览已完成：参考状态通过，RGB 非逐位一致，画面误差未验收" if preview_only else "已完成：码流、RGB 和 latent 校验通过"
+            self.store.update(identifier, status="done", stage="done", phase=phase,
                               finished_at=now(), progress=100)
 
     def fail(self, identifier, exc):

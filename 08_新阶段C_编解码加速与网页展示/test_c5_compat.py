@@ -1,7 +1,7 @@
 import copy
 import unittest
 
-from c5_compat import check_arithmetic
+from c5_compat import check_arithmetic, reconstruction_verdict
 
 
 class CompatibilityTests(unittest.TestCase):
@@ -49,6 +49,42 @@ class CompatibilityTests(unittest.TestCase):
     def test_unknown_policy_rejected_even_for_identical_profiles(self):
         with self.assertRaises(ValueError):
             check_arithmetic(self.sender, self.sender, "ignore_checks")
+
+    def test_reference_preview_admits_only_same_arithmetic_and_v2(self):
+        result = check_arithmetic(self.sender, self.receiver, "reference_preview")
+        self.assertEqual(result["admission"], "reference_preview_candidate")
+        self.assertFalse(result["reconstruction_verified"])
+        for receiver in ({**self.receiver, "torch": "different"}, {**self.receiver, "tf32": True}):
+            with self.assertRaises(ValueError):
+                check_arithmetic(self.sender, receiver, "reference_preview")
+        with self.assertRaises(ValueError):
+            check_arithmetic(self.sender, self.sender, "reference_preview", 1)
+
+    def test_rgb_difference_is_explicit_preview_only(self):
+        expected = {"latent_sha256": "1" * 64, "rgb_sha256": "2" * 64}
+        actual = {**expected, "rgb_sha256": "3" * 64}
+        for policy in ("strict", "device_pair_test"):
+            with self.assertRaisesRegex(ValueError, "aggregate differs"):
+                reconstruction_verdict(expected, actual, policy, completed_frames=8, total_frames=8)
+        verdict = reconstruction_verdict(expected, actual, "reference_preview", completed_frames=8, total_frames=8)
+        self.assertFalse(verdict["verified"])
+        self.assertFalse(verdict["rgb_verified"])
+        self.assertTrue(verdict["reference_verified"])
+        self.assertIn("未验收", verdict["warning"])
+        self.assertEqual(verdict["status"], "reference_verified_preview")
+
+    def test_preview_never_accepts_latent_partial_or_missing_hashes(self):
+        expected = {"latent_sha256": "1" * 64, "rgb_sha256": "2" * 64}
+        for actual, count in (({**expected, "latent_sha256": "0" * 64}, 8), (expected, 7),
+                              ({"latent_sha256": expected["latent_sha256"]}, 8), (expected, True)):
+            with self.assertRaises(ValueError):
+                reconstruction_verdict(expected, actual, "reference_preview", completed_frames=count, total_frames=8)
+
+    def test_preview_policy_preserves_exact_matches_as_fully_verified(self):
+        expected = {"latent_sha256": "1" * 64, "rgb_sha256": "2" * 64}
+        result = reconstruction_verdict(expected, expected, "reference_preview", completed_frames=8, total_frames=8)
+        self.assertTrue(result["verified"])
+        self.assertIsNone(result["warning"])
 
 
 if __name__ == "__main__":

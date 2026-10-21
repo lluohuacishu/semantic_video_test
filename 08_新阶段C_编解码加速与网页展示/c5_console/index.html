@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="zh-CN">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>C5 语义视频传输</title><link rel="stylesheet" href="/styles.css"></head>
+<title>C7 语义视频传输</title><link rel="stylesheet" href="/styles.css"></head>
 <body><main>
-<header><span class="eyebrow">GLC · C5</span><h1 id="title">语义视频传输</h1>
+<header><span class="eyebrow">GLC · C7</span><h1 id="title">语义视频传输</h1>
 <p id="subtitle">正在连接本机服务…</p>
 <nav id="loopbackNav" class="actions" hidden><a id="senderPage">上传与压缩</a><a id="receiverPage" target="_blank" rel="noopener">接收端重建</a></nav></header>
 <p id="notice" role="status" aria-live="polite"></p>
@@ -45,19 +45,21 @@
 <p>发送端填写这台电脑的局域网 IPv4 地址，HTTP 端口 <span id="httpPort"></span>，数据端口 <span id="dataPort"></span>。</p>
 <button id="pairing">显示连接口令</button><output id="pairingToken"></output>
 <div class="row"><label>设备兼容<select id="policy"><option value="strict">严格匹配</option>
-<option value="device_pair_test">设备配对诊断（仅 GPU 名称可不同）</option></select></label>
+<option value="device_pair_test">设备配对诊断（仅 GPU 名称可不同）</option>
+<option value="reference_preview">跨显卡预览（整段 latent 必须一致）</option></select></label>
 <label>接收端熵后端<select id="rxBackend"><option value="native">Native</option><option value="python">Python 回退</option></select></label>
 <button id="saveAdvanced">保存高级设置</button></div>
-<p class="muted">4060 → 4070 首次联调须显式选择设备配对诊断。每条码流仍须通过 RGB 与 latent 完整校验，失败不会发布预览。</p>
+<p class="muted">严格匹配和设备配对诊断仍要求 RGB、latent 全部一致。跨显卡预览须通过文件、完整帧数和整段 latent 校验；RGB 不一致时明确提示画面误差未验收。设置只作用于新任务。</p>
 </details></section>
 <section><div class="row spread"><h2>当前任务</h2><button id="cancel" disabled>停止任务</button></div>
 <p id="jobName">还没有选择任务</p><p id="phase">等待操作</p><progress id="progress" max="100" value="0"></progress>
 <p id="metrics" class="muted"></p>
+<p id="verificationWarning" class="verification-warning" role="status" hidden></p>
 <div id="compression" hidden><div id="compressionCards" class="metric-grid"></div><p id="compressionNote" class="muted"></p></div>
 <a id="receiverResult" target="_blank" rel="noopener" hidden>打开这次任务的接收端重建画面 →</a>
 <div class="players">
 <figure id="sourceBox" hidden><figcaption>发送端处理画面</figcaption><video id="sourceVideo" controls preload="metadata"></video></figure>
-<figure id="decodedBox" hidden><figcaption>接收端重建</figcaption><video id="decodedVideo" controls preload="metadata"></video></figure></div>
+<figure id="decodedBox" hidden><figcaption id="decodedCaption">接收端重建</figcaption><video id="decodedVideo" controls preload="metadata"></video></figure></div>
 <div id="downloads" class="actions"></div>
 <details><summary>任务详情</summary><button id="remote" hidden>查询原接收任务</button><pre id="details"></pre></details>
 </section>

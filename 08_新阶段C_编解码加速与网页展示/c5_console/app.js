@@ -82,7 +82,7 @@ async function refresh() {
     const item=document.createElement('div');item.className='history-row';
     const button=document.createElement('button');button.textContent=`${row.filename} · ${row.id.slice(0,8)}`;
     button.onclick=()=>select(row.id).catch(e=>notice(e.message));
-    const state=document.createElement('span');state.textContent=row.status;
+    const state=document.createElement('span');state.textContent=row.status==='done' && row.phase?.includes('预览已完成')?'预览（RGB 非逐位一致）':row.status;
     item.append(button,state);$('history').append(item);
   }
   if(!selected && rows.length) {selected=rows[0].id;sessionStorage.setItem('c5.selected',selected);}
@@ -98,8 +98,13 @@ async function refresh() {
   const frame=beat ? `已处理 ${beat.frame_completed} / ${beat.frames} 帧` : '';
   const transfer=job.total_bytes ? `传输 ${job.transferred_bytes || 0} / ${job.total_bytes} B` : '';
   const result=job.result;
+  const previewOnly=result?.verification?.status==='reference_verified_preview';
+  $('verificationWarning').hidden=!previewOnly;
+  $('verificationWarning').textContent=previewOnly?result.verification.warning:'';
+  $('decodedCaption').textContent=previewOnly?'接收端预览 · RGB 非逐位一致':'接收端重建';
   const rate=job.rate_mode ? (job.rate_mode==='max' ? '最大速度' : job.rate_mode+' kbps') : '';
-  $('metrics').textContent=result ? `${result.frames} 帧 · ${result.file_bytes} B · 服务 ${result.service_seconds.toFixed(2)} 秒 · 校验通过${rate?' · '+rate:''}` : [frame,transfer,rate].filter(Boolean).join(' · ');
+  const verificationLabel=previewOnly?'参考状态通过 · RGB 非逐位一致':(result?.verified?'码流、RGB、latent 校验通过':'校验未确认');
+  $('metrics').textContent=result ? `${result.frames} 帧 · ${result.file_bytes} B · 服务 ${result.service_seconds.toFixed(2)} 秒 · ${verificationLabel}${rate?' · '+rate:''}` : [frame,transfer,rate].filter(Boolean).join(' · ');
   compression(result);
   const receiverUrl=config.loopback_urls?.receiver;
   $('receiverResult').hidden=!(receiverUrl && config.role==='sender' && job.receiver_job_id);

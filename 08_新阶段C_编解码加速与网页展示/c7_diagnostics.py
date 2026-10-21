@@ -44,10 +44,12 @@ def sequence_report(header, receiver_profile, expected, actual, records, stream_
 
 
 def verify_sequence(checksums, expected, diagnostic_path, *, header, receiver_profile,
-                    records, stream_sha256):
+                    records, stream_sha256, policy="strict"):
     """Retain both computed values and frame evidence before propagating failure."""
+    from c5_compat import reconstruction_verdict
     try:
-        checksums.verify(expected)
+        verdict = reconstruction_verdict(expected, checksums.values(), policy,
+                                         completed_frames=len(records), total_frames=header["frames"])
     except ValueError:
         report = sequence_report(header, receiver_profile, expected, checksums.values(), records,
                                  stream_sha256)
@@ -56,6 +58,11 @@ def verify_sequence(checksums, expected, diagnostic_path, *, header, receiver_pr
         channels = ", ".join(report["mismatched_channels"] or [])
         raise ValueError("Ordered GLC frame checksum aggregate differs from the sender. "
                          f"Mismatched: {channels}. See {Path(diagnostic_path).name}") from None
+    if not verdict["rgb_verified"]:
+        report = sequence_report(header, receiver_profile, expected, checksums.values(), records, stream_sha256)
+        report.update(state="reference_verified_preview", verification=verdict)
+        write_json(diagnostic_path, report)
+    return verdict
 
 
 def validate_reference(reference, stream_sha256, header, integrity, container):

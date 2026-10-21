@@ -336,6 +336,7 @@ class ResidentRunner:
         preview = self._preview(previews, args.output / "reconstruction_preview.mp4", header)
         records, png_seconds = [], 0.0
         checksums = ref.SequenceChecksums() if integrity["container_version"] == 2 else None
+        verification = None
         for index, packet in enumerate(packets):
             check_cancel()
             tick = time.perf_counter()
@@ -354,21 +355,23 @@ class ResidentRunner:
             print(f"decode {index + 1}/{header['frames']} {seconds:.2f}s", flush=True)
         if checksums is not None:
             from c7_diagnostics import verify_sequence
-            verify_sequence(checksums, integrity["sequence_reconstruction_checksums"],
+            verification = verify_sequence(checksums, integrity["sequence_reconstruction_checksums"],
                             args.output / "reconstruction_diagnostics.json", header=header,
                             receiver_profile=codec.profile, records=records,
-                            stream_sha256=ref.sha256_file(args.input))
+                            stream_sha256=ref.sha256_file(args.input), policy=args.compatibility_policy)
             for record in records:
-                record["sender_checksums_match"] = True
+                record["sender_checksums_match"] = True if verification["rgb_verified"] else None
+                record["sender_latent_checksums_match"] = True
         if compatibility is not None:
-            compatibility["reconstruction_verified"] = True
+            compatibility["reconstruction_verified"] = verification["verified"] if verification else True
         marks["decode_verified_seconds"] = time.perf_counter() - started
         return {"input_bitstream": str(args.input.resolve()), "input_sha256": ref.sha256_file(args.input),
                 "header": header, "independent_decoder": True, "encoder_modules_disabled": True,
                 "whole_file_checksum_verified": True, "container_version": integrity["container_version"],
                 "arithmetic_compatibility": compatibility,
+                "reconstruction_verification": verification,
                 "sequence_reconstruction_checksums": checksums.values() if checksums is not None else None,
-                "all_frame_checksums_match": True,
+                "all_frame_checksums_match": verification["verified"] if verification else True,
                 "frame_checksum_verification": "ordered_aggregate" if checksums is not None else "per_frame",
                 "frame_processing_seconds": sum(r["seconds"] for r in records),
                 "png_save_seconds": png_seconds, "frames": records}

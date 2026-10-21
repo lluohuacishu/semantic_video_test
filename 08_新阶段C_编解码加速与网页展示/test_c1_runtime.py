@@ -243,6 +243,50 @@ class C1Tests(unittest.TestCase):
         self.assertFalse(diagnostic["cross_device_accepted"])
         runner.run(self.task("after_bad_sequence", input=str(original)))
 
+    def test_rgb_only_difference_publishes_explicit_preview_and_resets_next_task(self):
+        self.runner().run(self.task("preview_sender"))
+        stream = self.root / "preview_sender/stream.glcv"
+        original = FakeCodec.frame
+        def differing(codec, header, index, x=None, packet=None):
+            rgb, checked = original(codec, header, index, x, packet)
+            if index == 0:
+                rgb[0, 0, 0] += 1
+                checked["rgb_sha256"] = hashlib.sha256(rgb.tobytes()).hexdigest()
+            return rgb, checked
+        runner = self.runner("decode")
+        with patch.object(FakeCodec, "frame", differing):
+            for policy in ("strict", "device_pair_test"):
+                with self.assertRaisesRegex(ValueError, "aggregate differs"):
+                    runner.run(self.task(policy, input=str(stream), compatibility_policy=policy))
+                self.assertFalse((self.root / policy / "receiver/reconstruction_preview.mp4").exists())
+            runner.run(self.task("rgb_preview", input=str(stream), compatibility_policy="reference_preview"))
+        folder = self.root / "rgb_preview/receiver"
+        result = json.loads((folder / "decode.json").read_text())
+        self.assertTrue((folder / "reconstruction_preview.mp4").is_file())
+        self.assertFalse(result["all_frame_checksums_match"])
+        self.assertFalse(result["arithmetic_compatibility"]["reconstruction_verified"])
+        self.assertEqual(result["reconstruction_verification"]["status"], "reference_verified_preview")
+        self.assertEqual(result["source_media_reads"], [])
+        diagnostic = json.loads((folder / "reconstruction_diagnostics.json").read_text())
+        self.assertEqual(diagnostic["mismatched_channels"], ["rgb_sha256"])
+        self.assertTrue(all(r["sender_checksums_match"] is None for r in result["frames"]))
+        runner.run(self.task("strict_after_preview", input=str(stream)))
+        restored = json.loads((self.root / "strict_after_preview/receiver/decode.json").read_text())
+        self.assertTrue(restored["all_frame_checksums_match"])
+        self.assertIsNone(restored["reconstruction_verification"]["warning"])
+
+    def test_reference_preview_still_blocks_latent_difference(self):
+        self.runner().run(self.task("latent_sender"))
+        original = FakeCodec.frame
+        def differing(codec, header, index, x=None, packet=None):
+            rgb, checked = original(codec, header, index, x, packet)
+            checked["latent_sha256"] = "0" * 64
+            return rgb, checked
+        with patch.object(FakeCodec, "frame", differing), self.assertRaisesRegex(ValueError, "aggregate differs"):
+            self.runner("decode").run(self.task("latent_preview", input=str(self.root / "latent_sender/stream.glcv"),
+                                               compatibility_policy="reference_preview"))
+        self.assertFalse((self.root / "latent_preview/receiver/reconstruction_preview.mp4").exists())
+
     def test_ffmpeg_exit_is_reported_and_leaves_no_ready_video(self):
         target = self.root / "killed.mp4"
         preview = RawPreview(FFMPEG, target, 64, 64, 25)

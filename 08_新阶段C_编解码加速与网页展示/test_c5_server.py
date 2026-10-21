@@ -12,6 +12,7 @@ import unittest
 from unittest.mock import patch
 
 from c5_config import load_settings
+from c5_compat import reconstruction_verdict
 from c5_server import Endpoint, DataServer, Server, Peer, inspect_stream, write
 from c5_transport import send_file, wire_header
 from glc_container import StreamWriter, frame_layout
@@ -162,6 +163,89 @@ class EndpointTests(unittest.TestCase):
         self.assertEqual("stream", repeat["kind"])
         self.assertEqual(data, self.tx.source(repeat).read_bytes())
         self.tx.cancel(repeat["id"])
+
+    def test_reference_preview_propagates_to_sender_with_snapshotted_policy(self):
+        self.rx.preferences({"compatibility_policy": "reference_preview"})
+        def preview_decode(role, task, folder):
+            self.fake_decode(role, task, folder)
+            out = folder / "decode/receiver"
+            dec = json.loads((out / "decode.json").read_text())
+            expected = dec["sequence_reconstruction_checksums"].copy()
+            dec["sequence_reconstruction_checksums"]["rgb_sha256"] = "0" * 64
+            verdict = reconstruction_verdict(expected, dec["sequence_reconstruction_checksums"],
+                task["compatibility_policy"], completed_frames=1, total_frames=1)
+            dec.update(all_frame_checksums_match=False, reconstruction_verification=verdict)
+            write(out / "decode.json", dec)
+            write(out / "reconstruction_diagnostics.json", {"state": verdict["status"], "verification": verdict})
+            (out / "reconstruction_preview.mp4").write_bytes(b"synthetic preview asset")
+            self.rx.preferences({"compatibility_policy": "strict"})
+        self.rx.execute = preview_decode
+        data = self.stream.read_bytes()
+        status, body = self.call("POST", "/api/jobs", {"filename": "preview.glcv", "bytes": len(data),
+            "options": {"preset": "compact"}}, sender=True)
+        identifier = json.loads(body)["id"]
+        self.assertEqual(201, status)
+        self.assertEqual(200, self.call("PUT", f"/api/jobs/{identifier}/upload", raw=data, sender=True)[0])
+        self.tx.start(identifier)
+        job = self.await_terminal(self.tx, identifier)
+        self.assertEqual("done", job["status"], job)
+        for result in (job["result"], job["result"]["remote"]):
+            self.assertFalse(result["verified"])
+            self.assertEqual(result["compatibility_policy"], "reference_preview")
+            self.assertEqual(result["verification"]["status"], "reference_verified_preview")
+        self.assertIn("未验收", job["phase"])
+        remote = self.rx.get_job(job["receiver_job_id"])
+        self.assertIn("decoded.mp4", [d["name"] for d in remote["downloads"]])
+        self.assertIn("decode-diagnostics.json", [d["name"] for d in remote["downloads"]])
+        self.assertEqual(self.rx.policy, "strict")
+
+    def test_preview_claim_cannot_hide_latent_mismatch_or_missing_frames(self):
+        self.rx.preferences({"compatibility_policy": "reference_preview"})
+        for problem in ("latent", "frames"):
+            reservation = self.reserve(("c" if problem == "latent" else "d") * 32)
+            identifier = reservation["id"]
+            folder = self.rx.directory / identifier
+            (folder / "received.glcv").write_bytes(self.stream.read_bytes())
+            def forged(role, task, folder):
+                self.fake_decode(role, task, folder)
+                path = folder / "decode/receiver/decode.json"
+                dec = json.loads(path.read_text())
+                if problem == "latent":
+                    dec["sequence_reconstruction_checksums"]["latent_sha256"] = "0" * 64
+                else:
+                    dec["frames"] = []
+                dec["all_frame_checksums_match"] = False
+                dec["reconstruction_verification"] = {"status": "reference_verified_preview"}
+                write(path, dec)
+            self.rx.execute = forged
+            self.rx.run_decode(identifier)
+            job = self.rx.get_job(identifier)
+            self.assertEqual(job["status"], "error")
+            self.assertNotIn("result.json", [d["name"] for d in job["downloads"]])
+
+    def test_sender_rejects_preview_claim_under_strict_reservation(self):
+        original = Peer.call
+        def forged(peer, method, route, *args, **kwargs):
+            value = original(peer, method, route, *args, **kwargs)
+            if method == "GET" and route.startswith("/control/jobs/") and value["status"] == "done":
+                result = value["result"]
+                expected = result["sequence_reconstruction_checksums"].copy()
+                result["sequence_reconstruction_checksums"]["rgb_sha256"] = "0" * 64
+                result["verified"] = False
+                result["verification"] = reconstruction_verdict(expected, result["sequence_reconstruction_checksums"],
+                    "reference_preview", completed_frames=1, total_frames=1)
+            return value
+        data = self.stream.read_bytes()
+        status, body = self.call("POST", "/api/jobs", {"filename": "strict.glcv", "bytes": len(data),
+            "options": {"preset": "compact"}}, sender=True)
+        self.assertEqual(201, status)
+        identifier = json.loads(body)["id"]
+        self.assertEqual(200, self.call("PUT", f"/api/jobs/{identifier}/upload", raw=data, sender=True)[0])
+        with patch.object(Peer, "call", forged):
+            self.tx.start(identifier)
+            job = self.await_terminal(self.tx, identifier)
+        self.assertEqual(job["status"], "error")
+        self.assertIn("aggregate differs", job["error"])
 
     def test_invalid_ticket_cannot_poison_valid_reservation(self):
         reservation = self.reserve()

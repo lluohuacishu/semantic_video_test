@@ -1,13 +1,13 @@
 {
   "stage": "C7",
   "updated": "2026-10-21",
-  "status": "native_first_frame_rgb_difference_quantified_compatibility_fix_pending",
+  "status": "reference_preview_implemented_4070_validation_pending",
   "phases": {
     "C7-0": "complete",
     "C7-1": "complete",
     "C7-2": "native_first_frame_quantified_full_cross_device_sequence_pending",
-    "C7-3": "not_started",
-    "C7-4": "not_started"
+    "C7-3": "reference_preview_implemented_bitwise_rgb_unchanged",
+    "C7-4": "pending_4070_preview_validation"
   },
   "failure": {
     "receiver_job_id": "d98161cd3cd441968fc250dac8acfe6e",
@@ -86,6 +86,30 @@
       "full_video_rerun_performed": false,
       "further_gpu_runs_authorized": false
     }
+  },
+  "reference_preview": {
+    "policy": "reference_preview",
+    "implemented": true,
+    "requires_explicit_selection": true,
+    "container_version": 2,
+    "requires_complete_frame_count": true,
+    "requires_ordered_latent_match": true,
+    "rgb_mismatch_status": "reference_verified_preview",
+    "rgb_mismatch_verified": false,
+    "pixel_quality_accepted": false,
+    "strict_and_device_pair_test_unchanged": true,
+    "neural_math_and_weights_unchanged": true,
+    "old_v2_stream_reencoding_required": false,
+    "cpu_checks_passed": 61,
+    "ui_render_cases_passed": 4,
+    "javascript_syntax_check_passed": true,
+    "original_C5_code_copy_install_check_passed": true,
+    "windows_venv_launcher_false_positive_fixed": true,
+    "installed_modules_imported_without_cuda_initialization": 7,
+    "new_gpu_experiments_performed": false,
+    "target_4070_preview_verified": false,
+    "package": "01_项目/交付/C7跨卡预览补丁_20261021.zip",
+    "validation_report": "c7_preview_validation_20261021.json"
   },
   "published_receiver_release_replaced": false,
   "external_analysis": {
