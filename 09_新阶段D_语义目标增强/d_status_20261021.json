@@ -1,7 +1,7 @@
 {
-  "schema": "d-round-status-v6",
+  "schema": "d-round-status-v7",
   "date": "2026-10-21",
-  "status": "D1_model_comparison_completed_localization_gate_failed_D2_not_started",
+  "status": "D1_review_and_cached_branch_analysis_completed_D2_not_started",
   "planning_only": false,
   "objective": "Improve fish/diver fidelity with at most 10% per-clip complete-file growth over the frozen ordinary GLC baseline; compare against original GLC and nonsemantic controls at the same budget.",
   "branch": "codex/glc-d",
@@ -52,7 +52,7 @@
         "diver_images_at_least_90pct_covered"
       ],
       "holdout_evaluated": false,
-      "next": "Existing-checkpoint comparison is complete. Use SUIM base with preserved target scale as the starting point for a separately bounded localization adaptation if continued; training and D2 have not started.",
+      "next": "Cached branch contributions are now measured. A single 256-native-tile profile is optional; prioritize a separately specified two-clip A/B/C/O D2 mechanism diagnostic before deciding on training.",
       "model_comparison": {
         "status": "completed_localization_gate_failed",
         "plan": "d1_model_comparison_plan_v1.json",
@@ -69,7 +69,7 @@
         "holdout_evaluated": false,
         "training_performed": false,
         "GLC_experiment_performed": false,
-        "next": "One bounded localization adaptation is a possible next step, with fixed data splits and separate fish/diver regression; not executed."
+        "next": "Comparison complete; see D1 external review and cached branch analysis. Training is deferred pending codec mechanism evidence."
       },
       "initial_pilot": {
         "run_plan": "d1_run_plan_v1.json",
@@ -79,13 +79,24 @@
         "selected_config": "recall_hold1",
         "selection_status": "diagnostic_only_localization_gate_failed"
       },
-      "selected_profile": "base_tiles512"
+      "selected_profile": "base_tiles512",
+      "external_review": {
+        "source_path": "C:/Users/lenovo/Desktop/临时/D1.md",
+        "report": "D1外部评审与后续顺序_20261021.md",
+        "evidence": "evidence_d1_review_20261021/branch_contributions.json",
+        "status": "review_and_cached_cpu_branch_analysis_completed",
+        "input_count": 192,
+        "candidate_256_native_tiles_status": "proposed_not_executed",
+        "training_status": "deferred_not_started",
+        "production_diver_branch_disabled": false
+      }
     },
     "D2": {
       "status": "not_started",
       "purpose": "Actual same-budget controls under a per-clip 10% file-growth cap, using unchanged GLC and semantic preprocessing",
       "protocol": "d1_d2_protocol_v2.json",
-      "readiness": "localization_gate_not_passed; diagnostic codec experiments only if subsequently scoped, not deployable semantic success"
+      "readiness": "Proposed bounded development mechanism diagnostic on clips 001/002; D1 gate remains failed and does not prohibit a clearly scoped diagnostic. Run configuration must be fixed before execution.",
+      "next": "Specify A/B/C/O configurations and actual-size matching under the existing per-clip 10% cap, then run only the bounded diagnostic when proceeding. Not executed during document review."
     },
     "D3": {
       "status": "optional_not_started_not_required",
@@ -101,26 +112,24 @@
     }
   },
   "current_turn_activity": {
-    "D1_inference": true,
-    "model_loaded": true,
-    "gpu_used": true,
+    "D1_inference": false,
+    "model_loaded": false,
+    "gpu_used": false,
     "training_performed": false,
-    "video_experiment_performed": true,
-    "video_experiment_scope": "semantic localization on 192 prepared source frames; visualization only",
+    "video_experiment_performed": false,
     "GLC_codec_experiment_performed": false,
     "holdout_inference": false,
     "full_archive_extracted": false,
     "integrity_recheck_performed": false,
     "cpu_metric_evaluation": true,
-    "D1_checkpoint_preprocessing_comparison": true,
-    "new_input_profile_inferences": 648,
-    "reused_previous_profile_count": 1,
-    "cached_diver_branch": true
+    "cached_branch_contribution_analysis": true,
+    "cached_fish_development_frames": 192,
+    "new_input_profile_inferences": 0
   },
   "scope": {
     "GLC_weights_and_decoder_fixed_in_D2": true,
     "global_q_budget_matching_in_D2": "planned_bounded_not_executed",
-    "semantic_coding_research": "D1_pilot_and_model_comparison_completed_with_failed_gate",
+    "semantic_coding_research": "D1_localization_diagnostics_completed; D2_mechanism_diagnostic_prioritized_but_not_started",
     "general_codec_search_and_extreme_compression": "not_resumed",
     "GPU_performance_investigation": "not_resumed",
     "C7_bitwise_RGB_fix": "not_completed_not_resumed",
@@ -173,7 +182,7 @@
     "D1_initial_pilot_summary": "Fish pixel coverage 33.85%, 93.44%, 75.36%; 254/454 instance-frames >=90% covered; diver mean per-image coverage 91.07%, 17/20 >=90%; diagnostic only.",
     "D1_current_summary": "Base weights with native tiles: fish protection coverage 78.22%, 98.89%, 91.54%; 378/454 instance-frames >=90% covered, 27 zero overlap; diver mean image coverage 89.23%, 16/20 >=90%; all four profiles failed the original coverage gates."
   },
-  "plan_revision": 6,
+  "plan_revision": 7,
   "user_visual_objective": "让鱼、潜水员等关键目标看得更清楚",
   "route_selection": {
     "route": "semantic_guided_coding_with_capped_file_growth",
@@ -207,7 +216,8 @@
     "D1_selected_outputs": "selected_outputs.json",
     "D1_comparison_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D1_model_comparison_20261021_r1",
     "D1_current_diagnostic_outputs": "D1_model_comparison_20261021_r1/base_tiles512/selected_outputs.json",
-    "D1_initial_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D1_20261021_r1"
+    "D1_initial_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D1_20261021_r1",
+    "D1_branch_analysis_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D1_review_20261021_r1"
   },
   "active_protocol": "d1_d2_protocol_v2.json",
   "active_protocol_sha256": "f44c801506cc3ebb7d69b2645e58c6f8859d344ce9e71570004de1f7f9bbdd2a",
