@@ -1,0 +1,61 @@
+{
+  "schema": "d1-frozen-protection-v1",
+  "date": "2026-10-21",
+  "status": "diagnostic_only_localization_gate_failed",
+  "plan": "d1_run_plan_v1.json",
+  "budget_protocol": "d1_d2_protocol_v2.json",
+  "selected_name": "recall_hold1",
+  "config": {
+    "name": "recall_hold1",
+    "fish_threshold": 0.5,
+    "diver_threshold": 0.5,
+    "margin_at_1920": 16,
+    "previous_seed_frames": 1
+  },
+  "models": {
+    "fish": {
+      "checkpoint": "C:/Users/lenovo/Desktop/works/work/semantic-video-mlvc/runs/phase_c_20261013/segformer_adaptation_preserve8/best.pt",
+      "previously_recorded_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+      "class_id": 6,
+      "inference": "native 512 tiles, stride 384, mean overlapping logits then softmax",
+      "thresholds": [
+        0.9,
+        0.7,
+        0.5
+      ],
+      "requires_argmax": false
+    },
+    "diver": {
+      "checkpoint": "C:/Users/lenovo/Desktop/works/work/semantic-video-training/runs/suim_segformer_b0_20260915/segmentation_best.pt",
+      "previously_recorded_sha256": "ff00cb439a4af290dc3efde8ae76d4acfad797784483b669ab6db79aaf5b1476",
+      "class_id": 1,
+      "inference": "long edge 256, centered black letterbox, restored native logits, softmax",
+      "thresholds": [
+        0.7,
+        0.5
+      ],
+      "requires_argmax": true
+    }
+  },
+  "protection": {
+    "seed": "Union of fish and diver threshold masks; do not discard small connected components.",
+    "margin": "square dilation radius max(1, round(margin_at_1920 * max(width,height)/1920)); zero margin remains zero",
+    "temporal": "At most previous raw seed, without recursion or future frames; reset at each sequence and every static image. Hold may lag motion; evaluate it as a diagnostic, not guaranteed stability.",
+    "soft_edge": "After candidate selection, alpha=1 on hard protection, linear exterior feather width max(1,round(4*long_edge/1920)); keep the target core unchanged.",
+    "fallback": "Empty current union or hard protection >50% of frame disables background processing for that frame. Report fallback separately, never use its full-frame coverage to claim localization success.",
+    "mask_transmitted": false
+  },
+  "failed_checks": [
+    "fish_each_clip_pixel_coverage",
+    "fish_instance_90pct_coverage",
+    "diver_mean_image_coverage",
+    "diver_images_at_least_90pct_covered"
+  ],
+  "can_claim_deployable_target_protection": false,
+  "selection_used_development_GT": true,
+  "holdout_used": false,
+  "training_performed": false,
+  "GLC_experiment_performed": false,
+  "semantic_quality_gain_proven": false,
+  "integrity_recheck_performed": false
+}

@@ -1,0 +1,67 @@
+{
+  "schema": "d1-run-plan-v1",
+  "date": "2026-10-21",
+  "registered_before_inference": true,
+  "parent_protocol": "d1_d2_protocol_v2.json",
+  "scope": "216 development RGB inputs only: 192 continuous fish frames and 24 SUIM static images. No holdout inference, training or GLC encoding.",
+  "model_policy": "Reuse the existing two target-specific SegFormer checkpoints as one fixed sender configuration; no model search. Fish and diver scores remain separate.",
+  "models": {
+    "fish": {
+      "checkpoint": "C:/Users/lenovo/Desktop/works/work/semantic-video-mlvc/runs/phase_c_20261013/segformer_adaptation_preserve8/best.pt",
+      "previously_recorded_sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+      "class_id": 6,
+      "inference": "native 512 tiles, stride 384, mean overlapping logits then softmax",
+      "thresholds": [0.9, 0.7, 0.5],
+      "requires_argmax": false
+    },
+    "diver": {
+      "checkpoint": "C:/Users/lenovo/Desktop/works/work/semantic-video-training/runs/suim_segformer_b0_20260915/segmentation_best.pt",
+      "previously_recorded_sha256": "ff00cb439a4af290dc3efde8ae76d4acfad797784483b669ab6db79aaf5b1476",
+      "class_id": 1,
+      "inference": "long edge 256, centered black letterbox, restored native logits, softmax",
+      "thresholds": [0.7, 0.5],
+      "requires_argmax": true
+    }
+  },
+  "precision": "FP32, no autocast or TF32, deterministic inference; original checkpoints unchanged",
+  "integrity_recheck": "Skipped at user request; prior fingerprints are provenance only and are not reverified.",
+  "cache": "Compare FP32 probabilities to all registered thresholds once; store exact binary memberships as PNG bits, not quantized probabilities. No GT is loaded by inference.",
+  "packed_bits": {"fish_0.9": 0, "fish_0.7": 1, "fish_0.5": 2, "diver_0.7": 3, "diver_0.5": 4},
+  "diagnostic_baseline": {"name": "legacy_raw", "fish_threshold": 0.9, "diver_threshold": 0.7, "margin_at_1920": 0, "previous_seed_frames": 0},
+  "candidates": [
+    {"name": "light", "fish_threshold": 0.7, "diver_threshold": 0.7, "margin_at_1920": 8, "previous_seed_frames": 0},
+    {"name": "recall", "fish_threshold": 0.5, "diver_threshold": 0.5, "margin_at_1920": 16, "previous_seed_frames": 0},
+    {"name": "recall_hold1", "fish_threshold": 0.5, "diver_threshold": 0.5, "margin_at_1920": 16, "previous_seed_frames": 1}
+  ],
+  "protection": {
+    "seed": "Union of fish and diver threshold masks; do not discard small connected components.",
+    "margin": "square dilation radius max(1, round(margin_at_1920 * max(width,height)/1920)); zero margin remains zero",
+    "temporal": "At most previous raw seed, without recursion or future frames; reset at each sequence and every static image. Hold may lag motion; evaluate it as a diagnostic, not guaranteed stability.",
+    "soft_edge": "After candidate selection, alpha=1 on hard protection, linear exterior feather width max(1,round(4*long_edge/1920)); keep the target core unchanged.",
+    "fallback": "Empty current union or hard protection >50% of frame disables background processing for that frame. Report fallback separately, never use its full-frame coverage to claim localization success.",
+    "mask_transmitted": false
+  },
+  "evaluation": {
+    "primary": "Per-target raw precision/recall/IoU plus union protection coverage against independent GT; missing detections remain in all denominators.",
+    "fish_instances": "Use original COCO RLE, not boxes or connected components, with track identity. Area bins <0.1%, 0.1%-1%, >=1% of frame.",
+    "instance_covered": "At least 90% of labeled instance pixels protected; also report zero-overlap misses.",
+    "diver": "Per-image class1 coverage; SUIM connected components are not person instances. Eight-class base-model confusion is descriptive regression on the 24 selected images only.",
+    "temporal": "Consecutive-frame mask IoU/XOR, area change, per-track coverage changes and missing runs; motion and annotation changes confound flicker, so no causal flicker claim from XOR alone.",
+    "background": "GT complement may include unannotated targets. False-positive measures on SFISHTRACK are label-relative.",
+    "gate_is_exploratory_not_statistical_validation": true,
+    "gate": {
+      "fish_each_clip_pixel_coverage_min": 0.95,
+      "fish_instance_90pct_covered_fraction_min": 0.90,
+      "diver_mean_image_coverage_min": 0.95,
+      "diver_images_at_least_90pct_covered_min": 18,
+      "fish_each_clip_mean_protection_fraction_max": 0.25,
+      "fish_frame_protection_fraction_max": 0.50,
+      "suim_positive_mean_protection_outside_target_fraction_max": 0.15,
+      "negative_mean_raw_protection_fraction_max": 0.05,
+      "negative_max_raw_protection_fraction_max": 0.10
+    },
+    "selection": "Among candidates passing all gates, choose smallest mean frame protection fraction; ties use listed order. If none pass, choose highest minimum of fish per-clip recall and diver mean image recall, then smallest area, listed order; freeze as diagnostic_only with explicit failed gates, not ready for general deployment.",
+    "no_automatic_expansion": true
+  },
+  "runtime_reporting": "Warm per-frame fish/diver inference wall time and full process time reported separately; no codec speed claims."
+}

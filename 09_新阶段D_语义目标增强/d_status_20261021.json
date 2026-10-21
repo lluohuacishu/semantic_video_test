@@ -1,7 +1,7 @@
 {
-  "schema": "d-round-status-v4",
+  "schema": "d-round-status-v5",
   "date": "2026-10-21",
-  "status": "D0_pilot_ready_D1_not_started",
+  "status": "D1_pilot_completed_localization_gate_failed_D2_not_started",
   "planning_only": false,
   "objective": "Improve fish/diver fidelity with at most 10% per-clip complete-file growth over the frozen ordinary GLC baseline; compare against original GLC and nonsemantic controls at the same budget.",
   "branch": "codex/glc-d",
@@ -23,7 +23,7 @@
       "evidence": "evidence_d0_20261021/summary.json",
       "selection": "d0_selection.json",
       "protocol": "d0_protocol.json",
-      "next": "D1 frozen existing SegFormer localization on 216 RGB-only development inputs",
+      "next": "D1 pilot completed; see current D1 report and diagnostic-only selection.",
       "remaining_validation_limits": [
         "source independence unproven",
         "diver continuous video pending",
@@ -32,14 +32,33 @@
       "historical_protocol_role": "Preparation provenance only; use active_protocol for future D1/D2 runs."
     },
     "D1": {
-      "status": "not_started",
+      "status": "completed_small_pilot_localization_gate_failed",
       "purpose": "frozen semantic localization, temporal protection masks and failure analysis",
-      "protocol": "d1_d2_protocol_v2.json"
+      "protocol": "d1_d2_protocol_v2.json",
+      "run_plan": "d1_run_plan_v1.json",
+      "report": "D1阶段报告_20261021.md",
+      "evidence": "evidence_d1_20261021/evaluation.json",
+      "run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D1_20261021_r1",
+      "input_count": 216,
+      "fish_development_frames": 192,
+      "suim_static_images": 24,
+      "fish_instance_frames": 454,
+      "selected_config": "recall_hold1",
+      "selection_status": "diagnostic_only_localization_gate_failed",
+      "failed_gates": [
+        "fish_each_clip_pixel_coverage",
+        "fish_instance_90pct_coverage",
+        "diver_mean_image_coverage",
+        "diver_images_at_least_90pct_covered"
+      ],
+      "holdout_evaluated": false,
+      "next": "Address fish localization first. Compare existing base/fish-adapted profiles under a separately registered small D1 follow-up before deciding whether adaptation is needed; no automatic training or D2 run."
     },
     "D2": {
       "status": "not_started",
       "purpose": "Actual same-budget controls under a per-clip 10% file-growth cap, using unchanged GLC and semantic preprocessing",
-      "protocol": "d1_d2_protocol_v2.json"
+      "protocol": "d1_d2_protocol_v2.json",
+      "readiness": "localization_gate_not_passed; diagnostic codec experiments only if subsequently scoped, not deployable semantic success"
     },
     "D3": {
       "status": "optional_not_started_not_required",
@@ -55,21 +74,22 @@
     }
   },
   "current_turn_activity": {
-    "protocol_and_document_revision": true,
-    "model_loaded": false,
-    "gpu_used": false,
+    "D1_inference": true,
+    "model_loaded": true,
+    "gpu_used": true,
     "training_performed": false,
-    "video_experiment_performed": false,
+    "video_experiment_performed": true,
+    "video_experiment_scope": "semantic localization on 192 prepared source frames; visualization only",
     "GLC_codec_experiment_performed": false,
-    "cpu_image_mask_preparation": false,
-    "cpu_mp4_decode_for_alignment": false,
+    "holdout_inference": false,
     "full_archive_extracted": false,
-    "archive_moved_at_user_request": false
+    "integrity_recheck_performed": false,
+    "cpu_metric_evaluation": true
   },
   "scope": {
     "GLC_weights_and_decoder_fixed_in_D2": true,
     "global_q_budget_matching_in_D2": "planned_bounded_not_executed",
-    "semantic_coding_research": "D0_data_completed_budget_amended_before_D1",
+    "semantic_coding_research": "D1_small_development_localization_completed_with_failed_gate",
     "general_codec_search_and_extreme_compression": "not_resumed",
     "GPU_performance_investigation": "not_resumed",
     "C7_bitwise_RGB_fix": "not_completed_not_resumed",
@@ -77,8 +97,10 @@
     "source_frame_rate_and_dimensions_respected": true,
     "existing_models_and_releases_unchanged": true,
     "main_unchanged": true,
-    "D1_D2_protocol_frozen_but_not_executed": true,
-    "D0_frozen_evidence_preserved": true
+    "D0_frozen_evidence_preserved": true,
+    "D1_executed_D2_not_executed": true,
+    "production_protection_ready": false,
+    "model_data_fingerprints_rechecked_this_turn": false
   },
   "evaluation": {
     "primary": "Target fidelity and temporal stability within 10% complete-file growth, with actual-byte matched controls and growth disclosure",
@@ -114,9 +136,12 @@
       30000,
       40000
     ],
-    "legacy_link_scenario_is_hard_experiment_gate": false
+    "legacy_link_scenario_is_hard_experiment_gate": false,
+    "localization_gate_passed": false,
+    "D1_selected_configuration": "recall_hold1",
+    "D1_summary": "Fish pixel coverage 33.85%, 93.44%, 75.36%; 254/454 instance-frames >=90% covered; diver mean per-image coverage 91.07%, 17/20 >=90%; diagnostic only."
   },
-  "plan_revision": 4,
+  "plan_revision": 5,
   "user_visual_objective": "让鱼、潜水员等关键目标看得更清楚",
   "route_selection": {
     "route": "semantic_guided_coding_with_capped_file_growth",
@@ -145,7 +170,9 @@
     "corpus_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D0_20261021_r1",
     "ready_manifest": "ready_manifest.json",
     "D1_inputs": "d1_development_inputs.json",
-    "archive": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\原始数据\\SFISHTRACK.zip"
+    "archive": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\原始数据\\SFISHTRACK.zip",
+    "D1_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D1_20261021_r1",
+    "D1_selected_outputs": "selected_outputs.json"
   },
   "active_protocol": "d1_d2_protocol_v2.json",
   "active_protocol_sha256": "f44c801506cc3ebb7d69b2645e58c6f8859d344ce9e71570004de1f7f9bbdd2a",
