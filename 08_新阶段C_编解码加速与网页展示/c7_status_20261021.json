@@ -1,13 +1,13 @@
 {
   "stage": "C7",
   "updated": "2026-10-21",
-  "status": "reference_preview_implemented_4070_validation_pending",
+  "status": "single_stream_4070_reference_preview_peer_reported_passed",
   "phases": {
     "C7-0": "complete",
     "C7-1": "complete",
     "C7-2": "native_first_frame_quantified_full_cross_device_sequence_pending",
     "C7-3": "reference_preview_implemented_bitwise_rgb_unchanged",
-    "C7-4": "pending_4070_preview_validation"
+    "C7-4": "peer_reported_single_stream_preview_passed_raw_audit_and_real_network_pending"
   },
   "failure": {
     "receiver_job_id": "d98161cd3cd441968fc250dac8acfe6e",
@@ -107,9 +107,13 @@
     "windows_venv_launcher_false_positive_fixed": true,
     "installed_modules_imported_without_cuda_initialization": 7,
     "new_gpu_experiments_performed": false,
-    "target_4070_preview_verified": false,
     "package": "01_项目/交付/C7跨卡预览补丁_20261021.zip",
-    "validation_report": "c7_preview_validation_20261021.json"
+    "validation_report": "c7_preview_validation_20261021.json",
+    "target_4070_preview_peer_reported_passed": true,
+    "target_4070_preview_raw_results_independently_verified": false,
+    "real_two_machine_network_verified": false,
+    "peer_validation_report": "C7补丁4070实机回报审核_20261021.md",
+    "peer_validation_summary": "c7_peer_preview_review_20261021.json"
   },
   "published_receiver_release_replaced": false,
   "external_analysis": {
@@ -241,5 +245,60 @@
       "4070_report.json": "ce74f5c4a7d1e4abccbd5f250adf9d21f428d5f6eef4e4dfea2b826f92979e96",
       "pixel_differences.csv": "950aa734af0ab3fd6c13e47d29a9880f5779b13d5d544604879c650172062491"
     }
+  },
+  "peer_preview_validation": {
+    "status": "peer_reported_single_stream_4070_preview_passed",
+    "evidence_level": "supplied_markdown_report_reviewed_against_released_code_and_prior_stream_metadata",
+    "report_file": "C7补丁_4070实机验证_20261021.md",
+    "report_sha256": "c90b802dbb54554f2ee382dc4861c748bcfe481c676bcea6e5ee4f9af2e6a3cb",
+    "patch_producer_commit": "0309bd68ca3b4dabc90b6969dc4a2b40a1595a36",
+    "patch_archive_sha256": "83ba314a5b0afd5f69ba9f49fc3eec49c50e7819dfe1416a8c081a9d0b8585fe",
+    "raw_new_sender_receiver_results_available": false,
+    "new_raw_results_independently_verified": false,
+    "reported": {
+      "gpu": "RTX 4070 Laptop 8 GB",
+      "driver": "572.96",
+      "policy": "reference_preview",
+      "installed_changed_files": 10,
+      "frames": 1239,
+      "width": 640,
+      "height": 360,
+      "nominal_fps": 15,
+      "duration_seconds": 82.6,
+      "stream_bytes": 356604,
+      "stream_sha256_abbreviated": "36162a82…8853f",
+      "latent_sha256_abbreviated": "806d6681…2bcc2",
+      "rgb_sha256_abbreviated": "8abed299…a680f",
+      "sender_rgb_sha256_abbreviated": "a4b67eb3…8b894",
+      "verification": {
+        "policy": "reference_preview",
+        "status": "reference_verified_preview",
+        "verified": false,
+        "reference_verified": true,
+        "rgb_verified": false,
+        "complete_sequence": true,
+        "completed_frames": 1239,
+        "warning": "参考状态校验通过；RGB 非逐位一致，仅供预览，画面误差未验收。",
+        "pixel_error_measured": false
+      },
+      "both_endpoint_verdicts_equal": true,
+      "decode_seconds": 408.8,
+      "sender_total_seconds": 437.0,
+      "transfer_seconds": 0.015,
+      "transfer_mode": "max",
+      "topology": "both_roles_on_4070_loopback_127.0.0.1",
+      "video_playback_passed": true,
+      "preview_size_MB_approx": 37.7,
+      "ui_and_history_warning_present": true
+    },
+    "derived_from_report": {
+      "decode_frames_per_second": 3.030821917808219,
+      "decode_time_over_media_duration": 4.9491525423728815,
+      "stream_kbps_decimal": 34.5379176755448
+    },
+    "strict_rgb_compatibility_verified": false,
+    "full_sequence_pixel_quality_accepted": false,
+    "real_two_machine_network_verified": false,
+    "new_gpu_experiments_by_this_review": false
   }
 }
