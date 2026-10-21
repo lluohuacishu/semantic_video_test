@@ -294,6 +294,8 @@ def run(args):
             'candidate_results':summaries,'selection':frozen,
             'base_suim_regression':{'sample_count':24,'confusion_matrix':confusion.tolist(),'per_class':regression,
                                     'mean_iou_present_union':mean([r['iou'] for r in regression]),
+                                    'reused_from_D1':bool(plan.get('SUIM_base_regression_reused_not_profile_specific',False)),
+                                    'measures_the_compared_fish_profile':False,
                                     'not_comparable_to_full_SUIM_validation_mIoU':True},
             'evaluator_seconds':time.perf_counter()-started,
             'integrity_recheck_performed':False,

@@ -1,0 +1,39 @@
+{
+  "schema": "d1-model-comparison-plan-v1",
+  "date": "2026-10-21",
+  "registered_before_new_inference": true,
+  "purpose": "Separate checkpoint effects from input-scale/context effects on the existing D1 development inputs before deciding whether any adaptation is needed.",
+  "parent_budget_protocol": "d1_d2_protocol_v2.json",
+  "parent_localization_plan": "d1_run_plan_v1.json",
+  "inputs": "Same 216 RGB-only development inputs as D1: 192 fish frames and 24 static SUIM images; no reserved-sequence inference.",
+  "profiles": [
+    {"name": "adapted_tiles512", "weights": "fish_adapted", "preprocessing": "tiles512_stride384", "source": "reuse original D1 packed masks; no repeat inference"},
+    {"name": "base_tiles512", "weights": "suim_base", "preprocessing": "tiles512_stride384", "source": "new frozen inference"},
+    {"name": "base_letterbox256", "weights": "suim_base", "preprocessing": "letterbox256", "source": "new frozen inference"},
+    {"name": "adapted_letterbox256", "weights": "fish_adapted", "preprocessing": "letterbox256", "source": "new frozen inference"}
+  ],
+  "fish_thresholds": [0.9, 0.7, 0.5],
+  "primary_raw_mask": "class6 probability >=0.5, no argmax requirement, identical across all four profiles",
+  "diver_branch": "Reuse D1 SUIM-base long-edge256 diver masks bit-for-bit; no diver checkpoint or threshold search.",
+  "protection": {
+    "fixed_D1_candidate": "recall_hold1",
+    "fish_threshold": 0.5,
+    "diver_threshold": 0.5,
+    "margin_at_1920": 16,
+    "previous_seed_frames": 1,
+    "change_allowed": false
+  },
+  "evaluation": {
+    "raw": "Compare class6 precision/recall/IoU at matching threshold and input preprocessing; report fish clips separately and the same 24 SUIM images separately.",
+    "protection": "Use the unchanged D1 coverage/area gates, instance RLE, negative images and temporal diagnostics; full-frame fallback never raises localization scores.",
+    "eight_class_SUIM_matrix": "Reuse the original D1 base-model matrix for context only; it is not a per-fish-profile eight-class regression measurement.",
+    "selection": "If a profile passes all original gates, choose the smallest mean protection area. Otherwise choose the highest minimum fish-clip protection recall, then higher mean raw fish IoU, then smaller area; listed profile order breaks exact ties. A failing profile remains diagnostic only.",
+    "causal_scope": "Paired same-input checkpoint/preprocessing comparison on one conservative source group; no independent generalization claim.",
+    "all_profiles_and_failures_reported": true
+  },
+  "training": false,
+  "new_models_downloaded": false,
+  "GLC_experiment": false,
+  "integrity_rescan": false,
+  "no_automatic_threshold_or_margin_expansion": true
+}
