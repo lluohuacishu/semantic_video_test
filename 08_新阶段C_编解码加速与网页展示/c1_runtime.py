@@ -353,7 +353,11 @@ class ResidentRunner:
                             "sender_checksums_match": True if checksums is None else None})
             print(f"decode {index + 1}/{header['frames']} {seconds:.2f}s", flush=True)
         if checksums is not None:
-            checksums.verify(integrity["sequence_reconstruction_checksums"])
+            from c7_diagnostics import verify_sequence
+            verify_sequence(checksums, integrity["sequence_reconstruction_checksums"],
+                            args.output / "reconstruction_diagnostics.json", header=header,
+                            receiver_profile=codec.profile, records=records,
+                            stream_sha256=ref.sha256_file(args.input))
             for record in records:
                 record["sender_checksums_match"] = True
         if compatibility is not None:

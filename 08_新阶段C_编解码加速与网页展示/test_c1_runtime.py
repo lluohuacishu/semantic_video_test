@@ -236,6 +236,11 @@ class C1Tests(unittest.TestCase):
             runner.run(self.task("bad_sequence", input=str(corrupt)))
         self.assertFalse((self.root / "bad_sequence/receiver/reconstruction_preview.mp4").exists())
         self.assertEqual(json.loads((self.root / "bad_sequence/status.json").read_text())["state"], "failed")
+        diagnostic = json.loads((self.root / "bad_sequence/receiver/reconstruction_diagnostics.json").read_text())
+        self.assertEqual(diagnostic["mismatched_channels"], ["latent_sha256"])
+        self.assertTrue(diagnostic["sequence_matches"]["rgb_sha256"])
+        self.assertEqual(diagnostic["completed_frames"], diagnostic["total_frames"])
+        self.assertFalse(diagnostic["cross_device_accepted"])
         runner.run(self.task("after_bad_sequence", input=str(original)))
 
     def test_ffmpeg_exit_is_reported_and_leaves_no_ready_video(self):

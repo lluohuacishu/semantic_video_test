@@ -39,6 +39,7 @@ ASSETS = {"source.mp4": "encode/encoder/source_preview.mp4",
           "encode.log": "encode_process/worker.log", "decode.log": "decode_process/worker.log",
           "encode-timing.json": "encode/timing.json", "decode-timing.json": "decode/timing.json",
           "result.json": "result.json", "failure.json": "failure.json", "manifest.json": "manifest.json",
+          "decode-diagnostics.json": "decode/receiver/reconstruction_diagnostics.json",
           "transfer.json": "transfer.json", "transfer.csv": "transfer.csv", "events.jsonl": "events.jsonl"}
 
 
@@ -480,10 +481,15 @@ class Endpoint(C3App):
     def fail(self, identifier, exc):
         stop = self.store.events[identifier]
         cancelled = stop.is_set() or isinstance(exc, InterruptedError)
+        diagnostic = self.directory / identifier / "decode/receiver/reconstruction_diagnostics.json"
+        message = str(exc)
+        if not cancelled and diagnostic.is_file():
+            message = "重建一致性校验失败；请下载 decode-diagnostics.json 查看 RGB/latent 差异"
         write(self.directory / identifier / "failure.json",
-              {"type": type(exc).__name__, "message": str(exc), "traceback": traceback.format_exc()})
-        self.store.update(identifier, status="cancelled" if cancelled else "error", error=str(exc),
-                          phase="已停止，未完成结果不计入成功" if cancelled else str(exc), finished_at=now())
+              {"type": type(exc).__name__, "message": message, "cause": str(exc),
+               "traceback": traceback.format_exc()})
+        self.store.update(identifier, status="cancelled" if cancelled else "error", error=message,
+                          phase="已停止，未完成结果不计入成功" if cancelled else message, finished_at=now())
 
     def compression(self, identifier, result):
         encoded = None
@@ -540,7 +546,7 @@ class Endpoint(C3App):
 
 def code_hashes():
     files = list(HERE.glob("c5_*.py")) + [HERE / name for name in
-        ("c1_runtime.py", "c1_io.py", "c2_worker.py", "c2_native.py", "c2_watch.py")]
+        ("c1_runtime.py", "c1_io.py", "c2_worker.py", "c2_native.py", "c2_watch.py", "c7_diagnostics.py")]
     return {p.name: sha256(p) for p in files}
 
 

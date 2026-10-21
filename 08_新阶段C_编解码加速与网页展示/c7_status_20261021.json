@@ -1,0 +1,102 @@
+{
+  "stage": "C7",
+  "updated": "2026-10-21",
+  "status": "diagnostics_ready_compatibility_fix_pending",
+  "phases": {
+    "C7-0": "complete",
+    "C7-1": "complete",
+    "C7-2": "peer_script_reviewed_pixel_quantification_pending",
+    "C7-3": "not_started",
+    "C7-4": "not_started"
+  },
+  "failure": {
+    "receiver_job_id": "d98161cd3cd441968fc250dac8acfe6e",
+    "bytes": 356604,
+    "sha256": "36162a828fd8fce8f07d8496ac3f7aa59a66ba6735d6dd6b1b1470c0f1d8853f",
+    "frames": 1239,
+    "width": 640,
+    "height": 360,
+    "file_integrity_verified": true,
+    "existing_4060_frame_records_match": true,
+    "4070_processed_frames": 1239,
+    "4070_task_seconds": 415.30328530000406,
+    "error": "Ordered GLC frame checksum aggregate differs from the sender.",
+    "first_mismatch_frame": null,
+    "mismatched_channels": null,
+    "numeric_cause_proven": false,
+    "evidence_sha256": {
+      "manifest.json": "9b6ff5d6a8b13792719d7003b26d856e6d0cdb36f8f7be3215123690e98cc674",
+      "job.json": "5b4644df2ead25d49c799038d4e8e7797ed59e265591de6dc28eb4657833640f",
+      "transfer.json": "089c2a0ebbe870e977df427bea43eb02c51acd630b2d60f6b8f6ece0305f2294",
+      "decode/failure.json": "acaf08cd653cb99805970b896b749ab4459b066b749ee5b91fa931ef638d4133",
+      "decode_process/worker.log": "f9b78665c7f630a79d0f399d3f7da3f349e55aeccbe0908f540efef3baa6b406"
+    }
+  },
+  "samples": {
+    "schema": "c7-prefix-samples-v1",
+    "source_stream_sha256": "36162a828fd8fce8f07d8496ac3f7aa59a66ba6735d6dd6b1b1470c0f1d8853f",
+    "encoder_record_sha256": "c90d77bc52cbfd00fb023376bf1531ada9492961ef398d6323520e7241b144b1",
+    "neural_encoding_performed": false,
+    "gpu_used": false,
+    "samples": [
+      {
+        "filename": "prefix_001.glcv",
+        "frames": 1,
+        "bytes": 1517,
+        "sha256": "ba3cf10c5817b6ebb11e79245133d670b2d912410784750b38d022a2890a2593",
+        "compressed_payload_unchanged": true
+      },
+      {
+        "filename": "prefix_008.glcv",
+        "frames": 8,
+        "bytes": 3469,
+        "sha256": "f15c30db408a23fa1995aa5e6281adfc570dfd5d493d90decf80d18717e24e9e",
+        "compressed_payload_unchanged": true
+      },
+      {
+        "filename": "prefix_064.glcv",
+        "frames": 64,
+        "bytes": 18106,
+        "sha256": "30b0211242936d032ed06ff02868a6c212e23e7e34dcc5e6bc2903b21cbbbe65",
+        "compressed_payload_unchanged": true
+      }
+    ]
+  },
+  "validation": {
+    "targeted_cpu_checks_passed": 18,
+    "targeted_cpu_checks_failed": 0,
+    "torch_imported_by_check": false,
+    "check_passed_against": [
+      "current_source_checkout",
+      "original_C5_receiver_bundle"
+    ],
+    "real_neural_inference_performed": false,
+    "gpu_experiment_performed": false,
+    "cross_gpu_fix_verified": false
+  },
+  "published_receiver_release_replaced": false,
+  "external_analysis": {
+    "file": "glcv跨设备解码实验_20261021.md",
+    "sha256": "a8df86f0517b3050485dc5624d2d13572dfa5a0b4f973d1e153ab4cbe03af663",
+    "sender_hashes_independently_checked": true,
+    "receiver_result_independently_verified": false,
+    "raw_script_and_json_available": true,
+    "reported_latent_sha256": "806d6681ab29471f95714e8ae7f6f4fce3d48c25fd6a7605416d34384b22bcc2",
+    "reported_rgb_sha256": "8abed29931057c87ee6e495c1d361828439dd13edd2bb6f55c387c54095a680f",
+    "next_focus": "compare_RGB_rendering_with_identical_backend_then_measure_pixels",
+    "checksum_policy_changed": false,
+    "review_level": "supplied_script_and_json_statically_reviewed_not_rerun",
+    "receiver_json_matches_report": true,
+    "decoded_frames": 1239,
+    "seconds": 633.88,
+    "independent_script_entropy_backend": "python",
+    "original_failed_task_entropy_backend": "native",
+    "neural_codec_monkey_patch_observed": false,
+    "full_video_rerun_performed": false,
+    "supplied_files_sha256": {
+      "force_decode_glcv.py": "222d734b11dfe4f93ff536b0913c311a7cd12cb9aa09c869bcc69fe79900fffa",
+      "forced_decode.json": "8d6a4b02fd7efa6f1d7033539656d238ca2cf651015d46884a38df6832d1142d"
+    },
+    "limitation": "No per-frame peer hashes, raw RGB pair, or peer runtime code fingerprint in forced_decode.json"
+  }
+}

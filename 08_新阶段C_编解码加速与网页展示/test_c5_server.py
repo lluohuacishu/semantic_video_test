@@ -108,6 +108,22 @@ class EndpointTests(unittest.TestCase):
             preflight.assert_not_called()
             submit.assert_not_called()
 
+    def test_reconstruction_failure_stays_failed_and_diagnostic_is_downloadable(self):
+        reservation = self.reserve()
+        identifier = reservation["id"]
+        folder = self.rx.directory / identifier / "decode/receiver"
+        folder.mkdir(parents=True)
+        write(folder / "reconstruction_diagnostics.json", {"state": "failed", "mismatched_channels": ["latent_sha256"]})
+        self.rx.fail(identifier, RuntimeError("decode process failed"))
+        job = self.rx.get_job(identifier)
+        self.assertEqual(job["status"], "error")
+        self.assertIn("重建一致性", job["error"])
+        self.assertIn("decode-diagnostics.json", [d["name"] for d in job["downloads"]])
+        status, body = self.call("GET", f"/jobs/{identifier}/decode-diagnostics.json?download=1")
+        self.assertEqual(status, 200)
+        self.assertEqual(json.loads(body)["mismatched_channels"], ["latent_sha256"])
+        self.assertFalse((folder / "reconstruction_preview.mp4").exists())
+
     def test_control_auth_and_browser_origin(self):
         self.assertEqual(403, self.call("POST", "/control/preflight", {})[0])
         self.assertEqual(403, self.call("POST", "/control/preflight", {}, headers={
