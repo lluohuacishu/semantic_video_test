@@ -1,0 +1,62 @@
+{
+  "schema": "d-round-status-v1",
+  "date": "2026-10-21",
+  "status": "plan_ready_not_started",
+  "planning_only": true,
+  "objective": "让鱼、潜水员等关键目标看得更清楚",
+  "branch": "codex/glc-d",
+  "start_commit": "2669a0f0eb1168671f45161fd345d78ec06e364c",
+  "plan": "D轮方案_待审阅_20261021.md",
+  "inventory": "d_planning_inventory_20261021.json",
+  "stages": {
+    "D0": {
+      "status": "static_inventory_done_alignment_and_split_pending",
+      "next": "audit frame/mask/time alignment, source groups and held-out split"
+    },
+    "D1": {
+      "status": "not_started",
+      "purpose": "frozen semantic localization and track continuity baseline"
+    },
+    "D2": {
+      "status": "not_started",
+      "purpose": "fixed GLC versus ordinary enhancement versus semantic-conditioned enhancement"
+    },
+    "D3": {
+      "status": "not_started",
+      "purpose": "short temporal context and motion stability"
+    },
+    "D4": {
+      "status": "not_started",
+      "purpose": "independent receiver and held-out fish/diver video evaluation"
+    }
+  },
+  "current_turn_activity": {
+    "model_loaded": false,
+    "gpu_used": false,
+    "training_performed": false,
+    "video_experiment_performed": false,
+    "full_archive_extracted": false
+  },
+  "scope": {
+    "GLC_configuration_fixed_for_matched_comparisons": true,
+    "compression_research": "paused_by_user",
+    "GPU_performance_investigation": "paused_by_user",
+    "C7_bitwise_RGB_fix": "not_completed_not_resumed",
+    "C7_preview_warning_preserved": true,
+    "source_frame_rate_and_dimensions_respected": true,
+    "existing_models_and_releases_unchanged": true,
+    "future_experiment_budget_is_proposal_not_execution": true
+  },
+  "evaluation": {
+    "primary": "target visual fidelity and temporal stability in blinded paired viewing",
+    "matched_controls": [
+      "fixed_GLC",
+      "ordinary_restoration",
+      "predicted_semantic_restoration"
+    ],
+    "offline_reference": "known_target_locations_not_a_deployable_result",
+    "SFISHTRACK_is_fish_only": true,
+    "diver_temporal_validation_material_pending": true,
+    "semantic_gain_proven": false
+  }
+}

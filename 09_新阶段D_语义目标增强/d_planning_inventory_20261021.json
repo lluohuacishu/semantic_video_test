@@ -1,0 +1,334 @@
+{
+  "schema": "d-planning-inventory-summary-v1",
+  "date": "2026-10-21",
+  "objective": "让鱼、潜水员等关键目标看得更清楚",
+  "sfishtrack": {
+    "archive": "C:\\Users\\lenovo\\Downloads\\Compressed\\SFISHTRACK.zip",
+    "archive_bytes": 27487126142,
+    "archive_file_count": 47811,
+    "uncompressed_bytes": 28422032601,
+    "video_count": 54,
+    "sequence_count": 54,
+    "image_record_total": 23532,
+    "annotation_record_total": 147582,
+    "sequence_local_track_id_count_sum": 968,
+    "metadata_group_count": 1,
+    "categories": [
+      {
+        "id": 1,
+        "name": "fish"
+      },
+      {
+        "id": 1,
+        "name": "object"
+      }
+    ],
+    "annotation_json_count": 54,
+    "metadata_json_count": 54,
+    "frame_file_count": 24115,
+    "mask_file_count": 23532,
+    "annotation_images_per_sequence_range": [
+      58,
+      833
+    ],
+    "track_count_is_not_global_unique_fish": true,
+    "observed_segmentation_format": "compressed_COCO_RLE",
+    "metadata_can_establish_independent_sources": false,
+    "numeric_name_mapping_issues_are_not_proven_missing_images": true,
+    "numeric_name_mapping_issues": [
+      {
+        "video": "video_027",
+        "unmapped_frame_ids_by_numeric_name": [
+          0,
+          1
+        ],
+        "count": 2
+      },
+      {
+        "video": "video_037",
+        "unmapped_frame_ids_by_numeric_name": [
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71
+        ],
+        "count": 12
+      },
+      {
+        "video": "video_041",
+        "unmapped_frame_ids_by_numeric_name": [
+          300,
+          301,
+          302,
+          303,
+          304,
+          305,
+          306,
+          307,
+          308,
+          309,
+          310,
+          311,
+          312,
+          313,
+          314,
+          315,
+          316,
+          317,
+          318,
+          319,
+          320,
+          321
+        ],
+        "count": 22
+      },
+      {
+        "video": "video_042",
+        "unmapped_frame_ids_by_numeric_name": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "count": 10
+      },
+      {
+        "video": "video_044",
+        "unmapped_frame_ids_by_numeric_name": [
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137
+        ],
+        "count": 20
+      },
+      {
+        "video": "video_045",
+        "unmapped_frame_ids_by_numeric_name": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58
+        ],
+        "count": 59
+      },
+      {
+        "video": "video_054",
+        "unmapped_frame_ids_by_numeric_name": [
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98
+        ],
+        "count": 40
+      }
+    ],
+    "categories_require_audited_alias_mapping": true
+  },
+  "suim_and_existing_models": {
+    "weights": [
+      {
+        "title": "旧 SUIM 底模（工程外依赖）",
+        "path": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\runs\\suim_segformer_b0_20260915\\segmentation_best.pt",
+        "sha256": "ff00cb439a4af290dc3efde8ae76d4acfad797784483b669ab6db79aaf5b1476",
+        "matches_catalog": true,
+        "bytes": 14957579
+      },
+      {
+        "title": "冻结鱼类适配权重",
+        "path": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-mlvc\\runs\\phase_c_20261013\\segformer_adaptation_preserve8\\best.pt",
+        "sha256": "10e4783330112982e941b021afa9603313429d4f30e871d1ddfa059a258a6ca9",
+        "matches_catalog": true,
+        "bytes": 14941395
+      }
+    ],
+    "suim_manifest": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\data\\SUIM\\manifest.json",
+    "suim_manifest_sha256": "6057f22a1aac6ffb0c24f6a24a50234765a0df14167cef15fd71c8694af3904e",
+    "splits": {
+      "train": {
+        "count": 1187,
+        "missing_images": 0,
+        "missing_index_masks": 0
+      },
+      "validation": {
+        "count": 297,
+        "missing_images": 0,
+        "missing_index_masks": 0
+      },
+      "test": {
+        "count": 110,
+        "missing_images": 0,
+        "missing_index_masks": 0
+      }
+    },
+    "model_loaded": false,
+    "gpu_used": false,
+    "historical_segformer_test": {
+      "evidence_file": "04_外部依赖快照/semantic-video-training/runs/suim_segformer_b0_20260915/evaluation_test/summary.json",
+      "sha256": "5785ce13167e60e1bca65ffb3c4236c8840aee39c73c9587ed9193796386e4ea",
+      "images": 110,
+      "long_edge": 256,
+      "preprocessing": "rgb_0_1_long_edge_resize_center_pad_ignore_255",
+      "miou": 0.6913470879035677,
+      "diver_iou": 0.7530750713830209,
+      "fish_vertebrate_iou": 0.7424932261588566,
+      "new_D_evaluation": false,
+      "test_set_previously_viewed": true
+    }
+  },
+  "checks_performed": [
+    "ZIP directory listing",
+    "54 annotation JSON and 54 metadata JSON reads",
+    "SUIM manifest and referenced file existence",
+    "two checkpoint SHA256 checks without loading models",
+    "historical metrics review",
+    "primary reference review"
+  ],
+  "checks_not_performed": [
+    "full archive CRC or SHA256 scan",
+    "full extraction",
+    "all image/mask content alignment",
+    "video decoding",
+    "GPU inference",
+    "training",
+    "D enhancement evaluation"
+  ],
+  "local_evidence": [
+    {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\规划盘点_20261021\\sfishtrack_inventory.json",
+      "sha256": "edcca9a35baaee35f0aa5795f918082ad0cc4dbf8865545f3581631a8a76549a"
+    },
+    {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\规划盘点_20261021\\suim_assets.json",
+      "sha256": "8b9cc44d1c8b08e56f0e837c5eff9e86e08756687d7d84b8972e79a9a0a11916"
+    }
+  ],
+  "reference_urls": {
+    "SFISHTRACK": "https://github.com/JosepSanchezCano/SFISHTRACK",
+    "SUIM": "https://irvlab.cs.umn.edu/resources/suim-dataset",
+    "SegFormer": "https://github.com/NVlabs/SegFormer",
+    "NAFNet_candidate": "https://github.com/megvii-research/NAFNet",
+    "BasicVSRpp_reference": "https://github.com/ckkelvinchan/BasicVSR_PlusPlus"
+  }
+}
