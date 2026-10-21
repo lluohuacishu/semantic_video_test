@@ -24,6 +24,11 @@ function select(id) {
   return refresh();
 }
 const number = (value, digits=2) => value.toLocaleString('zh-CN',{maximumFractionDigits:digits});
+function fileSize(bytes) {
+  if(bytes>=1000000)return number(bytes/1000000)+' MB';
+  if(bytes>=1000)return number(bytes/1000)+' KB';
+  return number(bytes,0)+' B';
+}
 function rate(value) {const parts=String(value).split('/').map(Number);return number(parts[0]/(parts[1] || 1),4);}
 function renderPlan(plan) {
   $('videoPlan').hidden=!plan;
@@ -44,21 +49,23 @@ function compression(result) {
     const sub=document.createElement('small');sub.textContent=note;
     card.append(title,strong,sub);$('compressionCards').append(card);
   }
-  metric('完整码流',number(data.file_bytes,0)+' B',number(data.file_bytes/1024)+' KiB · 实际传输的 .glcv');
-  metric('平均视频码率',number(data.video_kbps)+' kbps',number(data.duration_seconds)+' 秒 · 含码流容器');
-  metric('同档 RGB24 压缩比',number(data.raw_rgb24_ratio)+':1',`${data.width} × ${data.height} · ${number(data.fps)} fps · ${data.frames} 帧`);
-  if(data.source_file_bytes!==null) {
-    if(data.source_file_ratio!==null) {
+  if(data.source_file_bytes!=null)metric('上传的原文件',fileSize(data.source_file_bytes),number(data.source_file_bytes,0)+' B');
+  metric('压缩后码流',fileSize(data.file_bytes),number(data.file_bytes,0)+' B · 实际传输的 .glcv');
+  if(data.source_file_bytes!=null) {
+    if(data.source_file_ratio!=null) {
       const change=data.source_file_reduction_percent;
-      metric('原文件 / 码流',number(data.source_file_ratio)+':1',`原文件 ${number(data.source_file_bytes,0)} B · ${change>=0?'减少':'增加'} ${number(Math.abs(change))}%`);
+      metric('文件压缩比',number(data.source_file_ratio)+':1',`原文件 ÷ 完整码流 · 体积${change>=0?'减少':'增加'} ${number(Math.abs(change))}%`);
     } else {
-      metric('原文件 / 码流','不作整片比较',`上传文件 ${number(data.source_file_bytes,0)} B · ${data.whole_source_processed===false?'本次只处理选定片段':'未确认覆盖整片'}`);
+      metric('文件压缩比','暂不计算',data.whole_source_processed===false?'只处理了片段，不能与整片文件相比':'未确认覆盖完整原视频');
     }
+  } else {
+    metric('文件压缩比','无原文件数据','仅有码流时不推算原文件大小');
   }
-  if(data.mean_psnr_db!==null)metric('重建 PSNR',number(data.mean_psnr_db)+' dB','与同档采样画面比较 · 越高越接近');
-  let note='压缩比 = 基准字节数 ÷ 完整 .glcv 字节数；同档 RGB24 为处理后画面的未压缩大小。模型预共享，预览 MP4 不计入码流大小。';
-  if(data.source_file_ratio!==null)note+=' 原文件大小比包含缩放、抽帧及去音频的收益。';
-  if(data.whole_source_processed===false)note+=` 本次范围 ${number(data.selected_start_seconds)}–${number(data.selected_end_seconds)} 秒，整片 ${number(data.source_duration_seconds)} 秒；处理完整视频后才显示整片文件比。`;
+  metric('平均视频码率',number(data.video_kbps)+' kbps',number(data.duration_seconds)+' 秒 · 含码流容器');
+  if(data.mean_psnr_db!=null)metric('重建 PSNR',number(data.mean_psnr_db)+' dB','与处理后的源画面比较 · 越高越接近');
+  let note=`输出 ${data.width} × ${data.height} · ${number(data.fps)} fps · ${data.frames} 帧。文件压缩比 = 上传的原文件字节数 ÷ 完整 .glcv 字节数。KB/MB 按十进制计量，模型预共享；观看用 MP4 不计入码流大小。`;
+  if(data.source_file_ratio!=null)note+=' 若降低尺寸、帧率或去除音频，文件大小比也包含这些影响。';
+  if(data.whole_source_processed===false)note+=` 本次范围 ${number(data.selected_start_seconds)}–${number(data.selected_end_seconds)} 秒，整片 ${number(data.source_duration_seconds)} 秒；处理完整视频后才显示文件压缩比。`;
   $('compressionNote').textContent=note;
 }
 function setVideo(id, box, url) {
@@ -108,7 +115,8 @@ async function refresh() {
   for(const item of job.downloads || []) {
     const link=document.createElement('a');link.href=item.url;link.textContent=item.name;link.download='';$('downloads').append(link);
   }
-  $('details').textContent=JSON.stringify(job,null,2);
+  $('details').textContent=JSON.stringify(job,(key,value)=>
+    ['raw_rgb24_bytes','raw_rgb24_ratio'].includes(key)?undefined:value,2);
 }
 function encodeOptions() {
   const mode=$('clip').value, clip={mode};
