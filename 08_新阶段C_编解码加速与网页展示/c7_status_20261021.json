@@ -1,11 +1,11 @@
 {
   "stage": "C7",
   "updated": "2026-10-21",
-  "status": "diagnostics_ready_compatibility_fix_pending",
+  "status": "native_first_frame_rgb_difference_quantified_compatibility_fix_pending",
   "phases": {
     "C7-0": "complete",
     "C7-1": "complete",
-    "C7-2": "peer_script_reviewed_offline_comparator_ready_paired_pixels_pending",
+    "C7-2": "native_first_frame_quantified_full_cross_device_sequence_pending",
     "C7-3": "not_started",
     "C7-4": "not_started"
   },
@@ -70,13 +70,22 @@
       "current_source_checkout",
       "original_C5_receiver_bundle"
     ],
-    "real_neural_inference_performed": false,
-    "gpu_experiment_performed": false,
+    "real_neural_inference_performed": true,
+    "gpu_experiment_performed": true,
     "cross_gpu_fix_verified": false,
     "r2_c7_cpu_checks_passed": 23,
     "r2_c7_cpu_checks_failed": 0,
     "r2_new_cpu_checks": 14,
-    "offline_comparator_imports_torch": false
+    "offline_comparator_imports_torch": false,
+    "authorized_gpu_scope": {
+      "runs": 1,
+      "maximum_frames": 8,
+      "actual_frames": 8,
+      "backend": "native",
+      "result": "sample_passed",
+      "full_video_rerun_performed": false,
+      "further_gpu_runs_authorized": false
+    }
   },
   "published_receiver_release_replaced": false,
   "external_analysis": {
@@ -106,11 +115,107 @@
   "offline_comparison": {
     "tool": "c7_compare_results.py",
     "ready": true,
-    "real_paired_rgb_measured": false,
+    "real_paired_rgb_measured": true,
     "snapshot_default": "all_completed_short_sample_frames",
     "same_stream_required": true,
     "same_entropy_backend_required": true,
     "quality_threshold_applied": false,
-    "package_name": "C7_4060_4070诊断包_20261021_r2.zip"
+    "package_name": "C7_4060_4070诊断包_20261021_r2.zip",
+    "paired_frames_measured": [
+      1
+    ]
+  },
+  "native_first_frame_measurement": {
+    "schema": "c7-first-frame-measurement-summary-v1",
+    "date": "2026-10-21",
+    "user_authorization": "One local native C7 diagnostic, at most 8 frames. No further GPU runs authorized.",
+    "local_inference_runs": 1,
+    "local_frames_completed": 8,
+    "local_state": "sample_passed",
+    "local_seconds": 9.460416500000065,
+    "local_source_media_reads": [],
+    "peer_frames_completed": 1,
+    "compared_frames": [
+      1
+    ],
+    "first_mismatch_frame": 1,
+    "input_sha256": "f15c30db408a23fa1995aa5e6281adfc570dfd5d493d90decf80d18717e24e9e",
+    "backend": "native",
+    "rgb": {
+      "shape": [
+        360,
+        640,
+        3
+      ],
+      "dtype": "uint8",
+      "byte_equal": false,
+      "numeric_equal": false,
+      "elements": 691200,
+      "different_elements": 16,
+      "mae": 2.3148148148148147e-05,
+      "mse": 2.3148148148148147e-05,
+      "max_abs_error": 1.0,
+      "different_pixels": 16,
+      "pixels": 230400,
+      "different_pixel_fraction": 6.944444444444444e-05,
+      "different_channels_rgb": [
+        8,
+        5,
+        3
+      ],
+      "psnr_db": 94.48564107682822,
+      "psnr_infinite": false,
+      "peak_value": 255
+    },
+    "signed_channel_differences_4070_minus_4060": {
+      "-1": 10,
+      "1": 6
+    },
+    "reference_state": {
+      "ref_latent": {
+        "shape": [
+          1,
+          256,
+          24,
+          40
+        ],
+        "dtype": "float32",
+        "byte_equal": true,
+        "numeric_equal": true,
+        "elements": 245760,
+        "different_elements": 0,
+        "mae": 0.0,
+        "mse": 0.0,
+        "max_abs_error": 0.0
+      },
+      "ref_y": null
+    },
+    "entropy_comparison": {
+      "frame": 1,
+      "available": true,
+      "parts_left": 4,
+      "parts_right": 4,
+      "matches": {
+        "compressed_sha256": true,
+        "cdf_indexes_sha256": true,
+        "symbols_sha256": true
+      }
+    },
+    "code_and_native_library_fingerprints_match": true,
+    "drivers": {
+      "4060": "NVIDIA GeForce RTX 4060 Laptop GPU, 560.94",
+      "4070": "NVIDIA GeForce RTX 4070 Laptop GPU, 572.96"
+    },
+    "attribution_limit": "GPU model and driver both differ; no specific generator layer/operator proven.",
+    "scope_limit": "Only frame 1 has paired pixels. Its PSNR compares two reconstructions, not source-video quality.",
+    "complete_native_sequence_cross_device_verified": false,
+    "checksum_policy_changed": false,
+    "cross_gpu_fix_verified": false,
+    "evidence_sha256": {
+      "comparison.json": "6d6e4a9a9c3d31654df355ddb87f4a7f215307ba8bb3252ef78d99a1eaedaaf5",
+      "4060_report.json": "309d480fb0482410a063132283ab6f9417dd6d969774625c9f3db50d122c6438",
+      "4070_report.json": "ce74f5c4a7d1e4abccbd5f250adf9d21f428d5f6eef4e4dfea2b826f92979e96",
+      "pixel_differences.csv": "950aa734af0ab3fd6c13e47d29a9880f5779b13d5d544604879c650172062491"
+    }
   }
 }
