@@ -1,9 +1,9 @@
 {
-  "schema": "d-planning-inventory-summary-v1",
+  "schema": "d-inventory-summary-v2",
   "date": "2026-10-21",
   "objective": "让鱼、潜水员等关键目标看得更清楚",
   "sfishtrack": {
-    "archive": "C:\\Users\\lenovo\\Downloads\\Compressed\\SFISHTRACK.zip",
+    "archive": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\原始数据\\SFISHTRACK.zip",
     "archive_bytes": 27487126142,
     "archive_file_count": 47811,
     "uncompressed_bytes": 28422032601,
@@ -35,7 +35,35 @@
     "observed_segmentation_format": "compressed_COCO_RLE",
     "metadata_can_establish_independent_sources": false,
     "numeric_name_mapping_issues_are_not_proven_missing_images": true,
-    "numeric_name_mapping_issues": [
+    "categories_require_audited_alias_mapping": true,
+    "historical_usage_audit": {
+      "sequence_name_candidates": [
+        "sfishtrack_001",
+        "sfishtrack_027",
+        "sfishtrack_054"
+      ],
+      "same_content_as_new_zip_verified": false,
+      "training_exposure_proven": false,
+      "exclude_from_claimed_unseen_holdout_until_checked": true,
+      "evidence": [
+        {
+          "path": "01_主工程/audit/phase_b_commands/sfishtrack_001_glc_q0_encode.log",
+          "sha256": "2b85c18816bfac36280ee2bfb3dae94d3949c5c18787b6b9921e361302524a5a"
+        },
+        {
+          "path": "01_主工程/audit/phase_b_commands/sfishtrack_027_glc_q0_encode.log",
+          "sha256": "887ebbe7db9be6d05bb06abbd82805db1c91d70910aee1b8d55ece83a3880d1b"
+        },
+        {
+          "path": "01_主工程/audit/phase_b_commands/sfishtrack_054_glc_q0_encode.log",
+          "sha256": "326fa0a6825b2473cbda65145df81510096a7d42c8f4e433dc7982026ecab773"
+        }
+      ]
+    },
+    "archive_original_location": "C:\\Users\\lenovo\\Downloads\\Compressed\\SFISHTRACK.zip",
+    "archive_moved_at_user_request": true,
+    "original_location_exists": false,
+    "original_numeric_name_audit": [
       {
         "video": "video_027",
         "unmapped_frame_ids_by_numeric_name": [
@@ -244,30 +272,11 @@
         "count": 40
       }
     ],
-    "categories_require_audited_alias_mapping": true,
-    "historical_usage_audit": {
-      "sequence_name_candidates": [
-        "sfishtrack_001",
-        "sfishtrack_027",
-        "sfishtrack_054"
-      ],
-      "same_content_as_new_zip_verified": false,
-      "training_exposure_proven": false,
-      "exclude_from_claimed_unseen_holdout_until_checked": true,
-      "evidence": [
-        {
-          "path": "01_主工程/audit/phase_b_commands/sfishtrack_001_glc_q0_encode.log",
-          "sha256": "2b85c18816bfac36280ee2bfb3dae94d3949c5c18787b6b9921e361302524a5a"
-        },
-        {
-          "path": "01_主工程/audit/phase_b_commands/sfishtrack_027_glc_q0_encode.log",
-          "sha256": "887ebbe7db9be6d05bb06abbd82805db1c91d70910aee1b8d55ece83a3880d1b"
-        },
-        {
-          "path": "01_主工程/audit/phase_b_commands/sfishtrack_054_glc_q0_encode.log",
-          "sha256": "326fa0a6825b2473cbda65145df81510096a7d42c8f4e433dc7982026ecab773"
-        }
-      ]
+    "D0_file_name_mapping": {
+      "annotation_images": 23532,
+      "missing_or_ambiguous_rgb": 0,
+      "missing_mask_member_names": 0,
+      "actual_missing_images_proven_by_old_ordinal_audit": false
     }
   },
   "suim_and_existing_models": {
@@ -327,16 +336,23 @@
     "SUIM manifest and referenced file existence",
     "two checkpoint SHA256 checks without loading models",
     "historical metrics review",
-    "primary reference review"
+    "primary reference review",
+    "D0 all annotation file_name-to-member mapping",
+    "320 selected RGB and 909 instance masks validated",
+    "all 320 selected frame PTS matched by CPU decoding 5 MP4s",
+    "24 SUIM original dimensions, RGB hashes and class pixel counts",
+    "13 CPU tests; 712 final file hash checks"
   ],
   "checks_not_performed": [
     "full archive CRC or SHA256 scan",
     "full extraction",
     "all image/mask content alignment",
-    "video decoding",
     "GPU inference",
     "training",
-    "D enhancement evaluation"
+    "D enhancement evaluation",
+    "all 54 videos decoded or validated",
+    "independent capture-source verification",
+    "diver video temporal validation"
   ],
   "local_evidence": [
     {
@@ -354,5 +370,6 @@
     "SegFormer": "https://github.com/NVlabs/SegFormer",
     "NAFNet_candidate": "https://github.com/megvii-research/NAFNet",
     "BasicVSRpp_reference": "https://github.com/ckkelvinchan/BasicVSR_PlusPlus"
-  }
+  },
+  "D0_evidence": "evidence_d0_20261021/summary.json"
 }

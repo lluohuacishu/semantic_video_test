@@ -1,0 +1,20 @@
+{
+  "schema": "d0-selection-v1",
+  "date": "2026-10-21",
+  "purpose": "Small CPU-only data pilot; no model inference or training",
+  "fish_development_video_ids": [1, 2, 3],
+  "fish_reserved_video_ids": [7, 25],
+  "frames_per_video": 64,
+  "selection_rule": "First 64 annotations ordered by numeric original filename, without model scores. Development uses the historically indexed 001-006 group; reserve the lowest IDs in the other two conservative groups.",
+  "development_group_video_ids": [1, 2, 3, 4, 5, 6],
+  "reserved_group_video_ids": [7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54],
+  "quarantined_video_ids": [12],
+  "historical_codec_evaluation_video_ids": [1, 27, 54],
+  "historical_alignment_only_video_ids": [28],
+  "group_basis": "Old local metadata is only a conservative grouping hint. Merge ambiguous 2023-05-09/2023-09-05 groups; quarantine invalid-date video012. New ZIP metadata is identical for all 54 videos and conflicts with old metadata. Source independence is NOT established.",
+  "holdout_claim": "Sequence holdout for D-round tuning only; not a new independent-source or never-seen benchmark. Historical 027/028/054 remain regression-only.",
+  "suim_existing_split": "validation",
+  "suim_diver_count": 20,
+  "suim_no_fish_or_diver_count": 4,
+  "suim_selection_rule": "Diver candidates sorted by GT diver area fraction then ID; take 20 evenly spaced ranks. Negative controls use four lowest SHA256(ID) ranks. This is development/regression, not held-out testing."
+}

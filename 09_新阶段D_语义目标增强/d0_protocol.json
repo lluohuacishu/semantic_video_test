@@ -1,0 +1,100 @@
+{
+  "schema": "d0-protocol-v1",
+  "date": "2026-10-21",
+  "status": "frozen_before_model_inference",
+  "objective": "At no larger complete transmission size, preserve fish/diver fidelity better than original GLC and a nonsemantic control.",
+  "scope": {
+    "first_route": "frozen SegFormer + one sender background low-pass operator + unchanged GLC/receiver",
+    "training_required": false,
+    "receiver_enhancement_required": false,
+    "D0_authorized_work": "CPU data, annotation, timestamp and protocol preparation",
+    "D1_or_D2_executed": false
+  },
+  "data": {
+    "selection": "d0_selection.json",
+    "fish_development": [1, 2, 3],
+    "fish_reserved_cfr": [7],
+    "fish_reserved_vfr": [25],
+    "vfr_policy": "Keep actual PTS; static localization is available, timed codec comparison waits for an explicit PTS-preserving path. Never reinterpret average frame rate as constant.",
+    "fish_frames_per_sequence": 64,
+    "fish_dimensions": [1920, 1080],
+    "validated_cfr": "30000/1001",
+    "suim_diver_images": 20,
+    "suim_no_target_images": 4,
+    "suim_role": "existing validation split; development/regression only",
+    "source_independence_established": false,
+    "holdout_tuning_allowed": false,
+    "reference": "unaltered publisher RGB at original dimensions; never preprocessed input or lossy preview",
+    "GT_usage": "offline evaluation and optional oracle diagnostic; never predictor/production sender input"
+  },
+  "controls": {
+    "A": "original RGB + frozen GLC",
+    "B": "whole-frame Gaussian low-pass + same GLC",
+    "C": "predicted target protection + identical Gaussian low-pass outside protection + same GLC",
+    "O_optional": "GT protection diagnostic; not deployable performance or a guaranteed upper bound",
+    "operator_sigma_pixels": "2.0 * max(width,height) / 1920",
+    "D1_deliverable": "Freeze one prediction model, threshold and protection margin on development data before D2. Do not add extra modules to meet an innovation quota."
+  },
+  "codec": {
+    "weights_and_decoder": "unchanged C-round baseline",
+    "container_version": 2,
+    "intra_period": 64,
+    "reset_interval": 32,
+    "initial_q_candidates": [0, 32, 63],
+    "max_q_points_per_method_per_clip": 3,
+    "baseline_budget_anchor_q": 32,
+    "selection": "Largest measured total file size within B; ties use lower q. No GT/quality-based q choice on holdout.",
+    "cache_identical_points": true,
+    "resolution_timeline_gop_reset_same_for_all_controls": true,
+    "automatic_search_expansion": false
+  },
+  "byte_accounting": {
+    "S_total": "actual complete glcv + required side information and per-clip control metadata",
+    "sender_only_mask_transmitted": false,
+    "preinstalled_models": "deployment size recorded separately; any per-clip model delta counts in S_total",
+    "mechanism_budget": "B_clip = measured S_total of control A at q=32 on exactly the same original frames",
+    "near_equal_pair": {
+      "semantic_no_larger_than_each_comparator": true,
+      "max_relative_gap": 0.02,
+      "rule": "0 <= (S_comparator - S_semantic) / S_comparator <= 0.02"
+    },
+    "unmatched_points": "Report equal ceiling and actual size/quality; do not label near-equal volume. Report infeasible budgets without silently changing resolution/fps.",
+    "padding_to_equalize": false,
+    "estimated_region_bits_are_actual_file_bytes": false,
+    "application_budget": {
+      "link_bits_per_second": 20000,
+      "send_time_over_playback_time": 2,
+      "engineering_reserve_fraction": 0.2,
+      "reserve_is_measured_network_overhead": false,
+      "application_bytes_per_playback_second": 4000,
+      "ten_second_ceiling_bytes": 40000,
+      "64_frame_cfr_clip_duration": "8008/3750",
+      "64_frame_cfr_clip_ceiling_bytes": 8541,
+      "formula": "floor(20000 * (2*T) / 8 * 0.8)",
+      "claim": "Separate deployment feasibility check; equal-byte semantic benefit does not establish this link target or real acoustic transmission."
+    }
+  },
+  "evaluation": {
+    "D1": "GT pixel precision/recall/IoU; instance coverage by target size; protection area and no-target false protection. Missing detections remain in denominator.",
+    "D2_primary_numeric": "Per-clip pooled RGB MSE/PSNR over independent original GT target pixels; each clip has equal weight in the reported mean. Fish and diver scores separate.",
+    "MSE": "sum((decoded_RGB - original_RGB)^2 on GT region and 3 channels) / (3 * GT pixel count)",
+    "PSNR": "10*log10(255^2/MSE); zero MSE reported as lossless with MSE=0, empty region reported NA",
+    "background": "GT complement is rest-of-image, not necessarily semantic water or exhaustively labeled background. Report it separately.",
+    "target_size_bins_pixels_fraction": [0.001, 0.01],
+    "static_images_are_video_evidence": false,
+    "visual": "Hide method names, randomize left/right, compare at same size/time and same crops against original RGB. Record better/tie/worse, missed targets, flicker, ghosting and background loss. Single user assessment is exploratory.",
+    "temporal": "Continuous playback on verified PTS only; no temporal score inferred from still images or frame-independent averages.",
+    "pilot_engineering_thresholds_not_statistical_proof": {
+      "target_mean_PSNR_gain_db_vs_A_and_B": 0.5,
+      "positive_development_clips_minimum": 2,
+      "development_clip_count": 3,
+      "worst_target_PSNR_delta_db": -0.5,
+      "mean_rest_of_image_PSNR_delta_db": -1.0,
+      "worst_rest_of_image_PSNR_delta_db": -2.0,
+      "no_obvious_new_target_distortion_or_flicker": true,
+      "visual_confirmation_required": true
+    },
+    "failure_policy": "Keep all failures; separate localization, preprocessing and size-matching failures. No automatic training or threshold relaxation after holdout.",
+    "semantic_gain_proven": false
+  }
+}
