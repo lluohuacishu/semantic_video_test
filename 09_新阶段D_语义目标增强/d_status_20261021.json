@@ -1,9 +1,9 @@
 {
-  "schema": "d-round-status-v1",
+  "schema": "d-round-status-v2",
   "date": "2026-10-21",
   "status": "plan_ready_not_started",
   "planning_only": true,
-  "objective": "让鱼、潜水员等关键目标看得更清楚",
+  "objective": "固定完整传输预算，让鱼、潜水员等关键目标看得更清楚",
   "branch": "codex/glc-d",
   "start_commit": "2669a0f0eb1168671f45161fd345d78ec06e364c",
   "C_round_handoff": {
@@ -18,24 +18,28 @@
   "inventory": "d_planning_inventory_20261021.json",
   "stages": {
     "D0": {
-      "status": "static_inventory_done_alignment_and_split_pending",
-      "next": "audit frame/mask/time alignment, source groups and held-out split"
+      "status": "static_inventory_done_alignment_split_and_budget_protocol_pending",
+      "next": "audit alignment, historical source reuse, held-out groups, actual-byte budget and evaluation protocol"
     },
     "D1": {
       "status": "not_started",
-      "purpose": "frozen semantic localization and track continuity baseline"
+      "purpose": "frozen semantic localization, temporal protection masks and failure analysis"
     },
     "D2": {
       "status": "not_started",
-      "purpose": "fixed GLC versus ordinary enhancement versus semantic-conditioned enhancement"
+      "purpose": "actual equal-budget comparison using unchanged GLC and semantic preprocessing"
     },
     "D3": {
       "status": "not_started",
-      "purpose": "short temporal context and motion stability"
+      "purpose": "conditional differentiable training audit and bounded semantic rate-distortion adaptation"
     },
     "D4": {
       "status": "not_started",
-      "purpose": "independent receiver and held-out fish/diver video evaluation"
+      "purpose": "frozen held-out fish/diver equal-budget visual evaluation"
+    },
+    "D5": {
+      "status": "not_started",
+      "purpose": "independent sender/receiver integration with actual byte and runtime accounting"
     }
   },
   "current_turn_activity": {
@@ -46,25 +50,61 @@
     "full_archive_extracted": false
   },
   "scope": {
-    "GLC_configuration_fixed_for_matched_comparisons": true,
-    "compression_research": "paused_by_user",
-    "GPU_performance_investigation": "paused_by_user",
+    "GLC_weights_and_decoder_fixed_in_D2": true,
+    "global_q_budget_matching_in_D2": "planned_bounded_not_executed",
+    "semantic_coding_research": "selected_direction_planning_only",
+    "general_codec_search_and_extreme_compression": "not_resumed",
+    "GPU_performance_investigation": "not_resumed",
     "C7_bitwise_RGB_fix": "not_completed_not_resumed",
     "C7_preview_warning_preserved": true,
     "source_frame_rate_and_dimensions_respected": true,
     "existing_models_and_releases_unchanged": true,
+    "main_unchanged": true,
     "future_experiment_budget_is_proposal_not_execution": true
   },
   "evaluation": {
-    "primary": "target visual fidelity and temporal stability in blinded paired viewing",
+    "primary": "target visual fidelity and temporal stability under no larger complete transmission size",
     "matched_controls": [
-      "fixed_GLC",
-      "ordinary_restoration",
-      "predicted_semantic_restoration"
+      "original_input_GLC",
+      "nonsemantic_preprocessing_GLC",
+      "predicted_semantic_protection_GLC"
     ],
-    "offline_reference": "known_target_locations_not_a_deployable_result",
+    "offline_reference": "GT_mask_diagnostic_not_a_deployable_result",
+    "quality_reference": "original_unprocessed_source_RGB",
+    "byte_basis": "actual_full_container_plus_required_side_information_and_control",
+    "proposed_pair_rule": {
+      "semantic_bytes_no_greater_than_baseline": true,
+      "max_relative_size_gap": 0.02,
+      "threshold_status": "proposal_freeze_in_D0",
+      "padding_to_equalize_bytes": false
+    },
+    "budget_ceiling_and_exact_size_are_distinct": true,
+    "regional_actual_bit_counts_not_assumed_separable": true,
     "SFISHTRACK_is_fish_only": true,
     "diver_temporal_validation_material_pending": true,
     "semantic_gain_proven": false
-  }
+  },
+  "plan_revision": 2,
+  "user_visual_objective": "让鱼、潜水员等关键目标看得更清楚",
+  "route_selection": {
+    "route": "semantic_guided_coding_under_fixed_total_budget",
+    "user_preference": "倾向 D.md 的第二条路线",
+    "source_path": "C:\\Users\\lenovo\\Desktop\\临时\\D.md",
+    "source_sha256": "a9f7d9213654c7720ebcf0e2ab76af4ff6797e73b51f6d881aec999b7204fc20",
+    "review": "D路线调整评审_20261021.md",
+    "first_step": "sender semantic protection and background simplification with unchanged GLC and decoder",
+    "later_candidate": "semantic rate-distortion adaptation; spatial control requires separate codec and protocol design",
+    "receiver_restoration": "optional_not_a_prerequisite",
+    "initial_plan_commit": "38c2219c23ee405950ef2d0af3584e9dc0575d2c"
+  },
+  "static_code_evidence": [
+    {
+      "path": "04_外部依赖快照/semantic-video-training/scripts/glc_video_codec.py",
+      "sha256": "52fe2b88cd3f2e023825b2e0e2ada0d86e54dcccdcd4dcc8c137b8eb3272a2ae"
+    },
+    {
+      "path": "08_新阶段C_编解码加速与网页展示/c1_runtime.py",
+      "sha256": "80302aeec474044ab32f82aa049c48e62fb752abcbf5177742a67c912a9cd711"
+    }
+  ]
 }
