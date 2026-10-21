@@ -1,0 +1,55 @@
+{
+  "schema": "d2-mechanism-pilot-v1",
+  "date": "2026-10-21",
+  "registered_before_encoding": true,
+  "parent_protocol": "d1_d2_protocol_v2.json",
+  "purpose": "Two-clip development diagnostic: can predicted or GT protection improve independently decoded fish fidelity under the existing complete-file budget?",
+  "scope": {"video_ids": [1, 2], "frames_per_clip": 64, "width": 1920, "height": 1080, "fps": "30000/1001", "holdout_used": false, "training": false, "new_semantic_inference": false},
+  "groups": {
+    "A": "Unchanged publisher RGB, ordinary GLC",
+    "B": "Whole-frame Gaussian low-pass",
+    "C": "Frozen base_tiles512 + recall_hold1 cached fish/diver union alpha protects original RGB; same low-pass elsewhere",
+    "O": "Offline fish GT protection using the same dilation, one-frame seed history, soft edge and fallback rule; not deployable and not a guaranteed upper bound"
+  },
+  "preprocessing": {
+    "sigma": 2.0,
+    "gaussian": "scipy.ndimage.gaussian_filter on float32 RGB, sigma=(2,2,0), mode=reflect, truncate=4; round/clamp to uint8",
+    "blend": "round(alpha_uint8/255 * original_uint8 + (1-alpha_uint8/255) * blurred_uint8), float32 then clamp to uint8",
+    "protection": {"margin_at_1920": 16, "previous_seed_frames": 1, "soft_edge_at_1920": 4},
+    "prediction_reused": "D1_model_comparison_20261021_r1/base_tiles512/selected_alpha",
+    "prediction_configuration_changes_after_quality_results": false,
+    "dimensions_and_source_timeline_unchanged": true,
+    "all_codec_inputs_lossless_files_or_original_publisher_RGB": true,
+    "masks_transmitted": false
+  },
+  "codec": {
+    "implementation": "Existing C-round NeuralCodec.frame with existing native entropy backend; new experiment harness only",
+    "container_version": 2, "intra_period": 64, "reset_interval": 32,
+    "q_candidates": [32, 0, 63], "max_points_per_group_per_clip": 3,
+    "max_encoded_points": 24, "baseline_anchor": "A@q32 for each clip, written before non-A encoding",
+    "independent_receiver": "Separate process, decoder_only=True, accepts stream and output paths without original images or GT; existing media-read guard and ordered reconstruction verification",
+    "precision": "Existing deterministic FP32 codec arithmetic, no neural algorithm or weight changes",
+    "on_failure": "Keep failure evidence, fix harness issues only; do not silently shrink resolution, change precision, or expand points"
+  },
+  "budget": {
+    "S0": "Actual complete A@q32 glcv bytes per clip, fixed before semantic results",
+    "B0": "S0", "B10": "floor(11*S0/10)",
+    "selection": "Largest actual complete file within each ceiling per group; tie chooses lower q; no GT/quality-based point selection",
+    "hard_cap": "10*S_semantic <= 11*S0 per clip; over-cap exploratory points never count as deliverables",
+    "counted_bytes": "Complete glcv; no extra per-clip decoder side data required by sender-only preprocessing",
+    "q_expansion": false,
+    "unmatched": "Report actual sizes and rate-matching insufficiency; neither infer semantic failure nor equal-byte benefit",
+    "reference_file_kbps": [30, 40], "reference_is_hard_gate": false
+  },
+  "evaluation": {
+    "reference": "Original unprocessed D0 RGB and independent fish GT for all frames, including missed fish",
+    "primary": "Pooled RGB squared error and PSNR on GT fish and its complement, per clip",
+    "controls": "Compare C and O to both A and B selected under each identical ceiling; also show same-q differences and actual bytes",
+    "near_equal_category": "C or O no larger than comparator and within 2% of its actual size; evaluate A and B separately",
+    "full_D_round_gate_claim": false,
+    "visual": "Produce synchronized same-scale original/A/B/C/O target-crop previews and a method-hidden view with a separate key; static checks are not continuous-playback validation",
+    "limitations": "Two development clips share one source group, no diver-video or held-out validation; GT is a diagnostic reference, not a guaranteed upper bound"
+  },
+  "no_full_integrity_rescan": true,
+  "integrity_note": "Do not rescan D0 or semantic weights. Keep existing codec initialization and newly generated stream verification intact."
+}

@@ -1,7 +1,7 @@
 {
-  "schema": "d-round-status-v7",
+  "schema": "d-round-status-v8",
   "date": "2026-10-21",
-  "status": "D1_review_and_cached_branch_analysis_completed_D2_not_started",
+  "status": "D2_timeboxed_single_clip_q32_completed_full_matrix_incomplete",
   "planning_only": false,
   "objective": "Improve fish/diver fidelity with at most 10% per-clip complete-file growth over the frozen ordinary GLC baseline; compare against original GLC and nonsemantic controls at the same budget.",
   "branch": "codex/glc-d",
@@ -52,7 +52,7 @@
         "diver_images_at_least_90pct_covered"
       ],
       "holdout_evaluated": false,
-      "next": "Cached branch contributions are now measured. A single 256-native-tile profile is optional; prioritize a separately specified two-clip A/B/C/O D2 mechanism diagnostic before deciding on training.",
+      "next": "Review the completed D2 timeboxed single-clip q32 evidence; do not automatically rerun localization or training.",
       "model_comparison": {
         "status": "completed_localization_gate_failed",
         "plan": "d1_model_comparison_plan_v1.json",
@@ -92,11 +92,33 @@
       }
     },
     "D2": {
-      "status": "not_started",
+      "status": "timeboxed_single_clip_q32_completed",
       "purpose": "Actual same-budget controls under a per-clip 10% file-growth cap, using unchanged GLC and semantic preprocessing",
       "protocol": "d1_d2_protocol_v2.json",
-      "readiness": "Proposed bounded development mechanism diagnostic on clips 001/002; D1 gate remains failed and does not prohibit a clearly scoped diagnostic. Run configuration must be fixed before execution.",
-      "next": "Specify A/B/C/O configurations and actual-size matching under the existing per-clip 10% cap, then run only the bounded diagnostic when proceeding. Not executed during document review."
+      "readiness": "Four clip001 q32 controls independently decoded and evaluated. Full registered 24-point matrix stopped on user time limit.",
+      "next": "No automatic GPU continuation. Reuse completed streams/decodes if user later continues; review same-q findings and actual byte gaps before further trials.",
+      "run_plan": "d2_run_plan_v1.json",
+      "run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_20261021_r1",
+      "input_clips": [
+        1,
+        2
+      ],
+      "frames_per_clip": 64,
+      "max_encoded_points": 24,
+      "new_semantic_inference": false,
+      "training": false,
+      "user_time_limit_minutes": 10,
+      "completed_encoded_points": 15,
+      "full_matrix_complete": false,
+      "timeboxed_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_20261021_r1\\timeboxed_20261021",
+      "report": "D2阶段记录_20261021.md",
+      "evidence": "evidence_d2_timeboxed_20261021/evaluation.json",
+      "completed_independent_decodes": 5,
+      "evaluated_points": 4,
+      "semantic_gain_proven": false,
+      "continuous_visual_validation_completed": false,
+      "GPU_work_running": false,
+      "timeboxed_run_plan": "d2_timeboxed_plan_v1.json"
     },
     "D3": {
       "status": "optional_not_started_not_required",
@@ -113,23 +135,27 @@
   },
   "current_turn_activity": {
     "D1_inference": false,
-    "model_loaded": false,
-    "gpu_used": false,
+    "model_loaded": true,
+    "gpu_used": true,
     "training_performed": false,
-    "video_experiment_performed": false,
-    "GLC_codec_experiment_performed": false,
+    "video_experiment_performed": true,
+    "GLC_codec_experiment_performed": true,
     "holdout_inference": false,
     "full_archive_extracted": false,
     "integrity_recheck_performed": false,
     "cpu_metric_evaluation": true,
-    "cached_branch_contribution_analysis": true,
-    "cached_fish_development_frames": 192,
-    "new_input_profile_inferences": 0
+    "cached_branch_contribution_analysis": false,
+    "cached_fish_development_frames": 128,
+    "new_input_profile_inferences": 0,
+    "scope": "Full matrix interrupted on user time limit; 15 streams retained, 5 independent decodes complete, clip001 four q32 controls evaluated and viewing generated. No GPU work running.",
+    "GPU_work_running": false,
+    "note": "User time limit: stopped full matrix after 15 encodes, completed 3 additional independent q32 decodes and CPU quality/viewing; no automatic continuation.",
+    "quality_evaluated_source_frames": 64
   },
   "scope": {
     "GLC_weights_and_decoder_fixed_in_D2": true,
-    "global_q_budget_matching_in_D2": "planned_bounded_not_executed",
-    "semantic_coding_research": "D1_localization_diagnostics_completed; D2_mechanism_diagnostic_prioritized_but_not_started",
+    "global_q_budget_matching_in_D2": "full_matrix_interrupted; only_one_clip_q32_quality_evaluated",
+    "semantic_coding_research": "D2_timeboxed_single_clip_q32_diagnostic_completed; net_semantic_gain_not_accepted",
     "general_codec_search_and_extreme_compression": "not_resumed",
     "GPU_performance_investigation": "not_resumed",
     "C7_bitwise_RGB_fix": "not_completed_not_resumed",
@@ -138,9 +164,11 @@
     "existing_models_and_releases_unchanged": true,
     "main_unchanged": true,
     "D0_frozen_evidence_preserved": true,
-    "D1_executed_D2_not_executed": true,
+    "D1_executed_D2_not_executed": false,
     "production_protection_ready": false,
-    "model_data_fingerprints_rechecked_this_turn": false
+    "model_data_fingerprints_rechecked_this_turn": false,
+    "D2_development_diagnostic_started": true,
+    "D2_full_matrix_complete": false
   },
   "evaluation": {
     "primary": "Target fidelity and temporal stability within 10% complete-file growth, with actual-byte matched controls and growth disclosure",
@@ -180,9 +208,10 @@
     "localization_gate_passed": false,
     "D1_selected_configuration": "base_tiles512 + recall_hold1 (diagnostic only)",
     "D1_initial_pilot_summary": "Fish pixel coverage 33.85%, 93.44%, 75.36%; 254/454 instance-frames >=90% covered; diver mean per-image coverage 91.07%, 17/20 >=90%; diagnostic only.",
-    "D1_current_summary": "Base weights with native tiles: fish protection coverage 78.22%, 98.89%, 91.54%; 378/454 instance-frames >=90% covered, 27 zero overlap; diver mean image coverage 89.23%, 16/20 >=90%; all four profiles failed the original coverage gates."
+    "D1_current_summary": "Base weights with native tiles: fish protection coverage 78.22%, 98.89%, 91.54%; 378/454 instance-frames >=90% covered, 27 zero overlap; diver mean image coverage 89.23%, 16/20 >=90%; all four profiles failed the original coverage gates.",
+    "D2_current_summary": "Clip001 q32: C 98399 B, fish PSNR 32.983 dB; A 106549 B, 33.398 dB; B 92279 B, 32.419 dB; O 92741 B, 33.201 dB. C versus A: -0.415 dB and -7.65% bytes; no equal-byte net-gain claim."
   },
-  "plan_revision": 7,
+  "plan_revision": 8,
   "user_visual_objective": "让鱼、潜水员等关键目标看得更清楚",
   "route_selection": {
     "route": "semantic_guided_coding_with_capped_file_growth",
@@ -217,7 +246,8 @@
     "D1_comparison_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D1_model_comparison_20261021_r1",
     "D1_current_diagnostic_outputs": "D1_model_comparison_20261021_r1/base_tiles512/selected_outputs.json",
     "D1_initial_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D1_20261021_r1",
-    "D1_branch_analysis_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D1_review_20261021_r1"
+    "D1_branch_analysis_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D1_review_20261021_r1",
+    "D2_timeboxed_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_20261021_r1\\timeboxed_20261021"
   },
   "active_protocol": "d1_d2_protocol_v2.json",
   "active_protocol_sha256": "f44c801506cc3ebb7d69b2645e58c6f8859d344ce9e71570004de1f7f9bbdd2a",
