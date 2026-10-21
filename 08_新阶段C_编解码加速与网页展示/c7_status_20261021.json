@@ -5,7 +5,7 @@
   "phases": {
     "C7-0": "complete",
     "C7-1": "complete",
-    "C7-2": "peer_script_reviewed_pixel_quantification_pending",
+    "C7-2": "peer_script_reviewed_offline_comparator_ready_paired_pixels_pending",
     "C7-3": "not_started",
     "C7-4": "not_started"
   },
@@ -72,7 +72,11 @@
     ],
     "real_neural_inference_performed": false,
     "gpu_experiment_performed": false,
-    "cross_gpu_fix_verified": false
+    "cross_gpu_fix_verified": false,
+    "r2_c7_cpu_checks_passed": 23,
+    "r2_c7_cpu_checks_failed": 0,
+    "r2_new_cpu_checks": 14,
+    "offline_comparator_imports_torch": false
   },
   "published_receiver_release_replaced": false,
   "external_analysis": {
@@ -98,5 +102,15 @@
       "forced_decode.json": "8d6a4b02fd7efa6f1d7033539656d238ca2cf651015d46884a38df6832d1142d"
     },
     "limitation": "No per-frame peer hashes, raw RGB pair, or peer runtime code fingerprint in forced_decode.json"
+  },
+  "offline_comparison": {
+    "tool": "c7_compare_results.py",
+    "ready": true,
+    "real_paired_rgb_measured": false,
+    "snapshot_default": "all_completed_short_sample_frames",
+    "same_stream_required": true,
+    "same_entropy_backend_required": true,
+    "quality_threshold_applied": false,
+    "package_name": "C7_4060_4070诊断包_20261021_r2.zip"
   }
 }

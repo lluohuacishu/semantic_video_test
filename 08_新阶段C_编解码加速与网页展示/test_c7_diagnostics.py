@@ -115,7 +115,7 @@ class C7Tests(unittest.TestCase):
                         receiver_profile={}, records=self.frames, stream_sha256=sha256(self.stream))
         self.assertFalse(output.exists())
 
-    def probe(self, name, fail_frame=None):
+    def probe(self, name, fail_frame=None, snapshot_mode="all"):
         import numpy as np
         from c1_runtime import receiver_audit
         from c7_decode_probe import run_probe
@@ -146,7 +146,7 @@ class C7Tests(unittest.TestCase):
         inputs = (project, {"repo": self.root, "weights": self.root}, container,
                   self.header, packets, self.integrity, self.frames)
         with patch.dict(sys.modules, {"c1_runtime": fake_runtime}), patch("c7_decode_probe.subprocess.run", side_effect=OSError):
-            status = run_probe(inputs, self.stream, self.root / name, "python")
+            status = run_probe(inputs, self.stream, self.root / name, "python", snapshot_mode)
         return status, json.loads((self.root / name / "report.json").read_text(encoding="utf-8"))
 
     def test_probe_stops_at_first_divergence_and_retains_snapshots(self):
@@ -165,8 +165,14 @@ class C7Tests(unittest.TestCase):
         self.assertEqual(status, 0)
         self.assertEqual(report["state"], "sample_passed")
         self.assertTrue(all(report["reconstruction"]["sequence_matches"].values()))
-        self.assertEqual(len(report["snapshots"]), 1)
+        self.assertEqual(len(report["snapshots"]), 3)
         self.assertFalse(report["cross_device_accepted"])
+
+    def test_probe_sparse_snapshot_mode_is_explicit(self):
+        status, report = self.probe("sparse", snapshot_mode="first_and_mismatch")
+        self.assertEqual(status, 0)
+        self.assertEqual(report["snapshot_mode"], "first_and_mismatch")
+        self.assertEqual([s["frame"] for s in report["snapshots"]], [1])
 
 
 if __name__ == "__main__":

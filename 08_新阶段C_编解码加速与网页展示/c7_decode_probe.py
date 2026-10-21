@@ -42,13 +42,16 @@ def inspect_inputs(project, stream, reference, backend):
     return project, runtime, container, header, packets, integrity, expected_frames
 
 
-def run_probe(inputs, stream, output, backend):
+def run_probe(inputs, stream, output, backend, snapshot_mode="all"):
+    if snapshot_mode not in ("all", "first_and_mismatch"):
+        raise ValueError("Unsupported snapshot mode")
     project, runtime, container, header, packets, integrity, expected_frames = inputs
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
     records, receiver_profile, first_mismatch, snapshots = [], None, None, []
     checksums = container.SequenceChecksums()
     report = {"schema": "c7-probe-v1", "state": "running", "backend": backend,
+              "snapshot_mode": snapshot_mode,
               "input_sha256": sha256(stream), "header": header,
               "source_media_reads": [], "cross_device_accepted": False,
               "python": sys.version, "platform": platform.platform(),
@@ -113,9 +116,9 @@ def run_probe(inputs, stream, output, backend):
                           "expected": expected_frames[index], "mismatched_channels": mismatches,
                           "entropy_trace": list(entropy_trace)}
                 records.append(record)
-                # Preserve the first frame and first divergence for later numeric
-                # comparison between machines. These are outputs, never decoder inputs.
-                if index == 0 or mismatches:
+                # The passing machine must retain the other machine's divergence
+                # frame too. Samples are bounded to 64 frames; outputs are not inputs.
+                if snapshot_mode == "all" or index == 0 or mismatches:
                     snapshot = output / f"frame_{index + 1:05d}.npz"
                     values = {"rgb": rgb}
                     values.update({k: v.detach().cpu().contiguous().numpy()
@@ -158,6 +161,8 @@ def main():
     parser.add_argument("--reference", type=Path)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--backend", choices=("native", "python"), default="native")
+    parser.add_argument("--snapshots", choices=("all", "first_and_mismatch"), default="all",
+                        help="Save every completed short-sample frame for two-machine comparison")
     parser.add_argument("--check", action="store_true", help="Validate paths/bytes only; no torch import or model run")
     args = parser.parse_args()
     reference = args.reference or args.stream.with_suffix(".reference.json")
@@ -169,7 +174,7 @@ def main():
         return 0
     output = args.output or (Path(__file__).parent / "results" /
                             (datetime.now().strftime("%Y%m%d_%H%M%S") + "_" + secrets.token_hex(3)))
-    return run_probe(inputs, args.stream, output, args.backend)
+    return run_probe(inputs, args.stream, output, args.backend, args.snapshots)
 
 
 if __name__ == "__main__":
