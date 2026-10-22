@@ -1,7 +1,7 @@
 {
-  "schema": "d-round-status-v14",
+  "schema": "d-round-status-v15",
   "date": "2026-10-22",
-  "status": "D22_completed_preliminary_target_original_sharpness_preference_received",
+  "status": "D22_completed_target_original_preference_clarified_GT_and_021_predicted",
   "planning_only": false,
   "objective": "Improve visible fish/diver fidelity with complete-file rate <=40000 bps AND per-clip growth <=10% over the frozen ordinary anchor; preserve original fps, allow explicit common spatial downsampling.",
   "branch": "codex/glc-d",
@@ -203,14 +203,14 @@
       "subjective_acceptance": false,
       "viewing_videos": 7,
       "strict_target_match_failure": "021 G=9672 B vs B target9660 B; +12 B disclosed; no extra search",
-      "next": "Retain target-original candidate and clarify O/C attribution; prioritize 011 predicted-mask fallback using cached evidence before any bounded new experiment. No new experiment started.",
+      "next": "Keep 021 predicted target-original C as a candidate with preliminary positive subjective feedback; prioritize 011 predicted-mask fallback using cached evidence before a bounded new experiment. GT/C attribution is resolved. No new experiment started.",
       "subjective_feedback_received": true,
       "subjective_feedback": "d22_user_feedback_20261022.json",
       "subjective_acceptance_note": "Final pass not established; preliminary relative preference received. Not a rejection of subjective quality."
     }
   },
   "current_turn_activity": {
-    "scope": "Record direct user subjective preference and update handoff priorities",
+    "scope": "Record user clarification that GT target-original and 021 predicted target-original are both reasonably acceptable; no new experiments",
     "model_loaded": false,
     "gpu_used": false,
     "training_performed": false,
@@ -290,9 +290,9 @@
     "reference_range_is_hard_acceptance_limit": false,
     "reference_range_note": "40000 bps maximum is hard; 30000 bps is not a minimum. Both rate and growth limits required.",
     "D21_current_summary": "011 fish-only hard area52.63% and64/64fallback;021 F vs C sameq0 +0.005486dB and+125B. GT O vs B fishPSNR -2.062812/-1.240316dB;021 O+10B vs B disclosed. Numerical semantic gain unproven; continuous subjective viewing pending.",
-    "D22_current_summary": "Target sigma0.6 improves same-mask hard-preserve baseline: GT G/O +1.040382/+0.668916 dB selected; G/B -1.022429/-0.571400 dB. 021 P/C sameq0 +0.637414 dB and -5.953905% bytes. 011P64/64fallback. No semantic gain proven; preliminary user preference now favors target-original sharpness on both clips; O/C attribution and final acceptance remain pending."
+    "D22_current_summary": "Target sigma0.6 improves same-mask hard-preserve baseline: GT G/O +1.040382/+0.668916 dB selected; G/B -1.022429/-0.571400 dB. 021 P/C sameq0 +0.637414 dB and -5.953905% bytes. 011P64/64fallback. No semantic gain proven; preliminary user preference now favors target-original sharpness on both clips; GT O and 021 predicted C both now described as reasonably acceptable; no strict C/O ranking or final acceptance established."
   },
-  "plan_revision": 14,
+  "plan_revision": 15,
   "user_visual_objective": "让鱼、潜水员等关键目标看得更清楚",
   "route_selection": {
     "route": "semantic_guided_coding_with_capped_file_growth",
@@ -390,9 +390,20 @@
       21
     ],
     "preference": "target original pixels perceived sharper; global lowpass blurry; target0.6 seemingly similar to global",
-    "method_attribution_pending": true,
+    "method_attribution_pending": false,
     "final_quality_acceptance": null,
-    "numeric_protocol_unchanged": true
+    "numeric_protocol_unchanged": true,
+    "clarification_quote": "两个都还行我感觉",
+    "methods_acknowledged": {
+      "GT_O": [
+        11,
+        21
+      ],
+      "predicted_C": [
+        21
+      ]
+    },
+    "relative_C_vs_O_ranking": null
   },
   "latest_experiment_commit": "e60f2b5df7b1839804bb2b63a18ee6c80feb4602"
 }
