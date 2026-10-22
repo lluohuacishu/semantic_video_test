@@ -79,7 +79,7 @@ def run(args):
                     'peak_allocated_mib':ref.torch.cuda.max_memory_allocated()/2**20,
                     'preprocessing_not_part_of_codec':True}
             save_json(folder/'encode.json',result)
-            if task['method']=='A' and task['q']==32:
+            if config.get('record_legacy_q32_anchor',True) and task['method']=='A' and task['q']==32:
                 anchors[str(task['video_id'])]={'task':task['id'],'S0':result['file_bytes'],
                        'B10':11*result['file_bytes']//10,'file_sha256':result['file_sha256'],
                        'frozen_before_non_A_encoding':True}

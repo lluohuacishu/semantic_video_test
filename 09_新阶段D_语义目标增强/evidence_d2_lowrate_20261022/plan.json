@@ -1,0 +1,125 @@
+{
+  "schema": "d2-lowrate-large-fish-v1",
+  "date": "2026-10-22",
+  "registered_before_new_codec_results": true,
+  "user_correction": "Use visibly larger fish and less similar scenes; reject hundreds of kbps; preserve original frame rate and allow modest spatial downsampling.",
+  "historical_run": "D2_20261021_r1 remains a high-rate diagnostic, not an application-compliant result.",
+  "clips": [
+    {
+      "video_id": 11,
+      "first_filename_number": 6,
+      "frames": 64,
+      "scene": "seagrass, larger fish",
+      "largest_fish_mean_fraction": 0.02545
+    },
+    {
+      "video_id": 21,
+      "first_filename_number": 353,
+      "frames": 64,
+      "scene": "open seabed, larger fish",
+      "largest_fish_mean_fraction": 0.03239
+    }
+  ],
+  "selection": {
+    "basis": "Consecutive annotated windows ranked by mean largest-instance area, then source-only representative images for distinct backgrounds; no codec or predicted-quality selection.",
+    "annotation_screened_ids": "1..54 except 7,12,25",
+    "source_image_preview_ids": [
+      1,
+      11,
+      21,
+      27,
+      32,
+      43
+    ],
+    "development_added": [
+      11,
+      21
+    ],
+    "untouched_reserved_sequences": [
+      7,
+      25
+    ],
+    "old_reserved_group_scope_changed": true,
+    "screened_sequences_are_not_unseen_holdout": true,
+    "independent_source_claim": false,
+    "integrity_rescan": false
+  },
+  "delivery": {
+    "frame_rate": "Original verified PTS; no frame dropping or duration inflation",
+    "resolution_ladder": [
+      [
+        640,
+        360
+      ],
+      [
+        512,
+        288
+      ],
+      [
+        384,
+        216
+      ],
+      [
+        320,
+        180
+      ]
+    ],
+    "spatial_selection": "Largest common ladder resolution with ordinary A@q0 <=40000 bit/s for both clips; measure actual complete files. Stop at 320x180 if none fits.",
+    "resize": "Pillow LANCZOS; all methods share identical resized source RGB, dimensions, timeline, GOP and reset",
+    "source_retained": true
+  },
+  "budget": {
+    "hard_max_file_bits_per_second": 40000,
+    "preferred_file_bits_per_second": [
+      30000,
+      40000
+    ],
+    "minimum_rate": null,
+    "rate_ceiling_bytes": "floor(40000 * exact_playback_seconds / 8)",
+    "S0": "A@q0 at the selected common resolution, frozen before B/C results",
+    "hard_growth_rule": "10 * transmitted_bytes <= 11 * S0",
+    "effective_ceiling": "min(rate_ceiling_bytes, floor(11*S0/10)) per clip",
+    "counted": "complete glcv plus required per-clip side information; sender-only masks are not transmitted",
+    "over_limit_policy": "retain diagnostic record only; never present as a compliant delivery",
+    "padding_or_duration_inflation": false
+  },
+  "codec": {
+    "unchanged_C_neural_entropy_weights_and_receiver": true,
+    "container_version": 2,
+    "intra_period": 64,
+    "reset_interval": 32,
+    "resolution_probe_q": 0,
+    "max_resolution_probe_encodes": 8,
+    "rate_match_max_points_per_method_clip": 4,
+    "rate_match_max_new_encodes_after_anchor": 22,
+    "rate_selection": "A and B seek largest file below effective ceiling; C seeks largest file below min(selected A bytes, selected B bytes). q0 first, next q by log-size interpolation or initial slope .016 per q, then measured log slope; clamp to unevaluated integer bracket 0..63. Stop once within 2% from below or after four measured points.",
+    "quality_used_in_selection": false,
+    "unmatched": "Report actual byte gaps and insufficient matching; no expansion",
+    "independent_decode": "Only selected compliant points, in receiver processes without source/GT inputs",
+    "max_selected_decodes": 6
+  },
+  "methods": {
+    "A": "Resized source RGB plus ordinary GLC",
+    "B": "Whole-frame Gaussian low-pass, sigma=1.2 encoded pixels, float32 reflect truncate4, uint8 rounding, then GLC",
+    "C": "Frozen predicted protection retains A input in its core; identical B low-pass outside, then GLC",
+    "O": "Not run in this bounded pilot"
+  },
+  "semantics": {
+    "checkpoint": "C:/Users/lenovo/Desktop/works/work/semantic-video-training/runs/suim_segformer_b0_20260915/segmentation_best.pt",
+    "fish": "original RGB native tiles512 stride384, mean logits, class6 probability >=0.5",
+    "diver": "same existing model, longedge256 letterbox, argmax class1 and probability >=0.5",
+    "protection": "union, original 16px-at1920 dilation, previous one raw seed, original 4px-at1920 soft edge and existing fallback; resize saved alpha NEAREST to delivery size",
+    "GT_is_predictor_input": false,
+    "training": false,
+    "threshold_search": false,
+    "new_inference_frames_max": 128
+  },
+  "evaluation": {
+    "primary": "Independent decoded PNG versus identical pre-semantic resized source RGB; GT mask resized NEAREST, all fish including misses; pooled SSE then PSNR",
+    "secondary": "Decoded RGB upsampled LANCZOS to original size against original publisher RGB/GT; report separately, never compare low-resolution PSNR directly to old 1080p PSNR",
+    "semantic_claim": "Requires actual size disclosure and improvement versus both A and B; no assumed visible advantage",
+    "viewing": "Labeled original/A/B/C at common time and scale, full frame plus fixed source-GT-selected fish crop; optional hide labels, not forced blind guessing",
+    "preview_bytes": "Viewing MP4 is a local display artifact; transmitted bytes are the glcv, shown explicitly",
+    "continuous_visual_acceptance": "user assessment pending, no automatic pass"
+  }
+}

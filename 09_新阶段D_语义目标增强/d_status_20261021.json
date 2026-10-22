@@ -1,9 +1,9 @@
 {
-  "schema": "d-round-status-v9",
+  "schema": "d-round-status-v10",
   "date": "2026-10-22",
-  "status": "D2_two_clip_matrix_complete_rate_matching_insufficient",
+  "status": "D2_large_fish_lowrate_completed_semantic_gain_not_proven",
   "planning_only": false,
-  "objective": "Improve fish/diver fidelity with at most 10% per-clip complete-file growth over the frozen ordinary GLC baseline; compare against original GLC and nonsemantic controls at the same budget.",
+  "objective": "Improve visible fish/diver fidelity with complete-file rate <=40000 bps AND per-clip growth <=10% over the frozen ordinary anchor; preserve original fps, allow explicit common spatial downsampling.",
   "branch": "codex/glc-d",
   "start_commit": "2669a0f0eb1168671f45161fd345d78ec06e364c",
   "C_round_handoff": {
@@ -52,7 +52,7 @@
         "diver_images_at_least_90pct_covered"
       ],
       "holdout_evaluated": false,
-      "next": "Review completed D2 mechanism evidence; training remains deferred pending measured budget matching.",
+      "next": "Inspect larger-fish protection: 011 falls back for all64 frames. Do not assume checkpoint training alone fixes codec benefit.",
       "model_comparison": {
         "status": "completed_localization_gate_failed",
         "plan": "d1_model_comparison_plan_v1.json",
@@ -92,38 +92,56 @@
       }
     },
     "D2": {
-      "status": "two_clip_registered_matrix_completed",
+      "status": "large_fish_lowrate_completed_semantic_gain_not_proven",
       "purpose": "Actual same-budget controls under a per-clip 10% file-growth cap, using unchanged GLC and semantic preprocessing",
-      "protocol": "d1_d2_protocol_v2.json",
-      "readiness": "All registered two-clip points completed; the three q values select q32 at both ceilings and do not yield strict near-equal pairs.",
-      "next": "No remaining original matrix work. Propose a versioned bounded actual-byte-matching follow-up before more GPU work; do not automatically train or touch holdout.",
-      "run_plan": "d2_run_plan_v1.json",
-      "run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_20261021_r1",
+      "protocol": "d_round_protocol_v3.json",
+      "readiness": "Large-fish lowrate outputs available; 011 protection falls back on all frames, 021 active protection does not improve target PSNR.",
+      "next": "Inspect labeled new clips; address overly broad protection and the active mechanism before another codec search. Do not repeat old q matrix or auto-train.",
+      "run_plan": "d2_lowrate_plan_v1.json",
+      "run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_lowrate_20261022_r1",
       "input_clips": [
-        1,
-        2
+        11,
+        21
       ],
       "frames_per_clip": 64,
-      "max_encoded_points": 24,
-      "new_semantic_inference": false,
+      "max_encoded_points": 30,
+      "new_semantic_inference": true,
       "training": false,
       "user_time_limit_minutes": null,
-      "completed_encoded_points": 24,
+      "completed_encoded_points": 21,
       "full_matrix_complete": true,
       "timeboxed_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_20261021_r1\\timeboxed_20261021",
-      "report": "D2阶段报告_20261022.md",
-      "evidence": "evidence_d2_20261022/evaluation.json",
-      "completed_independent_decodes": 24,
-      "evaluated_points": 24,
+      "report": "D2大目标低码率结果_20261022.md",
+      "evidence": "evidence_d2_lowrate_20261022/evaluation.json",
+      "completed_independent_decodes": 6,
+      "evaluated_points": 6,
       "semantic_gain_proven": false,
       "continuous_visual_validation_completed": false,
       "GPU_work_running": false,
       "timeboxed_run_plan": "d2_timeboxed_plan_v1.json",
       "resume_root": "C:/Users/lenovo/Documents/ChatGPT/语义通信/02_实验数据/D_语义目标增强/D2_20261021_r1/resume_20261022_r1",
-      "evaluated_frame_points": 1536,
+      "evaluated_frame_points": 384,
       "full_D_round_gate_evaluated": false,
       "completion_date": "2026-10-22",
-      "historical_20261021_time_limit_minutes": 10
+      "historical_20261021_time_limit_minutes": 10,
+      "historical_highrate_matrix": {
+        "report": "D2阶段报告_20261022.md",
+        "evidence": "evidence_d2_20261022/evaluation.json",
+        "run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_20261021_r1",
+        "completed_encoded_points": 24,
+        "completed_independent_decodes": 24,
+        "evaluated_points": 24,
+        "evaluated_frame_points": 1536
+      },
+      "selection_amendment": "d2_lowrate_amendment_v2.json",
+      "delivered_resolution": [
+        512,
+        288
+      ],
+      "original_fps_preserved": true,
+      "semantic_inference_frames": 128,
+      "max_selected_decodes": 6,
+      "all_selected_hard_rate_and_growth_pass": true
     },
     "D3": {
       "status": "optional_not_started_not_required",
@@ -150,22 +168,22 @@
     "integrity_recheck_performed": false,
     "cpu_metric_evaluation": true,
     "cached_branch_contribution_analysis": false,
-    "cached_fish_development_frames": 128,
-    "new_input_profile_inferences": 0,
-    "scope": "Completed remaining 9 encodes and 19 decodes; evaluated all 24 original points and created reports/viewing.",
+    "cached_fish_development_frames": 0,
+    "new_input_profile_inferences": 128,
+    "scope": "User-requested larger-fish re-selection, original-fps common512x288; frozen inference128; six independent selected decodes under hard40kbps and10% growth caps.",
     "GPU_work_running": false,
-    "note": "No original D2 matrix work remains; no new q search, training, semantic inference or holdout was added.",
+    "note": "011/021 are development; scanned sequences not claimed unseen; no automatic additional GPU work remains.",
     "quality_evaluated_source_frames": 128
   },
   "scope": {
     "GLC_weights_and_decoder_fixed_in_D2": true,
-    "global_q_budget_matching_in_D2": "completed_fixed_q_0_32_63; strict_actual_byte_matching_insufficient",
-    "semantic_coding_research": "D2_original_two_clip_matrix_completed; net_semantic_gain_not_accepted",
+    "global_q_budget_matching_in_D2": "bounded_4_points_per_method_clip; unmatched_021_disclosed",
+    "semantic_coding_research": "lowrate_and_file_caps_passed_semantic_gain_unproven",
     "general_codec_search_and_extreme_compression": "not_resumed",
     "GPU_performance_investigation": "not_resumed",
     "C7_bitwise_RGB_fix": "not_completed_not_resumed",
     "C7_preview_warning_preserved": true,
-    "source_frame_rate_and_dimensions_respected": true,
+    "source_frame_rate_and_dimensions_respected": "fps_preserved; common512x288_resize_explicitly_user_authorized",
     "existing_models_and_releases_unchanged": true,
     "main_unchanged": true,
     "D0_frozen_evidence_preserved": true,
@@ -204,7 +222,7 @@
       "threshold_status": "budget_amended_before_D1_D2_quality_thresholds_retained",
       "padding_to_equalize_bytes": false
     },
-    "protocol": "d1_d2_protocol_v2.json",
+    "protocol": "d_round_protocol_v3.json",
     "reference_file_bitrate_bits_per_second": [
       30000,
       40000
@@ -214,9 +232,11 @@
     "D1_selected_configuration": "base_tiles512 + recall_hold1 (diagnostic only)",
     "D1_initial_pilot_summary": "Fish pixel coverage 33.85%, 93.44%, 75.36%; 254/454 instance-frames >=90% covered; diver mean per-image coverage 91.07%, 17/20 >=90%; diagnostic only.",
     "D1_current_summary": "Base weights with native tiles: fish protection coverage 78.22%, 98.89%, 91.54%; 378/454 instance-frames >=90% covered, 27 zero overlap; diver mean image coverage 89.23%, 16/20 >=90%; all four profiles failed the original coverage gates.",
-    "D2_current_summary": "C vs A mean target PSNR -0.274199 dB; C vs B +0.119538 dB; both ceilings select q32; actual sizes differ and net semantic gain is not accepted."
+    "D2_current_summary": "All six outputs32.91..39.85kbps;011 all64fallback;021 C vs A fish PSNR -0.081878dB and +3.06% bytes. C vs B -1.380258dB and +6.68% bytes. No semantic gain proved.",
+    "hard_max_complete_file_bits_per_second": 40000,
+    "reference_range_is_hard_acceptance_limit": true
   },
-  "plan_revision": 9,
+  "plan_revision": 10,
   "user_visual_objective": "让鱼、潜水员等关键目标看得更清楚",
   "route_selection": {
     "route": "semantic_guided_coding_with_capped_file_growth",
@@ -229,7 +249,7 @@
     "receiver_restoration": "optional_not_a_prerequisite",
     "initial_plan_commit": "38c2219c23ee405950ef2d0af3584e9dc0575d2c",
     "simplification": "existing model + one background low-pass + current GLC; training and new modules are optional",
-    "file_growth_cap_user_update": "At most 10% relative to the same-clip frozen ordinary GLC baseline; 30-40 kbps is a file-rate reference, not permission to exceed that cap."
+    "file_growth_cap_user_update": "Both absolute complete-file40kbps AND <=10% growth are hard limits; originalfps retained, explicit common spatial downsampling authorized."
   },
   "static_code_evidence": [
     {
@@ -253,10 +273,11 @@
     "D1_initial_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D1_20261021_r1",
     "D1_branch_analysis_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D1_review_20261021_r1",
     "D2_timeboxed_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_20261021_r1\\timeboxed_20261021",
-    "D2_full_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_20261021_r1"
+    "D2_full_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_20261021_r1",
+    "D2_lowrate_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_lowrate_20261022_r1"
   },
-  "active_protocol": "d1_d2_protocol_v2.json",
-  "active_protocol_sha256": "f44c801506cc3ebb7d69b2645e58c6f8859d344ce9e71570004de1f7f9bbdd2a",
+  "active_protocol": "d_round_protocol_v3.json",
+  "active_protocol_sha256": "7c43c5f211de367e4e9f67995fc44242a0d2d34c6434e5ab3ce2bcc892a705af",
   "D0_completed_activity": {
     "model_loaded": false,
     "gpu_used": false,

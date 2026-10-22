@@ -1,0 +1,37 @@
+{
+  "schema": "d-round-protocol-v3",
+  "date": "2026-10-22",
+  "inherits": "d1_d2_protocol_v2.json",
+  "precedence": "These explicit overrides govern future work; v2 and completed evidence remain historical.",
+  "user_authorization": "Larger fish and distinct scenes; complete files of hundreds of kbps are unacceptable; preserve source fps and allow spatial downsampling.",
+  "budget_overrides": {
+    "hard_max_complete_file_bps": 40000,
+    "preferred_complete_file_bps": [30000,40000],
+    "no_minimum_rate_or_padding": true,
+    "hard_growth_limit": 0.1,
+    "hard_cap_formula": "S_total <= min(floor(40000*T_exact/8), floor(11*S0/10))",
+    "both_limits_required": true,
+    "rate_above_40kbps_is_application_failure": true,
+    "S0": "Actual ordinary GLC anchor at the explicitly selected delivery resolution and original timeline, frozen before semantic outputs; no longer automatically 1080p q32",
+    "counted_bytes": "complete glcv plus all required per-clip side/control data",
+    "same_ceiling_not_equal_size": true,
+    "near_equal_pair": "Retain v2 no-larger and <=2% reporting category; failure of matching does not relax either hard user cap. Explicit unmatched diagnostics require measured gap disclosure.",
+    "old_1080p_D2_application_accepted": false
+  },
+  "source_overrides": {
+    "source_frame_rate_preserved": true,
+    "frame_dropping_or_duration_inflation": false,
+    "explicit_common_spatial_downsampling_allowed": true,
+    "all_controls_share_resolution_timeline_and_gop": true,
+    "evaluate_original_resolution_loss_separately": true,
+    "development_added": [11,21],
+    "reserved_sequences_not_used_this_run": [7,25],
+    "screened_source_groups_not_unseen": true,
+    "independent_source_generalization_proven": false
+  },
+  "current_run_plan": "d2_lowrate_plan_v1.json",
+  "current_selection_amendment": "d2_lowrate_amendment_v2.json",
+  "viewing": "Default labeled full-frame and synchronized fish-region comparison. Do not imply the user must distinguish imperceptible variants in blind guessing. Report fallback or unchanged semantic input explicitly.",
+  "training": "No automatic training; use measured mechanism evidence first",
+  "no_dataset_or_weight_integrity_rescan": true
+}

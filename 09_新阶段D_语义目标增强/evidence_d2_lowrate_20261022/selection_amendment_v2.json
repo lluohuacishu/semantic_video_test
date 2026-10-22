@@ -1,0 +1,28 @@
+{
+  "schema": "d2-lowrate-selection-amendment-v2",
+  "date": "2026-10-22",
+  "parent": "d2_lowrate_plan_v1.json",
+  "recorded_after_rates_before_independent_quality": true,
+  "reason": "Bounded search found v021 C@q0 at 9372 B, above selected A=9094 and B=8785 B but below the user hard caps (effective ceiling 9730 B; absolute rate cap10677 B). Strict comparator-byte matching is insufficient, not an application-size violation.",
+  "hard_caps_unchanged": {
+    "file_bits_per_second": 40000,
+    "max_relative_growth": 0.1,
+    "anchor_021_bytes": 8846,
+    "effective_021_bytes": 9730
+  },
+  "additional_encodes": 0,
+  "existing_selection_override": {
+    "video_id": 21,
+    "method": "C",
+    "q": 0,
+    "file_bytes": 9372
+  },
+  "action": "Independently decode six existing selected points and show labeled practical size/quality comparisons. Preserve the unmatched failure and rate-selection history.",
+  "claims": {
+    "equal_size": false,
+    "strict_no_larger_comparison_passed_for_021": false,
+    "semantic_gain_known_before_decoding": false
+  },
+  "training": false,
+  "future_search_expansion": false
+}
