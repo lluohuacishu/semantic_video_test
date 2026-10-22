@@ -1,7 +1,7 @@
 {
-  "schema": "d-round-status-v13",
+  "schema": "d-round-status-v14",
   "date": "2026-10-22",
-  "status": "D22_target_mild_lowpass_completed_semantic_gain_not_proven",
+  "status": "D22_completed_preliminary_target_original_sharpness_preference_received",
   "planning_only": false,
   "objective": "Improve visible fish/diver fidelity with complete-file rate <=40000 bps AND per-clip growth <=10% over the frozen ordinary anchor; preserve original fps, allow explicit common spatial downsampling.",
   "branch": "codex/glc-d",
@@ -203,29 +203,23 @@
       "subjective_acceptance": false,
       "viewing_videos": 7,
       "strict_target_match_failure": "021 G=9672 B vs B target9660 B; +12 B disclosed; no extra search",
-      "next": "User continuous viewing with original reference B/W/P/G; fixed sigma0.6 test complete. No automatic sigma/q sweep, threshold changes, training or codec redesign."
+      "next": "Retain target-original candidate and clarify O/C attribution; prioritize 011 predicted-mask fallback using cached evidence before any bounded new experiment. No new experiment started.",
+      "subjective_feedback_received": true,
+      "subjective_feedback": "d22_user_feedback_20261022.json",
+      "subjective_acceptance_note": "Final pass not established; preliminary relative preference received. Not a rejection of subjective quality."
     }
   },
   "current_turn_activity": {
-    "scope": "D2.2 fixed target sigma0.6 with cached masks and fallback; bounded codec and nonsemantic weak-lowpass control",
-    "model_loaded": true,
-    "model_loaded_note": "GLC only; no SegFormer load or inference",
-    "gpu_used": true,
+    "scope": "Record direct user subjective preference and update handoff priorities",
+    "model_loaded": false,
+    "gpu_used": false,
     "training_performed": false,
-    "video_experiment_performed": true,
-    "GLC_codec_experiment_performed": true,
+    "video_experiment_performed": false,
+    "GLC_codec_experiment_performed": false,
     "integrity_recheck_performed": false,
     "experiment_data_moved_or_deleted": false,
-    "D1_inference": false,
-    "holdout_inference": false,
-    "full_archive_extracted": false,
-    "cpu_metric_evaluation": true,
-    "cached_branch_contribution_analysis": false,
-    "cached_fish_development_frames": 128,
-    "new_input_profile_inferences": 0,
     "GPU_work_running": false,
-    "quality_evaluated_source_frames": 128,
-    "prepared_source_frames": 128
+    "new_experiment_started": false
   },
   "scope": {
     "GLC_weights_and_decoder_fixed_in_D2": true,
@@ -296,9 +290,9 @@
     "reference_range_is_hard_acceptance_limit": false,
     "reference_range_note": "40000 bps maximum is hard; 30000 bps is not a minimum. Both rate and growth limits required.",
     "D21_current_summary": "011 fish-only hard area52.63% and64/64fallback;021 F vs C sameq0 +0.005486dB and+125B. GT O vs B fishPSNR -2.062812/-1.240316dB;021 O+10B vs B disclosed. Numerical semantic gain unproven; continuous subjective viewing pending.",
-    "D22_current_summary": "Target sigma0.6 improves same-mask hard-preserve baseline: GT G/O +1.040382/+0.668916 dB selected; G/B -1.022429/-0.571400 dB. 021 P/C sameq0 +0.637414 dB and -5.953905% bytes. 011P64/64fallback. No semantic gain proven; subjective continuous viewing pending."
+    "D22_current_summary": "Target sigma0.6 improves same-mask hard-preserve baseline: GT G/O +1.040382/+0.668916 dB selected; G/B -1.022429/-0.571400 dB. 021 P/C sameq0 +0.637414 dB and -5.953905% bytes. 011P64/64fallback. No semantic gain proven; preliminary user preference now favors target-original sharpness on both clips; O/C attribution and final acceptance remain pending."
   },
-  "plan_revision": 13,
+  "plan_revision": 14,
   "user_visual_objective": "让鱼、潜水员等关键目标看得更清楚",
   "route_selection": {
     "route": "semantic_guided_coding_with_capped_file_growth",
@@ -385,6 +379,20 @@
     "prepared_source_frames": 128
   },
   "previous_D2_experiment_commit": "69a22456f2bcfb110d8359b0f42cce662766a35b",
-  "latest_experiment_commit_note": "D2.2 completion commit: see git log; parent D2.1 completed77ee13c.",
-  "previous_D21_experiment_commit": "77ee13c"
+  "latest_experiment_commit_note": "D2.2 experiment completed at e60f2b5; subsequent feedback-only commits do not rerun or alter numeric experiments.",
+  "previous_D21_experiment_commit": "77ee13c",
+  "user_visual_feedback": {
+    "record": "d22_user_feedback_20261022.json",
+    "note": "D22观看反馈与后续方向_20261022.md",
+    "preference_received": true,
+    "clips": [
+      11,
+      21
+    ],
+    "preference": "target original pixels perceived sharper; global lowpass blurry; target0.6 seemingly similar to global",
+    "method_attribution_pending": true,
+    "final_quality_acceptance": null,
+    "numeric_protocol_unchanged": true
+  },
+  "latest_experiment_commit": "e60f2b5df7b1839804bb2b63a18ee6c80feb4602"
 }
