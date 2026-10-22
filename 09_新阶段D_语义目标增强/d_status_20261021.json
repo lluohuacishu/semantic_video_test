@@ -1,10 +1,13 @@
 {
-  "schema": "d-round-status-v10",
+  "schema": "d-round-status-v11",
   "date": "2026-10-22",
   "status": "D2_large_fish_lowrate_completed_semantic_gain_not_proven",
   "planning_only": false,
   "objective": "Improve visible fish/diver fidelity with complete-file rate <=40000 bps AND per-clip growth <=10% over the frozen ordinary anchor; preserve original fps, allow explicit common spatial downsampling.",
   "branch": "codex/glc-d",
+  "current_handoff": "交接文档.md",
+  "workspace_file_index": "05_资料与索引/文件与会话接续索引_20261022.md",
+  "local_data_index": "../../../02_实验数据/D_语义目标增强/README.md",
   "start_commit": "2669a0f0eb1168671f45161fd345d78ec06e364c",
   "C_round_handoff": {
     "status": "closed_and_merged_to_main_at_user_request",
@@ -96,7 +99,7 @@
       "purpose": "Actual same-budget controls under a per-clip 10% file-growth cap, using unchanged GLC and semantic preprocessing",
       "protocol": "d_round_protocol_v3.json",
       "readiness": "Large-fish lowrate outputs available; 011 protection falls back on all frames, 021 active protection does not improve target PSNR.",
-      "next": "Inspect labeled new clips; address overly broad protection and the active mechanism before another codec search. Do not repeat old q matrix or auto-train.",
+      "next": "Use cached controls/seed/alpha to diagnose 011 all-frame fallback and 021 active protection without target gain. Do not repeat completed codec search or auto-train.",
       "run_plan": "d2_lowrate_plan_v1.json",
       "run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_lowrate_20261022_r1",
       "input_clips": [
@@ -157,23 +160,14 @@
     }
   },
   "current_turn_activity": {
-    "D1_inference": false,
-    "model_loaded": true,
-    "gpu_used": true,
+    "scope": "handoff documentation and file indexes only",
+    "model_loaded": false,
+    "gpu_used": false,
     "training_performed": false,
-    "video_experiment_performed": true,
-    "GLC_codec_experiment_performed": true,
-    "holdout_inference": false,
-    "full_archive_extracted": false,
+    "video_experiment_performed": false,
+    "GLC_codec_experiment_performed": false,
     "integrity_recheck_performed": false,
-    "cpu_metric_evaluation": true,
-    "cached_branch_contribution_analysis": false,
-    "cached_fish_development_frames": 0,
-    "new_input_profile_inferences": 128,
-    "scope": "User-requested larger-fish re-selection, original-fps common512x288; frozen inference128; six independent selected decodes under hard40kbps and10% growth caps.",
-    "GPU_work_running": false,
-    "note": "011/021 are development; scanned sequences not claimed unseen; no automatic additional GPU work remains.",
-    "quality_evaluated_source_frames": 128
+    "experiment_data_moved_or_deleted": false
   },
   "scope": {
     "GLC_weights_and_decoder_fixed_in_D2": true,
@@ -194,14 +188,14 @@
     "D2_full_matrix_complete": true
   },
   "evaluation": {
-    "primary": "Target fidelity and temporal stability within 10% complete-file growth, with actual-byte matched controls and growth disclosure",
+    "primary": "Target fidelity and temporal stability under BOTH complete-file <=40000 bps and per-clip <=10% growth; disclose actual comparator sizes.",
     "matched_controls": [
       "original_input_GLC",
       "nonsemantic_preprocessing_GLC",
       "predicted_semantic_protection_GLC"
     ],
     "offline_reference": "GT_mask_diagnostic_not_a_deployable_result",
-    "quality_reference": "original_unprocessed_source_RGB",
+    "quality_reference": "Same resized pre-semantic source RGB for primary metrics; original source after decoded upsampling reported separately.",
     "byte_basis": "actual_full_container_plus_required_side_information_and_control",
     "budget_ceiling_and_exact_size_are_distinct": true,
     "regional_actual_bit_counts_not_assumed_separable": true,
@@ -210,14 +204,14 @@
     "semantic_gain_proven": false,
     "pair_rule": {
       "max_relative_growth_vs_frozen_anchor": 0.1,
-      "integer_cap": "10 * S_semantic <= 11 * S0",
+      "integer_cap": "S_total <= min(floor(40000*T_exact/8), floor(11*S0/10))",
       "per_clip": true,
       "near_equal_reporting_category": {
         "semantic_no_larger_than_each_comparator": true,
         "max_relative_gap": 0.02,
         "rule": "0 <= (S_comparator - S_semantic) / S_comparator <= 0.02",
         "role": "Strict reporting category, not an eligibility gate for all practical results within the 10% cap.",
-        "X_means": "Actual A or B comparator selected under the same ceiling, not necessarily the immutable A@q32 anchor."
+        "X_means": "Actual A or B comparator under same ceiling; frozen S0 for latest run is A@q0 at common512x288, not historical A@q32."
       },
       "threshold_status": "budget_amended_before_D1_D2_quality_thresholds_retained",
       "padding_to_equalize_bytes": false
@@ -234,9 +228,10 @@
     "D1_current_summary": "Base weights with native tiles: fish protection coverage 78.22%, 98.89%, 91.54%; 378/454 instance-frames >=90% covered, 27 zero overlap; diver mean image coverage 89.23%, 16/20 >=90%; all four profiles failed the original coverage gates.",
     "D2_current_summary": "All six outputs32.91..39.85kbps;011 all64fallback;021 C vs A fish PSNR -0.081878dB and +3.06% bytes. C vs B -1.380258dB and +6.68% bytes. No semantic gain proved.",
     "hard_max_complete_file_bits_per_second": 40000,
-    "reference_range_is_hard_acceptance_limit": true
+    "reference_range_is_hard_acceptance_limit": false,
+    "reference_range_note": "40000 bps maximum is hard; 30000 bps is not a minimum. Both rate and growth limits required."
   },
-  "plan_revision": 10,
+  "plan_revision": 11,
   "user_visual_objective": "让鱼、潜水员等关键目标看得更清楚",
   "route_selection": {
     "route": "semantic_guided_coding_with_capped_file_growth",
@@ -278,6 +273,17 @@
   },
   "active_protocol": "d_round_protocol_v3.json",
   "active_protocol_sha256": "7c43c5f211de367e4e9f67995fc44242a0d2d34c6434e5ab3ce2bcc892a705af",
+  "latest_experiment_commit": "69a22456f2bcfb110d8359b0f42cce662766a35b",
+  "handoff_organization": {
+    "updated": true,
+    "experiment_data_moved_or_deleted": false,
+    "integrity_rescanned": false,
+    "old_entrypoint_snapshots": "../../../03_历史归档/会话接续整理_20261022",
+    "gpu_or_codec_work_this_organization": false,
+    "date": "2026-10-22",
+    "paths_relative_to": "repository root",
+    "current_handoff_paths_relative_to": "repository root"
+  },
   "D0_completed_activity": {
     "model_loaded": false,
     "gpu_used": false,
@@ -288,5 +294,24 @@
     "cpu_mp4_decode_for_alignment": true,
     "archive_moved_at_user_request": true,
     "GLC_codec_experiment_performed": false
+  },
+  "latest_experiment_activity": {
+    "D1_inference": false,
+    "model_loaded": true,
+    "gpu_used": true,
+    "training_performed": false,
+    "video_experiment_performed": true,
+    "GLC_codec_experiment_performed": true,
+    "holdout_inference": false,
+    "full_archive_extracted": false,
+    "integrity_recheck_performed": false,
+    "cpu_metric_evaluation": true,
+    "cached_branch_contribution_analysis": false,
+    "cached_fish_development_frames": 0,
+    "new_input_profile_inferences": 128,
+    "scope": "User-requested larger-fish re-selection, original-fps common512x288; frozen inference128; six independent selected decodes under hard40kbps and10% growth caps.",
+    "GPU_work_running": false,
+    "note": "011/021 are development; scanned sequences not claimed unseen; no automatic additional GPU work remains.",
+    "quality_evaluated_source_frames": 128
   }
 }
