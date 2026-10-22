@@ -72,6 +72,7 @@ def run(args):
             finally:
                 writer.close()
             result={'task':task['id'],'header':header,'file_bytes':(folder/'stream.glcv').stat().st_size,
+                    'pid':os.getpid(),'worker_phase':config['phase'],'worker_run_root':str(root),
                     'file_sha256':ref.sha256_file(folder/'stream.glcv'),'frames':records,
                     'seconds':time.perf_counter()-begin,'model_load_seconds':loaded if not completed else 0,
                     'native_entropy':True,'input_transform':'RGB/255, replicate right/bottom to multiples of64, *2-1',
@@ -102,7 +103,8 @@ def run(args):
                     result=runner._decode(options,codec,previews,check_cancel,marks,begin)
                 for preview in previews: preview.finish(check_cancel)
                 result.update(source_media_reads=reads,pid=os.getpid(),seconds=time.perf_counter()-begin,
-                              model_load_seconds=loaded if not completed else 0,native_entropy=True)
+                              model_load_seconds=loaded if not completed else 0,native_entropy=True,
+                              worker_phase=config['phase'],worker_run_root=str(root))
                 save_json(folder/'decode.json',result)
             except BaseException:
                 for preview in previews: preview.abort()

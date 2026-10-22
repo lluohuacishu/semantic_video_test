@@ -40,6 +40,7 @@ def run(args):
         raise ValueError('Finish independent codec phases before evaluating quality')
     inputs=read_json(root/'inputs.json'); matrix=read_json(root/'matrix.json')
     anchors=read_json(root/'budget_anchors.json')
+    identities=read_json(root/'execution_index.json') if (root/'execution_index.json').exists() else None
     points={}; frame_records=[]
     started=time.perf_counter()
     for clip in inputs['clips']:
@@ -60,7 +61,14 @@ def run(args):
                 raise ValueError('Receiver decoded a different stream from the measured encoding')
             if (folder/'encoder/stream.glcv').stat().st_size!=encoded['file_bytes']:
                 raise ValueError('Measured stream size changed after encoding')
-            if decoded['pid']==read_json(root/('encode_anchors_summary.json' if task['method']=='A' and task['q']==32 else 'encode_remaining_summary.json'))['pid']:
+            if identities is not None:
+                identity=identities[task['id']]
+                if decoded['pid']!=identity['receiver_pid'] or encoded.get('pid',identity['sender_pid'])!=identity['sender_pid']:
+                    raise ValueError('Per-point process identity does not match its recorded execution')
+                # Windows can reuse a numeric PID after yesterday's worker exits.
+                if not identity['sender_receiver_separate_invocations'] or identity['sender_execution']==identity['receiver_execution']:
+                    raise ValueError('Sender and receiver must be separate invocations')
+            elif decoded['pid']==read_json(root/('encode_anchors_summary.json' if task['method']=='A' and task['q']==32 else 'encode_remaining_summary.json'))['pid']:
                 raise ValueError('Sender and receiver must be separate processes')
             points[task['id']]={'id':task['id'],'video_id':clip['video_id'],'method':task['method'],'q':task['q'],
                   'file_bytes':encoded['file_bytes'],'file_sha256':encoded['file_sha256'],
@@ -109,7 +117,8 @@ def run(args):
             indexed={p['method']:p for p in candidates if p['q']==q}
             for method in ('B','C','O'):
                 same_q.append(dict(video_id=int(v),q=q,**compare(indexed[method],indexed['A'])))
-    result={'schema':'d2-two-clip-results-v1','date':'2026-10-21','scope':'development mechanism diagnostic',
+    result={'schema':'d2-two-clip-results-v1','date':read_json(root/'progress.json').get('completion_date','2026-10-21'),
+            'registration_date':read_json(root/'plan.json')['date'],'scope':'development mechanism diagnostic',
             'points':list(points.values()),'budget_anchors':anchors,'budget_selections':budgets,
             'budget_comparisons':comparisons,'same_q_vs_original':same_q,
             'primary_reference':'Unprocessed source RGB; original fish GT including prediction misses',

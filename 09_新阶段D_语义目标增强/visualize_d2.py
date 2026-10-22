@@ -79,7 +79,12 @@ def run(args):
     save_json(out/'viewing_key.json',records)
     cards=[]
     for item in records:
+        levels=evaluation['budget_selections'][str(item['video_id'])]
+        same_budget_points=('B0' in levels and 'B10' in levels and levels['B0']['selected']==levels['B10']['selected'])
+        budget_note=('<p>本片 B0 与 B10 选中了相同文件，两份视频仅栏目顺序不同；增加 10% 上限没有改变本轮所选点。</p>'
+                     if same_budget_points else '')
         cards.append(f'<section><h2>片段 {item["video_id"]:03d} · {item["budget"]}</h2>'
+          +budget_note+
           f'<video controls loop playsinline preload="metadata" src="{item["filename"]}"></video>'
           '<div class="controls"><button data-speed="0.5">半速 0.5×</button>'
           '<button data-speed="1">原速 1×</button><button data-step="-1">前一帧</button>'

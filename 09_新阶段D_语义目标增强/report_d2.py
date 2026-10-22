@@ -127,11 +127,16 @@ def run(args):
     lines += ['', '编码/解码为本次各点墙钟耗时，模型加载与 CPU 输入准备另列。'
               '解码耗时含研究输出和预览生成；发送时间只是文件字节除以假定有效吞吐，'
               '16 kbps 为 20 kbps×80% 场景，均非真实网络或水声实测。', '']
-    phases = [dict(phase=phase, **read_json(root/(phase+'_summary.json')))
-              for phase in ('encode_anchors', 'decode_anchors', 'encode_remaining', 'decode_remaining')]
-    lines.append(table(['阶段', '点数', '阶段耗时 s', '其中模型加载 s'], [
-        [p['phase'], len(p['tasks']), number(p['seconds'], 2), number(p['model_load_seconds'], 2)] for p in phases
+    phases = (read_json(root/'execution_summary.json')['phases'] if (root/'execution_summary.json').exists() else
+              [dict(phase=phase, **read_json(root/(phase+'_summary.json')))
+               for phase in ('encode_anchors', 'decode_anchors', 'encode_remaining', 'decode_remaining')])
+    lines.append(table(['阶段', '状态', '完成点数', '阶段耗时 s', '其中模型加载 s'], [
+        [p['phase'], p['state'], len(p['tasks']),
+         ('≥' if p.get('seconds_is_lower_bound') else '')+number(p['seconds'], 2),
+         number(p['model_load_seconds'], 2)] for p in phases
     ]))
+    lines += ['', '若含中断阶段，其耗时为最后一帧进度记录的下界，完成点数不含未完成半成品；'
+              '继续运行另列实际阶段，不虚构一次完整执行。跨日暂停时间不计入编解码耗时。']
     lines += ['', f'CPU 输入准备 {read_json(root/"preparation.json")["seconds"]:.2f} s；'
               f'CPU 画质评价 {result["quality_evaluation_seconds"]:.2f} s。'
               '本轮复用 D1 预测缓存，没有重复语义推理，不能据此宣称完整发送端耗时已测。', '',

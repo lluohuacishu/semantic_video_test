@@ -1,0 +1,114 @@
+{
+  "phases": [
+    {
+      "phase": "20261021/encode_anchors",
+      "state": "completed",
+      "pid": 17928,
+      "tasks": [
+        "v001_A_q32",
+        "v002_A_q32"
+      ],
+      "seconds": 284.3790392999945,
+      "model_load_seconds": 6.616843899995729,
+      "peak_allocated_mib": 5334.07470703125
+    },
+    {
+      "phase": "20261021/decode_anchors",
+      "state": "completed",
+      "pid": 39704,
+      "tasks": [
+        "v001_A_q32",
+        "v002_A_q32"
+      ],
+      "seconds": 201.19183189999603,
+      "model_load_seconds": 5.059039299994765,
+      "peak_allocated_mib": 4322.34033203125
+    },
+    {
+      "phase": "20261021/encode_remaining_interrupted",
+      "state": "interrupted_by_user",
+      "pid": 29972,
+      "tasks": [
+        "v001_A_q00",
+        "v001_A_q63",
+        "v001_B_q32",
+        "v001_B_q00",
+        "v001_B_q63",
+        "v001_C_q32",
+        "v001_C_q00",
+        "v001_C_q63",
+        "v001_O_q32",
+        "v001_O_q00",
+        "v001_O_q63",
+        "v002_A_q00",
+        "v002_A_q63"
+      ],
+      "seconds": 1806.249893500004,
+      "seconds_is_lower_bound": true,
+      "model_load_seconds": 4.655744499999855
+    },
+    {
+      "phase": "20261021/decode_timeboxed_q32",
+      "state": "completed",
+      "pid": 2472,
+      "tasks": [
+        "v001_B_q32",
+        "v001_C_q32",
+        "v001_O_q32"
+      ],
+      "seconds": 297.2830834999986,
+      "model_load_seconds": 4.6259095999994315,
+      "peak_allocated_mib": 4322.34033203125
+    },
+    {
+      "phase": "resume_20261022_r1/encode_resume",
+      "state": "completed",
+      "pid": 12624,
+      "tasks": [
+        "v002_B_q32",
+        "v002_B_q00",
+        "v002_B_q63",
+        "v002_C_q32",
+        "v002_C_q00",
+        "v002_C_q63",
+        "v002_O_q32",
+        "v002_O_q00",
+        "v002_O_q63"
+      ],
+      "seconds": 1249.7007335,
+      "model_load_seconds": 6.648997799999961,
+      "peak_allocated_mib": 5334.07470703125
+    },
+    {
+      "phase": "resume_20261022_r1/decode_resume",
+      "state": "completed",
+      "pid": 1520,
+      "tasks": [
+        "v001_A_q00",
+        "v001_A_q63",
+        "v001_B_q00",
+        "v001_B_q63",
+        "v001_C_q00",
+        "v001_C_q63",
+        "v001_O_q00",
+        "v001_O_q63",
+        "v002_A_q00",
+        "v002_A_q63",
+        "v002_B_q32",
+        "v002_B_q00",
+        "v002_B_q63",
+        "v002_C_q32",
+        "v002_C_q00",
+        "v002_C_q63",
+        "v002_O_q32",
+        "v002_O_q00",
+        "v002_O_q63"
+      ],
+      "seconds": 2208.3478778,
+      "model_load_seconds": 14.405055400000037,
+      "peak_allocated_mib": 4322.34033203125
+    }
+  ],
+  "pause_time_excluded": true,
+  "interrupted_phase_seconds_are_last_frame_progress_lower_bound": true
+}
