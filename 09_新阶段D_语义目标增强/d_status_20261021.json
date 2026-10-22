@@ -1,7 +1,7 @@
 {
-  "schema": "d-round-status-v15",
+  "schema": "d-round-status-v16",
   "date": "2026-10-22",
-  "status": "D22_completed_target_original_preference_clarified_GT_and_021_predicted",
+  "status": "D23_cached_mask_repair_screen_completed_no_eligible_candidate",
   "planning_only": false,
   "objective": "Improve visible fish/diver fidelity with complete-file rate <=40000 bps AND per-clip growth <=10% over the frozen ordinary anchor; preserve original fps, allow explicit common spatial downsampling.",
   "branch": "codex/glc-d",
@@ -203,14 +203,46 @@
       "subjective_acceptance": false,
       "viewing_videos": 7,
       "strict_target_match_failure": "021 G=9672 B vs B target9660 B; +12 B disclosed; no extra search",
-      "next": "Keep 021 predicted target-original C as a candidate with preliminary positive subjective feedback; prioritize 011 predicted-mask fallback using cached evidence before a bounded new experiment. GT/C attribution is resolved. No new experiment started.",
+      "next": "D2.3 cached repair screening completed with no eligible candidate. Keep existing021 C and recorded target-original preference.",
       "subjective_feedback_received": true,
       "subjective_feedback": "d22_user_feedback_20261022.json",
       "subjective_acceptance_note": "Final pass not established; preliminary relative preference received. Not a rejection of subjective quality."
+    },
+    "D23": {
+      "status": "completed_no_candidate_for_codec",
+      "run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D23_20261022_r1",
+      "report": "D23缓存修复筛选结果_20261022.md",
+      "evidence": "evidence_d23_20261022/cache_results.json",
+      "plan": "d23_cache_repair_plan_v1.json",
+      "source_frames": 128,
+      "candidate_frame_checks": 256,
+      "candidates": [
+        "K16",
+        "K8"
+      ],
+      "eligible_candidates": [],
+      "original_C_alpha_reproduced_frames": 128,
+      "all_candidate_hard_masks_subset_of_C": true,
+      "new_semantic_inference": false,
+      "training": false,
+      "new_encodes": 0,
+      "new_independent_decodes": 0,
+      "GPU_work_running": false,
+      "diagnostic_panels": 8,
+      "new_decoded_viewing_videos": 0,
+      "original_011_C_fish_coverage": 0.8440282154662154,
+      "011_K8_fish_coverage": 0.7657493052010931,
+      "011_K8_fallback_frames": 21,
+      "021_K16_worst_edge_drop_pp": 4.322766570605185,
+      "021_K8_worst_edge_drop_pp": 8.797653958944284,
+      "full_D1_or_diver_gate_revalidated": false,
+      "semantic_gain_proven": false,
+      "subjective_acceptance": false,
+      "next": "No automatic extension of subset-only cleanup. Consider a separately scoped fixed-frame confidence/context diagnostic to add localization information; not started."
     }
   },
   "current_turn_activity": {
-    "scope": "Record user clarification that GT target-original and 021 predicted target-original are both reasonably acceptable; no new experiments",
+    "scope": "D2.3 preregistered cached binary-mask component cleanup and margin screening; all candidates failed before codec",
     "model_loaded": false,
     "gpu_used": false,
     "training_performed": false,
@@ -219,7 +251,9 @@
     "integrity_recheck_performed": false,
     "experiment_data_moved_or_deleted": false,
     "GPU_work_running": false,
-    "new_experiment_started": false
+    "cpu_mask_analysis": true,
+    "source_frames": 128,
+    "candidate_frame_checks": 256
   },
   "scope": {
     "GLC_weights_and_decoder_fixed_in_D2": true,
@@ -244,7 +278,10 @@
     "D22_complete": true,
     "D22_production_protection_ready": false,
     "GLC_weights_and_decoder_fixed_in_D22": true,
-    "D22_global_q_budget_matching": "max3points_per5groups;021G+12BvsBdisclosed"
+    "D22_global_q_budget_matching": "max3points_per5groups;021G+12BvsBdisclosed",
+    "D23_complete": true,
+    "D23_production_protection_ready": false,
+    "production_defaults_unchanged_in_D23": true
   },
   "evaluation": {
     "primary": "Target fidelity and temporal stability under BOTH complete-file <=40000 bps and per-clip <=10% growth; disclose actual comparator sizes.",
@@ -290,9 +327,10 @@
     "reference_range_is_hard_acceptance_limit": false,
     "reference_range_note": "40000 bps maximum is hard; 30000 bps is not a minimum. Both rate and growth limits required.",
     "D21_current_summary": "011 fish-only hard area52.63% and64/64fallback;021 F vs C sameq0 +0.005486dB and+125B. GT O vs B fishPSNR -2.062812/-1.240316dB;021 O+10B vs B disclosed. Numerical semantic gain unproven; continuous subjective viewing pending.",
-    "D22_current_summary": "Target sigma0.6 improves same-mask hard-preserve baseline: GT G/O +1.040382/+0.668916 dB selected; G/B -1.022429/-0.571400 dB. 021 P/C sameq0 +0.637414 dB and -5.953905% bytes. 011P64/64fallback. No semantic gain proven; preliminary user preference now favors target-original sharpness on both clips; GT O and 021 predicted C both now described as reasonably acceptable; no strict C/O ranking or final acceptance established."
+    "D22_current_summary": "Target sigma0.6 improves same-mask hard-preserve baseline: GT G/O +1.040382/+0.668916 dB selected; G/B -1.022429/-0.571400 dB. 021 P/C sameq0 +0.637414 dB and -5.953905% bytes. 011P64/64fallback. No semantic gain proven; preliminary user preference now favors target-original sharpness on both clips; GT O and 021 predicted C both now described as reasonably acceptable; no strict C/O ranking or final acceptance established.",
+    "D23_current_summary": "K16/K8 rejected.011 native prefallback fish coverage C84.4028%,K16 83.4896%,K8 76.5749%;fallback64/64/21.021 worst-frame inner-edge drops4.3228/8.7977pp. Original95%fish and25%area requirements still failed; no candidate enters codec. Subset-only pruning cannot add missing coverage."
   },
-  "plan_revision": 15,
+  "plan_revision": 16,
   "user_visual_objective": "让鱼、潜水员等关键目标看得更清楚",
   "route_selection": {
     "route": "semantic_guided_coding_with_capped_file_growth",
@@ -332,7 +370,8 @@
     "D2_full_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_20261021_r1",
     "D2_lowrate_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_lowrate_20261022_r1",
     "D21_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D21_20261022_r1",
-    "D22_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D22_20261022_r1"
+    "D22_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D22_20261022_r1",
+    "D23_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D23_20261022_r1"
   },
   "active_protocol": "d_round_protocol_v3.json",
   "active_protocol_sha256": "7c43c5f211de367e4e9f67995fc44242a0d2d34c6434e5ab3ce2bcc892a705af",
@@ -358,28 +397,21 @@
     "GLC_codec_experiment_performed": false
   },
   "latest_experiment_activity": {
-    "scope": "D2.2 fixed target sigma0.6 with cached masks and fallback; bounded codec and nonsemantic weak-lowpass control",
-    "model_loaded": true,
-    "model_loaded_note": "GLC only; no SegFormer load or inference",
-    "gpu_used": true,
+    "scope": "D2.3 preregistered cached binary-mask component cleanup and margin screening; all candidates failed before codec",
+    "model_loaded": false,
+    "gpu_used": false,
     "training_performed": false,
-    "video_experiment_performed": true,
-    "GLC_codec_experiment_performed": true,
+    "video_experiment_performed": false,
+    "GLC_codec_experiment_performed": false,
     "integrity_recheck_performed": false,
     "experiment_data_moved_or_deleted": false,
-    "D1_inference": false,
-    "holdout_inference": false,
-    "full_archive_extracted": false,
-    "cpu_metric_evaluation": true,
-    "cached_branch_contribution_analysis": false,
-    "cached_fish_development_frames": 128,
-    "new_input_profile_inferences": 0,
     "GPU_work_running": false,
-    "quality_evaluated_source_frames": 128,
-    "prepared_source_frames": 128
+    "cpu_mask_analysis": true,
+    "source_frames": 128,
+    "candidate_frame_checks": 256
   },
   "previous_D2_experiment_commit": "69a22456f2bcfb110d8359b0f42cce662766a35b",
-  "latest_experiment_commit_note": "D2.2 experiment completed at e60f2b5; subsequent feedback-only commits do not rerun or alter numeric experiments.",
+  "latest_experiment_commit_note": "D2.3 cache-only completion commit: see git log; pre-D23 current commitc189e45. No GLC or predictor execution in D2.3.",
   "previous_D21_experiment_commit": "77ee13c",
   "user_visual_feedback": {
     "record": "d22_user_feedback_20261022.json",
@@ -405,5 +437,26 @@
     },
     "relative_C_vs_O_ranking": null
   },
-  "latest_experiment_commit": "e60f2b5df7b1839804bb2b63a18ee6c80feb4602"
+  "previous_codec_experiment_activity": {
+    "scope": "D2.2 fixed target sigma0.6 with cached masks and fallback; bounded codec and nonsemantic weak-lowpass control",
+    "model_loaded": true,
+    "model_loaded_note": "GLC only; no SegFormer load or inference",
+    "gpu_used": true,
+    "training_performed": false,
+    "video_experiment_performed": true,
+    "GLC_codec_experiment_performed": true,
+    "integrity_recheck_performed": false,
+    "experiment_data_moved_or_deleted": false,
+    "D1_inference": false,
+    "holdout_inference": false,
+    "full_archive_extracted": false,
+    "cpu_metric_evaluation": true,
+    "cached_branch_contribution_analysis": false,
+    "cached_fish_development_frames": 128,
+    "new_input_profile_inferences": 0,
+    "GPU_work_running": false,
+    "quality_evaluated_source_frames": 128,
+    "prepared_source_frames": 128
+  },
+  "previous_D22_experiment_commit": "e60f2b5df7b1839804bb2b63a18ee6c80feb4602"
 }

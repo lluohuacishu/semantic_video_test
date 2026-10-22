@@ -1,0 +1,560 @@
+{
+  "schema": "d23-cache-results-v1",
+  "date": "2026-10-22",
+  "frames": 128,
+  "candidate_frame_checks": 256,
+  "clips": {
+    "11": {
+      "frames": 64,
+      "methods": {
+        "C": {
+          "mean_original_hard_area": 0.5471627468532987,
+          "max_original_hard_area": 0.5830598958333333,
+          "original_prefallback_fish_recall": 0.8440282154662154,
+          "delivery_prefallback_fish_recall": 0.8446065231144277,
+          "delivery_prefallback_edge_recall": 0.82496835207387,
+          "min_frame_delivery_fish_recall": 0.6042799508858095,
+          "min_frame_delivery_edge_recall": 0.5973333333333334,
+          "fallback_counts": {
+            "protection_exceeds_half_frame": 64
+          },
+          "fallback_frames": 64,
+          "final_alpha_mean": 1.0,
+          "final_fish_core_recall": 1.0,
+          "final_edge_core_recall": 1.0,
+          "hard_subset_of_C_all_frames": true,
+          "mean_consecutive_hard_xor": 0.012878132348618461,
+          "mean_consecutive_hard_iou": 0.9767685037997813
+        },
+        "K16": {
+          "mean_original_hard_area": 0.5333074122299383,
+          "max_original_hard_area": 0.5708950617283951,
+          "original_prefallback_fish_recall": 0.834896135248063,
+          "delivery_prefallback_fish_recall": 0.8354780051074654,
+          "delivery_prefallback_edge_recall": 0.8140591257725818,
+          "min_frame_delivery_fish_recall": 0.5884932467988072,
+          "min_frame_delivery_edge_recall": 0.5626666666666666,
+          "fallback_counts": {
+            "protection_exceeds_half_frame": 64
+          },
+          "fallback_frames": 64,
+          "final_alpha_mean": 1.0,
+          "final_fish_core_recall": 1.0,
+          "final_edge_core_recall": 1.0,
+          "hard_subset_of_C_all_frames": true,
+          "mean_consecutive_hard_xor": 0.013545532346168922,
+          "mean_consecutive_hard_iou": 0.9749257971809686
+        },
+        "K8": {
+          "mean_original_hard_area": 0.4913818057966821,
+          "max_original_hard_area": 0.5339853395061729,
+          "original_prefallback_fish_recall": 0.7657493052010931,
+          "delivery_prefallback_fish_recall": 0.766606715224023,
+          "delivery_prefallback_edge_recall": 0.7694541663563929,
+          "min_frame_delivery_fish_recall": 0.4972811787405718,
+          "min_frame_delivery_edge_recall": 0.4746666666666667,
+          "fallback_counts": {
+            "protection_exceeds_half_frame": 21,
+            "none": 43
+          },
+          "fallback_frames": 21,
+          "final_alpha_mean": 0.6562355498602708,
+          "final_fish_core_recall": 0.8801732961038187,
+          "final_edge_core_recall": 0.8794772507260407,
+          "hard_subset_of_C_all_frames": true,
+          "mean_consecutive_hard_xor": 0.01662384565451695,
+          "mean_consecutive_hard_iou": 0.9667037061951774
+        }
+      },
+      "components": {
+        "fish": {
+          "component_frame_count": 11643,
+          "total_seed_pixels": 49119614,
+          "seed_overlap_fish_GT": 2492608,
+          "bins": [
+            {
+              "min": 1,
+              "max": 15,
+              "components": 5293,
+              "pixels": 31188,
+              "fish_GT_pixels": 548
+            },
+            {
+              "min": 16,
+              "max": 63,
+              "components": 3426,
+              "pixels": 114419,
+              "fish_GT_pixels": 1559
+            },
+            {
+              "min": 64,
+              "max": 255,
+              "components": 1905,
+              "pixels": 238614,
+              "fish_GT_pixels": 5667
+            },
+            {
+              "min": 256,
+              "max": 1023,
+              "components": 629,
+              "pixels": 295969,
+              "fish_GT_pixels": 21192
+            },
+            {
+              "min": 1024,
+              "max": 4095,
+              "components": 258,
+              "pixels": 491409,
+              "fish_GT_pixels": 17016
+            },
+            {
+              "min": 4096,
+              "max": 16383,
+              "components": 47,
+              "pixels": 330763,
+              "fish_GT_pixels": 16811
+            },
+            {
+              "min": 16384,
+              "max": 65535,
+              "components": 1,
+              "pixels": 20741,
+              "fish_GT_pixels": 7643
+            },
+            {
+              "min": 65536,
+              "max": 262143,
+              "components": 5,
+              "pixels": 1185147,
+              "fish_GT_pixels": 112180
+            },
+            {
+              "min": 262144,
+              "max": 2073600,
+              "components": 79,
+              "pixels": 46411364,
+              "fish_GT_pixels": 2309992
+            }
+          ],
+          "largest_component_seed_fraction": 0.8558895027147404,
+          "largest_component_GT_overlap_fraction_of_seed_overlap": 0.9080384882019155
+        },
+        "diver": {
+          "component_frame_count": 72,
+          "total_seed_pixels": 1754011,
+          "seed_overlap_fish_GT": 7870,
+          "bins": [
+            {
+              "min": 1,
+              "max": 15,
+              "components": 0,
+              "pixels": 0,
+              "fish_GT_pixels": 0
+            },
+            {
+              "min": 16,
+              "max": 63,
+              "components": 3,
+              "pixels": 95,
+              "fish_GT_pixels": 0
+            },
+            {
+              "min": 64,
+              "max": 255,
+              "components": 1,
+              "pixels": 217,
+              "fish_GT_pixels": 217
+            },
+            {
+              "min": 256,
+              "max": 1023,
+              "components": 1,
+              "pixels": 315,
+              "fish_GT_pixels": 315
+            },
+            {
+              "min": 1024,
+              "max": 4095,
+              "components": 3,
+              "pixels": 8725,
+              "fish_GT_pixels": 7338
+            },
+            {
+              "min": 4096,
+              "max": 16383,
+              "components": 2,
+              "pixels": 30586,
+              "fish_GT_pixels": 0
+            },
+            {
+              "min": 16384,
+              "max": 65535,
+              "components": 62,
+              "pixels": 1714073,
+              "fish_GT_pixels": 0
+            },
+            {
+              "min": 65536,
+              "max": 262143,
+              "components": 0,
+              "pixels": 0,
+              "fish_GT_pixels": 0
+            },
+            {
+              "min": 262144,
+              "max": 2073600,
+              "components": 0,
+              "pixels": 0,
+              "fish_GT_pixels": 0
+            }
+          ],
+          "largest_component_seed_fraction": 0.9946682204387544,
+          "largest_component_GT_overlap_fraction_of_seed_overlap": 0.0
+        }
+      },
+      "cleanup": {
+        "removed_pixels": 145607,
+        "removed_fish_GT_pixels": 2107
+      }
+    },
+    "21": {
+      "frames": 64,
+      "methods": {
+        "C": {
+          "mean_original_hard_area": 0.15349311734423227,
+          "max_original_hard_area": 0.16925925925925925,
+          "original_prefallback_fish_recall": 0.9536219691678598,
+          "delivery_prefallback_fish_recall": 0.9537633739939844,
+          "delivery_prefallback_edge_recall": 0.8433370044052864,
+          "min_frame_delivery_fish_recall": 0.9151785714285714,
+          "min_frame_delivery_edge_recall": 0.7681159420289855,
+          "fallback_counts": {
+            "none": 64
+          },
+          "fallback_frames": 0,
+          "final_alpha_mean": 0.1609744925904118,
+          "final_fish_core_recall": 0.9537633739939844,
+          "final_edge_core_recall": 0.8433370044052864,
+          "hard_subset_of_C_all_frames": true,
+          "mean_consecutive_hard_xor": 0.009209173831569668,
+          "mean_consecutive_hard_iou": 0.9420356158074911
+        },
+        "K16": {
+          "mean_original_hard_area": 0.13072789321711037,
+          "max_original_hard_area": 0.14440731095679013,
+          "original_prefallback_fish_recall": 0.9533481362845554,
+          "delivery_prefallback_fish_recall": 0.953504812837725,
+          "delivery_prefallback_edge_recall": 0.8420521292217328,
+          "min_frame_delivery_fish_recall": 0.9151785714285714,
+          "min_frame_delivery_edge_recall": 0.7630057803468208,
+          "fallback_counts": {
+            "none": 64
+          },
+          "fallback_frames": 0,
+          "final_alpha_mean": 0.1364013297885072,
+          "final_fish_core_recall": 0.953504812837725,
+          "final_edge_core_recall": 0.8420521292217328,
+          "hard_subset_of_C_all_frames": true,
+          "mean_consecutive_hard_xor": 0.007100150952870861,
+          "mean_consecutive_hard_iou": 0.9472827725770913
+        },
+        "K8": {
+          "mean_original_hard_area": 0.10468541274836034,
+          "max_original_hard_area": 0.11468412422839507,
+          "original_prefallback_fish_recall": 0.9459862892782677,
+          "delivery_prefallback_fish_recall": 0.9461800043857209,
+          "delivery_prefallback_edge_recall": 0.8088748164464024,
+          "min_frame_delivery_fish_recall": 0.9075468056359776,
+          "min_frame_delivery_edge_recall": 0.6956521739130435,
+          "fallback_counts": {
+            "none": 64
+          },
+          "fallback_frames": 0,
+          "final_alpha_mean": 0.11055233525294884,
+          "final_fish_core_recall": 0.9461800043857209,
+          "final_edge_core_recall": 0.8088748164464024,
+          "hard_subset_of_C_all_frames": true,
+          "mean_consecutive_hard_xor": 0.005474950396825397,
+          "mean_consecutive_hard_iou": 0.9492540733482597
+        }
+      },
+      "components": {
+        "fish": {
+          "component_frame_count": 8391,
+          "total_seed_pixels": 5695125,
+          "seed_overlap_fish_GT": 3447029,
+          "bins": [
+            {
+              "min": 1,
+              "max": 15,
+              "components": 2285,
+              "pixels": 14604,
+              "fish_GT_pixels": 96
+            },
+            {
+              "min": 16,
+              "max": 63,
+              "components": 2291,
+              "pixels": 81234,
+              "fish_GT_pixels": 114
+            },
+            {
+              "min": 64,
+              "max": 255,
+              "components": 2657,
+              "pixels": 359972,
+              "fish_GT_pixels": 518
+            },
+            {
+              "min": 256,
+              "max": 1023,
+              "components": 871,
+              "pixels": 377343,
+              "fish_GT_pixels": 905
+            },
+            {
+              "min": 1024,
+              "max": 4095,
+              "components": 183,
+              "pixels": 292022,
+              "fish_GT_pixels": 0
+            },
+            {
+              "min": 4096,
+              "max": 16383,
+              "components": 32,
+              "pixels": 213256,
+              "fish_GT_pixels": 0
+            },
+            {
+              "min": 16384,
+              "max": 65535,
+              "components": 38,
+              "pixels": 1943498,
+              "fish_GT_pixels": 1500804
+            },
+            {
+              "min": 65536,
+              "max": 262143,
+              "components": 34,
+              "pixels": 2413196,
+              "fish_GT_pixels": 1944592
+            },
+            {
+              "min": 262144,
+              "max": 2073600,
+              "components": 0,
+              "pixels": 0,
+              "fish_GT_pixels": 0
+            }
+          ],
+          "largest_component_seed_fraction": 0.7337361339742323,
+          "largest_component_GT_overlap_fraction_of_seed_overlap": 0.9995262586998833
+        },
+        "diver": {
+          "component_frame_count": 130,
+          "total_seed_pixels": 7024752,
+          "seed_overlap_fish_GT": 3533345,
+          "bins": [
+            {
+              "min": 1,
+              "max": 15,
+              "components": 0,
+              "pixels": 0,
+              "fish_GT_pixels": 0
+            },
+            {
+              "min": 16,
+              "max": 63,
+              "components": 0,
+              "pixels": 0,
+              "fish_GT_pixels": 0
+            },
+            {
+              "min": 64,
+              "max": 255,
+              "components": 2,
+              "pixels": 192,
+              "fish_GT_pixels": 190
+            },
+            {
+              "min": 256,
+              "max": 1023,
+              "components": 0,
+              "pixels": 0,
+              "fish_GT_pixels": 0
+            },
+            {
+              "min": 1024,
+              "max": 4095,
+              "components": 0,
+              "pixels": 0,
+              "fish_GT_pixels": 0
+            },
+            {
+              "min": 4096,
+              "max": 16383,
+              "components": 0,
+              "pixels": 0,
+              "fish_GT_pixels": 0
+            },
+            {
+              "min": 16384,
+              "max": 65535,
+              "components": 90,
+              "pixels": 4340550,
+              "fish_GT_pixels": 1300947
+            },
+            {
+              "min": 65536,
+              "max": 262143,
+              "components": 38,
+              "pixels": 2684010,
+              "fish_GT_pixels": 2232208
+            },
+            {
+              "min": 262144,
+              "max": 2073600,
+              "components": 0,
+              "pixels": 0,
+              "fish_GT_pixels": 0
+            }
+          ],
+          "largest_component_seed_fraction": 0.5961700854350446,
+          "largest_component_GT_overlap_fraction_of_seed_overlap": 0.9887644710607087
+        }
+      },
+      "cleanup": {
+        "removed_pixels": 95838,
+        "removed_fish_GT_pixels": 210
+      }
+    }
+  },
+  "screening": {
+    "K16": {
+      "passed": false,
+      "clips": {
+        "11": {
+          "passed": false,
+          "checks": {
+            "original_fish_coverage": false,
+            "mean_area": false,
+            "max_area": false,
+            "fallback": false,
+            "delivery_fish_coverage": false,
+            "delivery_edge_coverage": false
+          },
+          "failed": [
+            "original_fish_coverage",
+            "mean_area",
+            "max_area",
+            "fallback",
+            "delivery_fish_coverage",
+            "delivery_edge_coverage"
+          ],
+          "changes_vs_C": {}
+        },
+        "21": {
+          "passed": false,
+          "checks": {
+            "original_fish_coverage": true,
+            "mean_area": true,
+            "max_area": true,
+            "fallback": true,
+            "delivery_fish_coverage": true,
+            "delivery_edge_coverage": false,
+            "021_fish_pooled_nonregression": true,
+            "021_fish_frame_nonregression": true,
+            "021_edge_pooled_nonregression": true,
+            "021_edge_frame_nonregression": false
+          },
+          "failed": [
+            "delivery_edge_coverage",
+            "021_edge_frame_nonregression"
+          ],
+          "changes_vs_C": {
+            "fish": {
+              "pooled_delta": -0.0002585611562593293,
+              "worst_frame_delta": -0.007424775302852682
+            },
+            "edge": {
+              "pooled_delta": -0.0012848751835535799,
+              "worst_frame_delta": -0.043227665706051854
+            }
+          }
+        }
+      }
+    },
+    "K8": {
+      "passed": false,
+      "clips": {
+        "11": {
+          "passed": false,
+          "checks": {
+            "original_fish_coverage": false,
+            "mean_area": false,
+            "max_area": false,
+            "fallback": false,
+            "delivery_fish_coverage": false,
+            "delivery_edge_coverage": false
+          },
+          "failed": [
+            "original_fish_coverage",
+            "mean_area",
+            "max_area",
+            "fallback",
+            "delivery_fish_coverage",
+            "delivery_edge_coverage"
+          ],
+          "changes_vs_C": {}
+        },
+        "21": {
+          "passed": false,
+          "checks": {
+            "original_fish_coverage": false,
+            "mean_area": true,
+            "max_area": true,
+            "fallback": true,
+            "delivery_fish_coverage": false,
+            "delivery_edge_coverage": false,
+            "021_fish_pooled_nonregression": false,
+            "021_fish_frame_nonregression": true,
+            "021_edge_pooled_nonregression": false,
+            "021_edge_frame_nonregression": false
+          },
+          "failed": [
+            "original_fish_coverage",
+            "delivery_fish_coverage",
+            "delivery_edge_coverage",
+            "021_fish_pooled_nonregression",
+            "021_edge_pooled_nonregression",
+            "021_edge_frame_nonregression"
+          ],
+          "changes_vs_C": {
+            "fish": {
+              "pooled_delta": -0.007583369608263446,
+              "worst_frame_delta": -0.018561938257131594
+            },
+            "edge": {
+              "pooled_delta": -0.034462187958884005,
+              "worst_frame_delta": -0.08797653958944285
+            }
+          }
+        }
+      }
+    }
+  },
+  "eligible_candidates": [],
+  "new_semantic_inference": false,
+  "training": false,
+  "new_encodes": 0,
+  "new_decodes": 0,
+  "original_C_alpha_reproduced_frames": 128,
+  "all_candidate_hard_masks_subset_of_C": true,
+  "confidence_cache_available": false,
+  "subset_bound": "For these candidates, each pre-fallback hard mask is a subset of old C. Pixel removal or smaller dilation cannot cover any GT pixel outside old C, regardless of component thresholds. This does not bound new inference or other mask-growing methods.",
+  "source_independence_proven": false,
+  "full_D1_or_diver_gate_revalidated": false,
+  "subjective_acceptance": false,
+  "seconds": 42.52471990000049
+}
