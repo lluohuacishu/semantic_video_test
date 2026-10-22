@@ -1,0 +1,563 @@
+{
+  "schema": "d21-cache-results-v1",
+  "source_run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_lowrate_20261022_r1",
+  "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D21_20261022_r1",
+  "clips": {
+    "11": {
+      "frames": 64,
+      "stages": {
+        "fish": {
+          "raw": {
+            "pixels": 132710400,
+            "selected": 49119614,
+            "target": 4245473,
+            "overlap": 2492608,
+            "nonfish_selected": 46627006,
+            "mean_frame_fraction": 0.370126335238233,
+            "pooled_fish_recall": 0.5871213878877571,
+            "pooled_fish_precision": 0.050745675648021175,
+            "frames_exceeding_half": 0
+          },
+          "dilation_only": {
+            "pixels": 132710400,
+            "selected": 68613398,
+            "target": 4245473,
+            "overlap": 3419350,
+            "nonfish_selected": 65194048,
+            "mean_frame_fraction": 0.517015983675733,
+            "pooled_fish_recall": 0.8054108458586358,
+            "pooled_fish_precision": 0.049835019102245894,
+            "frames_exceeding_half": 52
+          },
+          "history_only": {
+            "pixels": 132710400,
+            "selected": 51266147,
+            "target": 4245473,
+            "overlap": 2766261,
+            "nonfish_selected": 48499886,
+            "mean_frame_fraction": 0.3863009003062307,
+            "pooled_fish_recall": 0.6515789877829867,
+            "pooled_fish_precision": 0.05395882393892406,
+            "frames_exceeding_half": 0
+          },
+          "dilation_and_history": {
+            "pixels": 132710400,
+            "selected": 69851570,
+            "target": 4245473,
+            "overlap": 3582385,
+            "nonfish_selected": 66269185,
+            "mean_frame_fraction": 0.5263458628713349,
+            "pooled_fish_recall": 0.8438129273228213,
+            "pooled_fish_precision": 0.05128567618451525,
+            "frames_exceeding_half": 64
+          }
+        },
+        "diver": {
+          "raw": {
+            "pixels": 132710400,
+            "selected": 1754011,
+            "target": 4245473,
+            "overlap": 7870,
+            "nonfish_selected": 1746141,
+            "mean_frame_fraction": 0.013216831536940586,
+            "pooled_fish_recall": 0.0018537392653303884,
+            "pooled_fish_precision": 0.004486858976369019,
+            "frames_exceeding_half": 0
+          },
+          "dilation_only": {
+            "pixels": 132710400,
+            "selected": 2756335,
+            "target": 4245473,
+            "overlap": 24524,
+            "nonfish_selected": 2731811,
+            "mean_frame_fraction": 0.020769547827449844,
+            "pooled_fish_recall": 0.005776505939385317,
+            "pooled_fish_precision": 0.008897321987349143,
+            "frames_exceeding_half": 0
+          },
+          "history_only": {
+            "pixels": 132710400,
+            "selected": 1815408,
+            "target": 4245473,
+            "overlap": 12331,
+            "nonfish_selected": 1803077,
+            "mean_frame_fraction": 0.01367947048611111,
+            "pooled_fish_recall": 0.0029045055757038144,
+            "pooled_fish_precision": 0.006792412504516891,
+            "frames_exceeding_half": 0
+          },
+          "dilation_and_history": {
+            "pixels": 132710400,
+            "selected": 2834898,
+            "target": 4245473,
+            "overlap": 36090,
+            "nonfish_selected": 2798808,
+            "mean_frame_fraction": 0.02136153609664352,
+            "pooled_fish_recall": 0.00850081957887849,
+            "pooled_fish_precision": 0.012730616762931152,
+            "frames_exceeding_half": 0
+          }
+        },
+        "union": {
+          "raw": {
+            "pixels": 132710400,
+            "selected": 50864791,
+            "target": 4245473,
+            "overlap": 2493292,
+            "nonfish_selected": 48371499,
+            "mean_frame_fraction": 0.38327660077883874,
+            "pooled_fish_recall": 0.5872825006777808,
+            "pooled_fish_precision": 0.04901803292576195,
+            "frames_exceeding_half": 0
+          },
+          "dilation_only": {
+            "pixels": 132710400,
+            "selected": 71320193,
+            "target": 4245473,
+            "overlap": 3420417,
+            "nonfish_selected": 67899776,
+            "mean_frame_fraction": 0.5374122374734761,
+            "pooled_fish_recall": 0.8056621723892721,
+            "pooled_fish_precision": 0.04795860549620218,
+            "frames_exceeding_half": 64
+          },
+          "history_only": {
+            "pixels": 132710400,
+            "selected": 53067667,
+            "target": 4245473,
+            "overlap": 2767149,
+            "nonfish_selected": 50300518,
+            "mean_frame_fraction": 0.39987572187258874,
+            "pooled_fish_recall": 0.6517881517559999,
+            "pooled_fish_precision": 0.052143784651396116,
+            "frames_exceeding_half": 0
+          },
+          "dilation_and_history": {
+            "pixels": 132710400,
+            "selected": 72614187,
+            "target": 4245473,
+            "overlap": 3583299,
+            "nonfish_selected": 69030888,
+            "mean_frame_fraction": 0.5471627468532986,
+            "pooled_fish_recall": 0.8440282154662154,
+            "pooled_fish_precision": 0.049347092462799315,
+            "frames_exceeding_half": 64
+          }
+        }
+      },
+      "controls": {
+        "B": {
+          "preprocess_error": {
+            "fish": {
+              "sse": 9674467,
+              "samples": 905733,
+              "mse": 10.681367467012906,
+              "psnr_db": 37.844535046771774,
+              "lossless": false
+            },
+            "rest": {
+              "sse": 1530676611,
+              "samples": 27405819,
+              "mse": 55.85224842213254,
+              "psnr_db": 30.660396998411695,
+              "lossless": false
+            },
+            "all": {
+              "sse": 1540351078,
+              "samples": 28311552,
+              "mse": 54.407157827306676,
+              "psnr_db": 30.774243214563466,
+              "lossless": false
+            }
+          }
+        },
+        "C": {
+          "preprocess_error": {
+            "fish": {
+              "sse": 0,
+              "samples": 905733,
+              "mse": 0.0,
+              "psnr_db": null,
+              "lossless": true
+            },
+            "rest": {
+              "sse": 0,
+              "samples": 27405819,
+              "mse": 0.0,
+              "psnr_db": null,
+              "lossless": true
+            },
+            "all": {
+              "sse": 0,
+              "samples": 28311552,
+              "mse": 0.0,
+              "psnr_db": null,
+              "lossless": true
+            }
+          },
+          "fallback_counts": {
+            "protection_exceeds_half_frame": 64
+          },
+          "mean_alpha": 1.0,
+          "mean_hard_core_fraction": 1.0,
+          "fish_core_recall": 1.0,
+          "fish_alpha_mean": 1.0,
+          "fish_edge_core_recall": 1.0
+        },
+        "F": {
+          "preprocess_error": {
+            "fish": {
+              "sse": 0,
+              "samples": 905733,
+              "mse": 0.0,
+              "psnr_db": null,
+              "lossless": true
+            },
+            "rest": {
+              "sse": 0,
+              "samples": 27405819,
+              "mse": 0.0,
+              "psnr_db": null,
+              "lossless": true
+            },
+            "all": {
+              "sse": 0,
+              "samples": 28311552,
+              "mse": 0.0,
+              "psnr_db": null,
+              "lossless": true
+            }
+          },
+          "fallback_counts": {
+            "protection_exceeds_half_frame": 64
+          },
+          "mean_alpha": 1.0,
+          "mean_hard_core_fraction": 1.0,
+          "fish_core_recall": 1.0,
+          "fish_alpha_mean": 1.0,
+          "fish_edge_core_recall": 1.0
+        },
+        "O": {
+          "preprocess_error": {
+            "fish": {
+              "sse": 0,
+              "samples": 905733,
+              "mse": 0.0,
+              "psnr_db": null,
+              "lossless": true
+            },
+            "rest": {
+              "sse": 1491464401,
+              "samples": 27405819,
+              "mse": 54.421449729343976,
+              "psnr_db": 30.77310254128541,
+              "lossless": false
+            },
+            "all": {
+              "sse": 1491464401,
+              "samples": 28311552,
+              "mse": 52.680418261775266,
+              "psnr_db": 30.91431146437316,
+              "lossless": false
+            }
+          },
+          "fallback_counts": {
+            "none": 64
+          },
+          "mean_alpha": 0.05269751704596227,
+          "mean_hard_core_fraction": 0.051186879475911454,
+          "fish_core_recall": 1.0,
+          "fish_alpha_mean": 1.0,
+          "fish_edge_core_recall": 1.0
+        }
+      },
+      "mean_raw_overlap_fraction": 6.656599633487654e-05,
+      "mean_raw_diver_only_fraction": 0.01315026554060571,
+      "mean_raw_fish_only_fraction": 0.37005976924189815
+    },
+    "21": {
+      "frames": 64,
+      "stages": {
+        "fish": {
+          "raw": {
+            "pixels": 132710400,
+            "selected": 5695125,
+            "target": 4298242,
+            "overlap": 3447029,
+            "nonfish_selected": 2248096,
+            "mean_frame_fraction": 0.04291393138744213,
+            "pooled_fish_recall": 0.8019625232827747,
+            "pooled_fish_precision": 0.6052595860494722,
+            "frames_exceeding_half": 0
+          },
+          "dilation_only": {
+            "pixels": 132710400,
+            "selected": 17210729,
+            "target": 4298242,
+            "overlap": 4043833,
+            "nonfish_selected": 13166896,
+            "mean_frame_fraction": 0.12968636218412422,
+            "pooled_fish_recall": 0.940810917579792,
+            "pooled_fish_precision": 0.23496000663307173,
+            "frames_exceeding_half": 0
+          },
+          "history_only": {
+            "pixels": 132710400,
+            "selected": 6068393,
+            "target": 4298242,
+            "overlap": 3494500,
+            "nonfish_selected": 2573893,
+            "mean_frame_fraction": 0.04572658209153164,
+            "pooled_fish_recall": 0.8130068060383757,
+            "pooled_fish_precision": 0.5758526186422006,
+            "frames_exceeding_half": 0
+          },
+          "dilation_and_history": {
+            "pixels": 132710400,
+            "selected": 18184005,
+            "target": 4298242,
+            "overlap": 4052127,
+            "nonfish_selected": 14131878,
+            "mean_frame_fraction": 0.13702019585503472,
+            "pooled_fish_recall": 0.942740543692049,
+            "pooled_fish_precision": 0.22284018289700205,
+            "frames_exceeding_half": 0
+          }
+        },
+        "diver": {
+          "raw": {
+            "pixels": 132710400,
+            "selected": 7024752,
+            "target": 4298242,
+            "overlap": 3533345,
+            "nonfish_selected": 3491407,
+            "mean_frame_fraction": 0.05293294270833333,
+            "pooled_fish_recall": 0.8220442218004477,
+            "pooled_fish_precision": 0.5029850164105437,
+            "frames_exceeding_half": 0
+          },
+          "dilation_only": {
+            "pixels": 132710400,
+            "selected": 9464647,
+            "target": 4298242,
+            "overlap": 3998206,
+            "nonfish_selected": 5466441,
+            "mean_frame_fraction": 0.07131805043161651,
+            "pooled_fish_recall": 0.9301956474298096,
+            "pooled_fish_precision": 0.4224358288270022,
+            "frames_exceeding_half": 0
+          },
+          "history_only": {
+            "pixels": 132710400,
+            "selected": 7160312,
+            "target": 4298242,
+            "overlap": 3567136,
+            "nonfish_selected": 3593176,
+            "mean_frame_fraction": 0.053954415027006174,
+            "pooled_fish_recall": 0.8299058080024345,
+            "pooled_fish_precision": 0.4981816434814572,
+            "frames_exceeding_half": 0
+          },
+          "dilation_and_history": {
+            "pixels": 132710400,
+            "selected": 9598241,
+            "target": 4298242,
+            "overlap": 4017274,
+            "nonfish_selected": 5580967,
+            "mean_frame_fraction": 0.0723247085382909,
+            "pooled_fish_recall": 0.9346318797312948,
+            "pooled_fish_precision": 0.4185427309024643,
+            "frames_exceeding_half": 0
+          }
+        },
+        "union": {
+          "raw": {
+            "pixels": 132710400,
+            "selected": 8338776,
+            "target": 4298242,
+            "overlap": 3653031,
+            "nonfish_selected": 4685745,
+            "mean_frame_fraction": 0.0628343822337963,
+            "pooled_fish_recall": 0.8498895594989766,
+            "pooled_fish_precision": 0.4380776027560879,
+            "frames_exceeding_half": 0
+          },
+          "dilation_only": {
+            "pixels": 132710400,
+            "selected": 19587765,
+            "target": 4298242,
+            "overlap": 4092438,
+            "nonfish_selected": 15495327,
+            "mean_frame_fraction": 0.147597814489294,
+            "pooled_fish_recall": 0.9521190291286531,
+            "pooled_fish_precision": 0.20892827742215614,
+            "frames_exceeding_half": 0
+          },
+          "history_only": {
+            "pixels": 132710400,
+            "selected": 8599724,
+            "target": 4298242,
+            "overlap": 3674996,
+            "nonfish_selected": 4924728,
+            "mean_frame_fraction": 0.06480067877121913,
+            "pooled_fish_recall": 0.8549997882855362,
+            "pooled_fish_precision": 0.4273388308741071,
+            "frames_exceeding_half": 0
+          },
+          "dilation_and_history": {
+            "pixels": 132710400,
+            "selected": 20370133,
+            "target": 4298242,
+            "overlap": 4098898,
+            "nonfish_selected": 16271235,
+            "mean_frame_fraction": 0.15349311734423227,
+            "pooled_fish_recall": 0.9536219691678598,
+            "pooled_fish_precision": 0.2012209738640391,
+            "frames_exceeding_half": 0
+          }
+        }
+      },
+      "controls": {
+        "B": {
+          "preprocess_error": {
+            "fish": {
+              "sse": 10505186,
+              "samples": 916611,
+              "mse": 11.460898898224002,
+              "psnr_db": 37.53861679429495,
+              "lossless": false
+            },
+            "rest": {
+              "sse": 334092269,
+              "samples": 27394941,
+              "mse": 12.195400201810983,
+              "psnr_db": 37.26884304263561,
+              "lossless": false
+            },
+            "all": {
+              "sse": 344597455,
+              "samples": 28311552,
+              "mse": 12.171620086387351,
+              "psnr_db": 37.27731972633681,
+              "lossless": false
+            }
+          }
+        },
+        "C": {
+          "preprocess_error": {
+            "fish": {
+              "sse": 13422,
+              "samples": 916611,
+              "mse": 0.014643071051951154,
+              "psnr_db": 66.47448191177962,
+              "lossless": false
+            },
+            "rest": {
+              "sse": 182158531,
+              "samples": 27394941,
+              "mse": 6.649349272188613,
+              "psnr_db": 39.90301215012282,
+              "lossless": false
+            },
+            "all": {
+              "sse": 182171953,
+              "samples": 28311552,
+              "mse": 6.434544916506167,
+              "psnr_db": 40.045625240391715,
+              "lossless": false
+            }
+          },
+          "fallback_counts": {
+            "none": 64
+          },
+          "mean_alpha": 0.1609744925904118,
+          "mean_hard_core_fraction": 0.15340603722466362,
+          "fish_core_recall": 0.9537633739939844,
+          "fish_alpha_mean": 0.9585660143083341,
+          "fish_edge_core_recall": 0.8433370044052864
+        },
+        "F": {
+          "preprocess_error": {
+            "fish": {
+              "sse": 48152,
+              "samples": 916611,
+              "mse": 0.052532644709696916,
+              "psnr_db": 60.92651095341502,
+              "lossless": false
+            },
+            "rest": {
+              "sse": 201545452,
+              "samples": 27394941,
+              "mse": 7.357031796491184,
+              "psnr_db": 39.463777278360375,
+              "lossless": false
+            },
+            "all": {
+              "sse": 201593604,
+              "samples": 28311552,
+              "mse": 7.1205423143174915,
+              "psnr_db": 39.60567289261064,
+              "lossless": false
+            }
+          },
+          "fallback_counts": {
+            "none": 64
+          },
+          "mean_alpha": 0.1446826772752151,
+          "mean_hard_core_fraction": 0.1369763480292426,
+          "fish_core_recall": 0.9427761613159781,
+          "fish_alpha_mean": 0.9484297495627595,
+          "fish_edge_core_recall": 0.8112610132158591
+        },
+        "O": {
+          "preprocess_error": {
+            "fish": {
+              "sse": 0,
+              "samples": 916611,
+              "mse": 0.0,
+              "psnr_db": null,
+              "lossless": true
+            },
+            "rest": {
+              "sse": 330000982,
+              "samples": 27394941,
+              "mse": 12.04605558376636,
+              "psnr_db": 37.32235498076241,
+              "lossless": false
+            },
+            "all": {
+              "sse": 330000982,
+              "samples": 28311552,
+              "mse": 11.656054108231157,
+              "psnr_db": 37.465288060754624,
+              "lossless": false
+            }
+          },
+          "fallback_counts": {
+            "none": 64
+          },
+          "mean_alpha": 0.04556380627202053,
+          "mean_hard_core_fraction": 0.04469818539089627,
+          "fish_core_recall": 1.0,
+          "fish_alpha_mean": 1.0,
+          "fish_edge_core_recall": 1.0
+        }
+      },
+      "mean_raw_overlap_fraction": 0.03301249186197917,
+      "mean_raw_diver_only_fraction": 0.019920450846354167,
+      "mean_raw_fish_only_fraction": 0.009901439525462963
+    }
+  },
+  "frames": 128,
+  "seconds": 51.23484200000166,
+  "cached_C_alpha_and_input_exactly_reproduced": true,
+  "limitations": [
+    "Fish GT is not exhaustive diver/background annotation.",
+    "Stage/branch differences overlap; do not add them as independent causal effects.",
+    "GT protection is an offline diagnostic, not deployable or a guaranteed upper bound.",
+    "Preprocessing preservation does not imply post-codec fidelity."
+  ],
+  "semantic_inference": false,
+  "training": false,
+  "integrity_rescan": false
+}

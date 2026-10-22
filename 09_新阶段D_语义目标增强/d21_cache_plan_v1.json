@@ -1,0 +1,30 @@
+{
+  "schema": "d21-cache-diagnostic-v1",
+  "date": "2026-10-22",
+  "authorization": "User accepted the reviewed D2.1 cached-diagnostic and bounded-ablation sequence: 那开始吧",
+  "parent_protocol": "d_round_protocol_v3.json",
+  "source_run": "D2_lowrate_20261022_r1",
+  "new_run": "D21_20261022_r1",
+  "clips": [11, 21],
+  "frames_per_clip": 64,
+  "size": [512, 288],
+  "fps": "30000/1001",
+  "cached_seed_bits": {"fish": 1, "diver": 2},
+  "stages": ["raw", "dilation_only", "history_only", "dilation_and_history"],
+  "branches": ["fish", "diver", "union"],
+  "protection": {"margin_at_1920": 16, "previous_seed_frames": 1},
+  "controls": {
+    "C": "Reconstruct existing fish|diver protection and assert pixel equality with cached alpha and input",
+    "F": "Cached fish seed only; unchanged margin, one previous raw seed, soft edge, fallback and low-pass",
+    "O": "Offline GT fish seed only with identical protection rules; diagnostic, not deployable or a guaranteed upper bound"
+  },
+  "fixed_visual_frame_indices": [0, 21, 42, 63],
+  "measurements": ["area and fish-GT recall by branch/stage", "non-fish-GT coverage, without treating unlabeled pixels as confirmed background", "fallback count", "actual alpha coverage of fish and its inner boundary", "preprocessing RGB error on fish and rest of image"],
+  "semantic_inference": false,
+  "training": false,
+  "integrity_rescan": false,
+  "codec_in_this_phase": false,
+  "next": "Register a bounded codec plan after inspecting cached mechanism evidence, before any new encoded or decoded quality results",
+  "hard_budget": "S_total <= min(floor(40000*T_exact/8), floor(11*S0/10)); original S0 and timeline retained",
+  "source_run_mutation": false
+}

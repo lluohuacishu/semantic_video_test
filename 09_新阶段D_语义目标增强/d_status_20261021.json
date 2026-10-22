@@ -1,7 +1,7 @@
 {
-  "schema": "d-round-status-v11",
+  "schema": "d-round-status-v12",
   "date": "2026-10-22",
-  "status": "D2_large_fish_lowrate_completed_semantic_gain_not_proven",
+  "status": "D21_cached_diagnosis_and_bounded_ablation_completed_semantic_gain_not_proven",
   "planning_only": false,
   "objective": "Improve visible fish/diver fidelity with complete-file rate <=40000 bps AND per-clip growth <=10% over the frozen ordinary anchor; preserve original fps, allow explicit common spatial downsampling.",
   "branch": "codex/glc-d",
@@ -99,7 +99,7 @@
       "purpose": "Actual same-budget controls under a per-clip 10% file-growth cap, using unchanged GLC and semantic preprocessing",
       "protocol": "d_round_protocol_v3.json",
       "readiness": "Large-fish lowrate outputs available; 011 protection falls back on all frames, 021 active protection does not improve target PSNR.",
-      "next": "Use cached controls/seed/alpha to diagnose 011 all-frame fallback and 021 active protection without target gain. Do not repeat completed codec search or auto-train.",
+      "next": "D2.1 cache diagnosis and bounded fish-only/GT ablations completed; do not repeat D2.",
       "run_plan": "d2_lowrate_plan_v1.json",
       "run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_lowrate_20261022_r1",
       "input_clips": [
@@ -157,17 +157,49 @@
     "D5": {
       "status": "not_started",
       "purpose": "independent sender/receiver integration with actual byte and runtime accounting"
+    },
+    "D21": {
+      "status": "completed_semantic_gain_not_proven",
+      "run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D21_20261022_r1",
+      "report": "D21缓存诊断与消融结果_20261022.md",
+      "evidence": "evidence_d21_20261022/evaluation.json",
+      "cached_diagnostic_frames": 128,
+      "new_encodes": 11,
+      "new_independent_decodes": 12,
+      "unique_evaluated_streams": 15,
+      "evaluated_frame_points": 960,
+      "all_selected_hard_caps_passed": true,
+      "source_alpha_and_C_input_exactly_reproduced": true,
+      "new_semantic_inference": false,
+      "training": false,
+      "GPU_work_running": false,
+      "cache_plan": "d21_cache_plan_v1.json",
+      "codec_plan": "d21_codec_plan_v1.json",
+      "selection_amendment": "d21_selection_amendment_v2.json",
+      "semantic_gain_proven": false,
+      "subjective_acceptance": false,
+      "next": "User continuous viewing of B/O; if proceeding, consider one target-lowpass variable. Not started; no automatic q expansion, training, or codec redesign."
     }
   },
   "current_turn_activity": {
-    "scope": "handoff documentation and file indexes only",
-    "model_loaded": false,
-    "gpu_used": false,
+    "scope": "D2.1 cached branch/stage diagnosis and bounded fish-only/GT codec ablations; source D2 retained",
+    "model_loaded": true,
+    "model_loaded_note": "GLC only; no SegFormer load or inference",
+    "gpu_used": true,
     "training_performed": false,
-    "video_experiment_performed": false,
-    "GLC_codec_experiment_performed": false,
+    "video_experiment_performed": true,
+    "GLC_codec_experiment_performed": true,
     "integrity_recheck_performed": false,
-    "experiment_data_moved_or_deleted": false
+    "experiment_data_moved_or_deleted": false,
+    "D1_inference": false,
+    "holdout_inference": false,
+    "full_archive_extracted": false,
+    "cpu_metric_evaluation": true,
+    "cached_branch_contribution_analysis": true,
+    "cached_fish_development_frames": 128,
+    "new_input_profile_inferences": 0,
+    "GPU_work_running": false,
+    "quality_evaluated_source_frames": 128
   },
   "scope": {
     "GLC_weights_and_decoder_fixed_in_D2": true,
@@ -185,7 +217,10 @@
     "production_protection_ready": false,
     "model_data_fingerprints_rechecked_this_turn": false,
     "D2_development_diagnostic_started": true,
-    "D2_full_matrix_complete": true
+    "D2_full_matrix_complete": true,
+    "D21_complete": true,
+    "D21_production_protection_ready": false,
+    "GLC_weights_and_decoder_fixed_in_D21": true
   },
   "evaluation": {
     "primary": "Target fidelity and temporal stability under BOTH complete-file <=40000 bps and per-clip <=10% growth; disclose actual comparator sizes.",
@@ -229,9 +264,10 @@
     "D2_current_summary": "All six outputs32.91..39.85kbps;011 all64fallback;021 C vs A fish PSNR -0.081878dB and +3.06% bytes. C vs B -1.380258dB and +6.68% bytes. No semantic gain proved.",
     "hard_max_complete_file_bits_per_second": 40000,
     "reference_range_is_hard_acceptance_limit": false,
-    "reference_range_note": "40000 bps maximum is hard; 30000 bps is not a minimum. Both rate and growth limits required."
+    "reference_range_note": "40000 bps maximum is hard; 30000 bps is not a minimum. Both rate and growth limits required.",
+    "D21_current_summary": "011 fish-only hard area52.63% and64/64fallback;021 F vs C sameq0 +0.005486dB and+125B. GT O vs B fishPSNR -2.062812/-1.240316dB;021 O+10B vs B disclosed. Numerical semantic gain unproven; continuous subjective viewing pending."
   },
-  "plan_revision": 11,
+  "plan_revision": 12,
   "user_visual_objective": "让鱼、潜水员等关键目标看得更清楚",
   "route_selection": {
     "route": "semantic_guided_coding_with_capped_file_growth",
@@ -269,11 +305,11 @@
     "D1_branch_analysis_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D1_review_20261021_r1",
     "D2_timeboxed_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_20261021_r1\\timeboxed_20261021",
     "D2_full_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_20261021_r1",
-    "D2_lowrate_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_lowrate_20261022_r1"
+    "D2_lowrate_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_lowrate_20261022_r1",
+    "D21_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D21_20261022_r1"
   },
   "active_protocol": "d_round_protocol_v3.json",
   "active_protocol_sha256": "7c43c5f211de367e4e9f67995fc44242a0d2d34c6434e5ab3ce2bcc892a705af",
-  "latest_experiment_commit": "69a22456f2bcfb110d8359b0f42cce662766a35b",
   "handoff_organization": {
     "updated": true,
     "experiment_data_moved_or_deleted": false,
@@ -296,22 +332,25 @@
     "GLC_codec_experiment_performed": false
   },
   "latest_experiment_activity": {
-    "D1_inference": false,
+    "scope": "D2.1 cached branch/stage diagnosis and bounded fish-only/GT codec ablations; source D2 retained",
     "model_loaded": true,
+    "model_loaded_note": "GLC only; no SegFormer load or inference",
     "gpu_used": true,
     "training_performed": false,
     "video_experiment_performed": true,
     "GLC_codec_experiment_performed": true,
+    "integrity_recheck_performed": false,
+    "experiment_data_moved_or_deleted": false,
+    "D1_inference": false,
     "holdout_inference": false,
     "full_archive_extracted": false,
-    "integrity_recheck_performed": false,
     "cpu_metric_evaluation": true,
-    "cached_branch_contribution_analysis": false,
-    "cached_fish_development_frames": 0,
-    "new_input_profile_inferences": 128,
-    "scope": "User-requested larger-fish re-selection, original-fps common512x288; frozen inference128; six independent selected decodes under hard40kbps and10% growth caps.",
+    "cached_branch_contribution_analysis": true,
+    "cached_fish_development_frames": 128,
+    "new_input_profile_inferences": 0,
     "GPU_work_running": false,
-    "note": "011/021 are development; scanned sequences not claimed unseen; no automatic additional GPU work remains.",
     "quality_evaluated_source_frames": 128
-  }
+  },
+  "previous_D2_experiment_commit": "69a22456f2bcfb110d8359b0f42cce662766a35b",
+  "latest_experiment_commit_note": "D2.1 completion commit: see git log; pre-D21 state1a7cb02."
 }

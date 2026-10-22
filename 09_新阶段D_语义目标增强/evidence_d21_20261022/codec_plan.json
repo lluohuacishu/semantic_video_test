@@ -1,0 +1,93 @@
+{
+  "schema": "d21-bounded-codec-v1",
+  "date": "2026-10-22",
+  "registered_before_new_codec": true,
+  "parent_protocol": "d_round_protocol_v3.json",
+  "cache_diagnosis": "D21_20261022_r1/cache_diagnosis.json",
+  "reason": "011 fish-only still falls back on all frames, so do not encode identical inputs again. 021 C preserves 95.38% of fish cores and 84.33% of fish inner edges. GT controls preserve all fish with mean alpha 5.27%/4.56%. Test the existing operator with accurate masks before training or codec redesign.",
+  "clips": [
+    11,
+    21
+  ],
+  "frames_per_clip": 64,
+  "size": [
+    512,
+    288
+  ],
+  "fps": "30000/1001",
+  "frozen_S0": {
+    "11": 9865,
+    "21": 8846
+  },
+  "effective_caps": {
+    "11": 10677,
+    "21": 9730
+  },
+  "new_methods": [
+    {
+      "video_id": 11,
+      "method": "O"
+    },
+    {
+      "video_id": 21,
+      "method": "F"
+    },
+    {
+      "video_id": 21,
+      "method": "O"
+    }
+  ],
+  "method_definitions": {
+    "F": "fish-only cached prediction; all other preprocessing unchanged",
+    "O": "GT fish protection; all other preprocessing unchanged; offline diagnostic, not deployable or a theoretical upper bound"
+  },
+  "same_inputs_reuse": {
+    "11_F": "All64 frames equal original A and fallback C; alias existing C selection, no new encoding"
+  },
+  "comparator_refinement": {
+    "groups": [
+      {
+        "video_id": 11,
+        "method": "A"
+      },
+      {
+        "video_id": 21,
+        "method": "A"
+      },
+      {
+        "video_id": 21,
+        "method": "B"
+      }
+    ],
+    "max_new_points_each": 2,
+    "ceiling": "unchanged effective cap; same existing size-only next_q interpolation, reuse all previous measured points",
+    "selection": "largest compliant complete file, lower q breaks ties; no decoded quality used",
+    "reason": "Existing A/B selections left 5.16%/6.54%/9.71% of the unchanged cap unused; limited matching for new ablations, not rerunning the old matrix"
+  },
+  "candidate_selection": {
+    "max_points_each": 3,
+    "first_q": 0,
+    "target_bytes": "min(selected A bytes, selected B bytes)",
+    "initial_log_size_slope": "least-squares log(bytes) versus q from existing B measurements of the same clip; thereafter use measured candidate endpoints",
+    "next_q": "nearest unused integer in measured bracket, clipped0..63; stop when no larger and within2% or at3points",
+    "unmatched": "Select largest point within comparator target if available, otherwise smallest measured point under the unchanged hard caps. Disclose unmatched; never expand or relax the hard caps."
+  },
+  "max_new_encodes": 15,
+  "max_new_independent_decodes": 13,
+  "evaluation": {
+    "primary": "Selected A/B/C/F/O at actual complete sizes. Near-equal only if candidate no larger and gap<=2% for the specific pair.",
+    "same_q_diagnostic": "Also evaluate q0 A/B/C/F/O where existing/new compliant streams exist, reusing duplicate inputs and completed decoder outputs; sizes differ, do not call equal-rate.",
+    "primary_reference": "Existing512x288 original RGB and independent fish GT; pooled SSE then PSNR",
+    "secondary_reference": "Original1920x1080 RGB/GT after decoded LANCZOS upsampling, separate",
+    "quality_not_used_to_choose_q": true,
+    "receiver_has_source_or_GT": false,
+    "visual": "labeled synchronized videos, fixed original GT crop, source reference; no automatic subjective acceptance",
+    "stop": "After this bounded diagnostic, report mechanism evidence and limitations; no automatic training, threshold changes, further q search or GLC redesign"
+  },
+  "training": false,
+  "new_semantic_inference": false,
+  "old_run_mutation": false,
+  "weights_entropy_and_decoder_changed": false,
+  "counted_bytes": "complete glcv plus any required side information; masks are sender-only and not transmitted, O remains unavailable at deployment",
+  "hard_limits": "both <=40000bps at true original duration AND <=10% growth over original frozen A@q0"
+}
