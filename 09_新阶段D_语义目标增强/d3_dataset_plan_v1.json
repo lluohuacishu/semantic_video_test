@@ -1,0 +1,26 @@
+{
+  "schema": "d3-source-roster-v1",
+  "date": "2026-10-22",
+  "status": "fish_windows_fixed_diver_source_pending",
+  "max_video_clips": 5,
+  "max_frames_per_clip": 64,
+  "selection_policy": "Source/annotation attributes only, before D3 method outcomes; retain every selected failure. No picking clips by model confidence, compressed quality or method advantage.",
+  "manifest_paths_relative_to": "workspace root",
+  "clips": [
+    {"id": "fish_001", "video_id": 1, "role": "development_small_target", "frames": 64, "source_frame_indices": [0, 63], "manifest": "02_实验数据/D_语义目标增强/D0_20261021_r1/ready_manifest.json", "manifest_selector": "fish_sequences.video_id=1, frames[0:64]", "fps": "30000/1001", "duration_exact": "4004/1875", "selection_reason": "Existing small-target case, about0.16% mean fish area in prior source screening; source reuse avoids selecting for new method advantage", "exposure": "historical codec/regression and D1 development; not unseen", "motion_background_strata": "must annotate from fixed original frames before execution; not yet claimed distinct", "S0": null},
+    {"id": "fish_011", "video_id": 11, "role": "development_known_hard_case", "frames": 64, "source_frame_indices": [6, 69], "manifest": "02_实验数据/D_语义目标增强/D2_lowrate_20261022_r1/inputs.json", "manifest_selector": "clips.video_id=11, all64frames", "fps": "30000/1001", "duration_exact": "4004/1875", "selection_reason": "Larger fish in vegetation-textured scene; retained failure case, not a universal veto", "exposure": "D2/D2.1/D2.2/D2.3 development and user viewing", "S0": 9865, "cap40": 10677},
+    {"id": "fish_021", "video_id": 21, "role": "development_open_seabed", "frames": 64, "source_frame_indices": [353, 416], "manifest": "02_实验数据/D_语义目标增强/D2_lowrate_20261022_r1/inputs.json", "manifest_selector": "clips.video_id=21, all64frames", "fps": "30000/1001", "duration_exact": "4004/1875", "selection_reason": "Larger fish with a different background; existing user preference is preserved but is not a D3 result", "exposure": "D2/D2.1/D2.2/D2.3 development and user viewing", "S0": 8846, "cap40": 9730},
+    {"id": "fish_007", "video_id": 7, "role": "sequence_confirmation_after_freeze", "frames": 64, "source_frame_indices": [0, 63], "manifest": "02_实验数据/D_语义目标增强/D0_20261021_r1/ready_manifest.json", "manifest_selector": "fish_sequences.video_id=7, frames[0:64]", "fps": "30000/1001", "duration_exact": "4004/1875", "selection_reason": "Existing D0 reserved constant-rate sequence; no source reselection from D3 results", "exposure": "D0 annotation/timeline preparation; not guaranteed wholly unseen or source-independent", "budget_or_inference_before_final_rule_freeze": false, "S0": null},
+    {"id": "diver_01", "role": "development_diver_continuous_video", "frames_max": 64, "source_path": null, "source_status": "not_available_in_current_registered_inventory", "fps": null, "duration_exact": null, "S0": null, "selection_rule": "Review at most3 lawful available continuous source candidates, without model/codec outputs; prefer explicit origin and a different background, retain source fps, select earliest64 consecutive frames with diver present in>=48 frames and visible motion; tie by normalized source ID. No suitable candidate means slot remains missing.", "annotation_rule": "Source-only boxes/identity on all64 frames, plus masks where available; if only boxes exist report box-region fidelity and label it as such; task/contour metrics without required labels remain NA", "static_SUIM_is_substitute": false}
+  ],
+  "before_future_execution": [
+    "Read fixed original preview frames0,21,42,63 for each development clip and label target size, background and motion; no new model or codec outputs for selection.",
+    "Fish windows remain fixed if motion diversity proves limited; state limitation rather than swapping after results.",
+    "Resolve diver source and exact timeline in a versioned manifest, or explicitly dispatch a fish-only budget subset and leave diver validation pending.",
+    "New sources require only bounded sample/time checks; no whole-corpus/weight integrity rescan, ZIP copy or full extraction.",
+    "Freeze source, frame identities and method rules before enhancement results; confirmation007 stays outside development tuning."
+  ],
+  "excluded": {"fish_025": "VFR with no current exact-PTS codec path; preserve, do not retime to constant fps", "SUIM_static": "20 diver and4 negative images remain historical localization evidence, not continuous-video samples"},
+  "source_independence_proven": false,
+  "complete_multivideo_fish_and_diver_set_ready": false
+}

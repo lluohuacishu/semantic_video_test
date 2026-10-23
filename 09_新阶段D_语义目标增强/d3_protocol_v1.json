@@ -1,0 +1,121 @@
+{
+  "schema": "d3-fixed-budget-target-enhancement-v1",
+  "date": "2026-10-22",
+  "title": "D3：固定传输预算下的语义引导目标增强通信",
+  "status": "planning_complete_experiments_not_started",
+  "current_authorization": "Prepare a finite experiment protocol and budget-feasibility plan; static accounting and documentation only. Do not launch new codec, inference, training, payload compression or system reconstruction in this turn.",
+  "predecessor": "d_round_protocol_v3.json",
+  "precedence": "For future D3 only. Preserve D0-D2.3 evidence. D2 closes without a semantic-benefit claim; do not resume 011-specific segmentation repair. Earlier D3 training placeholder is superseded.",
+  "hypothesis": "At comparable complete transmission bytes, semantic region selection improves important-target reconstruction beyond ordinary GLC and a fixed strong nonsemantic region selector.",
+  "routes": {
+    "dual_stream": "bounded candidate, not final architecture",
+    "single_stream_semantic_bit_allocation": "alternative for later separate design if the tested dual-stream candidates lack a usable budget-quality point",
+    "generative_reconstruction": "deferred",
+    "training_and_GLC_internal_changes": false
+  },
+  "data_plan": "d3_dataset_plan_v1.json",
+  "application_budget": {
+    "max_bps": 40000,
+    "growth_limit": 0.1,
+    "integer_cap": "min(floor(40000*T_exact/8), floor(11*S0/10))",
+    "known_S0": {"011": 9865, "021": 8846},
+    "known_caps": {"011": 10677, "021": 9730},
+    "new_clip_S0": "ordinary unmodified-source GLC at the fixed 512x288 delivery canvas, q0, original timeline; measured and frozen before enhancement results",
+    "lower_base_resolution_reanchors_S0": false,
+    "new_clip_anchor_over_40kbps": "retain S0; absolute cap still applies; allow the same lower-resolution ordinary candidates as the dual-stream base; no anchor inflation after outcomes",
+    "counts": "base glcv, enhancement payload, coordinates/timing/lengths, envelope and required checksums or per-clip model/config data",
+    "no_padding_no_frame_dropping_no_duration_inflation": true,
+    "network_wire_bytes": "report separately; measured application bytes are not acoustic-link feasibility or wire-rate acceptance"
+  },
+  "diagnostic_budget": {
+    "enabled_in_plan_not_executed": true,
+    "max_bps": 80000,
+    "cap": "floor(80000*T_exact/8)",
+    "applies_application_10pct_growth_cap": false,
+    "report_growth_vs_original_S0": true,
+    "application_acceptance": false,
+    "clips": [11, 21],
+    "max_batches": 1,
+    "methods": ["D3_A", "D3_B", "D3_D_GT"],
+    "no_new_parameter_search": true
+  },
+  "representation": {
+    "delivery_canvas": [512, 288],
+    "base_sizes": [[512, 288], [384, 216], [320, 180]],
+    "aspect_policy": "preserve aspect ratio with deterministic letterboxing for non-16:9 sources; original-rate timeline remains intact",
+    "ordinary_control_has_same_size_choices": true,
+    "GLC": {"q_range": [0, 63], "budget_probe_q": 0, "container_version": 2, "intra_period": 64, "reset_interval": 32, "weights_entropy_neural_decoder": "unchanged"},
+    "base_upsample": "fixed Pillow LANCZOS to the common canvas; record version; all comparisons use the same original canvas reference",
+    "ROI": {"width": 128, "height": 96, "tiles_per_block": 1, "block_frames": 8, "grid_step": 8, "last_block": "remaining frames only", "lookahead": "up to 8 source frames; report buffering delay"},
+    "full_second_GLC_stream": "static format lower bound only in phase1; no encoding allocated under application40",
+    "residual_candidate": {
+      "definition": "source RGB minus sender-locally-decoded-and-upsampled base RGB, inside one ROI per block",
+      "quant_steps": [8, 16, 32],
+      "rounding": "integer nearest with ties away from zero",
+      "temporal": "first quantized residual then adjacent-frame differences within each block; reset at each block",
+      "serialization": "signed little-endian int16 in T,H,W,C order; zlib level6 per block including its own header/checksum",
+      "receiver": "reconstruct every frame Q, residual=Q*quant_step; d=min(local_x,local_y,w-1-local_x,h-1-local_y); correction=round_ties_away_from_zero(residual*min(4,d)/4); add to independently decoded base, clamp to uint8",
+      "no_mask_probability_class_id_required_at_receiver": true,
+      "zero_block": "record retained, payload_len=0 allowed only when every quantized residual value is zero; means zero correction",
+      "scope": "one deliberately simple coder, not an optimum or a lower bound on all enhancement coding"
+    },
+    "envelope": {"header_struct": "<4sBBHHHIIIIHH", "header_bytes": 32, "record_struct": "<HHHHHHI", "record_bytes": 16, "crc32_bytes": 4, "metadata_for_64_frames_block8": 164, "status": "layout proposal only; future actual serialized byte count is authoritative"}
+  },
+  "methods": {
+    "D3_A": "ordinary GLC, same canvas/timeline and resolution choices, allowed the complete total budget",
+    "D3_B": "same base/residual/ROI area and update cadence as C; fixed source-only camera-translation-compensated motion selector, texture tie-break, never random deliberately weak boxes",
+    "D3_C": "same transmission mechanism; fixed existing predictor selects ROI; no threshold search or 011-specific repair",
+    "D3_D_GT": "same mechanism; maximize GT target pixels in ROI as a localization diagnostic, not deployment evidence or guaranteed optimal bound"
+  },
+  "selectors": {
+    "common_grid": "128x96 rectangles on 8px top-left grid within512x288; add last valid edge position; ties topmost then leftmost",
+    "B": "pool absolute grayscale temporal differences over the8-frame block after global integer translation compensation by phase correlation; compensation estimates larger than32px use uncompensated differences and are flagged; equal motion scores choose larger summed gradient then grid order",
+    "B_freeze": "exact implementation and source-only deterministic checks frozen before enhancement results; no tuning against C, GT or reconstructed quality",
+    "C": "fish probability>=0.5 from existing base native tiles512/stride384; diver existing longedge256 argmax-class1 and probability>=0.5; resize class membership to canvas NEAREST and pool target membership over block; no D2 dilation/history/fallback gate",
+    "C_no_detection": "use the same B selection and disclose each fallback block; entirely fallback clips cannot count as semantic-selection wins",
+    "D_GT": "pool target-mask pixels over block on same grid; GT never reaches A/B/C selector or independent receiver",
+    "evaluation_denominator": "all annotated targets including misses and objects outside chosen ROI"
+  },
+  "phases": [
+    {"id": "D3.0", "task": "protocol, source roster, old metadata and format arithmetic", "current": true, "new_encodes": 0, "new_decodes": 0, "new_inferences": 0},
+    {"id": "D3.1", "task": "future finite budget probes on up to4 development clips", "base_configs_per_clip": 3, "new_GLC_encodes_max": 10, "GLC_decodes_max": 12, "GT_residual_sequence_trials_max": 36, "neural_semantic_inferences_max": 0, "run_status": "not_started"},
+    {"id": "D3.1H", "task": "optional single80kbps diagnostic batch on011/021; per clip choose highest q0 base size with a byte-fitting GT point, reuse GT payloads; B gets the same base and3 quant steps", "new_GLC_encodes_max": 4, "GLC_decodes_max": 4, "additional_nonsemantic_residual_trials_max": 6, "run_status": "not_started"},
+    {"id": "D3.2", "task": "one eligible GT package end-to-end in an isolated receiver using received bytes only", "new_GLC_encodes_max": 0, "GLC_decodes_max": 1, "packages_max": 1, "run_status": "conditional_not_started"},
+    {"id": "D3.3", "task": "development A/B/GT mechanism comparison first; only a matched positive mechanism permits C. Finish development before one-shot007 A/B/C/GT confirmation. At most5 registered clips.", "new_GLC_encodes_max": 13, "GLC_decodes_max": 23, "residual_sequence_trials_max": 45, "new_semantic_frame_inferences_max": 320, "run_status": "conditional_not_started"}
+  ],
+  "whole_plan_ceiling": {"new_GLC_encodes_max": 27, "GLC_decodes_max": 40, "residual_sequence_trials_max": 87, "new_semantic_frame_inferences_max": 320, "meaning": "worst-case sum across conditional separately dispatched phases, never an instruction to launch one matrix; reused completed points are not rerun"},
+  "rate_matching": {
+    "A": "reuse compatible actual points; probe q0 at3 base sizes, then at most2 new q points per clip at the largest size whose q0 fits the relevant ceiling; choose from measured sizes only",
+    "A_next_q": "reuse run_d2_lowrate.next_q size-only log interpolation (.016 initial slope), unique integers0..63, max2 new points; no monotonicity assumption for final selection",
+    "H_A": "at most q32 and q63 at512x288 per diagnostic clip, reuse if already encoded compatibly",
+    "enhancement": "q0 base only; quant steps8,16,32; never add per-clip steps or geometry after results; choose measured admissible size closest below comparator target, then smaller quant step, then larger base on exact ties",
+    "common_base_freeze": "from D3.1 choose the highest base size having a byte-fitting GT candidate on at least2 of3 registered fish-development clips; visual viability required before prototype; record diver viability separately; freeze globally for B/C/D before their quality results",
+    "B_A_selection": "each gets largest measured admissible total file below its phase ceiling; choose without decoded-quality/GT-quality scores; D3_C and D3_D_GT target min(selected A bytes, selected B bytes)",
+    "strict_pair": "0 <= (S_comparator-S_candidate)/S_comparator <=0.02 separately against A and B",
+    "unmatched": "insufficient size matching; report exact points and differences; no padding/interpolation/fake stream/automatic new search and no equal-byte semantic claim"
+  },
+  "evaluation": {
+    "primary_question": "Can predicted semantic selection produce a target benefit beyond both matched A and B?",
+    "visual": "same source-reference view, scale, timeline and fixed crops; record clearer/tie/worse, true detail, identifiable targets, contour, flicker, ghosts, seams and global scene usability; single-user results exploratory",
+    "numeric": "per-clip pooled target RGB MSE/PSNR, rest-of-image MSE/PSNR, fixed GT inner-boundary gradient error; temporal reconstruction-error change on the union of adjacent-frame GT targets; raw edge sharpness is not fidelity",
+    "task": "fixed source-vs-decoded recognizability/trajectory-continuity worksheet first; reuse an independently assessed frozen task model only if it can evaluate originals meaningfully; report its original-input ceiling and GT metrics separately; unimplemented or unlabeled metrics are NA",
+    "selection_model_scores_alone_prove_semantic_gain": false,
+    "mechanism": "GT beating matched A/B suggests potential only for this mechanism and cases; no deployment claim",
+    "provisional_semantic_positive": "C strictly size-matched to both A/B and judged clearer than both on at least2 of3 registered fish-development clips, with genuine source-consistent detail and no new severe temporal/global artifacts on those clips; disclose all other losses and numerical disagreements",
+    "007": "one-shot sequence confirmation only after rules frozen; failure prevents broader confirmation claim, does not trigger tuning",
+    "diver": "separate required evidence for a fish-and-diver claim; pending diver slot blocks that claim, not truthful fish-only findings",
+    "PSNR_alone_decides_success": false,
+    "D1_D23_localization_gates_apply_to_D3": false,
+    "claims": "scope to tested clips and this nonsemantic control; not proof that every nonsemantic alternative is inferior or that source-independent generalization holds"
+  },
+  "stop_conditions": [
+    "Current turn ends after protocol, static accounting, verification, handoff and commit/push; no experiment dispatch.",
+    "No usable budget-quality point on at least2 of3 fish-development clips: close this candidate's application40 pilot;011 alone does not veto the route.",
+    "Base plus enhancement fails scene usability or introduces severe temporal artifacts: byte fit alone is not a pass.",
+    "Complete GT mechanism fails matched A/B: do not invest in predictor training or rollout; restrict conclusion to tested candidates and matching status.",
+    "B matches C: attribute benefit to region enhancement/resource allocation, not demonstrated semantic selection.",
+    "Only80kbps works: mechanism diagnostic only, application target failed; do not refreeze S0 or relax application limits.",
+    "Budget, point count, input limit, decode integrity or source-access boundary fails: preserve artifacts and stop the affected phase; no silent expansion.",
+    "Single-stream internal bit allocation remains a later design candidate, never automatically implemented after failure."
+  ]
+}

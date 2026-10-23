@@ -1,9 +1,9 @@
 {
-  "schema": "d-round-status-v16",
+  "schema": "d-round-status-v17",
   "date": "2026-10-22",
-  "status": "D23_cached_mask_repair_screen_completed_no_eligible_candidate",
-  "planning_only": false,
-  "objective": "Improve visible fish/diver fidelity with complete-file rate <=40000 bps AND per-clip growth <=10% over the frozen ordinary anchor; preserve original fps, allow explicit common spatial downsampling.",
+  "status": "D2_closed_D3_protocol_and_static_budget_complete_experiments_not_started",
+  "planning_only": true,
+  "objective": "At comparable complete bytes, test whether semantic target selection improves fish/diver reconstruction beyond ordinary GLC and a fixed nonsemantic ROI control; application40kbps AND <=10% growth remain mandatory.",
   "branch": "codex/glc-d",
   "current_handoff": "交接文档.md",
   "workspace_file_index": "05_资料与索引/文件与会话接续索引_20261022.md",
@@ -17,7 +17,7 @@
     "D_changes_included_in_main": false,
     "existing_validation_limits_preserved": true
   },
-  "plan": "D轮方案_待审阅_20261021.md",
+  "plan": "D3有限实验协议_20261022.md",
   "inventory": "d_planning_inventory_20261021.json",
   "stages": {
     "D0": {
@@ -95,11 +95,11 @@
       }
     },
     "D2": {
-      "status": "large_fish_lowrate_completed_semantic_gain_not_proven",
+      "status": "closed_with_D21_D22_D23_evidence_semantic_gain_not_proven",
       "purpose": "Actual same-budget controls under a per-clip 10% file-growth cap, using unchanged GLC and semantic preprocessing",
       "protocol": "d_round_protocol_v3.json",
       "readiness": "Large-fish lowrate outputs available; 011 protection falls back on all frames, 021 active protection does not improve target PSNR.",
-      "next": "D2.1 cache diagnosis and bounded fish-only/GT ablations completed; do not repeat D2.",
+      "next": "Closed. No further011-specific segmentation repair; see new D3 planning protocol.",
       "run_plan": "d2_lowrate_plan_v1.json",
       "run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D2_lowrate_20261022_r1",
       "input_clips": [
@@ -144,18 +144,35 @@
       "original_fps_preserved": true,
       "semantic_inference_frames": 128,
       "max_selected_decodes": 6,
-      "all_selected_hard_rate_and_growth_pass": true
+      "all_selected_hard_rate_and_growth_pass": true,
+      "previous_status": "large_fish_lowrate_completed_semantic_gain_not_proven"
     },
     "D3": {
-      "status": "optional_not_started_not_required",
-      "purpose": "conditional differentiable training audit and bounded semantic rate-distortion adaptation"
+      "status": "protocol_and_static_budget_complete_experiments_not_started",
+      "title": "固定传输预算下的语义引导目标增强通信",
+      "protocol": "d3_protocol_v1.json",
+      "report": "D3有限实验协议_20261022.md",
+      "budget_plan": "D3预算可行性方案_20261022.md",
+      "data_plan": "d3_dataset_plan_v1.json",
+      "evidence": "evidence_d3_planning_20261022/static_budget.json",
+      "dual_stream_is_final_route": false,
+      "application_max_bps": 40000,
+      "application_growth_cap": 0.1,
+      "diagnostic80_is_application_accepted": false,
+      "experiment_dispatched": false,
+      "new_encodes": 0,
+      "new_decodes": 0,
+      "new_semantic_inferences": 0,
+      "new_residual_compression": false,
+      "source_readiness": "fish windows fixed; diver continuous source and source-only motion strata pending",
+      "next": "Register bounded source preparation, then explicitly execute finite D3.1 budget phase; no automatic launch."
     },
     "D4": {
-      "status": "not_started",
+      "status": "historical_placeholder_superseded_by_D3_protocol_no_auto_execution",
       "purpose": "Frozen held-out evaluation under the per-clip growth cap with same-budget controls"
     },
     "D5": {
-      "status": "not_started",
+      "status": "historical_placeholder_superseded_by_D3_protocol_no_auto_execution",
       "purpose": "independent sender/receiver integration with actual byte and runtime accounting"
     },
     "D21": {
@@ -242,18 +259,19 @@
     }
   },
   "current_turn_activity": {
-    "scope": "D2.3 preregistered cached binary-mask component cleanup and margin screening; all candidates failed before codec",
+    "scope": "D3 protocol, dataset plan, read-only old JSON/stat/container arithmetic and handoff",
     "model_loaded": false,
     "gpu_used": false,
     "training_performed": false,
     "video_experiment_performed": false,
     "GLC_codec_experiment_performed": false,
+    "new_semantic_inferences": 0,
+    "new_encodes": 0,
+    "new_decodes": 0,
+    "new_residual_data_compression": false,
     "integrity_recheck_performed": false,
     "experiment_data_moved_or_deleted": false,
-    "GPU_work_running": false,
-    "cpu_mask_analysis": true,
-    "source_frames": 128,
-    "candidate_frame_checks": 256
+    "GPU_work_running": false
   },
   "scope": {
     "GLC_weights_and_decoder_fixed_in_D2": true,
@@ -281,7 +299,13 @@
     "D22_global_q_budget_matching": "max3points_per5groups;021G+12BvsBdisclosed",
     "D23_complete": true,
     "D23_production_protection_ready": false,
-    "production_defaults_unchanged_in_D23": true
+    "production_defaults_unchanged_in_D23": true,
+    "D2_closed": true,
+    "D3_planning_complete": true,
+    "D3_experiment_dispatched": false,
+    "segmentation_repair_for_011": "stopped_as_default_direction",
+    "D3_production_defaults_changed": false,
+    "D3_application_and_highrate_diagnostic_separate": true
   },
   "evaluation": {
     "primary": "Target fidelity and temporal stability under BOTH complete-file <=40000 bps and per-clip <=10% growth; disclose actual comparator sizes.",
@@ -328,22 +352,20 @@
     "reference_range_note": "40000 bps maximum is hard; 30000 bps is not a minimum. Both rate and growth limits required.",
     "D21_current_summary": "011 fish-only hard area52.63% and64/64fallback;021 F vs C sameq0 +0.005486dB and+125B. GT O vs B fishPSNR -2.062812/-1.240316dB;021 O+10B vs B disclosed. Numerical semantic gain unproven; continuous subjective viewing pending.",
     "D22_current_summary": "Target sigma0.6 improves same-mask hard-preserve baseline: GT G/O +1.040382/+0.668916 dB selected; G/B -1.022429/-0.571400 dB. 021 P/C sameq0 +0.637414 dB and -5.953905% bytes. 011P64/64fallback. No semantic gain proven; preliminary user preference now favors target-original sharpness on both clips; GT O and 021 predicted C both now described as reasonably acceptable; no strict C/O ranking or final acceptance established.",
-    "D23_current_summary": "K16/K8 rejected.011 native prefallback fish coverage C84.4028%,K16 83.4896%,K8 76.5749%;fallback64/64/21.021 worst-frame inner-edge drops4.3228/8.7977pp. Original95%fish and25%area requirements still failed; no candidate enters codec. Subset-only pruning cannot add missing coverage."
+    "D23_current_summary": "K16/K8 rejected.011 native prefallback fish coverage C84.4028%,K16 83.4896%,K8 76.5749%;fallback64/64/21.021 worst-frame inner-edge drops4.3228/8.7977pp. Original95%fish and25%area requirements still failed; no candidate enters codec. Subset-only pruning cannot add missing coverage.",
+    "D2_thresholds_historical_only_for_D3": true,
+    "D3_current_basis": "Actual matched bytes against ordinary GLC and fixed nonsemantic ROI, target clarity with source-consistent detail and temporal/global quality; PSNR alone insufficient; all failures reported; GT only diagnostic."
   },
-  "plan_revision": 16,
+  "plan_revision": 17,
   "user_visual_objective": "让鱼、潜水员等关键目标看得更清楚",
   "route_selection": {
-    "route": "semantic_guided_coding_with_capped_file_growth",
-    "user_preference": "倾向 D.md 的第二条路线",
-    "source_path": "C:\\Users\\lenovo\\Desktop\\临时\\D.md",
-    "source_sha256": "a9f7d9213654c7720ebcf0e2ab76af4ff6797e73b51f6d881aec999b7204fc20",
-    "review": "D路线调整评审_20261021.md",
-    "first_step": "sender semantic protection and background simplification with unchanged GLC and decoder",
-    "later_candidate": "semantic rate-distortion adaptation; spatial control requires separate codec and protocol design",
-    "receiver_restoration": "optional_not_a_prerequisite",
-    "initial_plan_commit": "38c2219c23ee405950ef2d0af3584e9dc0575d2c",
-    "simplification": "existing model + one background low-pass + current GLC; training and new modules are optional",
-    "file_growth_cap_user_update": "Both absolute complete-file40kbps AND <=10% growth are hard limits; originalfps retained, explicit common spatial downsampling authorized."
+    "route": "fixed_budget_semantic_target_enhancement_candidate_evaluation",
+    "source": "2026-10-22 user request after D.md review: prepare finite D3 protocol and budget plan only",
+    "first_candidate": "base GLC plus compact ROI residual; budget and GT mechanism before predicted localization",
+    "alternative": "single-stream internal semantic bit allocation, separate future design if needed",
+    "final_architecture_committed": false,
+    "training_started": false,
+    "old_011_confidence_input_view_diagnostic": "superseded_not_executed"
   },
   "static_code_evidence": [
     {
@@ -373,8 +395,8 @@
     "D22_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D22_20261022_r1",
     "D23_run_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\D_语义目标增强\\D23_20261022_r1"
   },
-  "active_protocol": "d_round_protocol_v3.json",
-  "active_protocol_sha256": "7c43c5f211de367e4e9f67995fc44242a0d2d34c6434e5ab3ce2bcc892a705af",
+  "active_protocol": "d3_protocol_v1.json",
+  "active_protocol_sha256": "bc2d544972c6722569ecc16dba0e6faf095f64304c00f6f676378d4df1f61501",
   "handoff_organization": {
     "updated": true,
     "experiment_data_moved_or_deleted": false,
@@ -411,7 +433,7 @@
     "candidate_frame_checks": 256
   },
   "previous_D2_experiment_commit": "69a22456f2bcfb110d8359b0f42cce662766a35b",
-  "latest_experiment_commit_note": "D2.3 cache-only completion commit: see git log; pre-D23 current commitc189e45. No GLC or predictor execution in D2.3.",
+  "latest_experiment_commit_note": "Latest executed experiment is D2.3 at6cb9c22413f25cf30139b37629acaacadf229e72. D3 is planning only; current planning commit is recorded in git log.",
   "previous_D21_experiment_commit": "77ee13c",
   "user_visual_feedback": {
     "record": "d22_user_feedback_20261022.json",
@@ -458,5 +480,35 @@
     "quality_evaluated_source_frames": 128,
     "prepared_source_frames": 128
   },
-  "previous_D22_experiment_commit": "e60f2b5df7b1839804bb2b63a18ee6c80feb4602"
+  "previous_D22_experiment_commit": "e60f2b5df7b1839804bb2b63a18ee6c80feb4602",
+  "historical_future_stage_placeholders_20261021": {
+    "D3": {
+      "status": "optional_not_started_not_required",
+      "purpose": "conditional differentiable training audit and bounded semantic rate-distortion adaptation"
+    },
+    "D4": {
+      "status": "not_started",
+      "purpose": "Frozen held-out evaluation under the per-clip growth cap with same-budget controls"
+    },
+    "D5": {
+      "status": "not_started",
+      "purpose": "independent sender/receiver integration with actual byte and runtime accounting"
+    }
+  },
+  "previous_route_selection_20261021": {
+    "route": "semantic_guided_coding_with_capped_file_growth",
+    "user_preference": "倾向 D.md 的第二条路线",
+    "source_path": "C:\\Users\\lenovo\\Desktop\\临时\\D.md",
+    "source_sha256": "a9f7d9213654c7720ebcf0e2ab76af4ff6797e73b51f6d881aec999b7204fc20",
+    "review": "D路线调整评审_20261021.md",
+    "first_step": "sender semantic protection and background simplification with unchanged GLC and decoder",
+    "later_candidate": "semantic rate-distortion adaptation; spatial control requires separate codec and protocol design",
+    "receiver_restoration": "optional_not_a_prerequisite",
+    "initial_plan_commit": "38c2219c23ee405950ef2d0af3584e9dc0575d2c",
+    "simplification": "existing model + one background low-pass + current GLC; training and new modules are optional",
+    "file_growth_cap_user_update": "Both absolute complete-file40kbps AND <=10% growth are hard limits; originalfps retained, explicit common spatial downsampling authorized."
+  },
+  "historical_D2_protocol": "d_round_protocol_v3.json",
+  "historical_D2_protocol_sha256": "7c43c5f211de367e4e9f67995fc44242a0d2d34c6434e5ab3ce2bcc892a705af",
+  "previous_D23_experiment_commit": "6cb9c22413f25cf30139b37629acaacadf229e72"
 }
