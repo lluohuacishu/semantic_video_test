@@ -23,7 +23,7 @@ async function check(role, preview) {
     document:{getElementById(id){assert.ok(nodes[id], 'Missing element: '+id);return nodes[id];},createElement:element},
     sessionStorage:{getItem(){return id;},setItem(){},removeItem(){}}, history:{replaceState(){}},setInterval(){},
     fetch:async route=>({ok:true,json:async()=>route==='/api/config'?config:route==='/api/jobs'?[job]:job})});
-  vm.runInContext(source.replace('init().catch(e=>notice(e.message));', 'globalThis.testUI={init,refresh,restoreOptions,encodeOptions};'), context);
+  vm.runInContext(source.replace('init().catch(e=>notice(e.message));', 'globalThis.testUI={init,refresh,restoreOptions,encodeOptions,compression};'), context);
   await context.testUI.init();
   assert.equal(nodes.timings.hidden, false);
   const durationText=nodes.timingCards.children.map(card=>card.children.map(n=>n.textContent).join(" ")).join(" | ");
@@ -51,6 +51,34 @@ async function check(role, preview) {
   assert.equal(exact.clip.start,'353353/30000');assert.equal(exact.clip.end,'417417/30000');
   assert.equal(exact.enhancement,'semantic_original');assert.equal(exact.video.long_edge,512);
   nodes.end.value='13';assert.equal(context.testUI.encodeOptions().clip.end,'13');
+  if(role==='sender' && !preview){
+    const metrics={width:640,height:360,fps:12.5,frames:125,duration_seconds:10,
+      file_bytes:25000,video_kbps:20,raw_rgb24_bytes:86400000,raw_rgb24_ratio:3456,
+      source_file_bytes:1000000,source_file_ratio:40,source_file_reduction_percent:97.5,
+      whole_source_processed:true,selected_start_seconds:0,selected_end_seconds:10,source_duration_seconds:10};
+    function cards(overrides={}){
+      context.testUI.compression({compression:{...metrics,...overrides}});
+      return Object.fromEntries(nodes.compressionCards.children.map(card=>[
+        card.children[0].textContent,card.children[1].textContent]));
+    }
+    const full=cards();
+    assert.equal(full['文件压缩比'],'40:1');
+    assert.equal(full['帧数据压缩比（RGB24）'],'3,456:1');
+    const segment=cards({whole_source_processed:false,source_file_ratio:null,
+      source_file_reduction_percent:null,source_duration_seconds:30});
+    assert.equal(segment['文件压缩比'],'不适用（片段）');
+    assert.equal(segment['帧数据压缩比（RGB24）'],'3,456:1');
+    assert.match(nodes.compressionNote.textContent,/本次范围 0–10 秒，整片 30 秒/);
+    const stream=cards({source_file_bytes:null,source_file_ratio:null,whole_source_processed:null});
+    assert.equal(stream['文件压缩比'],'无原文件数据');
+    assert.equal(stream['帧数据压缩比（RGB24）'],'3,456:1');
+    const legacy=cards({source_file_ratio:null,whole_source_processed:null,raw_rgb24_ratio:undefined,raw_rgb24_bytes:undefined});
+    assert.equal(legacy['文件压缩比'],'缺少范围记录');
+    assert.ok(!('帧数据压缩比（RGB24）' in legacy));
+    context.testUI.compression(undefined);
+    assert.equal(nodes.compression.hidden,true);
+    assert.equal(nodes.compressionCards.children.length,0);
+  }
 }
 (async()=>{for(const role of ['sender','receiver'])for(const preview of [false,true])await check(role,preview);
-  console.log('4 UI states passed; failed jobs clear warning and hide video.');})().catch(e=>{console.error(e);process.exitCode=1;});
+  console.log('4 UI states and full/segment/stream/legacy/empty compression displays passed.');})().catch(e=>{console.error(e);process.exitCode=1;});

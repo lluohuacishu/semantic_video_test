@@ -63,16 +63,19 @@ function compression(result) {
       const change=data.source_file_reduction_percent;
       metric('文件压缩比',number(data.source_file_ratio)+':1',`原文件 ÷ 完整码流 · 体积${change>=0?'减少':'增加'} ${number(Math.abs(change))}%`);
     } else {
-      metric('文件压缩比','暂不计算',data.whole_source_processed===false?'只处理了片段，不能与整片文件相比':'未确认覆盖完整原视频');
+      metric('文件压缩比',data.whole_source_processed===false?'不适用（片段）':'缺少范围记录',data.whole_source_processed===false?'本次仅处理片段，原文件包含未处理内容':'无法确认是否处理了完整原视频');
     }
   } else {
     metric('文件压缩比','无原文件数据','仅有码流时不推算原文件大小');
   }
+  if(Number.isFinite(data.raw_rgb24_ratio) && data.raw_rgb24_ratio>0 && Number.isFinite(data.raw_rgb24_bytes) && data.raw_rgb24_bytes>0) {
+    metric('帧数据压缩比（RGB24）',number(data.raw_rgb24_ratio)+':1',`本次未压缩帧 ${fileSize(data.raw_rgb24_bytes)} ÷ 完整码流 ${fileSize(data.file_bytes)}`);
+  }
   metric('平均视频码率',number(data.video_kbps)+' kbps',number(data.duration_seconds)+' 秒 · 含码流容器');
   if(data.mean_psnr_db!=null)metric('全图重建 PSNR',number(data.mean_psnr_db)+' dB','与低通 / 保护前的采样原画面比较');
-  let note=`输出 ${data.width} × ${data.height} · ${number(data.fps)} fps · ${data.frames} 帧。文件压缩比 = 上传的原文件字节数 ÷ 完整 .glcv 字节数。KB/MB 按十进制计量，模型预共享；观看用 MP4 不计入码流大小。`;
+  let note=`输出 ${data.width} × ${data.height} · ${number(data.fps)} fps · ${data.frames} 帧。文件压缩比以完整上传文件为基准；帧数据压缩比以本次尺寸、帧数对应的未压缩 RGB24 数据为基准，大小 = 宽 × 高 × 3 × 帧数。两者均除以完整 .glcv 字节数，不能混为同一指标。KB/MB 按十进制计量，模型预共享；观看用 MP4 不计入码流大小。`;
   if(data.source_file_ratio!=null)note+=' 若降低尺寸、帧率或去除音频，文件大小比也包含这些影响。';
-  if(data.whole_source_processed===false)note+=` 本次范围 ${number(data.selected_start_seconds)}–${number(data.selected_end_seconds)} 秒，整片 ${number(data.source_duration_seconds)} 秒；处理完整视频后才显示文件压缩比。`;
+  if(data.whole_source_processed===false)note+=` 本次范围 ${number(data.selected_start_seconds)}–${number(data.selected_end_seconds)} 秒，整片 ${number(data.source_duration_seconds)} 秒；因此只计算本次帧数据压缩比。`;
   $('compressionNote').textContent=note;
 }
 function timings(result){
