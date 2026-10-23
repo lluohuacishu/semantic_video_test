@@ -14,7 +14,6 @@
 <button id="connect">保存并检查连接</button></div><p id="connectionState"></p></details>
 <section><h2>发送视频</h2><label class="file">选择视频或已有 .glcv 码流
 <input id="file" type="file" accept=".mp4,.mkv,.mov,.avi,.webm,.glcv"></label>
-<div id="sampleRow" class="row"><span class="muted">已有素材</span><button id="sample021">载入 021 · 64 帧</button><button id="sample011">载入 011 · 64 帧</button><span class="muted">自动使用原帧率、最长边 512；载入后再点击开始。</span></div>
 <div class="row" id="encodingOptions">
 <label>处理方法<select id="enhancement"><option value="ordinary">普通 GLC · 原画面直接编码</option><option value="lowpass">全图低通 · σ 1.2</option><option value="light_lowpass">全图轻度低通 · σ 0.6</option><option value="semantic_original">语义保护 · 目标原像素 / 背景低通</option><option value="semantic_light">语义保护 · 目标轻度低通 / 背景低通</option></select></label>
 <label>输出设置<select id="preset"><option value="demo">最长边 512 / 原帧率</option><option value="source">保留原视频帧率与尺寸</option>

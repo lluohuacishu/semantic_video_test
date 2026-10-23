@@ -7,7 +7,7 @@ let restoredClip;
 const modeLabels={ordinary:'普通 GLC',lowpass:'全图低通 1.2',light_lowpass:'全图轻度低通 0.6',semantic_original:'语义保护 · 目标原像素',semantic_light:'语义保护 · 目标轻度低通'};
 function jobName(job){
   const frames=job.result?.frames ?? job.video_plan?.frames;
-  return job.demo_source && Number.isInteger(frames)?`示例 ${job.demo_source} · ${frames} 帧`:job.filename;
+  return job.demo_source?`${job.demo_source}.mp4${Number.isInteger(frames)?` · ${frames} 帧`:""}`:job.filename;
 }
 const terminal = new Set(['done','error','cancelled','interrupted']);
 async function api(path, body, method) {
@@ -229,19 +229,13 @@ action('prepare',async()=>{
   } finally {busy=false;await refresh();}
 });
 action('applyOptions',async()=>{busy=true;try{await prepareCurrentOptions();}finally{busy=false;}});
-for(const sample of ['011','021'])action('sample'+sample,async()=>{
-  busy=true;
-  try{
-    const job=await api('/api/demo-jobs',{sample,options:encodeOptions()});
-    await select(job.id);await prepareCurrentOptions();
-  }finally{busy=false;}
-});
 action('syncPlay',async()=>{
   const players=['sourceVideo','codingVideo','decodedVideo'].map($).filter(v=>v.getAttribute('src'));
   for(const player of players){player.pause();player.currentTime=0;}
   await Promise.all(players.map(v=>v.play()));
 });
 action('syncPause',async()=>{for(const id of ['sourceVideo','codingVideo','decodedVideo'])$(id).pause();});
+
 action('startJob',async()=>{
   busy=true;
   try {
