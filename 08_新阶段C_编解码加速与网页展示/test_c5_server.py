@@ -130,6 +130,28 @@ class EndpointTests(unittest.TestCase):
             preflight.assert_not_called()
             submit.assert_not_called()
 
+    def test_old_result_timing_is_read_only_and_validates_receiver_link(self):
+        tx = self.tx.store.create("test.mp4", "video", {})
+        rx = self.rx.store.create("received.glcv", "stream", {})
+        self.tx.loopback_receiver = self.rx
+        self.tx.store.update(tx["id"], status="done", receiver_job_id=rx["id"])
+        self.rx.store.update(rx["id"], status="done", sender_id=tx["id"])
+        result = {"role": "sender", "encoded_this_task": True, "service_seconds": 15,
+                  "receiver_job_id": rx["id"], "stream_sha256": "same-stream", "compression": {}}
+        path = self.tx.directory / tx["id"] / "result.json"
+        write(path, result)
+        timing = self.tx.directory / tx["id"] / "encode/timing.json"
+        timing.parent.mkdir()
+        write(timing, {"task_seconds": {"bitstream_closed_seconds": 8}})
+        write(self.rx.directory / rx["id"] / "result.json", {
+            "stream_sha256": "same-stream", "timing": {"task_seconds": {"decode_verified_seconds": 3}}})
+        before = path.read_bytes()
+        actual = self.tx.get_job(tx["id"])["result"]["durations"]
+        self.assertEqual(actual["codec_total_seconds"], 11)
+        self.assertEqual(path.read_bytes(), before)
+        self.rx.store.update(rx["id"], sender_id="f"*32)
+        self.assertIsNone(self.tx.get_job(tx["id"])["result"]["durations"]["decode_seconds"])
+
     def test_loopback_preview_serves_only_completed_linked_receiver(self):
         tx = self.tx.store.create("test.mp4", "video", {})
         rx = self.rx.store.create("received.glcv", "stream", {})

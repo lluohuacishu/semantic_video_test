@@ -75,6 +75,26 @@ function compression(result) {
   if(data.whole_source_processed===false)note+=` 本次范围 ${number(data.selected_start_seconds)}–${number(data.selected_end_seconds)} 秒，整片 ${number(data.source_duration_seconds)} 秒；处理完整视频后才显示文件压缩比。`;
   $('compressionNote').textContent=note;
 }
+function timings(result){
+  $('timings').hidden=!result;
+  $('timingCards').replaceChildren();
+  if(!result)return;
+  const data=result.durations || {task_total_seconds:result.service_seconds};
+  const sender=config.role==='sender';
+  function metric(label,value,note){
+    const card=document.createElement('div');card.className='metric';
+    const title=document.createElement('span');title.textContent=label;
+    const strong=document.createElement('strong');strong.textContent=Number.isFinite(value)?number(value)+' 秒':'未记录';
+    const sub=document.createElement('small');sub.textContent=note;
+    card.append(title,strong,sub);$('timingCards').append(card);
+  }
+  if(sender)metric('编码耗时',data.encode_seconds,data.encoded_this_task===false?'复用码流，本次未编码':'含模型准备，至码流生成完成');
+  metric('解码耗时',data.decode_seconds,'含模型准备，至重建校验完成');
+  if(sender)metric('编解码总耗时',data.codec_total_seconds,'编码 + 解码');
+  metric(sender?'任务总耗时':'接收端总耗时',data.task_total_seconds,sender?'含预处理、传输及其他流程开销':'接收校验后至解码流程完成');
+  if(sender)metric('预处理耗时',data.preprocess_seconds,'低通 / 语义保护');
+  metric(sender?'传输耗时':'码流接收耗时',data.transfer_seconds,sender?'发送码流至收到确认':'接收码流正文');
+}
 function methodHint(){
   const mode=$('enhancement').value;
   const notes={ordinary:'原画面直接进行 GLC 编码。',lowpass:'全图高斯低通，σ 1.2。',light_lowpass:'全图高斯低通，σ 0.6。',semantic_original:'鱼与潜水员区域保留原像素，背景低通 σ 1.2。',semantic_light:'鱼与潜水员区域低通 σ 0.6，背景低通 σ 1.2。'};
@@ -139,8 +159,9 @@ async function refresh() {
   $('decodedCaption').textContent=previewOnly?'接收端预览 · RGB 非逐位一致':'接收端重建';
   const rate=job.rate_mode ? (job.rate_mode==='max' ? '最大速度' : job.rate_mode+' kbps') : '';
   const verificationLabel=previewOnly?'参考状态通过 · RGB 非逐位一致':(result?.verified?'码流、RGB、latent 校验通过':'校验未确认');
-  $('metrics').textContent=result ? `${result.frames} 帧 · ${result.file_bytes} B · 服务 ${result.service_seconds.toFixed(2)} 秒 · ${verificationLabel}${rate?' · '+rate:''}` : [frame,transfer,rate].filter(Boolean).join(' · ');
+  $('metrics').textContent=result ? `${result.frames} 帧 · ${result.file_bytes} B · ${verificationLabel}${rate?' · '+rate:''}` : [frame,transfer,rate].filter(Boolean).join(' · ');
   compression(result);
+  timings(result);
   const prep=result?.preprocessing;
   $('methodResult').hidden=config.role!=='sender';
   $('methodResult').textContent=job.kind==='stream'?'已有码流直接传输，本次没有运行预处理或编码。':

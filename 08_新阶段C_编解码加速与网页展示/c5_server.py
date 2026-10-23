@@ -25,7 +25,7 @@ from c5_config import load_settings, peer_url
 from c5_compat import POLICIES, check_arithmetic, reconstruction_verdict
 from c5_transport import acknowledge, file_info, read_header, receive_file, send_file, rate_limit
 from c5_timebase import clip_options, prepare, video_options
-from c5_metrics import compression_metrics
+from c5_metrics import compression_metrics, timing_metrics
 from c5_enhancement import SEMANTIC, mode_option, availability, runtime_paths
 from c5_samples import sample_path
 
@@ -566,6 +566,7 @@ class Endpoint(C3App):
             prepared = self.directory / identifier / "preprocess/prepared.json"
             if result.get("encoded_this_task") and prepared.is_file():
                 result["preprocessing"] = read_json(prepared)["summary"]
+            result["durations"] = self.durations(identifier, result)
             write(self.directory / identifier / "result.json", result)
             preview_only = result.get("verification", {}).get("status") == "reference_verified_preview"
             phase = "预览已完成：参考状态通过，RGB 非逐位一致，画面误差未验收" if preview_only else "已完成：码流、RGB 和 latent 校验通过"
@@ -592,6 +593,34 @@ class Endpoint(C3App):
             encoded = read_json(path)
         return compression_metrics(result["header"], result["file_bytes"], encoded)
 
+    def durations(self, identifier, result):
+        folder = self.directory / identifier
+
+        def recorded(path):
+            try:
+                return read_json(path)
+            except (OSError, ValueError):
+                return None
+
+        encode = recorded(folder / "encode/timing.json") if result.get("encoded_this_task") else None
+        decode = result.get("timing") if self.role == "receiver" else None
+        if self.role == "receiver" and decode is None:
+            decode = recorded(folder / "decode/timing.json")
+        # Old local-loopback sender results omitted remote timing on the control channel.
+        # Read only the correctly linked receiver's saved measurement; never rerun work.
+        receiver = getattr(self, "loopback_receiver", None)
+        receiver_id = result.get("receiver_job_id", "")
+        if self.role == "sender" and receiver and re.fullmatch(r"[0-9a-f]{32}", receiver_id):
+            try:
+                linked = receiver.store.get(receiver_id)
+                if linked.get("status") == "done" and linked.get("sender_id") == identifier:
+                    measured = recorded(receiver.directory / receiver_id / "result.json")
+                    if measured and measured.get("stream_sha256") == result.get("stream_sha256"):
+                        decode = measured.get("timing") or recorded(receiver.directory / receiver_id / "decode/timing.json")
+            except (KeyError, ValueError):
+                pass
+        return timing_metrics(result, encode, decode)
+
     def get_job(self, identifier, remote=False):
         job = self.store.get(identifier)
         folder = self.directory / identifier
@@ -608,6 +637,8 @@ class Endpoint(C3App):
             job["result"] = read_json(folder / "result.json")
             if "compression" not in job["result"]:
                 job["result"]["compression"] = self.compression(identifier, job["result"])
+            if "durations" not in job["result"]:
+                job["result"]["durations"] = self.durations(identifier, job["result"])
             if remote:  # No media, paths or large frame arrays on the control channel.
                 job["result"].pop("timing", None)
         if not remote:

@@ -3,7 +3,7 @@
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>语义视频通信</title><link rel="stylesheet" href="/styles.css"></head>
 <body><main>
-<header><span class="eyebrow">GLC · SEMANTIC VIDEO</span><h1 id="title">语义视频传输</h1>
+<header><h1 id="title">语义视频传输</h1>
 <p id="subtitle">正在连接本机服务…</p>
 <nav id="loopbackNav" class="actions" hidden><a id="senderPage">上传与压缩</a><a id="receiverPage" target="_blank" rel="noopener">接收端重建</a></nav></header>
 <p id="notice" role="status" aria-live="polite"></p>
@@ -34,7 +34,8 @@
 </div></div>
 <p id="enhancementHint" class="method-hint"></p>
 
-<details><summary>高级设置</summary><p class="muted">编码 q0；接收端的 20 / 40 kbps 是传输速度，输出码率在结果中显示。</p><label>发送端熵后端<select id="backend"><option value="native">Native</option><option value="python">Python 回退</option></select></label></details>
+<div class="row"><label>发送端熵后端<select id="backend"><option value="native">Native</option><option value="python">Python 回退</option></select></label></div>
+<p class="muted">编码 q0；接收端的 20 / 40 kbps 是传输速度，输出码率在结果中显示。</p>
 <div class="actions"><button id="prepare" class="primary">准备文件</button><button id="applyOptions" disabled>更新处理参数</button><button id="startJob" disabled>开始发送</button>
 <button id="resend" disabled>复用码流再发</button></div><p class="muted">速率由接收端选择。已有码流可直接重发；视频不包含音频。</p>
 <p id="videoPlan" class="video-plan" hidden></p>
@@ -44,19 +45,20 @@
 <option value="max">最大速度 · 快速验证</option><option value="20">20 kbps</option><option value="40">40 kbps</option></select></label>
 <button id="saveRate">保存速度</button><button id="preflight">检查本机环境</button></div>
 <p class="muted">设置用于下一项接收任务，当前任务保持预约时的速度。</p>
-<details><summary>连接信息与高级设置</summary>
+<div class="connection-settings"><h3>连接设置</h3>
 <p>发送端填写这台电脑的局域网 IPv4 地址，HTTP 端口 <span id="httpPort"></span>，数据端口 <span id="dataPort"></span>。</p>
 <button id="pairing">显示连接口令</button><output id="pairingToken"></output>
 <div class="row"><label>设备兼容<select id="policy"><option value="strict">严格匹配</option>
 <option value="device_pair_test">设备配对诊断（仅 GPU 名称可不同）</option>
 <option value="reference_preview">跨显卡预览（整段 latent 必须一致）</option></select></label>
 <label>接收端熵后端<select id="rxBackend"><option value="native">Native</option><option value="python">Python 回退</option></select></label>
-<button id="saveAdvanced">保存高级设置</button></div>
+<button id="saveAdvanced">保存设置</button></div>
 <p class="muted">严格匹配和设备配对诊断仍要求 RGB、latent 全部一致。跨显卡预览须通过文件、完整帧数和整段 latent 校验；RGB 不一致时明确提示画面误差未验收。设置只作用于新任务。</p>
-</details></section>
+</div></section>
 <section><div class="row spread"><h2>当前任务</h2><button id="cancel" disabled>停止任务</button></div>
 <p id="jobName">还没有选择任务</p><p id="phase">等待操作</p><progress id="progress" max="100" value="0"></progress>
 <p id="metrics" class="muted"></p>
+<div id="timings" hidden><h3>耗时统计</h3><div id="timingCards" class="metric-grid"></div></div>
 <p id="methodResult" class="method-hint" hidden></p>
 <p id="verificationWarning" class="verification-warning" role="status" hidden></p>
 <div id="compression" hidden><div id="compressionCards" class="metric-grid"></div><p id="compressionNote" class="muted"></p></div>

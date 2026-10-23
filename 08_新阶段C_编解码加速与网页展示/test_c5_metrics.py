@@ -1,6 +1,6 @@
 import unittest
 
-from c5_metrics import compression_metrics
+from c5_metrics import compression_metrics, timing_metrics
 
 
 class CompressionTests(unittest.TestCase):
@@ -45,6 +45,38 @@ class CompressionTests(unittest.TestCase):
         self.assertIsNone(result["whole_source_processed"])
         self.assertIsNone(result["source_file_ratio"])
         self.assertIsNone(result["mean_psnr_db"])
+
+
+class TimingTests(unittest.TestCase):
+    def test_model_load_is_not_added_twice_and_total_is_separate(self):
+        result = {"role": "sender", "encoded_this_task": True, "service_seconds": 45.1,
+                  "preprocessing": {"seconds": 22.97}, "transfer": {"elapsed_seconds": .02},
+                  "remote": {"durations": {"decode_seconds": 4.87}}}
+        encode = {"codec_acquire_seconds": 3.57, "task_seconds": {"bitstream_closed_seconds": 9.03}}
+        metrics = timing_metrics(result, encode)
+        self.assertAlmostEqual(metrics["codec_total_seconds"], 13.9)
+        self.assertEqual(metrics["task_total_seconds"], 45.1)
+        self.assertEqual(metrics["preprocess_seconds"], 22.97)
+        self.assertEqual(metrics["transfer_seconds"], .02)
+
+    def test_missing_or_invalid_measurements_stay_unknown(self):
+        result = {"role": "sender", "encoded_this_task": True, "service_seconds": float("inf"),
+                  "transfer": {"elapsed_seconds": -1}}
+        metrics = timing_metrics(result, {"task_seconds": {"bitstream_closed_seconds": True}})
+        for key in ("encode_seconds", "decode_seconds", "codec_total_seconds", "task_total_seconds", "transfer_seconds"):
+            self.assertIsNone(metrics[key])
+
+    def test_reuse_and_receiver_do_not_claim_a_new_encode(self):
+        decode = {"task_seconds": {"decode_verified_seconds": 4}}
+        reuse = timing_metrics({"role": "sender", "encoded_this_task": False}, decode=decode)
+        self.assertEqual(reuse["encode_seconds"], 0)
+        self.assertEqual(reuse["codec_total_seconds"], 4)
+        receiver = timing_metrics({"role": "receiver", "timing": decode,
+                                   "transfer": {"payload_receive_seconds": .1}})
+        self.assertIsNone(receiver["encode_seconds"])
+        self.assertIsNone(receiver["codec_total_seconds"])
+        self.assertEqual(receiver["decode_seconds"], 4)
+        self.assertEqual(receiver["transfer_seconds"], .1)
 
 
 if __name__ == "__main__":
