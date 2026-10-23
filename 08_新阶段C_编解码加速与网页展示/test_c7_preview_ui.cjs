@@ -63,17 +63,16 @@ async function check(role, preview) {
     }
     const full=cards();
     assert.equal(full['文件压缩比'],'40:1');
-    assert.equal(full['帧数据压缩比（RGB24）'],'3,456:1');
+    assert.ok(!('帧数据压缩比（RGB24）' in full));
     const segment=cards({whole_source_processed:false,source_file_ratio:null,
       source_file_reduction_percent:null,source_duration_seconds:30});
-    assert.equal(segment['文件压缩比'],'不适用（片段）');
-    assert.equal(segment['帧数据压缩比（RGB24）'],'3,456:1');
-    assert.match(nodes.compressionNote.textContent,/本次范围 0–10 秒，整片 30 秒/);
+    assert.equal(segment['文件压缩比'],'40:1');
+    const historical=cards({source_file_bytes:23403841,file_bytes:2319,source_file_ratio:null,whole_source_processed:false});
+    assert.equal(historical['文件压缩比'],'10,092.21:1');
     const stream=cards({source_file_bytes:null,source_file_ratio:null,whole_source_processed:null});
     assert.equal(stream['文件压缩比'],'无原文件数据');
-    assert.equal(stream['帧数据压缩比（RGB24）'],'3,456:1');
     const legacy=cards({source_file_ratio:null,whole_source_processed:null,raw_rgb24_ratio:undefined,raw_rgb24_bytes:undefined});
-    assert.equal(legacy['文件压缩比'],'缺少范围记录');
+    assert.equal(legacy['文件压缩比'],'40:1');
     assert.ok(!('帧数据压缩比（RGB24）' in legacy));
     context.testUI.compression(undefined);
     assert.equal(nodes.compression.hidden,true);

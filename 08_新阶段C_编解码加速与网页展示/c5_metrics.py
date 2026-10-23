@@ -19,6 +19,8 @@ def compression_metrics(header, file_bytes, encoded=None):
         return result
     source = encoded["input"]
     result["source_file_bytes"] = source["input_bytes"]
+    result["source_file_ratio"] = source["input_bytes"] / file_bytes
+    result["source_file_reduction_percent"] = (1 - file_bytes / source["input_bytes"]) * 100
     psnr = encoded.get("mean_psnr_db")
     if isinstance(psnr, (int, float)) and math.isfinite(psnr):
         result["mean_psnr_db"] = psnr
@@ -30,9 +32,6 @@ def compression_metrics(header, file_bytes, encoded=None):
                       selected_start_seconds=plan["start_seconds"],
                       selected_end_seconds=plan["end_seconds"],
                       source_duration_seconds=source_duration)
-        if whole:
-            result["source_file_ratio"] = source["input_bytes"] / file_bytes
-            result["source_file_reduction_percent"] = (1 - file_bytes / source["input_bytes"]) * 100
     return result
 
 

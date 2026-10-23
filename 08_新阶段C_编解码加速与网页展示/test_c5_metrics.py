@@ -25,13 +25,13 @@ class CompressionTests(unittest.TestCase):
         self.assertEqual(40, result["source_file_ratio"])
         self.assertEqual(97.5, result["source_file_reduction_percent"])
 
-    def test_partial_ranges_do_not_compare_against_entire_file(self):
+    def test_partial_ranges_report_uploaded_file_size_ratio(self):
         for encoded in (self.encoded(duration="30"), self.encoded(start=5, end=15, duration="15")):
             with self.subTest(encoded=encoded):
                 result = compression_metrics(self.header, 25000, encoded)
                 self.assertFalse(result["whole_source_processed"])
-                self.assertIsNone(result["source_file_ratio"])
-                self.assertIsNone(result["source_file_reduction_percent"])
+                self.assertEqual(40, result["source_file_ratio"])
+                self.assertEqual(97.5, result["source_file_reduction_percent"])
 
     def test_short_video_tail_quantization_still_covers_full_source(self):
         header = {**self.header, "frames": 13}
@@ -43,7 +43,7 @@ class CompressionTests(unittest.TestCase):
         result = compression_metrics(self.header, 25000,
             {"input": {"input_bytes": 1000000}, "mean_psnr_db": float("inf")})
         self.assertIsNone(result["whole_source_processed"])
-        self.assertIsNone(result["source_file_ratio"])
+        self.assertEqual(40, result["source_file_ratio"])
         self.assertIsNone(result["mean_psnr_db"])
 
 
