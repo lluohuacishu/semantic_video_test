@@ -23,7 +23,7 @@ async function check(role, preview) {
     document:{getElementById(id){assert.ok(nodes[id], 'Missing element: '+id);return nodes[id];},createElement:element},
     sessionStorage:{getItem(){return id;},setItem(){},removeItem(){}}, history:{replaceState(){}},setInterval(){},
     fetch:async route=>({ok:true,json:async()=>route==='/api/config'?config:route==='/api/jobs'?[job]:job})});
-  vm.runInContext(source.replace('init().catch(e=>notice(e.message));', 'globalThis.testUI={init,refresh};'), context);
+  vm.runInContext(source.replace('init().catch(e=>notice(e.message));', 'globalThis.testUI={init,refresh,restoreOptions,encodeOptions};'), context);
   await context.testUI.init();
   assert.equal(nodes.verificationWarning.hidden, !preview);
   assert.equal(nodes.decodedBox.hidden, role!=='receiver');
@@ -37,6 +37,13 @@ async function check(role, preview) {
   await context.testUI.refresh();
   assert.equal(nodes.verificationWarning.hidden, true);
   assert.equal(nodes.decodedBox.hidden, true);
+  context.testUI.restoreOptions({kind:'video',options:{preset:'compact',enhancement:'semantic_original',
+    clip:{mode:'segment',start:'353353/30000',end:'417417/30000'},
+    video:{fps_mode:'source',size_mode:'limit',long_edge:512}}});
+  const exact=context.testUI.encodeOptions();
+  assert.equal(exact.clip.start,'353353/30000');assert.equal(exact.clip.end,'417417/30000');
+  assert.equal(exact.enhancement,'semantic_original');assert.equal(exact.video.long_edge,512);
+  nodes.end.value='13';assert.equal(context.testUI.encodeOptions().clip.end,'13');
 }
 (async()=>{for(const role of ['sender','receiver'])for(const preview of [false,true])await check(role,preview);
   console.log('4 UI states passed; failed jobs clear warning and hide video.');})().catch(e=>{console.error(e);process.exitCode=1;});

@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import hmac
 import http.client
 import json
@@ -27,12 +26,16 @@ from c5_compat import POLICIES, check_arithmetic, reconstruction_verdict
 from c5_transport import acknowledge, file_info, read_header, receive_file, send_file, rate_limit
 from c5_timebase import clip_options, prepare, video_options
 from c5_metrics import compression_metrics
+from c5_enhancement import SEMANTIC, mode_option, availability, runtime_paths
+from c5_samples import sample_path
 
 sys.path.insert(0, str(REPO / "04_外部依赖快照/semantic-video-training/scripts"))
 from glc_container import read_stream, validate_header
 
 STATIC = HERE / "c5_console"
 ASSETS = {"source.mp4": "encode/encoder/source_preview.mp4",
+          "coding-input.mp4": "encode/encoder/coding_input_preview.mp4",
+          "preprocessing.json": "preprocess/prepared.json", "preprocess.log": "preprocess_process/worker.log",
           "decoded.mp4": "decode/receiver/reconstruction_preview.mp4",
           "stream.glcv": "stream.glcv", "received.glcv": "received.glcv",
           "encode.json": "encode/encoder/encode.json", "decode.json": "decode/receiver/decode.json",
@@ -52,13 +55,14 @@ def inspect_stream(path):
 
 
 def options(value, presets):
-    if not isinstance(value, dict) or set(value) - {"preset", "backend", "sampling_mode", "clip", "frames", "video"}:
+    if not isinstance(value, dict) or set(value) - {"preset", "backend", "sampling_mode", "clip", "frames", "video", "enhancement"}:
         raise ValueError("无效编码参数")
     preset, backend = value.get("preset"), value.get("backend", "native")
     mode = value.get("sampling_mode", "time")
     if preset not in presets or backend not in ("native", "python"):
         raise ValueError("请选择画质档位和有效后端")
     result = {"preset": preset, "backend": backend, "sampling_mode": mode}
+    result["enhancement"] = mode_option(value.get("enhancement", "ordinary"))
     if mode == "time":
         if value.get("frames") is not None:
             raise ValueError("按时间处理不能同时设置帧数")
@@ -67,6 +71,8 @@ def options(value, presets):
         if "video" in value:
             result["video"] = video_options(value["video"])
     elif mode == "legacy_frame_stride":
+        if result["enhancement"] != "ordinary":
+            raise ValueError("低通和语义保护使用按时间采样模式")
         if "video" in value:
             raise ValueError("旧帧数模式不接受自适应视频参数")
         frames = value.get("frames")
@@ -174,6 +180,8 @@ class Endpoint(C3App):
         value["execution_mode"] = "single_role_resident" if self.settings["worker_mode"] == "resident" else "separate_fresh_processes"
         value["version"] = "C7-reference-preview-v1"
         value["supported_compatibility_policies"] = list(POLICIES)
+        value["enhancement"] = availability()
+        value["version"] = "D2-web-demo-v1"
         return value
 
     def preflight(self):
@@ -248,6 +256,25 @@ class Endpoint(C3App):
             self.tickets[job["id"]] = secrets.token_urlsafe(32)
             return self.reservation(job)
 
+    def source(self, job):
+        if job.get("demo_source"):
+            return sample_path(job["demo_source"])
+        return super().source(job)
+
+    def reserve_demo(self, value):
+        if self.role != "sender":
+            raise ValueError("请在发送端载入示例")
+        key = value.get("sample")
+        path = sample_path(key)
+        opts = options(value.get("options"), self.catalog.presets["presets"])
+        first = 6 if key == "011" else 353
+        opts.update(sampling_mode="time", clip={"mode": "segment", "start": f"{first * 1001}/30000",
+                    "end": f"{(first + 64) * 1001}/30000"}, video={"fps_mode": "source", "size_mode": "limit", "long_edge": 512})
+        opts.pop("frames", None)
+        job = self.store.create("示例 " + key + " · 64 帧", "video", opts)
+        return self.store.update(job["id"], demo_source=key, bytes=path.stat().st_size,
+                                 status="staged", phase="示例已准备，点击开始发送")
+
     def reservation(self, job):
         return {"id": job["id"], "status": job["status"], "rate_mode": job["rate_mode"],
                 "compatibility_policy": job["options"]["compatibility_policy"],
@@ -310,7 +337,46 @@ class Endpoint(C3App):
     def start(self, identifier):
         if self.role != "sender":
             raise ValueError("接收端由完整码流触发解码")
+        job = self.store.get(identifier)
+        mode = job["options"].get("enhancement", "ordinary")
+        if job["kind"] == "video" and mode != "ordinary":
+            available = availability()
+            if not available["preprocess_available"] or (mode in SEMANTIC and not available["semantic_available"]):
+                raise ValueError("预处理环境或语义权重未配置；请查看网页使用说明")
         return super().start(identifier)
+
+    def preprocess(self, identifier, source, opts, folder):
+        from c2_watch import supervise, inspect
+        if self.resident:
+            # Do not retain the sender GLC model while the semantic worker owns CUDA.
+            self.resident.close()
+            self.resident = None
+        paths = runtime_paths()
+        process_folder = folder / "preprocess_process"
+        config = {"mode": opts["enhancement"], "input": str(source), "options": opts,
+                  "ffmpeg": str(self.runtime["ffmpeg"]), "checkpoint": str(paths["checkpoint"]),
+                  "output": str(folder / "preprocess"), "stop_file": str(folder / "STOP_REQUESTED"),
+                  "process_folder": str(process_folder)}
+        write(folder / "preprocess_config.json", config)
+        self.store.update(identifier, stage="preprocess", phase="预处理：低通 / 语义定位与保护")
+        try:
+            result = supervise([str(paths["python"]), "-B", str(HERE / "c5_preprocess.py"),
+                                "--config", str(folder / "preprocess_config.json")],
+                               process_folder, REPO, folder / "STOP_REQUESTED", poll_seconds=.2)
+        finally:
+            try:
+                uncertain = inspect(process_folder)["observed_state"] in ("running", "orphan_running", "liveness_unknown")
+            except (OSError, ValueError, KeyError):
+                uncertain = True
+            if uncertain:
+                self.blockers.append(str(process_folder))
+        if uncertain:
+            raise RuntimeError("预处理进程状态不确定，已阻止后续任务，请查看进程记录")
+        if (folder / "STOP_REQUESTED").exists():
+            raise InterruptedError("预处理已停止")
+        if result["returncode"]:
+            raise RuntimeError("预处理失败，请下载 preprocess.log 查看原因")
+        return str(folder / "preprocess/prepared.json")
 
     def execute(self, role, task, folder):
         if self.settings["worker_mode"] == "cold":
@@ -405,9 +471,12 @@ class Endpoint(C3App):
                 check_arithmetic(local["arithmetic"], remote["environment"]["arithmetic"], remote["compatibility_policy"], 2)
                 if any(local[k] != remote["environment"][k] for k in ("weights", "model_revision", "table_sha256", "entropy")):
                     raise ValueError("两端模型或熵表不一致")
-                self.store.update(identifier, stage="encode", phase="编码中")
-                self.execute("encode", {"id": identifier, "input": str(source), "output": str(folder / "encode"),
-                                       "output_mode": "display", **job["options"]}, folder)
+                task = {"id": identifier, "input": str(source), "output": str(folder / "encode"),
+                        "output_mode": "display", **job["options"]}
+                if job["options"].get("enhancement", "ordinary") != "ordinary":
+                    task["prepared_transform"] = self.preprocess(identifier, source, job["options"], folder)
+                self.store.update(identifier, stage="encode", phase="GLC 编码中")
+                self.execute("encode", task, folder)
                 shutil.copyfile(folder / "encode/stream.glcv", folder / "stream.glcv")
             else:
                 shutil.copyfile(source, folder / "stream.glcv")
@@ -494,6 +563,9 @@ class Endpoint(C3App):
             if self.store.events[identifier].is_set():
                 raise InterruptedError("任务已取消")
             result["compression"] = self.compression(identifier, result)
+            prepared = self.directory / identifier / "preprocess/prepared.json"
+            if result.get("encoded_this_task") and prepared.is_file():
+                result["preprocessing"] = read_json(prepared)["summary"]
             write(self.directory / identifier / "result.json", result)
             preview_only = result.get("verification", {}).get("status") == "reference_verified_preview"
             phase = "预览已完成：参考状态通过，RGB 非逐位一致，画面误差未验收" if preview_only else "已完成：码流、RGB 和 latent 校验通过"
@@ -524,10 +596,10 @@ class Endpoint(C3App):
         job = self.store.get(identifier)
         folder = self.directory / identifier
         stage = job.get("stage")
-        if stage in ("encode", "decode"):
+        if stage in ("encode", "decode", "preprocess"):
             try:
                 resident = folder / "resident.json"
-                process_folder = Path(read_json(resident)["process_folder"]) if resident.exists() else folder / (stage + "_process")
+                process_folder = Path(read_json(resident)["process_folder"]) if resident.exists() and stage != "preprocess" else folder / (stage + "_process")
                 heartbeat = read_json(process_folder / "heartbeat.json")
                 job["heartbeat"] = {k: heartbeat.get(k) for k in ("state", "last_progress", "task_state")}
             except (OSError, ValueError):
@@ -541,7 +613,7 @@ class Endpoint(C3App):
         if not remote:
             job["downloads"] = [{"name": name, "url": f"/jobs/{identifier}/{name}?download=1"}
                 for name, path in ASSETS.items() if (folder / path).is_file()
-                and (job["status"] == "done" or name not in ("source.mp4", "decoded.mp4", "result.json"))]
+                and (job["status"] == "done" or name not in ("source.mp4", "coding-input.mp4", "decoded.mp4", "result.json"))]
         return job
 
     def resend(self, identifier):
@@ -565,10 +637,23 @@ class Endpoint(C3App):
         self.store.update(identifier, remote_status=remote["status"], remote_checked_at=now())
         return remote
 
+    def loopback_preview(self, identifier):
+        receiver = getattr(self, "loopback_receiver", None)
+        if self.role != "sender" or receiver is None or not self.settings.get("loopback_urls"):
+            raise KeyError("Local receiver preview is unavailable")
+        job = self.store.get(identifier)
+        if job["status"] != "done" or not job.get("receiver_job_id"):
+            raise KeyError(identifier)
+        received = receiver.store.get(job["receiver_job_id"])
+        if received["status"] != "done" or received.get("sender_id") != identifier:
+            raise KeyError(identifier)
+        return receiver.directory / received["id"] / "decode/receiver/reconstruction_preview.mp4"
+
 
 def code_hashes():
     files = list(HERE.glob("c5_*.py")) + [HERE / name for name in
         ("c1_runtime.py", "c1_io.py", "c2_worker.py", "c2_native.py", "c2_watch.py", "c7_diagnostics.py")]
+    files += [REPO / "09_新阶段D_语义目标增强" / name for name in ("infer_d1.py", "d1_protection.py")]
     return {p.name: sha256(p) for p in files}
 
 
@@ -610,6 +695,12 @@ class Handler(OldHandler):
             self.authorize(control)
             if route == "/api/config":
                 return self.json(self.app.config())
+            if route == "/report.html":
+                self.send_response(302)
+                self.send_header("Location", "/")
+                self.send_header("Content-Length", "0")
+                self.end_headers()
+                return
             if route == "/api/pairing" and self.app.role == "receiver":
                 return self.json({"token": self.app.token, "http_port": self.server.server_port,
                                   "data_port": self.app.settings["data_port"]})
@@ -622,7 +713,9 @@ class Handler(OldHandler):
             if match:
                 job = self.app.store.get(match[1])
                 name = match[2]
-                if name not in ASSETS or (name in ("source.mp4", "decoded.mp4", "result.json") and job["status"] != "done"):
+                if name == "receiver-preview.mp4":
+                    return self.file(self.app.loopback_preview(match[1]))
+                if name not in ASSETS or (name in ("source.mp4", "coding-input.mp4", "decoded.mp4", "result.json") and job["status"] != "done"):
                     raise KeyError(name)
                 return self.file(self.app.directory / match[1] / ASSETS[name], download="download" in parse_qs(parsed.query))
             if route in ("/", "/app.js", "/styles.css"):
@@ -654,6 +747,8 @@ class Handler(OldHandler):
                 return self.json(self.app.preferences(value))
             if route == "/api/jobs":
                 return self.json(self.app.reserve(value), 201)
+            if route == "/api/demo-jobs":
+                return self.json(self.app.reserve_demo(value), 201)
             if route == "/control/reserve":
                 return self.json(self.app.reserve_receive(value), 201)
             match = re.fullmatch(r"/(?:api|control)/jobs/([0-9a-f]{32})/(start|cancel|resend|remote|probe)", route)

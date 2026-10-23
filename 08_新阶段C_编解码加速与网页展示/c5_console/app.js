@@ -2,6 +2,13 @@ const $ = id => document.getElementById(id);
 const linkedJob = new URLSearchParams(location.search).get('job');
 let config, selected = /^[0-9a-f]{32}$/.test(linkedJob || '') ? linkedJob : sessionStorage.getItem('c5.selected'), busy = false;
 let currentJob;
+let optionsJob;
+let restoredClip;
+const modeLabels={ordinary:'普通 GLC',lowpass:'全图低通 1.2',light_lowpass:'全图轻度低通 0.6',semantic_original:'语义保护 · 目标原像素',semantic_light:'语义保护 · 目标轻度低通'};
+function jobName(job){
+  const frames=job.result?.frames ?? job.video_plan?.frames;
+  return job.demo_source && Number.isInteger(frames)?`示例 ${job.demo_source} · ${frames} 帧`:job.filename;
+}
 const terminal = new Set(['done','error','cancelled','interrupted']);
 async function api(path, body, method) {
   const response = await fetch(path, {method:method || (body === undefined ? 'GET' : 'POST'),
@@ -62,11 +69,37 @@ function compression(result) {
     metric('文件压缩比','无原文件数据','仅有码流时不推算原文件大小');
   }
   metric('平均视频码率',number(data.video_kbps)+' kbps',number(data.duration_seconds)+' 秒 · 含码流容器');
-  if(data.mean_psnr_db!=null)metric('重建 PSNR',number(data.mean_psnr_db)+' dB','与处理后的源画面比较 · 越高越接近');
+  if(data.mean_psnr_db!=null)metric('全图重建 PSNR',number(data.mean_psnr_db)+' dB','与低通 / 保护前的采样原画面比较');
   let note=`输出 ${data.width} × ${data.height} · ${number(data.fps)} fps · ${data.frames} 帧。文件压缩比 = 上传的原文件字节数 ÷ 完整 .glcv 字节数。KB/MB 按十进制计量，模型预共享；观看用 MP4 不计入码流大小。`;
   if(data.source_file_ratio!=null)note+=' 若降低尺寸、帧率或去除音频，文件大小比也包含这些影响。';
   if(data.whole_source_processed===false)note+=` 本次范围 ${number(data.selected_start_seconds)}–${number(data.selected_end_seconds)} 秒，整片 ${number(data.source_duration_seconds)} 秒；处理完整视频后才显示文件压缩比。`;
   $('compressionNote').textContent=note;
+}
+function methodHint(){
+  const mode=$('enhancement').value;
+  const notes={ordinary:'原画面直接进行 GLC 编码。',lowpass:'全图高斯低通，σ 1.2。',light_lowpass:'全图高斯低通，σ 0.6。',semantic_original:'鱼与潜水员区域保留原像素，背景低通 σ 1.2。',semantic_light:'鱼与潜水员区域低通 σ 0.6，背景低通 σ 1.2。'};
+  const unavailable=mode!=='ordinary' && config?.enhancement && (!config.enhancement.preprocess_available || (mode.startsWith('semantic') && !config.enhancement.semantic_available));
+  $('enhancementHint').textContent=(notes[mode] || '')+(unavailable?' 本机尚未配置所需环境。':'');
+}
+function restoreOptions(job){
+  const opts=job.options;if(!opts || job.kind!=='video')return;
+  const video=opts.video || {fps_mode:['compact','detail'].includes(opts.preset)?'half':'source',size_mode:'limit',long_edge:['compact','motion'].includes(opts.preset)?640:960};
+  $('enhancement').value=opts.enhancement || 'ordinary';
+  $('preset').value=video.fps_mode==='source' && video.size_mode==='limit' && video.long_edge===512?'demo':'custom';
+  $('fpsMode').value=video.fps_mode;$('sizeMode').value=video.size_mode;
+  if(video.fps_limit)$('fpsLimit').value=video.fps_limit;
+  if(video.long_edge)$('longEdge').value=video.long_edge;
+  $('clip').value=opts.clip?.mode || 'first10';
+  restoredClip=null;
+  if(opts.clip?.mode==='segment'){
+    const seconds=value=>{const [n,d=1]=String(value).split('/').map(Number);return String(n/d);};
+    $('start').value=seconds(opts.clip.start);$('end').value=seconds(opts.clip.end);
+    restoredClip={start:opts.clip.start,end:opts.clip.end,displayStart:$('start').value,displayEnd:$('end').value};
+  }
+  $('backend').value=opts.backend || 'native';
+  $('bounds').hidden=$('clip').value!=='segment';$('customVideo').hidden=$('preset').value!=='custom';
+  $('fpsLimitBox').hidden=video.fps_mode!=='limit';$('longEdgeBox').hidden=video.size_mode!=='limit';
+  $('encodingOptions').hidden=false;methodHint();
 }
 function setVideo(id, box, url) {
   $(box).hidden=!url;
@@ -80,7 +113,8 @@ async function refresh() {
   $('history').replaceChildren();
   for(const row of rows) {
     const item=document.createElement('div');item.className='history-row';
-    const button=document.createElement('button');button.textContent=`${row.filename} · ${row.id.slice(0,8)}`;
+    const button=document.createElement('button');button.textContent=`${jobName(row)} · ${row.id.slice(0,8)}`;
+    if(row.options?.enhancement)button.textContent+=' · '+modeLabels[row.options.enhancement];
     button.onclick=()=>select(row.id).catch(e=>notice(e.message));
     const state=document.createElement('span');state.textContent=row.status==='done' && row.phase?.includes('预览已完成')?'预览（RGB 非逐位一致）':row.status;
     item.append(button,state);$('history').append(item);
@@ -90,8 +124,9 @@ async function refresh() {
   const id=selected, job=await api('/api/jobs/'+id);
   if(id!==selected)return;
   currentJob=job;
+  if(optionsJob!==id){restoreOptions(job);optionsJob=id;}
   renderPlan(job.video_plan);
-  $('jobName').textContent=job.filename+' · '+id.slice(0,8);
+  $('jobName').textContent=jobName(job)+' · '+id.slice(0,8);
   $('phase').textContent=job.phase;
   $('progress').value=job.progress || 0;
   const beat=job.heartbeat?.last_progress || job.remote_heartbeat?.last_progress;
@@ -106,6 +141,11 @@ async function refresh() {
   const verificationLabel=previewOnly?'参考状态通过 · RGB 非逐位一致':(result?.verified?'码流、RGB、latent 校验通过':'校验未确认');
   $('metrics').textContent=result ? `${result.frames} 帧 · ${result.file_bytes} B · 服务 ${result.service_seconds.toFixed(2)} 秒 · ${verificationLabel}${rate?' · '+rate:''}` : [frame,transfer,rate].filter(Boolean).join(' · ');
   compression(result);
+  const prep=result?.preprocessing;
+  $('methodResult').hidden=config.role!=='sender';
+  $('methodResult').textContent=job.kind==='stream'?'已有码流直接传输，本次没有运行预处理或编码。':
+    (prep?`${prep.label} · ${prep.frames} 帧 · 预处理 ${number(prep.seconds)} 秒`+(prep.semantic?` · 保护启用 ${prep.active_frames} 帧 / 回退原画面 ${prep.fallback_frames} 帧。掩码仅在发送端使用。`:'。'):
+    `${modeLabels[job.options?.enhancement || 'ordinary']} · ${job.status==='done'?'已完成':'等待本任务完成后显示实际处理统计'}`);
   const receiverUrl=config.loopback_urls?.receiver;
   $('receiverResult').hidden=!(receiverUrl && config.role==='sender' && job.receiver_job_id);
   if(!$('receiverResult').hidden)$('receiverResult').href=receiverUrl+'?job='+job.receiver_job_id;
@@ -115,7 +155,9 @@ async function refresh() {
   $('resend').disabled=config.role!=='sender' || !job.downloads?.some(d=>d.name==='stream.glcv') || !terminal.has(job.status);
   $('remote').hidden=!job.receiver_job_id;
   setVideo('sourceVideo','sourceBox',job.status==='done' && config.role==='sender' && result.encoded_this_task ? `/jobs/${id}/source.mp4` : null);
-  setVideo('decodedVideo','decodedBox',job.status==='done' && config.role==='receiver' ? `/jobs/${id}/decoded.mp4` : null);
+  setVideo('codingVideo','codingBox',job.status==='done' && config.role==='sender' && prep ? `/jobs/${id}/coding-input.mp4` : null);
+  setVideo('decodedVideo','decodedBox',job.status==='done' ? (config.role==='receiver' ? `/jobs/${id}/decoded.mp4` : (receiverUrl && job.receiver_job_id ? `/jobs/${id}/receiver-preview.mp4`:null)) : null);
+  $('playbackTools').hidden=job.status!=='done';
   $('downloads').replaceChildren();
   for(const item of job.downloads || []) {
     const link=document.createElement('a');link.href=item.url;link.textContent=item.name;link.download='';$('downloads').append(link);
@@ -125,18 +167,23 @@ async function refresh() {
 }
 function encodeOptions() {
   const mode=$('clip').value, clip={mode};
-  if(mode==='segment'){clip.start=$('start').value;clip.end=$('end').value;}
+  if(mode==='segment'){
+    clip.start=restoredClip && $('start').value===restoredClip.displayStart?restoredClip.start:$('start').value;
+    clip.end=restoredClip && $('end').value===restoredClip.displayEnd?restoredClip.end:$('end').value;
+  }
   const choice=$('preset').value;
   let video={fps_mode:'source',size_mode:'source'};
   if(choice==='custom') {
     video={fps_mode:$('fpsMode').value,size_mode:$('sizeMode').value};
     if(video.fps_mode==='limit')video.fps_limit=$('fpsLimit').value;
     if(video.size_mode==='limit')video.long_edge=Number($('longEdge').value);
+  } else if(choice==='demo') {
+    video={fps_mode:'source',size_mode:'limit',long_edge:512};
   } else if(choice!=='source') {
     video={fps_mode:['compact','detail'].includes(choice)?'half':'source',size_mode:'limit',
            long_edge:['compact','motion'].includes(choice)?640:960};
   }
-  return {preset:['source','custom'].includes(choice)?'compact':choice,backend:$('backend').value,sampling_mode:'time',clip,video};
+  return {preset:['source','custom','demo'].includes(choice)?'compact':choice,backend:$('backend').value,sampling_mode:'time',clip,video,enhancement:$('enhancement').value};
 }
 async function prepareCurrentOptions() {
   const id=selected, options=encodeOptions();
@@ -161,6 +208,19 @@ action('prepare',async()=>{
   } finally {busy=false;await refresh();}
 });
 action('applyOptions',async()=>{busy=true;try{await prepareCurrentOptions();}finally{busy=false;}});
+for(const sample of ['011','021'])action('sample'+sample,async()=>{
+  busy=true;
+  try{
+    const job=await api('/api/demo-jobs',{sample,options:encodeOptions()});
+    await select(job.id);await prepareCurrentOptions();
+  }finally{busy=false;}
+});
+action('syncPlay',async()=>{
+  const players=['sourceVideo','codingVideo','decodedVideo'].map($).filter(v=>v.getAttribute('src'));
+  for(const player of players){player.pause();player.currentTime=0;}
+  await Promise.all(players.map(v=>v.play()));
+});
+action('syncPause',async()=>{for(const id of ['sourceVideo','codingVideo','decodedVideo'])$(id).pause();});
 action('startJob',async()=>{
   busy=true;
   try {
@@ -188,6 +248,7 @@ $('preset').onchange=()=>{$('customVideo').hidden=$('preset').value!=='custom';}
 $('fpsMode').onchange=()=>{$('fpsLimitBox').hidden=$('fpsMode').value!=='limit';};
 $('sizeMode').onchange=()=>{$('longEdgeBox').hidden=$('sizeMode').value!=='limit';};
 $('file').onchange=()=>{$('encodingOptions').hidden=$('file').files[0]?.name.toLowerCase().endsWith('.glcv');};
+$('enhancement').onchange=methodHint;
 async function init(){
   config=await api('/api/config');
   const sender=config.role==='sender';
@@ -195,8 +256,8 @@ async function init(){
   $('title').textContent=sender?'发送端 · 语义视频':'接收端 · 独立重建';
   $('subtitle').textContent=sender?'选择视频，编码并发送到另一台电脑。':'接收完整码流，校验后在本机解码播放。';
   if(config.loopback_urls){
-    $('title').textContent=sender?'本机回环 · 视频压缩试用':'本机回环 · 重建结果';
-    $('subtitle').textContent=sender?'上传自己的视频，压缩后通过本机回环传输，在接收端重建播放。':'本机接收完整码流，校验后独立解码；可从发送端跳转到对应任务。';
+    $('title').textContent=sender?'语义视频传输':'本机回环 · 重建结果';
+    $('subtitle').textContent=sender?'选择视频和处理方法，开始发送。':'本机接收完整码流，校验后独立解码；可从发送端跳转到对应任务。';
     $('loopbackNav').hidden=false;
     $('senderPage').href=config.loopback_urls.sender;$('receiverPage').href=config.loopback_urls.receiver;
     $('connection').hidden=true;
@@ -207,6 +268,7 @@ async function init(){
   $('rate').value=config.rate_mode;$('policy').value=config.compatibility_policy;
   $('rxBackend').value=config.backend;$('httpPort').textContent=location.port;$('dataPort').textContent=config.data_port;
   $('workerMode').textContent=config.worker_mode==='resident'?'单角色常驻：首次任务加载模型，任务结束后保留；可在空闲时释放。':'逐任务冷启动：每项任务结束后释放模型。';
+  methodHint();
   await refresh();
   setInterval(()=>refresh().catch(e=>notice(e.message)),1500);
 }

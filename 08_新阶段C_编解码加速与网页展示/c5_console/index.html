@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="zh-CN">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>C7 语义视频传输</title><link rel="stylesheet" href="/styles.css"></head>
+<title>语义视频通信</title><link rel="stylesheet" href="/styles.css"></head>
 <body><main>
-<header><span class="eyebrow">GLC · C7</span><h1 id="title">语义视频传输</h1>
+<header><span class="eyebrow">GLC · SEMANTIC VIDEO</span><h1 id="title">语义视频传输</h1>
 <p id="subtitle">正在连接本机服务…</p>
 <nav id="loopbackNav" class="actions" hidden><a id="senderPage">上传与压缩</a><a id="receiverPage" target="_blank" rel="noopener">接收端重建</a></nav></header>
 <p id="notice" role="status" aria-live="polite"></p>
@@ -14,8 +14,10 @@
 <button id="connect">保存并检查连接</button></div><p id="connectionState"></p></details>
 <section><h2>发送视频</h2><label class="file">选择视频或已有 .glcv 码流
 <input id="file" type="file" accept=".mp4,.mkv,.mov,.avi,.webm,.glcv"></label>
+<div id="sampleRow" class="row"><span class="muted">已有素材</span><button id="sample021">载入 021 · 64 帧</button><button id="sample011">载入 011 · 64 帧</button><span class="muted">自动使用原帧率、最长边 512；载入后再点击开始。</span></div>
 <div class="row" id="encodingOptions">
-<label>输出设置<select id="preset"><option value="source">保留原视频帧率与尺寸</option>
+<label>处理方法<select id="enhancement"><option value="ordinary">普通 GLC · 原画面直接编码</option><option value="lowpass">全图低通 · σ 1.2</option><option value="light_lowpass">全图轻度低通 · σ 0.6</option><option value="semantic_original">语义保护 · 目标原像素 / 背景低通</option><option value="semantic_light">语义保护 · 目标轻度低通 / 背景低通</option></select></label>
+<label>输出设置<select id="preset"><option value="demo">最长边 512 / 原帧率</option><option value="source">保留原视频帧率与尺寸</option>
 <option value="custom">自定义帧率与尺寸</option>
 <option value="compact">省流畅看 · 最长边 640 / 原帧率一半</option>
 <option value="motion">运动优先 · 最长边 640 / 原帧率</option><option value="detail">细节优先 · 最长边 960 / 原帧率一半</option>
@@ -30,8 +32,9 @@
 <label>输出尺寸<select id="sizeMode"><option value="source">保持原尺寸</option><option value="half">宽高各缩小一半</option><option value="limit">限制最长边</option></select></label>
 <label id="longEdgeBox" hidden>最长边上限（像素）<input id="longEdge" type="number" min="1" max="4096" step="1" value="640"></label>
 </div></div>
-<p class="muted">自动读取实际帧率与尺寸。自定义上限只降低帧率、等比缩小画面；原尺寸越大，显存占用和处理时间通常越高。</p>
-<details><summary>高级设置</summary><label>发送端熵后端<select id="backend"><option value="native">Native</option><option value="python">Python 回退</option></select></label></details>
+<p id="enhancementHint" class="method-hint"></p>
+
+<details><summary>高级设置</summary><p class="muted">编码 q0；接收端的 20 / 40 kbps 是传输速度，输出码率在结果中显示。</p><label>发送端熵后端<select id="backend"><option value="native">Native</option><option value="python">Python 回退</option></select></label></details>
 <div class="actions"><button id="prepare" class="primary">准备文件</button><button id="applyOptions" disabled>更新处理参数</button><button id="startJob" disabled>开始发送</button>
 <button id="resend" disabled>复用码流再发</button></div><p class="muted">速率由接收端选择。已有码流可直接重发；视频不包含音频。</p>
 <p id="videoPlan" class="video-plan" hidden></p>
@@ -54,12 +57,15 @@
 <section><div class="row spread"><h2>当前任务</h2><button id="cancel" disabled>停止任务</button></div>
 <p id="jobName">还没有选择任务</p><p id="phase">等待操作</p><progress id="progress" max="100" value="0"></progress>
 <p id="metrics" class="muted"></p>
+<p id="methodResult" class="method-hint" hidden></p>
 <p id="verificationWarning" class="verification-warning" role="status" hidden></p>
 <div id="compression" hidden><div id="compressionCards" class="metric-grid"></div><p id="compressionNote" class="muted"></p></div>
 <a id="receiverResult" target="_blank" rel="noopener" hidden>打开这次任务的接收端重建画面 →</a>
 <div class="players">
-<figure id="sourceBox" hidden><figcaption>发送端处理画面</figcaption><video id="sourceVideo" controls preload="metadata"></video></figure>
+<figure id="sourceBox" hidden><figcaption>原画面 · 按本次尺寸与帧率采样</figcaption><video id="sourceVideo" controls preload="metadata"></video></figure>
+<figure id="codingBox" hidden><figcaption>预处理后 · 实际送入编码器</figcaption><video id="codingVideo" controls preload="metadata"></video></figure>
 <figure id="decodedBox" hidden><figcaption id="decodedCaption">接收端重建</figcaption><video id="decodedVideo" controls preload="metadata"></video></figure></div>
+<div id="playbackTools" class="actions" hidden><button id="syncPlay">从头一起播放</button><button id="syncPause">全部暂停</button><span class="muted">观看 MP4 是有损副本；正式码率按 .glcv 计量。</span></div>
 <div id="downloads" class="actions"></div>
 <details><summary>任务详情</summary><button id="remote" hidden>查询原接收任务</button><pre id="details"></pre></details>
 </section>

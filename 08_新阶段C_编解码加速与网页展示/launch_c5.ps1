@@ -1,9 +1,9 @@
-param([ValidateSet('sender','receiver','loopback')][string]$Role = 'sender', [string]$Config, [switch]$Check)
+param([ValidateSet('sender','receiver','loopback','demo')][string]$Role = 'sender', [string]$Config, [switch]$Check)
 $ErrorActionPreference = 'Stop'
 try {
     $supplied = [bool]$Config
     if (-not $Config) {
-        $Config = if ($Role -eq 'loopback') { Join-Path $PSScriptRoot 'runtime.local.json' }
+        $Config = if ($Role -in @('loopback','demo')) { Join-Path $PSScriptRoot 'runtime.local.json' }
                   else { Join-Path $PSScriptRoot ('c5_' + $Role + '.local.json') }
     }
     $present = Test-Path -LiteralPath $Config -PathType Leaf

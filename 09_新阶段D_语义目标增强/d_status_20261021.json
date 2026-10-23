@@ -1,8 +1,8 @@
 {
-  "schema": "d-round-status-v17",
-  "date": "2026-10-22",
-  "status": "D2_closed_D3_protocol_and_static_budget_complete_experiments_not_started",
-  "planning_only": true,
+  "schema": "d-round-status-v18",
+  "date": "2026-10-23",
+  "status": "D2_web_demo_integrated_and_verified_D3_deferred_not_started",
+  "planning_only": false,
   "objective": "At comparable complete bytes, test whether semantic target selection improves fish/diver reconstruction beyond ordinary GLC and a fixed nonsemantic ROI control; application40kbps AND <=10% growth remain mandatory.",
   "branch": "codex/glc-d",
   "current_handoff": "交接文档.md",
@@ -148,7 +148,7 @@
       "previous_status": "large_fish_lowrate_completed_semantic_gain_not_proven"
     },
     "D3": {
-      "status": "protocol_and_static_budget_complete_experiments_not_started",
+      "status": "protocol_and_static_budget_complete_deferred_for_demo_experiments_not_started",
       "title": "固定传输预算下的语义引导目标增强通信",
       "protocol": "d3_protocol_v1.json",
       "report": "D3有限实验协议_20261022.md",
@@ -165,7 +165,7 @@
       "new_semantic_inferences": 0,
       "new_residual_compression": false,
       "source_readiness": "fish windows fixed; diver continuous source and source-only motion strata pending",
-      "next": "Register bounded source preparation, then explicitly execute finite D3.1 budget phase; no automatic launch."
+      "next": "Deferred by user while preparing existing-feature progress report. No automatic experiment launch."
     },
     "D4": {
       "status": "historical_placeholder_superseded_by_D3_protocol_no_auto_execution",
@@ -356,7 +356,7 @@
     "D2_thresholds_historical_only_for_D3": true,
     "D3_current_basis": "Actual matched bytes against ordinary GLC and fixed nonsemantic ROI, target clarity with source-consistent detail and temporal/global quality; PSNR alone insufficient; all failures reported; GT only diagnostic."
   },
-  "plan_revision": 17,
+  "plan_revision": 18,
   "user_visual_objective": "让鱼、潜水员等关键目标看得更清楚",
   "route_selection": {
     "route": "fixed_budget_semantic_target_enhancement_candidate_evaluation",
@@ -433,7 +433,7 @@
     "candidate_frame_checks": 256
   },
   "previous_D2_experiment_commit": "69a22456f2bcfb110d8359b0f42cce662766a35b",
-  "latest_experiment_commit_note": "Latest executed experiment is D2.3 at6cb9c22413f25cf30139b37629acaacadf229e72. D3 is planning only; current planning commit is recorded in git log.",
+  "latest_experiment_commit_note": "Latest research experiment remains D2.3 at6cb9c22413f25cf30139b37629acaacadf229e72. D3 planning b475dab; later web integration and bounded QA are separate, see git log.",
   "previous_D21_experiment_commit": "77ee13c",
   "user_visual_feedback": {
     "record": "d22_user_feedback_20261022.json",
@@ -510,5 +510,31 @@
   },
   "historical_D2_protocol": "d_round_protocol_v3.json",
   "historical_D2_protocol_sha256": "7c43c5f211de367e4e9f67995fc44242a0d2d34c6434e5ab3ce2bcc892a705af",
-  "previous_D23_experiment_commit": "6cb9c22413f25cf30139b37629acaacadf229e72"
+  "previous_D23_experiment_commit": "6cb9c22413f25cf30139b37629acaacadf229e72",
+  "current_activity": "existing lowpass and predicted semantic protection web demonstration for progress report",
+  "active_protocol_role": "D3 future research plan retained, not dispatched; current activity is existing D2 function web integration and bounded QA",
+  "web_demo": {
+    "status": "implemented_and_verified",
+    "date": "2026-10-23",
+    "report": "../08_新阶段C_编解码加速与网页展示/汇报演示说明_20261023.md",
+    "evidence": "../08_新阶段C_编解码加速与网页展示/evidence_d2_web_20261023/verification.json",
+    "modes": [
+      "ordinary",
+      "lowpass",
+      "light_lowpass",
+      "semantic_original",
+      "semantic_light"
+    ],
+    "new_encodes": 5,
+    "new_independent_decodes": 5,
+    "new_semantic_frames": 21,
+    "training": false,
+    "D3_experiments": 0,
+    "application_acceptance": false,
+    "historical_results_changed": false,
+    "user_scope": "Functions only in the existing web console; report narrative, report page, history table and related navigation removed at user request.",
+    "historical_viewing_files_preserved": true
+  },
+  "latest_experiment_activity_role": "Historical research: D2.3. Later web QA is recorded separately in web_demo.",
+  "static_code_evidence_scope": "Historical fingerprints captured for D3 static planning on 2026-10-22, not current-file integrity assertions after web integration."
 }

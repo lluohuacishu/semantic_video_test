@@ -109,6 +109,45 @@ class EndpointTests(unittest.TestCase):
             preflight.assert_not_called()
             submit.assert_not_called()
 
+    def test_console_and_sample_do_not_start_work(self):
+        with patch.object(self.tx, "preflight") as preflight, patch.object(self.tx.executor, "submit") as submit:
+            status, body = self.call("GET", "/", sender=True)
+            self.assertEqual(status, 200)
+            self.assertIn(b'id="enhancement"', body)
+            self.assertNotIn(b"report.html", body)
+            self.assertEqual(302, self.call("GET", "/report.html", sender=True)[0])
+            for route in ("/api/showcase", "/report.js", "/archive/d22/index.html"):
+                self.assertEqual(404, self.call("GET", route, sender=True)[0])
+            with patch("c5_server.sample_path", return_value=self.stream):
+                status, body = self.call("POST", "/api/demo-jobs", {"sample": "021", "options": {
+                    "preset": "compact", "enhancement": "semantic_original"}}, sender=True)
+                self.assertEqual(status, 201)
+                job = json.loads(body)
+                self.assertEqual(job["status"], "staged")
+                self.assertEqual(job["options"]["enhancement"], "semantic_original")
+                self.assertEqual(job["options"]["video"]["long_edge"], 512)
+                self.tx.cancel(job["id"])
+            preflight.assert_not_called()
+            submit.assert_not_called()
+
+    def test_loopback_preview_serves_only_completed_linked_receiver(self):
+        tx = self.tx.store.create("test.mp4", "video", {})
+        rx = self.rx.store.create("received.glcv", "stream", {})
+        self.tx.store.update(tx["id"], status="done", receiver_job_id=rx["id"])
+        self.rx.store.update(rx["id"], status="done", sender_id=tx["id"])
+        preview = self.rx.directory / rx["id"] / "decode/receiver/reconstruction_preview.mp4"
+        preview.parent.mkdir(parents=True)
+        preview.write_bytes(b"synthetic receiver preview")
+        route = f'/jobs/{tx["id"]}/receiver-preview.mp4'
+        self.assertEqual(self.call("GET", route, sender=True)[0], 404)
+        self.tx.loopback_receiver = self.rx
+        self.tx.settings["loopback_urls"] = {"receiver": self.tx.peer.url}
+        self.assertEqual(self.call("GET", route, headers={"Range": "bytes=0-3"}, sender=True), (206, b"synt"))
+        self.rx.store.update(rx["id"], sender_id="0" * 32)
+        self.assertEqual(self.call("GET", route, sender=True)[0], 404)
+        self.rx.store.update(rx["id"], sender_id=tx["id"], status="error")
+        self.assertEqual(self.call("GET", route, sender=True)[0], 404)
+
     def test_reconstruction_failure_stays_failed_and_diagnostic_is_downloadable(self):
         reservation = self.reserve()
         identifier = reservation["id"]

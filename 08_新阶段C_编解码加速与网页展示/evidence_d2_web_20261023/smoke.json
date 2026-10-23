@@ -1,0 +1,168 @@
+{
+  "scope": "functional smoke, not research/acceptance",
+  "date": "2026-10-23",
+  "state": "completed",
+  "source": "021 native source, 8 frames, INTER_AREA to 512x288",
+  "new_encodes": 5,
+  "new_independent_decodes": 5,
+  "new_semantic_frames": 16,
+  "rows": [
+    {
+      "method": "ordinary",
+      "sender_id": "9c183bd1bd694110bd3591ee2e32d730",
+      "receiver_id": "9bad802dc9dc4f43b5e13b7e8017833b",
+      "frames": 8,
+      "bytes": 2274,
+      "verified": true,
+      "network_transfer": true,
+      "receiver_source_media_reads": [],
+      "mp4_range_verified": true,
+      "service_seconds": 43.35239029999502,
+      "preprocessing": null
+    },
+    {
+      "method": "lowpass",
+      "sender_id": "efb682adcb854b93a3c9c2bed966962a",
+      "receiver_id": "b29f9725a8f64db8841c7eb4271af8db",
+      "frames": 8,
+      "bytes": 2208,
+      "verified": true,
+      "network_transfer": true,
+      "receiver_source_media_reads": [],
+      "mp4_range_verified": true,
+      "service_seconds": 54.69367270000657,
+      "preprocessing": {
+        "state": "completed",
+        "mode": "lowpass",
+        "label": "全图低通 · σ 1.2",
+        "frames": 8,
+        "size": [
+          512,
+          288
+        ],
+        "seconds": 33.23598920000222,
+        "semantic": false,
+        "active_frames": 0,
+        "fallback_frames": 0,
+        "fallback_reasons": {},
+        "mask_transmitted": false,
+        "ground_truth_used": false,
+        "training": false,
+        "psnr_reference": "original sampled/resized RGB before lowpass or semantic protection",
+        "rules": null
+      }
+    },
+    {
+      "method": "light_lowpass",
+      "sender_id": "5d6f650c03b5454c8f3b671181bdb0e6",
+      "receiver_id": "19d35e0de72a4fb083fd24b8b29641ae",
+      "frames": 8,
+      "bytes": 2242,
+      "verified": true,
+      "network_transfer": true,
+      "receiver_source_media_reads": [],
+      "mp4_range_verified": true,
+      "service_seconds": 60.571386099996744,
+      "preprocessing": {
+        "state": "completed",
+        "mode": "light_lowpass",
+        "label": "全图轻度低通 · σ 0.6",
+        "frames": 8,
+        "size": [
+          512,
+          288
+        ],
+        "seconds": 38.34437320000143,
+        "semantic": false,
+        "active_frames": 0,
+        "fallback_frames": 0,
+        "fallback_reasons": {},
+        "mask_transmitted": false,
+        "ground_truth_used": false,
+        "training": false,
+        "psnr_reference": "original sampled/resized RGB before lowpass or semantic protection",
+        "rules": null
+      }
+    },
+    {
+      "method": "semantic_original",
+      "sender_id": "8852cac9f57d4dd2af38c137065c7f6c",
+      "receiver_id": "d666b0e8eb6f4c4d8c71bf9610faa98f",
+      "frames": 8,
+      "bytes": 2319,
+      "verified": true,
+      "network_transfer": true,
+      "receiver_source_media_reads": [],
+      "mp4_range_verified": true,
+      "service_seconds": 45.09810920000018,
+      "preprocessing": {
+        "state": "completed",
+        "mode": "semantic_original",
+        "label": "语义保护 · 目标原像素",
+        "frames": 8,
+        "size": [
+          512,
+          288
+        ],
+        "seconds": 22.96999969999888,
+        "semantic": true,
+        "active_frames": 8,
+        "fallback_frames": 0,
+        "fallback_reasons": {},
+        "mask_transmitted": false,
+        "ground_truth_used": false,
+        "training": false,
+        "psnr_reference": "original sampled/resized RGB before lowpass or semantic protection",
+        "rules": {
+          "background_sigma": 1.2,
+          "target_sigma": 0,
+          "fish_threshold": 0.5,
+          "diver_threshold": 0.5,
+          "margin_at_1920": 16,
+          "previous_seed_frames": 1,
+          "empty_or_over_half": "original RGB"
+        }
+      }
+    },
+    {
+      "method": "semantic_light",
+      "sender_id": "441352c6175c45bab04df55b52d62b89",
+      "receiver_id": "838453216a8c4c3894ad5dc3c71d4f59",
+      "frames": 8,
+      "bytes": 2230,
+      "verified": true,
+      "network_transfer": true,
+      "receiver_source_media_reads": [],
+      "mp4_range_verified": true,
+      "service_seconds": 36.88739389999682,
+      "preprocessing": {
+        "state": "completed",
+        "mode": "semantic_light",
+        "label": "语义保护 · 目标轻度低通",
+        "frames": 8,
+        "size": [
+          512,
+          288
+        ],
+        "seconds": 13.825387799995951,
+        "semantic": true,
+        "active_frames": 8,
+        "fallback_frames": 0,
+        "fallback_reasons": {},
+        "mask_transmitted": false,
+        "ground_truth_used": false,
+        "training": false,
+        "psnr_reference": "original sampled/resized RGB before lowpass or semantic protection",
+        "rules": {
+          "background_sigma": 1.2,
+          "target_sigma": 0.6,
+          "fish_threshold": 0.5,
+          "diver_threshold": 0.5,
+          "margin_at_1920": 16,
+          "previous_seed_frames": 1,
+          "empty_or_over_half": "original RGB"
+        }
+      }
+    }
+  ]
+}

@@ -28,6 +28,8 @@ def create_endpoints(stack, runtime, directory, sender_port=8773, receiver_port=
         stack.callback(app.close)
         server.app = apps[role] = app
     data_server.app = apps["receiver"]
+    # Read-only local preview routing; the receiver worker still accepts only .glcv.
+    apps["sender"].loopback_receiver = apps["receiver"]
     # Dedicated local stores may remember preferences; restore the loopback defaults.
     apps["receiver"].preferences({"rate_mode": "max", "compatibility_policy": "strict", "backend": "native"})
     apps["sender"].set_peer(urls["receiver"].rstrip("/"), apps["receiver"].token)

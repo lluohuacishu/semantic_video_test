@@ -126,6 +126,7 @@ class ResidentRunner:
             args.frames = task.get("frames")
             args.start_frame = task.get("start_frame", 0)
             apply_encode_preset(args)
+            args.prepared_transform = task.get("prepared_transform")
             if args.sampling_mode == "time":
                 from c5_timebase import prepare
                 if task.get("frames") is not None or task.get("start_frame", 0):
@@ -254,11 +255,17 @@ class ResidentRunner:
             ref.validate_header(header)
             source_preview = self._preview(previews, args.workdir / "source_preview.mp4", header)
             restored_preview = self._preview(previews, args.workdir / "reconstruction_preview.mp4", header)
+            prepared, coding_preview = None, None
+            if args.prepared_transform:
+                from c5_enhancement import PreparedFrames
+                prepared = PreparedFrames(args.prepared_transform, args.frames, header["width"], header["height"])
+                coding_preview = self._preview(previews, args.workdir / "coding_input_preview.mp4", header)
             for index, source_rgb in enumerate(itertools.chain((first,), reader)):
                 check_cancel()
                 name = f"im{index + 1:05d}.png"
+                coding_rgb = prepared.frame(index, source_rgb) if prepared else source_rgb
                 # Exactly the reference's operation order and FP32 arithmetic.
-                tensor = ref.torch.from_numpy(source_rgb.copy()).to(args.device).permute(2, 0, 1).unsqueeze(0).float()
+                tensor = ref.torch.from_numpy(coding_rgb.copy()).to(args.device).permute(2, 0, 1).unsqueeze(0).float()
                 tensor = tensor.div(255)
                 tensor = ref.F.pad(tensor, (0, (-header["width"]) % 64, 0, (-header["height"]) % 64), mode="replicate")
                 tensor = tensor.mul(2).sub(1)
@@ -275,12 +282,15 @@ class ResidentRunner:
                     ref.Image.fromarray(rgb).save(args.workdir / "frames" / name, compress_level=args.png_level)
                     png_seconds += time.perf_counter() - tick
                 source_preview.add(source_rgb, check_cancel)
+                if coding_preview:
+                    coding_preview.add(coding_rgb, check_cancel)
                 restored_preview.add(rgb, check_cancel)
                 mse = float(ref.np.mean((source_rgb.astype(ref.np.float64) - rgb) ** 2))
                 records.append({"frame": index + 1, "type": "I" if packet["kind"] == 0 else "P",
                                 "z_bytes": len(packet["z"]), "y_bytes": sum(map(len, packet["y"])),
                                 "seconds": seconds, "psnr_db": 10 * math.log10(255 ** 2 / mse) if mse else None,
                                 "source_rgb_sha256": reader.hashes[index],
+                                "coding_rgb_sha256": hashlib.sha256(coding_rgb.tobytes()).hexdigest(),
                                 "rgb_sha256": packet["rgb_sha256"], "latent_sha256": packet["latent_sha256"]})
                 print(f"encode {index + 1}/{args.frames} {seconds:.2f}s", flush=True)
             source = reader.metadata()
@@ -313,6 +323,8 @@ class ResidentRunner:
                 "container_overhead_bytes": size - sum(r["z_bytes"] + r["y_bytes"] for r in records),
                 "container_overhead_breakdown": container_overhead_breakdown(header, args.container_version),
                 "audio": "not encoded", "frames": records, "selected_preset": args.preset,
+                "preprocessing": prepared.summary if prepared else None,
+                "psnr_reference": "sampled/resized original RGB, before any lowpass or semantic protection",
                 "input_transform": "RGB / 255; replicate right/bottom to multiples of 64; x * 2 - 1"}
 
     def _decode(self, args, codec, previews, check_cancel, marks, started):

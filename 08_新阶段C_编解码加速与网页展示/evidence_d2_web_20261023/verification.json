@@ -1,0 +1,71 @@
+{
+  "schema": "d2-web-demo-verification-v1",
+  "date": "2026-10-23",
+  "scope": "existing-function web integration and bounded QA; not D3 or application acceptance",
+  "cpu_checks": {
+    "unique_passed": 49,
+    "endpoint_timebase_loopback_metrics_enhancement": 31,
+    "codec_runtime": 18,
+    "gpu_required": false
+  },
+  "ui_checks": {
+    "state_cases_passed": 4,
+    "exact_fraction_settings_roundtrip": "passed",
+    "javascript_syntax": "passed",
+    "launcher_config_check": "passed",
+    "workspace_cmd_launcher": "passed after CRLF correction"
+  },
+  "real_pipeline": {
+    "evidence": "smoke.json",
+    "new_glc_encodes": 5,
+    "new_independent_decodes": 5,
+    "frames_per_method": 8,
+    "all_files_rgb_latents_verified": true,
+    "receiver_source_media_reads": [],
+    "all_mp4_range_requests": "206 verified"
+  },
+  "semantic_processing": {
+    "completed_smoke_frames": 16,
+    "cancelled_task_processed_frames": 5,
+    "total_new_frames": 21,
+    "training": false,
+    "ground_truth_used_online": false
+  },
+  "cancellation": {
+    "evidence": "cancel.json",
+    "result": "passed",
+    "glc_started": false,
+    "runtime_available_after_cancel": true
+  },
+  "browser_checks": {
+    "three_way_playback": "all readyState 4, duration 0.266933, error null; synchronized playback reached end",
+    "receiver_preview": "same-origin linked completed receiver endpoint"
+  },
+  "boundaries": {
+    "new_D3_experiments": 0,
+    "research_matrix_rerun": false,
+    "application_40kbps_and_10pct_acceptance": false,
+    "real_two_machine_test": false,
+    "historical_D2_pixel_identical_reproduction": false
+  },
+  "notes": [
+    "CPU and browser checks completed during integration before evidence archival.",
+    "Durations are function QA, not a cold-run speed comparison.",
+    "GLC codec/model/container and independent receiver reconstruction unchanged."
+  ],
+  "ui_scope": "Existing function console only. Report page removed at user request; legacy /report.html redirects to /. Historical files remain local.",
+  "final_console_revision": {
+    "date": "2026-10-23",
+    "endpoint_and_enhancement_tests_passed": 18,
+    "ui_states_passed": 4,
+    "javascript_syntax": "passed",
+    "report_navigation_present": false,
+    "method_count": 5,
+    "three_videos_readyState": 4,
+    "three_videos_error": null,
+    "source_of_browser_check": "completed semantic-original job 8852cac9f57d4dd2af38c137065c7f6c",
+    "legacy_report_route": "302 to /",
+    "showcase_and_archive_routes": "404",
+    "additional_gpu_runs": 0
+  }
+}

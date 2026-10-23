@@ -75,6 +75,39 @@ class C1Tests(unittest.TestCase):
         return {"input": str(self.source), "output": str(self.root / name),
                 "preset": "compact", "frames": 4, "output_mode": "display", **kwargs}
 
+    def test_preprocessed_pixels_enter_codec_but_psnr_keeps_original_reference(self):
+        task = self.task("prepared")
+        runner = self.runner()
+        args = runner.options(task, Path(task["output"]))
+        reader = MemoryFrames(args)
+        try:
+            originals = list(reader)
+        finally:
+            reader.close()
+        prepared = self.root / "preprocess"
+        (prepared / "frames").mkdir(parents=True)
+        rows = []
+        for index, original in enumerate(originals):
+            coding = np.zeros_like(original)
+            Image.fromarray(coding).save(prepared / "frames" / f"{index:05d}.png")
+            rows.append({"index": index, "source_rgb_sha256": hashlib.sha256(original.tobytes()).hexdigest(),
+                         "coding_rgb_sha256": hashlib.sha256(coding.tobytes()).hexdigest()})
+        (prepared / "prepared.json").write_text(json.dumps({"summary": {"state": "completed", "frames": 4,
+            "size": [originals[0].shape[1], originals[0].shape[0]]}, "records": rows}), encoding="utf-8")
+        task["prepared_transform"] = str(prepared / "prepared.json")
+        class CaptureCodec(FakeCodec):
+            def frame(self, header, index, x=None, packet=None):
+                assert ref.torch.all(x == -1), "Codec received unfiltered pixels"
+                return super().frame(header, index, x, packet)
+        runner.factory = CaptureCodec
+        runner.run(task)
+        encoded = json.loads((Path(task["output"]) / "encoder/encode.json").read_text())
+        expected = [10 * np.log10(255**2 / np.mean((original.astype(np.float64) - index)**2))
+                    for index, original in enumerate(originals)]
+        self.assertAlmostEqual(encoded["mean_psnr_db"], float(np.mean(expected)))
+        self.assertEqual([r["source_rgb_sha256"] for r in encoded["frames"]], [r["source_rgb_sha256"] for r in rows])
+        self.assertTrue((Path(task["output"]) / "encoder/coding_input_preview.mp4").is_file())
+
     def test_memory_pixels_mapping_and_eof_equal_reference(self):
         for stride, start, width in [(1, 0, 0), (2, 1, 64), (3, 2, 47)]:
             with self.subTest(stride=stride):
