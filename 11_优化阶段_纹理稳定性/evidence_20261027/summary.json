@@ -1,0 +1,181 @@
+{
+  "date": "2026-10-27",
+  "complete": true,
+  "clips": [
+    {
+      "video_id": 11,
+      "methods": {
+        "baseline": {
+          "psnr": 23.83612823839524,
+          "fish_psnr": 27.82732005912198,
+          "spatial_hf_mae": 6.485286321904924,
+          "hf_energy_vs_source": 0.9232786132215561,
+          "temporal_hf_mae": 2.388612579823855,
+          "fish_boundary_mae": 12.078011119141078,
+          "temporal_pixels": 7241413,
+          "file_bytes": 10585,
+          "q": 12,
+          "kbps": 39.6540959040959
+        },
+        "higher_rate": {
+          "psnr": 23.95241477811412,
+          "fish_psnr": 28.18580159832824,
+          "spatial_hf_mae": 6.4688632355795965,
+          "hf_energy_vs_source": 0.9249908966613861,
+          "temporal_hf_mae": 2.440042955877534,
+          "fish_boundary_mae": 11.750537299191807,
+          "temporal_pixels": 7241413,
+          "file_bytes": 12505,
+          "q": 32,
+          "kbps": 46.84690309690309
+        },
+        "filtered": {
+          "psnr": 23.92238757801376,
+          "fish_psnr": 28.00374290875527,
+          "spatial_hf_mae": 6.345218453142378,
+          "hf_energy_vs_source": 0.8825705114062519,
+          "temporal_hf_mae": 2.130938317908397,
+          "fish_boundary_mae": 11.881352529675448,
+          "temporal_pixels": 7241413,
+          "file_bytes": 10585,
+          "q": 12,
+          "kbps": 39.6540959040959
+        }
+      },
+      "verification": {
+        "baseline": {
+          "archive_sha256": "a2329304169ca0d32e2e8319764508c9e51e8e8f7ee3004535d42c395a187585",
+          "file_bytes": 10585,
+          "decoder_core_seconds": 7.8195056000076875,
+          "source_media_reads": [],
+          "all_rgb_and_latents_match": true,
+          "q": 12
+        },
+        "higher_rate": {
+          "archive_sha256": "f18bb05ed3b70cb7c90ed478a4af26ef01e2b5327449692aefc0fd1abcd67d82",
+          "file_bytes": 12505,
+          "decoder_core_seconds": 7.267601599996851,
+          "source_media_reads": [],
+          "all_rgb_and_latents_match": true,
+          "q": 32
+        }
+      },
+      "filter_timing": {
+        "mean_ms": 30.268166666434215,
+        "median_ms": 29.906699997809483,
+        "p95_ms": 31.5369300020393,
+        "total_seconds": 1.9069429999872227,
+        "frames_including_first": 64,
+        "timed_nonfirst_frames": 63,
+        "cpu_threads": 1,
+        "includes": "forward/backward optical flow, confidence, filtering; excludes PNG/preview/evaluation"
+      },
+      "mean_blend_weight": 0.3808938932082895,
+      "mean_active_fraction": 0.9521946175388558,
+      "detected_cuts": 0,
+      "original_raw_unchanged": true,
+      "subjective_assessment": "pending viewing; numerical changes are not a pass verdict"
+    },
+    {
+      "video_id": 21,
+      "methods": {
+        "baseline": {
+          "psnr": 30.26001024580253,
+          "fish_psnr": 29.854095454065785,
+          "spatial_hf_mae": 2.665967106819153,
+          "hf_energy_vs_source": 1.077052061060796,
+          "temporal_hf_mae": 1.7108484230682146,
+          "fish_boundary_mae": 5.72786940257997,
+          "temporal_pixels": 3202025,
+          "file_bytes": 9720,
+          "q": 17,
+          "kbps": 36.41358641358641
+        },
+        "higher_rate": {
+          "psnr": 30.36246867529659,
+          "fish_psnr": 30.150843971531813,
+          "spatial_hf_mae": 2.6587875054942236,
+          "hf_energy_vs_source": 1.0733085094803765,
+          "temporal_hf_mae": 1.7351184394543298,
+          "fish_boundary_mae": 5.392025845761078,
+          "temporal_pixels": 3202025,
+          "file_bytes": 10922,
+          "q": 32,
+          "kbps": 40.916583416583414
+        },
+        "filtered": {
+          "psnr": 30.39596565642597,
+          "fish_psnr": 29.996983146129686,
+          "spatial_hf_mae": 2.598625769217809,
+          "hf_energy_vs_source": 1.02719396671874,
+          "temporal_hf_mae": 1.4795263702754506,
+          "fish_boundary_mae": 5.656546814187533,
+          "temporal_pixels": 3202025,
+          "file_bytes": 9720,
+          "q": 17,
+          "kbps": 36.41358641358641
+        }
+      },
+      "verification": {
+        "baseline": {
+          "archive_sha256": "76b2315d1c06a701165b19f5ad492a8f275ad7dd31b5f4bd3700a608a0663cfc",
+          "file_bytes": 9720,
+          "decoder_core_seconds": 7.36675770000511,
+          "source_media_reads": [],
+          "all_rgb_and_latents_match": true,
+          "q": 17
+        },
+        "higher_rate": {
+          "archive_sha256": "e8740f4ca23bc9a28009a70ccddf93ff3e6fc435cf2770791e60ebb8bfab0525",
+          "file_bytes": 10922,
+          "decoder_core_seconds": 7.244617500007735,
+          "source_media_reads": [],
+          "all_rgb_and_latents_match": true,
+          "q": 32
+        }
+      },
+      "filter_timing": {
+        "mean_ms": 34.86726984134755,
+        "median_ms": 33.49829999933718,
+        "p95_ms": 45.114850000391016,
+        "total_seconds": 2.1967642000054184,
+        "frames_including_first": 64,
+        "timed_nonfirst_frames": 63,
+        "cpu_threads": 1,
+        "includes": "forward/backward optical flow, confidence, filtering; excludes PNG/preview/evaluation"
+      },
+      "mean_blend_weight": 0.39971391605931705,
+      "mean_active_fraction": 0.9647234020199514,
+      "detected_cuts": 0,
+      "original_raw_unchanged": true,
+      "subjective_assessment": "pending viewing; numerical changes are not a pass verdict"
+    }
+  ],
+  "fps": "30000/1001",
+  "filter": {
+    "settings": {
+      "strength": 0.45,
+      "sigma": 1.2,
+      "flow_scale": 0.5,
+      "fb_limit": 1.5,
+      "photo_limit": 12.0,
+      "max_change": 10.0,
+      "cut_difference": 35.0
+    },
+    "history": "one unfiltered decoded previous frame",
+    "future_frames": 0,
+    "source_required": false,
+    "codec_reference_modified": false,
+    "precision": "OpenCV CPU float32, uint8 RGB output",
+    "scope": "postprocessing only; no additional transmitted bytes; no FEC"
+  },
+  "metric_note": "Common source-derived motion/texture masks; temporal high-frequency residual error against original, lower better, not a perceptual flicker score. PSNR pooled RGB; energy is not detail fidelity.",
+  "limitations": [
+    "two short development clips, same conservative source group",
+    "higher rate is not equal bitrate",
+    "CPU i9-14900HX only; Orin untested",
+    "one fixed filter, no tuning after results",
+    "browser videos are lossy H264 CRF12 viewing copies; measurements use lossless PNG",
+    "causal filter uses reconstructed frames only; original and fish labels used only offline for metrics"
+  ]
+}

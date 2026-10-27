@@ -1,0 +1,74 @@
+{
+  "video_id": 11,
+  "methods": {
+    "baseline": {
+      "psnr": 23.83612823839524,
+      "fish_psnr": 27.82732005912198,
+      "spatial_hf_mae": 6.485286321904924,
+      "hf_energy_vs_source": 0.9232786132215561,
+      "temporal_hf_mae": 2.388612579823855,
+      "fish_boundary_mae": 12.078011119141078,
+      "temporal_pixels": 7241413,
+      "file_bytes": 10585,
+      "q": 12,
+      "kbps": 39.6540959040959
+    },
+    "higher_rate": {
+      "psnr": 23.95241477811412,
+      "fish_psnr": 28.18580159832824,
+      "spatial_hf_mae": 6.4688632355795965,
+      "hf_energy_vs_source": 0.9249908966613861,
+      "temporal_hf_mae": 2.440042955877534,
+      "fish_boundary_mae": 11.750537299191807,
+      "temporal_pixels": 7241413,
+      "file_bytes": 12505,
+      "q": 32,
+      "kbps": 46.84690309690309
+    },
+    "filtered": {
+      "psnr": 23.92238757801376,
+      "fish_psnr": 28.00374290875527,
+      "spatial_hf_mae": 6.345218453142378,
+      "hf_energy_vs_source": 0.8825705114062519,
+      "temporal_hf_mae": 2.130938317908397,
+      "fish_boundary_mae": 11.881352529675448,
+      "temporal_pixels": 7241413,
+      "file_bytes": 10585,
+      "q": 12,
+      "kbps": 39.6540959040959
+    }
+  },
+  "verification": {
+    "baseline": {
+      "archive_sha256": "a2329304169ca0d32e2e8319764508c9e51e8e8f7ee3004535d42c395a187585",
+      "file_bytes": 10585,
+      "decoder_core_seconds": 7.8195056000076875,
+      "source_media_reads": [],
+      "all_rgb_and_latents_match": true,
+      "q": 12
+    },
+    "higher_rate": {
+      "archive_sha256": "f18bb05ed3b70cb7c90ed478a4af26ef01e2b5327449692aefc0fd1abcd67d82",
+      "file_bytes": 12505,
+      "decoder_core_seconds": 7.267601599996851,
+      "source_media_reads": [],
+      "all_rgb_and_latents_match": true,
+      "q": 32
+    }
+  },
+  "filter_timing": {
+    "mean_ms": 30.268166666434215,
+    "median_ms": 29.906699997809483,
+    "p95_ms": 31.5369300020393,
+    "total_seconds": 1.9069429999872227,
+    "frames_including_first": 64,
+    "timed_nonfirst_frames": 63,
+    "cpu_threads": 1,
+    "includes": "forward/backward optical flow, confidence, filtering; excludes PNG/preview/evaluation"
+  },
+  "mean_blend_weight": 0.3808938932082895,
+  "mean_active_fraction": 0.9521946175388558,
+  "detected_cuts": 0,
+  "original_raw_unchanged": true,
+  "subjective_assessment": "pending viewing; numerical changes are not a pass verdict"
+}

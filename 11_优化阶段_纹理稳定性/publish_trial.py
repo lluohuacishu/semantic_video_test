@@ -1,0 +1,110 @@
+"""Publish small evidence and a report; leave videos and PNGs in local results."""
+import argparse
+import json
+from pathlib import Path
+import shutil
+
+from run_trial import HERE, REPO, read, write, sha
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--run', type=Path, required=True)
+    args = parser.parse_args(); root = args.run.resolve()
+    result = read(root / 'summary.json'); plan = read(root / 'plan.json')
+    if not result['complete']: raise ValueError('Incomplete result')
+    evidence = HERE / 'evidence_20261027'
+    evidence.mkdir(exist_ok=False)
+    files = ['plan.json', 'summary.json', 'validation.json', 'viewing_addendum.json']
+    for clip in result['clips']:
+        number = clip['video_id']
+        files += [f'v{number:03d}/{p}' for p in ('metrics.json', 'frame_metrics.json', 'filter_stats.json',
+            'baseline_encode.json', 'high_encoder/encode.json', 'baseline_decoder/decode.json', 'high_decoder/decode.json')]
+    for name in files:
+        target = evidence / name; target.parent.mkdir(exist_ok=True, parents=True)
+        shutil.copy2(root / name, target)
+    write(evidence / 'manifest.json', {p: dict(bytes=(evidence / p).stat().st_size, sha256=sha(evidence / p)) for p in files})
+    rows, quality, cost = [], [], []
+    for clip in result['clips']:
+        number = clip['video_id']; methods = clip['methods']
+        b, f, h = (methods[k] for k in ('baseline', 'filtered', 'higher_rate'))
+        rows.append(f"| {number:03d} | {b['file_bytes']:,} → {h['file_bytes']:,} | {(h['file_bytes']/b['file_bytes']-1)*100:.2f}% | {(h['temporal_hf_mae']/b['temporal_hf_mae']-1)*100:+.2f}% |")
+        quality.append(f"| {number:03d} | {b['temporal_hf_mae']:.4f} → {f['temporal_hf_mae']:.4f} | {(1-f['temporal_hf_mae']/b['temporal_hf_mae'])*100:.2f}% | {b['psnr']:.3f} → {f['psnr']:.3f} | {b['fish_psnr']:.3f} → {f['fish_psnr']:.3f} |")
+        t = clip['filter_timing']
+        cost.append(f"| {number:03d} | {t['mean_ms']:.2f} / {t['p95_ms']:.2f} | {t['total_seconds']:.3f} | {b['hf_energy_vs_source']:.3f} → {f['hf_energy_vs_source']:.3f} | {b['fish_boundary_mae']:.3f} → {f['fish_boundary_mae']:.3f} |")
+    report = f'''# GLC 纹理稳定性首轮对照
+
+2026-10-27。状态：实验完成，连续观看的主观结论待用户评价；尚未接入生产网页。误码纠错按用户要求留后。
+
+## 结论边界
+
+固定的一档轻量时域处理在两段开发片上降低了本轮定义的时序高频误差，码流不变，PSNR略升；同时削弱了部分高频纹理。不能把误差降幅称作“人眼闪烁减少百分比”，也没有证明无拖影或问题已解决。提高到q32增加了码流，但这项时序指标没有改善；不外推到其他码率或所有素材。
+
+用户进一步说明：主要是水草等生成细节在相邻帧之间变化。该描述符合生成纹理时序不一致的现象；同一码流重复解码的确定性已验证，但没有将具体闪动全部归因于生成器的受控消融。根据这条反馈，仅增加011固定水草区(280,112)–(488,240)的3倍观看副本；没有改变滤波参数、原始实验或指标。要追求稳定的生成细节，后处理通常只能缓解，更深层方案需时序生成/训练，尚未实施。
+
+## 素材与对照
+
+选用用户此前观看的011植被/鱼、021鱼运动片段，均64帧、512×288、30000/1001 fps、2.135秒。原图为此前共同缩小的无损RGB序列。两个片段仍属于同一保守来源组，不是独立留出测试集。最初考虑的测速片段108有大片空水，检查原图后在实验运行前改选这两段，未将108纳入结果。
+
+普通GLC复用已保存的011 q12、021 q17实际GLCV文件；重新在独立接收进程解码。高码率仅新编码固定q32，然后独立解码。GOP64、reset32、FP32、TF32关闭、原生rANS与权重保持相同；没有语义预处理。四次64帧解码的RGB/参考状态都与发送端一致，接收端未读取源图。原码流SHA复查一致。
+
+| 片段 | 普通→q32文件 B | 文件增幅 | q32时序误差变化（正值为变差） |
+|---|---:|---:|---:|
+{chr(10).join(rows)}
+
+q32是文件更大的对照，不是同码率比较。基线编码是历史复用，新编码和解码任务包含各自冷启动等开销，未据此比较编码器速度。
+
+## 时域处理
+
+仅解码输出后处理，用当前和上一帧**未经滤波的重建RGB**；无需原图、GT、未来帧或额外传输信息，不修改GLC内部参考。CPU半分辨率双向Farneback运动估计，上采样运动场；前后向误差、低频颜色差、越界与3×3腐蚀决定融合可靠度。高频为RGB减sigma1.2低通；最大融合权重0.45，单通道改变量限制为10/255。全局大变化或尺寸变化时重置。
+
+这是两帧因果滤波，无未来帧等待；每帧仍有计算耗时。阈值、强度与评价口径在运行前固定，未按两个结果扫参数。运动/遮挡判断是启发式，不保证所有边缘安全。
+
+| 片段 | 时序高频误差：普通→滤波 ↓ | 误差降幅 | 全图PSNR dB ↑ | 鱼PSNR dB ↑ |
+|---|---:|---:|---:|---:|
+{chr(10).join(quality)}
+
+| 片段 | 新增均值/P95 ms每帧 | 64帧总新增秒 | 高频幅度/原图：普通→滤波 | 鱼边界MAE：普通→滤波 ↓ |
+|---|---:|---:|---:|---:|
+{chr(10).join(cost)}
+
+耗时在本机i9-14900HX、OpenCV 4.10、CPU单线程、OpenCL关闭条件下测量，含双向光流、门控和融合，不含PNG保存、评价或预览；均值/P95排除首帧无历史的直通。每段仅一次，不是稳定性能基准，也不是Orin估计。滤波独立位于解码后，后续可尝试与下一帧GPU解码重叠；本轮没有测重叠收益。
+
+高频幅度下降说明确实有平滑。空间高频误差和鱼边界MAE也略降，但不能用静态指标宣布没有细节损失或拖影。首轮仍应以原速对照观看确认收益是否足够。
+
+## 指标与查看方式
+
+时序高频误差在原图估计的共同运动场与可靠纹理掩码上计算：`mean(abs((HP(Y_t)-warp(HP(Y_prev)))-(HP(X_t)-warp(HP(X_prev)))))`。HP使用灰度sigma1.2高通；纹理掩码由原图高频幅度阈值2产生，双向运动误差小于1.5像素、低频差小于12且腐蚀后有效。所有方法使用同一掩码；原图和鱼GT仅用于离线评价，不进入滤波器。这个代理指标仍受光流误差和平滑影响；不是正式主观闪烁评分。PSNR按全片RGB SSE汇总。
+
+本地页面 `http://127.0.0.1:8780/`，桌面入口 `C:/Users/lenovo/Desktop/临时/材料/纹理稳定性对比.cmd`。每个视频四格严格同帧：左上原图，右上普通GLC，左下滤波，右下高码率。支持原速/半速、逐帧和固定鱼区放大；MP4为共同CRF12有损观看副本，所有数值来自原始PNG。完整本地数据位于工作区 `02_实验数据/优化_纹理稳定性/temporal_trial_20261027_01`。
+
+六项滤波测试覆盖静态、切换/重置、运动方向与新露出边界、错误光流拒绝、合成纹理变化、因果性及输入不变。四项HTTP测试覆盖视频完整读取、范围/后缀读取、非法范围与HEAD，避免逐帧定位失效。浏览器检查了页面、解码状态、逐帧、半速和放大切换。五个观看视频都核对64帧和原帧率。
+
+小证据在[evidence_20261027](evidence_20261027/summary.json)，含参数、源图指纹、编解码日志摘要、逐帧指标和测试核验。视频/PNG/权重继续保留本地。
+'''
+    (HERE / '纹理稳定性首轮结果_20261027.md').write_text(report, 'utf-8')
+    (root / '实验报告.md').write_text(report, 'utf-8')
+    (HERE / 'README.md').write_text('''# GLC 纹理稳定性优化
+
+本轮针对生成纹理闪动，先比较原GLC、固定更高码率和轻量因果时域后处理；纠错留后。原生产网页与模型未替换。
+
+- [首轮结果与限制](纹理稳定性首轮结果_20261027.md)
+- [小型实验数据](evidence_20261027/summary.json)
+- [滤波器](temporal_filter.py)、[实验入口](run_trial.py)、[评价与视频](analyze_trial.py)、[本地查看器](serve_viewer.py)
+
+本机对比页：http://127.0.0.1:8780/ 。桌面入口：`临时/材料/纹理稳定性对比.cmd`。
+
+在本目录检查：`python -m unittest -v test_temporal_filter test_viewer_server`。需要现有NumPy/OpenCV；HTTP检查可独立用`python -S -m unittest -v test_viewer_server`。
+
+复现须先准备现有GLC环境与计划中的历史素材：`python run_trial.py --output <新目录>`，完成后执行`python analyze_trial.py --run <该目录>`。这不是自带模型/视频的一键部署包。结果已完成，不自动重复实验或扩大参数搜索。
+''', 'utf-8')
+    write(HERE / 'project_status.json', dict(date='2026-10-27', phase='texture_temporal_stability',
+        experiment='two_fixed_clips_complete', production_integrated=False, subjective_pass=None,
+        no_extra_stream_bytes=True, causal=True, Orin_tested=False, FEC='deferred_by_user',
+        next='Review original-speed videos for flicker, texture loss and moving-edge trails before integration',
+        automatic_parameter_search=False, evidence='evidence_20261027/summary.json'))
+    print(json.dumps(dict(evidence_files=len(files), report=str(HERE / '纹理稳定性首轮结果_20261027.md')), ensure_ascii=False))
+
+
+if __name__ == '__main__':
+    main()

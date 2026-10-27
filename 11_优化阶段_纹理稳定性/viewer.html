@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GLC 纹理稳定性对照</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#101820;color:#e9eff6;font:16px/1.7 system-ui,"Microsoft YaHei",sans-serif}main{max-width:1260px;margin:auto;padding:36px 24px 70px}h1{font-size:32px;margin:0 0 12px}h2{margin:0}p{color:#b9c8d7}section{margin-top:32px;padding:24px;background:#172430;border:1px solid #314455;border-radius:12px}video{width:100%;display:block;background:#05090d;margin-top:18px}button,select{font:inherit;border:1px solid #607080;border-radius:6px;background:#24394a;color:white;padding:7px 14px;cursor:pointer}button:hover{background:#34536a}.controls{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.note{font-size:14px;color:#aabccf}.table{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}td,th{padding:10px;text-align:left;border-bottom:1px solid #3b4d5e}th{color:#b5cadc;font-size:14px}details{margin-top:16px}summary{cursor:pointer}a{color:#87cffb}.tag{color:#8fe2cf}.metric-note{max-width:1050px} @media(max-width:700px){main{padding:20px 12px}section{padding:12px}h1{font-size:25px}}
+</style></head><body><main><div class="tag">纹理稳定性 · 首轮有限对照</div><h1>画面更稳，还是只是更糊？</h1><p>每个视频的四格来自同一帧：左上原图，右上普通 GLC，左下普通 GLC＋时域滤波，右下提高码率。先正常播放看纹理，再看鱼的轮廓和拖影。滤波组与普通 GLC 使用完全相同的传输码流。</p><p class="note">两段各 64 帧，512×288，保留原帧率约 29.97 fps。放大区域固定，使用最近邻放大。数值基于无损解码图像；页面 MP4 只用于观看，大小不代表传输码流。窗口切换时暂停。</p><div id="clips"></div><details><summary>指标怎么读</summary><p class="metric-note">时序高频误差：先用原图估计运动，在共同的可靠纹理区域中，比较重建与原图的相邻帧高频变化。越低表示这项误差越小；它不是人眼闪烁评分，必须同时检查细节、拖影和 PSNR。高码率组允许文件变大，不能当成同码率胜出。当前仍需人工观看判断，没有 Orin 实测。</p></details><p><a href="summary.json">实验数据 JSON</a></p></main>
+<script>
+const data=__SUMMARY__;
+const fps=30000/1001;
+for(const clip of data.clips){
+ const id=String(clip.video_id).padStart(3,'0'),s=document.createElement('section');
+ const rows=[['baseline','普通 GLC'],['filtered','GLC + 时域滤波'],['higher_rate','提高码率']].map(([key,label])=>{const m=clip.methods[key];return `<tr><td>${label}</td><td>${m.file_bytes.toLocaleString()} B</td><td>${m.kbps.toFixed(2)}</td><td>${m.psnr.toFixed(3)}</td><td>${m.temporal_hf_mae.toFixed(3)}</td></tr>`}).join('');
+ s.innerHTML=`<h2>片段 ${id} · ${clip.video_id===11?'植被纹理与鱼':'鱼的运动与轮廓'}</h2><div class="table"><table><thead><tr><th>版本</th><th>实际 GLCV 码流</th><th>kbps</th><th>全图 PSNR ↑</th><th>时序高频误差 ↓</th></tr></thead><tbody>${rows}</tbody></table></div><p class="note">滤波新增 ${clip.filter_timing.mean_ms.toFixed(1)} ms/帧，整段 ${clip.filter_timing.total_seconds.toFixed(2)} 秒（本机 CPU 单线程，含运动估计）。</p><div class="controls"><select aria-label="查看范围"><option value="full">全画面四格</option><option value="crop">鱼区放大四格</option></select><button data-act="play">播放 / 暂停</button><button data-act="prev">前一帧</button><button data-act="next">后一帧</button><button data-act="normal">原速</button><button data-act="slow">半速</button><button data-act="restart">从头播放</button></div><video controls loop playsinline preload="metadata" src="v${id}/full.mp4"></video>`;
+ const v=s.querySelector('video');
+ if(clip.video_id===11){const option=document.createElement('option');option.value='texture';option.textContent='水草纹理放大';s.querySelector('select').append(option)}
+ s.querySelector('select').onchange=e=>{const t=v.currentTime;v.pause();v.src=`v${id}/${e.target.value}.mp4`;v.addEventListener('loadedmetadata',()=>{v.currentTime=Math.min(t,63/fps)},{once:true})};
+ s.querySelectorAll('button').forEach(b=>b.onclick=()=>{const a=b.dataset.act;if(a==='play')v.paused?v.play():v.pause();if(a==='normal')v.playbackRate=1;if(a==='slow')v.playbackRate=.5;if(a==='restart'){v.currentTime=0;v.play()}if(a==='prev'||a==='next'){v.pause();const i=Math.round(v.currentTime*fps)+(a==='next'?1:-1);v.currentTime=(Math.max(0,Math.min(63,i))+.001)/fps}});
+ document.querySelector('#clips').append(s);
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)document.querySelectorAll('video').forEach(v=>v.pause())});
+</script></body></html>
