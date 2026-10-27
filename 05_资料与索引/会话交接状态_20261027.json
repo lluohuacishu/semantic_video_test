@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-27",
+  "purpose": "conversation_handoff",
+  "authoritative_document": "../交接文档.md",
+  "branch": "codex/glc-streaming-optimization",
+  "latest_experiment_commit": "de4bc4d57704093f0214b5898a6f859e33ce3c38",
+  "user_priority": "Adjacent-frame generated texture consistency, especially seagrass; FEC later; Orin file latency, no realtime requirement",
+  "current": {
+    "phase": "texture_temporal_stability",
+    "finite_trial_complete": true,
+    "subjective_pass": null,
+    "production_integrated": false,
+    "Orin_tested": false
+  },
+  "pipeline": {
+    "compact_protocol_complete": true,
+    "paired_runs": 8,
+    "frames_per_run": 66,
+    "web_integrated": false
+  },
+  "old_rounds": "closed; D3 not implemented; no automatic reruns",
+  "FEC": "explicitly_deferred",
+  "model_replacement": false,
+  "ongoing_experiment": false,
+  "code_roots": [
+    "10_优化阶段_流水线编解码",
+    "11_优化阶段_纹理稳定性"
+  ],
+  "data_roots": [
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_流水线编解码\\pipeline_pairs_20261027_01",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_纹理稳定性\\temporal_trial_20261027_01"
+  ],
+  "runtime": {
+    "python": {
+      "path": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+      "exists": true
+    },
+    "repo": {
+      "path": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\tools\\GLC",
+      "exists": true
+    },
+    "weights": {
+      "path": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\checkpoints\\glc",
+      "exists": true
+    },
+    "ffmpeg": {
+      "path": "C:\\Users\\lenovo\\Desktop\\works\\Python\\video-baseline\\tools\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe",
+      "exists": true
+    },
+    "native_library": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\C2_native_build_20261019_r3\\glc_rans.dll",
+      "exists": true
+    }
+  },
+  "launchers": [
+    {
+      "name": "FaunaCodec.cmd",
+      "targets": [
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\FaunaCodec\\run_web.cmd"
+      ],
+      "targets_exist": true
+    },
+    {
+      "name": "H265.cmd",
+      "targets": [
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\运行环境\\GLC_Python环境\\Scripts\\python.exe",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\h265_demo\\launch.py"
+      ],
+      "targets_exist": true
+    },
+    {
+      "name": "打开网页.cmd",
+      "targets": [
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\启动汇报演示.cmd"
+      ],
+      "targets_exist": true
+    },
+    {
+      "name": "纹理稳定性对比.cmd",
+      "targets": [
+        "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\11_优化阶段_纹理稳定性\\serve_viewer.py",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_纹理稳定性\\temporal_trial_20261027_01"
+      ],
+      "targets_exist": true
+    },
+    {
+      "name": "语义分割.cmd",
+      "targets": [
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\运行环境\\GLC_Python环境\\Scripts\\python.exe",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\08_新阶段C_编解码加速与网页展示\\segmentation_demo\\launch.py"
+      ],
+      "targets_exist": true
+    }
+  ],
+  "viewer_observation": {
+    "url": "http://127.0.0.1:8780/",
+    "checked_at": "2026-10-27T22:22:19.819452+08:00",
+    "reachable": true,
+    "summary_matches_local": true
+  },
+  "archive": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\03_历史归档\\换会话前快照_20261027",
+  "large_assets_moved": false,
+  "next": "Read current handoff, use existing source-matched comparisons, obtain/interpret viewing feedback before deciding the next targeted texture experiment"
+}
