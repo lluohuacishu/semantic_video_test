@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-27",
+  "phase": "pipeline_optimization",
+  "old_rounds": "closed",
+  "D3_executed": false,
+  "web_pipeline_integrated": false,
+  "target": "Orin NX Super 16GB file completion latency; no realtime requirement",
+  "prototype": "compact_v2_8x66_paired_verified",
+  "data_root": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_流水线编解码",
+  "closure_archive": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\03_历史归档\\阶段收束_20261027",
+  "prototype_result": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_流水线编解码\\pipeline_probe_20261027_01\\summary.json",
+  "next": "Lifecycle and unknown-frame-count support, then web integration; verify cross-device arithmetic",
+  "acceptance": {
+    "first_frame_before_encode_end": true,
+    "all_frame_hashes_match": true,
+    "baseline_payload_unchanged": true,
+    "source_reads_on_receiver": []
+  },
+  "production_web_changed": false,
+  "FEC_implemented": false,
+  "Orin_tested": false,
+  "branch": "codex/glc-streaming-optimization",
+  "protocol_version": 2,
+  "protocol_tests_passed": 10,
+  "experiment_summary": "evidence_20261027/summary.json",
+  "paired_measurement": [
+    {
+      "rate_kbps": 40,
+      "mean_serial_seconds": 30.595723400000004,
+      "mean_pipeline_seconds": 30.4752646,
+      "median_paired_reduction_percent": 0.3931015279554888,
+      "paired_reduction_range": [
+        -0.034586485764596976,
+        0.8207895416755746
+      ]
+    },
+    {
+      "rate_kbps": 20,
+      "mean_serial_seconds": 33.819280500000005,
+      "mean_pipeline_seconds": 30.611099250000002,
+      "median_paired_reduction_percent": 9.48622784110449,
+      "paired_reduction_range": [
+        9.47217466182677,
+        9.500281020382213
+      ]
+    }
+  ],
+  "forward_bytes": 16476,
+  "archive_bytes": 15049
+}

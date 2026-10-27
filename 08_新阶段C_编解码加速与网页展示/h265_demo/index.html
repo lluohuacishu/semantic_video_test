@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>语义 H.265 · 视频演示</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body><main>
+<header><div><span class="eyebrow"><i></i> LOCAL DEMO</span><h1>语义 H.265<span>目标区域增强与重建</span></h1></div><nav class="header-links"><a class="nav-link" href="http://127.0.0.1:8778/" target="_blank" rel="noopener">语义分割 ↗</a><a class="nav-link" href="http://127.0.0.1:8773/" target="_blank" rel="noopener">GLC ↗</a><a class="nav-link" href="http://127.0.0.1:8775/" target="_blank" rel="noopener">FaunaCodec ↗</a></nav></header>
+<section class="workspace">
+  <div class="setup"><h2><span class="step">01</span>选择视频</h2>
+    <label id="dropzone" class="dropzone" tabindex="0"><input id="file" type="file" accept=".mp4,.mov,.mkv,.avi,.webm,.m4v" hidden><span class="upload-icon">↑</span><strong id="fileName">点击或拖入视频</strong><span id="fileInfo">MP4 / MOV / MKV / AVI / WebM · 最大 1 GB</span></label>
+    <div class="options-grid">
+      <label>保护目标<select id="target"><option value="fish">鱼类 · 旧项目适配模型</option><option value="diver">潜水员 · SUIM 模型</option></select></label>
+      <label>编码尺寸<select id="resolution"><option value="source">原始尺寸</option><option value="540">540p · 保持比例</option><option value="360">360p · 保持比例</option><option value="720">720p · 保持比例</option></select></label>
+      <label>背景 CRF<input id="background_crf" type="number" min="0" max="51" step="1" value="42"></label>
+      <label>目标区域 CRF<input id="roi_crf" type="number" min="0" max="51" step="1" value="32"></label>
+      <label>背景分辨率<select id="background_scale"><option value="0.5">宽高各 50%</option><option value="0.25">宽高各 25%</option><option value="0.75">宽高各 75%</option><option value="1">宽高各 100%</option></select></label>
+      <label>目标区域布局<select id="roi_layout"><option value="single">每窗口合并 · 旧方案默认</option><option value="halves">左右分区 · 最多两块</option></select></label>
+      <label>处理范围<select id="duration"><option value="full">完整视频</option><option value="10">前 10 秒</option></select></label>
+    </div>
+    <div class="actions"><button id="run" class="primary" disabled>上传并处理 <span>→</span></button><button id="sampleRun">运行鱼类演示</button></div>
+    <p class="footnote">背景降分辨率编码，预测目标区域单独保留更高画质。演示片段为旧项目 video131 第 420–469 帧。</p>
+  </div>
+  <aside><div class="section-heading"><h2><span class="step">02</span>处理记录</h2><span id="serverState" class="connection">连接中</span></div><div id="history" class="history"></div></aside>
+</section>
+<p id="notice" role="alert" hidden></p>
+<section class="result"><div class="section-heading"><div><div class="eyebrow">RESULT</div><h2 id="resultName">上传视频开始处理</h2></div><span id="resultStatus" class="status">待处理</span></div>
+  <div id="taskProgress" hidden><div class="progress-label"><span id="stage"></span><span id="elapsed"></span></div><progress id="progress" max="100" value="0"></progress></div>
+  <div id="resultContent" hidden>
+    <div class="metrics">
+      <article class="metric highlighted"><span id="packageLabel">完整传输包 · .scv</span><strong id="packageSize">—</strong><div><b id="packageRate">—</b><span id="packageBytes"></span></div></article>
+      <article class="metric"><span id="streamLabel">各层裸 H.265 码流合计</span><strong id="streamSize">—</strong><div><b id="streamRate">—</b><span id="streamBytes"></span></div></article>
+      <article class="metric compact"><span>原始视频文件</span><strong id="sourceSize">—</strong><small id="sourceGeometry"></small></article>
+      <article class="metric compact"><span>重建预览文件 <small>H.264</small></span><strong id="reconstructionSize">—</strong><small id="outputGeometry"></small></article>
+    </div>
+    <p id="semanticInfo" class="semantic-info" hidden></p>
+    <div class="playback-heading"><h3>画面对比</h3><label id="overlayControl" hidden><input id="showOverlay" type="checkbox"> 显示预测目标框</label><span id="videoInfo"></span></div>
+    <div class="players"><figure><figcaption><span id="leftLabel">左 · 编码输入</span><span id="sourceCaption"></span></figcaption><video id="sourceVideo" preload="metadata" muted playsinline></video></figure><figure><figcaption><span id="rightLabel">右 · 语义 H.265 重建</span><span id="reconstructionCaption"></span></figcaption><video id="reconstructionVideo" preload="metadata" muted playsinline></video></figure></div>
+    <div class="playback"><button id="play" class="play-button" disabled>播放</button><button id="restart" title="回到开头">↺</button><input id="seek" type="range" min="0" max="1" value="0" step="0.01" aria-label="同步播放进度"><span id="clock">00:00 / 00:00</span><select id="speed" aria-label="播放速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></div>
+    <div class="detail-grid"><div><h3>传输组成</h3><table><thead><tr><th>组成</th><th>字节</th><th>平均码率</th></tr></thead><tbody id="streamsTable"></tbody></table><p id="encodingInfo" class="footnote"></p><p id="packetNote" class="footnote"></p></div><div><h3>处理耗时</h3><div id="timings" class="timings"></div><h3 class="download-title">文件下载</h3><div id="downloads" class="downloads"></div></div></div>
+  </div>
+  <details id="logBox" hidden><summary>运行日志</summary><pre id="logs"></pre></details>
+</section><footer><span>语义分割 → 背景 / ROI 分层 H.265 → 独立重建</span><span>本地运行 · GOP 32</span></footer>
+</main></body></html>

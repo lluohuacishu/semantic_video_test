@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-27",
+  "schedule": [
+    [
+      40,
+      1,
+      "serial"
+    ],
+    [
+      40,
+      1,
+      "pipeline"
+    ],
+    [
+      40,
+      2,
+      "pipeline"
+    ],
+    [
+      40,
+      2,
+      "serial"
+    ],
+    [
+      20,
+      1,
+      "pipeline"
+    ],
+    [
+      20,
+      1,
+      "serial"
+    ],
+    [
+      20,
+      2,
+      "serial"
+    ],
+    [
+      20,
+      2,
+      "pipeline"
+    ]
+  ],
+  "frames": 66,
+  "warmup_frames_per_endpoint": 8,
+  "transport_version": 2,
+  "input": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\A_压缩路线选型\\A2_GLC验证\\long108\\input_540.mkv",
+  "baseline": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\GLC_precision_20261026_native_05\\fp32\\encode\\run_1",
+  "code_sha256": {
+    "pipeline_probe.py": "a683833d324bab1fdd848ff8784c7e89c620c0ea7d5457a0d67d15baea3efdaf",
+    "stream_protocol.py": "9e857cdf2ebc14dbdebb6945fb3c3c63d63574fb7161e34697f1e2cca2e312cf",
+    "benchmark_pairs.py": "0d67808d3b32e7b718626a23f202582f27057ad01057abbf105473303d36a812"
+  },
+  "measure": "first measured encode start to receiver final verification; initialization/warmup excluded",
+  "quality": "640x360,12.5fps,q0,GOP64,reset32,FP32,native rANS,no previews",
+  "scope": "two processes share one RTX4060 Laptop GPU; no Orin or acoustic channel"
+}

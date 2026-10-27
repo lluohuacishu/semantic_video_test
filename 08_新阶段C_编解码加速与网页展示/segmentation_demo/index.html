@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>语义分割 · 本地演示</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body><main>
+<header><div><span class="eyebrow"><i></i> LOCAL DEMO</span><h1>语义分割<span>水下场景 · SegFormer-B0</span></h1></div><nav class="header-links"><a class="nav-link" href="http://127.0.0.1:8773/" target="_blank" rel="noopener">GLC ↗</a><a class="nav-link" href="http://127.0.0.1:8775/" target="_blank" rel="noopener">FaunaCodec ↗</a><a class="nav-link" href="http://127.0.0.1:8777/" target="_blank" rel="noopener">H.265 ↗</a></nav></header>
+<section class="workspace">
+  <div class="setup"><h2><span class="step">01</span>选择图片或视频</h2>
+    <label id="dropzone" class="dropzone" tabindex="0"><input id="file" type="file" accept=".png,.jpg,.jpeg,.webp,.bmp,.mp4,.mov,.mkv,.avi,.webm,.m4v" hidden><span class="upload-icon">↑</span><strong id="fileName">点击或拖入文件</strong><span id="fileInfo">PNG / JPG / WebP / MP4 / MOV / AVI · 最大 1 GB</span></label>
+    <div class="options-grid"><label>推理方式<select id="mode"><option value="tiles512">原尺寸分块 · 512 / 步长 384</option><option value="fast256">快速整图 · 长边 256</option></select></label><label>视频采样帧率<select id="fps"><option value="5">5 fps</option><option value="10">10 fps</option><option value="source">原始帧率</option></select></label><label>视频处理范围<select id="duration"><option value="full">完整视频</option><option value="10">前 10 秒</option></select></label><label>叠加浓度<select id="alpha"><option value="0.45">45%</option><option value="0.65">65%</option><option value="0.85">85%</option></select></label></div>
+    <div class="actions"><button id="run" class="primary" disabled>上传并分割 <span>→</span></button><button id="sampleRun">运行演示视频</button></div>
+  </div>
+  <aside><div class="section-heading"><h2><span class="step">02</span>处理记录</h2><span id="serverState" class="connection">连接中</span></div><div id="history" class="history"></div></aside>
+</section>
+<p id="notice" role="alert" hidden></p>
+<section class="result"><div class="section-heading"><div><div class="eyebrow">RESULT</div><h2 id="resultName">上传文件开始分割</h2></div><span id="resultStatus" class="status">待处理</span></div>
+  <div id="taskProgress" hidden><div class="progress-label"><span id="stage"></span><span id="elapsed"></span></div><progress id="progress" max="100" value="0"></progress></div>
+  <div id="resultContent" hidden>
+    <div class="metrics"><article class="metric highlighted"><span>分割尺寸</span><strong id="geometry">—</strong><small>原始尺寸像素标签</small></article><article class="metric compact"><span>已处理画面</span><strong id="frameCount">—</strong><small id="timeInfo"></small></article><article class="metric compact"><span>模型推理</span><strong id="inferenceTime">—</strong><small id="speedInfo"></small></article><article class="metric compact"><span>标签文件</span><strong id="maskSize">—</strong><small id="maskInfo"></small></article></div>
+    <div class="playback-heading"><h3>画面对比</h3><div class="view-switch" role="group" aria-label="结果视图"><button id="overlayView" class="active">叠加效果</button><button id="colorView">分类色块</button></div></div>
+    <div id="videoPlayers" class="players" hidden><figure><figcaption><span>左 · 原始画面</span><span>相同采样时刻</span></figcaption><video id="sourceVideo" preload="metadata" muted playsinline></video></figure><figure><figcaption><span id="videoCaption">右 · 分割叠加</span><span>模型预测</span></figcaption><div class="video-stack"><video id="overlayVideo" preload="metadata" muted playsinline></video><video id="colorVideo" preload="metadata" muted playsinline hidden></video></div></figure></div>
+    <div id="imagePlayers" class="players" hidden><figure><figcaption>左 · 原始图片</figcaption><img id="sourceImage" alt="原始图片"></figure><figure><figcaption id="imageCaption">右 · 分割叠加（模型预测）</figcaption><img id="resultImage" alt="语义分割结果"></figure></div>
+    <div id="playback" class="playback" hidden><button id="play" class="play-button" disabled>播放</button><button id="restart" title="回到开头">↺</button><input id="seek" type="range" min="0" max="1" value="0" step="0.01" aria-label="同步播放进度"><span id="clock">00:00 / 00:00</span><select id="speed" aria-label="播放速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></div>
+    <div class="detail-grid"><div><h3>类别分布 <small id="distributionInfo"></small></h3><div id="legend" class="legend"></div><p class="footnote">占比为已处理画面的像素比例；标签 PNG 像素值为类别 ID 0–7。</p></div><div><h3>文件下载</h3><div id="downloads" class="downloads"></div><p id="modelInfo" class="footnote"></p><p class="footnote">色块和叠加视频用于展示，精确标签请使用 PNG。分割结果为模型预测。</p></div></div>
+  </div>
+  <details id="logBox" hidden><summary>运行日志</summary><pre id="logs"></pre></details>
+</section><footer><span>SUIM · 8 类语义分割</span><span>本地推理 · 已有模型权重</span></footer>
+</main></body></html>
