@@ -56,7 +56,7 @@ def main():
             values.append(clip['models'][mode]['groups']['p_only']['psnr_db'])
         axis.bar(x+(j-2)*.15, values, .145, label='Teacher' if mode=='teacher' else labels[mode], color='#52616b' if mode=='teacher' else colors[mode])
     axis.set(xticks=x, xticklabels=['UV96\nvalidation', 'UV108\nsequence holdout', 'SF26\nrelated capture holdout', 'SF7\nregression', 'SF25\nregression'], ylabel='P-frame PSNR to original (dB)', title='Fixed-data comparison; capture independence remains unverified')
-    axis.legend(fontsize=8, ncol=3)
+    axis.legend(fontsize=8, ncol=1, loc='center left', bbox_to_anchor=(1.01, .5))
     axis.grid(axis='y', alpha=.2)
     save(fig, args.output/'evaluation/quality_comparison_round2')
 

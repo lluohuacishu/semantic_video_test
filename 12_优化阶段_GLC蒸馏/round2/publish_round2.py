@@ -41,6 +41,7 @@ def main():
             raise ValueError('Non-training clip entered optimizer log')
         summary['last100_original_l1'] = float(np.mean([r['l1_original'] for r in rows[-100:]]))
         summary['last100_teacher_l1'] = float(np.mean([r['l1_teacher'] for r in rows[-100:]]))
+        summary['unique_training_pairs_visited'] = len({(r['clip'],r['frame_index']) for r in rows})
         training[case] = summary
         save_json(destination/f'validation_{case}.json', load_json(folder/'validation.json'))
         blocks = []
@@ -76,6 +77,10 @@ def main():
                   training=training,selection=selection,quality_clips=small_quality,timing=timing,
                   initialization=transfer,cache=cache_summary,exports=quality['exports'],raw_artifact_sha256=provenance,
                   source_independence_established=False,source_caveats=plan['source_caveats'])
+    if (args.output/'optimizer_audit.json').exists():
+        report['optimizer_log_audit'] = load_json(args.output/'optimizer_audit.json')
+    if (args.output/'evaluation/posthoc_color_error.json').exists():
+        report['posthoc_color_error_diagnostic'] = load_json(args.output/'evaluation/posthoc_color_error.json')
     save_json(destination/'summary.json',report)
     for name in ['learning_curves_round2.png','learning_curves_round2.svg','quality_comparison_round2.png','quality_comparison_round2.svg','selection_frozen.json','execution_manifest.json']:
         shutil.copyfile(args.output/'evaluation'/name,destination/name)
