@@ -1,0 +1,132 @@
+{
+  "short_cases": [
+    {
+      "name": "pixel_fp32_256_b1",
+      "status": "ok",
+      "mean_seconds": 0.039178337499682435,
+      "peak_allocated_mib": 637.2734375,
+      "parameters_unchanged": true
+    },
+    {
+      "name": "pixel_bf16_256_b1",
+      "status": "ok",
+      "mean_seconds": 0.03792380416643937,
+      "peak_allocated_mib": 689.7734375,
+      "parameters_unchanged": true
+    },
+    {
+      "name": "vgg_bf16_256_b1",
+      "status": "ok",
+      "mean_seconds": 0.04973813750014718,
+      "peak_allocated_mib": 880.58544921875,
+      "parameters_unchanged": true
+    },
+    {
+      "name": "vgg_bf16_256_b2",
+      "status": "ok",
+      "mean_seconds": 0.08868576249960824,
+      "peak_allocated_mib": 1533.58544921875,
+      "parameters_unchanged": true
+    },
+    {
+      "name": "vgg_bf16_384_b1",
+      "status": "ok",
+      "mean_seconds": 0.0996064375003698,
+      "peak_allocated_mib": 1701.23388671875,
+      "parameters_unchanged": true
+    },
+    {
+      "name": "vgg_bf16_512x320_b1",
+      "status": "ok",
+      "mean_seconds": 0.11101292500006821,
+      "peak_allocated_mib": 1867.30419921875,
+      "parameters_unchanged": true
+    }
+  ],
+  "sustained": {
+    "steps": 279,
+    "mean_seconds": 0.2179548362006394,
+    "median_seconds": 0.09181340000213822,
+    "p95_seconds": 0.9280323000020871,
+    "p99_seconds": 2.0539919000002556,
+    "steps_over_half_second": 23,
+    "max_seconds": 7.064314499999455,
+    "sum_seconds": 60.809399299978395,
+    "peak_allocated_mib": 1533.21044921875,
+    "parameters_unchanged": true
+  },
+  "conditional_budgets": [
+    {
+      "steps": 10000,
+      "batch": 2,
+      "sample_presentations": 20000,
+      "measured_compute_hours_range": [
+        0.24634934027668956,
+        0.6054301005573317
+      ],
+      "planning_hours_with_30_to_50_percent_unmeasured_overhead": [
+        0.32025414235969646,
+        0.9081451508359976
+      ]
+    },
+    {
+      "steps": 100000,
+      "batch": 2,
+      "sample_presentations": 200000,
+      "measured_compute_hours_range": [
+        2.4634934027668955,
+        6.054301005573317
+      ],
+      "planning_hours_with_30_to_50_percent_unmeasured_overhead": [
+        3.2025414235969643,
+        9.081451508359976
+      ]
+    },
+    {
+      "steps": 300000,
+      "batch": 2,
+      "sample_presentations": 600000,
+      "measured_compute_hours_range": [
+        7.390480208300687,
+        18.16290301671995
+      ],
+      "planning_hours_with_30_to_50_percent_unmeasured_overhead": [
+        9.607624270790893,
+        27.244354525079924
+      ]
+    },
+    {
+      "steps": 500000,
+      "batch": 2,
+      "sample_presentations": 1000000,
+      "measured_compute_hours_range": [
+        12.317467013834479,
+        30.271505027866585
+      ],
+      "planning_hours_with_30_to_50_percent_unmeasured_overhead": [
+        16.01270711798482,
+        45.40725754179988
+      ]
+    }
+  ],
+  "scope": "Synthetic, zero-learning-rate step timing; no convergence evidence. Step budgets and overhead are planning assumptions.",
+  "assumptions": {
+    "scope": "P-frame RGB generator only; 8,800,707 parameters; frozen original latent/entropy/reference path; teacher cached offline",
+    "primary_case": "256x256 output, batch 2, FP32 parameters with BF16 autocast, L1 plus a frozen untrained VGG16 feature-loss compute surrogate",
+    "usable_model_budget": "24–72 GPU-hours per substantial attempt, as an engineering allowance rather than demonstrated convergence",
+    "calendar_budget": "3–7 days for initial fitting, adjustments and independent-video validation after data and implementation are prepared; not a guaranteed completion date",
+    "main_steps": "300,000–500,000 as an initial planning allowance, not a proven required iteration count",
+    "overhead": "30–50% extra for unmeasured data loading, augmentation, validation and checkpoints; sustained sample already includes stalls, so this is a conservative allowance, not an observed factor",
+    "teacher_cache_reference": "historical 512x288 actual GLC high-rate encoding core: 0.1704–0.1914 seconds/frame; new latent-cache pipeline not measured",
+    "boundaries": [
+      "No nonzero-learning-rate fit",
+      "No convergence or visual-quality assessment",
+      "No official checkpoint loaded or modified",
+      "No trained student saved",
+      "No full GLC training",
+      "No new dataset download",
+      "60-second sample does not establish overnight thermal behavior",
+      "No cause attributed to observed long stalls"
+    ]
+  }
+}

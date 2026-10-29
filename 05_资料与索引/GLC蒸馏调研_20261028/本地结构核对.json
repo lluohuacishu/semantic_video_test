@@ -1,0 +1,203 @@
+{
+  "date": "2026-10-28",
+  "scope": "Feasibility research and read-only CPU/meta-device inspection; no training or model forward pass",
+  "project_branch": "codex/glc-streaming-optimization",
+  "project_head_before_research": "a6fdbd3",
+  "official_glc_local_head": "126db25f9c093508cd0c99cee32b53fd60074f9a",
+  "official_glc_remote_HEAD": "126db25f9c093508cd0c99cee32b53fd60074f9a",
+  "weights": {
+    "date": "2026-10-28",
+    "inspection": "CPU checkpoint tensor inspection only; no inference, backward or optimizer",
+    "torch": "2.5.1+cu124",
+    "checkpoints": [
+      {
+        "checkpoint": "GLC_image.pth.tar",
+        "unwrapped_keys": [
+          "state_dict",
+          "net_g"
+        ],
+        "groups": {
+          "vqgan.generator.": {
+            "tensors": 196,
+            "elements": 42515587,
+            "tensor_bytes": 170062348
+          },
+          "vqgan.encoder.": {
+            "tensors": 146,
+            "elements": 29363968,
+            "tensor_bytes": 117455872
+          },
+          "code_pred_loss.": {
+            "tensors": 114,
+            "elements": 27577344,
+            "tensor_bytes": 110309376
+          },
+          "code_pred_pix_loss.": {
+            "tensors": 114,
+            "elements": 27577344,
+            "tensor_bytes": 110309376
+          }
+        },
+        "generator_state_sha256": "8acdf575db60098a3d886b8e67cca2952d895776b256128e5921fd0c640d9b22",
+        "generator_dtypes": [
+          "torch.float32"
+        ]
+      },
+      {
+        "checkpoint": "GLC_Video.pth.tar",
+        "unwrapped_keys": [
+          "state_dict"
+        ],
+        "groups": {
+          "vqgan.generator.": {
+            "tensors": 196,
+            "elements": 42515587,
+            "tensor_bytes": 170062348
+          },
+          "vqgan.encoder.": {
+            "tensors": 146,
+            "elements": 29363968,
+            "tensor_bytes": 117455872
+          },
+          "code_pred_loss.": {
+            "tensors": 0,
+            "elements": 0,
+            "tensor_bytes": 0
+          },
+          "code_pred_pix_loss.": {
+            "tensors": 0,
+            "elements": 0,
+            "tensor_bytes": 0
+          }
+        },
+        "generator_state_sha256": "31af0897e280c5ed8f5d4f22c212fc66122348393e8b3dd29e2fd42b39fc5771",
+        "generator_dtypes": [
+          "torch.float32"
+        ]
+      }
+    ],
+    "image_and_video_generator_identical": false
+  },
+  "candidate_structures": {
+    "method": "meta-device structure construction and parameter counting only; no forward, backward or trained student weights",
+    "candidates": [
+      {
+        "name": "teacher_structure",
+        "base_width": 128,
+        "resblocks_per_scale": 3,
+        "parameters": 42515587,
+        "fp32_parameter_bytes": 170062348,
+        "input_channels": 256,
+        "output_channels": 3,
+        "spatial_upsample": 16,
+        "fraction_of_teacher_parameters": 1
+      },
+      {
+        "name": "candidate_width64_blocks2",
+        "base_width": 64,
+        "resblocks_per_scale": 2,
+        "parameters": 8800707,
+        "fp32_parameter_bytes": 35202828,
+        "input_channels": 256,
+        "output_channels": 3,
+        "spatial_upsample": 16,
+        "fraction_of_teacher_parameters": 0.2069995411329967
+      },
+      {
+        "name": "candidate_width64_blocks1",
+        "base_width": 64,
+        "resblocks_per_scale": 1,
+        "parameters": 6616259,
+        "fp32_parameter_bytes": 26465036,
+        "input_channels": 256,
+        "output_channels": 3,
+        "spatial_upsample": 16,
+        "fraction_of_teacher_parameters": 0.15561960840385433
+      }
+    ]
+  },
+  "not_verified": [
+    "training GPU availability",
+    "student forward/backward peak memory",
+    "convergence and required training time",
+    "student visual quality and temporal stability",
+    "student actual codec integration",
+    "Jetson Orin speed and numerical compatibility"
+  ],
+  "sources": [
+    {
+      "title": "Official GLC repository",
+      "url": "https://github.com/jzyustc/GLC",
+      "note": "Public architecture/checkpoints and test entrypoints; no complete training entrypoint found in current checkout"
+    },
+    {
+      "title": "GLC image/video paper",
+      "url": "https://arxiv.org/html/2505.16177v1",
+      "sections": [
+        "IV",
+        "V-A"
+      ]
+    },
+    {
+      "title": "Knowledge Distillation for Learned Image Compression, ICCV 2025",
+      "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Chen_Knowledge_Distillation_for_Learned_Image_Compression_ICCV_2025_paper.pdf",
+      "sections": [
+        "4.1.1"
+      ],
+      "note": "0.25M modular steps + 0.75M fine-tuning; NVIDIA A100 GPUs; not a GLC student"
+    },
+    {
+      "title": "GVC-RT",
+      "url": "https://arxiv.org/html/2608.04891v1",
+      "sections": [
+        "3.5",
+        "4.1",
+        "6.1"
+      ],
+      "note": "Related latent-to-image distillation; LFQ latents are different from GLC"
+    },
+    {
+      "title": "Official GVC-RT repository",
+      "url": "https://github.com/semcomm/GVC-RT",
+      "note": "Training code release is an unchecked TODO at inspection time; existing pretrained models are not GLC-compatible students"
+    },
+    {
+      "title": "Neodragon",
+      "url": "https://arxiv.org/html/2511.06055v1",
+      "sections": [
+        "3.2"
+      ],
+      "note": "Fixed latent space decoder replacement precedent, with substantial training compute"
+    },
+    {
+      "title": "Efficient Learned Image Compression through Knowledge Distillation",
+      "url": "https://arxiv.org/html/2509.10366v1",
+      "sections": [
+        "4.2"
+      ],
+      "note": "4–5 million steps in the published whole-codec experiment"
+    },
+    {
+      "title": "PRIM code",
+      "url": "https://github.com/FABallemand/PRIM",
+      "note": "Reference implementation for a different image codec"
+    },
+    {
+      "title": "TAESD",
+      "url": "https://github.com/madebyollin/taesd",
+      "note": "Tiny decoder example; README explicitly notes fine-detail loss and possible frame flicker; no GLC-compatible checkpoint found"
+    },
+    {
+      "title": "TAESD architecture",
+      "url": "https://raw.githubusercontent.com/madebyollin/taesd/main/taesd.py",
+      "note": "Model-specific latent channel counts/scales; not a drop-in GLC renderer"
+    }
+  ],
+  "searches": [
+    "\"GLC\" \"Generative Latent Coding\" distillation",
+    "\"Generative Latent Coding\" \"distillation\"",
+    "\"jzyustc/GLC\" \"student\"",
+    "\"GLC-Video\" \"distillation\""
+  ],
+  "search_boundary": "No official GLC-distilled student recipe/checkpoint was verified in this search; this is not proof that no unpublished or unindexed work exists."
+}
