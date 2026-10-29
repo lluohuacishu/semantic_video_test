@@ -134,7 +134,13 @@ class NeuralCodec:
         return reconstructed * q_dec, encoded
 
     @torch.inference_mode()
-    def frame(self, header, index, x=None, packet=None):
+    def frame(self, header, index, x=None, packet=None, *, render_rgb=True):
+        # A sender still reconstructs the latent reference below. Only the
+        # terminal display network can be omitted; decoding always renders RGB.
+        if type(render_rgb) is not bool:
+            raise ValueError("render_rgb must be a boolean.")
+        if not render_rgb and (x is None or packet is not None):
+            raise ValueError("Skipping RGB is supported only for source encoding.")
         is_i = index % header["intra_period"] == 0
         q = header["q"]
         hp = (header["height"] + 63) // 64 * 64
@@ -174,10 +180,13 @@ class NeuralCodec:
             y_hat, y_streams = self.prior(model, params, False, y, None if packet is None else packet["y"])
             latent = model.decoder(y_hat, context, model.y_q_dec[q:q + 1])
             self.dpb = {"ref_latent": latent, "ref_y": y_hat}
-        rgb = rgb_array(model.vqgan.generator(latent), header["width"], header["height"])
+        rgb = None
+        if render_rgb:
+            rgb = rgb_array(model.vqgan.generator(latent), header["width"], header["height"])
         result = {"kind": 0 if is_i else 1, "z": z_stream, "y": y_streams,
-                  "latent_sha256": reference_hash(self.dpb),
-                  "rgb_sha256": hashlib.sha256(rgb.tobytes()).hexdigest()}
+                  "latent_sha256": reference_hash(self.dpb)}
+        if render_rgb:
+            result["rgb_sha256"] = hashlib.sha256(rgb.tobytes()).hexdigest()
         if packet is not None:
             for key in ("latent_sha256", "rgb_sha256"):
                 if packet[key] is not None and result[key] != packet[key]:

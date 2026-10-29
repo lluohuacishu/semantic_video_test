@@ -1,4 +1,6 @@
-请先阅读 C:\Users\lenovo\Documents\ChatGPT\语义通信\01_项目\代码\semantic_video_test\交接文档.md，再阅读其中链接的纹理首轮结果和文件索引，接续这个项目。
+请先阅读 C:\Users\lenovo\Documents\ChatGPT\语义通信\01_项目\代码\semantic_video_test\13_优化阶段_发送端免RGB重建\README.md，再阅读交接文档.md。2026-10-29 已将重点改为水下 AI 盒子编码端减负：发送端免 RGB 重建，岸上保留完整 GLC 解码画质，允许离线传输可观看视频。当前分支 codex/glc-sender-no-rgb；暂停第三轮 RGB 生成器蒸馏，codex/glc-distillation 及两轮代码/权重/结果保留。先复用新发送端试验，不重跑旧矩阵。Orin 时间/能耗/温度/跨设备兼容及 FEC 仍需后续验证。
+
+以下是 2026-10-27 的历史接续文字，以首段和当前研究入口为准：
 
 项目沿用 codex/glc-streaming-optimization 分支，已上传 GitHub。当前重点是 GLC 相邻帧生成细节不一致，尤其水草纹理闪动；纠错留到最后。最终部署目标是 Jetson Orin NX Super 16GB，用于传文件，不要求实时播放。
 

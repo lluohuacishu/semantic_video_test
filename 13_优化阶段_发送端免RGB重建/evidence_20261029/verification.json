@@ -1,0 +1,80 @@
+{
+  "checks": [
+    {
+      "name": "sender_container",
+      "returncode": 0,
+      "command": [
+        "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "13_优化阶段_发送端免RGB重建",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "log": "sender_container_tests.log",
+      "last_lines": [
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 11 tests in 0.031s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "name": "legacy_glc_stream",
+      "returncode": 0,
+      "command": [
+        "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "04_外部依赖快照/semantic-video-training/tests",
+        "-p",
+        "test_glc_stream.py",
+        "-v"
+      ],
+      "log": "legacy_glc_stream_tests.log",
+      "last_lines": [
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 11 tests in 0.189s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "name": "legacy_c1_runtime",
+      "returncode": 0,
+      "command": [
+        "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "08_新阶段C_编解码加速与网页展示",
+        "-p",
+        "test_c1_runtime.py",
+        "-v"
+      ],
+      "log": "legacy_c1_runtime_tests.log",
+      "last_lines": [
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 18 tests in 4.618s",
+        "",
+        "OK"
+      ]
+    }
+  ],
+  "initial_default_encoding_failure": "Legacy C1 test used read_text() with Windows GBK for UTF-8 decode.json: 17 passed, 1 UnicodeDecodeError; explicit -X utf8 retry retained below."
+}
