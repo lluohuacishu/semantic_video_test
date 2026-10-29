@@ -1,0 +1,94 @@
+{
+  "success": true,
+  "real_video_stream_byte_exact": true,
+  "separate_role_bundles": true,
+  "original_full_weight_reads_forbidden": true,
+  "source_blind_receiver": true,
+  "video_probe": {
+    "width": 640,
+    "height": 360,
+    "avg_frame_rate": "25/2",
+    "duration": "5.280000",
+    "nb_read_frames": "66"
+  },
+  "sender_process": {
+    "returncode": 0,
+    "process_wall_seconds": 11.485036400001263,
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\14_优化阶段_部署精简\\validate_minimal.py",
+      "--guard-role",
+      "encode",
+      "encode",
+      "--assets",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_部署精简\\minimal_cli_20261029_01\\sender_bundle",
+      "--input",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\A_压缩路线选型\\A2_GLC验证\\long108\\input_540.mkv",
+      "--output",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_部署精简\\minimal_cli_20261029_01\\sender",
+      "--frames",
+      "66",
+      "--width",
+      "640",
+      "--stride",
+      "2",
+      "--q",
+      "0"
+    ]
+  },
+  "receiver_process": {
+    "returncode": 0,
+    "process_wall_seconds": 14.948386500000197,
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\14_优化阶段_部署精简\\validate_minimal.py",
+      "--guard-role",
+      "decode",
+      "decode",
+      "--assets",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_部署精简\\minimal_cli_20261029_01\\receiver_bundle",
+      "--input",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_部署精简\\minimal_cli_20261029_01\\sender\\stream.glcsnd",
+      "--output",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_部署精简\\minimal_cli_20261029_01\\receiver"
+    ]
+  },
+  "failed_process": {
+    "returncode": 1,
+    "process_wall_seconds": 5.007174799997301,
+    "command": [
+      "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\14_优化阶段_部署精简\\validate_minimal.py",
+      "--guard-role",
+      "decode",
+      "decode",
+      "--assets",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_部署精简\\minimal_cli_20261029_01\\receiver_bundle",
+      "--input",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_部署精简\\minimal_cli_20261029_01\\bad_reference.glcsnd",
+      "--output",
+      "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_部署精简\\minimal_cli_20261029_01\\failed_receiver"
+    ]
+  },
+  "video_sha256": "6f0e6c889eac3511ff0f4bffbb35423517f61c0d556e05a8af467dfa430a0d6e",
+  "video_identical_to_previous_viewing_copy": true,
+  "failed_reference_never_published": true,
+  "failure": {
+    "type": "ValueError",
+    "message": "Ordered reference states differ from the sender"
+  },
+  "source_sha256": "6683af45254bdaed431658e5f7515cddaeb42df2382f18b983e6e1cba7ae436b",
+  "manifest_sha256": "7901386c96f9aecc230682676b9518f3b2d2d04831bd02ac5a5fa9b11626701a",
+  "validation_code_sha256": {
+    "14_优化阶段_部署精简/validate_minimal.py": "6994138d015066fe0f5bc59e35c266a9af14152681c69b2b42b52a5f163edecd",
+    "14_优化阶段_部署精简/deploy_codec.py": "8a380e41932be1a027a4a869ee0c2d98cba34be458e735219c87376a0ccf66f6",
+    "14_优化阶段_部署精简/role_codec.py": "c4556b4d5fb7040e2af877281fdcfebe4af8b859b5a878d983068aae1fba5807",
+    "08_新阶段C_编解码加速与网页展示/c1_io.py": "4a0555417936d8380e97b9fde922d90003144c0acd80bc560e11c02fe13361e9"
+  }
+}

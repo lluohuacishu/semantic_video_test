@@ -21,8 +21,9 @@ import numpy as np
 class MemoryFrames:
     """One decoded frame at a time; actual EOF, not metadata, sets the count."""
 
-    def __init__(self, args):
+    def __init__(self, args, *, collect_hashes=True):
         self.args = args
+        self.collect_hashes = collect_hashes
         self.reader = cv2.VideoCapture(str(args.input))
         self.indices, self.hashes = [], []
         self.original_size = None
@@ -70,7 +71,8 @@ class MemoryFrames:
                 frame = cv2.resize(frame, (self.width, self.height), interpolation=cv2.INTER_AREA)
             rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             self.indices.append(self.args.start_frame + self.count * self.args.frame_stride)
-            self.hashes.append(hashlib.sha256(rgb.tobytes()).hexdigest())
+            if self.collect_hashes:
+                self.hashes.append(hashlib.sha256(rgb.tobytes()).hexdigest())
             self.count += 1
             return rgb
         finally:

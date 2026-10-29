@@ -1,0 +1,196 @@
+{
+  "schema": "glc-role-exact-weights-v1",
+  "revision": "126db25f9c093508cd0c99cee32b53fd60074f9a",
+  "original_weights": {
+    "GLC_image.pth.tar": "139c1d49a56b5c14b0fbd7e0c43b53a4f0b093d35aa11c79ed9d0b9bfede4c94",
+    "GLC_Video.pth.tar": "c55a46f33b92945dcdc24bbbc023909368de78fce7830d3137e4d2ef7249ee62"
+  },
+  "precision": "FP32; original q tables before interpolation",
+  "inventory": {
+    "image": {
+      "full_parameters": 163988099,
+      "children": {
+        "enc": 2377728,
+        "hyper_enc": 1708800,
+        "hyper_dec": 2761472,
+        "y_prior_fusion": 6505472,
+        "y_spatial_prior_reduction": 196864,
+        "y_spatial_prior_adaptor_1": 2105856,
+        "y_spatial_prior_adaptor_2": 2105856,
+        "y_spatial_prior_adaptor_3": 2105856,
+        "y_spatial_prior": 6317568,
+        "dec": 2377728,
+        "vqgan": 76073859,
+        "code_pred_loss": 27577344,
+        "code_pred_pix_loss": 27577344,
+        "z_vq": 4194304
+      }
+    },
+    "video": {
+      "full_parameters": 125313283,
+      "children": {
+        "feature_adaptor_I": 590080,
+        "feature_adaptor": 197376,
+        "feature_extractor": 2180352,
+        "encoder": 2510848,
+        "temporal_cond": 295040,
+        "y_temporal_combine": 2372352,
+        "weight_generator": 1618816,
+        "hyper_tokenizer": 3153536,
+        "hyper_inv_tokenizer": 660224,
+        "temporal_prior_encoder": 590080,
+        "prior_fusion_adaptor_0": 2499840,
+        "prior_fusion_adaptor_1": 2499840,
+        "y_prior_fusion": 9463296,
+        "y_spatial_prior": 13869824,
+        "decoder": 2510848,
+        "vqgan": 76073859,
+        "z_vq": 4194304
+      }
+    }
+  },
+  "roles": {
+    "sender": {
+      "files": {
+        "image": {
+          "file": "sender_image.pt",
+          "sha256": "f1824bb30ea0ac34fa69b925ca186ec524f8603adbfba79fcbb6b5578d129155",
+          "bytes": 248609364,
+          "parameters": 62123520,
+          "keys": 367
+        },
+        "video": {
+          "file": "sender_video.pt",
+          "sha256": "ae1f8ee0d8a4afbaefdbbc7aa6944b7271e94ca6113ed0ff0476e61cc82f6f19",
+          "bytes": 314567920,
+          "parameters": 78603392,
+          "keys": 481
+        }
+      },
+      "removed": [
+        {
+          "model": "image",
+          "path": "code_pred_loss",
+          "parameters": 27577344
+        },
+        {
+          "model": "image",
+          "path": "code_pred_pix_loss",
+          "parameters": 27577344
+        },
+        {
+          "model": "image",
+          "path": "vqgan.quantize",
+          "parameters": 4194304
+        },
+        {
+          "model": "image",
+          "path": "vqgan.generator",
+          "parameters": 42515587
+        },
+        {
+          "model": "video",
+          "path": "vqgan.quantize",
+          "parameters": 4194304
+        },
+        {
+          "model": "video",
+          "path": "vqgan.generator",
+          "parameters": 42515587
+        }
+      ],
+      "parameters": 140726912
+    },
+    "receiver": {
+      "files": {
+        "image": {
+          "file": "receiver_image.pt",
+          "sha256": "79f9ddcd00d17bbbdd4fd51f9b1d5a242d79b17759ec9789ab6b762985015531",
+          "bytes": 284861870,
+          "parameters": 71187587,
+          "keys": 354
+        },
+        "video": {
+          "file": "receiver_video.pt",
+          "sha256": "e91cc1f67c03972e5f57642719177aacd2bc089ba025f183d8bdb75d7865f87f",
+          "bytes": 333760370,
+          "parameters": 83406851,
+          "keys": 416
+        }
+      },
+      "removed": [
+        {
+          "model": "image",
+          "path": "code_pred_loss",
+          "parameters": 27577344
+        },
+        {
+          "model": "image",
+          "path": "code_pred_pix_loss",
+          "parameters": 27577344
+        },
+        {
+          "model": "image",
+          "path": "vqgan.quantize",
+          "parameters": 4194304
+        },
+        {
+          "model": "image",
+          "path": "vqgan.encoder",
+          "parameters": 29363968
+        },
+        {
+          "model": "image",
+          "path": "enc",
+          "parameters": 2377728
+        },
+        {
+          "model": "image",
+          "path": "hyper_enc",
+          "parameters": 1708800
+        },
+        {
+          "model": "image",
+          "path": "q_enc",
+          "parameters": 1024
+        },
+        {
+          "model": "video",
+          "path": "vqgan.quantize",
+          "parameters": 4194304
+        },
+        {
+          "model": "video",
+          "path": "vqgan.encoder",
+          "parameters": 29363968
+        },
+        {
+          "model": "video",
+          "path": "encoder",
+          "parameters": 2510848
+        },
+        {
+          "model": "video",
+          "path": "temporal_cond",
+          "parameters": 295040
+        },
+        {
+          "model": "video",
+          "path": "y_temporal_combine",
+          "parameters": 2372352
+        },
+        {
+          "model": "video",
+          "path": "hyper_tokenizer",
+          "parameters": 3153536
+        },
+        {
+          "model": "video",
+          "path": "y_q_enc",
+          "parameters": 16384
+        }
+      ],
+      "parameters": 154594438
+    }
+  }
+}
