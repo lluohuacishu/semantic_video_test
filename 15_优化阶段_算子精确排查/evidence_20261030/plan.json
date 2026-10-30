@@ -1,0 +1,57 @@
+{
+  "schema": "glc-native-cupti-profile-v1",
+  "date": "2026-10-30",
+  "clip": {
+    "id": "long108_q0_640",
+    "source": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_发送端免RGB重建\\sender_trial_20261029_01\\prepared\\long108.npy",
+    "width": 640,
+    "height": 360,
+    "frames": 66,
+    "fps": 12.5,
+    "q": 0,
+    "original_source": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\A_压缩路线选型\\A2_GLC验证\\long108\\input_540.mkv",
+    "original_source_sha256": "6683af45254bdaed431658e5f7515cddaeb42df2382f18b983e6e1cba7ae436b",
+    "historical_baseline_stream": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\C_编解码加速与网页展示\\GLC_operator_profile_20261025_171041\\encode\\baseline\\stream.glcv",
+    "source_sha256": "c35d76868968bf2df750fa124b683dc7d802df4d89d7dd180426c659617ca46c",
+    "historical_baseline_sha256": "6092d1b0b703d01e452e0c10d9c31429e43b48eaa41bcd2d9696656c39c78370",
+    "stream": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_发送端免RGB重建\\sender_trial_20261029_01\\long108_q0_640\\pair1_no_rgb\\stream.glcsnd",
+    "teacher_result": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_发送端免RGB重建\\sender_trial_20261029_01\\long108_q0_640\\receiver\\result.json",
+    "stream_sha256": "4214004f17f4f8e344d5a521936abdebd8a6c0557aea761588600666334e033d",
+    "teacher_result_sha256": "c2ea6ee6b164ed80d89a3ca48694519377d75818467fccca9ec0f2f356a7557d"
+  },
+  "assets": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_部署精简\\role_assets_20261029_01",
+  "assets_manifest_sha256": "7901386c96f9aecc230682676b9518f3b2d2d04831bd02ac5a5fa9b11626701a",
+  "samples": [
+    0,
+    1,
+    2,
+    3,
+    9,
+    33,
+    64,
+    65
+  ],
+  "warmup_frames": 16,
+  "baseline_repeats": 3,
+  "nvtx_repeats": 2,
+  "code_sha256": {
+    "15_优化阶段_算子精确排查/cupti_trace.py": "06fb1f24d39da911e83fd74dff898ce618116200ffbb9532f8a0ff4ae1d8c80a",
+    "15_优化阶段_算子精确排查/nvtx_binding.py": "2e993e1b73240cb88deb7e4c8c96ba2482586c466bf2fa32bbaf7b8c449fd6ae",
+    "15_优化阶段_算子精确排查/operator_observer.py": "10a02b04f206e72cb336d86113f6f4b1aa5627cb32d255b94b85e470f2816d98",
+    "15_优化阶段_算子精确排查/pipeline_timing.py": "a76b51d044c7bd05400be34c59b9d61bb74be333455bb093114a689bc49eaf32",
+    "15_优化阶段_算子精确排查/profile_worker.py": "f026899a04de0261234808d8e2adbfe597e9705fee69d946eadc4d820906b6ed",
+    "15_优化阶段_算子精确排查/run_profile.py": "02ea1dc8906f71630b9ee8c243579f4cb2b783989c2486e6e80ad24f3a0d5afa",
+    "15_优化阶段_算子精确排查/test_measurement.py": "1a95a43f668e80086cbb97c508ed9ff6a337a588dcd4febcb55846bc27653f5f",
+    "14_优化阶段_部署精简/role_codec.py": "c4556b4d5fb7040e2af877281fdcfebe4af8b859b5a878d983068aae1fba5807",
+    "14_优化阶段_部署精简/deploy_codec.py": "8a380e41932be1a027a4a869ee0c2d98cba34be458e735219c87376a0ccf66f6",
+    "08_新阶段C_编解码加速与网页展示/c1_io.py": "4a0555417936d8380e97b9fde922d90003144c0acd80bc560e11c02fe13361e9",
+    "08_新阶段C_编解码加速与网页展示/c2_native.py": "1f948c3dc207dfdc1cb7d74f325c98a9065b7dd2d17f41b7cb4c77153db962b4",
+    "04_外部依赖快照/semantic-video-training/scripts/glc_video_codec.py": "daa09cf333ac275626e0906ca6b043ab2cf082eb52bd47c192e20e10ee38b83a"
+  },
+  "measurement": "FP32, native rANS, real CUDA 12.4 CUPTI Activity API 22; no model edits or precision changes",
+  "gpu_at_start": {
+    "returncode": 0,
+    "value": "2026/10/30 13:54:22.661, NVIDIA GeForce RTX 4060 Laptop GPU, 560.94, 13 %, 2602 MiB, 210 MHz, 6.57 W, 38",
+    "error": ""
+  }
+}

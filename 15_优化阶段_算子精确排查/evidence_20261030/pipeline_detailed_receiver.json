@@ -1,0 +1,4929 @@
+{
+  "result": {
+    "frames": 66,
+    "header": {
+      "arithmetic": {
+        "capability": [
+          8,
+          9
+        ],
+        "cuda": "12.4",
+        "cudnn": 90100,
+        "deterministic": true,
+        "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+        "implementation": "glcv-lab-f32-v1",
+        "tf32": false,
+        "torch": "2.5.1+cu124"
+      },
+      "container_version": 3,
+      "entropy": "python-byte-rans-gaussian128-v1",
+      "fps": 12.5,
+      "frames": 66,
+      "height": 360,
+      "integrity_profile": "reference-only-no-sender-rgb-v1",
+      "intra_period": 64,
+      "q": 0,
+      "reset_interval": 32,
+      "revision": "126db25f9c093508cd0c99cee32b53fd60074f9a",
+      "sender_rgb_reconstructed": false,
+      "table_sha256": "a6b6e078b8554d60a065e59a35bd1b0c181b0b4f4bfcf73cd78403bb73e375ac",
+      "weights": {
+        "GLC_Video.pth.tar": "c55a46f33b92945dcdc24bbbc023909368de78fce7830d3137e4d2ef7249ee62",
+        "GLC_image.pth.tar": "139c1d49a56b5c14b0fbd7e0c43b53a4f0b093d35aa11c79ed9d0b9bfede4c94"
+      },
+      "width": 640
+    },
+    "reference_verified": true,
+    "sender_rgb_checksum_available": false,
+    "sender_rgb_verified": null,
+    "stream_sha256": "4214004f17f4f8e344d5a521936abdebd8a6c0557aea761588600666334e033d",
+    "source_media_reads": [],
+    "video_sha256": "6f0e6c889eac3511ff0f4bffbb35423517f61c0d556e05a8af467dfa430a0d6e",
+    "video_bytes": 971554,
+    "video_encoding": "H.264 CRF16 viewing output; exact tests use pre-transcode RGB",
+    "action": "decode",
+    "model_load_seconds": 2.1269776999997703,
+    "file_operation_seconds": 10.953059000000394,
+    "elapsed_before_report_seconds": 13.080036899999868,
+    "deployment_assets": {
+      "role": "receiver",
+      "manifest_sha256": "7901386c96f9aecc230682676b9518f3b2d2d04831bd02ac5a5fa9b11626701a",
+      "files": {
+        "image": {
+          "file": "receiver_image.pt",
+          "sha256": "79f9ddcd00d17bbbdd4fd51f9b1d5a242d79b17759ec9789ab6b762985015531",
+          "bytes": 284861870,
+          "parameters": 71187587,
+          "keys": 354
+        },
+        "video": {
+          "file": "receiver_video.pt",
+          "sha256": "e91cc1f67c03972e5f57642719177aacd2bc089ba025f183d8bdb75d7865f87f",
+          "bytes": 333760370,
+          "parameters": 83406851,
+          "keys": 416
+        }
+      }
+    },
+    "training_steps": 0,
+    "research_pngs": false,
+    "sender_previews": false,
+    "per_frame_metric_logs": false
+  },
+  "scopes": {
+    "rows": [
+      {
+        "name": "init.source_check",
+        "parent": "",
+        "wall_ns": 63836700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "init.cuda_configuration",
+        "parent": "",
+        "wall_ns": 39093800,
+        "thread_cpu_ns": 31250000,
+        "process_cpu_ns": 265625000
+      },
+      {
+        "name": "init.meta_construction",
+        "parent": "",
+        "wall_ns": 780203400,
+        "thread_cpu_ns": 718750000,
+        "process_cpu_ns": 718750000
+      },
+      {
+        "name": "init.role_prune",
+        "parent": "",
+        "wall_ns": 1573500,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "init.asset_hash",
+        "parent": "",
+        "wall_ns": 147394200,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "init.torch_load",
+        "parent": "",
+        "wall_ns": 88704200,
+        "thread_cpu_ns": 93750000,
+        "process_cpu_ns": 93750000
+      },
+      {
+        "name": "init.validate_tensors",
+        "parent": "",
+        "wall_ns": 203816700,
+        "thread_cpu_ns": 203125000,
+        "process_cpu_ns": 203125000
+      },
+      {
+        "name": "init.assign_weights",
+        "parent": "",
+        "wall_ns": 3655800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "init.asset_hash",
+        "parent": "",
+        "wall_ns": 178577200,
+        "thread_cpu_ns": 171875000,
+        "process_cpu_ns": 171875000
+      },
+      {
+        "name": "init.torch_load",
+        "parent": "",
+        "wall_ns": 99655800,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "init.validate_tensors",
+        "parent": "",
+        "wall_ns": 256136800,
+        "thread_cpu_ns": 250000000,
+        "process_cpu_ns": 250000000
+      },
+      {
+        "name": "init.assign_weights",
+        "parent": "",
+        "wall_ns": 4428100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "init.to_device",
+        "parent": "",
+        "wall_ns": 156461000,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "init.to_device",
+        "parent": "",
+        "wall_ns": 75814400,
+        "thread_cpu_ns": 62500000,
+        "process_cpu_ns": 62500000
+      },
+      {
+        "name": "init.asset_hash",
+        "parent": "",
+        "wall_ns": 435400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "container.read_verify",
+        "parent": "pipeline.decode",
+        "wall_ns": 809500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "video.open_ffmpeg",
+        "parent": "pipeline.decode",
+        "wall_ns": 24234300,
+        "thread_cpu_ns": 31250000,
+        "process_cpu_ns": 31250000
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 570200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 150000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 289000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 607000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 519000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 663500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 448900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 136800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 257300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 382800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 142600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 241600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 134816500,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 856300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 661826300,
+        "thread_cpu_ns": 656250000,
+        "process_cpu_ns": 656250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2079200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1000900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 285100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 464100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 770400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 258100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 426500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 119840000,
+        "thread_cpu_ns": 93750000,
+        "process_cpu_ns": 93750000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1485300,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 162065800,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2128900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 789000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 289100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 491300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1048700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 271800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 481700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121310200,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 3656700,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 158902300,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2350500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 697600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 261600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 437800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 679600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 257100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 429200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121835900,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1456000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 150591800,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2921000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 807700,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 277500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 471100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 652800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 263800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 443100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122405600,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1853000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 151802800,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2137700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 745700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 280700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 467300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 735800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 277200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 459500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 123281800,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2819400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 153258500,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2296900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 767600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 295100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 502800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 806200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 323600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 625000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 119620500,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1480300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 151822100,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 3687000,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 701900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 261700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 431400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 669000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 248200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 422000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 123647200,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1908800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 153444000,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2330600,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1899800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 607100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1027400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 664200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 251000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 432100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 120244700,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1415100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 152559500,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 1846900,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 789200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 267500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 450300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 706000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 255800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 429100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122673000,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1431200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 152026900,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2406000,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 731800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 267800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 492100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 838900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 254800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 413300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121403300,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1413500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 149860000,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 1939200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 714500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 249200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 426000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 667200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 254000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 436300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122145200,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 3507700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 152271700,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2696800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1823800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 275100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 471800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1074400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 273600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 459300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 115713400,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1615600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 154791600,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2234900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 791600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 258100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 441500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1367900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 715100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1090400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 119333600,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1565900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 151997800,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2249700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 759200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 279400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 516800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 859800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 269400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 460100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122619000,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1418600,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 152081700,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 3250600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 760700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 281900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 469100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 747600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 253600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 410700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 120451500,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2315600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 156777600,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 171875000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2336100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 754600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 294600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 492000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 706900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 259100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 438300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 123185700,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1909000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 153241700,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 1948300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 734200,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 285400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 467200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1316200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 1671600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2290500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 119784800,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1731900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 153365600,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2231000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 784300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 273100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 458300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1995200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 793300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1583400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 118899700,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1512800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 158007300,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 5149800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 927700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 274800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 461200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 717400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 258300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 427800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121459100,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 3149500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 150866300,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2051100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 713700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 270100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 452200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1316800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 690800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1053300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121594500,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1393300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 152103400,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2407200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 687500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 257900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 430400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 670200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 271200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 435300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 120825000,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1413800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 157344600,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2146900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2880300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 1576600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1976900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1688500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 1597300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2345900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121947600,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1391800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 167356200,
+        "thread_cpu_ns": 171875000,
+        "process_cpu_ns": 171875000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2335500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 824500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 743700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1240000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 737800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 257300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 423400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121773300,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1579300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 149282800,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2023300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1044900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 425200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 725700,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 699400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 264500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 437500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 119189200,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1492900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 151645400,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2336200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 739000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 320000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 515700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2466000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 895300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1989400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 112914400,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1815000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 160866600,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 1980900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 675400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 251800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 440100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 946200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 414700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 724400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122545200,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1413400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 151266900,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 3400000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1460600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 744000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1131300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1443500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 725600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1093900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 116140300,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1459100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 159429400,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 1934600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 757000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 292100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 485500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 724100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 264600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 431600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122058000,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1556300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 150428900,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2265400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 788100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 289400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 478000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 654600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 248800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 411000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122707500,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2734900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 154776000,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2391800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 748400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 268300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 447900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 703200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 261800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 434400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 119917200,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1881700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 151630000,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2877000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 649300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 260300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 430400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 668900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 255900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 417800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122989700,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2080400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 159807600,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 4814300,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 666700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 251200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 432500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 707100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 248500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 419800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122513900,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1921500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 151292100,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2043100,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 676600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 261800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 431900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 712700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 267800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 440800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121809500,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1594600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 150470700,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2850300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1768000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 805500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1279500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1320400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 485300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 812400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122465500,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1415100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 155519800,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2155800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 764700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 257900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 431800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 660500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 251700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 424900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122310800,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1778200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 155079500,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 1970400,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2920700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 1895900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2833200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 685400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 271700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 456700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 118441200,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1377000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 162500800,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 3646300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 723800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 271300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 463000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 982000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 356500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 604200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122046300,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1481900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 151827900,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2711900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1473100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 660400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1082500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 736700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 281000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 466800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 119921800,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1534800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 154563700,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2010000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 754000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 293600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 489000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 728800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 379600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 575400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 118970400,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1609400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 153467900,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2454100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 765900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 309700,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 543300,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 805200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 309800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 588000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 119125700,
+        "thread_cpu_ns": 93750000,
+        "process_cpu_ns": 93750000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1410300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 149494800,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 1970500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1377200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 752200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1169600,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 689700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 481700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 649000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 120622400,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2064700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 155134900,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2149400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 729800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 276600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 465100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 737600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 268200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 458500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122695300,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1716600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 149709400,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 1921100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1306300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 715800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1086900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1301100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 703100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1059500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 120092800,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2506600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 159813300,
+        "thread_cpu_ns": 171875000,
+        "process_cpu_ns": 171875000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2316100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1344900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 715000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1091000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1505800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 270300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 432800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 123047200,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1462400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 153454600,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 1982700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 813300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 274100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 461700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 747700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 305100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 492400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121282200,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1506300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 149703000,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2193400,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 765600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 277800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 480900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1353500,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 697900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1089300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 112996300,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1505100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 152707100,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2143300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 700200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 274900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 465800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 681500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 261000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 435500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122092600,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2580100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 149798800,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2757700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1312800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 710000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1088700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1267900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 713000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1071200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121665100,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1416300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 152971700,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 1963400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 722500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 274600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 454900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 690300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 252800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 416200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122445600,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1962600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 158104600,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2173500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1323000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 630000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1002400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 651900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 255800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 421400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 120380900,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1605500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 152332000,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2011300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 688800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 267800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 440900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 696200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 269600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 443200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122020500,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1515300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 149254600,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2738100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1377700,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 705300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1079100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 839100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 264100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 456900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121574600,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1818700,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 153054800,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2531400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 700600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 274000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 452100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 679200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 268600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 455300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121365900,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 3009300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 151968300,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2806900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 750000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 284000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 484000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2420800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 672100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1034000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 117625600,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1364700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 153696100,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2507200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 739300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 280300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 471700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 725900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 262300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 446300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121328700,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1406500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 147649100,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 1896900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1443900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 708000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1080200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 719300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 248300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 425600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122917200,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2145800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 153775700,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 3226700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 739200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 280900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 477300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 747800,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 274000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 463800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 120921100,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1532200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 151456400,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2111500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 777600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 288200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 485700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 738100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 270200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 443000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122062000,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1785100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 151159700,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2146200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 682800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 272000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 444600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1320100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 719500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1094000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 115838200,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1523100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 153148500,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2181500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 737700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 276000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 463300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 706200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 312200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 522900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121451800,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1789700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 154019800,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 1915800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1312500,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 711700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1076800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1118400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 307600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 536800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 120436000,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1767900,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 151009800,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2198000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 815000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 316400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 521300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1055900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 709400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1088500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122816500,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1606900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 151430800,
+        "thread_cpu_ns": 140625000,
+        "process_cpu_ns": 140625000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2135400,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2938500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 1221500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2119600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1349800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 700000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1062900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 119912700,
+        "thread_cpu_ns": 109375000,
+        "process_cpu_ns": 109375000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 3338800,
+        "thread_cpu_ns": 15625000,
+        "process_cpu_ns": 15625000
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 158852700,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2725100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 606500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 256600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 461300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 469500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 169500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 296100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 357500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 150300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 259300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 359500,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 144900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 260200,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 121107200,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 2071300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 159282200,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 3530900,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 916800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 344300,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 590100,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.indexes",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 742700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "native_c.glc_rans_decode",
+        "parent": "pipeline.decode/codec.frame/entropy.decode",
+        "wall_ns": 279000,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "entropy.decode",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 461700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "rgb_array",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 122728800,
+        "thread_cpu_ns": 125000000,
+        "process_cpu_ns": 125000000
+      },
+      {
+        "name": "reference_hash",
+        "parent": "pipeline.decode/codec.frame",
+        "wall_ns": 1899700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "codec.frame",
+        "parent": "pipeline.decode",
+        "wall_ns": 151460100,
+        "thread_cpu_ns": 156250000,
+        "process_cpu_ns": 156250000
+      },
+      {
+        "name": "video.queue_feed",
+        "parent": "pipeline.decode",
+        "wall_ns": 2226800,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "video.finish_publish",
+        "parent": "pipeline.decode",
+        "wall_ns": 102341700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "output.file_hash",
+        "parent": "pipeline.decode",
+        "wall_ns": 318600,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "output.file_hash",
+        "parent": "pipeline.decode",
+        "wall_ns": 770700,
+        "thread_cpu_ns": 0,
+        "process_cpu_ns": 0
+      },
+      {
+        "name": "pipeline.decode",
+        "parent": "",
+        "wall_ns": 10953048900,
+        "thread_cpu_ns": 10640625000,
+        "process_cpu_ns": 10656250000
+      }
+    ],
+    "note": "Nested wall scopes overlap; thread CPU excludes helper threads, process CPU includes them. GPU waits are wall time."
+  }
+}
