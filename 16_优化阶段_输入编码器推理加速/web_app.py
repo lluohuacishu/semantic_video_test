@@ -13,16 +13,20 @@ from c2_watch import supervise,write,inspect
 from web_frames import Frames,discard_working_frames
 
 MODES={'eager':'原GLC','amp_fp16':'局部FP16','trt_fp32_stream':'TensorRT FP32','trt_fp16_stream':'TensorRT FP16'}
+DECODERS={'eager':'原GLC FP32','trt_fp32':'TensorRT FP32','trt_fp16_safe':'TensorRT混合精度'}
 PROFILES={'amp_fp16':'pt251-amp16','trt_fp32_stream':'trt105-f32','trt_fp16_stream':'trt105-f16'}
 TERMINAL={'done','error','cancelled','interrupted'}
 BASE='/inference/'
 
 
 def options(value):
-    if not isinstance(value,dict) or set(value)-{'sample','source_job','filename','bytes','modes','frames','size','q','range','fps_mode'}:raise ValueError('无效实验参数')
+    if not isinstance(value,dict) or set(value)-{'sample','source_job','filename','bytes','modes','decoder_modes','frames','size','q','range','fps_mode'}:raise ValueError('无效实验参数')
     modes=value.get('modes')
     if not isinstance(modes,list) or not modes or len(modes)>4 or len(set(modes))!=len(modes) or any(m not in MODES for m in modes):
         raise ValueError('请选择一种至四种编码模式')
+    decoders=value.get('decoder_modes',['eager'])
+    if not isinstance(decoders,list) or not decoders or len(decoders)>3 or any(not isinstance(d,str) or d not in DECODERS for d in decoders) or len(set(decoders))!=len(decoders):
+        raise ValueError('请选择一种至三种解码模式')
     scope=value.get('range','first_frames' if value.get('frames') is not None else 'full')
     if scope not in ['full','first_frames']:raise ValueError('请选择完整视频或快速测试')
     if scope=='first_frames' and (type(value.get('frames')) is not int or not 1<=value['frames']<=10000):raise ValueError('快速测试帧数需为1–10000')
@@ -31,7 +35,7 @@ def options(value):
     if type(value.get('size')) is not int or value['size'] not in (512,640):raise ValueError('请选择512或640像素最长边')
     fps_mode=value.get('fps_mode','original')
     if not isinstance(fps_mode,str) or fps_mode not in ('original','half'):raise ValueError('请选择原帧率或帧率减半')
-    return dict(modes=list(modes),range=scope,frames=value['frames'] if scope=='first_frames' else None,q=value['q'],size=value['size'],fps_mode=fps_mode)
+    return dict(modes=list(modes),decoder_modes=list(decoders),range=scope,frames=value['frames'] if scope=='first_frames' else None,q=value['q'],size=value['size'],fps_mode=fps_mode)
 
 
 class InferenceLab:
@@ -74,6 +78,7 @@ class InferenceLab:
             if j.get('filename') and not j.get('receiving') and f.is_file() and f.stat().st_size==j.get('expected_bytes'):
                 uploads.append(dict(id=j['id'],filename=j['filename'],options=j['options']))
         return dict(app='glc-inference-lab-v1',modes=[dict(id=k,label=v) for k,v in MODES.items()],
+            decoder_modes=[dict(id=k,label=v) for k,v in DECODERS.items()],
             samples=[{k:c[k] for k in ['id','width','height','frames','fps','q']} for c in self.plan['clips'] if c['id']!='uv108_q17_512'] if self.plan else [],
             ready=bool(self.plan and not self.closed and not self.owner.closed and not self.blockers and not self.owner.blockers and self.owner.role=='sender'),
             blocked_processes=list(self.owner.blockers)+list(self.blockers),
@@ -177,27 +182,33 @@ class InferenceLab:
                 self.update(identifier,phase=MODES[variant]+'：编码',current_mode=variant)
                 send=self.execute(identifier,variant+'_sender',dict(action='sender',assets=self.plan['assets'],source=source,
                     variant=variant,q=opts['q'],engine_cache=str(self.trial/'engines')))
-                self.update(identifier,phase=MODES[variant]+'：独立解码')
                 stream=folder/(variant+'_sender')/send['stream_file']
-                receive=self.execute(identifier,variant+'_receiver',dict(action='receiver',assets=self.plan['assets'],input=str(stream)))
-                if not receive['reference_verified'] or send['reference_checksums']!=receive['reference_checksums'] or send['stream_sha256']!=receive['stream_sha256']:
-                    raise ValueError('独立解码校验失败')
-                a,b=Frames(source),Frames(receive['decoded_storage'])
-                if receive['frames']!=source['frames']:raise ValueError('解码帧数与输入不同')
-                try:mse=sum(float(np.mean((a[i].astype('float64')-b[i])**2)) for i in range(source['frames']))/source['frames']
-                finally:a.close();b.close()
-                self.cleanup_frames(receive['decoded_storage'],folder)
-                duration=source['frames']/source['fps']
-                item=dict(mode=variant,label=MODES[variant],frames=source['frames'],encode_core_seconds=send['core_seconds'],decode_core_seconds=receive['core_seconds'],
-                    encode_fps=send['fps'],decode_fps=receive['fps'],model_load_seconds=send['model_load_seconds']+receive['model_load_seconds'],
-                    engine_setup_seconds=send['engine_setup_seconds'],warmup_seconds=send['warmup_seconds']+receive['warmup_seconds'],
-                    elapsed_seconds=send['worker_seconds']+receive['worker_seconds'],stream_bytes=send['stream_bytes'],stream_sha256=send['stream_sha256'],
-                    duration_seconds=duration,bitrate_kbps=send['stream_bytes']*8/duration/1000,
-                    bpp=send['stream_bytes']*8/(source['frames']*source['width']*source['height']),stream_file=send['stream_file'],segments=send['segments'],
-                    psnr_db=10*math.log10(255**2/max(mse,1e-12)),reference_verified=True,
-                    video=BASE+f'jobs/{identifier}/{variant}.mp4',stream=BASE+f'jobs/{identifier}/{variant}'+stream.suffix)
-                with self.lock:self.jobs[identifier]['results'].append(item)
-                self.update(identifier,phase=MODES[variant]+'已完成')
+                for decoder in opts.get('decoder_modes',['eager']):
+                    result_id=variant if decoder=='eager' else variant+'__'+decoder
+                    receiver_folder=result_id+'_receiver'
+                    self.update(identifier,phase=MODES[variant]+'编码 → '+DECODERS[decoder]+'解码')
+                    receive=self.execute(identifier,receiver_folder,dict(action='receiver',assets=self.plan['assets'],input=str(stream),
+                        decoder_backend=decoder,decoder_engine_cache=str(WORKSPACE/'02_实验数据/优化_解码器推理/decoder_20261031_05/engines')))
+                    if not receive['reference_verified'] or send['reference_checksums']!=receive['reference_checksums'] or send['stream_sha256']!=receive['stream_sha256']:
+                        raise ValueError('独立解码校验失败')
+                    a,b=Frames(source),Frames(receive['decoded_storage'])
+                    if receive['frames']!=source['frames']:raise ValueError('解码帧数与输入不同')
+                    try:mse=sum(float(np.mean((a[i].astype('float64')-b[i])**2)) for i in range(source['frames']))/source['frames']
+                    finally:a.close();b.close()
+                    self.cleanup_frames(receive['decoded_storage'],folder)
+                    duration=source['frames']/source['fps']
+                    item=dict(mode=variant,decoder_mode=decoder,result_id=result_id,receiver_folder=receiver_folder,
+                        label=MODES[variant]+'编码 / '+DECODERS[decoder]+'解码',frames=source['frames'],encode_core_seconds=send['core_seconds'],decode_core_seconds=receive['core_seconds'],
+                        encode_fps=send['fps'],decode_fps=receive['fps'],model_load_seconds=send['model_load_seconds']+receive['model_load_seconds'],
+                        engine_setup_seconds=send['engine_setup_seconds']+receive['engine_setup_seconds'],decoder_setup_seconds=receive['engine_setup_seconds'],
+                        warmup_seconds=send['warmup_seconds']+receive['warmup_seconds'],
+                        elapsed_seconds=send['worker_seconds']+receive['worker_seconds'],stream_bytes=send['stream_bytes'],stream_sha256=send['stream_sha256'],
+                        duration_seconds=duration,bitrate_kbps=send['stream_bytes']*8/duration/1000,
+                        bpp=send['stream_bytes']*8/(source['frames']*source['width']*source['height']),stream_file=send['stream_file'],segments=send['segments'],
+                        psnr_db=10*math.log10(255**2/max(mse,1e-12)),reference_verified=True,
+                        video=BASE+f'jobs/{identifier}/{result_id}.mp4',stream=BASE+f'jobs/{identifier}/{variant}'+stream.suffix)
+                    with self.lock:self.jobs[identifier]['results'].append(item)
+                    self.update(identifier,phase=DECODERS[decoder]+'解码已完成')
             self.cleanup_frames(source,folder)
             self.update(identifier,status='done',phase='全部完成，独立解码校验通过',total_seconds=time.perf_counter()-began,completed_at=time.time())
         except BaseException as exc:
@@ -213,8 +224,8 @@ class InferenceLab:
         j=self.get(identifier);folder=self.directory/identifier
         if name=='source.mp4' and j.get('source'):return folder/'prepare/source.mp4'
         for result in j['results']:
-            m=result['mode']
-            if name==m+'.mp4':return folder/(m+'_receiver')/'video.mp4'
+            m=result['mode'];rid=result.get('result_id',m)
+            if name==rid+'.mp4':return folder/result.get('receiver_folder',m+'_receiver')/'video.mp4'
             if name==m+Path(result.get('stream_file','stream.glcsnd')).suffix:return folder/(m+'_sender')/result.get('stream_file','stream.glcsnd')
         raise KeyError(name)
 

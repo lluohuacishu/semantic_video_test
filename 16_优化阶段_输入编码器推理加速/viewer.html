@@ -9,24 +9,25 @@
 </style>
 </head>
 <body><main>
-<header><div><div class="eyebrow">GLC · 编码器加速实验</div><h1>看画面，也看实际编码耗时</h1><p>选择模式实际运行，也可回放已完成的同步对比。</p></div><span class="badge">RTX 4060 · 编码与独立解码</span></header>
+<header><div><div class="eyebrow">GLC · 编解码加速实验</div><h1>看画面，也看编解码耗时</h1><p>分别选择编码和解码模式，比较实际速度与重建画面。</p></div><span class="badge">RTX 4060 · 编码与独立解码</span></header>
 <nav class="clips" aria-label="实验入口"><button id="tab-run" aria-pressed="true">自己运行，比较速度</button><button id="tab-replay" aria-pressed="false">查看已完成的四段对比</button><a href="/" style="margin-left:auto;align-self:center">返回主网页</a></nav>
 <section id="live-panel">
 <div class="table-wrap" style="padding:20px">
-<h2 style="font-size:19px;margin:0 0 14px">选择输入与编码模式</h2>
+<h2 style="font-size:19px;margin:0 0 14px">选择输入与编解码模式</h2>
 <div class="controls"><label>输入 <select id="live-source" aria-label="实验输入"></select></label><input id="live-file" type="file" accept=".mp4,.mkv,.mov,.avi,.webm" hidden></div>
 <div class="controls">
 <label>处理范围 <select id="live-range"><option value="full">完整视频（默认）</option><option value="first_frames">快速测试：最多N帧输出</option></select></label>
 <label>最长边 <select id="live-size"><option value="640">640像素</option><option value="512">512像素</option></select></label>
 <label id="live-frames-wrap" hidden>输出测试帧数 <input id="live-frames" type="number" min="1" max="10000" value="66" style="width:84px;font:inherit;padding:7px;background:#1a303e;color:white;border:1px solid #415763;border-radius:6px"></label>
 <label>q档位 <input id="live-q" type="number" min="0" max="63" value="0" style="width:70px;font:inherit;padding:7px;background:#1a303e;color:white;border:1px solid #415763;border-radius:6px"></label></div>
-<div class="controls" id="live-modes" aria-label="编码模式"></div>
+<div class="controls"><span>编码模式</span><div class="controls" id="live-modes" aria-label="编码模式"></div></div>
+<div class="controls"><span>解码模式</span><div class="controls" id="live-decoders" aria-label="解码模式"></div></div>
 <div class="controls"><label>帧率模式 <select id="live-fps-mode"><option value="original">跟随原视频帧率</option><option value="half">帧率减半</option></select></label><span style="color:var(--muted);font-size:13px">减半时隔帧采样并同步降低输出帧率，保持正常播放速度。</span></div>
 <div class="controls"><button id="live-start" class="primary" disabled>开始真实编解码</button><button id="live-cancel" disabled>停止当前任务</button></div>
-<p class="note">所有模式使用同一份输入，按单GPU队列依次运行。本机编码后由独立进程使用原接收端解码，不包含网络传输。</p>
-<p class="note">原GLC代表原权重的FP32输入编码器；其余模式仅替换该模块，接收端均保持原模型。</p>
+<p class="note">按单GPU队列依次运行。每种编码模式只编码一次，选中的解码模式复用同一码流；本页不包含网络传输。</p>
+<p class="note">编码选项替换输入图像编码器；解码选项只替换原权重RGB生成器，熵解码和潜变量参考链保持FP32。混合精度将部分卷积设为FP16，上采样、输出及其余浮点计算保持FP32。</p>
 <p class="note">完整模式读取上传视频直到末帧，不限66帧。已有示例按其片段长度运行；可直接复用上次上传的原文件。</p>
-<p class="note">首次遇到新尺寸时，TensorRT需要构建引擎，多种模式可能需要1–3分钟；页面会单列构建时间，后续复用。</p>
+<p class="note">首次遇到新尺寸或精度时，TensorRT需要构建引擎，可能耗时数分钟；页面会单列引擎准备时间，后续复用。</p>
 </div>
 <div id="live-status" role="status" aria-live="polite" style="margin:18px 0;color:var(--mint)">正在连接运行服务…</div>
 <progress id="live-progress" max="1" value="0" style="width:100%;height:9px;accent-color:var(--mint)"></progress>

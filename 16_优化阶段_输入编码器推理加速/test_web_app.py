@@ -7,7 +7,7 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import Mock,patch
 from web_app import InferenceLab,options
-from experiment_common import load_settings
+from experiment_common import load_settings,file_sha,np
 
 
 class WebTests(unittest.TestCase):
@@ -42,6 +42,39 @@ class WebTests(unittest.TestCase):
         self.assertEqual(result['fps_mode'],'half');self.assertIsNone(result['frames'])
         for value in ['fast',2,False,None,[]]:
             with self.assertRaises(ValueError):options(dict(self.value,fps_mode=value))
+
+    def test_decoder_modes_and_legacy_default(self):
+        self.assertEqual(options(self.value)['decoder_modes'],['eager'])
+        expected=['eager','trt_fp32','trt_fp16_safe']
+        self.assertEqual(options(dict(self.value,decoder_modes=expected))['decoder_modes'],expected)
+        for value in [[],None,'eager',['bad'],['eager','eager'],[[]]]:
+            with self.assertRaises(ValueError):options(dict(self.value,decoder_modes=value))
+
+    def test_three_decoders_reuse_one_encoded_stream_and_keep_unique_videos(self):
+        path=self.root/'source.npy';np.save(path,np.zeros((2,2,2,3),dtype=np.uint8))
+        storage=dict(source=str(path),source_sha256=file_sha(path),frames=2,width=2,height=2,fps=15,
+                     source_fps=30,frame_stride=2,duration_seconds=2/15,read_until_eof=True)
+        common=dict(frames=2,core_seconds=1.,fps=2.,model_load_seconds=.1,engine_setup_seconds=.2,
+                    warmup_seconds=.1,worker_seconds=2.,stream_sha256='same',stream_bytes=100,
+                    reference_checksums={'latent_sha256':'same'},stream_file='stream.glcsnd',segments=1)
+        calls=[]
+        def execute(identifier,name,cfg):
+            calls.append((name,dict(cfg)))
+            if cfg['action']=='prepare':return dict(storage)
+            if cfg['action']=='sender':return dict(common)
+            return dict(common,reference_verified=True,decoded_storage=storage)
+        value=dict(self.value,modes=['eager'],decoder_modes=['eager','trt_fp32','trt_fp16_safe'])
+        j=self.lab.create(value)
+        with patch.object(self.lab,'execute',side_effect=execute):self.lab.run(j['id'])
+        result=self.lab.get(j['id']);self.assertEqual(result['status'],'done',result.get('error'))
+        self.assertEqual(len([c for _,c in calls if c['action']=='sender']),1)
+        receivers=[c for _,c in calls if c['action']=='receiver']
+        self.assertEqual(len(receivers),3);self.assertEqual(len({c['input'] for c in receivers}),1)
+        self.assertEqual(len({r['video'] for r in result['results']}),3)
+        self.assertEqual(len({r['stream'] for r in result['results']}),1)
+        for row in result['results']:
+            name=row['video'].rsplit('/',1)[-1]
+            self.assertEqual(self.lab.asset(j['id'],name),self.lab.directory/j['id']/row['receiver_folder']/'video.mp4')
 
     def test_retired_process_blocker_is_rechecked_without_gpu(self):
         self.owner.blockers=['retired-process']

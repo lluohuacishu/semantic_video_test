@@ -1,0 +1,877 @@
+{
+  "reports": [
+    {
+      "clip": "long108_q0_640",
+      "backend": "eager",
+      "frames": 66,
+      "stream_sha256": "4214004f17f4f8e344d5a521936abdebd8a6c0557aea761588600666334e033d",
+      "stream_bytes": 15104,
+      "core_seconds": [
+        8.944674799960922,
+        8.987615900019591,
+        8.920815200035577
+      ],
+      "median_core_seconds": 8.944674799960922,
+      "median_fps": 7.378691956502247,
+      "speedup_vs_eager": 1.0,
+      "all_reference_states_and_entropy_identical": true,
+      "rgb_difference": {
+        "mse": 0.0,
+        "psnr_vs_original_rgb_db": 168.13080360867912,
+        "maximum_rgb_error": 0,
+        "changed_rgb_values": 0,
+        "changed_rgb_fraction": 0.0,
+        "bit_exact": true
+      },
+      "quality": {
+        "groups": {
+          "all": {
+            "frames": 66,
+            "psnr_db": 32.19273821167204,
+            "baseline_psnr_db": 32.19273821167204,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "P": {
+            "frames": 64,
+            "psnr_db": 32.29402065451676,
+            "baseline_psnr_db": 32.29402065451676,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "I": {
+            "frames": 2,
+            "psnr_db": 29.793135509544058,
+            "baseline_psnr_db": 29.793135509544058,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          }
+        },
+        "frame_csv": "long108_q0_640__eager.csv"
+      },
+      "fish_mask_policy": null
+    },
+    {
+      "clip": "long108_q0_640",
+      "backend": "trt_fp16_safe",
+      "frames": 66,
+      "stream_sha256": "4214004f17f4f8e344d5a521936abdebd8a6c0557aea761588600666334e033d",
+      "stream_bytes": 15104,
+      "core_seconds": [
+        6.399453199985146,
+        6.205377499965834,
+        6.197606099980476
+      ],
+      "median_core_seconds": 6.205377499965834,
+      "median_fps": 10.635936331087574,
+      "speedup_vs_eager": 1.4414392677979977,
+      "all_reference_states_and_entropy_identical": true,
+      "rgb_difference": {
+        "mse": 0.07368971836419753,
+        "psnr_vs_original_rgb_db": 59.45673464178321,
+        "maximum_rgb_error": 17,
+        "changed_rgb_values": 3210017,
+        "changed_rgb_fraction": 0.07036548207772166,
+        "bit_exact": false
+      },
+      "quality": {
+        "groups": {
+          "all": {
+            "frames": 66,
+            "psnr_db": 32.182308768895744,
+            "baseline_psnr_db": 32.19273821167204,
+            "psnr_delta_db": -0.01042944277629232,
+            "baseline_difference_mse": 0.07368971836419753,
+            "changed_rgb_values": 3210017,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "P": {
+            "frames": 64,
+            "psnr_db": 32.28317063502057,
+            "baseline_psnr_db": 32.29402065451676,
+            "psnr_delta_db": -0.010850019496189134,
+            "baseline_difference_mse": 0.07405248571325232,
+            "changed_rgb_values": 3124229,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "I": {
+            "frames": 2,
+            "psnr_db": 29.790279736292632,
+            "baseline_psnr_db": 29.793135509544058,
+            "psnr_delta_db": -0.0028557732514258305,
+            "baseline_difference_mse": 0.06208116319444444,
+            "changed_rgb_values": 85788,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          }
+        },
+        "frame_csv": "long108_q0_640__trt_fp16_safe.csv"
+      },
+      "fish_mask_policy": null
+    },
+    {
+      "clip": "long108_q0_640",
+      "backend": "trt_fp32",
+      "frames": 66,
+      "stream_sha256": "4214004f17f4f8e344d5a521936abdebd8a6c0557aea761588600666334e033d",
+      "stream_bytes": 15104,
+      "core_seconds": [
+        7.45018699998036,
+        7.270628000049328,
+        7.3093982999635045
+      ],
+      "median_core_seconds": 7.3093982999635045,
+      "median_fps": 9.02947100315077,
+      "speedup_vs_eager": 1.2237224505887963,
+      "all_reference_states_and_entropy_identical": true,
+      "rgb_difference": {
+        "mse": 2.5033319304152636e-05,
+        "psnr_vs_original_rgb_db": 94.14561921970787,
+        "maximum_rgb_error": 1,
+        "changed_rgb_values": 1142,
+        "changed_rgb_fraction": 2.5033319304152636e-05,
+        "bit_exact": false
+      },
+      "quality": {
+        "groups": {
+          "all": {
+            "frames": 66,
+            "psnr_db": 32.19273893451907,
+            "baseline_psnr_db": 32.19273821167204,
+            "psnr_delta_db": 7.228470337850013e-07,
+            "baseline_difference_mse": 2.503331930415264e-05,
+            "changed_rgb_values": 1142,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "P": {
+            "frames": 64,
+            "psnr_db": 32.29402147899315,
+            "baseline_psnr_db": 32.29402065451676,
+            "psnr_delta_db": 8.244763947118372e-07,
+            "baseline_difference_mse": 2.5273075810185186e-05,
+            "changed_rgb_values": 1118,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "I": {
+            "frames": 2,
+            "psnr_db": 29.793134403951868,
+            "baseline_psnr_db": 29.793135509544058,
+            "psnr_delta_db": -1.1055921902425325e-06,
+            "baseline_difference_mse": 1.736111111111111e-05,
+            "changed_rgb_values": 24,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          }
+        },
+        "frame_csv": "long108_q0_640__trt_fp32.csv"
+      },
+      "fish_mask_policy": null
+    },
+    {
+      "clip": "sf007_q12_512",
+      "backend": "eager",
+      "frames": 96,
+      "stream_sha256": "810d28f974d68bea51fa6c93edf2c3942149bcba5e088875dc71e7b68ca2178a",
+      "stream_bytes": 14888,
+      "core_seconds": [
+        9.23135879993788
+      ],
+      "median_core_seconds": 9.23135879993788,
+      "median_fps": 10.39933579449279,
+      "speedup_vs_eager": 1.0,
+      "all_reference_states_and_entropy_identical": true,
+      "rgb_difference": {
+        "mse": 0.0,
+        "psnr_vs_original_rgb_db": 168.13080360867912,
+        "maximum_rgb_error": 0,
+        "changed_rgb_values": 0,
+        "changed_rgb_fraction": 0.0,
+        "bit_exact": true
+      },
+      "quality": {
+        "groups": {
+          "all": {
+            "frames": 96,
+            "psnr_db": 23.708895508873653,
+            "baseline_psnr_db": 23.708895508873653,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 113339,
+            "fish_psnr_db": 26.043019794637946,
+            "fish_baseline_psnr_db": 26.043019794637946
+          },
+          "P": {
+            "frames": 94,
+            "psnr_db": 23.724614457444527,
+            "baseline_psnr_db": 23.724614457444527,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 111248,
+            "fish_psnr_db": 26.016340247537997,
+            "fish_baseline_psnr_db": 26.016340247537997
+          },
+          "I": {
+            "frames": 2,
+            "psnr_db": 23.027759534548906,
+            "baseline_psnr_db": 23.027759534548906,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 2091,
+            "fish_psnr_db": 27.76831773528219,
+            "fish_baseline_psnr_db": 27.76831773528219
+          }
+        },
+        "frame_csv": "sf007_q12_512__eager.csv"
+      },
+      "fish_mask_policy": "Existing annotation-union mask, not a precise fish silhouette"
+    },
+    {
+      "clip": "sf007_q12_512",
+      "backend": "trt_fp32",
+      "frames": 96,
+      "stream_sha256": "810d28f974d68bea51fa6c93edf2c3942149bcba5e088875dc71e7b68ca2178a",
+      "stream_bytes": 14888,
+      "core_seconds": [
+        7.403731600024912
+      ],
+      "median_core_seconds": 7.403731600024912,
+      "median_fps": 12.966434385557275,
+      "speedup_vs_eager": 1.2468521684263674,
+      "all_reference_states_and_entropy_identical": true,
+      "rgb_difference": {
+        "mse": 5.100391529224537e-05,
+        "psnr_vs_original_rgb_db": 91.05476845072901,
+        "maximum_rgb_error": 1,
+        "changed_rgb_values": 2166,
+        "changed_rgb_fraction": 5.100391529224537e-05,
+        "bit_exact": false
+      },
+      "quality": {
+        "groups": {
+          "all": {
+            "frames": 96,
+            "psnr_db": 23.708895977317827,
+            "baseline_psnr_db": 23.708895508873653,
+            "psnr_delta_db": 4.684441741176215e-07,
+            "baseline_difference_mse": 5.100391529224538e-05,
+            "changed_rgb_values": 2166,
+            "fish_pixels": 113339,
+            "fish_psnr_db": 26.04300115590569,
+            "fish_baseline_psnr_db": 26.043019794637946
+          },
+          "P": {
+            "frames": 94,
+            "psnr_db": 23.72461496258213,
+            "baseline_psnr_db": 23.724614457444527,
+            "psnr_delta_db": 5.051376028575305e-07,
+            "baseline_difference_mse": 5.0838581683412134e-05,
+            "changed_rgb_values": 2114,
+            "fish_pixels": 111248,
+            "fish_psnr_db": 26.01632137477145,
+            "fish_baseline_psnr_db": 26.016340247537997
+          },
+          "I": {
+            "frames": 2,
+            "psnr_db": 23.027758534065043,
+            "baseline_psnr_db": 23.027759534548906,
+            "psnr_delta_db": -1.0004838628674406e-06,
+            "baseline_difference_mse": 5.877459490740741e-05,
+            "changed_rgb_values": 52,
+            "fish_pixels": 2091,
+            "fish_psnr_db": 27.76831773528219,
+            "fish_baseline_psnr_db": 27.76831773528219
+          }
+        },
+        "frame_csv": "sf007_q12_512__trt_fp32.csv"
+      },
+      "fish_mask_policy": "Existing annotation-union mask, not a precise fish silhouette"
+    },
+    {
+      "clip": "sf007_q12_512",
+      "backend": "trt_fp16_safe",
+      "frames": 96,
+      "stream_sha256": "810d28f974d68bea51fa6c93edf2c3942149bcba5e088875dc71e7b68ca2178a",
+      "stream_bytes": 14888,
+      "core_seconds": [
+        6.733844200018211
+      ],
+      "median_core_seconds": 6.733844200018211,
+      "median_fps": 14.256344095359434,
+      "speedup_vs_eager": 1.3708898699962369,
+      "all_reference_states_and_entropy_identical": true,
+      "rgb_difference": {
+        "mse": 0.16710248405550732,
+        "psnr_vs_original_rgb_db": 55.90097454938726,
+        "maximum_rgb_error": 17,
+        "changed_rgb_values": 6375108,
+        "changed_rgb_fraction": 0.15011794478804977,
+        "bit_exact": false
+      },
+      "quality": {
+        "groups": {
+          "all": {
+            "frames": 96,
+            "psnr_db": 23.708569172203866,
+            "baseline_psnr_db": 23.708895508873653,
+            "psnr_delta_db": -0.0003263366697865422,
+            "baseline_difference_mse": 0.16710248405550732,
+            "changed_rgb_values": 6375108,
+            "fish_pixels": 113339,
+            "fish_psnr_db": 26.04284604684681,
+            "fish_baseline_psnr_db": 26.043019794637946
+          },
+          "P": {
+            "frames": 94,
+            "psnr_db": 23.7242840108372,
+            "baseline_psnr_db": 23.724614457444527,
+            "psnr_delta_db": -0.0003304466073288381,
+            "baseline_difference_mse": 0.1663213779458481,
+            "changed_rgb_values": 6220975,
+            "fish_pixels": 111248,
+            "fish_psnr_db": 26.016087311300815,
+            "fish_baseline_psnr_db": 26.016340247537997
+          },
+          "I": {
+            "frames": 2,
+            "psnr_db": 23.027597732017053,
+            "baseline_psnr_db": 23.027759534548906,
+            "psnr_delta_db": -0.00016180253185282822,
+            "baseline_difference_mse": 0.20381447120949073,
+            "changed_rgb_values": 154133,
+            "fish_pixels": 2091,
+            "fish_psnr_db": 27.77445526437649,
+            "fish_baseline_psnr_db": 27.76831773528219
+          }
+        },
+        "frame_csv": "sf007_q12_512__trt_fp16_safe.csv"
+      },
+      "fish_mask_policy": "Existing annotation-union mask, not a precise fish silhouette"
+    },
+    {
+      "clip": "sf025_q32_512",
+      "backend": "eager",
+      "frames": 64,
+      "stream_sha256": "eee23d3c3029fe46d8edb60e8b1b83cd2933d3b4e5dc712a66214964ec3f1117",
+      "stream_bytes": 15602,
+      "core_seconds": [
+        6.2022542000268
+      ],
+      "median_core_seconds": 6.2022542000268,
+      "median_fps": 10.318828918641136,
+      "speedup_vs_eager": 1.0,
+      "all_reference_states_and_entropy_identical": true,
+      "rgb_difference": {
+        "mse": 0.0,
+        "psnr_vs_original_rgb_db": 168.13080360867912,
+        "maximum_rgb_error": 0,
+        "changed_rgb_values": 0,
+        "changed_rgb_fraction": 0.0,
+        "bit_exact": true
+      },
+      "quality": {
+        "groups": {
+          "all": {
+            "frames": 64,
+            "psnr_db": 31.2393849610306,
+            "baseline_psnr_db": 31.2393849610306,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 123082,
+            "fish_psnr_db": 26.8397595148463,
+            "fish_baseline_psnr_db": 26.8397595148463
+          },
+          "P": {
+            "frames": 63,
+            "psnr_db": 31.254860550266116,
+            "baseline_psnr_db": 31.254860550266116,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 121375,
+            "fish_psnr_db": 26.843634193582055,
+            "fish_baseline_psnr_db": 26.843634193582055
+          },
+          "I": {
+            "frames": 1,
+            "psnr_db": 30.361237903048476,
+            "baseline_psnr_db": 30.361237903048476,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 1707,
+            "fish_psnr_db": 26.57275471660215,
+            "fish_baseline_psnr_db": 26.57275471660215
+          }
+        },
+        "frame_csv": "sf025_q32_512__eager.csv"
+      },
+      "fish_mask_policy": "Existing annotation-union mask, not a precise fish silhouette"
+    },
+    {
+      "clip": "sf025_q32_512",
+      "backend": "trt_fp32",
+      "frames": 64,
+      "stream_sha256": "eee23d3c3029fe46d8edb60e8b1b83cd2933d3b4e5dc712a66214964ec3f1117",
+      "stream_bytes": 15602,
+      "core_seconds": [
+        4.854267000038817
+      ],
+      "median_core_seconds": 4.854267000038817,
+      "median_fps": 13.184276843339731,
+      "speedup_vs_eager": 1.2776911941549989,
+      "all_reference_states_and_entropy_identical": true,
+      "rgb_difference": {
+        "mse": 3.005840160228588e-05,
+        "psnr_vs_original_rgb_db": 93.35114478221934,
+        "maximum_rgb_error": 1,
+        "changed_rgb_values": 851,
+        "changed_rgb_fraction": 3.005840160228588e-05,
+        "bit_exact": false
+      },
+      "quality": {
+        "groups": {
+          "all": {
+            "frames": 64,
+            "psnr_db": 31.239384870023184,
+            "baseline_psnr_db": 31.2393849610306,
+            "psnr_delta_db": -9.100741493739406e-08,
+            "baseline_difference_mse": 3.005840160228588e-05,
+            "changed_rgb_values": 851,
+            "fish_pixels": 123082,
+            "fish_psnr_db": 26.839751214670464,
+            "fish_baseline_psnr_db": 26.8397595148463
+          },
+          "P": {
+            "frames": 63,
+            "psnr_db": 31.254860086356118,
+            "baseline_psnr_db": 31.254860550266116,
+            "psnr_delta_db": -4.639099984160566e-07,
+            "baseline_difference_mse": 2.981788056657848e-05,
+            "changed_rgb_values": 831,
+            "fish_pixels": 121375,
+            "fish_psnr_db": 26.843625059736993,
+            "fish_baseline_psnr_db": 26.843634193582055
+          },
+          "I": {
+            "frames": 1,
+            "psnr_db": 30.36125693586137,
+            "baseline_psnr_db": 30.361237903048476,
+            "psnr_delta_db": 1.9032812893726714e-05,
+            "baseline_difference_mse": 4.521122685185185e-05,
+            "changed_rgb_values": 20,
+            "fish_pixels": 1707,
+            "fish_psnr_db": 26.57280210990796,
+            "fish_baseline_psnr_db": 26.57275471660215
+          }
+        },
+        "frame_csv": "sf025_q32_512__trt_fp32.csv"
+      },
+      "fish_mask_policy": "Existing annotation-union mask, not a precise fish silhouette"
+    },
+    {
+      "clip": "sf025_q32_512",
+      "backend": "trt_fp16_safe",
+      "frames": 64,
+      "stream_sha256": "eee23d3c3029fe46d8edb60e8b1b83cd2933d3b4e5dc712a66214964ec3f1117",
+      "stream_bytes": 15602,
+      "core_seconds": [
+        4.291133899947454
+      ],
+      "median_core_seconds": 4.291133899947454,
+      "median_fps": 14.91447283916815,
+      "speedup_vs_eager": 1.4453648719986922,
+      "all_reference_states_and_entropy_identical": true,
+      "rgb_difference": {
+        "mse": 0.07397330248797382,
+        "psnr_vs_original_rgb_db": 59.440053529502734,
+        "maximum_rgb_error": 18,
+        "changed_rgb_values": 2014085,
+        "changed_rgb_fraction": 0.07114004205774378,
+        "bit_exact": false
+      },
+      "quality": {
+        "groups": {
+          "all": {
+            "frames": 64,
+            "psnr_db": 31.239666663213924,
+            "baseline_psnr_db": 31.2393849610306,
+            "psnr_delta_db": 0.0002817021833259048,
+            "baseline_difference_mse": 0.07397330248797382,
+            "changed_rgb_values": 2014085,
+            "fish_pixels": 123082,
+            "fish_psnr_db": 26.840537005859705,
+            "fish_baseline_psnr_db": 26.8397595148463
+          },
+          "P": {
+            "frames": 63,
+            "psnr_db": 31.255134857726944,
+            "baseline_psnr_db": 31.254860550266116,
+            "psnr_delta_db": 0.00027430746082757196,
+            "baseline_difference_mse": 0.07408796037946429,
+            "changed_rgb_values": 1984773,
+            "fish_pixels": 121375,
+            "fish_psnr_db": 26.844507673013705,
+            "fish_baseline_psnr_db": 26.843634193582055
+          },
+          "I": {
+            "frames": 1,
+            "psnr_db": 30.361898849912116,
+            "baseline_psnr_db": 30.361237903048476,
+            "psnr_delta_db": 0.0006609468636398219,
+            "baseline_difference_mse": 0.06674985532407407,
+            "changed_rgb_values": 29312,
+            "fish_pixels": 1707,
+            "fish_psnr_db": 26.567124519188894,
+            "fish_baseline_psnr_db": 26.57275471660215
+          }
+        },
+        "frame_csv": "sf025_q32_512__trt_fp16_safe.csv"
+      },
+      "fish_mask_policy": "Existing annotation-union mask, not a precise fish silhouette"
+    },
+    {
+      "clip": "uv096_q63_512_255",
+      "backend": "eager",
+      "frames": 255,
+      "stream_sha256": "528d1972a7fd417bc0ba954166b0cb063ee37b77ba60cb9bf7ef7886d9b6a80d",
+      "stream_bytes": 93874,
+      "core_seconds": [
+        24.64177639994159
+      ],
+      "median_core_seconds": 24.64177639994159,
+      "median_fps": 10.348279923544977,
+      "speedup_vs_eager": 1.0,
+      "all_reference_states_and_entropy_identical": true,
+      "rgb_difference": {
+        "mse": 0.0,
+        "psnr_vs_original_rgb_db": 168.13080360867912,
+        "maximum_rgb_error": 0,
+        "changed_rgb_values": 0,
+        "changed_rgb_fraction": 0.0,
+        "bit_exact": true
+      },
+      "quality": {
+        "groups": {
+          "all": {
+            "frames": 255,
+            "psnr_db": 28.49281603433805,
+            "baseline_psnr_db": 28.49281603433805,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "P": {
+            "frames": 251,
+            "psnr_db": 28.483572099666787,
+            "baseline_psnr_db": 28.483572099666787,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "I": {
+            "frames": 4,
+            "psnr_db": 29.1161593714815,
+            "baseline_psnr_db": 29.1161593714815,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          }
+        },
+        "frame_csv": "uv096_q63_512_255__eager.csv"
+      },
+      "fish_mask_policy": null
+    },
+    {
+      "clip": "uv096_q63_512_255",
+      "backend": "trt_fp32",
+      "frames": 255,
+      "stream_sha256": "528d1972a7fd417bc0ba954166b0cb063ee37b77ba60cb9bf7ef7886d9b6a80d",
+      "stream_bytes": 93874,
+      "core_seconds": [
+        19.4131871999125
+      ],
+      "median_core_seconds": 19.4131871999125,
+      "median_fps": 13.135401074232126,
+      "speedup_vs_eager": 1.269331828214826,
+      "all_reference_states_and_entropy_identical": true,
+      "rgb_difference": {
+        "mse": 2.9493676811002178e-05,
+        "psnr_vs_original_rgb_db": 93.43351443887768,
+        "maximum_rgb_error": 1,
+        "changed_rgb_values": 3327,
+        "changed_rgb_fraction": 2.9493676811002178e-05,
+        "bit_exact": false
+      },
+      "quality": {
+        "groups": {
+          "all": {
+            "frames": 255,
+            "psnr_db": 28.49281545057601,
+            "baseline_psnr_db": 28.49281603433805,
+            "psnr_delta_db": -5.837620378201791e-07,
+            "baseline_difference_mse": 2.949367681100218e-05,
+            "changed_rgb_values": 3327,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "P": {
+            "frames": 251,
+            "psnr_db": 28.483571534165158,
+            "baseline_psnr_db": 28.483572099666787,
+            "psnr_delta_db": -5.655016295236237e-07,
+            "baseline_difference_mse": 2.96034467454257e-05,
+            "changed_rgb_values": 3287,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "I": {
+            "frames": 4,
+            "psnr_db": 29.11615746220957,
+            "baseline_psnr_db": 29.1161593714815,
+            "psnr_delta_db": -1.9092719298896554e-06,
+            "baseline_difference_mse": 2.2605613425925925e-05,
+            "changed_rgb_values": 40,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          }
+        },
+        "frame_csv": "uv096_q63_512_255__trt_fp32.csv"
+      },
+      "fish_mask_policy": null
+    },
+    {
+      "clip": "uv096_q63_512_255",
+      "backend": "trt_fp16_safe",
+      "frames": 255,
+      "stream_sha256": "528d1972a7fd417bc0ba954166b0cb063ee37b77ba60cb9bf7ef7886d9b6a80d",
+      "stream_bytes": 93874,
+      "core_seconds": [
+        17.247497199983627
+      ],
+      "median_core_seconds": 17.247497199983627,
+      "median_fps": 14.784753813454284,
+      "speedup_vs_eager": 1.4287160690169576,
+      "all_reference_states_and_entropy_identical": true,
+      "rgb_difference": {
+        "mse": 0.09512810024906954,
+        "psnr_vs_original_rgb_db": 58.34771537090616,
+        "maximum_rgb_error": 31,
+        "changed_rgb_values": 9186046,
+        "changed_rgb_fraction": 0.08143380579951888,
+        "bit_exact": false
+      },
+      "quality": {
+        "groups": {
+          "all": {
+            "frames": 255,
+            "psnr_db": 28.495149062373493,
+            "baseline_psnr_db": 28.49281603433805,
+            "psnr_delta_db": 0.002333028035444329,
+            "baseline_difference_mse": 0.09512810024906954,
+            "changed_rgb_values": 9186046,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "P": {
+            "frames": 251,
+            "psnr_db": 28.48595563168586,
+            "baseline_psnr_db": 28.483572099666787,
+            "psnr_delta_db": 0.0023835320190741527,
+            "baseline_difference_mse": 0.09541191786672754,
+            "changed_rgb_values": 9062183,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "I": {
+            "frames": 4,
+            "psnr_db": 29.114827919727308,
+            "baseline_psnr_db": 29.1161593714815,
+            "psnr_delta_db": -0.00133145175419358,
+            "baseline_difference_mse": 0.07731854474103009,
+            "changed_rgb_values": 123863,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          }
+        },
+        "frame_csv": "uv096_q63_512_255__trt_fp16_safe.csv"
+      },
+      "fish_mask_policy": null
+    },
+    {
+      "clip": "uploaded_half_1239_q0_640",
+      "backend": "eager",
+      "frames": 1239,
+      "stream_sha256": "d4059f45f7d8aba9c8c04bc31b73c995ff7eed9f5566e20a8d58b1f24ccbae13",
+      "stream_bytes": 357810,
+      "core_seconds": [
+        168.79602879975573
+      ],
+      "median_core_seconds": 168.79602879975573,
+      "median_fps": 7.340220079880179,
+      "speedup_vs_eager": 1.0,
+      "all_reference_states_and_entropy_identical": true,
+      "rgb_difference": {
+        "mse": 0.0,
+        "psnr_vs_original_rgb_db": 168.13080360867912,
+        "maximum_rgb_error": 0,
+        "changed_rgb_values": 0,
+        "changed_rgb_fraction": 0.0,
+        "bit_exact": true
+      },
+      "quality": {
+        "groups": {
+          "all": {
+            "frames": 1239,
+            "psnr_db": 22.458733953042604,
+            "baseline_psnr_db": 22.458733953042604,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "P": {
+            "frames": 1219,
+            "psnr_db": 22.474218097861822,
+            "baseline_psnr_db": 22.474218097861822,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "I": {
+            "frames": 20,
+            "psnr_db": 21.60610822833103,
+            "baseline_psnr_db": 21.60610822833103,
+            "psnr_delta_db": 0.0,
+            "baseline_difference_mse": 0.0,
+            "changed_rgb_values": 0,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          }
+        },
+        "frame_csv": "uploaded_half_1239_q0_640__eager.csv"
+      },
+      "fish_mask_policy": null
+    },
+    {
+      "clip": "uploaded_half_1239_q0_640",
+      "backend": "trt_fp16_safe",
+      "frames": 1239,
+      "stream_sha256": "d4059f45f7d8aba9c8c04bc31b73c995ff7eed9f5566e20a8d58b1f24ccbae13",
+      "stream_bytes": 357810,
+      "core_seconds": [
+        116.55077660019015
+      ],
+      "median_core_seconds": 116.55077660019015,
+      "median_fps": 10.63055979669876,
+      "speedup_vs_eager": 1.4482617252631875,
+      "all_reference_states_and_entropy_identical": true,
+      "rgb_difference": {
+        "mse": 0.1428961960156787,
+        "psnr_vs_original_rgb_db": 56.58059693108355,
+        "maximum_rgb_error": 39,
+        "changed_rgb_values": 98473919,
+        "changed_rgb_fraction": 0.11498632292881057,
+        "bit_exact": false
+      },
+      "quality": {
+        "groups": {
+          "all": {
+            "frames": 1239,
+            "psnr_db": 22.458723215753214,
+            "baseline_psnr_db": 22.458733953042604,
+            "psnr_delta_db": -1.0737289390050364e-05,
+            "baseline_difference_mse": 0.1428961960156787,
+            "changed_rgb_values": 98473919,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "P": {
+            "frames": 1219,
+            "psnr_db": 22.474218414434205,
+            "baseline_psnr_db": 22.474218097861822,
+            "psnr_delta_db": 3.165723825304667e-07,
+            "baseline_difference_mse": 0.14219562986130102,
+            "changed_rgb_values": 96659541,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          },
+          "I": {
+            "frames": 20,
+            "psnr_db": 21.605545860100523,
+            "baseline_psnr_db": 21.60610822833103,
+            "psnr_delta_db": -0.0005623682305078148,
+            "baseline_difference_mse": 0.185595703125,
+            "changed_rgb_values": 1814378,
+            "fish_pixels": 0,
+            "fish_psnr_db": null,
+            "fish_baseline_psnr_db": null
+          }
+        },
+        "frame_csv": "uploaded_half_1239_q0_640__trt_fp16_safe.csv"
+      },
+      "fish_mask_policy": null
+    }
+  ],
+  "runs": 20,
+  "frames_processed": 4317,
+  "original_bitstreams_unchanged": true,
+  "per_frame_reference_and_entropy_identity_verified": true,
+  "RGB_generator_only": true,
+  "weights_changed": false,
+  "training_steps": 0,
+  "Orin_tested": false,
+  "timing_policy": "Warm independent processes; short 3 runs/backend, alternating order; full 1 run/backend. Core, load, build, warmup and file output separate.",
+  "precision_policy": "Only eligible generator convolution compute is FP16. Original upsample/output convolutions and other graph arithmetic stay FP32 via explicit casts and strong typing.",
+  "quality_policy": "Aggregate uint8 RGB MSE before H.264 preview compression; original source GT; I/P separated; annotation-union fish masks where available.",
+  "temporal_policy": "Frame error-difference proxy; not a perceptual flicker or motion-compensated conclusion.",
+  "memory_policy": "Torch peak excludes some TensorRT allocations; device free-memory readings include other applications. No claim of full device peak or Orin memory."
+}

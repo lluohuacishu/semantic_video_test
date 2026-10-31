@@ -1,0 +1,320 @@
+{
+  "top_original_ranges": [
+    {
+      "name": "image.generator.blocks.25",
+      "minimum": -125601.234375,
+      "maximum": 18500.16796875,
+      "max_abs": 125601.234375,
+      "nonfinite": 0
+    },
+    {
+      "name": "image.generator.blocks.24",
+      "minimum": -124195.140625,
+      "maximum": 19445.919921875,
+      "max_abs": 124195.140625,
+      "nonfinite": 0
+    },
+    {
+      "name": "image.generator.blocks.23",
+      "minimum": -122205.75,
+      "maximum": 18637.89453125,
+      "max_abs": 122205.75,
+      "nonfinite": 0
+    },
+    {
+      "name": "image.generator.blocks.22.conv",
+      "minimum": -114817.3203125,
+      "maximum": 15942.0771484375,
+      "max_abs": 114817.3203125,
+      "nonfinite": 0
+    },
+    {
+      "name": "image.generator.blocks.22",
+      "minimum": -114817.3203125,
+      "maximum": 15942.0771484375,
+      "max_abs": 114817.3203125,
+      "nonfinite": 0
+    },
+    {
+      "name": "video.generator.blocks.25",
+      "minimum": -88635.890625,
+      "maximum": 13994.1123046875,
+      "max_abs": 88635.890625,
+      "nonfinite": 0
+    },
+    {
+      "name": "video.generator.blocks.24",
+      "minimum": -87717.03125,
+      "maximum": 14676.4248046875,
+      "max_abs": 87717.03125,
+      "nonfinite": 0
+    },
+    {
+      "name": "video.generator.blocks.23",
+      "minimum": -86251.7265625,
+      "maximum": 14135.6318359375,
+      "max_abs": 86251.7265625,
+      "nonfinite": 0
+    },
+    {
+      "name": "video.generator.blocks.22.conv",
+      "minimum": -81125.7578125,
+      "maximum": 12113.216796875,
+      "max_abs": 81125.7578125,
+      "nonfinite": 0
+    },
+    {
+      "name": "video.generator.blocks.22",
+      "minimum": -81125.7578125,
+      "maximum": 12113.216796875,
+      "max_abs": 81125.7578125,
+      "nonfinite": 0
+    },
+    {
+      "name": "image.generator.blocks.23.conv2",
+      "minimum": -9219.45703125,
+      "maximum": 2834.10888671875,
+      "max_abs": 9219.45703125,
+      "nonfinite": 0
+    },
+    {
+      "name": "image.generator.blocks.25.conv2",
+      "minimum": -8216.9052734375,
+      "maximum": 2388.011962890625,
+      "max_abs": 8216.9052734375,
+      "nonfinite": 0
+    },
+    {
+      "name": "video.generator.blocks.23.conv2",
+      "minimum": -6341.638671875,
+      "maximum": 2036.3663330078125,
+      "max_abs": 6341.638671875,
+      "nonfinite": 0
+    },
+    {
+      "name": "video.generator.blocks.25.conv2",
+      "minimum": -5361.36181640625,
+      "maximum": 1628.2740478515625,
+      "max_abs": 5361.36181640625,
+      "nonfinite": 0
+    },
+    {
+      "name": "image.generator.blocks.24.conv2",
+      "minimum": -3334.48046875,
+      "maximum": 1330.936279296875,
+      "max_abs": 3334.48046875,
+      "nonfinite": 0
+    },
+    {
+      "name": "video.generator.blocks.24.conv2",
+      "minimum": -2457.14794921875,
+      "maximum": 1138.8714599609375,
+      "max_abs": 2457.14794921875,
+      "nonfinite": 0
+    }
+  ],
+  "pytorch_amp_probe": [
+    {
+      "model": "image",
+      "nonfinite": 737280,
+      "maximum": null,
+      "minimum": null
+    },
+    {
+      "model": "video",
+      "nonfinite": 737280,
+      "maximum": null,
+      "minimum": null
+    }
+  ],
+  "naive_fp16_failure_evidence": [
+    {
+      "raw_directory": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_解码器推理\\decoder_20261031_01",
+      "log_file": "short\\trt_fp16_1.log",
+      "log_sha256": "3543254d2e722869423c839ad1b81c96bc711de8fe746563b5c726eda18fdcff",
+      "failure": null,
+      "error_tail": [
+        "  File \"C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\17_优化阶段_解码器推理加速\\decoder_worker.py\", line 183, in <module>",
+        "    main()",
+        "  File \"C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Lib\\site-packages\\torch\\utils\\_contextlib.py\", line 116, in decorate_context",
+        "    return func(*args, **kwargs)",
+        "           ^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\17_优化阶段_解码器推理加速\\decoder_worker.py\", line 91, in main",
+        "    raise ValueError('Generator output is nonfinite or changed its reference input')",
+        "ValueError: Generator output is nonfinite or changed its reference input"
+      ]
+    },
+    {
+      "raw_directory": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_解码器推理\\decoder_20261031_02",
+      "log_file": "short\\trt_fp16_safe_1.log",
+      "log_sha256": "e878ea2990d7bd345f5b5d880732e12f262ee6d0308abacaafb8bbd8b2402795",
+      "failure": null,
+      "error_tail": [
+        "    return func(*args, **kwargs)",
+        "           ^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\17_优化阶段_解码器推理加速\\decoder_worker.py\", line 82, in main",
+        "    wrapped = GeneratorTensorRT(target.generator, example, args.backend, name, args.engine_cache)",
+        "              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\17_优化阶段_解码器推理加速\\generator_backend.py\", line 112, in __init__",
+        "    raise RuntimeError('TensorRT could not build the RGB generator')",
+        "RuntimeError: TensorRT could not build the RGB generator"
+      ]
+    },
+    {
+      "raw_directory": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_解码器推理\\decoder_20261031_03",
+      "log_file": "short\\trt_fp16_safe_1.log",
+      "log_sha256": "2de7877ec25d4a852c1b272eb1a8ea9a7b99905006241cb2b0d0407f205d4881",
+      "failure": {
+        "model": "image",
+        "backend": "trt_fp16_safe",
+        "nonfinite_values": 737280,
+        "reference_input_unchanged": true
+      },
+      "error_tail": [
+        "  File \"C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\17_优化阶段_解码器推理加速\\decoder_worker.py\", line 186, in <module>",
+        "    main()",
+        "  File \"C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Lib\\site-packages\\torch\\utils\\_contextlib.py\", line 116, in decorate_context",
+        "    return func(*args, **kwargs)",
+        "           ^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\17_优化阶段_解码器推理加速\\decoder_worker.py\", line 94, in main",
+        "    raise ValueError(f'{name} generator output is nonfinite or changed its reference input')",
+        "ValueError: image generator output is nonfinite or changed its reference input"
+      ]
+    },
+    {
+      "raw_directory": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_解码器推理\\decoder_20261031_04",
+      "log_file": "short\\trt_fp16_safe_1.log",
+      "log_sha256": "2de7877ec25d4a852c1b272eb1a8ea9a7b99905006241cb2b0d0407f205d4881",
+      "failure": {
+        "model": "image",
+        "backend": "trt_fp16_safe",
+        "nonfinite_values": 737280,
+        "reference_input_unchanged": true
+      },
+      "error_tail": [
+        "  File \"C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\17_优化阶段_解码器推理加速\\decoder_worker.py\", line 186, in <module>",
+        "    main()",
+        "  File \"C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Lib\\site-packages\\torch\\utils\\_contextlib.py\", line 116, in decorate_context",
+        "    return func(*args, **kwargs)",
+        "           ^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\17_优化阶段_解码器推理加速\\decoder_worker.py\", line 94, in main",
+        "    raise ValueError(f'{name} generator output is nonfinite or changed its reference input')",
+        "ValueError: image generator output is nonfinite or changed its reference input"
+      ]
+    }
+  ],
+  "excluded_timing_reason": "Attempts 01–04 were development/debugging; user confirmed concurrent video playback. No speedup is derived from them.",
+  "weak_precision_hidden_cast": [
+    {
+      "Name": "/blocks.22/conv/Conv",
+      "LayerType": "CaskConvolution",
+      "Inputs": [
+        {
+          "Name": "/blocks.22/Resize_output_0",
+          "Location": "Device",
+          "Dimensions": [
+            1,
+            128,
+            384,
+            640
+          ],
+          "Format/Datatype": "Float"
+        }
+      ],
+      "Outputs": [
+        {
+          "Name": "Reformatted Output Tensor 0 to /blocks.22/conv/Conv",
+          "Location": "Device",
+          "Dimensions": [
+            1,
+            128,
+            384,
+            640
+          ],
+          "Format/Datatype": "Float"
+        }
+      ],
+      "ParameterType": "Convolution",
+      "Kernel": [
+        3,
+        3
+      ],
+      "PaddingMode": "kEXPLICIT_ROUND_DOWN",
+      "PrePadding": [
+        1,
+        1
+      ],
+      "PostPadding": [
+        1,
+        1
+      ],
+      "Stride": [
+        1,
+        1
+      ],
+      "Dilation": [
+        1,
+        1
+      ],
+      "OutMaps": 128,
+      "Groups": 1,
+      "Weights": {
+        "Type": "Float",
+        "Count": 147456
+      },
+      "Bias": {
+        "Type": "Float",
+        "Count": 128
+      },
+      "HasBias": 1,
+      "HasReLU": 0,
+      "HasSparseWeights": 0,
+      "HasDynamicFilter": 0,
+      "HasDynamicBias": 0,
+      "HasResidual": 0,
+      "ConvXAsActInputIdx": -1,
+      "BiasAsActInputIdx": -1,
+      "ResAsActInputIdx": -1,
+      "Activation": "NONE",
+      "TacticName": "ampere_scudnn_winograd_128x128_ldg1_ldg4_relu_tile148t_nt_v1",
+      "TacticValue": "0x94119b4c514b211a",
+      "StreamId": 0,
+      "Metadata": "[ONNX Layer: /blocks.22/conv/Conv]"
+    },
+    {
+      "Name": "Reformatting CopyNode for Output Tensor 0 to /blocks.22/conv/Conv",
+      "LayerType": "Reformat",
+      "Inputs": [
+        {
+          "Name": "Reformatted Output Tensor 0 to /blocks.22/conv/Conv",
+          "Location": "Device",
+          "Dimensions": [
+            1,
+            128,
+            384,
+            640
+          ],
+          "Format/Datatype": "Float"
+        }
+      ],
+      "Outputs": [
+        {
+          "Name": "/blocks.22/conv/Conv_output_0",
+          "Location": "Device",
+          "Dimensions": [
+            1,
+            128,
+            384,
+            640
+          ],
+          "Format/Datatype": "Half"
+        }
+      ],
+      "ParameterType": "Reformat",
+      "Origin": "REFORMAT",
+      "TacticValue": "0x00000000000003ea",
+      "StreamId": 0,
+      "Metadata": ""
+    }
+  ]
+}

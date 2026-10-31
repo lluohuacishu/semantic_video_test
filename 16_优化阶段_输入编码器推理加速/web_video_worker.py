@@ -68,7 +68,8 @@ def main():
         from sender_container import PROFILE,SenderWriter,ReferenceChecksums,read_sender_stream
         role=cfg['action'];progress('加载发送端模型' if role=='sender' else '加载原接收端模型')
         tick=time.perf_counter();codec=RoleCodec(cfg['assets'],role);torch.utils.deterministic.fill_uninitialized_memory=False
-        torch.cuda.synchronize();load_seconds=time.perf_counter()-tick;setup={};variant=cfg.get('variant','eager')
+        torch.cuda.synchronize();load_seconds=time.perf_counter()-tick;setup={};variant=cfg.get('variant','eager');display_setup={}
+        decoder_backend=cfg.get('decoder_backend','eager')
         source_frames=None
         if role=='sender':
             source=cfg['source'];source_frames=Frames(source);total=source['frames'];media={k:source[k] for k in ['width','height','fps']};media['q']=cfg['q']
@@ -104,6 +105,13 @@ def main():
             if header['revision']!=ref.REVISION or header['entropy']!=ref.ENTROPY_ID or header['weights']!={k:v['sha256'] for k,v in ref.ASSETS.items()}:
                 raise ValueError('接收模型版本/权重/熵模型不匹配')
         validate(first);warm=time.perf_counter();progress('模型暖机',0,total)
+        if role=='receiver' and decoder_backend!='eager':
+            sys.path.insert(0,str(REPO/'17_优化阶段_解码器推理加速'))
+            from generator_install import install as install_generator
+            progress('准备RGB生成器加速器（首次可能需要构建）',0,total)
+            display_setup=install_generator(codec,first,packets,decoder_backend,Path(cfg['decoder_engine_cache']),check)
+            setup['rgb_generator']=display_setup['capture_seconds']+display_setup['setup_seconds']
+            warm=time.perf_counter();progress('模型暖机',0,total)
         for i in range(min(8,first['frames'])):
             check()
             if role=='sender':codec.frame(first,i,x=input_tensor(source_frames[i]),render_rgb=False)
@@ -154,7 +162,8 @@ def main():
             file_operation_seconds=time.perf_counter()-operation,worker_seconds=time.perf_counter()-started,
             fps=total/core,records=records,records_truncated=total>len(records),reference_checksums=references.values(),
             stream_sha256=file_sha(stream),stream_file=stream.name,stream_bytes=stream.stat().st_size,
-            reference_verified=role=='receiver',source_media_reads_forbidden=role=='receiver')
+            reference_verified=role=='receiver',source_media_reads_forbidden=role=='receiver',
+            decoder_backend=decoder_backend if role=='receiver' else None,display_setup=display_setup)
         if role=='receiver':result.update(video_sha256=file_sha(out/'video.mp4'),decoded_storage=decoded_meta)
         write(out/'result.json',result);return 0
     except InterruptedError:
