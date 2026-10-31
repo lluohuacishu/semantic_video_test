@@ -1,0 +1,600 @@
+{
+  "schema": "glc-decoder-existing-evidence-review-v1",
+  "date": "2026-10-31",
+  "scope": "CPU reaggregation of 2026-10-30 fill-on CUDA traces; no new GPU measurements or codec runs",
+  "baseline_66_core_seconds": [
+    10.331627600000001,
+    10.3902138,
+    10.3416851
+  ],
+  "baseline_66_median_seconds": 10.3416851,
+  "frames": [
+    {
+      "index": 0,
+      "kind": "I",
+      "core_baseline_ms": 159.7902,
+      "gpu_kernel_ms": 142.357859,
+      "generator_ms": 129.796213,
+      "generator_share_percent": 91.1760080628917,
+      "dma_ms": 0.303005,
+      "kernel_count": 1425
+    },
+    {
+      "index": 1,
+      "kind": "P",
+      "core_baseline_ms": 158.1186,
+      "gpu_kernel_ms": 142.439568,
+      "generator_ms": 130.108919,
+      "generator_share_percent": 91.34324178798407,
+      "dma_ms": 0.371676,
+      "kernel_count": 1227
+    },
+    {
+      "index": 2,
+      "kind": "P",
+      "core_baseline_ms": 156.7966,
+      "gpu_kernel_ms": 142.009062,
+      "generator_ms": 130.014662,
+      "generator_share_percent": 91.55377844830774,
+      "dma_ms": 0.371583,
+      "kernel_count": 1226
+    },
+    {
+      "index": 3,
+      "kind": "P",
+      "core_baseline_ms": 156.55769999999998,
+      "gpu_kernel_ms": 142.210727,
+      "generator_ms": 130.609794,
+      "generator_share_percent": 91.8424346427819,
+      "dma_ms": 0.3751,
+      "kernel_count": 1226
+    },
+    {
+      "index": 9,
+      "kind": "P",
+      "core_baseline_ms": 156.4052,
+      "gpu_kernel_ms": 142.404081,
+      "generator_ms": 130.364208,
+      "generator_share_percent": 91.54527530710304,
+      "dma_ms": 0.367292,
+      "kernel_count": 1226
+    },
+    {
+      "index": 33,
+      "kind": "P",
+      "core_baseline_ms": 154.5086,
+      "gpu_kernel_ms": 141.796259,
+      "generator_ms": 129.663541,
+      "generator_share_percent": 91.44355564415844,
+      "dma_ms": 0.369245,
+      "kernel_count": 1227
+    },
+    {
+      "index": 64,
+      "kind": "I",
+      "core_baseline_ms": 158.78539999999998,
+      "gpu_kernel_ms": 142.724122,
+      "generator_ms": 130.151059,
+      "generator_share_percent": 91.19065311188253,
+      "dma_ms": 0.302141,
+      "kernel_count": 1425
+    },
+    {
+      "index": 65,
+      "kind": "P",
+      "core_baseline_ms": 156.2781,
+      "gpu_kernel_ms": 143.212777,
+      "generator_ms": 130.447508,
+      "generator_share_percent": 91.0865013112622,
+      "dma_ms": 0.391549,
+      "kernel_count": 1227
+    }
+  ],
+  "p002_operators": [
+    {
+      "operator": "aten::cudnn_convolution",
+      "receiver_ms": 79.80473699999995,
+      "generator_ms": 70.50618300000001,
+      "receiver_share_percent": 56.1969326999709
+    },
+    {
+      "operator": "aten::native_group_norm",
+      "receiver_ms": 18.062452999999998,
+      "generator_ms": 18.062452999999998,
+      "receiver_share_percent": 12.719225622376126
+    },
+    {
+      "operator": "aten::add_",
+      "receiver_ms": 10.504052999999988,
+      "generator_ms": 9.837303,
+      "receiver_share_percent": 7.396748384972776
+    },
+    {
+      "operator": "torchscript.swish",
+      "receiver_ms": 9.886229,
+      "generator_ms": 9.886229,
+      "receiver_share_percent": 6.961688825182157
+    },
+    {
+      "operator": "aten::fill_",
+      "receiver_ms": 9.568248000000022,
+      "generator_ms": 9.407007000000013,
+      "receiver_share_percent": 6.7377728331168205
+    },
+    {
+      "operator": "aten::add",
+      "receiver_ms": 7.729895999999999,
+      "generator_ms": 7.411273000000001,
+      "receiver_share_percent": 5.4432413615970505
+    },
+    {
+      "operator": "aten::mul",
+      "receiver_ms": 1.77419,
+      "generator_ms": 1.676432,
+      "receiver_share_percent": 1.249349847828725
+    },
+    {
+      "operator": "aten::upsample_nearest2d",
+      "receiver_ms": 1.1422320000000001,
+      "generator_ms": 1.1422320000000001,
+      "receiver_share_percent": 0.804337402073679
+    },
+    {
+      "operator": "aten::sigmoid",
+      "receiver_ms": 1.101336,
+      "generator_ms": 1.099704,
+      "receiver_share_percent": 0.7755392398831562
+    },
+    {
+      "operator": "aten::bmm",
+      "receiver_ms": 0.84793,
+      "generator_ms": 0.84793,
+      "receiver_share_percent": 0.5970956980196095
+    },
+    {
+      "operator": "aten::_conv_depthwise2d",
+      "receiver_ms": 0.4318670000000001,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.30411228263728696
+    },
+    {
+      "operator": "aten::_index_put_impl_",
+      "receiver_ms": 0.30534,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.21501444745828965
+    },
+    {
+      "operator": "aten::leaky_relu",
+      "receiver_ms": 0.23941999999999988,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.1685948746003265
+    },
+    {
+      "operator": "aten::copy_",
+      "receiver_ms": 0.11750000000000001,
+      "generator_ms": 0.10735600000000001,
+      "receiver_share_percent": 0.08274119858632684
+    },
+    {
+      "operator": "aten::max",
+      "receiver_ms": 0.114049,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.08031107197933608
+    },
+    {
+      "operator": "aten::min",
+      "receiver_ms": 0.113918,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.0802188243451675
+    },
+    {
+      "operator": "aten::nonzero",
+      "receiver_ms": 0.074208,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.05225582012505653
+    },
+    {
+      "operator": "aten::_softmax",
+      "receiver_ms": 0.03056,
+      "generator_ms": 0.03056,
+      "receiver_share_percent": 0.021519753436579987
+    },
+    {
+      "operator": "aten::cat",
+      "receiver_ms": 0.02896,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.020393064774978938
+    },
+    {
+      "operator": "aten::remainder",
+      "receiver_ms": 0.020769,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.01462512300799508
+    },
+    {
+      "operator": "aten::mean",
+      "receiver_ms": 0.018751,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.013204086933550763
+    },
+    {
+      "operator": "aten::_assert_async",
+      "receiver_ms": 0.014688,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.010343001913497605
+    },
+    {
+      "operator": "aten::index",
+      "receiver_ms": 0.011808,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.008314962322615721
+    },
+    {
+      "operator": "aten::lt",
+      "receiver_ms": 0.00816,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.005746112174165336
+    },
+    {
+      "operator": "aten::clamp",
+      "receiver_ms": 0.007968,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.00561090953477321
+    },
+    {
+      "operator": "aten::ge",
+      "receiver_ms": 0.007648,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.005385571802453001
+    },
+    {
+      "operator": "aten::div_",
+      "receiver_ms": 0.006048,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.004258883140851955
+    },
+    {
+      "operator": "aten::all",
+      "receiver_ms": 0.005664,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.0039884778620677035
+    },
+    {
+      "operator": "aten::arange",
+      "receiver_ms": 0.0056,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.003943410315603662
+    },
+    {
+      "operator": "aten::index_select",
+      "receiver_ms": 0.005344,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.0037631401297474943
+    },
+    {
+      "operator": "aten::abs",
+      "receiver_ms": 0.004384,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.0030871269327868663
+    },
+    {
+      "operator": "aten::round",
+      "receiver_ms": 0.004256,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.0029969918398587833
+    },
+    {
+      "operator": "aten::eq",
+      "receiver_ms": 0.003264,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.0022984448696661344
+    },
+    {
+      "operator": "aten::ne",
+      "receiver_ms": 0.003232,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.0022759110964341136
+    },
+    {
+      "operator": "aten::reciprocal",
+      "receiver_ms": 0.00224,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.0015773641262414645
+    },
+    {
+      "operator": "aten::clamp_min",
+      "receiver_ms": 0.002112,
+      "generator_ms": 0.0,
+      "receiver_share_percent": 0.0014872290333133812
+    }
+  ],
+  "p002_generator_blocks": [
+    {
+      "block": "blocks.23",
+      "ms": 23.827754,
+      "generator_share_percent": 18.326974537687143,
+      "receiver_share_percent": 16.779037664511858
+    },
+    {
+      "block": "blocks.24",
+      "ms": 23.005972000000003,
+      "generator_share_percent": 17.694905825313768,
+      "receiver_share_percent": 16.20035487594447
+    },
+    {
+      "block": "blocks.25",
+      "ms": 22.106708000000005,
+      "generator_share_percent": 17.003242295857376,
+      "receiver_share_percent": 15.567110780578217
+    },
+    {
+      "block": "blocks.19",
+      "ms": 8.081601999999998,
+      "generator_share_percent": 6.215915863397006,
+      "receiver_share_percent": 5.69090583810771
+    },
+    {
+      "block": "blocks.22",
+      "ms": 6.997578,
+      "generator_share_percent": 5.382145284506451,
+      "receiver_share_percent": 4.927557369543079
+    },
+    {
+      "block": "blocks.18",
+      "ms": 5.980658,
+      "generator_share_percent": 4.599987346042557,
+      "receiver_share_percent": 4.211462223445994
+    },
+    {
+      "block": "blocks.20",
+      "ms": 5.462134999999998,
+      "generator_share_percent": 4.201168480521065,
+      "receiver_share_percent": 3.8463284828963933
+    },
+    {
+      "block": "blocks.21",
+      "ms": 5.3306809999999984,
+      "generator_share_percent": 4.100061422303278,
+      "receiver_share_percent": 3.7537611508200786
+    },
+    {
+      "block": "blocks.16",
+      "ms": 3.360739,
+      "generator_share_percent": 2.584892310068845,
+      "receiver_share_percent": 2.3665665786877743
+    },
+    {
+      "block": "blocks.15",
+      "ms": 3.3187299999999995,
+      "generator_share_percent": 2.5525813388646887,
+      "receiver_share_percent": 2.3369846636970246
+    },
+    {
+      "block": "blocks.17",
+      "ms": 3.144266,
+      "generator_share_percent": 2.4183933962771063,
+      "receiver_share_percent": 2.214130532036047
+    },
+    {
+      "block": "blocks.26",
+      "ms": 2.782378,
+      "generator_share_percent": 2.1400494045817697,
+      "receiver_share_percent": 1.9592960905551224
+    },
+    {
+      "block": "blocks.27",
+      "ms": 2.754731,
+      "generator_share_percent": 2.1187848798160935,
+      "receiver_share_percent": 1.93982761466307
+    },
+    {
+      "block": "blocks.28",
+      "ms": 1.33503,
+      "generator_share_percent": 1.026830343180833,
+      "receiver_share_percent": 0.940101977435778
+    },
+    {
+      "block": "blocks.10",
+      "ms": 1.284568,
+      "generator_share_percent": 0.9880177975619396,
+      "receiver_share_percent": 0.9045676254097079
+    },
+    {
+      "block": "blocks.14",
+      "ms": 1.2696870000000002,
+      "generator_share_percent": 0.9765721653762407,
+      "receiver_share_percent": 0.8940887166764049
+    },
+    {
+      "block": "blocks.11",
+      "ms": 1.1970830000000001,
+      "generator_share_percent": 0.9207292328306789,
+      "receiver_share_percent": 0.8429624019346034
+    },
+    {
+      "block": "blocks.3",
+      "ms": 0.9372739999999999,
+      "generator_share_percent": 0.7208986937180978,
+      "receiver_share_percent": 0.6600099928834119
+    },
+    {
+      "block": "blocks.1",
+      "ms": 0.9170520000000002,
+      "generator_share_percent": 0.7053450633129364,
+      "receiver_share_percent": 0.6457700565616018
+    },
+    {
+      "block": "blocks.8",
+      "ms": 0.9165350000000001,
+      "generator_share_percent": 0.7049474158537598,
+      "receiver_share_percent": 0.6454059952878219
+    },
+    {
+      "block": "blocks.6",
+      "ms": 0.915895,
+      "generator_share_percent": 0.7044551636799241,
+      "receiver_share_percent": 0.6449553198231814
+    },
+    {
+      "block": "blocks.4",
+      "ms": 0.9014950000000002,
+      "generator_share_percent": 0.6933794897686234,
+      "receiver_share_percent": 0.6348151218687721
+    },
+    {
+      "block": "blocks.2",
+      "ms": 0.7737229999999998,
+      "generator_share_percent": 0.5951044198384332,
+      "receiver_share_percent": 0.5448405820749663
+    },
+    {
+      "block": "blocks.12",
+      "ms": 0.742329,
+      "generator_share_percent": 0.5709579124237543,
+      "receiver_share_percent": 0.522733542173527
+    },
+    {
+      "block": "blocks.13",
+      "ms": 0.7413430000000001,
+      "generator_share_percent": 0.5701995364184388,
+      "receiver_share_percent": 0.5220392202858154
+    },
+    {
+      "block": "blocks.7",
+      "ms": 0.5646029999999999,
+      "generator_share_percent": 0.4342610220376529,
+      "receiver_share_percent": 0.39758237400370955
+    },
+    {
+      "block": "blocks.5",
+      "ms": 0.5620720000000002,
+      "generator_share_percent": 0.43231431851893776,
+      "receiver_share_percent": 0.3958000933771398
+    },
+    {
+      "block": "blocks.9",
+      "ms": 0.557467,
+      "generator_share_percent": 0.4287724102993861,
+      "receiver_share_percent": 0.3925573425729691
+    },
+    {
+      "block": "blocks.0",
+      "ms": 0.21084599999999998,
+      "generator_share_percent": 0.1621709403820932,
+      "receiver_share_percent": 0.14847362346495885
+    },
+    {
+      "block": "post_quant_conv",
+      "ms": 0.033728,
+      "generator_share_percent": 0.02594168956113581,
+      "receiver_share_percent": 0.023750596986550056
+    }
+  ],
+  "p002_generator_input_shapes": [
+    {
+      "first_4d_input_wh": "640x384",
+      "ms": 82.05489200000002,
+      "generator_share_percent": 63.112029626320165,
+      "receiver_share_percent": 57.78144777831151
+    },
+    {
+      "first_4d_input_wh": "320x192",
+      "ms": 25.200483000000002,
+      "generator_share_percent": 19.38280084133896,
+      "receiver_share_percent": 17.7456865393562
+    },
+    {
+      "first_4d_input_wh": "160x96",
+      "ms": 11.387659,
+      "generator_share_percent": 8.75874984007573,
+      "receiver_share_percent": 8.018966423424443
+    },
+    {
+      "first_4d_input_wh": "40x24",
+      "ms": 6.220144000000006,
+      "generator_share_percent": 4.784186571203797,
+      "receiver_share_percent": 4.380103573953615
+    },
+    {
+      "first_4d_input_wh": "80x48",
+      "ms": 3.9656070000000003,
+      "generator_share_percent": 3.050122916136951,
+      "receiver_share_percent": 2.7925027770410877
+    },
+    {
+      "first_4d_input_wh": "other",
+      "ms": 1.0367620000000015,
+      "generator_share_percent": 0.7974192941408421,
+      "receiver_share_percent": 0.7300674938617661
+    },
+    {
+      "first_4d_input_wh": "32x24",
+      "ms": 0.10114999999999999,
+      "generator_share_percent": 0.07779891778667239,
+      "receiver_share_percent": 0.07122784882559113
+    },
+    {
+      "first_4d_input_wh": "8x24",
+      "ms": 0.04796500000000001,
+      "generator_share_percent": 0.036891992996912926,
+      "receiver_share_percent": 0.03377601353355887
+    }
+  ],
+  "last_three_resblocks_ms": 68.94043400000001,
+  "last_three_resblocks_share_percent": 48.54650332103454,
+  "fill_ablation": {
+    "on_median_seconds": 10.0621262,
+    "off_median_seconds": 9.2699625,
+    "paired_speedup_median": 1.0895348821529753
+  },
+  "gpu_work_hypotheses_not_measured": [
+    {
+      "assumed_generator_speedup": 1.5,
+      "gpu_work_ms": 98.67084133333334,
+      "gpu_work_speedup": 1.4392201392127584
+    },
+    {
+      "assumed_generator_speedup": 2.0,
+      "gpu_work_ms": 77.001731,
+      "gpu_work_speedup": 1.8442320731724848
+    },
+    {
+      "assumed_generator_speedup": 3.0,
+      "gpu_work_ms": 55.33262066666668,
+      "gpu_work_speedup": 2.566461886117545
+    },
+    {
+      "assumed_generator_speedup": 4.0,
+      "gpu_work_ms": 44.49806550000001,
+      "gpu_work_speedup": 3.191353610641792
+    }
+  ],
+  "archived_full_job": {
+    "frames": 2477,
+    "width": 640,
+    "height": 360,
+    "fps": 30.0,
+    "q": 0,
+    "encoder_mode": "trt_fp16_stream",
+    "encode_core_seconds": 113.30513610000207,
+    "decode_core_seconds": 358.12947390000113,
+    "decode_fraction_of_encode_plus_decode_core": 0.7596588504607218
+  },
+  "inputs_sha256": {
+    "15_优化阶段_算子精确排查\\evidence_20261030\\analysis.json": "5fdb5090d5f86853f86362078527ecc9dddb3ac356154ffbd3048dc9c4fd475e",
+    "15_优化阶段_算子精确排查\\evidence_20261030\\gpu_layers_receiver_000.csv": "4021ef0370770add8a55e2ef8766fe805d0d0748b63de76885caf09946841376",
+    "15_优化阶段_算子精确排查\\evidence_20261030\\gpu_layers_receiver_001.csv": "10da7827852ef605d67bd85b1669c72fd17f9de3f6ac318d8a8b14b91e1a2b62",
+    "15_优化阶段_算子精确排查\\evidence_20261030\\gpu_layers_receiver_002.csv": "95a23bd869b7cfffb8167b09c6a394688ad4737392757cd4c0ee9869437cdea9",
+    "15_优化阶段_算子精确排查\\evidence_20261030\\gpu_layers_receiver_003.csv": "22cdfe79ac6a5577bad2974e88aa395470d48630269a4e92297f1eb766383b91",
+    "15_优化阶段_算子精确排查\\evidence_20261030\\gpu_layers_receiver_009.csv": "35454d998ff08377dd1b20b9912383e5eef71f138d432cb5ef3e4b55f33f1e57",
+    "15_优化阶段_算子精确排查\\evidence_20261030\\gpu_layers_receiver_033.csv": "42df0ccef5ffb4e7d3ba2d072ace0db45353e9be886e3a3596d6e764bce5621c",
+    "15_优化阶段_算子精确排查\\evidence_20261030\\gpu_layers_receiver_064.csv": "1891319a667f4c0323b9211cb3cdc07fc0fc20ce76974f3bf127a9d28b9cb1c2",
+    "15_优化阶段_算子精确排查\\evidence_20261030\\gpu_layers_receiver_065.csv": "4c2ef2d78efb40051bddc8e0de1125c0b68e8764be34dd160e44b2c515a65512",
+    "16_优化阶段_输入编码器推理加速\\web_evidence_20261031\\full_acceptance.json": "8cdaa1feff05033bf494ec595a0822a88b2eda1f3fbd09c0791dbc36890530c3",
+    "04_外部依赖快照/semantic-video-training/scripts/glc_video_codec.py": "daa09cf333ac275626e0906ca6b043ab2cf082eb52bd47c192e20e10ee38b83a",
+    "16_优化阶段_输入编码器推理加速/web_video_worker.py": "a47c411c4f0d9c21f232dde3883c2f485b388ee0a367f545a55ae63a5c6c3b5e"
+  },
+  "analysis_script_sha256": "ff904c66f03dca442b9b1be540b1830e8637b2b8fe0514fce3a2bd66393c7ea5",
+  "new_gpu_jobs": 0,
+  "new_training_steps": 0
+}
