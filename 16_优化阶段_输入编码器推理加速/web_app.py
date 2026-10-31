@@ -46,12 +46,27 @@ class InferenceLab:
                 j=load_json(f)
                 if j['status'] not in TERMINAL and j['status']!='staged':
                     for record in f.parent.glob('*_process/process.json'):
-                        if inspect(record.parent)['observed_state'] in ['running','orphan_running','liveness_unknown']:self.blockers.append(str(record))
+                        if inspect(record.parent)['observed_state'] in ['running','orphan_running','liveness_unknown']:self.blockers.append(str(record.parent))
                     j.update(status='interrupted',phase='上次服务中断，未记为成功');write(f,j)
                 self.jobs[j['id']]=j
             except (OSError,ValueError,KeyError):continue
 
+    def refresh_blockers(self):
+        # Startup can catch a transient/old process identity. Recheck it rather
+        # than keeping a retired task blocked for the entire server lifetime.
+        # Active or uncertain processes remain blocked; no worker is started.
+        for holder in (self.owner,self):
+            for item in list(holder.blockers):
+                folder=Path(item)
+                if folder.name=='process.json':folder=folder.parent
+                try:state=inspect(folder)['observed_state']
+                except (OSError,ValueError,KeyError,TypeError):continue
+                if state in ('running','orphan_running','liveness_unknown'):continue
+                try:holder.blockers.remove(item)
+                except ValueError:pass
+
     def config(self):
+        self.refresh_blockers()
         uploads=[]
         with self.lock:jobs=copy.deepcopy(list(self.jobs.values()))
         for j in sorted(jobs,key=lambda x:x['created_at'],reverse=True):
@@ -60,7 +75,8 @@ class InferenceLab:
                 uploads.append(dict(id=j['id'],filename=j['filename'],options=j['options']))
         return dict(app='glc-inference-lab-v1',modes=[dict(id=k,label=v) for k,v in MODES.items()],
             samples=[{k:c[k] for k in ['id','width','height','frames','fps','q']} for c in self.plan['clips'] if c['id']!='uv108_q17_512'] if self.plan else [],
-            ready=bool(self.plan and not self.closed and not self.blockers and self.owner.role=='sender'),
+            ready=bool(self.plan and not self.closed and not self.owner.closed and not self.blockers and not self.owner.blockers and self.owner.role=='sender'),
+            blocked_processes=list(self.owner.blockers)+list(self.blockers),
             uploads=uploads[:20],full_video_supported=True,frame_rate_modes=['original','half'],max_upload_bytes=1024**3,gpu_started_on_open=False,shared_gpu_queue=True)
 
     def update(self,identifier,**changes):

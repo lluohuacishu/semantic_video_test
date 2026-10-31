@@ -5,7 +5,7 @@ import threading
 from pathlib import Path
 from types import SimpleNamespace
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock,patch
 from web_app import InferenceLab,options
 from experiment_common import load_settings
 
@@ -42,6 +42,24 @@ class WebTests(unittest.TestCase):
         self.assertEqual(result['fps_mode'],'half');self.assertIsNone(result['frames'])
         for value in ['fast',2,False,None,[]]:
             with self.assertRaises(ValueError):options(dict(self.value,fps_mode=value))
+
+    def test_retired_process_blocker_is_rechecked_without_gpu(self):
+        self.owner.blockers=['retired-process']
+        with patch('web_app.inspect',return_value={'observed_state':'cancelled'}):
+            self.assertTrue(self.lab.config()['ready']);self.assertEqual(self.owner.blockers,[])
+            self.assertEqual(self.lab.create(self.value)['status'],'staged')
+        self.owner.executor.submit.assert_not_called()
+
+    def test_active_or_unknown_process_blocker_is_preserved(self):
+        for state in ['running','orphan_running','liveness_unknown']:
+            self.owner.blockers=['guarded-process']
+            with patch('web_app.inspect',return_value={'observed_state':state}):
+                self.assertFalse(self.lab.config()['ready'])
+                with self.assertRaises(ValueError):self.lab.create(self.value)
+            self.assertEqual(self.owner.blockers,['guarded-process'])
+        with patch('web_app.inspect',side_effect=OSError('identity unavailable')):
+            self.assertFalse(self.lab.config()['ready'])
+        self.owner.executor.submit.assert_not_called()
 
     def test_reuses_owner_queue_and_rejects_double_start(self):
         j=self.lab.create(self.value);self.lab.start(j['id'])

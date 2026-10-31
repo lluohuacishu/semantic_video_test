@@ -35,7 +35,7 @@ function tab(live){el('live-panel').hidden=!live;el('replay-panel').hidden=live;
 el('tab-run').onclick=()=>tab(true);el('tab-replay').onclick=()=>tab(false);
 function inputChange(){const id=el('live-source').value;el('live-file').hidden=id!=='upload';if(id.startsWith('reuse:')){const old=config.uploads.find(x=>x.id===id.slice(6));el('live-size').value=String(old.options.size);el('live-q').value=old.options.q;el('live-modes').querySelectorAll('input').forEach(x=>x.checked=old.options.modes.includes(x.value))}else if(id!=='upload'){const c=config.samples.find(x=>x.id===id);el('live-size').value=c.width>512?'640':'512';el('live-q').value=c.q;el('live-frames').value=Math.min(c.frames,66)}}
 function restoreInput(j){const value=j.sample||'reuse:'+(j.source_job||j.id);if([...el('live-source').options].some(o=>o.value===value)){el('live-source').value=value;inputChange()}el('live-size').value=String(j.options.size);el('live-q').value=j.options.q;el('live-fps-mode').value=j.options.fps_mode||'original';el('live-modes').querySelectorAll('input').forEach(x=>x.checked=j.options.modes.includes(x.value))}
-function buttons(active){el('live-start').disabled=active||submitting;el('live-cancel').disabled=!active}
+function buttons(active){el('live-start').disabled=active||submitting||!config?.ready;el('live-cancel').disabled=!active}
 function render(j){
 current=j;const active=['queued','running','cancelling','uploading'].includes(j.status);buttons(active);
 const p=j.progress,part=p?.total?` · ${p.index}/${p.total}帧`:'';
