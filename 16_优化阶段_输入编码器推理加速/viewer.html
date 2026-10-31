@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GLC 加速效果对比</title>
+<style>
+:root{color-scheme:dark;--bg:#0c141b;--panel:#14222d;--line:#30434f;--ink:#edf3f5;--muted:#a4b8c3;--mint:#9bdfc7}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,"Microsoft YaHei",sans-serif}main{max-width:1380px;margin:auto;padding:28px 28px 44px}header{display:flex;justify-content:space-between;gap:20px;align-items:center}h1{font-size:29px;letter-spacing:-.5px;margin:0}p{margin:6px 0;color:var(--muted)}.eyebrow{color:var(--mint);font-size:13px;letter-spacing:1.5px}.badge{font-size:13px;border:1px solid var(--line);border-radius:20px;padding:6px 12px;color:var(--muted);white-space:nowrap}.clips{display:flex;gap:10px;margin:22px 0 16px;flex-wrap:wrap}button,select{font:inherit;color:var(--ink);border:1px solid #415763;background:#1a303e;border-radius:7px;padding:8px 14px;cursor:pointer}button:hover{background:#294654}button[aria-pressed=true]{background:var(--mint);color:#102b25;border-color:var(--mint)}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--mint);outline-offset:3px}button:disabled{opacity:.5;cursor:wait}.meta{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}.meta h2{font-size:18px;margin:0}.meta span{color:var(--muted);font-size:13px}.screen{background:#05090d;overflow:hidden;border-radius:9px;border:1px solid var(--line);aspect-ratio:640/394}.screen video{display:block;width:100%;height:100%;object-fit:contain}.screen[data-view=source] video{transform:scale(2);transform-origin:left top}.screen[data-view=eager] video{transform:scale(2);transform-origin:right top}.screen[data-view=fp32] video{transform:scale(2);transform-origin:left bottom}.screen[data-view=fp16] video{transform:scale(2);transform-origin:right bottom}.controls{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:13px 0}.primary{background:var(--mint);color:#102b25;border-color:var(--mint);min-width:105px}.timeline{display:flex;align-items:center;gap:14px;margin:8px 0 22px}.timeline input{flex:1;accent-color:var(--mint)}#position{font-variant-numeric:tabular-nums;min-width:170px;text-align:right;color:var(--muted);font-size:13px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:9px;background:var(--panel)}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line)}th{font-size:12px;color:var(--muted);font-weight:500}tbody tr:last-child td{border-bottom:0}td strong{color:var(--mint)}td small{color:var(--muted);display:block;font-size:12px}.foot{display:flex;justify-content:space-between;gap:18px;margin-top:14px;font-size:12px;color:var(--muted)}a{color:var(--mint)}#status{min-height:24px;color:var(--mint);font-size:13px}details{margin-top:12px;color:var(--muted);font-size:13px}summary{cursor:pointer}@media(max-width:720px){main{padding:18px 12px}h1{font-size:23px}header .badge{display:none}.meta{align-items:flex-start;flex-direction:column;gap:2px}.clips{gap:7px}.clips button{padding:7px 10px}th,td{padding:10px}.foot{flex-direction:column;gap:4px}.timeline{gap:5px}#position{min-width:125px}.controls button,.controls select{padding:7px 10px}}
+</style>
+</head>
+<body><main>
+<header><div><div class="eyebrow">GLC · 编码器加速实验</div><h1>看画面，也看实际编码耗时</h1><p>选择模式实际运行，也可回放已完成的同步对比。</p></div><span class="badge">RTX 4060 · 编码与独立解码</span></header>
+<nav class="clips" aria-label="实验入口"><button id="tab-run" aria-pressed="true">自己运行，比较速度</button><button id="tab-replay" aria-pressed="false">查看已完成的四段对比</button><a href="/" style="margin-left:auto;align-self:center">返回主网页</a></nav>
+<section id="live-panel">
+<div class="table-wrap" style="padding:20px">
+<h2 style="font-size:19px;margin:0 0 14px">选择输入与编码模式</h2>
+<div class="controls"><label>输入 <select id="live-source" aria-label="实验输入"></select></label><input id="live-file" type="file" accept=".mp4,.mkv,.mov,.avi,.webm" hidden></div>
+<div class="controls">
+<label>处理范围 <select id="live-range"><option value="full">完整视频（默认）</option><option value="first_frames">快速测试：最多N帧输出</option></select></label>
+<label>最长边 <select id="live-size"><option value="640">640像素</option><option value="512">512像素</option></select></label>
+<label id="live-frames-wrap" hidden>输出测试帧数 <input id="live-frames" type="number" min="1" max="10000" value="66" style="width:84px;font:inherit;padding:7px;background:#1a303e;color:white;border:1px solid #415763;border-radius:6px"></label>
+<label>q档位 <input id="live-q" type="number" min="0" max="63" value="0" style="width:70px;font:inherit;padding:7px;background:#1a303e;color:white;border:1px solid #415763;border-radius:6px"></label></div>
+<div class="controls" id="live-modes" aria-label="编码模式"></div>
+<div class="controls"><label>帧率模式 <select id="live-fps-mode"><option value="original">跟随原视频帧率</option><option value="half">帧率减半</option></select></label><span style="color:var(--muted);font-size:13px">减半时隔帧采样并同步降低输出帧率，保持正常播放速度。</span></div>
+<div class="controls"><button id="live-start" class="primary" disabled>开始真实编解码</button><button id="live-cancel" disabled>停止当前任务</button></div>
+<p class="note">所有模式使用同一份输入，按单GPU队列依次运行。本机编码后由独立进程使用原接收端解码，不包含网络传输。</p>
+<p class="note">原GLC代表原权重的FP32输入编码器；其余模式仅替换该模块，接收端均保持原模型。</p>
+<p class="note">完整模式读取上传视频直到末帧，不限66帧。已有示例按其片段长度运行；可直接复用上次上传的原文件。</p>
+<p class="note">首次遇到新尺寸时，TensorRT需要构建引擎，多种模式可能需要1–3分钟；页面会单列构建时间，后续复用。</p>
+</div>
+<div id="live-status" role="status" aria-live="polite" style="margin:18px 0;color:var(--mint)">正在连接运行服务…</div>
+<progress id="live-progress" max="1" value="0" style="width:100%;height:9px;accent-color:var(--mint)"></progress>
+<div id="live-result" style="margin-top:18px"></div>
+<details><summary>最近任务</summary><div id="live-history"></div></details>
+</section>
+<section id="replay-panel" hidden>
+<nav class="clips" id="clips" aria-label="选择实验片段"></nav>
+<div class="meta"><h2 id="clip-title">正在加载结果…</h2><span id="clip-info"></span></div>
+<div class="controls">
+<button class="primary" id="play" disabled>播放</button><button id="prev" disabled>前一帧</button><button id="next" disabled>后一帧</button><button id="restart" disabled>从头播放</button>
+<select id="view" aria-label="画面范围"><option value="grid">四路同步对比</option><option value="source">放大：原始画面</option><option value="eager">放大：原GLC</option><option value="fp32">放大：TensorRT FP32</option><option value="fp16">放大：TensorRT FP16</option></select>
+<select id="rate" aria-label="回放速度"><option value="1">正常回放</option><option value="0.5">半速回放</option><option value="0.25">四分之一速</option></select><button id="fullscreen">全屏</button>
+</div>
+<div class="screen" id="screen" data-view="grid"><video id="video" muted playsinline preload="auto" aria-label="原始画面与三种重建同步对比"></video></div>
+<div class="timeline"><input id="seek" aria-label="视频帧位置" type="range" min="0" max="65" value="0" step="1"><span id="position">第 1 帧</span></div>
+<div id="status" role="status" aria-live="polite"></div>
+<div class="table-wrap"><table><thead><tr><th>方法</th><th>编码核心耗时</th><th>相对原版加速</th><th>P帧PSNR</th><th>鱼体标注区域PSNR</th><th>平均码率</th><th>实际传输文件</th></tr></thead><tbody id="metrics"></tbody></table></div>
+<div class="foot"><span>视频按统一帧序回放，播放速度不代表编码速度。耗时不含模型加载和引擎构建。</span><a href="summary.json" target="_blank" rel="noopener">查看本页数据</a></div>
+<details><summary>查看范围与数值说明</summary><p>本页是已完成实验的回放入口，不会启动新训练或编码。PSNR基于原始解码RGB；页面H.264视频只用于观看，大小不代表传输文件。码流列采用精简实现标识后的真实文件大小，原接收端校验已通过。</p><p>较短片段保留实验中的标称回放帧率；未核实的采集时钟不用于时延结论。当前结果来自本机，尚未在Orin上验收。</p></details>
+</section>
+</main>
+<script src="live.js"></script></body></html>

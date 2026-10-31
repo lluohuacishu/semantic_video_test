@@ -260,6 +260,7 @@ $('enhancement').onchange=methodHint;
 async function init(){
   config=await api('/api/config');
   const sender=config.role==='sender';
+  $('inferenceLink').hidden=!sender;
   $('sender').hidden=!sender;$('receiver').hidden=sender;
   $('title').textContent=sender?'发送端 · 语义视频':'接收端 · 独立重建';
   $('subtitle').textContent=sender?'选择视频，编码并发送到另一台电脑。':'接收完整码流，校验后在本机解码播放。';

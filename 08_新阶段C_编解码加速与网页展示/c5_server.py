@@ -407,6 +407,8 @@ class Endpoint(C3App):
         return {"released": True}
 
     def close(self):
+        if hasattr(self, "inference_lab"):
+            self.inference_lab.close()
         super().close()
         if self.resident:
             self.resident.close()
@@ -724,6 +726,16 @@ class Handler(OldHandler):
             route = parsed.path
             control = route.startswith("/control/")
             self.authorize(control)
+            if route == "/inference":
+                self.send_response(302)
+                self.send_header("Location", "/inference/")
+                self.send_header("Content-Length", "0")
+                self.end_headers()
+                return
+            if route.startswith("/inference/"):
+                sys.path.insert(0, str(REPO / "16_优化阶段_输入编码器推理加速"))
+                from web_app import get_lab
+                return get_lab(self.app).get_route(self, route)
             if route == "/api/config":
                 return self.json(self.app.config())
             if route == "/report.html":
@@ -761,6 +773,10 @@ class Handler(OldHandler):
             control = route.startswith("/control/")
             self.authorize(control)
             value = self.body()
+            if route.startswith("/inference/"):
+                sys.path.insert(0, str(REPO / "16_优化阶段_输入编码器推理加速"))
+                from web_app import get_lab
+                return get_lab(self.app).post_route(self, route, value)
             if route == "/api/shutdown":
                 self.json({"stopping": True})
                 threading.Thread(target=self.server.shutdown, daemon=True).start()
@@ -814,6 +830,12 @@ class Handler(OldHandler):
         identifier = None
         try:
             self.authorize()
+            route = urlsplit(self.path).path
+            lab_upload = re.fullmatch(r"/inference/api/jobs/([0-9a-f]{32})/upload", route)
+            if lab_upload:
+                sys.path.insert(0, str(REPO / "16_优化阶段_输入编码器推理加速"))
+                from web_app import get_lab
+                return self.json(get_lab(self.app).upload(self, lab_upload[1]))
             match = re.fullmatch(r"/api/jobs/([0-9a-f]{32})/upload", urlsplit(self.path).path)
             if not match or self.app.role != "sender":
                 raise ValueError("无效上传地址")

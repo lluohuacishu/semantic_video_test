@@ -1,0 +1,50 @@
+{
+  "schema": "glc-web-full-video-acceptance-v1",
+  "date": "2026-10-31",
+  "source_sha256": {
+    "08_新阶段C_编解码加速与网页展示/c5_server.py": "85fe05e2f9a49be7adc027f5482e566fd0fd7fc29673fbdf2f5e3c27c39aaba9",
+    "08_新阶段C_编解码加速与网页展示/c5_console/app.js": "82b501161911bc5ae180210c694a409e39714a75fa2332008aba7f1df5647fff",
+    "08_新阶段C_编解码加速与网页展示/c5_console/index.html": "45bde5dc49805bf8f9fb148d52426466ad64c3be02850dbd502dc6fa6f9a06e8",
+    "16_优化阶段_输入编码器推理加速/live.js": "a143eebf436a45351d9eafa03b04dec70319fa46f409c51fb6d298b006220630",
+    "16_优化阶段_输入编码器推理加速/open_viewer.py": "7008e35ede2aff2d5efd209c3fdcb71a5607b387175cd26c8c6a4ba394b8d089",
+    "16_优化阶段_输入编码器推理加速/prepare_viewer.py": "85acdd260aa46a7a10de02a7409339a975f61df17ec8c6b0263ae5cd78e277b8",
+    "16_优化阶段_输入编码器推理加速/test_web_app.py": "7a15e9c5274b06d401340d88887ae655c83d1f657e56e7f16c2bd39586bfa763",
+    "16_优化阶段_输入编码器推理加速/test_web_engine_cache.py": "6a4f4b779bef319ac03cbd3cff7d12c3a0e5d460071a46559f82e87e2d66f108",
+    "16_优化阶段_输入编码器推理加速/test_web_video.py": "d1f15cb58da8939b6d21c87b64d5e4c8d7374ea468df06f3ecf392ad63c8be9a",
+    "16_优化阶段_输入编码器推理加速/viewer.html": "381afe3808655ac4ff434c99d4f428f600d21ff97e790553da241e6daf1d3ab6",
+    "16_优化阶段_输入编码器推理加速/web_app.py": "062e829ed0d4692df2ba16e067cb32cc378edb63319fbea984f3d7ddbe8b58a8",
+    "16_优化阶段_输入编码器推理加速/web_engine_cache.py": "ca3760717ca528c50b193bff81c3d387615812c2f63e2a2ebebd2790bea2490a",
+    "16_优化阶段_输入编码器推理加速/web_frames.py": "46e25095c1935aba8c036d109e4272c3d9737f11b9f78490215acb0ce120f616",
+    "16_优化阶段_输入编码器推理加速/web_full_check.py": "1c0ec7d22cb9f0d083695b4e7ed4cd2b39c3101116c771c1be9fa6f584cd30c3",
+    "16_优化阶段_输入编码器推理加速/web_full_validate.py": "060d1c4e6937b84e4c70231f31290082d2fd3d3ec775dfe1a414d847e7ea5ef9",
+    "16_优化阶段_输入编码器推理加速/web_smoke.py": "8f09ddd6e1f69ce935ac0e046fe2135ae2504992d90245e9ce563dac8edd458d",
+    "16_优化阶段_输入编码器推理加速/web_transport.py": "1183ac8193448fcaa6ef283e454324360e454863c8ec4d49edda8c36fe568e40",
+    "16_优化阶段_输入编码器推理加速/web_video_worker.py": "a47c411c4f0d9c21f232dde3883c2f485b388ee0a367f545a55ae63a5c6c3b5e",
+    "16_优化阶段_输入编码器推理加速/打开加速效果对比.cmd": "9c18a9cf644c04f4833a847bea9e5171ef94915e603b5408ae82c3cd076995a8",
+    "16_优化阶段_输入编码器推理加速/打开加速效果对比.ps1": "1618e7b05c1e491c848d31b37415b79e61c0ba23766ad169193cf1fea0d64c0c"
+  },
+  "full_run_worker_capture": {
+    "path": "16_优化阶段_输入编码器推理加速/web_video_worker.py",
+    "sha256": "71064b3e21e21f1e5715a949e42ed8223030907b76b95b5309b6cd1daa697ac1",
+    "note": "Captured unchanged worker used by full job f31e244e2d76e3462d75e8af08886613 before odd-dimension input compatibility patch"
+  },
+  "full_run_note": "2477-frame original-rate acceptance completed before odd-size compatibility and the half-rate option were added. Final odd-size/four-mode GPU checks were completed before the user requested self-running. Half-rate has only static/parameter/UI checks; no new video jobs.",
+  "media_uploads_weights_engines_remain_local": true,
+  "training_steps": 0,
+  "old_performance_matrix_rerun": false,
+  "Orin_tested": false,
+  "half_frame_rate": {
+    "passed": true,
+    "frame_rate_modes": [
+      "original",
+      "half"
+    ],
+    "python_syntax": true,
+    "javascript_syntax": true,
+    "web_parameter_checks": 8,
+    "real_video_tested": false,
+    "new_video_jobs": 0,
+    "job_ids_and_statuses_unchanged": true,
+    "user_will_run": true
+  }
+}
