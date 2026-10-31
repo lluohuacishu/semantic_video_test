@@ -1,0 +1,398 @@
+{
+  "complete": true,
+  "reports": [
+    {
+      "batch": 1,
+      "model": "video",
+      "frames_per_pass": 20,
+      "timings": {
+        "generator": {
+          "median_ms_per_frame": 71.72138000005361,
+          "median_fps": 13.942843821455366,
+          "all_ms_per_frame": [
+            71.7309200001182,
+            71.71183999998902,
+            71.6965949999576,
+            71.68128500015882,
+            71.76757499983069,
+            71.80503999989014
+          ],
+          "process_round_medians": [
+            71.71183999998902,
+            71.76757499983069
+          ],
+          "speedup_vs_batch1": 1.0
+        },
+        "rgb_output": {
+          "median_ms_per_frame": 72.14664750008524,
+          "median_fps": 13.860657905120519,
+          "all_ms_per_frame": [
+            72.08199500018964,
+            72.11827499995707,
+            72.16002000022854,
+            72.27097499999218,
+            72.13327499994193,
+            72.2840799997357
+          ],
+          "process_round_medians": [
+            72.11827499995707,
+            72.27097499999218
+          ],
+          "speedup_vs_batch1": 1.0
+        }
+      },
+      "quality": {
+        "psnr_vs_gt_db": 32.12576522734983,
+        "teacher_psnr_vs_gt_db": 32.1391684711654,
+        "batch1_psnr_vs_gt_db": 32.12576522734983,
+        "psnr_delta_vs_teacher_db": -0.013403243815567123,
+        "additional_psnr_delta_vs_batch1_db": 0.0,
+        "mse_vs_teacher": 0.07637760416666667,
+        "mse_vs_batch1": 0.0,
+        "maximum_rgb_error_vs_batch1": 0,
+        "changed_rgb_values_vs_batch1": 0,
+        "bit_exact_vs_batch1": true
+      },
+      "rgb_repeatable": true,
+      "sampled_device_peak_mib": [
+        1722.5,
+        1722.5
+      ],
+      "engine_context_mib": 365.17578125,
+      "engine": {
+        "identity": {
+          "schema": "glc-rgb-generator-trt-v1",
+          "role": "video",
+          "backend": "trt_fp16_safe",
+          "model_state_sha256": "73dbf3460b749ec830d4e86e4c0fc4411b8dedfc361ac01686b4b49e0820b9c8",
+          "implementation_sha256": "bc51564b8483055dbcd72d02943ca7c8935b3b74ff5bc2640a84a68ca94b9d5d",
+          "input_shape": [
+            1,
+            256,
+            24,
+            40
+          ],
+          "input_dtype": "float32",
+          "output_dtype": "float32",
+          "tensorrt": "10.5.0",
+          "torch": "2.5.1+cu124",
+          "torch_cuda": "12.4",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+          "compute_capability": [
+            8,
+            9
+          ],
+          "tf32": false,
+          "workspace_bytes": 536870912,
+          "optimization_level": 3,
+          "onnx_opset": 17,
+          "precision_policy": "strongly_typed_fp16_bounded_convolutions_fp32_remainder_v4"
+        },
+        "engine_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_解码器推理\\decoder_20261031_05\\engines\\340bde8808e40b72192150f2efd28d78bfaeda4159c754a818b845b757b7cbdd\\generator.engine",
+        "engine_sha256": "738d4015b4e512327a469b2ca8b86ae68f1b7ec08bccd079c80f6ed1e37e409b",
+        "setup_seconds": 0.6380043999961345,
+        "built": false,
+        "fp32_output_before_pixel_quantization": true
+      },
+      "engine_build_in_round1": false
+    },
+    {
+      "batch": 2,
+      "model": "video",
+      "frames_per_pass": 20,
+      "timings": {
+        "generator": {
+          "median_ms_per_frame": 67.68014000008407,
+          "median_fps": 14.775383147829746,
+          "all_ms_per_frame": [
+            67.87117999992915,
+            67.88414000002376,
+            67.84353500006546,
+            67.51674500010267,
+            67.48699999989185,
+            67.4642699999822
+          ],
+          "process_round_medians": [
+            67.87117999992915,
+            67.48699999989185
+          ],
+          "speedup_vs_batch1": 1.0597108693918855
+        },
+        "rgb_output": {
+          "median_ms_per_frame": 67.76906499999313,
+          "median_fps": 14.755995231749196,
+          "all_ms_per_frame": [
+            67.76046999984828,
+            67.7340500002174,
+            67.79473000024154,
+            67.72466499969596,
+            67.77766000013798,
+            67.90177000002586
+          ],
+          "process_round_medians": [
+            67.76046999984828,
+            67.77766000013798
+          ],
+          "speedup_vs_batch1": 1.0645955864979477
+        }
+      },
+      "quality": {
+        "psnr_vs_gt_db": 32.12019600665801,
+        "teacher_psnr_vs_gt_db": 32.1391684711654,
+        "batch1_psnr_vs_gt_db": 32.12576522734983,
+        "psnr_delta_vs_teacher_db": -0.01897246450738521,
+        "additional_psnr_delta_vs_batch1_db": -0.005569220691818089,
+        "mse_vs_teacher": 0.09189489293981482,
+        "mse_vs_batch1": 0.105130859375,
+        "maximum_rgb_error_vs_batch1": 18,
+        "changed_rgb_values_vs_batch1": 1300426,
+        "bit_exact_vs_batch1": false
+      },
+      "rgb_repeatable": true,
+      "sampled_device_peak_mib": [
+        2146.5,
+        2088.5
+      ],
+      "engine_context_mib": 728.71484375,
+      "engine": {
+        "identity": {
+          "schema": "glc-rgb-generator-trt-v1",
+          "role": "video",
+          "backend": "trt_fp16_safe",
+          "model_state_sha256": "73dbf3460b749ec830d4e86e4c0fc4411b8dedfc361ac01686b4b49e0820b9c8",
+          "implementation_sha256": "bc51564b8483055dbcd72d02943ca7c8935b3b74ff5bc2640a84a68ca94b9d5d",
+          "input_shape": [
+            2,
+            256,
+            24,
+            40
+          ],
+          "input_dtype": "float32",
+          "output_dtype": "float32",
+          "tensorrt": "10.5.0",
+          "torch": "2.5.1+cu124",
+          "torch_cuda": "12.4",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+          "compute_capability": [
+            8,
+            9
+          ],
+          "tf32": false,
+          "workspace_bytes": 536870912,
+          "optimization_level": 3,
+          "onnx_opset": 17,
+          "precision_policy": "strongly_typed_fp16_bounded_convolutions_fp32_remainder_v4"
+        },
+        "engine_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_解码批量\\batch_pilot_20261031_01\\engines\\ba78ec0bab7fef40186f67dacb1e390f3e4426f88531e95848c43c9dd6678be6\\generator.engine",
+        "engine_sha256": "1de404b2dd81f926773c6e98daa7ce9b5d058dce1ab2e482364d651635b290d3",
+        "setup_seconds": 45.28575770000316,
+        "built": true,
+        "fp32_output_before_pixel_quantization": true
+      },
+      "engine_build_in_round1": true
+    },
+    {
+      "batch": 4,
+      "model": "video",
+      "frames_per_pass": 20,
+      "timings": {
+        "generator": {
+          "median_ms_per_frame": 64.16244249994634,
+          "median_fps": 15.585441592265388,
+          "all_ms_per_frame": [
+            64.06596500019077,
+            64.0810649998457,
+            64.12313000000722,
+            64.23048500000732,
+            64.24386500002583,
+            64.20175499988545
+          ],
+          "process_round_medians": [
+            64.0810649998457,
+            64.23048500000732
+          ],
+          "speedup_vs_batch1": 1.1178093789075065
+        },
+        "rgb_output": {
+          "median_ms_per_frame": 64.48495999993611,
+          "median_fps": 15.507491979540513,
+          "all_ms_per_frame": [
+            64.45850000018254,
+            64.46926999997231,
+            64.44597000008798,
+            64.50397999979032,
+            64.5006499998999,
+            64.53175000024203
+          ],
+          "process_round_medians": [
+            64.45850000018254,
+            64.50397999979032
+          ],
+          "speedup_vs_batch1": 1.1188135574583085
+        }
+      },
+      "quality": {
+        "psnr_vs_gt_db": 32.12123667939504,
+        "teacher_psnr_vs_gt_db": 32.1391684711654,
+        "batch1_psnr_vs_gt_db": 32.12576522734983,
+        "psnr_delta_vs_teacher_db": -0.01793179177035853,
+        "additional_psnr_delta_vs_batch1_db": -0.0045285479547914065,
+        "mse_vs_teacher": 0.09228667534722222,
+        "mse_vs_batch1": 0.10269437210648148,
+        "maximum_rgb_error_vs_batch1": 18,
+        "changed_rgb_values_vs_batch1": 1277136,
+        "bit_exact_vs_batch1": false
+      },
+      "rgb_repeatable": true,
+      "sampled_device_peak_mib": [
+        2902.5,
+        2844.5
+      ],
+      "engine_context_mib": 1456.1220703125,
+      "engine": {
+        "identity": {
+          "schema": "glc-rgb-generator-trt-v1",
+          "role": "video",
+          "backend": "trt_fp16_safe",
+          "model_state_sha256": "73dbf3460b749ec830d4e86e4c0fc4411b8dedfc361ac01686b4b49e0820b9c8",
+          "implementation_sha256": "bc51564b8483055dbcd72d02943ca7c8935b3b74ff5bc2640a84a68ca94b9d5d",
+          "input_shape": [
+            4,
+            256,
+            24,
+            40
+          ],
+          "input_dtype": "float32",
+          "output_dtype": "float32",
+          "tensorrt": "10.5.0",
+          "torch": "2.5.1+cu124",
+          "torch_cuda": "12.4",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+          "compute_capability": [
+            8,
+            9
+          ],
+          "tf32": false,
+          "workspace_bytes": 536870912,
+          "optimization_level": 3,
+          "onnx_opset": 17,
+          "precision_policy": "strongly_typed_fp16_bounded_convolutions_fp32_remainder_v4"
+        },
+        "engine_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_解码批量\\batch_pilot_20261031_01\\engines\\53bae08f7fa62c747eeed88072996b4d00fecc3c40a075df74a6eaa2d2a6ec33\\generator.engine",
+        "engine_sha256": "73a32c941b1ec67de905e8e4ad56999b4899450210459497e6519c16b79cdbfd",
+        "setup_seconds": 61.227129999999306,
+        "built": true,
+        "fp32_output_before_pixel_quantization": true
+      },
+      "engine_build_in_round1": true
+    }
+  ],
+  "capture": {
+    "frames_decoded": 66,
+    "selected_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      61,
+      62,
+      63,
+      65
+    ],
+    "distinct_source_frames": true,
+    "model": "video",
+    "input_shape": [
+      20,
+      256,
+      24,
+      40
+    ],
+    "header": {
+      "arithmetic": {
+        "capability": [
+          8,
+          9
+        ],
+        "cuda": "12.4",
+        "cudnn": 90100,
+        "deterministic": true,
+        "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+        "implementation": "glcv-lab-f32-v1",
+        "tf32": false,
+        "torch": "2.5.1+cu124"
+      },
+      "container_version": 3,
+      "entropy": "python-byte-rans-gaussian128-v1",
+      "fps": 12.5,
+      "frames": 66,
+      "height": 360,
+      "integrity_profile": "reference-only-no-sender-rgb-v1",
+      "intra_period": 64,
+      "q": 0,
+      "reset_interval": 32,
+      "revision": "126db25f9c093508cd0c99cee32b53fd60074f9a",
+      "sender_rgb_reconstructed": false,
+      "table_sha256": "a6b6e078b8554d60a065e59a35bd1b0c181b0b4f4bfcf73cd78403bb73e375ac",
+      "weights": {
+        "GLC_Video.pth.tar": "c55a46f33b92945dcdc24bbbc023909368de78fce7830d3137e4d2ef7249ee62",
+        "GLC_image.pth.tar": "139c1d49a56b5c14b0fbd7e0c43b53a4f0b093d35aa11c79ed9d0b9bfede4c94"
+      },
+      "width": 640
+    },
+    "input_stream_sha256": "4214004f17f4f8e344d5a521936abdebd8a6c0557aea761588600666334e033d",
+    "reference_checksums": {
+      "latent_sha256": "75dc7e0a53ad2f474a0827584cbab30709e38f92127ce7b0b1bf6fa0af6c0fe8"
+    },
+    "reference_verified": true,
+    "per_frame_reference_matches_stage17": true,
+    "source_media_reads_forbidden": true,
+    "selected_reference_sha256": [
+      "2934a284e582fba8a1af5beb43d3a7780c5df54ab183ad74f3c0c88dd2b7df01",
+      "1a3aa82f638be78f525ae7c2532e34b8a6c148c0acdcb76c3b20d64b9c1b51b6",
+      "7e69e7919219c32b5c2ffcccf207447c93a71316fd321c6e7b6d41b43caf7ab7",
+      "33a67918b66407906a9ed3b0f9e01d2a61cbd3784b8e2f6286881736c4224f2a",
+      "74659dd7523a679ddfe838bd24bf445bdd22f37fe6bf45436af7aa83ecad5d98",
+      "881be68a0af072eada382087479b500d96601c4a784c2755df3a69d3b26d2574",
+      "e4290872acf6b1c6ca02558963390778e8134c7091fe2e0d4df42478963537bd",
+      "534a45d9bdb614c600a7a3dfbe66f95efda82ce7dae95347573839265687b925",
+      "12ad7f961563fa6067aebd18bf0602f8b6c93ced579db0bc3946a6d9a291e5cd",
+      "abf75ff8c722912cb5b16a5bf557e9efe6abe1221fb48468f257c72489b7b7f5",
+      "2a3b658fc81fee37cbbed9d70e64aace04818a4fb31b580df9d520f2c197433f",
+      "d8934a9708308804cb62abbddba5ed0873aea608e6abc7beb5586b2408273650",
+      "03f2ea7ebec0227ed190f8e09bdc47a8c87baec0a76071261a81d3713a7d7240",
+      "79374cd8a4181717abdbb51a505bde0ca04734af08ab40a8de9340d91f82f091",
+      "c7435ed3124242d4da2c8e4caa3d9c78131387fe8ee060a43ca460aa816cb916",
+      "0d3cf6f31b9a02e1623c3b3d1d8fa6ad8f24f96dbbd4d18d780252dcd3132498",
+      "54e12834cf4d07fd4fabcdd5d5e510a076c4a5d07131844a7efbbbc350669ef9",
+      "e852b5b1eccdb1dbb7d5b371911abfc90df06315fd68fb5669126a30881005cc",
+      "7bab1ccbba0b321d96cfff56454f341e60effaf674984227268319490c4fc2f7",
+      "f5d1deeba26ac779197be9288eadfaa817c8a2aacc0e7e80281630634e8d409e"
+    ],
+    "latents_sha256": "2edc1db59bd555bc7e6c808c7de87a68931754ff60a753b7177bad725b27a7a8",
+    "teacher_rgb_sha256": "eb6274ce94f6c933dc7adc5deee66e0ce934cd882339aac19cd62cb32f3f2ffe",
+    "capture_seconds": 10.143268600004376,
+    "training_steps": 0
+  },
+  "batch1_matches_stage17_rgb": true,
+  "unique_real_latents": 20,
+  "scope": "P generator only, RTX4060 Laptop, 640x360 q0, 20 selected real P latents; not full decoder FPS",
+  "timing_scope": "GPU-resident inputs. Both modes include real batch gathering and private output cloning. rgb_output also includes finite check, FP32 pixel conversion and CPU RGB transfer. Build/warmup/memory sampling excluded.",
+  "memory_scope": "CUDA mem_get_info usage proxy sampled every 20ms in separate untimed passes. Under Windows WDDM it must not be equated with nvidia-smi physical residency or an exact device/process peak. Engine context bytes are reported separately.",
+  "source_stream_reencoded": false,
+  "decoder_interface_changed": false,
+  "web_changed": false,
+  "training_steps": 0,
+  "Orin_tested": false
+}

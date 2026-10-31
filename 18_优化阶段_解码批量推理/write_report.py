@@ -1,0 +1,64 @@
+"""Generate a scoped batch-pilot report from measured numeric evidence."""
+from batch_common import *
+
+
+def main():
+    summary=load_json(HERE/'evidence_20261031/summary.json')
+    reports=summary['reports'];baseline=reports[0];largest=reports[-1]
+    rows=[]
+    for report in reports:
+        timing=report['timings']['rgb_output'];core=report['timings']['generator'];quality=report['quality']
+        rows.append(f"| {report['batch']} | {core['median_ms_per_frame']:.3f} | {timing['median_ms_per_frame']:.3f} | {timing['median_fps']:.3f} | {timing['speedup_vs_batch1']:.3f}× | {report['engine_context_mib']:.1f} | {quality['additional_psnr_delta_vs_batch1_db']:+.6f} |")
+    table='\n'.join(rows)
+    rgb=largest['timings']['rgb_output'];base=baseline['timings']['rgb_output']
+    fraction=1-rgb['median_ms_per_frame']/base['median_ms_per_frame']
+    text=f'''# 解码端Batch 1/2/4小规模测试
+
+2026-10-31，RTX4060 Laptop 8GB。结论：**P帧生成器Batch4有约{(rgb['speedup_vs_batch1']-1)*100:.1f}%吞吐收益，RGB阶段单位帧耗时下降约{fraction*100:.1f}%，收益有限，不能把模块{rgb['median_fps']:.2f}FPS写成完整GLC解码达到15FPS。** 本轮没有重构接收接口或改网页。
+
+| Batch | Generator毫秒/有效帧 | 含RGB输出毫秒/有效帧 | RGB阶段FPS | 相对Batch1吞吐 | TRT上下文需求MiB | 对GT的PSNR相对混精Batch1变化dB |
+|---|---:|---:|---:|---:|---:|---:|
+{table}
+
+Generator计时包含组批所需GPU拼接、TensorRT生成和私有输出复制；RGB输出计时再包含有限值检查、FP32裁剪/量化和CPU RGB传输。输入latent事先在GPU上，**不包含熵解码、潜变量恢复、等待攒批、加载/构建、暖机、视频封装或磁盘输出**。它是模块吞吐，不是文件解码速度。完整36个计时区间见[计时CSV](evidence_20261031/timings.csv)。
+
+## 测了什么
+
+复用第17阶段的640×360、q0、66帧码流，没有重新编码。独立原版接收器先按顺序解码全部66帧，核对码流完整性、全序列参考摘要，并逐帧比对第17阶段参考SHA。仅保留20个真实且互不相同的P latent，来源索引为`{summary['capture']['selected_indices']}`，包含参考重置附近和GOP切换后的P帧。
+
+只测试原权重P生成器，I生成器没有混入，也未进行I帧batch测试。Batch1复用第17阶段已验证引擎；Batch2/4分别构建固定形状的新强类型引擎，沿用54个FP16卷积节点、5个FP32卷积节点的配方。Batch1的20帧RGB与第17阶段对应输出逐位一致。
+
+两轮独立进程顺序分别为1→2→4和4→2→1，每轮每项三次计时、每次20帧。两轮相同batch的输出RGB逐位复现，原latent未被写入，三个CPU检查通过。这里是小样本先导，不替代更多视频、q档或长时复测。
+
+## 画质和显存
+
+像素指标在CPU上以原始解码RGB计算，GT在独立latent提取完成后才读取。相对既有混合精度Batch1，Batch2额外PSNR变化{reports[1]['quality']['additional_psnr_delta_vs_batch1_db']:+.6f}dB、Batch4为{largest['quality']['additional_psnr_delta_vs_batch1_db']:+.6f}dB；两者均非逐位一致，最大单通道差均为18。相对原FP32教师，Batch1/2/4的PSNR变化分别为{baseline['quality']['psnr_delta_vs_teacher_db']:+.6f}/{reports[1]['quality']['psnr_delta_vs_teacher_db']:+.6f}/{largest['quality']['psnr_delta_vs_teacher_db']:+.6f}dB。原有混精误差与新增batch误差没有混为一项。逐帧数值见同目录quality CSV；本片没有鱼体掩码，不宣称已验证批量模式的鱼体区域质量。
+
+引擎上下文需求由TensorRT报告，约365→729→1456MiB，Batch4比Batch1多约{largest['engine_context_mib']-baseline['engine_context_mib']:.1f}MiB。这**不代表整套模型总显存变为4倍**，也未包含全部权重、完整参考解码网络和桌面资源。
+
+另在独立非计时段以20ms周期读取CUDA `mem_get_info`。Windows WDDM下该口径不能等同于nvidia-smi的物理驻留统计或精确进程峰值；原始字段仅作辅助，显存结论优先采用明确的上下文需求。B4在本次模块测试中没有OOM，不据此断言完整流水线或Orin也满足显存预算。
+
+## 对下一步的判断
+
+RGB阶段Batch4已经耗时约{rgb['median_ms_per_frame']:.2f}ms/有效帧。15FPS的总预算为66.67ms，仅剩约{1000/15-rgb['median_ms_per_frame']:.2f}ms给其他串行步骤。因此本结果不足以支持“把batch选项加到网页，整段就能15FPS”的结论。
+
+目前可以把Batch4保留为小幅提速候选；Batch2收益更小。若继续接入，需要真正拆分顺序潜变量解码与批量RGB生成，保持FP32参考更新，按帧号回填，并处理I/P不同权重和不足一批的尾帧。本轮20帧可整除2/4，**未实现真实接收器的尾批回退或流水线**；CPU分组检查没有被写成端到端验证。
+
+考虑约12%的模块吞吐收益和额外约1.1GiB上下文，当前不直接改动已可用网页。更合理的是在有明确需求时再做接口试验，同时保持项目的Orin编码端实机验证优先级；原系统允许离线处理，不为15FPS强行降低分辨率或重新蒸馏。
+
+## 文件与复现
+
+[数值摘要](evidence_20261031/summary.json)、[执行清单](evidence_20261031/execution_manifest.json)。原始latent、RGB、引擎、日志位于`{TRIAL}`，大文件未上传GitHub。阶段16/17已冻结脚本、角色权重、旧码流和网页未修改。没有训练或Orin测试。
+
+```powershell
+python -X utf8 '18_优化阶段_解码批量推理/run_pilot.py'
+python -X utf8 '18_优化阶段_解码批量推理/evaluate_pilot.py'
+```
+
+这些测试已完成；接续会话不得自动重跑。缓存结果会校验输入与关键执行代码SHA，当前所有测试进程已退出。
+'''
+    (HERE/'Batch先导结果_20261031.md').write_text(text,encoding='utf-8')
+    print('Batch pilot report written',flush=True)
+
+
+if __name__=='__main__':main()
