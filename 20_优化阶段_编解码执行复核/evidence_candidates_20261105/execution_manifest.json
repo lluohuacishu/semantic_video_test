@@ -1,0 +1,147 @@
+{
+  "raw_directory": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\candidates_20261105_01",
+  "receipts": {
+    "screen_layernorm/result.json": {
+      "bytes": 6537,
+      "sha256": "31a9668978df3d65d426bfb1b5b2d496205c2f62b8dee3d624783e3302bace91"
+    },
+    "screen_tf32/result.json": {
+      "bytes": 4281,
+      "sha256": "580eccbcd4a59353311aaafd77e657c3d8197bc122a686f929f3f2a44b091038"
+    },
+    "screen_bf16_r1/result.json": {
+      "bytes": 4281,
+      "sha256": "5ea37bf91befa2c0715e7801267d7ccc5b1cbe31ffc125e24becbe1bba6598aa"
+    },
+    "screen_uniform_bf16_r2/result.json": {
+      "bytes": 4380,
+      "sha256": "d33464d8f4c2ff10dd77805a60e5d7ea64ced1a019d23f5e2b50133fe7166ebe"
+    },
+    "full66/summary.json": {
+      "bytes": 2110,
+      "sha256": "d6467305d60dfd5d43058b51e3cabd01508e072d9d14f62ae2b7b2b2699fb874"
+    },
+    "full900/summary.json": {
+      "bytes": 2108,
+      "sha256": "736a9b69087d280ffa145bed3b89ebce66856ad9c5a3773d5bcd27b737d3af1b"
+    },
+    "full66/baseline_a/result.json": {
+      "bytes": 23761,
+      "sha256": "15801bd8d5365f76fed9e297e413671f7e661b2ffe0030f5e0a53b366996a77c"
+    },
+    "full66/candidate_b/result.json": {
+      "bytes": 28261,
+      "sha256": "bb62f501f2014c20c82e73140d76285bb13700a840c4c8c68a2e543a1930e3cb"
+    },
+    "full66/candidate_b2/result.json": {
+      "bytes": 28132,
+      "sha256": "9f8ee63f96afc80fe367fd342983d86f5901145cf2c17b423b04c528b313c2e3"
+    },
+    "full66/baseline_a2/result.json": {
+      "bytes": 23648,
+      "sha256": "c08404790125c3b22a636c581ee01e873498083e05fb29b9a2d3a56f6f9e3699"
+    },
+    "full900/baseline_a/result.json": {
+      "bytes": 246165,
+      "sha256": "b56f321987f0a3fbf25b18079459aae29a73bf6431bb0ecba29c6d3b6314c8ff"
+    },
+    "full900/candidate_b/result.json": {
+      "bytes": 250635,
+      "sha256": "26283a109d7f1a6d596e8e752e1cac124fd1c1d64938ef73dc6f7141b406e6e7"
+    },
+    "full900/candidate_b2/result.json": {
+      "bytes": 250538,
+      "sha256": "0bc4e9bbf90c5a48eb34c5d12f543e3fb92c2d34d088468e0ece1b4a8c74c988"
+    },
+    "full900/baseline_a2/result.json": {
+      "bytes": 246057,
+      "sha256": "488ee60eccae00aef24695739035aefccc650908709b4fa24cb4d908c8e29a9e"
+    },
+    "current900_trt/summary.json": {
+      "bytes": 1024,
+      "sha256": "d01fe345be0752d69175475aea11e294f8f1f4fd383b8cff78720479d8052704"
+    },
+    "current900_trt/sender/result.json": {
+      "bytes": 23612,
+      "sha256": "8a3576172728be1cc40d7e677513ff17e02d6cc7743eea77b15483e7fa7ecee4"
+    },
+    "current900_trt/receiver/result.json": {
+      "bytes": 246610,
+      "sha256": "17ad20f0d6b857c666e9c59161a3ddc132ee124b34457ee7989668138fa02a56"
+    },
+    "quality_screen20/summary.json": {
+      "bytes": 2122,
+      "sha256": "ba66d3c8d56306ee4675618896c518d9b0d2640e1e17c4802827172d907be7c9"
+    },
+    "quality66/summary.json": {
+      "bytes": 2105,
+      "sha256": "57d001bb7db1b942ab53ae4326311bfe09b0ee21de681085554772099af899ac"
+    },
+    "quality900/summary.json": {
+      "bytes": 13101,
+      "sha256": "b93678173bae1c2fb346e58227437982e887855a443a525ac8f6611de463653b"
+    },
+    "quality_screen20\\per_frame.csv": {
+      "sha256": "fa27c1ed7a725a27ded483cd9d84e541c49b7c7207fa9ef128190a0a76af0cdf",
+      "bytes": 4207
+    },
+    "quality66\\per_frame.csv": {
+      "sha256": "b2eff4aa765c28149337de9cef354a91fb60701f1b65d0ca19f6e5551a51ea2a",
+      "bytes": 9411
+    },
+    "quality900\\per_frame.csv": {
+      "sha256": "8136eedb73d77b4fd96da81199c40423abf344e37574456c3ab019983b281012",
+      "bytes": 283193
+    }
+  },
+  "failures": [
+    {
+      "log": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\bf16_screen_20261105_01.log",
+      "sha256": "1a093339757f4afc10266ce1d734011becce42c90bb362716379cc81f501812c",
+      "note": "Conv-17 ONNX type contract rejected BF16; corrected through full opset22 conversion.",
+      "counted_as_success": false
+    },
+    {
+      "log": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\uniform_bf16_screen_20261105_01.log",
+      "sha256": "bafff38a5384277828d7fb483ab476a2e781d6766d51454c47cfd62186f19a2a",
+      "note": "Pinned parser rejected BF16 InstanceNormalization; corrected by explicit original FP32 normalization.",
+      "counted_as_success": false
+    },
+    {
+      "log": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\uniform_bf16_screen_20261105_r1.log",
+      "sha256": "8610a0cf3764c1957deec46f49dcc32df2c4f298a810b09e3cfa8b4a9aed0d45",
+      "note": "Pinned builder rejected BF16 Resize; corrected by FP32 nearest Resize before BF16 convolution.",
+      "counted_as_success": false
+    }
+  ],
+  "producer_sha256": "5223a1f39eff3f6a79e131a2e74a7105349428dc21a51ddc211827de5b4c37d7",
+  "final_code_sha256": {
+    "candidate_backend.py": "d3bf8048b1f61a73623515bbf829bc38add03a246f8aa5ac4d1ec40028d6b44b",
+    "candidate_receiver.py": "32f309ef137fde6d44ad2f66a17dd221b90a4411f048942c44679066cfa81112",
+    "compare_candidate_quality.py": "f271d3aba411a49d260954040c3864255afec3f48c94f8937b94dbc279945593",
+    "graph_rgb.py": "07eac12d8aaf78d871243c0898fbcaeaa184b1107c31f26c0e7bff8772cedc10",
+    "probe_cached_engines.py": "4f0f7ff425222ba278506d8b61ffbcf6e6cbbe1785fba31a6f0d1137e50d8419",
+    "publish_candidate_evidence.py": "5223a1f39eff3f6a79e131a2e74a7105349428dc21a51ddc211827de5b4c37d7",
+    "run_candidate_validation.py": "2cc860e192c3158ff5f1e4984731f2d5ed1c02a9074f789f4bbd8bfbaf7968a8",
+    "run_current900_trt.py": "ab933b3b5f685c9d3b8f916b6d50e63a6ce28bbc6b26244b27a06003c52ff379",
+    "screen_candidates.py": "9bdf875d233e2905d1315d65ac43509c358ae9c916b2efa69fb3666138b38aae",
+    "screen_uniform_bf16.py": "c93b39b9ba48774b5af77f71e50f3c194610b956e82fe556a5488283dd80215a",
+    "uniform_bf16_backend.py": "e87abfaac418f34420ff9ddb4e445cfc9ce3704e6ead8461be6cc23c0709bd28",
+    "uniform_bf16_receiver.py": "77c47b2a58536fb5033d97df91d741df357f757002536b562da86aacaf2b0e0c"
+  },
+  "earlier_executed_code_snapshots": [
+    "full66/executed_code",
+    "full900/executed_code",
+    "candidate_backend_v1.py",
+    "candidate_backend_v2.py",
+    "uniform_bf16_backend_v1.py",
+    "uniform_bf16_backend_v2.py"
+  ],
+  "verification": {
+    "quality_rows": 3600,
+    "historical_eager_perceptual_point_reproduced": true,
+    "independent_references_and_entropy_equal": true,
+    "per_backend_rgb_repeatable": true,
+    "original_weights_and_production_unchanged": true
+  }
+}

@@ -1,0 +1,515 @@
+{
+  "date": "2026-11-05",
+  "screens": [
+    {
+      "mode": "safe_layernorm",
+      "frames": 20,
+      "baseline_ms": 73.03667749997658,
+      "candidate_ms": 69.68464000001404,
+      "speedup": 1.048102960709302,
+      "max_rgb_difference": 15,
+      "mean_abs_rgb_difference": 0.08818930844907408,
+      "candidate": {
+        "identity": {
+          "schema": "glc-rgb-candidate-v1",
+          "mode": "safe_layernorm",
+          "role": "video",
+          "shape": [
+            1,
+            256,
+            24,
+            40
+          ],
+          "model_state_sha256": "73dbf3460b749ec830d4e86e4c0fc4411b8dedfc361ac01686b4b49e0820b9c8",
+          "parsed_onnx_sha256": "1f9d6c57e73356541db901bcd964540e82d1206bfd20401cb483e8cdcb5ae972",
+          "implementation_sha256": "8c186b9bf8f0bad5963016fe5b13b1ef8a52b6b12eda00da294d44e1399a07a2",
+          "tf32": false,
+          "norm_policy": {
+            "replaced_count": 39,
+            "names": [
+              "/blocks.1/norm1/InstanceNormalization",
+              "/blocks.1/norm2/InstanceNormalization",
+              "/blocks.2/norm/InstanceNormalization",
+              "/blocks.3/norm1/InstanceNormalization",
+              "/blocks.3/norm2/InstanceNormalization",
+              "/blocks.4/norm1/InstanceNormalization",
+              "/blocks.4/norm2/InstanceNormalization",
+              "/blocks.5/norm/InstanceNormalization",
+              "/blocks.6/norm1/InstanceNormalization",
+              "/blocks.6/norm2/InstanceNormalization",
+              "/blocks.7/norm/InstanceNormalization",
+              "/blocks.8/norm1/InstanceNormalization",
+              "/blocks.8/norm2/InstanceNormalization",
+              "/blocks.9/norm/InstanceNormalization",
+              "/blocks.11/norm1/InstanceNormalization",
+              "/blocks.11/norm2/InstanceNormalization",
+              "/blocks.12/norm1/InstanceNormalization",
+              "/blocks.12/norm2/InstanceNormalization",
+              "/blocks.13/norm1/InstanceNormalization",
+              "/blocks.13/norm2/InstanceNormalization",
+              "/blocks.15/norm1/InstanceNormalization",
+              "/blocks.15/norm2/InstanceNormalization",
+              "/blocks.16/norm1/InstanceNormalization",
+              "/blocks.16/norm2/InstanceNormalization",
+              "/blocks.17/norm1/InstanceNormalization",
+              "/blocks.17/norm2/InstanceNormalization",
+              "/blocks.19/norm1/InstanceNormalization",
+              "/blocks.19/norm2/InstanceNormalization",
+              "/blocks.20/norm1/InstanceNormalization",
+              "/blocks.20/norm2/InstanceNormalization",
+              "/blocks.21/norm1/InstanceNormalization",
+              "/blocks.21/norm2/InstanceNormalization",
+              "/blocks.23/norm1/InstanceNormalization",
+              "/blocks.23/norm2/InstanceNormalization",
+              "/blocks.24/norm1/InstanceNormalization",
+              "/blocks.24/norm2/InstanceNormalization",
+              "/blocks.25/norm1/InstanceNormalization",
+              "/blocks.25/norm2/InstanceNormalization",
+              "/blocks.26/InstanceNormalization"
+            ],
+            "groups": 32,
+            "epsilon": 1e-06,
+            "affine": "original per-channel Mul/Add after reshape retained",
+            "statistics": "FP32, last axis of rank3 tensor"
+          },
+          "tensorrt": "10.5.0",
+          "torch": "2.5.1+cu124",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+          "workspace_bytes": 536870912,
+          "optimization_level": 3,
+          "reference_path": "unchanged eager FP32; TF32 remains disabled in PyTorch"
+        },
+        "engine_sha256": "17398a6da056d5d694e951aac21dc5fc98e5667ba3b14888f241db11a4b4ae60",
+        "build_seconds": 47.69572329999937,
+        "engine_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\candidates_20261105_01\\cache\\engines\\2fa4cc9bdd63e5352e7bb61c2126f6eefe13199a8831e11cc204286cf4af720a\\generator.engine",
+        "setup_seconds": 48.264093600000706
+      },
+      "baseline_engine_sha256": "738d4015b4e512327a469b2ca8b86ae68f1b7ec08bccd079c80f6ed1e37e409b",
+      "source_tensor_unchanged": true
+    },
+    {
+      "mode": "safe_tf32",
+      "frames": 20,
+      "baseline_ms": 73.53988250001748,
+      "candidate_ms": 74.69448750002812,
+      "speedup": 0.9845422997244583,
+      "max_rgb_difference": 10,
+      "mean_abs_rgb_difference": 0.06584657118055555,
+      "candidate": {
+        "identity": {
+          "schema": "glc-rgb-candidate-v1",
+          "mode": "safe_tf32",
+          "role": "video",
+          "shape": [
+            1,
+            256,
+            24,
+            40
+          ],
+          "model_state_sha256": "73dbf3460b749ec830d4e86e4c0fc4411b8dedfc361ac01686b4b49e0820b9c8",
+          "parsed_onnx_sha256": "76ebf6c05257a91be08e356736b0594fc75f4557837730273530ca4ca096e6ea",
+          "implementation_sha256": "8c186b9bf8f0bad5963016fe5b13b1ef8a52b6b12eda00da294d44e1399a07a2",
+          "tf32": true,
+          "norm_policy": null,
+          "tensorrt": "10.5.0",
+          "torch": "2.5.1+cu124",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+          "workspace_bytes": 536870912,
+          "optimization_level": 3,
+          "reference_path": "unchanged eager FP32; TF32 remains disabled in PyTorch"
+        },
+        "engine_sha256": "53583c6e116a88be5e8a8bfb9b899735d02f7ea50bd423be9cad7ea8b93347eb",
+        "build_seconds": 39.33891659999972,
+        "engine_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\candidates_20261105_01\\cache\\engines\\a2809a43f70c5cfbd5d428fe261218fa3bb1253a51d4a48b5c053fd73fb928f4\\generator.engine",
+        "setup_seconds": 39.86164980000103
+      },
+      "baseline_engine_sha256": "738d4015b4e512327a469b2ca8b86ae68f1b7ec08bccd079c80f6ed1e37e409b",
+      "source_tensor_unchanged": true
+    },
+    {
+      "mode": "safe_bf16",
+      "frames": 20,
+      "baseline_ms": 73.50510999999642,
+      "candidate_ms": 72.34693250002238,
+      "speedup": 1.0160086607676655,
+      "max_rgb_difference": 17,
+      "mean_abs_rgb_difference": 0.11014019097222222,
+      "candidate": {
+        "identity": {
+          "schema": "glc-rgb-candidate-v1",
+          "mode": "safe_bf16",
+          "role": "video",
+          "shape": [
+            1,
+            256,
+            24,
+            40
+          ],
+          "model_state_sha256": "73dbf3460b749ec830d4e86e4c0fc4411b8dedfc361ac01686b4b49e0820b9c8",
+          "parsed_onnx_sha256": "bebd17a84b07171472dfc72e408032c0edb72931b55581d845af52353f0d3834",
+          "implementation_sha256": "d3bf8048b1f61a73623515bbf829bc38add03a246f8aa5ac4d1ec40028d6b44b",
+          "tf32": false,
+          "norm_policy": null,
+          "tensorrt": "10.5.0",
+          "torch": "2.5.1+cu124",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+          "workspace_bytes": 536870912,
+          "optimization_level": 3,
+          "reference_path": "unchanged eager FP32; TF32 remains disabled in PyTorch"
+        },
+        "engine_sha256": "ff0df58f68859fbdc45307e0eec7fc461aea5925f32af4e2eef56ddc159ba268",
+        "build_seconds": 41.45250879999912,
+        "engine_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\candidates_20261105_01\\cache\\engines\\f33061a2f299a797b3e0d45e4ffffab2c74a86f6f9314e189dc40b2e9c563eb6\\generator.engine",
+        "setup_seconds": 41.98250399999961
+      },
+      "baseline_engine_sha256": "738d4015b4e512327a469b2ca8b86ae68f1b7ec08bccd079c80f6ed1e37e409b",
+      "source_tensor_unchanged": true
+    },
+    {
+      "mode": "uniform_bf16",
+      "frames": 20,
+      "baseline_ms": 73.06638000004568,
+      "candidate_ms": 70.05246750004517,
+      "speedup": 1.0430236450985624,
+      "max_rgb_difference": 26,
+      "mean_abs_rgb_difference": 0.2008493923611111,
+      "candidate": {
+        "identity": {
+          "schema": "glc-rgb-uniform-bf16-v1",
+          "mode": "uniform_bf16",
+          "role": "video",
+          "input_shape": [
+            1,
+            256,
+            24,
+            40
+          ],
+          "original_state_sha256": "73dbf3460b749ec830d4e86e4c0fc4411b8dedfc361ac01686b4b49e0820b9c8",
+          "implementation_sha256": "e87abfaac418f34420ff9ddb4e445cfc9ce3704e6ead8461be6cc23c0709bd28",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+          "tensorrt": "10.5.0",
+          "torch": "2.5.1+cu124",
+          "tf32": false,
+          "input_output": "float32",
+          "body": "bfloat16",
+          "normalization": "original FP32 affine and statistics; BF16 output",
+          "resize": "FP32 nearest with BF16 output",
+          "final_rgb_conv": "original float32",
+          "onnx_opset": 22
+        },
+        "engine_sha256": "b29a31fc37c7aa70fb79c89dbc1e64a87af40f073b72be73bac6d838807c6039",
+        "parsed_onnx_sha256": "c1262ee5eb5213d0864b46a4eb9a13b779cd2cbd3c2ae99474d674387ac42ba0",
+        "build_seconds": 30.138929500000813,
+        "engine_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\candidates_20261105_01\\cache\\uniform_bf16\\89221dd453b4ad0c162f62140289356f6731b8159df007d6e952a43af28f0918\\generator.engine",
+        "setup_seconds": 30.440503300000273
+      },
+      "baseline_engine_sha256": "738d4015b4e512327a469b2ca8b86ae68f1b7ec08bccd079c80f6ed1e37e409b",
+      "source_tensor_unchanged": true
+    }
+  ],
+  "full66": {
+    "complete": true,
+    "mode": "safe_layernorm",
+    "candidate_cuda_graph": true,
+    "frames": 66,
+    "stream_sha256": "4214004f17f4f8e344d5a521936abdebd8a6c0557aea761588600666334e033d",
+    "baseline_median_core_seconds": 6.529194550001193,
+    "candidate_median_core_seconds": 6.292448900002455,
+    "baseline_fps": 10.108444386909552,
+    "candidate_fps": 10.488762173336719,
+    "speedup": 1.0376237699758906,
+    "time_saved_percent": 3.6259549043257566,
+    "all_reference_states_equal": true,
+    "all_entropy_symbols_and_cdf_equal": true,
+    "per_backend_rgb_repeatable": true,
+    "runs": [
+      {
+        "name": "baseline_a",
+        "result_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\candidates_20261105_01\\full66\\baseline_a\\result.json",
+        "mode": "baseline",
+        "core_seconds": 6.469847300002584,
+        "fps": 10.201168117209448,
+        "worker_seconds": 12.911672200001703
+      },
+      {
+        "name": "candidate_b",
+        "result_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\candidates_20261105_01\\full66\\candidate_b\\result.json",
+        "mode": "safe_layernorm",
+        "core_seconds": 6.417096099996343,
+        "fps": 10.285025963696821,
+        "worker_seconds": 102.37226489999921
+      },
+      {
+        "name": "candidate_b2",
+        "result_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\candidates_20261105_01\\full66\\candidate_b2\\result.json",
+        "mode": "safe_layernorm",
+        "core_seconds": 6.167801700008567,
+        "fps": 10.700733131531827,
+        "worker_seconds": 13.017132499999207
+      },
+      {
+        "name": "baseline_a2",
+        "result_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\candidates_20261105_01\\full66\\baseline_a2\\result.json",
+        "mode": "baseline",
+        "core_seconds": 6.588541799999803,
+        "fps": 10.017391101624638,
+        "worker_seconds": 11.824701299998196
+      }
+    ]
+  },
+  "full900": {
+    "complete": true,
+    "mode": "safe_layernorm",
+    "candidate_cuda_graph": true,
+    "frames": 900,
+    "stream_sha256": "bb5b75c2e8ec3453f170451e45c9450b8954dadcde1a35a4d3a32b1106ccf570",
+    "baseline_median_core_seconds": 64.82028345002436,
+    "candidate_median_core_seconds": 63.9307693000128,
+    "baseline_fps": 13.884542802005623,
+    "candidate_fps": 14.077728296628207,
+    "speedup": 1.0139137094665212,
+    "time_saved_percent": 1.3722774765361323,
+    "all_reference_states_equal": true,
+    "all_entropy_symbols_and_cdf_equal": true,
+    "per_backend_rgb_repeatable": true,
+    "runs": [
+      {
+        "name": "baseline_a",
+        "result_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\candidates_20261105_01\\full900\\baseline_a\\result.json",
+        "mode": "baseline",
+        "core_seconds": 64.78475400002753,
+        "fps": 13.892157404805728,
+        "worker_seconds": 73.69109329999992
+      },
+      {
+        "name": "candidate_b",
+        "result_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\candidates_20261105_01\\full900\\candidate_b\\result.json",
+        "mode": "safe_layernorm",
+        "core_seconds": 64.89262250000684,
+        "fps": 13.869065008120225,
+        "worker_seconds": 160.34102989999883
+      },
+      {
+        "name": "candidate_b2",
+        "result_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\candidates_20261105_01\\full900\\candidate_b2\\result.json",
+        "mode": "safe_layernorm",
+        "core_seconds": 62.96891610001876,
+        "fps": 14.29276626852613,
+        "worker_seconds": 69.08686560000024
+      },
+      {
+        "name": "baseline_a2",
+        "result_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\candidates_20261105_01\\full900\\baseline_a2\\result.json",
+        "mode": "baseline",
+        "core_seconds": 64.85581290002119,
+        "fps": 13.87693654210147,
+        "worker_seconds": 69.8672342000009
+      }
+    ]
+  },
+  "current900_trt": {
+    "complete": true,
+    "frames": 900,
+    "fps": 30.0,
+    "duration_seconds": 30.0,
+    "width": 512,
+    "height": 288,
+    "q": 0,
+    "encoder": "trt_fp16_stream",
+    "decoder": "trt_fp16_safe",
+    "encode_core_seconds": 30.803854599980696,
+    "encode_fps": 29.217122716861674,
+    "decode_core_seconds": 63.928144900040934,
+    "decode_fps": 14.078306220323682,
+    "stream_bytes": 166477,
+    "bitrate_kbps": 44.39386666666667,
+    "stream_sha256": "b67e93666ad37d8d694ebf8c289971441795db4d3e38fbc5b082846135a44a68",
+    "reference_verified": true,
+    "source_config_sha256": "8708cf642a9d4faa279b47bb2390283ee35473dbe23108039dde87aa18367697",
+    "sender_code_sha256": "d4677bfe3c80b69e8bebd9b40ba44552072d4f3c09d05dedea0701125d87abe6",
+    "producer_sha256": "ab933b3b5f685c9d3b8f916b6d50e63a6ce28bbc6b26244b27a06003c52ff379",
+    "timing_repeats": 1,
+    "source": "reuse aligned lossless RGB chunks; source preparation excluded",
+    "precision": "input image encoder FP16; reference/entropy FP32; RGB safe mixed precision"
+  },
+  "quality20": {
+    "baseline": {
+      "lpips_alex": 0.059389125742018226,
+      "dists": 0.13659736812114714,
+      "mse": 39.856929470486115,
+      "psnr_db": 32.12576522734983
+    },
+    "layernorm": {
+      "lpips_alex": 0.05934497322887182,
+      "dists": 0.13654812276363373,
+      "mse": 39.84761313657408,
+      "psnr_db": 32.12678048502414
+    },
+    "tf32": {
+      "lpips_alex": 0.05933540612459183,
+      "dists": 0.13646098971366882,
+      "mse": 39.858002604166664,
+      "psnr_db": 32.12564829667606
+    }
+  },
+  "quality66": {
+    "baseline": {
+      "lpips_alex": 0.05922423466814287,
+      "dists": 0.13968774495702801,
+      "mse": 39.341370409827434,
+      "psnr_db": 32.182308768895744
+    },
+    "candidate": {
+      "lpips_alex": 0.059200164382204865,
+      "dists": 0.13969351486726242,
+      "mse": 39.34112018623738,
+      "psnr_db": 32.182336391489685
+    }
+  },
+  "quality900": {
+    "eager": {
+      "lpips_alex": 0.1396632342123323,
+      "dists": 0.1490555265876982,
+      "mse": 388.09457574789417,
+      "psnr_db": 22.241427880563172
+    },
+    "trt_safe": {
+      "lpips_alex": 0.13966574352648523,
+      "dists": 0.14907128148608736,
+      "mse": 388.1044952493047,
+      "psnr_db": 22.241316878504882
+    },
+    "layernorm_graph": {
+      "lpips_alex": 0.1396747224777937,
+      "dists": 0.14906921459568873,
+      "mse": 388.1136900775423,
+      "psnr_db": 22.24121398828043
+    },
+    "trt_encoder_safe_decoder": {
+      "lpips_alex": 0.14003935601976183,
+      "dists": 0.148713920712471,
+      "mse": 387.98641847210166,
+      "psnr_db": 22.24263837556842
+    }
+  },
+  "quality900_by_kind": {
+    "eager": {
+      "0": {
+        "frames": 15,
+        "lpips_alex": 0.18161958555380503,
+        "dists": 0.14153614044189453,
+        "mse": 493.2669646086516
+      },
+      "1": {
+        "frames": 885,
+        "lpips_alex": 0.1389521096133243,
+        "dists": 0.14918297381050843,
+        "mse": 386.3119928858474
+      }
+    },
+    "trt_safe": {
+      "0": {
+        "frames": 15,
+        "lpips_alex": 0.1815952385465304,
+        "dists": 0.14156628052393597,
+        "mse": 493.31990770881555
+      },
+      "1": {
+        "frames": 885,
+        "lpips_alex": 0.13895507411936583,
+        "dists": 0.14919848489222554,
+        "mse": 386.32118317371976
+      }
+    },
+    "layernorm_graph": {
+      "0": {
+        "frames": 15,
+        "lpips_alex": 0.18157204190889994,
+        "dists": 0.14162264267603555,
+        "mse": 493.3007235303338
+      },
+      "1": {
+        "frames": 885,
+        "lpips_alex": 0.13896459841963935,
+        "dists": 0.14919542767907268,
+        "mse": 386.33085900207124
+      }
+    },
+    "trt_encoder_safe_decoder": {
+      "0": {
+        "frames": 15,
+        "lpips_alex": 0.18369608074426652,
+        "dists": 0.14120880365371705,
+        "mse": 489.275518572772
+      },
+      "1": {
+        "frames": 885,
+        "lpips_alex": 0.13929941153290581,
+        "dists": 0.1488411260863482,
+        "mse": 386.2696540636157
+      }
+    }
+  },
+  "quality900_deltas_vs_eager": {
+    "eager": {
+      "lpips_alex": {
+        "mean": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "maximum_index": 0
+      },
+      "dists": {
+        "mean": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "maximum_index": 0
+      }
+    },
+    "trt_safe": {
+      "lpips_alex": {
+        "mean": 2.509314152929518e-06,
+        "minimum": -0.0006197094917297363,
+        "maximum": 0.0005399584770202637,
+        "maximum_index": 664
+      },
+      "dists": {
+        "mean": 1.57548983891805e-05,
+        "minimum": -0.0010685324668884277,
+        "maximum": 0.0012211799621582031,
+        "maximum_index": 7
+      }
+    },
+    "layernorm_graph": {
+      "lpips_alex": {
+        "mean": 1.1488265461391873e-05,
+        "minimum": -0.0005457103252410889,
+        "maximum": 0.0005203336477279663,
+        "maximum_index": 605
+      },
+      "dists": {
+        "mean": 1.3688007990519206e-05,
+        "minimum": -0.0008131265640258789,
+        "maximum": 0.0014011859893798828,
+        "maximum_index": 110
+      }
+    },
+    "trt_encoder_safe_decoder": {
+      "lpips_alex": {
+        "mean": 0.00037612180742952557,
+        "minimum": -0.015838071703910828,
+        "maximum": 0.01266583800315857,
+        "maximum_index": 704
+      },
+      "dists": {
+        "mean": -0.00034160587522718644,
+        "minimum": -0.02174311876296997,
+        "maximum": 0.020996510982513428,
+        "maximum_index": 809
+      }
+    }
+  },
+  "new_candidate_adopted": false,
+  "production_changed": false,
+  "training_steps": 0,
+  "conclusion": "The new normalization+Graph candidate shows only about 1.4% median core throughput gain on 900 frames; not adopted. Existing TRT encoding/decoding combination independently validated on the current source."
+}

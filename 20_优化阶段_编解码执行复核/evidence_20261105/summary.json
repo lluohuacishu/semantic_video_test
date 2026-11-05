@@ -1,0 +1,628 @@
+{
+  "date": "2026-11-05",
+  "scope": "Existing real twenty P-frame module inputs; not full codec or end-to-end speed.",
+  "reports": {
+    "decoder": {
+      "role": "decoder",
+      "shape": [
+        1,
+        256,
+        24,
+        40
+      ],
+      "output_shape": [
+        1,
+        3,
+        384,
+        640
+      ],
+      "inputs": 20,
+      "source_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        61,
+        62,
+        63,
+        65
+      ],
+      "engine_sha256": "738d4015b4e512327a469b2ca8b86ae68f1b7ec08bccd079c80f6ed1e37e409b",
+      "engine_context_bytes": 382914560,
+      "engine_num_aux_streams": 2,
+      "versions": {
+        "torch": "2.5.1+cu124",
+        "tensorrt": "10.5.0",
+        "cuda": "12.4"
+      },
+      "summaries": {
+        "deployed": {
+          "median_ms_per_frame": 72.52631000001202,
+          "all_ms_per_frame": [
+            72.41549499995017,
+            72.63712500007387,
+            72.93920499996602,
+            72.33605499995974
+          ],
+          "median_enqueue_cpu_ms": 71.20182500011651,
+          "speedup_vs_deployed": 1.0
+        },
+        "fixed": {
+          "median_ms_per_frame": 72.7789450000273,
+          "all_ms_per_frame": [
+            72.68800500005455,
+            72.86988500000007,
+            73.10886000004757,
+            72.32666500003688
+          ],
+          "median_enqueue_cpu_ms": 71.4220750005552,
+          "speedup_vs_deployed": 0.9965287350618343
+        },
+        "graph": {
+          "median_ms_per_frame": 71.1961699999847,
+          "all_ms_per_frame": [
+            71.16337999996176,
+            71.18706000001112,
+            71.25345000004017,
+            71.2052799999583
+          ],
+          "median_enqueue_cpu_ms": 0.09649999992689118,
+          "speedup_vs_deployed": 1.0186827465582433
+        }
+      },
+      "exact_output_checks": {
+        "fixed": {
+          "bit_exact_fp32": true,
+          "compared_values": 14745600
+        },
+        "graph": {
+          "bit_exact_fp32": true,
+          "compared_values": 14745600
+        }
+      },
+      "historical_decoder_rgb_bit_exact": true,
+      "source_tensors_unchanged": true,
+      "inspector_layer_type_counts": {
+        "kgen": 242,
+        "Constant": 108,
+        "Reformat": 151,
+        "NoOp": 16,
+        "CaskConvolution": 59,
+        "shape_call": 43,
+        "signal": 24,
+        "wait": 24,
+        "gemm": 16,
+        "Resize": 4
+      },
+      "gpu_initial": "NVIDIA GeForce RTX 4060 Laptop GPU, 3, 2674, 2.68, 38",
+      "gpu_final": "NVIDIA GeForce RTX 4060 Laptop GPU, 97, 3566, 62.10, 50",
+      "provenance": {
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_解码批量\\batch_pilot_20261031_01\\capture\\latents.npy": "2edc1db59bd555bc7e6c808c7de87a68931754ff60a753b7177bad725b27a7a8",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_解码器推理\\decoder_20261031_05\\engines\\340bde8808e40b72192150f2efd28d78bfaeda4159c754a818b845b757b7cbdd\\generator.engine": "738d4015b4e512327a469b2ca8b86ae68f1b7ec08bccd079c80f6ed1e37e409b"
+      },
+      "frozen_code_sha256": {
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_codec.py": "daa09cf333ac275626e0906ca6b043ab2cf082eb52bd47c192e20e10ee38b83a",
+        "13_优化阶段_发送端免RGB重建\\sender_container.py": "83d8d772fb60a7e28ee76f410fba28e06efe2cd6dfa5103ede7015abdb3299ff",
+        "14_优化阶段_部署精简\\role_codec.py": "c4556b4d5fb7040e2af877281fdcfebe4af8b859b5a878d983068aae1fba5807",
+        "17_优化阶段_解码器推理加速\\decoder_common.py": "4fd2c7a4d0a59e311e085017729a721fa4680c5f9989c1239f18d369d008ef34",
+        "17_优化阶段_解码器推理加速\\decoder_worker.py": "da3f25ab0bf946dfb8ad100d230e1c95ed2519b0aec8708bb5d02f4561a21fdd",
+        "17_优化阶段_解码器推理加速\\generator_backend.py": "bc51564b8483055dbcd72d02943ca7c8935b3b74ff5bc2640a84a68ca94b9d5d",
+        "18_优化阶段_解码批量推理\\batch_common.py": "6f47a2775c64cb69d49f6de09805e29d28eeeceff9641fb3be49192685499c3b",
+        "18_优化阶段_解码批量推理\\capture_latents.py": "ee8135a9e407dcb6308dd652c6023dd1b40bee170015d1b751487b915c0dc3f0",
+        "18_优化阶段_解码批量推理\\benchmark_batch.py": "1e1b8c2129c57e6731c770ad3b17833269f99358d9561a321d60af340f3ac643"
+      },
+      "producer_sha256": "a8795ad521c4092ae164727edffa05684025854162f7ac6c9c4e63bd0ef66e53",
+      "full_codec_test": false,
+      "reference_path_modified": false,
+      "weights_changed": false,
+      "engine_rebuilt": false,
+      "new_precision": false,
+      "scope": "P-module only, existing GPU-resident real inputs. All paths include private output cloning; fixed/graph include a static input copy. No entropy/reference/RGB-to-CPU/video I/O in timing.",
+      "profile_summary": {
+        "frames": 6,
+        "layer_type_ms": {
+          "CaskConvolution": 35.838549227764204,
+          "kgen": 26.466650695889246,
+          "Resize": 1.1153066642582419,
+          "Reformat": 9.815946611381761,
+          "gemm": 1.2124586754168072,
+          "shape_call": 0.06348799982030565,
+          "Constant": 0.0,
+          "NoOp": 0.0,
+          "signal": 0.0,
+          "wait": 0.0
+        },
+        "summed_layer_mean_ms": 74.51239987453057,
+        "protected_fp32_conv_mean_ms": 12.347903887430826,
+        "warning": "TRT layer event intervals; auxiliary-stream overlap and profiler perturbation. Not exclusive GPU kernel time.",
+        "diagnostic_percentages": {
+          "CaskConvolution": 48.097429807806186,
+          "kgen": 35.51979367253736,
+          "Resize": 1.4968067947566805,
+          "Reformat": 13.173574637121567,
+          "gemm": 1.6271904776365194,
+          "shape_call": 0.08520461014168297,
+          "Constant": 0.0,
+          "NoOp": 0.0,
+          "signal": 0.0,
+          "wait": 0.0
+        },
+        "protected_fp32_conv_diagnostic_percent": 16.571609434433906,
+        "top_layers": [
+          {
+            "name": "/blocks.22/conv/Conv",
+            "layer_type": "CaskConvolution",
+            "observations": 6,
+            "mean_ms": 5.152255932490031,
+            "median_ms": 5.018111944198608,
+            "tactic": "ampere_scudnn_winograd_128x128_ldg1_ldg4_relu_tile148t_nt_v1"
+          },
+          {
+            "name": "__myl_CasAddResCasSubMulAddSqrDivMulAddCasResMulAddNegExpAddDivMulCasMeaMea_myl432_3",
+            "layer_type": "kgen",
+            "observations": 6,
+            "mean_ms": 4.380330642064412,
+            "median_ms": 4.349951982498169,
+            "tactic": "__myl_CasAddResCasSubMulAddSqrDivMulAddCasResMulAddNegExpAddDivMulCasMeaMea_0x31cbb7bdd963458946e3f1b4310df59e"
+          },
+          {
+            "name": "__myl_CasAddResCasSubMulAddSqrDivMulAddCasResMulAddNegExpAddDivMulCasMeaMea_myl416_3",
+            "layer_type": "kgen",
+            "observations": 6,
+            "mean_ms": 4.325376033782959,
+            "median_ms": 4.320255994796753,
+            "tactic": "__myl_CasAddResCasSubMulAddSqrDivMulAddCasResMulAddNegExpAddDivMulCasMeaMea_0x31cbb7bdd963458946e3f1b4310df59e"
+          },
+          {
+            "name": "/blocks.18/conv/Conv",
+            "layer_type": "CaskConvolution",
+            "observations": 6,
+            "mean_ms": 4.162730614344279,
+            "median_ms": 4.059648036956787,
+            "tactic": "sm80_xmma_fprop_wngd_f32f32_f32_f32_nchwkcrs_nchw_tilesize8x16x64x8_warpsize8x1x1_wngd2x2"
+          },
+          {
+            "name": "__myl_CasAddResCasSubMulAddSqrDivMulAddCasResMulAddNegExpAddDivMulMeaMea_myl448_3",
+            "layer_type": "kgen",
+            "observations": 6,
+            "mean_ms": 2.880682627360026,
+            "median_ms": 2.877951979637146,
+            "tactic": "__myl_CasAddResCasSubMulAddSqrDivMulAddCasResMulAddNegExpAddDivMulMeaMea_0x382c08d84b8221253ece6e97f679ae20"
+          },
+          {
+            "name": "__myl_ResCasSubMulAddSqrDivMulAddCasResMulAddNegExpAddDivMulCasMeaMea_myl400_3",
+            "layer_type": "kgen",
+            "observations": 6,
+            "mean_ms": 1.8068480094273884,
+            "median_ms": 1.8063360452651978,
+            "tactic": "__myl_ResCasSubMulAddSqrDivMulAddCasResMulAddNegExpAddDivMulCasMeaMea_0x3963e5803567d3e0cbc76ed34b622dcc"
+          },
+          {
+            "name": "/blocks.25/conv1/Conv",
+            "layer_type": "CaskConvolution",
+            "observations": 6,
+            "mean_ms": 1.3281280001004536,
+            "median_ms": 1.2851200103759766,
+            "tactic": "sm75_xmma_fprop_implicit_gemm_f16f16_f16f16_f16_nhwckrsc_nhwc_tilesize128x128x32_stage1_warpsize2x2x1_g1_tensor16x8x8_t1r3s3"
+          },
+          {
+            "name": "/blocks.24/conv1/Conv",
+            "layer_type": "CaskConvolution",
+            "observations": 6,
+            "mean_ms": 1.3228373328844707,
+            "median_ms": 1.2851200103759766,
+            "tactic": "sm75_xmma_fprop_implicit_gemm_f16f16_f16f16_f16_nhwckrsc_nhwc_tilesize128x128x32_stage1_warpsize2x2x1_g1_tensor16x8x8_t1r3s3"
+          },
+          {
+            "name": "__myl_CasCasSubMulAddSqrDivMulAddCasMeaMea_myl408_3",
+            "layer_type": "kgen",
+            "observations": 6,
+            "mean_ms": 1.3132800062497456,
+            "median_ms": 1.269760012626648,
+            "tactic": "__myl_CasCasSubMulAddSqrDivMulAddCasMeaMea_0x54fb08e39ee0229e9a6eed4ec7e77727"
+          },
+          {
+            "name": "/blocks.23/conv2/Conv",
+            "layer_type": "CaskConvolution",
+            "observations": 6,
+            "mean_ms": 1.2853066722551982,
+            "median_ms": 1.2851679921150208,
+            "tactic": "sm75_xmma_fprop_implicit_gemm_f16f16_f16f16_f16_nhwckrsc_nhwc_tilesize128x128x32_stage1_warpsize2x2x1_g1_tensor16x8x8_t1r3s3"
+          },
+          {
+            "name": "/blocks.23/conv1/Conv",
+            "layer_type": "CaskConvolution",
+            "observations": 6,
+            "mean_ms": 1.2851200103759766,
+            "median_ms": 1.2851200103759766,
+            "tactic": "sm75_xmma_fprop_implicit_gemm_f16f16_f16f16_f16_nhwckrsc_nhwc_tilesize128x128x32_stage1_warpsize2x2x1_g1_tensor16x8x8_t1r3s3"
+          },
+          {
+            "name": "/blocks.25/conv2/Conv",
+            "layer_type": "CaskConvolution",
+            "observations": 6,
+            "mean_ms": 1.2847786744435628,
+            "median_ms": 1.284608006477356,
+            "tactic": "sm75_xmma_fprop_implicit_gemm_f16f16_f16f16_f16_nhwckrsc_nhwc_tilesize128x128x32_stage1_warpsize2x2x1_g1_tensor16x8x8_t1r3s3"
+          },
+          {
+            "name": "/blocks.24/conv2/Conv",
+            "layer_type": "CaskConvolution",
+            "observations": 6,
+            "mean_ms": 1.2844373385111492,
+            "median_ms": 1.2840960025787354,
+            "tactic": "sm75_xmma_fprop_implicit_gemm_f16f16_f16f16_f16_nhwckrsc_nhwc_tilesize128x128x32_stage1_warpsize2x2x1_g1_tensor16x8x8_t1r3s3"
+          },
+          {
+            "name": "__myl_CasCasSubMulAddSqrDivMulAddCasMeaMea_myl440_3",
+            "layer_type": "kgen",
+            "observations": 6,
+            "mean_ms": 1.2716373602549236,
+            "median_ms": 1.2712960243225098,
+            "tactic": "__myl_CasCasSubMulAddSqrDivMulAddCasMeaMea_0x54fb08e39ee0229e9a6eed4ec7e77727"
+          },
+          {
+            "name": "__myl_CasCasSubMulAddSqrDivMulAddCasMeaMea_myl424_3",
+            "layer_type": "kgen",
+            "observations": 6,
+            "mean_ms": 1.2706133524576824,
+            "median_ms": 1.269760012626648,
+            "tactic": "__myl_CasCasSubMulAddSqrDivMulAddCasMeaMea_0x54fb08e39ee0229e9a6eed4ec7e77727"
+          },
+          {
+            "name": "/blocks.28/Conv",
+            "layer_type": "CaskConvolution",
+            "observations": 6,
+            "mean_ms": 1.0806613365809123,
+            "median_ms": 0.9835519790649414,
+            "tactic": "sm80_xmma_fprop_wngd_f32f32_f32_f32_nchwkcrs_nchw_tilesize8x16x16x8_warpsize8x1x1_wngd2x2"
+          },
+          {
+            "name": "/blocks.14/conv/Conv",
+            "layer_type": "CaskConvolution",
+            "observations": 6,
+            "mean_ms": 0.9941333333651224,
+            "median_ms": 0.9937919974327087,
+            "tactic": "sm80_xmma_fprop_wngd_f32f32_f32_f32_nchwkcrs_nchw_tilesize8x16x64x8_warpsize8x1x1_wngd2x2"
+          },
+          {
+            "name": "/blocks.10/conv/Conv",
+            "layer_type": "CaskConvolution",
+            "observations": 6,
+            "mean_ms": 0.9581226706504822,
+            "median_ms": 0.9574400186538696,
+            "tactic": "sm80_xmma_fprop_wngd_f32f32_f32_f32_nchwkcrs_nchw_tilesize8x16x64x8_warpsize8x1x1_wngd2x2"
+          },
+          {
+            "name": "__myl_MulAddNegExpAddDivMulCas_myl408_4",
+            "layer_type": "kgen",
+            "observations": 6,
+            "mean_ms": 0.808976004521052,
+            "median_ms": 0.8084480166435242,
+            "tactic": "__myl_MulAddNegExpAddDivMulCas_0x7e12c7280bdc0b02be48cb5beb6aef6b"
+          },
+          {
+            "name": "__myl_MulAddNegExpAddDivMulCas_myl440_4",
+            "layer_type": "kgen",
+            "observations": 6,
+            "mean_ms": 0.8050346573193868,
+            "median_ms": 0.8053759932518005,
+            "tactic": "__myl_MulAddNegExpAddDivMulCas_0x7e12c7280bdc0b02be48cb5beb6aef6b"
+          }
+        ]
+      }
+    },
+    "encoder": {
+      "role": "encoder",
+      "shape": [
+        1,
+        3,
+        384,
+        640
+      ],
+      "output_shape": [
+        1,
+        256,
+        24,
+        40
+      ],
+      "inputs": 20,
+      "source_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        61,
+        62,
+        63,
+        65
+      ],
+      "engine_sha256": "8639978970b2dd96bc8569f4db2aafb07864695beed31447321e96b6b244218d",
+      "engine_context_bytes": 314720768,
+      "engine_num_aux_streams": 2,
+      "versions": {
+        "torch": "2.5.1+cu124",
+        "tensorrt": "10.5.0",
+        "cuda": "12.4"
+      },
+      "summaries": {
+        "deployed": {
+          "median_ms_per_frame": 21.013464999987264,
+          "all_ms_per_frame": [
+            21.023925000008603,
+            21.04876499997772,
+            20.903369999996357,
+            21.003004999965924
+          ],
+          "median_enqueue_cpu_ms": 19.700474999808648,
+          "speedup_vs_deployed": 1.0
+        },
+        "fixed": {
+          "median_ms_per_frame": 20.99220250001963,
+          "all_ms_per_frame": [
+            21.040325000012672,
+            20.944080000026588,
+            21.041849999983242,
+            20.622855000056006
+          ],
+          "median_enqueue_cpu_ms": 19.325524999658228,
+          "speedup_vs_deployed": 1.001012876088996
+        },
+        "graph": {
+          "median_ms_per_frame": 20.09786499997972,
+          "all_ms_per_frame": [
+            20.092825000028824,
+            20.17409999998563,
+            20.079365000037797,
+            20.102904999930615
+          ],
+          "median_enqueue_cpu_ms": 0.027524999950401252,
+          "speedup_vs_deployed": 1.045557077829335
+        }
+      },
+      "exact_output_checks": {
+        "fixed": {
+          "bit_exact_fp32": true,
+          "compared_values": 4915200
+        },
+        "graph": {
+          "bit_exact_fp32": true,
+          "compared_values": 4915200
+        }
+      },
+      "historical_decoder_rgb_bit_exact": null,
+      "source_tensors_unchanged": true,
+      "inspector_layer_type_counts": {
+        "name_only": 283
+      },
+      "inspector_profiling_verbosity": "ProfilingVerbosity.LAYER_NAMES_ONLY",
+      "gpu_initial": "NVIDIA GeForce RTX 4060 Laptop GPU, 3, 1878, 2.60, 38",
+      "gpu_final": "NVIDIA GeForce RTX 4060 Laptop GPU, 63, 3158, 97.07, 47",
+      "provenance": {
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_发送端免RGB重建\\sender_trial_20261029_01\\prepared\\long108.npy": "c35d76868968bf2df750fa124b683dc7d802df4d89d7dd180426c659617ca46c",
+        "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_输入编码器推理\\inference_20261030_01\\engines\\640x384\\video\\trt_fp16.engine": "8639978970b2dd96bc8569f4db2aafb07864695beed31447321e96b6b244218d"
+      },
+      "frozen_code_sha256": {
+        "04_外部依赖快照\\semantic-video-training\\scripts\\glc_video_codec.py": "daa09cf333ac275626e0906ca6b043ab2cf082eb52bd47c192e20e10ee38b83a",
+        "13_优化阶段_发送端免RGB重建\\sender_container.py": "83d8d772fb60a7e28ee76f410fba28e06efe2cd6dfa5103ede7015abdb3299ff",
+        "14_优化阶段_部署精简\\role_codec.py": "c4556b4d5fb7040e2af877281fdcfebe4af8b859b5a878d983068aae1fba5807",
+        "17_优化阶段_解码器推理加速\\decoder_common.py": "4fd2c7a4d0a59e311e085017729a721fa4680c5f9989c1239f18d369d008ef34",
+        "17_优化阶段_解码器推理加速\\decoder_worker.py": "da3f25ab0bf946dfb8ad100d230e1c95ed2519b0aec8708bb5d02f4561a21fdd",
+        "17_优化阶段_解码器推理加速\\generator_backend.py": "bc51564b8483055dbcd72d02943ca7c8935b3b74ff5bc2640a84a68ca94b9d5d",
+        "18_优化阶段_解码批量推理\\batch_common.py": "6f47a2775c64cb69d49f6de09805e29d28eeeceff9641fb3be49192685499c3b",
+        "18_优化阶段_解码批量推理\\capture_latents.py": "ee8135a9e407dcb6308dd652c6023dd1b40bee170015d1b751487b915c0dc3f0",
+        "18_优化阶段_解码批量推理\\benchmark_batch.py": "1e1b8c2129c57e6731c770ad3b17833269f99358d9561a321d60af340f3ac643"
+      },
+      "producer_sha256": "4f0f7ff425222ba278506d8b61ffbcf6e6cbbe1785fba31a6f0d1137e50d8419",
+      "full_codec_test": false,
+      "reference_path_modified": false,
+      "weights_changed": false,
+      "engine_rebuilt": false,
+      "new_precision": false,
+      "scope": "P-module only, existing GPU-resident real inputs. All paths include private output cloning; fixed/graph include a static input copy. No entropy/reference/RGB-to-CPU/video I/O in timing.",
+      "profile_summary": {
+        "frames": 6,
+        "layer_type_ms": {
+          "unknown": 21.27212809945922
+        },
+        "summed_layer_mean_ms": 21.272128099459223,
+        "protected_fp32_conv_mean_ms": 0.0,
+        "warning": "TRT layer event intervals; auxiliary-stream overlap and profiler perturbation. Not exclusive GPU kernel time.",
+        "diagnostic_percentages": {
+          "unknown": 99.99999999999997
+        },
+        "protected_fp32_conv_diagnostic_percent": 0.0,
+        "top_layers": [
+          {
+            "name": "/blocks.1/conv1/Conv",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 1.3206186294555664,
+            "median_ms": 1.27948796749115,
+            "tactic": ""
+          },
+          {
+            "name": "/blocks.2/conv2/Conv + /blocks.2/Add",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 1.2842666705449421,
+            "median_ms": 1.2840960025787354,
+            "tactic": ""
+          },
+          {
+            "name": "/blocks.1/conv2/Conv",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 1.2745387156804402,
+            "median_ms": 1.2743680477142334,
+            "tactic": ""
+          },
+          {
+            "name": "/blocks.2/conv1/Conv",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 1.2742027044296265,
+            "median_ms": 1.2743680477142334,
+            "tactic": ""
+          },
+          {
+            "name": "__myl_Gno_myl8_2",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 1.0644533435503643,
+            "median_ms": 1.0024960041046143,
+            "tactic": ""
+          },
+          {
+            "name": "__myl_Gno_myl6_3",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 1.0091520150502522,
+            "median_ms": 1.008128046989441,
+            "tactic": ""
+          },
+          {
+            "name": "__myl_Gno_myl4_2",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 0.9951573411623637,
+            "median_ms": 0.9953280091285706,
+            "tactic": ""
+          },
+          {
+            "name": "__myl_Gno_myl2_2",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 0.98185067375501,
+            "median_ms": 0.9815040230751038,
+            "tactic": ""
+          },
+          {
+            "name": "__myl_Add_myl6_1",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 0.8038506607214609,
+            "median_ms": 0.8033279776573181,
+            "tactic": ""
+          },
+          {
+            "name": "__myl_AddResCasSubMulAddSqrDivMulAddCasResMulAddNegExpAddDivMulMeaMea_myl18_3",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 0.5601279934247335,
+            "median_ms": 0.5601279735565186,
+            "tactic": ""
+          },
+          {
+            "name": "__myl_MulAddNegExpAddDivMul_myl4_3",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 0.516266663869222,
+            "median_ms": 0.5166079998016357,
+            "tactic": ""
+          },
+          {
+            "name": "__myl_MulAddNegExpAddDivMul_myl8_3",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 0.5157546599706014,
+            "median_ms": 0.5155839920043945,
+            "tactic": ""
+          },
+          {
+            "name": "__myl_MulAddNegExpAddDivMul_myl2_3",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 0.5138773322105408,
+            "median_ms": 0.5130239725112915,
+            "tactic": ""
+          },
+          {
+            "name": "__myl_MulAddNegExpAddDivMul_myl6_4",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 0.5126826663812002,
+            "median_ms": 0.5130240023136139,
+            "tactic": ""
+          },
+          {
+            "name": "/blocks.3/Pad_89 + /blocks.3/conv/Conv",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 0.3763199994961421,
+            "median_ms": 0.3763200044631958,
+            "tactic": ""
+          },
+          {
+            "name": "/blocks.5/conv2/Conv + /blocks.5/Add",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 0.33553066849708557,
+            "median_ms": 0.3328000009059906,
+            "tactic": ""
+          },
+          {
+            "name": "/blocks.4/conv1/Conv",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 0.3261440048615138,
+            "median_ms": 0.3256320059299469,
+            "tactic": ""
+          },
+          {
+            "name": "/blocks.5/conv1/Conv",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 0.3251040031512578,
+            "median_ms": 0.3250720053911209,
+            "tactic": ""
+          },
+          {
+            "name": "/blocks.4/conv2/Conv",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 0.3227306753396988,
+            "median_ms": 0.32256001234054565,
+            "tactic": ""
+          },
+          {
+            "name": "/blocks.8/conv2/Conv + /blocks.8/Add",
+            "layer_type": "unknown",
+            "observations": 6,
+            "mean_ms": 0.31677866478761035,
+            "median_ms": 0.31647999584674835,
+            "tactic": ""
+          }
+        ]
+      }
+    }
+  },
+  "production_changed": false,
+  "new_training_steps": 0,
+  "new_engine_builds": 0,
+  "precision_changed": false
+}

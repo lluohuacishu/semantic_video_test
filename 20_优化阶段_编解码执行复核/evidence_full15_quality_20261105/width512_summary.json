@@ -1,0 +1,363 @@
+{
+  "width": 512,
+  "height": 288,
+  "frames": 1239,
+  "fps": 15,
+  "summaries": {
+    "fp32": {
+      "lpips_alex": {
+        "mean": 0.13871063138083933,
+        "median": 0.12624283134937286,
+        "p05": 0.10109996199607849,
+        "p95": 0.19728114306926728,
+        "minimum": 0.08221396803855896,
+        "maximum": 0.27874910831451416
+      },
+      "dists": {
+        "mean": 0.15146554695010858,
+        "median": 0.14862048625946045,
+        "p05": 0.12126272320747375,
+        "p95": 0.19179349541664117,
+        "minimum": 0.10791397094726562,
+        "maximum": 0.22871875762939453
+      },
+      "mse": 397.70856406019965,
+      "psnr_db": 22.135154178979167,
+      "per_kind": {
+        "0": {
+          "frames": 20,
+          "lpips_alex": 0.18218930065631866,
+          "dists": 0.14554453492164612,
+          "psnr_db": 21.159242517417212
+        },
+        "1": {
+          "frames": 1219,
+          "lpips_alex": 0.1379972815978126,
+          "dists": 0.15156269234844266,
+          "psnr_db": 22.153144750515633
+        }
+      }
+    },
+    "encoder_only": {
+      "lpips_alex": {
+        "mean": 0.1389281342378829,
+        "median": 0.12555183470249176,
+        "p05": 0.10092179253697395,
+        "p95": 0.1975298672914505,
+        "minimum": 0.0850970447063446,
+        "maximum": 0.29397284984588623
+      },
+      "dists": {
+        "mean": 0.15111407231091492,
+        "median": 0.14751911163330078,
+        "p05": 0.1213423728942871,
+        "p95": 0.19116851687431333,
+        "minimum": 0.10575515031814575,
+        "maximum": 0.22925043106079102
+      },
+      "mse": 397.0384822399938,
+      "psnr_db": 22.142477588540803,
+      "per_kind": {
+        "0": {
+          "frames": 20,
+          "lpips_alex": 0.18286097720265387,
+          "dists": 0.14782876074314116,
+          "psnr_db": 21.158620813613638
+        },
+        "1": {
+          "frames": 1219,
+          "lpips_alex": 0.13820733287668893,
+          "dists": 0.15116797405936075,
+          "psnr_db": 22.160632189640836
+        }
+      }
+    },
+    "accelerated": {
+      "lpips_alex": {
+        "mean": 0.13894489494132073,
+        "median": 0.12556542456150055,
+        "p05": 0.10087094008922577,
+        "p95": 0.1975861445069313,
+        "minimum": 0.08510380983352661,
+        "maximum": 0.29383739829063416
+      },
+      "dists": {
+        "mean": 0.1511207845443867,
+        "median": 0.14757698774337769,
+        "p05": 0.12132585644721985,
+        "p95": 0.1910085260868072,
+        "minimum": 0.10633081197738647,
+        "maximum": 0.22950661182403564
+      },
+      "mse": 397.07437284219475,
+      "psnr_db": 22.142085022411216,
+      "per_kind": {
+        "0": {
+          "frames": 20,
+          "lpips_alex": 0.18286397829651832,
+          "dists": 0.14781087934970855,
+          "psnr_db": 21.158549097365515
+        },
+        "1": {
+          "frames": 1219,
+          "lpips_alex": 0.13822431933253979,
+          "dists": 0.15117508979778588,
+          "psnr_db": 22.160232993520278
+        }
+      }
+    }
+  },
+  "deltas": {
+    "encoder_only_vs_fp32": {
+      "lpips_alex": {
+        "mean": 0.0002175028570435334,
+        "median": 0.00021499395370483398,
+        "p05": -0.006632038205862045,
+        "p95": 0.006961643695831294,
+        "minimum": -0.014386430382728577,
+        "maximum": 0.015845149755477905,
+        "maximum_index": 751,
+        "maximum_seconds": 50.06666666666667
+      },
+      "dists": {
+        "mean": -0.0003514746391936788,
+        "median": -0.00025719404220581055,
+        "p05": -0.012421494722366333,
+        "p95": 0.011650788784027097,
+        "minimum": -0.028070151805877686,
+        "maximum": 0.029445886611938477,
+        "maximum_index": 458,
+        "maximum_seconds": 30.533333333333335
+      },
+      "psnr_db": 0.007323409561635685
+    },
+    "decoder_only": {
+      "lpips_alex": {
+        "mean": 1.6760703437842124e-05,
+        "median": 1.3470649719238281e-05,
+        "p05": -0.00019195228815078734,
+        "p95": 0.0002345159649848938,
+        "minimum": -0.0005079656839370728,
+        "maximum": 0.0005891025066375732,
+        "maximum_index": 369,
+        "maximum_seconds": 24.6
+      },
+      "dists": {
+        "mean": 6.712233471812694e-06,
+        "median": 2.8014183044433594e-06,
+        "p05": -0.00045937299728393555,
+        "p95": 0.00048506855964660614,
+        "minimum": -0.0011110901832580566,
+        "maximum": 0.0011615157127380371,
+        "maximum_index": 610,
+        "maximum_seconds": 40.666666666666664
+      },
+      "psnr_db": -0.00039256612958737946
+    },
+    "total_vs_fp32": {
+      "lpips_alex": {
+        "mean": 0.00023426356048137552,
+        "median": 0.00022183358669281006,
+        "p05": -0.006567587703466415,
+        "p95": 0.007050219178199766,
+        "minimum": -0.014195993542671204,
+        "maximum": 0.015859246253967285,
+        "maximum_index": 751,
+        "maximum_seconds": 50.06666666666667
+      },
+      "dists": {
+        "mean": -0.0003447624057218661,
+        "median": -0.0003358125686645508,
+        "p05": -0.012315064668655394,
+        "p95": 0.01150793433189391,
+        "minimum": -0.02803933620452881,
+        "maximum": 0.030138611793518066,
+        "maximum_index": 458,
+        "maximum_seconds": 30.533333333333335
+      },
+      "psnr_db": 0.006930843432048306
+    }
+  },
+  "pixel_differences": {
+    "encoder_only_vs_fp32": {
+      "mse": 174.9011474131355,
+      "psnr_between_reconstructions_db": 25.70287702255108,
+      "mae": 6.756754362069661,
+      "maximum_channel_difference": 245,
+      "maximum_channel_difference_index": 37,
+      "changed_channel_fraction": 0.8608108523700696,
+      "changed_pixel_fraction": 0.9860529276557316,
+      "per_frame_mse": {
+        "mean": 174.9011474131355,
+        "median": 164.48836263020834,
+        "p05": 95.86538718894677,
+        "p95": 272.44343193901904,
+        "minimum": 7.092902289496528,
+        "maximum": 344.06213831018516
+      }
+    },
+    "decoder_only": {
+      "mse": 0.18009549939350544,
+      "psnr_between_reconstructions_db": 55.57577500980017,
+      "mae": 0.14999188314342138,
+      "maximum_channel_difference": 65,
+      "maximum_channel_difference_index": 422,
+      "changed_channel_fraction": 0.1400423134025022,
+      "changed_pixel_fraction": 0.30275715576587864,
+      "per_frame_mse": {
+        "mean": 0.18009549939350544,
+        "median": 0.16950819227430555,
+        "p05": 0.12720992476851853,
+        "p95": 0.2695782696759259,
+        "minimum": 0.0832790798611111,
+        "maximum": 0.4782081886574074
+      }
+    },
+    "total_vs_fp32": {
+      "mse": 174.91062354762127,
+      "psnr_between_reconstructions_db": 25.702641728415227,
+      "mae": 6.758076722948405,
+      "maximum_channel_difference": 245,
+      "maximum_channel_difference_index": 37,
+      "changed_channel_fraction": 0.8610903792640281,
+      "changed_pixel_fraction": 0.9862349822097654,
+      "per_frame_mse": {
+        "mean": 174.91062354762127,
+        "median": 164.42718731915508,
+        "p05": 95.9140346950955,
+        "p95": 272.37119615342874,
+        "minimum": 7.235862449363426,
+        "maximum": 344.12266257957174
+      }
+    }
+  },
+  "metric_validation": {
+    "identity": [
+      0.0,
+      -1.1920928955078125e-07
+    ],
+    "negative": [
+      0.6919732689857483,
+      0.41617608070373535
+    ],
+    "pair": [
+      0.1475486159324646,
+      0.13286149501800537
+    ],
+    "reverse": [
+      0.1475486159324646,
+      0.13286149501800537
+    ],
+    "repeat": [
+      0.1475486159324646,
+      0.13286149501800537
+    ],
+    "passed": true
+  },
+  "provenance": {
+    "source": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\result.json",
+      "sha256": "9f9f7e00e6dd9ebb9186f4cf0357ca6e3476e4876954c710400aea94c31df9b9",
+      "chunks": [
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000000.npy",
+          "sha256": "fd11cbc6c93077e178089c1643f2f13717ef150d4549d6f239cad8116988a0ea"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000001.npy",
+          "sha256": "d05434ed628cff09ffe55bc0f8120f7fbbad90b8b88b18a1a4dc4c88bbc38d6a"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000002.npy",
+          "sha256": "b6774dbcf50cd767f99d7c57dc2f222235f25100df8368d28f0cf3d9feab8de2"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000003.npy",
+          "sha256": "5f0f1dc83bde3b1584edecd6d57a3f2b2f20dac8d1f4f615c061bf15e5f741c9"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000004.npy",
+          "sha256": "0150cfd2aab889c1fff1d2eafe996aa8d085660848e8a8c6b0ebb911e0397229"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000005.npy",
+          "sha256": "5654de06032756a3eb5d032119e50690377c99e76747ea82b5d245a61ba4d524"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000006.npy",
+          "sha256": "df2d1b17480ea9e55f6b95f6428c5444043f82b36839462c4d46ebd4d9041ef4"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000007.npy",
+          "sha256": "82260a3a3e75a321cdcce7eb30c0390062064f47bee4461cd1d00363045eaef9"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000008.npy",
+          "sha256": "582be3ffc188c609bd3a0a8bdd351c42e7d4735d138ac9c961a4fd46361c50d3"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000009.npy",
+          "sha256": "5db885385b47443e0ac42fb5262df8a2b8e00e99e8a70ef8187e05a34859b3d6"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000010.npy",
+          "sha256": "e979fe5235e7e8c45f51e1ced4d5e9cf79d09caa61b75e112481bf525d96f2ef"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000011.npy",
+          "sha256": "b670ad7f0f06d8b202be52d4dc92268334202c4a031950b6c7e9af9d27db45ef"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000012.npy",
+          "sha256": "ce384e8afdea3da47859f950694066a558f668e9fe1a058e44f4dee4f8ffa3bb"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000013.npy",
+          "sha256": "211531677e2372c68a5ea40d6abfb55a73d1fc873074772efd3079956b3bf361"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000014.npy",
+          "sha256": "4724b3640c677d7f5cdd8e414352811f9206035b6e2802a68fe84d86f5377e5e"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000015.npy",
+          "sha256": "70a7e2f7029e0b6d5f58fb8c54f855195284b6c69d1cdd2e75ad0f816db6f475"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000016.npy",
+          "sha256": "adb39cec92cd73843213cba73a03b5aae1c08ffc3398d77149f5c44d5d4973df"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000017.npy",
+          "sha256": "1d2019d053edf6ff4a50dc1037f92af8683cb752a576d9e9a3624a22f2d1e3a8"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000018.npy",
+          "sha256": "e5257da800e00ac5617a3b40dac09ab8cb592fd992a0d180192e4aab3b6a96cd"
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\prepare\\source_chunks\\000019.npy",
+          "sha256": "a235c7bbdb4142ad9eae8a1126fdfb726153f838016397f5324b4e9c209d1861"
+        }
+      ]
+    },
+    "reconstructions": {
+      "fp32": {
+        "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_quality_20261105_01\\width512\\fp32_receiver\\decoded_rgb.npy",
+        "sha256": "1a020914597d47801359d8440608945f88fb6da45ac2364b6e117de436cdff7b"
+      },
+      "encoder_only": {
+        "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_quality_20261105_01\\width512\\encoder_only_receiver\\decoded_rgb.npy",
+        "sha256": "87c7ae33e42442078333165e4fa3da9827b559ea1e856e8dd0e71d9e38e569f5"
+      },
+      "accelerated": {
+        "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\receiver\\decoded_rgb.npy",
+        "sha256": "fa6b32c70a4125eaa037d9cc073c90b9e215b57ed515f60075464a56605135b0"
+      }
+    }
+  },
+  "stream_rates_kbps": {
+    "fp32": 26.221016949152546,
+    "accelerated": 26.22217917675545
+  }
+}
