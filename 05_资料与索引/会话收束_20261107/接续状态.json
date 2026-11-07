@@ -1,0 +1,134 @@
+{
+  "date": "2026-11-07",
+  "timezone": "Asia/Singapore",
+  "snapshot_at": "2026-11-07T17:33:23+08:00",
+  "project": "GLC decoded-RGB postprocessing",
+  "postprocessing_started": false,
+  "training_started": false,
+  "workspace": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信",
+  "repository": "01_项目/代码/semantic_video_test",
+  "branch": "main",
+  "remote_branches": [
+    "main"
+  ],
+  "last_acceleration_evidence_commit": "374cdd285e88fa9950eb8d039ef7af6573a0c53d",
+  "readme_promotion_commit": "8e18d672a0f19d1db46f798870b3a0ec501ba6ba",
+  "current_head_instruction": "git log -1; this document update has its own later commit",
+  "canonical_handoff": "交接文档.md",
+  "canonical_file_index": "05_资料与索引/会话收束_20261107/文件索引.md",
+  "canonical_baseline_manifest": "01_项目/GLC后处理/接口与基线.json",
+  "baseline_manifest_sha256_at_handoff": "8e04fbe4eaf999050748ba7ef80a99163c72b092bc59be3b3a0e2e85d0683aab",
+  "baselines": [
+    {
+      "id": "glc_q0_900_fp32",
+      "frames": 900,
+      "fps": 30,
+      "shape": [
+        900,
+        288,
+        512,
+        3
+      ]
+    },
+    {
+      "id": "glc_q0_full15_512_trt",
+      "frames": 1239,
+      "fps": 15,
+      "shape": [
+        1239,
+        288,
+        512,
+        3
+      ]
+    },
+    {
+      "id": "glc_q0_full15_512_fp32",
+      "frames": 1239,
+      "fps": 15,
+      "shape": [
+        1239,
+        288,
+        512,
+        3
+      ]
+    },
+    {
+      "id": "glc_q0_full15_640_trt",
+      "frames": 1239,
+      "fps": 15,
+      "shape": [
+        1239,
+        360,
+        640,
+        3
+      ]
+    },
+    {
+      "id": "glc_q0_full15_640_fp32",
+      "frames": 1239,
+      "fps": 15,
+      "shape": [
+        1239,
+        360,
+        640,
+        3
+      ]
+    }
+  ],
+  "gvc1d": {
+    "archive": "03_历史归档/GVC1D_20261107",
+    "head": "79440ec4e4f69929492820ed379165b44dc85c56",
+    "detached": true,
+    "unmerged_commits_preserved": 14,
+    "pending_files_preserved": 18,
+    "real_independent_entropy_codec_available": false
+  },
+  "local_only_untracked": [
+    "19_部署阶段_收发端独立打包/",
+    "05_资料与索引/GLVC论文阅读与GLC适用性评估_20261105.md",
+    "05_资料与索引/UVID数据集初评_20261028.md"
+  ],
+  "cleanup": {
+    "directory_moves": 19,
+    "deduplicated_paths": 38789,
+    "released_bytes": 31717305573,
+    "unique_experiment_data_removed": false,
+    "audit": "03_历史归档/文件整理_20261107"
+  },
+  "branch_backup": "03_历史归档/GitHub主线整理_20261107/分支历史备份_清理前.bundle",
+  "runtime": {
+    "python": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+    "pytorch": "2.5.1+cu124",
+    "tensorrt": "10.5",
+    "gpu": "RTX 4060 Laptop 8GB",
+    "deployment": "06_部署包/GLC_Windows_流水线_20261102",
+    "deployment_verify_passed": true,
+    "service_observation": {
+      "snapshot_only": true,
+      "ports_checked": [
+        8771,
+        8773,
+        8774,
+        8780
+      ],
+      "listening_ports": [],
+      "related_inference_processes_found": false
+    }
+  },
+  "interface": {
+    "input": "decoded RGB before viewing MP4 encoding",
+    "layout": "THWC or sequential THWC chunks",
+    "dtype": "uint8",
+    "channels": "RGB",
+    "output": "new output directory, same frame order and geometry",
+    "reference_rule": "postprocessed RGB is not fed into GLC entropy or reference state",
+    "chunk_tail_rule": "For chunked-rgb-v1 use chunks[].frames from storage metadata; the last NPY block is allocated to 64 frames and includes unused padding."
+  },
+  "limits": [
+    "Average frame metrics do not prove temporal stability",
+    "FP32 and TRT reconstructions are not pixel equivalent",
+    "Do not treat padded chunk capacity as valid frame count",
+    "Orin, energy and real acoustic channel not validated"
+  ],
+  "automatic_pending_runs": []
+}
