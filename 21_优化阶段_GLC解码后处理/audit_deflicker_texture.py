@@ -61,28 +61,33 @@ def normalized(x):
     return centered / np.maximum(std, 1e-6)
 
 
-def measure(sequences, crop):
+def source_match(previous, current, previous_bands, current_bands, crop):
+    backward, forward = motion(previous, current)
+    x, y, inside, error = correspondence(backward, forward)
+    old_low = previous_bands[..., 3] - previous_bands[..., 2]
+    new_low = current_bands[..., 3] - current_bands[..., 2]
+    photo = np.abs(new_low - warp(old_low, x, y))
+    reliable = inside & (error < 1.5) & (photo < 12)
+    reliable = cv2.erode(reliable.astype(np.uint8), KERNEL).astype(bool)
+    textured = cv2.GaussianBlur(np.abs(current_bands[..., 2]), (0, 0), 2) > 2.
+    return x, y, (reliable & textured)[crop]
+
+
+def measure(sequences, crop, start=START):
     rows = []
+    source = sequences['source']
     prev = {name: bands(video[0]) for name, video in sequences.items()}
-    for i in range(1, STOP - START):
-        source = sequences['source']
-        backward, forward = motion(source[i - 1], source[i])
-        x, y, inside, error = correspondence(backward, forward)
+    for i in range(1, len(source)):
         cur = {name: bands(video[i]) for name, video in sequences.items()}
-        old_low = prev['source'][..., 3] - prev['source'][..., 2]
-        new_low = cur['source'][..., 3] - cur['source'][..., 2]
-        photo = np.abs(new_low - warp(old_low, x, y))
-        reliable = inside & (error < 1.5) & (photo < 12)
-        reliable = cv2.erode(reliable.astype(np.uint8), KERNEL).astype(bool)
-        mask = (reliable & (cv2.GaussianBlur(np.abs(cur['source'][..., 2]), (0, 0), 2) > 2.))[crop]
+        x, y, mask = source_match(source[i - 1], source[i], prev['source'], cur['source'], crop)
         count = int(mask.sum())
         if count < 64:
-            raise ValueError(f'Insufficient matched source texture at frame {START + i}')
+            raise ValueError(f'Insufficient matched source texture at frame {start + i}')
         source_a = warp(prev['source'], x, y)[crop][mask]
         source_b = cur['source'][crop][mask]
         source_delta = source_b - source_a
         unit_delta = normalized(source_b[:, 1:3]) - normalized(source_a[:, 1:3])
-        row = dict(frame=START + i, valid_pixels=count)
+        row = dict(frame=start + i, valid_pixels=count)
         for name in sequences:
             a = warp(prev[name], x, y)[crop][mask]
             b = cur[name][crop][mask]

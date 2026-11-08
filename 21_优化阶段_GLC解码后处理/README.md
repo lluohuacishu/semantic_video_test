@@ -44,7 +44,7 @@
 
 复看后，用户确认晃动仍然明显，原三帧与五帧方案按观看验收未通过。第 1 段的三帧偏好仍作为相对观感记录。
 
-用源 RGB 估计相邻帧光流，再对齐源 RGB 和 GLC 的同一珊瑚区域。第 1 段原片 6.40 秒对应零基帧 192。源画面 191–193 的珊瑚纹路基本连续，GLC 第 192 帧切到 I 帧时出现明显的纹理跳变。原始 GLC 全频误差前十的帧中，5 个在 I 帧或参考重置位置，另 5 个为普通 P 帧。第 3 段也观察到参考重置帧和普通帧的误差峰值。
+用源 RGB 估计相邻帧光流，再对齐源 RGB 和 GLC 的同一珊瑚区域。第 1 段原片 6.40 秒对应零基帧 192。源画面 191–193 的珊瑚纹路基本连续，GLC 第 192 帧切到 I 帧时出现明显的纹理跳变。原始 GLC 全频误差前十的帧中，5 个落在 I 帧或旧版脚本标记的周期 reset 位置，另 5 个为普通 P 帧。周期 reset 的分类在后续内部诊断中细分。第 3 段也观察到参考重置帧和普通帧的误差峰值。
 
 诊断把亮度分为粗尺度（高斯 σ=3 像素）、中尺度（σ=1.2 与 σ=3 之差）、细尺度（原亮度减 σ=1.2）和全频四项，各项 MAE 独立计算。保留三帧融合、仅将运动估计换成源 RGB 光流时，两段的全频误差分别比原三帧再降约 0.29% 和 0.24%。该对照仅说明原三帧设置下的改动有限。I/P 生成器和参考路径的各自贡献仍待拆分。
 
@@ -127,6 +127,51 @@ RTX 4060 Laptop 上 9 帧和 80 帧的 CLI 墙钟时间分别为 11.7 和 67.5 �
 git -C "$seedPilot/upstream" apply --unidiff-zero (Join-Path (Get-Location) '21_优化阶段_GLC解码后处理/seedvr2_windows_png.patch')
 & $seedPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_seedvr2.py' --pilot $seedPilot --deflicker-pilot $deflickerPilot --case full --batch-size 9 --ffmpeg $glcFfmpeg --output $seedRun
 & $seedPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_seedvr2.py' --previous $glcTrialMeanOut --deflicker-run $deflickerRun --seedvr2-run $seedRun --ffmpeg $glcFfmpeg --output $seedComparison --metrics-root $glcPerceptualCache
+```
+
+## GLC 内部时序诊断
+
+### GOP 和参考重置
+
+从同一源视频第 0 帧开始编码 240 帧，固定 q0、FP32 eager、512×288、30 FPS 和权重。三条码流各由独立接收进程解码。基线的 240 个压缩帧和 RGB 均与旧结果逐位一致，旧发送日志另有 128 个逐帧参考摘要也全部吻合。三个新码流分别通过整段参考摘要校验。以下指标对原片零基帧 60–239 的珊瑚区计算，码率按各自完整的 8 秒 GLCSND 文件大小计算。
+
+| GOP / reset | 实际码率（kbps） | 179 对全频时序 MAE ↓ | 151 对共同普通 P→P MAE ↓ |
+| --- | ---: | ---: | ---: |
+| 64 / 32 | 44.708 | 13.931 | 12.862 |
+| 72 / 32 | 46.923 | 13.917 | 12.771 |
+| 64 / 24 | 47.737 | 14.076 | 12.827 |
+
+I 帧会把 `ref_y` 置空。基线第 193 帧虽命中周期 reset，进入时 `ref_y` 已为空。重分组后，I 帧、I 后首个 P 帧、实际清除 `ref_y` 的 P 帧和普通 P 帧的全频误差分别为 30.65、28.17、21.26、13.24。
+
+GOP 从 64 改到 72 后，原 I 帧 64、128、192 变成普通 P，三处误差均下降。第 192 帧从 33.30 降到 11.14。新 I 帧 72、144、216 的误差均上升，第 216 帧从 24.37 升到 34.35，新 I 帧后的首个 P 帧也都升高。
+
+固定 GOP 64，把 reset 从 32 改到 24 后，五个新增的实际重置位置误差全部升高，两个取消重置的位置全部降低。第 217 帧从 21.52 升到 26.62，第 225 帧从 23.44 降到 14.41。三个 I 帧和三个紧随其后的 P 帧输出逐位相同。第 215 帧在三组里均为普通 P，误差依次为 29.03、29.52、29.03。两个设置能迁移边界突跳，持续晃动在共同普通 P 帧对中仍存在。
+
+### 普通 P 帧的中间张量
+
+从原始码流第 128 帧 I 帧开始独立解码，记录帧 152–231 中的 79 个 P 帧。对经过的 104 帧逐帧核对参考状态和最终 RGB，与核验过的原码流前缀一致。钩子抓取 P 解码器的 `context`、`y_hat`、RGB 生成器输入 `latent` 和裁剪前的浮点 RGB。源 RGB 在独立的分析进程中用于运动对齐。
+
+在原珊瑚区域内把可靠像素和源光流映射到 20×32 特征网格。三个张量按各自通道的标准差归一化，计算对齐后的相邻帧变化，并在相同特征适配器相位内排名。分析覆盖 77 对相邻 P 帧，其中 72 对的前后两帧都为普通 P 帧。
+
+| 第 175 帧与第 215 帧的比较 | 175 | 215 | 215 在同相位 30 对中的排名（变化从大到小） |
+| --- | ---: | ---: | ---: |
+| `context` 变化 | 0.326 | 0.462 | 6 |
+| `y_hat` 变化 | 0.567 | 1.014 | 3 |
+| 生成前 `latent` 变化 | 0.063 | 0.307 | 1 |
+| 裁剪前浮点 RGB 时序 MAE | 7.95 | 29.05 | 1 |
+| 最终 RGB 时序 MAE | 7.96 | 29.03 | 1 |
+
+第 215 帧的异常在送入生成器前的 `latent` 已经显著，`y_hat` 也出现较大变化。其所在的 30 对普通 P 帧中，`latent` 变化和最终 RGB 误差的 Spearman 相关性为 0.931。这是单段礁壁、固定权重和码率档的观察。`context` 和 `y_hat` 的各自贡献以及生成器的放大量仍需单独控制。
+
+本机输出位于 `02_实验数据/优化_GLC后处理/reef_decoder_diagnosis_20261108_02`。原速四宫格及边界图位于 `boundary_evaluation`，上排为源 RGB 和 GOP 64 / reset 32，下排为 GOP 72 / reset 32 和 GOP 64 / reset 24。P 帧曲线位于 `p_evaluation`。 [边界数据](evidence_20261108/reef_decoder_diagnosis/boundary_summary.json) · [P 帧数据](evidence_20261108/reef_decoder_diagnosis/p_summary.json) · [独立核对](evidence_20261108/reef_decoder_diagnosis/verification.json)
+
+复现使用 GLC FP32 环境，以及含 OpenCV、NumPy 和 matplotlib 的 Python 3.12 分析环境。各命令使用新的输出目录。
+
+```powershell
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_boundary_codec.py' --output $boundaryRun
+& $analysisPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_boundary_codec.py' --run $boundaryRun --output $boundaryEvaluation --ffmpeg $glcFfmpeg
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/capture_p_trace.py' --prefix-run "$boundaryRun/g64_r32" --output $pTrace
+& $analysisPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_p_trace.py' --capture $pTrace --output $pEvaluation
 ```
 
 ## 评价与复现
