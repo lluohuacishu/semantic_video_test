@@ -65,6 +65,31 @@ python -B -X utf8 '21_优化阶段_GLC解码后处理/probe_reef.py' --previous 
 
 本机结果在 `temporal_p0_20261108_01/reef_jump_repair`。每段提供原始、三帧与局部修复的同帧四宫格，以及按源运动对齐的峰值逐帧图。4 个预览核对了帧数、帧率和时长。 [汇总](evidence_20261108/reef_repair/summary.json) · [逐帧 CSV](evidence_20261108/reef_repair/per_frame.csv) · [独立核对](evidence_20261108/reef_repair/verification.json)
 
+## All-In-One-Deflicker 短段试验
+
+首测固定礁壁原片零基帧 152–231，共 80 帧，512×288、30 FPS。第 192 帧 I 帧突跳在片段中部。输入逐张由现有 GLC FP32 无损 RGB 写成 PNG，并回读核对逐位相同。模型处理只读取这些重建帧，源 RGB 用于事后评价。
+
+使用官方源码和发布权重。Windows 独立环境复用现有 CUDA 版 PyTorch，并单独安装图集和图像 I/O 的依赖。按顺序调用官方 RAFT 光流、逐段神经图集拟合、预训练滤波和精修。采用官方配置的 10,001 步图集迭代、100 次映射预训练和 4 倍图集下采样，随机种子固定为 2023。 [官方项目](https://github.com/ChenyangLEI/All-In-One-Deflicker)
+
+以最终编号 PNG 为输出，逐张核验 80 帧的尺寸、RGB 通道和顺序。对照视频由这些 PNG 重新按 30 FPS 封装。对照组为同帧原始 GLC 和均值三帧，三帧在新截取片段的首末帧采用缺邻帧时的原样输出。局部时序指标沿用源画面光流与同一珊瑚观察区，图像指标使用同分辨率源 RGB。
+
+| 方法 | 珊瑚区全频时序 MAE ↓ | 珊瑚区细尺度时序 MAE ↓ | 全图 PSNR ↑ | 珊瑚区 PSNR ↑ | 全图 LPIPS ↓ | 全图 DISTS ↓ |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 原始 GLC | 16.247 | 10.107 | 22.081 dB | 16.462 dB | 0.1246 | 0.1545 |
+| 均值三帧 | 15.990 | 9.848 | 22.123 dB | 16.481 dB | 0.1236 | 0.1529 |
+| All-In-One-Deflicker | 13.410 | 8.573 | 21.659 dB | 17.134 dB | 0.1279 | 0.1631 |
+
+相对原始 GLC，模型把珊瑚区全频时序误差降了 17.5%，细尺度误差降了 15.2%。6.40 秒的 I 帧误差由 33.30 降到 26.10，紧接着的首个 P 帧由 30.28 降到 23.01。全图 PSNR 下降约 0.42 dB，LPIPS 和 DISTS 升高。珊瑚区 PSNR 则提高约 0.67 dB，细尺度幅度与源的比值由 1.110 降到 0.934。6.40 秒的单帧对照中，模型输出的细纹边缘较软。整段观看与鱼身纹理的效果仍需在其他片段分别验证。
+
+本机 4060 Laptop 的模型处理墙钟为 558.2 秒，含双向光流 12.7 秒、图集拟合与渲染 533.5 秒、滤波精修与上游预览导出 6.6 秒，其余为进程启动及落盘。最大 PyTorch 分配量 791 MiB，最大保留量 888 MiB，出现在图集阶段。输入及输出 80 帧均保留 512×288 RGB，三份本机视频都独立核对为 80 帧、30 FPS。 [运行记录](evidence_20261108/deflicker_reef80/run.json) · [评价](evidence_20261108/deflicker_reef80/summary.json) · [独立核对](evidence_20261108/deflicker_reef80/verification.json)
+
+本机结果在工作区 `02_实验数据/优化_GLC后处理/deflicker_reef80_20261108_01`。原分辨率增强视频、完整及局部四宫格、时序曲线位于 `comparison`。四宫格左上为源 RGB，右上为原始 GLC，左下为均值三帧，右下为模型结果。无损结果位于 `trial/deflicker_rgb.npy`。
+
+```powershell
+& $deflickerPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_deflicker.py' --upstream $deflickerSource --weights-repo $deflickerWeights --ffmpeg $glcFfmpeg --output $deflickerRun
+& $deflickerPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_deflicker.py' --previous $glcTrialMeanOut --model-run $deflickerRun --ffmpeg $glcFfmpeg --output $deflickerComparison --metrics-root $glcPerceptualCache
+```
+
 ## 评价与复现
 
 使用同源同尺寸的无损 RGB 计算指标。评估光流及有效掩码只用源 RGB，所有方法在同一掩码上计分。时序指标比较两帧经运动补偿后的灰度高频变化与源画面对应变化的绝对误差。珊瑚区高频幅度、空间误差与运动区 PSNR 一起报告。珊瑚和鱼的观看结论以原速对照为准。

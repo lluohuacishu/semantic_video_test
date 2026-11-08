@@ -1,0 +1,107 @@
+{
+  "clip": {
+    "id": "01_coral_wall",
+    "baseline": "glc_q0_900_fp32",
+    "start": 60,
+    "stop": 240,
+    "source_stride": 1,
+    "coral_roi": [
+      306,
+      8,
+      510,
+      124
+    ],
+    "motion_roi": [
+      160,
+      22,
+      324,
+      230
+    ],
+    "zoom": "coral_roi",
+    "focus": "礁壁上缘的纹理、小鱼、气泡"
+  },
+  "source_start": 152,
+  "source_stop": 232,
+  "frame_count": 80,
+  "fps": 30,
+  "shape": [
+    288,
+    512,
+    3
+  ],
+  "raw_rgb_sha256": "decf3ff1f58865eee9bd7c88948755534acaaaa4a6157f56717a042ee889d671",
+  "input_png_round_trip_bit_exact": true,
+  "glc_baseline": {
+    "stream_sha256": "bb5b75c2e8ec3453f170451e45c9450b8954dadcde1a35a4d3a32b1106ccf570",
+    "result_sha256": "1405a18ea44625c054669951e7addaf6cf6e57827f57b84a54789be667422a82",
+    "source_metadata_sha256": "2a9171ff0ff7c4116356d4bba2763d0b5fc88224ef22fe276bd8f004642c196f",
+    "decoded_storage": "chunked-rgb-v1"
+  },
+  "plan_sha256": "6115159c03e0fe8e61d51823fafb688bd5b0e02dc0bd664dbed2c3ef63fe8ad4",
+  "baseline_manifest_sha256": "8e04fbe4eaf999050748ba7ef80a99163c72b092bc59be3b3a0e2e85d0683aab",
+  "upstream_commit": "214f90cd40df3885760cd6d4c09aa18dfdc03db2",
+  "weights_commit": "63f5c0db8d3e00dce9565c9825932788496d4b88",
+  "weights": {
+    "raft-things.pth": {
+      "bytes": 21108000,
+      "sha256": "fcfa4125d6418f4de95d84aec20a3c5f4e205101715a79f193243c186ac9a7e1"
+    },
+    "neural_filter.pth": {
+      "bytes": 34525163,
+      "sha256": "59798885f9b8370dd6a3c4d978f637f6b57d94b12e7083e0405853bb368ec9c7"
+    },
+    "local_refinement_net.pth": {
+      "bytes": 11956215,
+      "sha256": "37130c5cb828bc1209b327d45f812f867366dbdccca694bb9f218d916e984f6f"
+    }
+  },
+  "atlas_config": {
+    "results_folder_name": "results",
+    "maximum_number_of_frames": 200,
+    "resx": 768,
+    "resy": 432,
+    "iters_num": 10001,
+    "samples_batch": 10000,
+    "optical_flow_coeff": 500.0,
+    "evaluate_every": 10000,
+    "derivative_amount": 1,
+    "rgb_coeff": 5000,
+    "rigidity_coeff": 1.0,
+    "uv_mapping_scale": 0.8,
+    "pretrain_mapping1": true,
+    "pretrain_mapping2": true,
+    "alpha_bootstrapping_factor": 2000.0,
+    "alpha_flow_factor": 4900.0,
+    "positional_encoding_num_alpha": 5,
+    "number_of_channels_atlas": 256,
+    "number_of_layers_atlas": 8,
+    "number_of_channels_alpha": 256,
+    "number_of_layers_alpha": 8,
+    "stop_bootstrapping_iteration": 10000,
+    "number_of_channels_mapping1": 256,
+    "number_of_layers_mapping1": 6,
+    "number_of_channels_mapping2": 256,
+    "number_of_layers_mapping2": 4,
+    "gradient_loss_coeff": 1000,
+    "use_gradient_loss": true,
+    "sparsity_coeff": 1000.0,
+    "positional_encoding_num_atlas": 10,
+    "use_positional_encoding_mapping1": false,
+    "number_of_positional_encoding_mapping1": 4,
+    "use_positional_encoding_mapping2": false,
+    "number_of_positional_encoding_mapping2": 2,
+    "pretrain_iter_number": 100,
+    "load_checkpoint": false,
+    "checkpoint_path": "",
+    "include_global_rigidity_loss": true,
+    "global_rigidity_derivative_amount_fg": 100,
+    "global_rigidity_derivative_amount_bg": 100,
+    "global_rigidity_coeff_fg": 5.0,
+    "global_rigidity_coeff_bg": 50.0,
+    "stop_global_rigidity": 5000,
+    "add_to_experiment_folder_name": ""
+  },
+  "atlas_config_sha256": "56ec470e0d9d5bd418d06f679f12179c4236cca41c4cd11f46990070740a75ca",
+  "atlas_downsample": 4,
+  "seed": 2023
+}

@@ -1,0 +1,115 @@
+{
+  "clip": {
+    "id": "01_coral_wall",
+    "baseline": "glc_q0_900_fp32",
+    "start": 152,
+    "stop": 232,
+    "source_stride": 1,
+    "coral_roi": [
+      306,
+      8,
+      510,
+      124
+    ],
+    "motion_roi": [
+      160,
+      22,
+      324,
+      230
+    ],
+    "zoom": "coral_roi",
+    "focus": "礁壁上缘的纹理、小鱼、气泡"
+  },
+  "fps": 30,
+  "shape": [
+    288,
+    512,
+    3
+  ],
+  "frames": 80,
+  "paired_temporal_frames": 79,
+  "valid_temporal_pixels": 1337397,
+  "center3_endpoint_rule": "current raw RGB at both pilot endpoints",
+  "methods": {
+    "raw": {
+      "rgb_psnr_db": 22.080557805414088,
+      "coral_rgb_psnr_db": 16.46240507786355,
+      "coral_fine_energy_vs_source": 1.109710026686696,
+      "temporal_mae": {
+        "coarse": 3.5310820526330717,
+        "middle": 6.797232210627715,
+        "fine": 10.106960506234312,
+        "all": 16.246564647828954
+      },
+      "lpips": 0.1246084681712091,
+      "dists": 0.15447417870163918
+    },
+    "center3": {
+      "rgb_psnr_db": 22.123290952852418,
+      "coral_rgb_psnr_db": 16.48128804339249,
+      "coral_fine_energy_vs_source": 1.091894126897763,
+      "temporal_mae": {
+        "coarse": 3.5557195720317623,
+        "middle": 6.760880979584315,
+        "fine": 9.847796339643352,
+        "all": 15.989790820106146
+      },
+      "lpips": 0.1236425201408565,
+      "dists": 0.1528731532394886
+    },
+    "deflicker": {
+      "rgb_psnr_db": 21.659107675878765,
+      "coral_rgb_psnr_db": 17.133899867975792,
+      "coral_fine_energy_vs_source": 0.9338956591834733,
+      "temporal_mae": {
+        "coarse": 2.5287527589157333,
+        "middle": 5.564293841413582,
+        "fine": 8.57314706992389,
+        "all": 13.40968653801003
+      },
+      "lpips": 0.12785699917003512,
+      "dists": 0.1631028510630131
+    }
+  },
+  "boundary_full_band_mae": {
+    "192": {
+      "raw": 33.30370004332286,
+      "center3": 33.2748429546193,
+      "deflicker": 26.102335034658292
+    },
+    "193": {
+      "raw": 30.280493583148317,
+      "center3": 30.241400200357393,
+      "deflicker": 23.005804272486056
+    }
+  },
+  "previews": {
+    "compare.mp4": {
+      "width": 1024,
+      "height": 628,
+      "avg_frame_rate": "30/1",
+      "duration": "2.666667",
+      "nb_read_frames": "80",
+      "sha256": "377594f2fc834dcfcb725bf284fbd38244bdfca77aff2ccd3e4d66b898d32d67"
+    },
+    "zoom.mp4": {
+      "width": 816,
+      "height": 516,
+      "avg_frame_rate": "30/1",
+      "duration": "2.666667",
+      "nb_read_frames": "80",
+      "sha256": "cf7ec87f14513c2b0c67a5800d1ded404305808e1e65a7fa5e5ac1d73a57d300"
+    }
+  },
+  "model_run_sha256": "d781b71c6f0cbdbd4bf88964eef94a72ae465f5d862fcd3babdb21dfddfd578d",
+  "model_rgb_sha256": "1b078692bd9e01522765ef2cd14794ac94717411035831bdf8f5858dc7297138",
+  "metric_provenance": {
+    "backbone_hashes": {
+      "alexnet-owt-7be5be79.pth": "7be5be791159472b1fbf3c69796f7cb30dca7ad8466c2df70058c37116cdee02",
+      "vgg16-397923af.pth": "397923af8e79cdbb6a7127f12361acd7a2f83e06b05044ddf496e83de57a5bf0"
+    },
+    "dists_calibration_sha256": "f5e65c96230b7f6ca995691647d482237e4cab8a50c5c4a5784f219ef0748218",
+    "lpips_code_sha256": "36ee004a45e2cc2c5ab47fa3955f00c0e41f6a151ef0249fb6f362533ed58b22",
+    "torch": "2.5.1+cu124"
+  }
+}
