@@ -1,0 +1,38 @@
+{
+  "codec": {"q": 0, "intra_period": 64, "reset_interval": 32},
+  "clips": [
+    {
+      "id": "01_coral_wall",
+      "baseline": "glc_q0_900_fp32",
+      "start": 60,
+      "stop": 240,
+      "source_stride": 1,
+      "coral_roi": [306, 8, 510, 124],
+      "motion_roi": [160, 22, 324, 230],
+      "zoom": "coral_roi",
+      "focus": "礁壁上缘的纹理、小鱼、气泡"
+    },
+    {
+      "id": "02_fish_turn",
+      "baseline": "glc_q0_900_fp32",
+      "start": 390,
+      "stop": 570,
+      "source_stride": 1,
+      "coral_roi": [358, 164, 506, 278],
+      "motion_roi": [78, 66, 414, 254],
+      "zoom": "motion_roi",
+      "focus": "斑点鱼的转身、尾鳍、鱼身条纹"
+    },
+    {
+      "id": "03_moving_reef",
+      "baseline": "glc_q0_full15_512_fp32",
+      "start": 585,
+      "stop": 675,
+      "source_stride": 2,
+      "coral_roi": [360, 24, 510, 272],
+      "motion_roi": [114, 38, 404, 256],
+      "zoom": "coral_roi",
+      "focus": "移动视角下的红珊瑚和游过的鱼"
+    }
+  ]
+}
