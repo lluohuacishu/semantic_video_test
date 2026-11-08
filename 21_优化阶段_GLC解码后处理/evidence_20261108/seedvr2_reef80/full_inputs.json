@@ -1,0 +1,80 @@
+{
+  "start": 152,
+  "stop": 232,
+  "fps": 30,
+  "shape": [
+    288,
+    512,
+    3
+  ],
+  "frames": 80,
+  "input_rgb_sha256": "decf3ff1f58865eee9bd7c88948755534acaaaa4a6157f56717a042ee889d671",
+  "original_pilot_input_sha256": "decf3ff1f58865eee9bd7c88948755534acaaaa4a6157f56717a042ee889d671",
+  "ffv1_rgb_round_trip_bit_exact": true,
+  "video_sha256": "4a78ad7a311e50f5b1f3b7e552a1259529078131152c364b3031aba4320b28fc",
+  "upstream_commit": "4490bd1f482e026674543386bb2a4d176da245b9",
+  "upstream_cli_sha256": "ddc2a0062e0d1cd910e2a517a6f5e80f14eb0822a218d5200b003417468deaae",
+  "weights": {
+    "seedvr2_ema_3b-Q8_0.gguf": {
+      "bytes": 3660613984,
+      "sha256": "be0d60083a2051a265eb4b77f28edf494e6db67ffc250216f32b72292e5cbd96"
+    },
+    "ema_vae_fp16.safetensors": {
+      "bytes": 501324814,
+      "sha256": "20678548f420d98d26f11442d3528f8b8c94e57ee046ef93dbb7633da8612ca1"
+    }
+  },
+  "cli_arguments": [
+    "..\\full80\\reef_glc.mkv",
+    "--output",
+    "..\\full80\\png",
+    "--output_format",
+    "png",
+    "--model_dir",
+    "..\\models",
+    "--dit_model",
+    "seedvr2_ema_3b-Q8_0.gguf",
+    "--resolution",
+    "288",
+    "--max_resolution",
+    "512",
+    "--batch_size",
+    "9",
+    "--uniform_batch_size",
+    "--temporal_overlap",
+    "3",
+    "--seed",
+    "2023",
+    "--cuda_device",
+    "0",
+    "--dit_offload_device",
+    "cpu",
+    "--vae_offload_device",
+    "cpu",
+    "--tensor_offload_device",
+    "cpu",
+    "--blocks_to_swap",
+    "32",
+    "--swap_io_components",
+    "--attention_mode",
+    "sdpa",
+    "--color_correction",
+    "lab",
+    "--debug"
+  ],
+  "batch_size": 9,
+  "overlap": 3,
+  "packages": {
+    "torch": "2.5.1+cu124",
+    "torchvision": "0.20.1+cu124",
+    "numpy": "1.26.4",
+    "opencv-python": "4.10.0.84",
+    "diffusers": "0.35.2",
+    "peft": "0.17.1",
+    "transformers": "4.55.4",
+    "gguf": "0.17.1",
+    "safetensors": "0.6.2",
+    "omegaconf": "2.3.0",
+    "rotary-embedding-torch": "0.8.9"
+  }
+}

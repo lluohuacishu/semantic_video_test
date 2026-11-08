@@ -104,6 +104,31 @@ python -B -X utf8 '21_优化阶段_GLC解码后处理/probe_reef.py' --previous 
 & $deflickerPython -B -X utf8 '21_优化阶段_GLC解码后处理/audit_deflicker_texture.py' --previous $glcTrialMeanOut --pilot $deflickerPilot --output $deflickerTextureAudit
 ```
 
+## SeedVR2 短段试验
+
+使用同一礁壁的零基帧 152–231（512×288、30 FPS），先以帧 188–196 的 9 帧做运行核验，再处理完整 80 帧。通过 FFV1 封装已有 GLC 解码 RGB，用 OpenCV 和 FFmpeg 分别回读核对像素。源 RGB 只用于评价。
+
+使用 Numz 的低显存独立 CLI 2.5.24（`4490bd1f482e026674543386bb2a4d176da245b9`）、3B EMA Q8_0 和 FP16 VAE 发布权重。保持输入分辨率，使用 SDPA、CPU 卸载、32 层换入换出、LAB 色彩校正和随机种子 2023。短试验为一个 9 帧组，完整片段为 9 帧一组、重叠 3 帧。首次短试验中 OpenCV 无法在中文路径写入 PNG。采用随仓库提供的写盘补丁后，逐张核验输出，并保存同像素的 `seedvr2_rgb.npy`。 [低显存 CLI](https://github.com/numz/ComfyUI-SeedVR2_VideoUpscaler/tree/4490bd1f482e026674543386bb2a4d176da245b9) · [写盘补丁](seedvr2_windows_png.patch)
+
+| 方法 | 珊瑚区全频时序 MAE ↓ | 对齐后细纹跨帧 NCC ↑ | 同帧细纹对源 NCC ↑ | 细纹幅度 / 源 | 全图 PSNR ↑ | 全图 LPIPS ↓ | 全图 DISTS ↓ |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 原始 GLC | 16.247 | 0.577 | 0.064 | 1.110 | 22.081 dB | 0.1246 | 0.1545 |
+| All-In-One-Deflicker | 13.410 | 0.583 | 0.065 | 0.934 | 21.659 dB | 0.1279 | 0.1631 |
+| Deflicker 等细纹幅度的逐帧模糊 | 14.542 | 0.613 | 0.073 | 0.934 | 22.491 dB | 0.1247 | 0.1565 |
+| SeedVR2 3B Q8 | 22.175 | 0.570 | 0.056 | 1.724 | 20.011 dB | 0.2026 | 0.1824 |
+
+跨帧 NCC 沿用源运动对齐和相同的 79 个珊瑚帧对，源画面为 0.969。同帧对源 NCC 衡量珊瑚区对应像素的细纹相关性。SeedVR2 的中尺度跨帧 NCC 从原始 GLC 的 0.810 提升至 0.855，细纹相关性下降，全频时序误差上升 36.5%。第 192 帧的全频误差从 33.30 增至 47.84。6.40 秒的局部同帧对照可见 SeedVR2 珊瑚边缘更硬，沟槽比源画面更深。该配置在这段礁壁上缺少改善细纹稳定性与保真的证据。
+
+RTX 4060 Laptop 上 9 帧和 80 帧的 CLI 墙钟时间分别为 11.7 和 67.5 秒，阶段日志的最大 PyTorch 分配量均为 4.15 GiB，最大采样保留量均为 5.25 GiB。两份本地预览均核验为 80 帧、30 FPS。四宫格左上为源 RGB，右上为原始 GLC，左下为 Deflicker，右下为 SeedVR2。 [完整输入](evidence_20261108/seedvr2_reef80/full_inputs.json) · [运行](evidence_20261108/seedvr2_reef80/full_run.json) · [评价](evidence_20261108/seedvr2_reef80/summary.json) · [独立核对](evidence_20261108/seedvr2_reef80/verification.json)
+
+本机数据位于 `02_实验数据/优化_GLC后处理/seedvr2_reef80_20261108_01`。原速对照、局部对照和细纹曲线位于 `comparison`。复现时在 `$seedPilot/upstream` 固定上述提交并应用写盘补丁，将已核验的两份权重放入 `$seedPilot/models`，使用独立环境及新的输出目录。
+
+```powershell
+git -C "$seedPilot/upstream" apply --unidiff-zero (Join-Path (Get-Location) '21_优化阶段_GLC解码后处理/seedvr2_windows_png.patch')
+& $seedPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_seedvr2.py' --pilot $seedPilot --deflicker-pilot $deflickerPilot --case full --batch-size 9 --ffmpeg $glcFfmpeg --output $seedRun
+& $seedPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_seedvr2.py' --previous $glcTrialMeanOut --deflicker-run $deflickerRun --seedvr2-run $seedRun --ffmpeg $glcFfmpeg --output $seedComparison --metrics-root $glcPerceptualCache
+```
+
 ## 评价与复现
 
 使用同源同尺寸的无损 RGB 计算指标。评估光流及有效掩码只用源 RGB，所有方法在同一掩码上计分。时序指标比较两帧经运动补偿后的灰度高频变化与源画面对应变化的绝对误差。珊瑚区高频幅度、空间误差与运动区 PSNR 一起报告。珊瑚和鱼的观看结论以原速对照为准。
