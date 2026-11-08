@@ -24,7 +24,7 @@ from web_frames import Frames
 from sender_common import file_sha, load_json, save_json
 
 METHODS = ('raw', 'stage11', 'center3')
-PANEL_NAMES = ('Source RGB', 'GLC raw', 'Stage 11 / 2 frames', 'Centered / 3 frames')
+PANEL_NAMES = ('Source RGB', 'GLC raw', 'Stage 11 / 2 frames')
 
 
 def chunks(root, directory, metadata):
@@ -71,7 +71,7 @@ def load_range(sequence, start, stop, shape):
     return frames
 
 
-def apply_filters(decoded, start, stop, context_start):
+def apply_filters(decoded, start, stop, context_start, fusion):
     first = start - context_start
     raw = decoded[first:first + stop - start]
     two = np.empty_like(raw)
@@ -97,7 +97,7 @@ def apply_filters(decoded, start, stop, context_start):
         after = motion(current, following) if following is not None else None
         if before is None and previous is not None:
             before = motion(previous, current)
-        three[index], confidence = blend_center(previous, current, following, before, after)
+        three[index], confidence = blend_center(previous, current, following, before, after, fusion=fusion)
         before = after
         center3_ms = (time.perf_counter() - tick) * 1000
         stats.append(dict(stage11_ms=stage11_ms, center3_ms=center3_ms,
@@ -196,7 +196,7 @@ def evaluate(source, decoded, stats, clip, codec):
     return summary, rows
 
 
-def preview(ffmpeg, output, panels, fps, start, crop=None):
+def preview(ffmpeg, output, panels, fps, start, fusion, crop=None):
     height, width = (panels[0][0] if crop is None else panels[0][0][crop]).shape[:2]
     if crop is not None:
         height, width = height * 2, width * 2
@@ -209,6 +209,7 @@ def preview(ffmpeg, output, panels, fps, start, crop=None):
                '-framerate', str(fps), '-i', 'pipe:0', '-an', '-c:v', 'libx264', '-preset', 'fast',
                '-crf', '14', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', '-n', str(output)]
     canvas = np.full((frame_height, frame_width, 3), (24, 35, 48), np.uint8)
+    labels = (*PANEL_NAMES, f'3 frames / {fusion}')
     with output.with_suffix('.ffmpeg.log').open('wb') as log:
         process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=log)
         try:
@@ -217,7 +218,7 @@ def preview(ffmpeg, output, panels, fps, start, crop=None):
                     y = (j // 2) * row_height
                     x = (j % 2) * width
                     canvas[y:y + title, x:x + width] = (24, 35, 48)
-                    label = f'{PANEL_NAMES[j]} | {(start + i) / float(Fraction(fps)):.2f}s'
+                    label = f'{labels[j]} | {(start + i) / float(Fraction(fps)):.2f}s'
                     cv2.putText(canvas, label, (x + 8, y + 18), cv2.FONT_HERSHEY_SIMPLEX,
                                 0.47, (235, 244, 252), 1, cv2.LINE_AA)
                     if crop is not None:
@@ -244,7 +245,7 @@ def preview(ffmpeg, output, panels, fps, start, crop=None):
     return {**stream, 'sha256': file_sha(output)}
 
 
-def run_clip(baseline, inputs, clip, codec, ffmpeg, output):
+def run_clip(baseline, inputs, clip, codec, ffmpeg, output, fusion):
     decoded_frames, source_frames, receipt = inputs
     start, stop = clip['start'], clip['stop']
     count, *shape = baseline['shape']
@@ -252,7 +253,7 @@ def run_clip(baseline, inputs, clip, codec, ffmpeg, output):
         raise ValueError(f'Bad clip range: {clip}')
     context_start = max(0, start - 1)
     window = load_range(decoded_frames, context_start, min(stop + 1, count), shape)
-    filtered, stats = apply_filters(window, start, stop, context_start)
+    filtered, stats = apply_filters(window, start, stop, context_start, fusion)
     output.mkdir()
     for name in ('stage11', 'center3'):
         np.save(output / f'{name}_rgb.npy', filtered[name], allow_pickle=False)
@@ -268,7 +269,7 @@ def run_clip(baseline, inputs, clip, codec, ffmpeg, output):
     videos = {}
     fps = baseline['fps']
     for name, crop in [('compare.mp4', None), ('zoom.mp4', roi(clip[clip['zoom']], shape))]:
-        videos[name] = preview(ffmpeg, output / name, panels, fps, start, crop)
+        videos[name] = preview(ffmpeg, output / name, panels, fps, start, fusion, crop)
     summary.update(clip=clip, codec=codec, fps=fps, frames=stop - start, shape=shape, input=receipt,
                    previews=videos, output_sha256={
                        name: file_sha(output / f'{name}_rgb.npy') for name in ('stage11', 'center3')
@@ -281,6 +282,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--workspace', type=Path, default=REPO.parents[2])
     parser.add_argument('--plan', type=Path, default=HERE / 'plan_p0.json')
+    parser.add_argument('--fusion', choices=('consensus', 'mean'), default='consensus')
     parser.add_argument('--ffmpeg', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
@@ -294,6 +296,7 @@ def main():
                    baseline_manifest_sha256=file_sha(manifest), cv2=cv2.__version__, numpy=np.__version__,
                    python=platform.python_version(), processor=platform.processor(), cv2_threads=cv2.getNumThreads(),
                    opencl=cv2.ocl.useOpenCL(), settings=vars(Settings()), flow_edge_limit=FLOW_EDGE_LIMIT,
+                   center3_fusion=args.fusion,
                    code_sha256={p.name: file_sha(p) for p in (
                        Path(__file__), HERE / 'window_filter.py', STAGE11 / 'temporal_filter.py', STAGE16 / 'web_frames.py'
                    )}, clips=[])
@@ -306,7 +309,7 @@ def main():
             inputs[baseline['id']] = open_baseline(args.workspace, baseline, plan['codec'])
         tick = time.perf_counter()
         result = run_clip(baseline, inputs[baseline['id']], clip, plan['codec'], args.ffmpeg,
-                          args.output / clip['id'])
+                          args.output / clip['id'], args.fusion)
         summary['clips'].append(result)
         save_json(args.output / 'summary.json', summary)
         print(f'{clip["id"]}: saved and verified two comparisons ({time.perf_counter() - tick:.1f}s)', flush=True)

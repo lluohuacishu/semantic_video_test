@@ -1,0 +1,331 @@
+{
+  "schema": "glc-temporal-p0-v1",
+  "complete": true,
+  "plan_sha256": "6115159c03e0fe8e61d51823fafb688bd5b0e02dc0bd664dbed2c3ef63fe8ad4",
+  "baseline_manifest_sha256": "8e04fbe4eaf999050748ba7ef80a99163c72b092bc59be3b3a0e2e85d0683aab",
+  "cv2": "4.10.0",
+  "numpy": "1.26.4",
+  "python": "3.12.14",
+  "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "cv2_threads": 1,
+  "opencl": false,
+  "settings": {
+    "strength": 0.45,
+    "sigma": 1.2,
+    "flow_scale": 0.5,
+    "fb_limit": 1.5,
+    "photo_limit": 12.0,
+    "max_change": 10.0,
+    "cut_difference": 35.0
+  },
+  "flow_edge_limit": 1.5,
+  "center3_fusion": "mean",
+  "code_sha256": {
+    "run_p0.py": "df44f6ec12f676078e26516fd3aa5c312dcf40b6556c8f9233f15f860246ba59",
+    "window_filter.py": "23549a45f07be8ea5edba030f41dbc954acbb2bc2df46ca08de3c8d8526ad364",
+    "temporal_filter.py": "ffbb1bf50c94abef50c696d4c72b5495baa5d8a9acd9466be9beeb6411f0bd4c",
+    "web_frames.py": "46e25095c1935aba8c036d109e4272c3d9737f11b9f78490215acb0ce120f616"
+  },
+  "clips": [
+    {
+      "coral_temporal_mask_coverage": 0.6863472223796088,
+      "coral_temporal_mask_pixels": 2907268,
+      "methods": {
+        "raw": {
+          "rgb_psnr_db": 22.598804770763294,
+          "motion_roi_psnr_db": 23.989494635224293,
+          "motion_roi_mean_abs_change": 0.0,
+          "coral_spatial_hf_mae": 11.237815888722738,
+          "coral_hf_energy_ratio": 1.077252980572566,
+          "coral_temporal_hf_mae": 8.99688251537827,
+          "coral_temporal_hf_frame_p95": 14.62364227203075
+        },
+        "stage11": {
+          "rgb_psnr_db": 22.673761265451404,
+          "motion_roi_psnr_db": 24.110355874642867,
+          "motion_roi_mean_abs_change": 0.6502695369501773,
+          "coral_spatial_hf_mae": 11.039727210998535,
+          "coral_hf_energy_ratio": 1.0440889676913754,
+          "coral_temporal_hf_mae": 8.480726272026478,
+          "coral_temporal_hf_frame_p95": 14.346011205021213,
+          "filter_mean_ms": 36.17589888889496,
+          "filter_p95_ms": 47.79020999962995,
+          "mean_valid_fraction": 0.8823818630642362
+        },
+        "center3": {
+          "rgb_psnr_db": 22.652290699338714,
+          "motion_roi_psnr_db": 24.077649852441958,
+          "motion_roi_mean_abs_change": 0.4280099649954833,
+          "coral_spatial_hf_mae": 11.101111141840617,
+          "coral_hf_energy_ratio": 1.054206364441056,
+          "coral_temporal_hf_mae": 8.669026399016404,
+          "coral_temporal_hf_frame_p95": 14.535102247605876,
+          "filter_mean_ms": 45.76686055554799,
+          "filter_p95_ms": 60.252464999848584,
+          "mean_valid_fraction": 0.830024285964024
+        }
+      },
+      "clip": {
+        "id": "01_coral_wall",
+        "baseline": "glc_q0_900_fp32",
+        "start": 60,
+        "stop": 240,
+        "source_stride": 1,
+        "coral_roi": [
+          306,
+          8,
+          510,
+          124
+        ],
+        "motion_roi": [
+          160,
+          22,
+          324,
+          230
+        ],
+        "zoom": "coral_roi",
+        "focus": "礁壁上缘的纹理、小鱼、气泡"
+      },
+      "codec": {
+        "q": 0,
+        "intra_period": 64,
+        "reset_interval": 32
+      },
+      "fps": 30,
+      "frames": 180,
+      "shape": [
+        288,
+        512,
+        3
+      ],
+      "input": {
+        "stream_sha256": "bb5b75c2e8ec3453f170451e45c9450b8954dadcde1a35a4d3a32b1106ccf570",
+        "result_sha256": "1405a18ea44625c054669951e7addaf6cf6e57827f57b84a54789be667422a82",
+        "source_metadata_sha256": "2a9171ff0ff7c4116356d4bba2763d0b5fc88224ef22fe276bd8f004642c196f",
+        "decoded_storage": "chunked-rgb-v1"
+      },
+      "previews": {
+        "compare.mp4": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "30/1",
+          "duration": "6.000000",
+          "nb_read_frames": "180",
+          "sha256": "efce29fc77e056bb2471a6c50707213bdb926c4155cb017d2ca125132bb15cad"
+        },
+        "zoom.mp4": {
+          "width": 816,
+          "height": 516,
+          "avg_frame_rate": "30/1",
+          "duration": "6.000000",
+          "nb_read_frames": "180",
+          "sha256": "a367e65d5b47d577318af3a79aa2f43a6f7726ac286747be1d44d7d3c5df5ae5"
+        }
+      },
+      "output_sha256": {
+        "stage11": "28493ed04e292149425c50fa8c6f7485b7cdffe38caeb028a72607325683cc25",
+        "center3": "3b29556a077e4e5223f2a689b2b229366fac8e6169ae0b43b64c7c7efaf95d6e"
+      }
+    },
+    {
+      "coral_temporal_mask_coverage": 0.9997046443679787,
+      "coral_temporal_mask_pixels": 3019196,
+      "methods": {
+        "raw": {
+          "rgb_psnr_db": 21.072561756971794,
+          "motion_roi_psnr_db": 19.751674591346788,
+          "motion_roi_mean_abs_change": 0.0,
+          "coral_spatial_hf_mae": 18.20666947364807,
+          "coral_hf_energy_ratio": 0.7612123546335678,
+          "coral_temporal_hf_mae": 11.698824288351519,
+          "coral_temporal_hf_frame_p95": 15.982722483997154
+        },
+        "stage11": {
+          "rgb_psnr_db": 21.256387454703358,
+          "motion_roi_psnr_db": 19.946649908393358,
+          "motion_roi_mean_abs_change": 1.378776056324815,
+          "coral_spatial_hf_mae": 17.5095282819536,
+          "coral_hf_energy_ratio": 0.674263084591709,
+          "coral_temporal_hf_mae": 10.54137893247801,
+          "coral_temporal_hf_frame_p95": 14.773416585314989,
+          "filter_mean_ms": 39.99247277780442,
+          "filter_p95_ms": 51.512534999983465,
+          "mean_valid_fraction": 0.9084907814308449
+        },
+        "center3": {
+          "rgb_psnr_db": 21.231152535944823,
+          "motion_roi_psnr_db": 19.92017441650873,
+          "motion_roi_mean_abs_change": 0.992961743405006,
+          "coral_spatial_hf_mae": 17.575213125016955,
+          "coral_hf_energy_ratio": 0.6824646264051394,
+          "coral_temporal_hf_mae": 10.650175346893883,
+          "coral_temporal_hf_frame_p95": 14.756252785641507,
+          "filter_mean_ms": 51.3300438888968,
+          "filter_p95_ms": 66.63767000040934,
+          "mean_valid_fraction": 0.8637787995515045
+        }
+      },
+      "clip": {
+        "id": "02_fish_turn",
+        "baseline": "glc_q0_900_fp32",
+        "start": 390,
+        "stop": 570,
+        "source_stride": 1,
+        "coral_roi": [
+          358,
+          164,
+          506,
+          278
+        ],
+        "motion_roi": [
+          78,
+          66,
+          414,
+          254
+        ],
+        "zoom": "motion_roi",
+        "focus": "斑点鱼的转身、尾鳍、鱼身条纹"
+      },
+      "codec": {
+        "q": 0,
+        "intra_period": 64,
+        "reset_interval": 32
+      },
+      "fps": 30,
+      "frames": 180,
+      "shape": [
+        288,
+        512,
+        3
+      ],
+      "input": {
+        "stream_sha256": "bb5b75c2e8ec3453f170451e45c9450b8954dadcde1a35a4d3a32b1106ccf570",
+        "result_sha256": "1405a18ea44625c054669951e7addaf6cf6e57827f57b84a54789be667422a82",
+        "source_metadata_sha256": "2a9171ff0ff7c4116356d4bba2763d0b5fc88224ef22fe276bd8f004642c196f",
+        "decoded_storage": "chunked-rgb-v1"
+      },
+      "previews": {
+        "compare.mp4": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "30/1",
+          "duration": "6.000000",
+          "nb_read_frames": "180",
+          "sha256": "7f46e0e26339771f48fffbfa21923e47396f733a60b5db27ddd554d1f79edd0c"
+        },
+        "zoom.mp4": {
+          "width": 1344,
+          "height": 804,
+          "avg_frame_rate": "30/1",
+          "duration": "6.000000",
+          "nb_read_frames": "180",
+          "sha256": "59b76e414f4c60a53f0e6eb0b4dec4af5ecade06c498080dd8982e4a8fc665d6"
+        }
+      },
+      "output_sha256": {
+        "stage11": "7179fd6c7b59f45cae292ec50f46a31b2ecfc8e4020847f3647de29e1cdaefba",
+        "center3": "9a93a0de826dc1a87431159c1f6b6b0f89308c23008252dadb80b55d70865395"
+      }
+    },
+    {
+      "coral_temporal_mask_coverage": 0.49317355321976564,
+      "coral_temporal_mask_pixels": 1632799,
+      "methods": {
+        "raw": {
+          "rgb_psnr_db": 23.94217903028323,
+          "motion_roi_psnr_db": 22.955313786029798,
+          "motion_roi_mean_abs_change": 0.0,
+          "coral_spatial_hf_mae": 4.671302191416422,
+          "coral_hf_energy_ratio": 1.050130676098876,
+          "coral_temporal_hf_mae": 7.400462478464894,
+          "coral_temporal_hf_frame_p95": 8.393360421186962
+        },
+        "stage11": {
+          "rgb_psnr_db": 24.02718517971685,
+          "motion_roi_psnr_db": 23.061502995936163,
+          "motion_roi_mean_abs_change": 0.6556389796946582,
+          "coral_spatial_hf_mae": 4.532124614715576,
+          "coral_hf_energy_ratio": 0.9924574506852144,
+          "coral_temporal_hf_mae": 7.04362455685758,
+          "coral_temporal_hf_frame_p95": 7.953534096359151,
+          "filter_mean_ms": 36.28071333334648,
+          "filter_p95_ms": 47.013229999947725,
+          "mean_valid_fraction": 0.8312654471691745
+        },
+        "center3": {
+          "rgb_psnr_db": 23.995721102051967,
+          "motion_roi_psnr_db": 23.02515336617294,
+          "motion_roi_mean_abs_change": 0.3982552403716592,
+          "coral_spatial_hf_mae": 4.584585650761922,
+          "coral_hf_energy_ratio": 1.0143651387637087,
+          "coral_temporal_hf_mae": 7.214761201470604,
+          "coral_temporal_hf_frame_p95": 8.091427545394303,
+          "filter_mean_ms": 47.38033111107143,
+          "filter_p95_ms": 61.48278999994545,
+          "mean_valid_fraction": 0.7579591350790894
+        }
+      },
+      "clip": {
+        "id": "03_moving_reef",
+        "baseline": "glc_q0_full15_512_fp32",
+        "start": 585,
+        "stop": 675,
+        "source_stride": 2,
+        "coral_roi": [
+          360,
+          24,
+          510,
+          272
+        ],
+        "motion_roi": [
+          114,
+          38,
+          404,
+          256
+        ],
+        "zoom": "coral_roi",
+        "focus": "移动视角下的红珊瑚和游过的鱼"
+      },
+      "codec": {
+        "q": 0,
+        "intra_period": 64,
+        "reset_interval": 32
+      },
+      "fps": 15,
+      "frames": 90,
+      "shape": [
+        288,
+        512,
+        3
+      ],
+      "input": {
+        "stream_sha256": "aa9ec98f6d4085fd216ae6f501524e6d5afc3403a892d053e1667543bc6497da",
+        "result_sha256": "f9b4f87b25d3e046e8c88cde4a069a638137dbe979d2b84533a255596bf8a0e0",
+        "source_metadata_sha256": "9f9f7e00e6dd9ebb9186f4cf0357ca6e3476e4876954c710400aea94c31df9b9",
+        "decoded_storage": "npy"
+      },
+      "previews": {
+        "compare.mp4": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "71531c4cea75a58da9dcf9d96205bacf82536fef1b72c6faeb5f6da2d583c8de"
+        },
+        "zoom.mp4": {
+          "width": 600,
+          "height": 1044,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "4af7c8c7c07c9442398bf8a3958e060ab78cd2e5ffc5f6111a44075dc6b3ac9a"
+        }
+      },
+      "output_sha256": {
+        "stage11": "184ddf39db5b03b29b183211b5fb54004601e90d21bb0da5c7bc894c894fc965",
+        "center3": "4734c288907b46efc2591b81b8c6afa823399f9ad0650a6e2e8678c7db602b84"
+      }
+    }
+  ]
+}

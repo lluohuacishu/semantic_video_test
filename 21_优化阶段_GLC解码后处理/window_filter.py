@@ -30,7 +30,7 @@ def aligned_detail(neighbor, current_low, flow, settings):
     return warp(neighbor.astype(np.float32) - neighbor_low, x, y), confidence
 
 
-def blend_center(previous, current, following, before, after, settings=Settings()):
+def blend_center(previous, current, following, before, after, settings=Settings(), *, fusion='consensus'):
     """Use only raw decoded frames. Flows are bidirectional (later to earlier first)."""
     if previous is None or following is None:
         return current.copy(), 0.0
@@ -43,12 +43,15 @@ def blend_center(previous, current, following, before, after, settings=Settings(
     current_high = current.astype(np.float32) - current_low
     past_change = past[0] - current_high
     future_change = future[0] - current_high
-    # Require agreement on the direction of the correction. Use the smaller
-    # proposed correction so one anomalous neighbor cannot supply new texture.
-    agreed = (past_change * future_change) > 0
-    detail = np.sign(past_change) * np.minimum(np.abs(past_change), np.abs(future_change))
+    if fusion == 'mean':
+        detail = (past_change + future_change) * 0.5
+    else:
+        # Require agreement and use the smaller proposed correction.
+        agreed = (past_change * future_change) > 0
+        magnitude = np.minimum(np.abs(past_change), np.abs(future_change))
+        detail = np.where(agreed, np.sign(past_change) * magnitude, 0)
     weight = settings.strength * np.minimum(past[1], future[1])
-    change = weight[..., None] * np.where(agreed, detail, 0)
+    change = weight[..., None] * detail
     change = np.clip(change, -settings.max_change, settings.max_change)
     output = np.clip(np.rint(current + change), 0, 255).astype(np.uint8)
     return output, float(np.mean(weight > 0))

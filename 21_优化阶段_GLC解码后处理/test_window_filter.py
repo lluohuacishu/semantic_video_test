@@ -40,10 +40,18 @@ class CenteredFilterTests(unittest.TestCase):
 
     def test_one_unreliable_neighbor_preserves_current(self):
         wrong = self.zero + 8
-        got, active = blend_center(self.texture, self.flicker, self.texture,
-                                   (wrong, wrong), (self.zero, self.zero))
-        np.testing.assert_array_equal(got, self.flicker)
-        self.assertEqual(active, 0.0)
+        for fusion in ('consensus', 'mean'):
+            got, active = blend_center(self.texture, self.flicker, self.texture,
+                                       (wrong, wrong), (self.zero, self.zero), fusion=fusion)
+            np.testing.assert_array_equal(got, self.flicker)
+            self.assertEqual(active, 0.0)
+
+    def test_mean_can_use_a_correction_from_one_of_two_reliable_matches(self):
+        flow = (self.zero, self.zero)
+        consensus, _ = blend_center(self.texture, self.flicker, self.flicker, flow, flow)
+        mean, _ = blend_center(self.texture, self.flicker, self.flicker, flow, flow, fusion='mean')
+        np.testing.assert_array_equal(consensus, self.flicker)
+        self.assertTrue(np.any(mean != self.flicker))
 
     def test_cut_or_missing_neighbor_preserves_current(self):
         flow = (self.zero, self.zero)
