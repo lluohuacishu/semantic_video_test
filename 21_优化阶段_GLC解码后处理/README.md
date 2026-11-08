@@ -79,7 +79,7 @@ python -B -X utf8 '21_优化阶段_GLC解码后处理/probe_reef.py' --previous 
 | 均值三帧 | 15.990 | 9.848 | 22.123 dB | 16.481 dB | 0.1236 | 0.1529 |
 | All-In-One-Deflicker | 13.410 | 8.573 | 21.659 dB | 17.134 dB | 0.1279 | 0.1631 |
 
-相对原始 GLC，模型把珊瑚区全频时序误差降了 17.5%，细尺度误差降了 15.2%。6.40 秒的 I 帧误差由 33.30 降到 26.10，紧接着的首个 P 帧由 30.28 降到 23.01。全图 PSNR 下降约 0.42 dB，LPIPS 和 DISTS 升高。珊瑚区 PSNR 则提高约 0.67 dB，细尺度幅度与源的比值由 1.110 降到 0.934。6.40 秒的单帧对照中，模型输出的细纹边缘较软。整段观看与鱼身纹理的效果仍需在其他片段分别验证。
+相对原始 GLC，模型把珊瑚区全频时序误差降了 17.5%，细尺度误差降了 15.2%。6.40 秒的 I 帧误差由 33.30 降到 26.10，紧接着的首个 P 帧由 30.28 降到 23.01。全图 PSNR 下降约 0.42 dB，LPIPS 和 DISTS 升高。珊瑚区 PSNR 则提高约 0.67 dB，细尺度幅度与源的比值由 1.110 降到 0.934。6.40 秒的单帧对照中，模型输出的细纹边缘较软。
 
 本机 4060 Laptop 的模型处理墙钟为 558.2 秒，含双向光流 12.7 秒、图集拟合与渲染 533.5 秒、滤波精修与上游预览导出 6.6 秒，其余为进程启动及落盘。最大 PyTorch 分配量 791 MiB，最大保留量 888 MiB，出现在图集阶段。输入及输出 80 帧均保留 512×288 RGB，三份本机视频都独立核对为 80 帧、30 FPS。 [运行记录](evidence_20261108/deflicker_reef80/run.json) · [评价](evidence_20261108/deflicker_reef80/summary.json) · [独立核对](evidence_20261108/deflicker_reef80/verification.json)
 
@@ -88,6 +88,20 @@ python -B -X utf8 '21_优化阶段_GLC解码后处理/probe_reef.py' --previous 
 ```powershell
 & $deflickerPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_deflicker.py' --upstream $deflickerSource --weights-repo $deflickerWeights --ffmpeg $glcFfmpeg --output $deflickerRun
 & $deflickerPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_deflicker.py' --previous $glcTrialMeanOut --model-run $deflickerRun --ffmpeg $glcFfmpeg --output $deflickerComparison --metrics-root $glcPerceptualCache
+```
+
+### 观看反馈与纹理核对
+
+用户观看后表示差距不明显，珊瑚纹理仍持续变化。本段按观看验收未通过记录。为区分纹理幅度减弱与纹路跨帧连续，沿用原来的 79 个源运动对齐帧对和珊瑚掩码，对齐后的细尺度亮度分别做去均值和方差归一化，再计算相关性。源画面的相关性为 0.969，原始 GLC 为 0.577，模型精修后为 0.583。6.40 秒的 I 帧处，原始 GLC 与模型的细纹相关性都约为 0.05–0.06。第 215 帧的普通 P 帧对齐图中仍能看到纹路变化。
+
+另用固定 σ=0.486 像素的高斯滤波逐帧处理原始 GLC，使细纹幅度与模型输出相差约 0.053%。这个空间对照的全频时序 MAE 也从 16.247 降到 14.542。模型结果为 13.410。单帧平滑本身足以降低这项误差，归一化相关性和观看反馈分别记录。
+
+128×72 的图集输出放大后，细纹幅度约为源画面的 18%。它的纹理相关性较高，细节明显较弱。滤波阶段把细纹幅度恢复到接近源画面，相关性仍约为 0.577。精修阶段的相关性变化很小。这里仅对本片的阶段输出作诊断。
+
+对齐图位于本机试验目录 `texture_alignment_audit`。其中第 192 帧和第 215 帧的图依次展示源画面、原始 GLC、空间模糊对照和模型输出。 [核对汇总](evidence_20261108/deflicker_reef80/texture_alignment/summary.json) · [逐帧数据](evidence_20261108/deflicker_reef80/texture_alignment/per_frame.csv)
+
+```powershell
+& $deflickerPython -B -X utf8 '21_优化阶段_GLC解码后处理/audit_deflicker_texture.py' --previous $glcTrialMeanOut --pilot $deflickerPilot --output $deflickerTextureAudit
 ```
 
 ## 评价与复现
