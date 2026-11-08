@@ -13,7 +13,7 @@ import time
 import cv2
 import numpy as np
 
-from window_filter import FLOW_EDGE_LIMIT, KERNEL, STAGE11, blend_center
+from window_filter import FAR_PAIR_WEIGHT, FLOW_EDGE_LIMIT, KERNEL, STAGE11, blend_center
 from temporal_filter import Settings, TemporalFilter, correspondence, gray, lowpass, motion, warp
 
 HERE = Path(__file__).resolve().parent
@@ -22,10 +22,6 @@ STAGE16 = REPO / '16_优化阶段_输入编码器推理加速'
 sys.path.insert(0, str(STAGE16))
 from web_frames import Frames
 from sender_common import file_sha, load_json, save_json
-
-METHODS = ('raw', 'stage11', 'center3')
-PANEL_NAMES = ('Source RGB', 'GLC raw', 'Stage 11 / 2 frames')
-
 
 def chunks(root, directory, metadata):
     folder = root / directory
@@ -71,38 +67,61 @@ def load_range(sequence, start, stop, shape):
     return frames
 
 
-def apply_filters(decoded, start, stop, context_start, fusion):
+def filter_centered(decoded, first, stop, output, stats, method, fusion, radius):
+    # Each estimate can be reused in the opposite direction when the later
+    # frame becomes the center. Pop consumed pairs to bound memory.
+    flows = {}
+
+    def past_pair(earlier, later):
+        pair = flows.pop((earlier, later), None)
+        return pair if pair is not None else motion(decoded[earlier], decoded[later])
+
+    def future_pair(earlier, later):
+        pair = motion(decoded[earlier], decoded[later])
+        if later < stop:
+            flows[(earlier, later)] = pair
+        return pair
+
+    for index, offset in enumerate(range(first, stop)):
+        tick = time.perf_counter()
+        confidence = 0.0
+        if 0 < offset < len(decoded) - 1:
+            before = past_pair(offset - 1, offset)
+            after = future_pair(offset, offset + 1)
+            distant = None
+            if radius == 2 and 1 < offset < len(decoded) - 2:
+                distant = (decoded[offset - 2], decoded[offset + 2],
+                           past_pair(offset - 2, offset), future_pair(offset, offset + 2))
+            output[index], confidence = blend_center(
+                decoded[offset - 1], decoded[offset], decoded[offset + 1], before, after,
+                fusion=fusion, distant=distant)
+        else:
+            output[index] = decoded[offset]
+        stats[index][f'{method}_ms'] = (time.perf_counter() - tick) * 1000
+        stats[index][f'{method}_valid'] = confidence
+
+
+def apply_filters(decoded, start, stop, context_start, fusion, compare_five=False):
     first = start - context_start
-    raw = decoded[first:first + stop - start]
-    two = np.empty_like(raw)
-    three = np.empty_like(raw)
-    causal = TemporalFilter()
-    before = None
-    if first:
-        causal.apply(decoded[first - 1])
-    stats = []
-    for index in range(len(raw)):
-        offset = first + index
-        current = decoded[offset]
-        previous = decoded[offset - 1] if offset > 0 else None
-        following = decoded[offset + 1] if offset + 1 < len(decoded) else None
-
-        tick = time.perf_counter()
-        two[index], stage11 = causal.apply(current)
-        stage11_ms = (time.perf_counter() - tick) * 1000
-
-        tick = time.perf_counter()
-        # A flow pair serves two consecutive centers. Keeping only that pair
-        # avoids re-estimation and keeps the result independent of prior output.
-        after = motion(current, following) if following is not None else None
-        if before is None and previous is not None:
-            before = motion(previous, current)
-        three[index], confidence = blend_center(previous, current, following, before, after, fusion=fusion)
-        before = after
-        center3_ms = (time.perf_counter() - tick) * 1000
-        stats.append(dict(stage11_ms=stage11_ms, center3_ms=center3_ms,
-                          stage11_valid=stage11['active_fraction'], center3_valid=confidence))
-    return dict(zip(METHODS, (raw, two, three))), stats
+    last = first + stop - start
+    raw = decoded[first:last]
+    filtered = {'raw': raw}
+    stats = [{} for _ in raw]
+    if not compare_five:
+        causal = TemporalFilter()
+        if first:
+            causal.apply(decoded[first - 1])
+        filtered['stage11'] = np.empty_like(raw)
+        for i, frame in enumerate(raw):
+            tick = time.perf_counter()
+            filtered['stage11'][i], info = causal.apply(frame)
+            stats[i]['stage11_ms'] = (time.perf_counter() - tick) * 1000
+            stats[i]['stage11_valid'] = info['active_fraction']
+    windows = (('center3', 1), ('center5', 2)) if compare_five else (('center3', 1),)
+    for method, radius in windows:
+        filtered[method] = np.empty_like(raw)
+        filter_centered(decoded, first, last, filtered[method], stats, method, fusion, radius)
+    return filtered, stats
 
 
 def roi(box, shape):
@@ -196,7 +215,7 @@ def evaluate(source, decoded, stats, clip, codec):
     return summary, rows
 
 
-def preview(ffmpeg, output, panels, fps, start, fusion, crop=None):
+def preview(ffmpeg, output, panels, fps, start, labels, crop=None):
     height, width = (panels[0][0] if crop is None else panels[0][0][crop]).shape[:2]
     if crop is not None:
         height, width = height * 2, width * 2
@@ -209,7 +228,6 @@ def preview(ffmpeg, output, panels, fps, start, fusion, crop=None):
                '-framerate', str(fps), '-i', 'pipe:0', '-an', '-c:v', 'libx264', '-preset', 'fast',
                '-crf', '14', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', '-n', str(output)]
     canvas = np.full((frame_height, frame_width, 3), (24, 35, 48), np.uint8)
-    labels = (*PANEL_NAMES, f'3 frames / {fusion}')
     with output.with_suffix('.ffmpeg.log').open('wb') as log:
         process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=log)
         try:
@@ -245,17 +263,19 @@ def preview(ffmpeg, output, panels, fps, start, fusion, crop=None):
     return {**stream, 'sha256': file_sha(output)}
 
 
-def run_clip(baseline, inputs, clip, codec, ffmpeg, output, fusion):
+def run_clip(baseline, inputs, clip, codec, ffmpeg, output, fusion, compare_five):
     decoded_frames, source_frames, receipt = inputs
     start, stop = clip['start'], clip['stop']
     count, *shape = baseline['shape']
     if not 0 <= start < stop <= count:
         raise ValueError(f'Bad clip range: {clip}')
-    context_start = max(0, start - 1)
-    window = load_range(decoded_frames, context_start, min(stop + 1, count), shape)
-    filtered, stats = apply_filters(window, start, stop, context_start, fusion)
+    radius = 2 if compare_five else 1
+    context_start = max(0, start - radius)
+    window = load_range(decoded_frames, context_start, min(stop + radius, count), shape)
+    filtered, stats = apply_filters(window, start, stop, context_start, fusion, compare_five)
     output.mkdir()
-    for name in ('stage11', 'center3'):
+    generated = list(filtered)[1:]
+    for name in generated:
         np.save(output / f'{name}_rgb.npy', filtered[name], allow_pickle=False)
     print(f'{clip["id"]}: filtered {stop - start} RGB frames, measuring against source', flush=True)
     source = load_range(source_frames, start, stop, shape)
@@ -265,14 +285,16 @@ def run_clip(baseline, inputs, clip, codec, ffmpeg, output, fusion):
         writer.writeheader()
         writer.writerows(rows)
 
-    panels = (source, *(filtered[name] for name in METHODS))
+    panels = (source, *filtered.values())
+    labels = ('Source RGB', 'GLC raw', '3 frames / mean', '5 frames / mean') if compare_five else (
+        'Source RGB', 'GLC raw', 'Stage 11 / 2 frames', f'3 frames / {fusion}')
     videos = {}
     fps = baseline['fps']
     for name, crop in [('compare.mp4', None), ('zoom.mp4', roi(clip[clip['zoom']], shape))]:
-        videos[name] = preview(ffmpeg, output / name, panels, fps, start, fusion, crop)
+        videos[name] = preview(ffmpeg, output / name, panels, fps, start, labels, crop)
     summary.update(clip=clip, codec=codec, fps=fps, frames=stop - start, shape=shape, input=receipt,
                    previews=videos, output_sha256={
-                       name: file_sha(output / f'{name}_rgb.npy') for name in ('stage11', 'center3')
+                       name: file_sha(output / f'{name}_rgb.npy') for name in generated
                    })
     save_json(output / 'result.json', summary)
     return summary
@@ -282,10 +304,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--workspace', type=Path, default=REPO.parents[2])
     parser.add_argument('--plan', type=Path, default=HERE / 'plan_p0.json')
-    parser.add_argument('--fusion', choices=('consensus', 'mean'), default='consensus')
+    parser.add_argument('--fusion', choices=('consensus', 'mean'))
+    parser.add_argument('--compare-five', action='store_true', help='Compare the mean three- and five-frame filters')
     parser.add_argument('--ffmpeg', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
+    if args.compare_five and args.fusion == 'consensus':
+        parser.error('--compare-five requires mean fusion')
+    fusion = args.fusion or ('mean' if args.compare_five else 'consensus')
     args.output.mkdir(parents=True, exist_ok=False)
     manifest = args.workspace / '01_项目/GLC后处理/接口与基线.json'
     plan = load_json(args.plan)
@@ -296,10 +322,12 @@ def main():
                    baseline_manifest_sha256=file_sha(manifest), cv2=cv2.__version__, numpy=np.__version__,
                    python=platform.python_version(), processor=platform.processor(), cv2_threads=cv2.getNumThreads(),
                    opencl=cv2.ocl.useOpenCL(), settings=vars(Settings()), flow_edge_limit=FLOW_EDGE_LIMIT,
-                   center3_fusion=args.fusion,
+                   center3_fusion=fusion, compare_five=args.compare_five,
                    code_sha256={p.name: file_sha(p) for p in (
                        Path(__file__), HERE / 'window_filter.py', STAGE11 / 'temporal_filter.py', STAGE16 / 'web_frames.py'
                    )}, clips=[])
+    if args.compare_five:
+        summary['far_pair_weight'] = FAR_PAIR_WEIGHT
     save_json(args.output / 'summary.json', summary)
     inputs = {}
     for clip in plan['clips']:
@@ -309,7 +337,7 @@ def main():
             inputs[baseline['id']] = open_baseline(args.workspace, baseline, plan['codec'])
         tick = time.perf_counter()
         result = run_clip(baseline, inputs[baseline['id']], clip, plan['codec'], args.ffmpeg,
-                          args.output / clip['id'], args.fusion)
+                          args.output / clip['id'], fusion, args.compare_five)
         summary['clips'].append(result)
         save_json(args.output / 'summary.json', summary)
         print(f'{clip["id"]}: saved and verified two comparisons ({time.perf_counter() - tick:.1f}s)', flush=True)

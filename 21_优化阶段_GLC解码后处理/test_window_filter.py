@@ -60,6 +60,30 @@ class CenteredFilterTests(unittest.TestCase):
             np.testing.assert_array_equal(got, self.flicker)
             self.assertEqual(active, 0.0)
 
+    def test_unreliable_distant_pair_falls_back_to_three_frames(self):
+        near = (self.zero, self.zero)
+        wrong = self.zero + 8
+        baseline, _ = blend_center(self.texture, self.flicker, self.texture, near, near, fusion='mean')
+        got, _ = blend_center(self.texture, self.flicker, self.texture, near, near, fusion='mean',
+                              distant=(self.flicker, self.flicker, (wrong, wrong), near))
+        self.assertTrue(np.any(baseline != self.flicker))
+        np.testing.assert_array_equal(got, baseline)
+
+    def test_distant_pair_uses_both_flow_directions(self):
+        zero = (self.zero, self.zero)
+        backward = self.zero.copy()
+        backward[..., 0] = -14
+        pair = (backward, -backward)
+        got, _ = blend_center(self.flicker, self.flicker, self.flicker, zero, zero, fusion='mean',
+                              distant=(np.roll(self.texture, -14, axis=1), np.roll(self.texture, 14, axis=1),
+                                       pair, pair))
+        expected, _ = blend_center(self.flicker, self.flicker, self.flicker, zero, zero, fusion='mean',
+                                   distant=(self.texture, self.texture, zero, zero))
+        interior = np.s_[10:-10, 22:-22]
+        self.assertTrue(np.any(expected[interior] != self.flicker[interior]))
+        np.testing.assert_array_equal(got[interior], expected[interior])
+        np.testing.assert_array_equal(got[:, :14], self.flicker[:, :14])
+
 
 if __name__ == '__main__':
     unittest.main()

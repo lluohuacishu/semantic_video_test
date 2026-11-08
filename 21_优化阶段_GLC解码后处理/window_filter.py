@@ -1,4 +1,4 @@
-"""Conservative, centered three-frame GLC RGB filtering."""
+"""Motion-aligned GLC RGB filtering with a centered temporal window."""
 
 from pathlib import Path
 import sys
@@ -12,6 +12,7 @@ from temporal_filter import Settings, correspondence, lowpass, warp
 
 KERNEL = np.ones((3, 3), np.uint8)
 FLOW_EDGE_LIMIT = 1.5
+FAR_PAIR_WEIGHT = 0.5
 
 
 def aligned_detail(neighbor, current_low, flow, settings):
@@ -30,7 +31,8 @@ def aligned_detail(neighbor, current_low, flow, settings):
     return warp(neighbor.astype(np.float32) - neighbor_low, x, y), confidence
 
 
-def blend_center(previous, current, following, before, after, settings=Settings(), *, fusion='consensus'):
+def blend_center(previous, current, following, before, after, settings=Settings(), *,
+                 fusion='consensus', distant=None):
     """Use only raw decoded frames. Flows are bidirectional (later to earlier first)."""
     if previous is None or following is None:
         return current.copy(), 0.0
@@ -51,6 +53,15 @@ def blend_center(previous, current, following, before, after, settings=Settings(
         magnitude = np.minimum(np.abs(past_change), np.abs(future_change))
         detail = np.where(agreed, np.sign(past_change) * magnitude, 0)
     weight = settings.strength * np.minimum(past[1], future[1])
+    if distant is not None:
+        past2, future2, before2, after2 = distant
+        far_past = aligned_detail(past2, current_low, before2, settings)
+        far_future = aligned_detail(future2, current_low, after2[::-1], settings)
+        if far_past is not None and far_future is not None:
+            far_weight = FAR_PAIR_WEIGHT * np.minimum(far_past[1], far_future[1])[..., None]
+            far_detail = (far_past[0] + far_future[0]) * 0.5 - current_high
+            # Keep the same current-frame anchor as the three-frame filter.
+            detail = (detail + far_weight * far_detail) / (1 + far_weight)
     change = weight[..., None] * detail
     change = np.clip(change, -settings.max_change, settings.max_change)
     output = np.clip(np.rint(current + change), 0, 255).astype(np.uint8)
