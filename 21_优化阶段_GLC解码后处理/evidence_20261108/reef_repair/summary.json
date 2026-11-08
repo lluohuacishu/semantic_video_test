@@ -1,0 +1,429 @@
+{
+  "code_sha256": "9be0db7816a3229ea42e2681831063e4103bfebb7ba4587e28f299da05cc29d4",
+  "input_run_sha256": "904138c9f3a886b3630b8b4047d30fb50e619d4cc452d7ba4109ec00e55128e4",
+  "clips": [
+    {
+      "clip": {
+        "id": "01_coral_wall",
+        "baseline": "glc_q0_900_fp32",
+        "start": 60,
+        "stop": 240,
+        "source_stride": 1,
+        "coral_roi": [
+          306,
+          8,
+          510,
+          124
+        ],
+        "motion_roi": [
+          160,
+          22,
+          324,
+          230
+        ],
+        "zoom": "coral_roi",
+        "focus": "礁壁上缘的纹理、小鱼、气泡"
+      },
+      "fps": 30,
+      "peak_strip_frame": 192,
+      "error": {
+        "raw": {
+          "coarse": 2.963151102383692,
+          "middle": 5.575750654673029,
+          "fine": 9.001085647317462,
+          "all": 13.93059260788854
+        },
+        "center3": {
+          "coarse": 2.991538873673639,
+          "middle": 5.531174879497243,
+          "fine": 8.672931593279174,
+          "all": 13.60295357727278
+        },
+        "source_flow_control": {
+          "coarse": 2.9960838985057006,
+          "middle": 5.524201969163981,
+          "fine": 8.648135423830738,
+          "all": 13.563643495754766
+        },
+        "repair": {
+          "coarse": 2.9321614206878808,
+          "middle": 5.4585399573164874,
+          "fine": 8.862313376671334,
+          "all": 13.677811481137823
+        }
+      },
+      "valid_pixels": 2903668,
+      "spatial": {
+        "raw": {
+          "coral_rgb_psnr_db": 17.066922735423205,
+          "coral_fine_energy_vs_source": 1.0817709607118453
+        },
+        "center3": {
+          "coral_rgb_psnr_db": 17.09464879592354,
+          "coral_fine_energy_vs_source": 1.058587669709292
+        },
+        "source_flow_control": {
+          "coral_rgb_psnr_db": 17.091638745884758,
+          "coral_fine_energy_vs_source": 1.0603920549002566
+        },
+        "repair": {
+          "coral_rgb_psnr_db": 17.08704302384821,
+          "coral_fine_energy_vs_source": 1.076457582149634
+        }
+      },
+      "flow_disagreement_px": {
+        "p50": 0.4169505834579468,
+        "p90": 1.169055271148682,
+        "fraction_gt_2": 0.024441155118284874
+      },
+      "top_raw_all_frames": [
+        {
+          "frame": 192,
+          "kind": "i_frame",
+          "mae": {
+            "raw": 33.30370004332286,
+            "center3": 33.2748429546193,
+            "source_flow_control": 33.22837241416658,
+            "repair": 30.500605843171233
+          }
+        },
+        {
+          "frame": 237,
+          "kind": "other",
+          "mae": {
+            "raw": 31.104810830541958,
+            "center3": 30.920180043803143,
+            "source_flow_control": 30.934574422399724,
+            "repair": 30.713414175899683
+          }
+        },
+        {
+          "frame": 226,
+          "kind": "other",
+          "mae": {
+            "raw": 30.324530782259334,
+            "center3": 30.224291495982353,
+            "source_flow_control": 30.236142567354655,
+            "repair": 29.6935215456121
+          }
+        },
+        {
+          "frame": 193,
+          "kind": "ref_y_reset",
+          "mae": {
+            "raw": 30.280493583148317,
+            "center3": 30.241400200357393,
+            "source_flow_control": 30.23316253316727,
+            "repair": 26.84772330373098
+          }
+        },
+        {
+          "frame": 232,
+          "kind": "other",
+          "mae": {
+            "raw": 29.750689338235293,
+            "center3": 29.617644477032385,
+            "source_flow_control": 29.623879502643753,
+            "repair": 29.1469452247191
+          }
+        },
+        {
+          "frame": 64,
+          "kind": "i_frame",
+          "mae": {
+            "raw": 29.108771648492624,
+            "center3": 29.064304041051955,
+            "source_flow_control": 29.034104393842206,
+            "repair": 27.742459108402823
+          }
+        },
+        {
+          "frame": 128,
+          "kind": "i_frame",
+          "mae": {
+            "raw": 29.077198431751576,
+            "center3": 29.019521263328553,
+            "source_flow_control": 28.97364493047328,
+            "repair": 26.198466826713226
+          }
+        },
+        {
+          "frame": 215,
+          "kind": "other",
+          "mae": {
+            "raw": 29.025651396457764,
+            "center3": 28.890541978882833,
+            "source_flow_control": 28.934402673705723,
+            "repair": 28.677032952997276
+          }
+        },
+        {
+          "frame": 238,
+          "kind": "other",
+          "mae": {
+            "raw": 27.795610417913,
+            "center3": 27.62100461499017,
+            "source_flow_control": 27.63267562601487,
+            "repair": 27.30554012477566
+          }
+        },
+        {
+          "frame": 129,
+          "kind": "ref_y_reset",
+          "mae": {
+            "raw": 27.256606446219582,
+            "center3": 27.184512198897764,
+            "source_flow_control": 27.158357328627158,
+            "repair": 24.658200585175553
+          }
+        }
+      ],
+      "band_protocol": {
+        "coarse": "Gaussian sigma=3 px",
+        "middle": "Gaussian sigma=1.2 minus sigma=3",
+        "fine": "RGB luma minus Gaussian sigma=1.2",
+        "all": "unfiltered luma"
+      },
+      "mean3_coral_change_from_raw": 0.3584067375353717,
+      "repair_mean_ms": 37.353492222220865,
+      "repair_rgb_sha256": "4955914cedfbd7de1a3b3647dbb5df062615225a65fe9a19ddaed6d1c016b4f6",
+      "previews": {
+        "compare.mp4": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "30/1",
+          "duration": "6.000000",
+          "nb_read_frames": "180",
+          "sha256": "5fc29d52165ef969efc59e7023d51b527e4353ab65bbef5560efc07c5d5d8a69"
+        },
+        "zoom.mp4": {
+          "width": 816,
+          "height": 516,
+          "avg_frame_rate": "30/1",
+          "duration": "6.000000",
+          "nb_read_frames": "180",
+          "sha256": "259f7699026997154e40597bbae1ffae5e5eccee4ae399ebbf84a1e4b0bf65e7"
+        }
+      }
+    },
+    {
+      "clip": {
+        "id": "03_moving_reef",
+        "baseline": "glc_q0_full15_512_fp32",
+        "start": 585,
+        "stop": 675,
+        "source_stride": 2,
+        "coral_roi": [
+          360,
+          24,
+          510,
+          272
+        ],
+        "motion_roi": [
+          114,
+          38,
+          404,
+          256
+        ],
+        "zoom": "coral_roi",
+        "focus": "移动视角下的红珊瑚和游过的鱼"
+      },
+      "fps": 15,
+      "peak_strip_frame": 673,
+      "error": {
+        "raw": {
+          "coarse": 4.053488758096919,
+          "middle": 5.6352213450623285,
+          "fine": 7.403599607252252,
+          "all": 13.219943521283682
+        },
+        "center3": {
+          "coarse": 4.077867325655942,
+          "middle": 5.593935393083555,
+          "fine": 7.217839959068427,
+          "all": 13.035433251896462
+        },
+        "source_flow_control": {
+          "coarse": 4.085052059949558,
+          "middle": 5.584809879752196,
+          "fine": 7.195138722135741,
+          "all": 13.003997801311822
+        },
+        "repair": {
+          "coarse": 3.9408577663112947,
+          "middle": 5.408281422311586,
+          "fine": 7.202679040746956,
+          "all": 12.788543619786875
+        }
+      },
+      "valid_pixels": 1630404,
+      "spatial": {
+        "raw": {
+          "coral_rgb_psnr_db": 22.57112427541837,
+          "coral_fine_energy_vs_source": 1.0552685629394833
+        },
+        "center3": {
+          "coral_rgb_psnr_db": 22.592924457464903,
+          "coral_fine_energy_vs_source": 1.0191404215469164
+        },
+        "source_flow_control": {
+          "coral_rgb_psnr_db": 22.59105526100424,
+          "coral_fine_energy_vs_source": 1.018961982856392
+        },
+        "repair": {
+          "coral_rgb_psnr_db": 22.654818425523395,
+          "coral_fine_energy_vs_source": 1.03578238376063
+        }
+      },
+      "flow_disagreement_px": {
+        "p50": 1.0728471279144287,
+        "p90": 2.4034380197525023,
+        "fraction_gt_2": 0.16668077359967223
+      },
+      "top_raw_all_frames": [
+        {
+          "frame": 673,
+          "kind": "ref_y_reset",
+          "mae": {
+            "raw": 16.532496642981034,
+            "center3": 16.45884154870475,
+            "source_flow_control": 16.433354431265037,
+            "repair": 15.996024030660774
+          }
+        },
+        {
+          "frame": 640,
+          "kind": "i_frame",
+          "mae": {
+            "raw": 16.189474693251533,
+            "center3": 16.154684304703476,
+            "source_flow_control": 16.121728016359917,
+            "repair": 15.608050549591002
+          }
+        },
+        {
+          "frame": 641,
+          "kind": "ref_y_reset",
+          "mae": {
+            "raw": 15.554364543114543,
+            "center3": 15.503497425997425,
+            "source_flow_control": 15.485061132561132,
+            "repair": 14.963365508365507
+          }
+        },
+        {
+          "frame": 669,
+          "kind": "other",
+          "mae": {
+            "raw": 15.01739398634303,
+            "center3": 14.8776575142021,
+            "source_flow_control": 14.851264381419636,
+            "repair": 14.267168940437253
+          }
+        },
+        {
+          "frame": 666,
+          "kind": "other",
+          "mae": {
+            "raw": 14.87876428202331,
+            "center3": 14.724376686570592,
+            "source_flow_control": 14.693673027788941,
+            "repair": 14.168073039271976
+          }
+        },
+        {
+          "frame": 670,
+          "kind": "other",
+          "mae": {
+            "raw": 14.859065097449125,
+            "center3": 14.722511822871883,
+            "source_flow_control": 14.687597628260246,
+            "repair": 14.329555388363428
+          }
+        },
+        {
+          "frame": 664,
+          "kind": "other",
+          "mae": {
+            "raw": 14.729034708779322,
+            "center3": 14.597315531769528,
+            "source_flow_control": 14.565030922625825,
+            "repair": 14.205492235538602
+          }
+        },
+        {
+          "frame": 649,
+          "kind": "other",
+          "mae": {
+            "raw": 14.709588246074897,
+            "center3": 14.613535875740729,
+            "source_flow_control": 14.573870578532592,
+            "repair": 14.316049010324393
+          }
+        },
+        {
+          "frame": 642,
+          "kind": "other",
+          "mae": {
+            "raw": 14.696465817302583,
+            "center3": 14.624810686576682,
+            "source_flow_control": 14.59610977521522,
+            "repair": 14.305443923371241
+          }
+        },
+        {
+          "frame": 595,
+          "kind": "other",
+          "mae": {
+            "raw": 14.693728134421754,
+            "center3": 14.398163291427272,
+            "source_flow_control": 14.378163398088628,
+            "repair": 14.256711665908187
+          }
+        }
+      ],
+      "band_protocol": {
+        "coarse": "Gaussian sigma=3 px",
+        "middle": "Gaussian sigma=1.2 minus sigma=3",
+        "fine": "RGB luma minus Gaussian sigma=1.2",
+        "all": "unfiltered luma"
+      },
+      "mean3_coral_change_from_raw": 0.20210613301473518,
+      "repair_mean_ms": 36.31191999999525,
+      "repair_rgb_sha256": "f202422dbae32ea008d65933732b89dc36fa23ca6f23e6adcf14b1e69770adb5",
+      "previews": {
+        "compare.mp4": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "bfff0445f5e565c38a24c4cd51d753b97c716416ae6b53d3db06e17e64d027c0"
+        },
+        "zoom.mp4": {
+          "width": 600,
+          "height": 1044,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "694cf3b9381d2f21e1707a52a38bc913fb7a3a00fed95bf269314110335e30a1"
+        }
+      }
+    }
+  ],
+  "repair_code_sha256": "69a653fba302e7e3ddee9613c21ed68f61fa131b14d47ed6d69efcbd1f600ca0",
+  "repair_settings": {
+    "agreement_sigma": 2.0,
+    "outlier_margin": 2.0,
+    "outlier_ramp": 10.0,
+    "coarse_sigma": 3.0,
+    "coarse_reject": 24.0,
+    "coarse_ramp": 16.0,
+    "coarse_keep": 0.65,
+    "correction_limit": 36.0,
+    "feather_pixels": 8,
+    "cut_threshold": 35.0,
+    "fb_limit": 1.5,
+    "strength": 0.9
+  }
+}
