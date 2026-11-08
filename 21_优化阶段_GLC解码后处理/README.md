@@ -218,6 +218,34 @@ $loader | & $glcPython -B -X utf8 - '21_优化阶段_GLC解码后处理/run_unde
 & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_underwater_enhancement.py' --uve-run $uveRun --undive-run $undiveRun --output $waterComparison --ffmpeg $glcFfmpeg --metrics-root $glcPerceptualCache
 ```
 
+## 15 FPS 珊瑚纹理语义流短试验
+
+采用现有 512×288、15 FPS、q0 FP32 基础码流。直接从原码流的 I 帧 576 切出 99 个原始压缩帧，独立接收解码逐帧吻合旧 RGB，取原片 585–674 帧作 6 秒观看对照。前 9 帧用于接收端恢复参考状态。
+
+在第 585 帧手选一块 96×96 珊瑚纹理，连续跟踪源端局部特征，每帧估计从同一锚点到当前视角的仿射变换。传输一个无损 PNG、量化仿射和 6×6 网格的可用区域。接收端在校验 GLC 基础流后，用同一锚点更新可靠区域的中高频亮度，羽化交界。另以第 585 帧的 GLC 自身纹理作对照，沿用相同几何、遮罩和权重。两版遮罩外的 RGB 逐位等于 GLC 基础层。
+
+语义文件实测 18,704 B，包含纹理 17,134 B、压缩跟踪记录 1,084 B、描述 172 B 和容器 314 B。按 6 秒折合 **24.94 kbps**，低于语义流单独的 40 kbps 上限。基础流 22,995 B，按含预解码帧的 6.6 秒折合 27.87 kbps。将两份文件全部计入 6 秒展示片段，合计为 55.60 kbps。
+
+| 比较组 | 运动对齐细纹跨帧 NCC ↑ | 同帧细纹对源 NCC ↑ | 细纹幅度 |
+| --- | ---: | ---: | ---: |
+| 原始 GLC | 0.418 | 0.086 | 6.69 |
+| 复用 GLC 自身纹理 | 0.842 | 0.113 | 4.51 |
+| 复用发来的源纹理 | 0.832 | 0.639 | 4.65 |
+
+对 89 对相邻帧在相同的有效复用区域计分。90 帧均有生效像素，平均有效面积约 2,980 像素，约占整帧 2.0%。两种复用均提高局部时序一致性，源纹理在同帧对应原片细纹上更接近，细纹幅度均有所下降。本次仅覆盖一块手选珊瑚，网格遮罩由源图像对齐验证产生。接收端独立读取审计和两份实际文件的字节核验通过。
+
+本机视频和两份流在 `02_实验数据/优化_GLC后处理/coral_reference_sidecar_20261108_01`。跟踪放大和全图四宫格位于 `comparison`，左上为源 RGB，右上为原始 GLC，左下为复用 GLC 纹理，右下为复用收到的源纹理。三份预览均为 90 帧、15 FPS。 [发送记录](evidence_20261108/coral_reference_sidecar/send.json) · [评价](evidence_20261108/coral_reference_sidecar/summary.json) · [核对](evidence_20261108/coral_reference_sidecar/verification.json)
+
+在新建的 `$tileRun` 目录执行以下命令。
+
+```powershell
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/coral_reference_sidecar.py' cut --run $tileRun
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/coral_reference_sidecar.py' send --run $tileRun
+& $glcPython -B -X utf8 '17_优化阶段_解码器推理加速/decoder_worker.py' --stream "$tileRun/base.glcsnd" --output "$tileRun/base_receive" --backend eager --assets $glcRoleAssets
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/coral_reference_sidecar.py' receive --run $tileRun
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_coral_reference.py' --run $tileRun --ffmpeg $glcFfmpeg
+```
+
 ## 评价与复现
 
 使用同源同尺寸的无损 RGB 计算指标。评估光流及有效掩码只用源 RGB，所有方法在同一掩码上计分。时序指标比较两帧经运动补偿后的灰度高频变化与源画面对应变化的绝对误差。珊瑚区高频幅度、空间误差与运动区 PSNR 一起报告。珊瑚和鱼的观看结论以原速对照为准。
