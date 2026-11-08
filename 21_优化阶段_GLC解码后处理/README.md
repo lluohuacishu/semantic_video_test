@@ -246,6 +246,27 @@ $loader | & $glcPython -B -X utf8 - '21_优化阶段_GLC解码后处理/run_unde
 & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_coral_reference.py' --run $tileRun --ffmpeg $glcFfmpeg
 ```
 
+### 多块珊瑚扩大覆盖
+
+复用同一 6 秒、15 FPS 基础流，扩大空间覆盖。候选为从不同时间出现的 120×120 局部珊瑚块。每块各自估计并量化局部仿射，发送 JPEG 亮度、可用网格及手标主鱼保护框。选块同时考虑每字节新增面积和各帧覆盖，优先补足覆盖较低的时刻。重叠区域按权重合成，采用较宽的中高频带。接收端独立读取审计通过，主鱼保护框内的 RGB 逐帧逐位等于基础层。
+
+最终选用 9 块，语义文件 29,898 B，折合 **39.864 kbps**。平均有效区域由 2,980 增至 14,318 像素（全帧 **9.7%**），为单块的 4.80 倍。每秒平均覆盖约为 21,503、12,851、15,802、14,224、11,208、10,321 像素。初次多块试验使用 6 块，平均覆盖 8.9%，后两秒较少。最终版将 JPEG 质量从 88 调到 79，增加后段锚点并重新分配覆盖。
+
+| 在最终版共同有效区域比较 | 细纹跨帧 NCC ↑ | 同帧细纹对源 NCC ↑ | 细纹幅度 |
+| --- | ---: | ---: | ---: |
+| 原始 GLC | 0.366 | 0.073 | 6.10 |
+| 上一轮单块源纹理 | 0.418 | 0.174 | 5.70 |
+| 多块 GLC 自身纹理 | 0.867 | 0.091 | 4.78 |
+| 多块收到的源纹理 | 0.873 | 0.660 | 5.20 |
+
+表中全部方法共用最终版的评价区域和 89 个相邻帧对。有效区外的画面随基础流，细纹幅度在局部仍有下降。四份原速视频在 `02_实验数据/优化_GLC后处理/coral_reference_sidecar_large_20261108_02/comparison`，含左右对照、全图及局部四宫格和独立合成。 [汇总](evidence_20261108/coral_reference_multi/summary.json) · [逐秒覆盖与独立核对](evidence_20261108/coral_reference_multi/verification.json)
+
+```powershell
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/multi_coral_reference.py' send --base-run $tileRun --run $multiRun
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/multi_coral_reference.py' receive --base-run $tileRun --run $multiRun
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_multi_coral.py' --base-run $tileRun --run $multiRun --ffmpeg $glcFfmpeg
+```
+
 ## 评价与复现
 
 使用同源同尺寸的无损 RGB 计算指标。评估光流及有效掩码只用源 RGB，所有方法在同一掩码上计分。时序指标比较两帧经运动补偿后的灰度高频变化与源画面对应变化的绝对误差。珊瑚区高频幅度、空间误差与运动区 PSNR 一起报告。珊瑚和鱼的观看结论以原速对照为准。

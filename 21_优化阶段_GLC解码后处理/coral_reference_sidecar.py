@@ -61,12 +61,15 @@ def cut(workspace, folder):
         input_receipt_sha256=file_sha(receipt_path)))
 
 
-def track(source):
-    x0, y0, x1, y1 = BOX
+def track(source, box=BOX):
+    x0, y0, x1, y1 = box
     images = [gray(frame) for frame in source]
     mask = np.zeros(images[0].shape, np.uint8)
     mask[y0:y1, x0:x1] = 255
-    points = cv2.goodFeaturesToTrack(images[0], 150, .006, 3, mask=mask).reshape(-1, 2)
+    corners = cv2.goodFeaturesToTrack(images[0], 150, .006, 3, mask=mask)
+    if corners is None or len(corners) < 7:
+        return np.empty((0, 2, 3), np.float32), []
+    points = corners.reshape(-1, 2)
     anchor = points.copy()
     matrices = [np.array([[1., 0., x0], [0., 1., y0]])]
     counts = [len(points)]
