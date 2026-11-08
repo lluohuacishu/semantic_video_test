@@ -1,0 +1,147 @@
+{
+  "complete": true,
+  "method": "uve",
+  "model": {
+    "upstream_commit": "a9c38b284aa9fca609b443c1857ecd8468ce7a7d",
+    "weights": {
+      "large_net_g.pth": "68114f50e48e400f9affbeaf6ad640745a2e7733bcd8c6b40821425e4e1c31bc"
+    },
+    "window": 3,
+    "stride": 1,
+    "overlap_weights": [
+      1,
+      2,
+      1
+    ],
+    "batch": 4
+  },
+  "clips": [
+    {
+      "clip": {
+        "id": "01_coral_wall",
+        "baseline": "glc_q0_900_fp32",
+        "start": 60,
+        "stop": 240,
+        "source_stride": 1,
+        "coral_roi": [
+          306,
+          8,
+          510,
+          124
+        ],
+        "motion_roi": [
+          160,
+          22,
+          324,
+          230
+        ],
+        "zoom": "coral_roi",
+        "focus": "礁壁上缘的纹理、小鱼、气泡"
+      },
+      "glc_baseline": {
+        "stream_sha256": "bb5b75c2e8ec3453f170451e45c9450b8954dadcde1a35a4d3a32b1106ccf570",
+        "result_sha256": "1405a18ea44625c054669951e7addaf6cf6e57827f57b84a54789be667422a82",
+        "source_metadata_sha256": "2a9171ff0ff7c4116356d4bba2763d0b5fc88224ef22fe276bd8f004642c196f",
+        "decoded_storage": "chunked-rgb-v1"
+      },
+      "fps": 30,
+      "frames": 180,
+      "shape": [
+        180,
+        288,
+        512,
+        3
+      ],
+      "input_rgb_sha256": "f2bd433ff88d7a7951caad1c1b68a37e12ebe7fe630430d07380c6f10269ac5b",
+      "output_npy_sha256": "b8abeee3e5769df5e09d757cc99d628177411441c79e27968b0a68e11a7c1bd3",
+      "seconds": 43.34051050000562,
+      "peak_allocated_mib": 1419.74365234375
+    },
+    {
+      "clip": {
+        "id": "02_fish_turn",
+        "baseline": "glc_q0_900_fp32",
+        "start": 390,
+        "stop": 570,
+        "source_stride": 1,
+        "coral_roi": [
+          358,
+          164,
+          506,
+          278
+        ],
+        "motion_roi": [
+          78,
+          66,
+          414,
+          254
+        ],
+        "zoom": "motion_roi",
+        "focus": "斑点鱼的转身、尾鳍、鱼身条纹"
+      },
+      "glc_baseline": {
+        "stream_sha256": "bb5b75c2e8ec3453f170451e45c9450b8954dadcde1a35a4d3a32b1106ccf570",
+        "result_sha256": "1405a18ea44625c054669951e7addaf6cf6e57827f57b84a54789be667422a82",
+        "source_metadata_sha256": "2a9171ff0ff7c4116356d4bba2763d0b5fc88224ef22fe276bd8f004642c196f",
+        "decoded_storage": "chunked-rgb-v1"
+      },
+      "fps": 30,
+      "frames": 180,
+      "shape": [
+        180,
+        288,
+        512,
+        3
+      ],
+      "input_rgb_sha256": "51038a84a6c6c3ac1ddc1ff4f71edc9e66182fce8c544f073349b7689aac997d",
+      "output_npy_sha256": "a1fdbe038ae8a9b8a2f6e6219a7fb9da223b537728f54f187ec5900dc515656b",
+      "seconds": 38.35637580000184,
+      "peak_allocated_mib": 1419.74365234375
+    },
+    {
+      "clip": {
+        "id": "03_moving_reef",
+        "baseline": "glc_q0_full15_512_fp32",
+        "start": 585,
+        "stop": 675,
+        "source_stride": 2,
+        "coral_roi": [
+          360,
+          24,
+          510,
+          272
+        ],
+        "motion_roi": [
+          114,
+          38,
+          404,
+          256
+        ],
+        "zoom": "coral_roi",
+        "focus": "移动视角下的红珊瑚和游过的鱼"
+      },
+      "glc_baseline": {
+        "stream_sha256": "aa9ec98f6d4085fd216ae6f501524e6d5afc3403a892d053e1667543bc6497da",
+        "result_sha256": "f9b4f87b25d3e046e8c88cde4a069a638137dbe979d2b84533a255596bf8a0e0",
+        "source_metadata_sha256": "9f9f7e00e6dd9ebb9186f4cf0357ca6e3476e4876954c710400aea94c31df9b9",
+        "decoded_storage": "npy"
+      },
+      "fps": 15,
+      "frames": 90,
+      "shape": [
+        90,
+        288,
+        512,
+        3
+      ],
+      "input_rgb_sha256": "6aa8df5b7ff871b457fe207a334dd9cd82c832034a856c0198b91b4ebabba610",
+      "output_npy_sha256": "d151e2c35b6178346d9b3353cda555ff65478addd9a1948bdf03b5b93d2aa72d",
+      "seconds": 18.75823639999726,
+      "peak_allocated_mib": 1419.74365234375
+    }
+  ],
+  "torch": "2.5.1+cu124",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "precision": "FP32",
+  "runner_sha256": "21dbdd0bc4d890b5450c1c782be4f6d9543a1bdeab4daab6e726a20409b2d3bc"
+}

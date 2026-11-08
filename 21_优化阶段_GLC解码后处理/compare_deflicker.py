@@ -67,7 +67,7 @@ def verified_pilot(workspace, previous, model_run):
     return clip, plan['codec'], source, raw, mean3, restored, result
 
 
-def perceptual(source, methods, root):
+def perceptual(source, methods, root, start=START):
     os.environ['TORCH_HOME'] = str(root / 'torch')
     sys.path.insert(0, str(root / 'metric_packages'))
     import torch
@@ -100,7 +100,7 @@ def perceptual(source, methods, root):
         dists = dists.eval().cuda().float()
         for i, original in enumerate(source):
             x = tensor(original)
-            row = dict(frame=START + i)
+            row = dict(frame=start + i)
             for method, video in methods.items():
                 y = tensor(video[i])
                 row[f'{method}_lpips'] = float(alex(x, y, normalize=True).item())

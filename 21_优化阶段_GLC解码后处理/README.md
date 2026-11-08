@@ -174,6 +174,50 @@ GOP 从 64 改到 72 后，原 I 帧 64、128、192 变成普通 P，三处误�
 & $analysisPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_p_trace.py' --capture $pTrace --output $pEvaluation
 ```
 
+## 水下观感增强
+
+保留三段已固定的 GLC 无损解码 RGB。礁壁和斑点鱼各为 180 帧、30 FPS，移动礁壁为 90 帧、15 FPS，均为 512×288、6 秒。源 RGB 用于对照和保真评价。模型只处理解码 RGB，使用既有 GLC 码流。
+
+- UVE-Net 使用官方 UVEB 代码 `a9c38b284aa9fca609b443c1857ecd8468ce7a7d` 和 `large_net_g.pth`，严格加载 24 通道架构。以 3 帧窗口、步长 1 推理，相同输出帧按 1:2:1 的窗口内位置权重合成。RGB 在原分辨率推理。 [UVEB 官方仓库](https://github.com/yzbouc/UVEB/tree/a9c38b284aa9fca609b443c1857ecd8468ce7a7d)
+- UnDIVE 使用官方代码 `7fac42cb01e5e40cc55470b56c4491162f80d9b9` 和作者压缩包中的 `UnDIVE_100.pth`、`DDPM_100.pth`。使用官方 RGB 推理流程，256×256 分支提取增强参数并应用到原尺寸画面，沿用逐帧 RGB 最小值和最大值映射。此对照直接输入 GLC RGB，省略依赖深度图的后向散射去除。 [UnDIVE 官方仓库](https://github.com/suhas-srinath/undive/tree/7fac42cb01e5e40cc55470b56c4491162f80d9b9)
+
+UVE-Net 让礁壁暖色和蓝水更容易区分，斑点鱼身后的珊瑚减轻了蓝偏。UnDIVE 在样帧中提亮更强，气泡和浅色珊瑚局部发白。其礁壁和鱼段亮度第 95 百分位分别达到 233、231（8 位），UVE-Net 为 172、165。交付版按同像素 70% UVE-Net 和 30% 原始 GLC 混合，三段使用同一比例。
+
+| 片段 | 亮度中位数 原始 → 70% 版 | 珊瑚细纹跨帧 NCC 原始 → 70% 版 | 珊瑚全频时序 MAE 原始 → 70% 版 | 全图 PSNR 原始 → 70% 版 |
+| --- | ---: | ---: | ---: | ---: |
+| 礁壁 | 87 → 92 | 0.646 → 0.656 | 13.93 → 15.70 | 22.60 → 19.90 dB |
+| 斑点鱼 | 70 → 72 | 0.503 → 0.520 | 13.07 → 13.80 | 21.07 → 19.66 dB |
+| 移动礁壁 | 56 → 60 | 0.113 → 0.131 | 13.22 → 15.03 | 23.94 → 21.27 dB |
+
+70% 版在三段中提高了珊瑚细纹的归一化相关性，时序差异的幅度也增大。PSNR、LPIPS 和 DISTS 相对源 RGB 均向保真较低的方向变化。斑点鱼观察框内的同帧细纹与原始 GLC 的 NCC 为 0.986，该观察框同时包含背景。颜色偏好、鱼身斑点与运动观感以原速视频核对。
+
+RTX 4060 Laptop 上，UVE-Net 和 UnDIVE 各处理了 450 帧，推理总耗时分别为 100.46 和 11.14 秒。每段有独立增强视频、与原始 GLC 的左右对照，以及源 RGB、GLC、UVE-Net、UnDIVE 的同帧四宫格。斑点鱼另有局部四宫格。独立核验 10 份视频的帧数和帧率，并回读三份独立增强视频。逐帧保真 CSV 使用各片段的原片零基帧号。
+
+本机输出位于 `02_实验数据/优化_GLC后处理/underwater_enhancement_20261108_01/comparison_verified`。各片段的 `enhanced.mp4` 为 70% 版，`before_after.mp4` 左侧为原始 GLC，右侧为增强版，`models.mp4` 为完整模型四宫格。 [汇总](evidence_20261108/underwater_enhancement/summary.json) · [UVE-Net 运行记录](evidence_20261108/underwater_enhancement/uve_run.json) · [UnDIVE 运行记录](evidence_20261108/underwater_enhancement/undive_run.json) · [独立核对](evidence_20261108/underwater_enhancement/verification.json)
+
+复现时克隆上述版本，将 UnDIVE 的两个权重文件解压到作者仓库的 `PretrainedModels`。使用现有 GLC CUDA PyTorch 环境，另把 `torchsummary==1.5.1` 安装到 `$undivePackages`。UnDIVE 的旧 DDPM 权重带有 NumPy 元数据，下面的加载方式仅放行权重和所需的 NumPy 类型。各输出目录使用新路径。
+
+```powershell
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_underwater_enhancement.py' --method uve --upstream $uveSource --output $uveRun
+$env:PYTHONPATH = $undivePackages
+$env:TORCH_FORCE_WEIGHTS_ONLY_LOAD = '1'
+$loader = @'
+import runpy
+from pathlib import Path
+import sys
+import numpy as np
+import torch
+
+script = Path(sys.argv.pop(1)).resolve()
+sys.path.insert(0, str(script.parent))
+with torch.serialization.safe_globals([np.core.multiarray._reconstruct, np.ndarray, np.dtype,
+                                       np.dtypes.UInt32DType, np.dtypes.Float64DType]):
+    runpy.run_path(str(script), run_name='__main__')
+'@
+$loader | & $glcPython -B -X utf8 - '21_优化阶段_GLC解码后处理/run_underwater_enhancement.py' --method undive --upstream $undiveSource --output $undiveRun
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_underwater_enhancement.py' --uve-run $uveRun --undive-run $undiveRun --output $waterComparison --ffmpeg $glcFfmpeg --metrics-root $glcPerceptualCache
+```
+
 ## 评价与复现
 
 使用同源同尺寸的无损 RGB 计算指标。评估光流及有效掩码只用源 RGB，所有方法在同一掩码上计分。时序指标比较两帧经运动补偿后的灰度高频变化与源画面对应变化的绝对误差。珊瑚区高频幅度、空间误差与运动区 PSNR 一起报告。珊瑚和鱼的观看结论以原速对照为准。

@@ -1,0 +1,478 @@
+{
+  "complete": true,
+  "clips": [
+    {
+      "clip": {
+        "id": "01_coral_wall",
+        "baseline": "glc_q0_900_fp32",
+        "start": 60,
+        "stop": 240,
+        "source_stride": 1,
+        "coral_roi": [
+          306,
+          8,
+          510,
+          124
+        ],
+        "motion_roi": [
+          160,
+          22,
+          324,
+          230
+        ],
+        "zoom": "coral_roi",
+        "focus": "礁壁上缘的纹理、小鱼、气泡"
+      },
+      "fps": 30,
+      "frames": 180,
+      "shape": [
+        180,
+        288,
+        512,
+        3
+      ],
+      "source_rgb_sha256": "c08183a709e88e822d38502ff6165a985a3f7348c60f331b98a48ccfb3f18f60",
+      "glc_rgb_sha256": "f2bd433ff88d7a7951caad1c1b68a37e12ebe7fe630430d07380c6f10269ac5b",
+      "enhanced_rgb_file_sha256": "8f65197d3dd34d3003bcff66e15d83dfb410e3a12e2d64f4ba44f37fcf2f1553",
+      "previews": {
+        "enhanced.mp4": {
+          "width": 512,
+          "height": 288,
+          "avg_frame_rate": "30/1",
+          "duration": "6.000000",
+          "nb_read_frames": "180",
+          "sha256": "8ce999c6d86723a579e4f4e17845c91898ff5456918fe2e18774402b49cb99b0"
+        },
+        "before_after.mp4": {
+          "width": 1024,
+          "height": 314,
+          "avg_frame_rate": "30/1",
+          "duration": "6.000000",
+          "nb_read_frames": "180",
+          "sha256": "bcdd180ece97d1266cfd47a4fce488e7a2e9ddc6e8baf0644bc849ed34cdf0fc"
+        },
+        "models.mp4": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "30/1",
+          "duration": "6.000000",
+          "nb_read_frames": "180",
+          "sha256": "c59926e8a554c66f4e66bb3cf430e19e184ede6fcb3f7bc1f9e91e0c13955861"
+        }
+      },
+      "paired_temporal_frames": 179,
+      "results": {
+        "source": {
+          "full_temporal_mae": 0.0,
+          "fine_temporal_mae": 0.0,
+          "fine_energy": 7.968047618865967,
+          "middle_ncc": 0.9973515392881421,
+          "middle_normalized_error": 0.0,
+          "fine_ncc": 0.9698798743314276,
+          "fine_normalized_error": 0.0,
+          "luma_p05": 6.0,
+          "luma_p50": 87.0,
+          "luma_p95": 157.0,
+          "luma_at_least_245_fraction": 0.0
+        },
+        "raw": {
+          "full_temporal_mae": 13.93059260788854,
+          "fine_temporal_mae": 9.001085647317462,
+          "fine_energy": 8.619603157043457,
+          "middle_ncc": 0.8425139260937503,
+          "middle_normalized_error": 0.3413660659732856,
+          "fine_ncc": 0.6464065465165493,
+          "fine_normalized_error": 0.5541689435796031,
+          "luma_p05": 5.0,
+          "luma_p50": 87.0,
+          "luma_p95": 155.0,
+          "luma_at_least_245_fraction": 1.1302806712962962e-06,
+          "rgb_psnr_db": 22.59880477968985,
+          "motion_roi_fine_ncc_to_glc": 0.9999999959563252,
+          "lpips": 0.11725116351412403,
+          "dists": 0.14794591930177475
+        },
+        "uve": {
+          "full_temporal_mae": 16.5240538325146,
+          "fine_temporal_mae": 10.17824920873788,
+          "fine_energy": 10.189738273620605,
+          "middle_ncc": 0.8413856320474875,
+          "middle_normalized_error": 0.3460356347885657,
+          "fine_ncc": 0.6579322035699982,
+          "fine_normalized_error": 0.5449844689722829,
+          "luma_p05": 3.0,
+          "luma_p50": 94.0,
+          "luma_p95": 172.0,
+          "luma_at_least_245_fraction": 5.726755401234568e-06,
+          "rgb_psnr_db": 18.329971995442623,
+          "motion_roi_fine_ncc_to_glc": 0.9670877795695134,
+          "lpips": 0.18831308856606482,
+          "dists": 0.1966982255379359
+        },
+        "undive": {
+          "full_temporal_mae": 19.76374678698417,
+          "fine_temporal_mae": 12.665948233137794,
+          "fine_energy": 12.95946216583252,
+          "middle_ncc": 0.8436576330965657,
+          "middle_normalized_error": 0.34390427194515577,
+          "fine_ncc": 0.6380060528905507,
+          "fine_normalized_error": 0.5687900751195062,
+          "luma_p05": 19.0,
+          "luma_p50": 134.0,
+          "luma_p95": 233.0,
+          "luma_at_least_245_fraction": 0.028344914942611883,
+          "rgb_psnr_db": 13.720619756613496,
+          "motion_roi_fine_ncc_to_glc": 0.9654617728469755,
+          "lpips": 0.2974488259189659,
+          "dists": 0.21099901066886054
+        },
+        "balanced": {
+          "full_temporal_mae": 15.69899100061758,
+          "fine_temporal_mae": 9.784472039304037,
+          "fine_energy": 9.690799713134766,
+          "middle_ncc": 0.8417701592523539,
+          "middle_normalized_error": 0.34465662425677923,
+          "fine_ncc": 0.6557081589026705,
+          "fine_normalized_error": 0.5464626080123252,
+          "luma_p05": 4.0,
+          "luma_p50": 92.0,
+          "luma_p95": 167.0,
+          "luma_at_least_245_fraction": 1.99682918595679e-06,
+          "rgb_psnr_db": 19.898214986100076,
+          "motion_roi_fine_ncc_to_glc": 0.9815149165643379,
+          "lpips": 0.15650528594851493,
+          "dists": 0.17985307176907858
+        }
+      },
+      "metric_provenance": {
+        "backbone_hashes": {
+          "alexnet-owt-7be5be79.pth": "7be5be791159472b1fbf3c69796f7cb30dca7ad8466c2df70058c37116cdee02",
+          "vgg16-397923af.pth": "397923af8e79cdbb6a7127f12361acd7a2f83e06b05044ddf496e83de57a5bf0"
+        },
+        "dists_calibration_sha256": "f5e65c96230b7f6ca995691647d482237e4cab8a50c5c4a5784f219ef0748218",
+        "lpips_code_sha256": "36ee004a45e2cc2c5ab47fa3955f00c0e41f6a151ef0249fb6f362533ed58b22",
+        "torch": "2.5.1+cu124"
+      }
+    },
+    {
+      "clip": {
+        "id": "02_fish_turn",
+        "baseline": "glc_q0_900_fp32",
+        "start": 390,
+        "stop": 570,
+        "source_stride": 1,
+        "coral_roi": [
+          358,
+          164,
+          506,
+          278
+        ],
+        "motion_roi": [
+          78,
+          66,
+          414,
+          254
+        ],
+        "zoom": "motion_roi",
+        "focus": "斑点鱼的转身、尾鳍、鱼身条纹"
+      },
+      "fps": 30,
+      "frames": 180,
+      "shape": [
+        180,
+        288,
+        512,
+        3
+      ],
+      "source_rgb_sha256": "b91bb0e2887f0f81c9421a9c7fbb8ac63f40631ece53b949e91fb532d3749017",
+      "glc_rgb_sha256": "51038a84a6c6c3ac1ddc1ff4f71edc9e66182fce8c544f073349b7689aac997d",
+      "enhanced_rgb_file_sha256": "89581722b928a4d44c6fc138fdde27c8685ac1e36044420c9b11e801569e1fe9",
+      "previews": {
+        "enhanced.mp4": {
+          "width": 512,
+          "height": 288,
+          "avg_frame_rate": "30/1",
+          "duration": "6.000000",
+          "nb_read_frames": "180",
+          "sha256": "e6140547be3001cd1961e02a6756576ef1e07d1ce6bcc4d25881cc73c4017b6b"
+        },
+        "before_after.mp4": {
+          "width": 1024,
+          "height": 314,
+          "avg_frame_rate": "30/1",
+          "duration": "6.000000",
+          "nb_read_frames": "180",
+          "sha256": "12a4fed68a11bf86acd9eb3f1504e24459d709a5f09b6c98252fdcc4bd5ae5d5"
+        },
+        "models.mp4": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "30/1",
+          "duration": "6.000000",
+          "nb_read_frames": "180",
+          "sha256": "a6dbd40a321ec9de0815b5ae74919e80b71e5f37fc542e202cf935c1627d3c43"
+        },
+        "fish_zoom.mp4": {
+          "width": 1344,
+          "height": 804,
+          "avg_frame_rate": "30/1",
+          "duration": "6.000000",
+          "nb_read_frames": "180",
+          "sha256": "6e4ad238953175e1704d08298753d9322a3dec126d269a3686e80952d646c60f"
+        }
+      },
+      "paired_temporal_frames": 179,
+      "results": {
+        "source": {
+          "full_temporal_mae": 0.0,
+          "fine_temporal_mae": 0.0,
+          "fine_energy": 14.74596118927002,
+          "middle_ncc": 0.9948859278508417,
+          "middle_normalized_error": 0.0,
+          "fine_ncc": 0.8590204153084149,
+          "fine_normalized_error": 0.0,
+          "luma_p05": 15.0,
+          "luma_p50": 69.0,
+          "luma_p95": 151.0,
+          "luma_at_least_245_fraction": 0.0
+        },
+        "raw": {
+          "full_temporal_mae": 13.066746758757914,
+          "fine_temporal_mae": 11.697065312183689,
+          "fine_energy": 11.225798606872559,
+          "middle_ncc": 0.8087575081963375,
+          "middle_normalized_error": 0.42671539880439047,
+          "fine_ncc": 0.502529362484491,
+          "fine_normalized_error": 0.8045257154740965,
+          "luma_p05": 17.0,
+          "luma_p50": 70.0,
+          "luma_p95": 147.0,
+          "luma_at_least_245_fraction": 4.10668643904321e-06,
+          "rgb_psnr_db": 21.07256171010253,
+          "motion_roi_fine_ncc_to_glc": 1.0000000004509433,
+          "lpips": 0.16444704259435336,
+          "dists": 0.13578945928149752
+        },
+        "uve": {
+          "full_temporal_mae": 14.198557444971058,
+          "fine_temporal_mae": 12.280383200446296,
+          "fine_energy": 12.3854398727417,
+          "middle_ncc": 0.8070890947648227,
+          "middle_normalized_error": 0.42888691443260596,
+          "fine_ncc": 0.5245036286661321,
+          "fine_normalized_error": 0.7879510596346319,
+          "luma_p05": 14.0,
+          "luma_p50": 73.0,
+          "luma_p95": 165.0,
+          "luma_at_least_245_fraction": 1.3224283854166667e-05,
+          "rgb_psnr_db": 18.705787060478748,
+          "motion_roi_fine_ncc_to_glc": 0.9740258563824771,
+          "lpips": 0.2354839813378122,
+          "dists": 0.15623885028892093
+        },
+        "undive": {
+          "full_temporal_mae": 18.26519146631383,
+          "fine_temporal_mae": 16.095928687809355,
+          "fine_energy": 17.433027267456055,
+          "middle_ncc": 0.8003524625286306,
+          "middle_normalized_error": 0.43095269947681003,
+          "fine_ncc": 0.5001040613157648,
+          "fine_normalized_error": 0.8003168113662931,
+          "luma_p05": 36.0,
+          "luma_p50": 118.0,
+          "luma_p95": 231.0,
+          "luma_at_least_245_fraction": 0.029849996684510032,
+          "rgb_psnr_db": 12.85352851803948,
+          "motion_roi_fine_ncc_to_glc": 0.9810682200607984,
+          "lpips": 0.28011290381352105,
+          "dists": 0.17005068990919325
+        },
+        "balanced": {
+          "full_temporal_mae": 13.799366172645904,
+          "fine_temporal_mae": 12.053106080101031,
+          "fine_energy": 11.98324966430664,
+          "middle_ncc": 0.8078559711575113,
+          "middle_normalized_error": 0.4278549002437587,
+          "fine_ncc": 0.5199862486119611,
+          "fine_normalized_error": 0.7914153735831005,
+          "luma_p05": 15.0,
+          "luma_p50": 72.0,
+          "luma_p95": 160.0,
+          "luma_at_least_245_fraction": 4.784854841820988e-06,
+          "rgb_psnr_db": 19.658499767538924,
+          "motion_roi_fine_ncc_to_glc": 0.9864534545475693,
+          "lpips": 0.20443928241729736,
+          "dists": 0.1465939958890279
+        }
+      },
+      "metric_provenance": {
+        "backbone_hashes": {
+          "alexnet-owt-7be5be79.pth": "7be5be791159472b1fbf3c69796f7cb30dca7ad8466c2df70058c37116cdee02",
+          "vgg16-397923af.pth": "397923af8e79cdbb6a7127f12361acd7a2f83e06b05044ddf496e83de57a5bf0"
+        },
+        "dists_calibration_sha256": "f5e65c96230b7f6ca995691647d482237e4cab8a50c5c4a5784f219ef0748218",
+        "lpips_code_sha256": "36ee004a45e2cc2c5ab47fa3955f00c0e41f6a151ef0249fb6f362533ed58b22",
+        "torch": "2.5.1+cu124"
+      }
+    },
+    {
+      "clip": {
+        "id": "03_moving_reef",
+        "baseline": "glc_q0_full15_512_fp32",
+        "start": 585,
+        "stop": 675,
+        "source_stride": 2,
+        "coral_roi": [
+          360,
+          24,
+          510,
+          272
+        ],
+        "motion_roi": [
+          114,
+          38,
+          404,
+          256
+        ],
+        "zoom": "coral_roi",
+        "focus": "移动视角下的红珊瑚和游过的鱼"
+      },
+      "fps": 15,
+      "frames": 90,
+      "shape": [
+        90,
+        288,
+        512,
+        3
+      ],
+      "source_rgb_sha256": "f7bb3245999481a9fcb0387836ab3a5bec9a812a04d537339721daba6afb724c",
+      "glc_rgb_sha256": "6aa8df5b7ff871b457fe207a334dd9cd82c832034a856c0198b91b4ebabba610",
+      "enhanced_rgb_file_sha256": "96446863698784ff4bf77787337c1bfef0e84e48cc4c0b8d9e0c525492217af9",
+      "previews": {
+        "enhanced.mp4": {
+          "width": 512,
+          "height": 288,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "ba980c4041297135306cef1b6a2b6e1c17dc0d73b2849b9b42da6d075250d238"
+        },
+        "before_after.mp4": {
+          "width": 1024,
+          "height": 314,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "5ce3733dad1cdb70202b0e78ff7a5e4ae73977e21f6868c5ca3804e9af110524"
+        },
+        "models.mp4": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "eb037ff7b6339710a1e02d22d57b84a6e3839b60ee143ce567ceae8f5c9988bb"
+        }
+      },
+      "paired_temporal_frames": 89,
+      "results": {
+        "source": {
+          "full_temporal_mae": 0.0,
+          "fine_temporal_mae": 0.0,
+          "fine_energy": 3.232114315032959,
+          "middle_ncc": 0.9880397831855349,
+          "middle_normalized_error": 0.0,
+          "fine_ncc": 0.9137575337564198,
+          "fine_normalized_error": 0.0,
+          "luma_p05": 8.0,
+          "luma_p50": 56.0,
+          "luma_p95": 124.0,
+          "luma_at_least_245_fraction": 0.0
+        },
+        "raw": {
+          "full_temporal_mae": 13.219943521283682,
+          "fine_temporal_mae": 7.403599607252252,
+          "fine_energy": 3.410748243331909,
+          "middle_ncc": 0.4675565461208755,
+          "middle_normalized_error": 0.7108984740538713,
+          "fine_ncc": 0.11298766090691117,
+          "fine_normalized_error": 0.9028529359317325,
+          "luma_p05": 9.0,
+          "luma_p50": 56.0,
+          "luma_p95": 123.0,
+          "luma_at_least_245_fraction": 6.028163580246913e-07,
+          "rgb_psnr_db": 23.94217911937067,
+          "motion_roi_fine_ncc_to_glc": 0.9999999813344467,
+          "lpips": 0.15150144000848134,
+          "dists": 0.16833680073420207
+        },
+        "uve": {
+          "full_temporal_mae": 15.895307667992105,
+          "fine_temporal_mae": 7.936845867649981,
+          "fine_energy": 3.607980966567993,
+          "middle_ncc": 0.47993180925936774,
+          "middle_normalized_error": 0.7024174252249885,
+          "fine_ncc": 0.13615942457095645,
+          "fine_normalized_error": 0.8676485538606306,
+          "luma_p05": 6.0,
+          "luma_p50": 61.0,
+          "luma_p95": 147.0,
+          "luma_at_least_245_fraction": 6.555627893518519e-06,
+          "rgb_psnr_db": 19.64770581492082,
+          "motion_roi_fine_ncc_to_glc": 0.9652607081292816,
+          "lpips": 0.24898261659675175,
+          "dists": 0.19659429921044244
+        },
+        "undive": {
+          "full_temporal_mae": 18.762555678301208,
+          "fine_temporal_mae": 10.46533054460735,
+          "fine_energy": 5.111147880554199,
+          "middle_ncc": 0.4622096647493442,
+          "middle_normalized_error": 0.7207015318199742,
+          "fine_ncc": 0.11677258771738114,
+          "fine_normalized_error": 0.9226656093730302,
+          "luma_p05": 30.0,
+          "luma_p50": 96.0,
+          "luma_p95": 183.0,
+          "luma_at_least_245_fraction": 0.0032128604841820986,
+          "rgb_psnr_db": 14.964996281987336,
+          "motion_roi_fine_ncc_to_glc": 0.9799092255411815,
+          "lpips": 0.2735019127527873,
+          "dists": 0.20569612714979385
+        },
+        "balanced": {
+          "full_temporal_mae": 15.029847951029316,
+          "fine_temporal_mae": 7.729732300054159,
+          "fine_energy": 3.5154829025268555,
+          "middle_ncc": 0.47717510497516574,
+          "middle_normalized_error": 0.7041250930423055,
+          "fine_ncc": 0.13061001753577925,
+          "fine_normalized_error": 0.8758342783322881,
+          "luma_p05": 7.0,
+          "luma_p50": 60.0,
+          "luma_p95": 140.0,
+          "luma_at_least_245_fraction": 1.2809847608024691e-06,
+          "rgb_psnr_db": 21.268268105055455,
+          "motion_roi_fine_ncc_to_glc": 0.9813207858444326,
+          "lpips": 0.2029023069474432,
+          "dists": 0.1804675665166643
+        }
+      },
+      "metric_provenance": {
+        "backbone_hashes": {
+          "alexnet-owt-7be5be79.pth": "7be5be791159472b1fbf3c69796f7cb30dca7ad8466c2df70058c37116cdee02",
+          "vgg16-397923af.pth": "397923af8e79cdbb6a7127f12361acd7a2f83e06b05044ddf496e83de57a5bf0"
+        },
+        "dists_calibration_sha256": "f5e65c96230b7f6ca995691647d482237e4cab8a50c5c4a5784f219ef0748218",
+        "lpips_code_sha256": "36ee004a45e2cc2c5ab47fa3955f00c0e41f6a151ef0249fb6f362533ed58b22",
+        "torch": "2.5.1+cu124"
+      }
+    }
+  ],
+  "uve_mix": 0.7,
+  "model_run_sha256": {
+    "uve": "b938419aa71d67c405f00deed18bc6cd9c3bc0b7f4cc7c9df067328ba0009b86",
+    "undive": "9e08ea048b0ea45b3221d53216d211f1045ecf97042a48486940c994363edcb4"
+  },
+  "code_sha256": "7515335a2a0ee5089bf4408f09ed5b3885c0ec023cd4cd3e7f5d602192429473"
+}
