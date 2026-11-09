@@ -73,7 +73,7 @@ def source_match(previous, current, previous_bands, current_bands, crop):
     return x, y, (reliable & textured)[crop]
 
 
-def measure(sequences, crop, start=START):
+def measure(sequences, crop, start=START, *, include_coarse=False):
     rows = []
     source = sequences['source']
     prev = {name: bands(video[0]) for name, video in sequences.items()}
@@ -98,6 +98,8 @@ def measure(sequences, crop, start=START):
             norm_error = np.abs(zb - za - unit_delta).mean(axis=0)
             row[f'{name}_full_sum'] = float(error[:, 3].sum())
             row[f'{name}_fine_sum'] = float(error[:, 2].sum())
+            if include_coarse:
+                row[f'{name}_coarse_sum'] = float(error[:, 0].sum())
             for j, band in enumerate(('middle', 'fine')):
                 row[f'{name}_{band}_ncc'] = float(ncc[j])
                 row[f'{name}_{band}_normalized_error'] = float(norm_error[j])

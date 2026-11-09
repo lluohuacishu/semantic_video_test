@@ -414,6 +414,45 @@ foreach ($case in 'video1', 'video2', 'video3') {
 }
 ```
 
+## 稠密运动和可靠区的 2×2 消融
+
+2026-11-09。复用用户提供的 video1、video2 各前 10 秒的独立 GLC 解码和同一 RAFT-Things 模型。所有组的 GLC 历史锚帧、15 帧刷新周期、融合公式和主要评价框相同。接收端仅从自己的 GLC 画面估计 RAFT。共用的保护窗口由接收端 GLC 画面手工圈定，只允许修改指定礁面，锁定主鱼、潜水员和水域。每次从锚帧取样时也检查保护边界。两段分别锁定全画面的 80.8% 和 92.1%，所有锁定像素在无损合成 RGB 中逐位等于基础层。
+
+| 组别 | 运动 | 可靠区 | video1 额外字节 / kbps | video2 额外字节 / kbps |
+| --- | --- | --- | ---: | ---: |
+| A | 接收端 RAFT | 接收端 GLC 低频差 | 0 / 0 | 0 / 0 |
+| B | 接收端 RAFT | 发送端原片可靠区 | 13,801 / 11.041 | 2,810 / 2.248 |
+| C | 发送端原片 RAFT | 接收端 GLC 低频差 | 32,515 / 26.012 | 10,741 / 8.593 |
+| D | 发送端原片 RAFT | 发送端原片可靠区 | 46,316 / 37.053 | 13,551 / 10.841 |
+| O | 原片全分辨率 RAFT | 原片全分辨率可靠区 | 离线参照 | 离线参照 |
+
+接收端逐组独立运行，从各自收件目录读取实际封装字节。A 收件目录为空，B、D 的可靠区文件逐字节一致，C、D 的运动文件逐字节一致。源端只编码可编辑礁面附近的 64×36 网格，运动格点量化到 1 像素，可靠度量化为八级，格点经差分和 zlib 压缩，文件绑定基础流哈希、时间轴和 CRC。两段基础流为 25.570 和 25.479 kbps，基础流与辅助流均按各自的 40 kbps 上限计费。O 使用相同的历史 GLC 纹理和保护规则，在本机离线使用未量化的原片信息。
+
+| 固定背景区最后两秒的细纹跨帧 NCC | 原始 GLC | A | B | C | D | O |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| video1 礁壁 | 0.349 | 0.360 | 0.411 | 0.367 | 0.480 | 0.503 |
+| video1 上方黄珊瑚 | 0.213 | 0.226 | 0.293 | 0.241 | 0.466 | 0.490 |
+| video1 下方青蓝礁面 | 0.433 | 0.457 | 0.533 | 0.461 | 0.577 | 0.623 |
+| video2 右下珊瑚 | 0.198 | 0.258 | 0.276 | 0.337 | 0.377 | 0.411 |
+
+video1 上方黄珊瑚的原片锚帧对齐误差从接收端 RAFT 的 14.43 降到实际收到的运动网格的 5.49。只给运动时 C 相比 A 的后两秒 NCC 只高 0.015。在同一发送端可靠区下，D 相比 B 高 0.173。video2 的 C 相比 A 高 0.080，D 比 B 高 0.101。两段中 B 与 D 都有差距，可靠区和运动各自的贡献随场景变化。
+
+video1 上方黄珊瑚最后两秒的粗尺度时序误差，A 为 6.97、D 为 6.11、O 为 6.07。D 的两个最大峰落在零基 64 和 128 帧，约 4.27 秒和 8.53 秒，均为 GLC I 帧。两处 I 帧的 D 平均误差为 11.50，普通 P 帧为 3.81，O 在两处 I 帧仍为 11.53。帧型共现可作为结构跳变的定位线索。video2 保护区包含整段主鱼，抽查 8.4 秒四组鱼身表现一致。保护范围以本轮人工窗口为准。
+
+本机 `02_实验数据/优化_GLC后处理/dense_gate_ablation_20261109_01` 中，每段有四组全画面和固定区原速四宫格，以及原始 GLC、A、D、O 的离线对照。 [video1](evidence_20261109/dense_gate_ablation/video1/summary.json) · [video2](evidence_20261109/dense_gate_ablation/video2/summary.json) · [独立核对](evidence_20261109/dense_gate_ablation/verification.json)
+
+```powershell
+foreach ($case in 'video1', 'video2') {
+    & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_gate_ablation.py' fit-receiver --case $case --batch $batch --run $ablationRun --upstream $deflickerSource
+    & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_gate_ablation.py' send --case $case --batch $batch --run $ablationRun
+    foreach ($variant in 'A', 'B', 'C', 'D') {
+        & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_gate_ablation.py' receive --case $case --variant $variant --batch $batch --run $ablationRun
+    }
+    & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_gate_ablation.py' upper --case $case --batch $batch --run $ablationRun
+    & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_gate_ablation.py' --case $case --batch $batch --run $ablationRun --ffmpeg $glcFfmpeg
+}
+```
+
 ## 评价与复现
 
 使用同源同尺寸的无损 RGB 计算指标。评估光流及有效掩码只用源 RGB，所有方法在同一掩码上计分。时序指标比较两帧经运动补偿后的灰度高频变化与源画面对应变化的绝对误差。珊瑚区高频幅度、空间误差与运动区 PSNR 一起报告。珊瑚和鱼的观看结论以原速对照为准。

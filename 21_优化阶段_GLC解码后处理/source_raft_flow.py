@@ -19,7 +19,7 @@ ITERATIONS = 24
 WEIGHT_SHA = 'fcfa4125d6418f4de95d84aec20a3c5f4e205101715a79f193243c186ac9a7e1'
 
 
-def infer(source, clip, upstream, output):
+def infer(source, clip, upstream, output, *, receiver_rgb=False):
     import torch
 
     if source.shape != (clip.count, HEIGHT, WIDTH, 3) or source.dtype != np.uint8:
@@ -57,11 +57,13 @@ def infer(source, clip, upstream, output):
                 if pair.shape != (2, HEIGHT, WIDTH, 2) or not np.isfinite(pair).all():
                     raise ValueError(f'Invalid flow at source frame {clip.start+i}')
                 backward[i], forward[i] = pair
-            print(f'RAFT source anchor {clip.start+first}: complete', flush=True)
+            role = 'receiver' if receiver_rgb else 'source'
+            print(f'RAFT {role} anchor {clip.start+first}: complete', flush=True)
     backward.flush()
     forward.flush()
+    input_key = 'input_glc_rgb_sha256' if receiver_rgb else 'input_source_rgb_sha256'
     save_json(output/'flow.json', dict(
-        offline_source_oracle=True, input_source_rgb_sha256=array_sha(source),
+        offline_source_oracle=not receiver_rgb, **{input_key: array_sha(source)},
         source_range=[clip.start, clip.stop], fps=FPS, flow_shape=shape,
         dtype='float32', iterations=ITERATIONS, anchor_period=CACHE_FRAMES,
         anchors=list(range(clip.start, clip.stop, CACHE_FRAMES)),

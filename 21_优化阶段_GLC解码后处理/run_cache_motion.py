@@ -151,14 +151,25 @@ def low_frequency_difference(projected, current):
     return cv2.GaussianBlur(difference, (0, 0), 1.7)
 
 
-def blend_cached_texture(rgb, texture, projected_texture, visible, difference, index, anchor):
+def gate_components(visible, difference):
     reliable = cv2.erode((visible & (difference < 16)).astype(np.uint8), ERODE)
     feather = cv2.GaussianBlur(reliable.astype(np.float32), (0, 0), 1.4)
     tone = np.clip((16 - difference) / 9, 0, 1)
+    return reliable, feather, tone
+
+
+def blend_cached_texture(rgb, texture, projected_texture, visible, difference, index, anchor, *,
+                         sent_gate=None, protected=None):
+    if sent_gate is None:
+        reliable, feather, tone = gate_components(visible, difference)
+    else:
+        reliable, feather, tone = visible, sent_gate, 1.0
     texture_energy = cv2.GaussianBlur(np.abs(projected_texture), (0, 0), 1.5)
     texture_confidence = np.clip((texture_energy - 1) / 3, 0, 1)
     fade = min((index-anchor) / 3, (CACHE_FRAMES - index % CACHE_FRAMES) / 3, 1)
     alpha = .82 * fade * feather * reliable * tone * texture_confidence
+    if protected is not None:
+        alpha[protected] = 0
     mask = np.rint(alpha * 255).astype(np.uint8)
     change = np.clip(projected_texture - texture, -46, 46) * (mask.astype(np.float32) / 255)
     return np.rint(np.clip(rgb + change[..., None], 0, 255)).astype(np.uint8), mask
@@ -207,7 +218,7 @@ def send(workspace, folder, clip):
 def guard_receiver(allowed, output):
     # No source-media or geometry-file input in the autonomous process.
     media = {'.npy', '.npz', '.png', '.jpg', '.jpeg', '.mp4', '.mkv', '.avi', '.mov', '.raw',
-             '.rgb', '.yuv', '.webm', '.glcsnd', '.glcmot', '.glcsem'}
+             '.rgb', '.yuv', '.webm', '.glcsnd', '.glcmot', '.glcsem', '.glcflow', '.glcgate'}
 
     def audit(event, args):
         if event != 'open' or not args or not isinstance(args[0], (str, bytes)):
