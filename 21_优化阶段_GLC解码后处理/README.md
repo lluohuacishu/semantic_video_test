@@ -365,6 +365,29 @@ foreach ($clip in 'moving_reef', 'holdout_reef') {
 & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_source_dense_flow.py' --cache-run $cacheRun --flow-run $denseRun --ffmpeg $glcFfmpeg
 ```
 
+## 沉船与鱼群复测
+
+2026-11-09。选取本地展示资料的源视频 `media3.mp4`，截取 2–8 秒。镜头缓慢移动，鱼群和潜水员会经过船体。源视频为 25 FPS 的展示 MP4，抽到 15 FPS、512×288 后得到 90 个不同的 RGB 帧。先在源帧上固定右侧船体框 `[330, 24, 502, 168]`。用同一 FP32 GLC q0、GOP64、reset32 新编码，独立解码验证 90 帧参考状态。基础文件为 28,212 B、37.616 kbps，C 的共享运动文件为 1,213 B、1.617 kbps。
+
+| 方法 | 全画面细纹跨帧 NCC | 船体整段 | 船体最后两秒 |
+| --- | ---: | ---: | ---: |
+| 源 RGB | 0.619 | 0.651 | 0.666 |
+| A 原始 GLC | 0.279 | 0.281 | 0.295 |
+| C 原片共享仿射 | 0.306 | 0.336 | 0.348 |
+| D1 原片 RAFT、GLC 门控 | 0.304 | 0.343 | 0.350 |
+| D2 原片 RAFT、原片门控 | 0.318 | 0.367 | 0.377 |
+| B0 匹配 D2 细纹幅度的模糊 | 0.295 | 0.297 | 0.312 |
+
+D1、D2 沿用礁壁实验的 RAFT 权重、24 次 FP32 迭代、15 帧锚帧和融合参数。D2 在最后两秒的船体覆盖为 60.1%，整段同帧对源细纹 NCC 为 0.133，A 为 0.125。船体的时间一致性改善在新素材上复现，幅度小于上一轮的蓝珊瑚区域。C 有 19 个无效运动步并按原规则重新起锚，因此 C 与 D1 的差异还包含锚帧时序。只在双方锚帧相同的 30 个非锚帧上核验几何，源船体灰度对齐 MAE 从仿射的 6.80 降到稠密光流的 5.76。D1、D2 仍是依赖源视频的离线参照。船体框内也有鱼经过，前景观感可在原速全画面对照中核查。
+
+本机 `02_实验数据/优化_GLC后处理/source_dense_flow_shipwreck_20261109_01/flow/comparison` 含全画面及船体放大四宫格。右下为 D2。 [输入收据](evidence_20261109/source_dense_flow_shipwreck/inputs.json) · [实验汇总](evidence_20261109/source_dense_flow_shipwreck/summary.json) · [独立核对](evidence_20261109/source_dense_flow_shipwreck/verification.json)
+
+```powershell
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/dense_transfer_inputs.py' --input $shipSource --ffmpeg $glcFfmpeg --assets $roleAssets --output $shipRun
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_dense_transfer.py' flow --run $shipRun --upstream $deflickerSource
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_dense_transfer.py' compare --run $shipRun --ffmpeg $glcFfmpeg
+```
+
 ## 评价与复现
 
 使用同源同尺寸的无损 RGB 计算指标。评估光流及有效掩码只用源 RGB，所有方法在同一掩码上计分。时序指标比较两帧经运动补偿后的灰度高频变化与源画面对应变化的绝对误差。珊瑚区高频幅度、空间误差与运动区 PSNR 一起报告。珊瑚和鱼的观看结论以原速对照为准。

@@ -19,9 +19,11 @@ ITERATIONS = 24
 WEIGHT_SHA = 'fcfa4125d6418f4de95d84aec20a3c5f4e205101715a79f193243c186ac9a7e1'
 
 
-def infer(workspace, upstream, output):
+def infer(source, clip, upstream, output):
     import torch
 
+    if source.shape != (clip.count, HEIGHT, WIDTH, 3) or source.dtype != np.uint8:
+        raise ValueError('Expected sampled RGB at the clip geometry')
     sys.path.insert(0, str(upstream))
     from src.models.stage_1.core.raft import RAFT
 
@@ -37,33 +39,32 @@ def infer(workspace, upstream, output):
     model.load_state_dict({name.removeprefix('module.'): value for name, value in state.items()}, strict=True)
     model.cuda().eval()
 
-    source = source_frames(workspace, CLIP)
     frames = torch.from_numpy(source).permute(0, 3, 1, 2).to(device='cuda', dtype=torch.float32)
     output.mkdir(parents=True, exist_ok=False)
     files = [output/'to_anchor.npy', output/'from_anchor.npy']
-    shape = (CLIP.count, HEIGHT, WIDTH, 2)
+    shape = (clip.count, HEIGHT, WIDTH, 2)
     backward, forward = [np.lib.format.open_memmap(path, mode='w+', dtype=np.float32, shape=shape)
                          for path in files]
     torch.cuda.reset_peak_memory_stats()
     started = time.perf_counter()
     with torch.inference_mode():
-        for first in range(0, CLIP.count, CACHE_FRAMES):
+        for first in range(0, clip.count, CACHE_FRAMES):
             backward[first] = forward[first] = 0
-            for i in range(first+1, min(first+CACHE_FRAMES, CLIP.count)):
+            for i in range(first+1, min(first+CACHE_FRAMES, clip.count)):
                 images = frames[[i, first]]
                 _, flow = model(images, images.flip(0), iters=ITERATIONS, test_mode=True)
                 pair = flow.permute(0, 2, 3, 1).contiguous().cpu().numpy()
                 if pair.shape != (2, HEIGHT, WIDTH, 2) or not np.isfinite(pair).all():
-                    raise ValueError(f'Invalid flow at source frame {CLIP.start+i}')
+                    raise ValueError(f'Invalid flow at source frame {clip.start+i}')
                 backward[i], forward[i] = pair
-            print(f'RAFT source anchor {CLIP.start+first}: complete', flush=True)
+            print(f'RAFT source anchor {clip.start+first}: complete', flush=True)
     backward.flush()
     forward.flush()
     save_json(output/'flow.json', dict(
         offline_source_oracle=True, input_source_rgb_sha256=array_sha(source),
-        source_range=[CLIP.start, CLIP.stop], fps=FPS, flow_shape=shape,
+        source_range=[clip.start, clip.stop], fps=FPS, flow_shape=shape,
         dtype='float32', iterations=ITERATIONS, anchor_period=CACHE_FRAMES,
-        anchors=list(range(CLIP.start, CLIP.stop, CACHE_FRAMES)),
+        anchors=list(range(clip.start, clip.stop, CACHE_FRAMES)),
         model='RAFT-Things (large)', weights_sha256=WEIGHT_SHA,
         upstream_commit=subprocess.check_output(['git', '-C', str(upstream), 'rev-parse', 'HEAD'],
                                                 text=True).strip(),
@@ -80,7 +81,8 @@ def main():
     parser.add_argument('--upstream', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
-    infer(args.workspace.resolve(), args.upstream.resolve(), args.output.resolve())
+    source = source_frames(args.workspace.resolve(), CLIP)
+    infer(source, CLIP, args.upstream.resolve(), args.output.resolve())
 
 
 if __name__ == '__main__':
