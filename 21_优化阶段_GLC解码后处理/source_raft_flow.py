@@ -11,7 +11,7 @@ import numpy as np
 from cache_motion_inputs import CLIPS, FPS, HEIGHT, REPO, WIDTH, source_frames
 from coral_reference_sidecar import file_sha, save_json
 from experiment_common import array_sha
-from run_cache_motion import CACHE_FRAMES
+from run_cache_motion import CACHE_FRAMES, cache_anchors
 
 
 CLIP = CLIPS['moving_reef']
@@ -19,11 +19,13 @@ ITERATIONS = 24
 WEIGHT_SHA = 'fcfa4125d6418f4de95d84aec20a3c5f4e205101715a79f193243c186ac9a7e1'
 
 
-def infer(source, clip, upstream, output, *, receiver_rgb=False):
+def infer(source, clip, upstream, output, *, receiver_rgb=False, anchors=None, periodic_flows=None):
     import torch
 
     if source.shape != (clip.count, HEIGHT, WIDTH, 3) or source.dtype != np.uint8:
         raise ValueError('Expected sampled RGB at the clip geometry')
+    periodic = cache_anchors(clip.count)
+    indices = cache_anchors(clip.count, anchors)
     sys.path.insert(0, str(upstream))
     from src.models.stage_1.core.raft import RAFT
 
@@ -47,17 +49,23 @@ def infer(source, clip, upstream, output, *, receiver_rgb=False):
                          for path in files]
     torch.cuda.reset_peak_memory_stats()
     started = time.perf_counter()
+    inferred = reused = 0
+    role = 'receiver' if receiver_rgb else 'source'
     with torch.inference_mode():
-        for first in range(0, clip.count, CACHE_FRAMES):
+        for first, stop in zip(indices, (*indices[1:], clip.count), strict=True):
             backward[first] = forward[first] = 0
-            for i in range(first+1, min(first+CACHE_FRAMES, clip.count)):
+            for i in range(first+1, stop):
+                if periodic_flows is not None and i-i%CACHE_FRAMES == first:
+                    backward[i], forward[i] = periodic_flows[0][i], periodic_flows[1][i]
+                    reused += 1
+                    continue
                 images = frames[[i, first]]
                 _, flow = model(images, images.flip(0), iters=ITERATIONS, test_mode=True)
                 pair = flow.permute(0, 2, 3, 1).contiguous().cpu().numpy()
                 if pair.shape != (2, HEIGHT, WIDTH, 2) or not np.isfinite(pair).all():
                     raise ValueError(f'Invalid flow at source frame {clip.start+i}')
                 backward[i], forward[i] = pair
-            role = 'receiver' if receiver_rgb else 'source'
+                inferred += 1
             print(f'RAFT {role} anchor {clip.start+first}: complete', flush=True)
     backward.flush()
     forward.flush()
@@ -65,8 +73,8 @@ def infer(source, clip, upstream, output, *, receiver_rgb=False):
     save_json(output/'flow.json', dict(
         offline_source_oracle=not receiver_rgb, **{input_key: array_sha(source)},
         source_range=[clip.start, clip.stop], fps=FPS, flow_shape=shape,
-        dtype='float32', iterations=ITERATIONS, anchor_period=CACHE_FRAMES,
-        anchors=list(range(clip.start, clip.stop, CACHE_FRAMES)),
+        dtype='float32', iterations=ITERATIONS, anchor_period=CACHE_FRAMES if indices == periodic else None,
+        anchors=[clip.start+i for i in indices], inferred_pairs=inferred, reused_pairs=reused,
         model='RAFT-Things (large)', weights_sha256=WEIGHT_SHA,
         upstream_commit=subprocess.check_output(['git', '-C', str(upstream), 'rev-parse', 'HEAD'],
                                                 text=True).strip(),

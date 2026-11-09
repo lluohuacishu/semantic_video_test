@@ -13,7 +13,7 @@ from coral_reference_sidecar import detail, file_sha, gray, load_json, save_json
 from experiment_common import array_sha
 from gate_aux_stream import GATE, MOTION, byte_limit, expand, pack_grid, quantize, unpack_grid
 from run_cache_motion import (
-    CACHE_FRAMES, blend_cached_texture, gate_components, guard_receiver, low_frequency_difference,
+    CACHE_FRAMES, blend_cached_texture, cache_anchors, gate_components, guard_receiver, low_frequency_difference,
 )
 from run_dense_batch import CASES
 from run_dense_transfer import source_input
@@ -40,11 +40,12 @@ def editable(case):
     return mask
 
 
-def source_gate(source, backward, forward):
+def source_gate(source, backward, forward, *, anchors=None):
     gates = np.zeros(source.shape[:3], np.float32)
+    refresh = set(cache_anchors(len(source), anchors))
     for i, frame in enumerate(source):
         coarse = cv2.GaussianBlur(frame.astype(np.float32), (0, 0), 3)
-        if i % CACHE_FRAMES == 0:
+        if i in refresh:
             anchor = coarse
             continue
         mx, my, inside, error = correspondence(backward[i], forward[i])
@@ -113,17 +114,31 @@ def send(base, run, clip, case):
     print(f'{case}: motion {ledger[MOTION]["bytes"]} B, gate {ledger[GATE]["bytes"]} B', flush=True)
 
 
-def render(raw, flow, gate, allowed):
+def structure_band(luma, windows):
+    image = luma.astype(np.float32)
+    band = np.zeros_like(image)
+    for x0, y0, x1, y1 in windows:
+        patch = image[y0:y1, x0:x1]
+        band[y0:y1, x0:x1] = cv2.GaussianBlur(patch, (0, 0), 3) - cv2.GaussianBlur(patch, (0, 0), 12)
+    return band
+
+
+def render(raw, flow, gate, allowed, *, anchors=None, structure_windows=()):
     rgb = raw.copy()
     masks = np.zeros(raw.shape[:3], np.uint8)
     yy, xx = np.mgrid[:HEIGHT, :WIDTH].astype(np.float32)
     reference_support = cv2.erode(allowed.astype(np.uint8), np.ones((5, 5), np.uint8))
+    indices = cache_anchors(len(raw), anchors)
+    stops = dict(zip(indices, (*indices[1:], len(raw)), strict=True))
     for i, frame in enumerate(raw):
         coarse = cv2.GaussianBlur(frame.astype(np.float32), (0, 0), 3)
-        texture = detail(gray(frame), 3)
-        if i % CACHE_FRAMES == 0:
+        luma = gray(frame)
+        texture = detail(luma, 3)
+        structure = structure_band(luma, structure_windows) if structure_windows else None
+        if i in stops:
             anchor = i
             anchor_low, anchor_texture = coarse, texture
+            anchor_structure = structure
             continue
         mx, my = xx+flow[i, ..., 0], yy+flow[i, ..., 1]
         visible = (mx >= 2) & (my >= 2) & (mx < WIDTH-2) & (my < HEIGHT-2)
@@ -133,8 +148,11 @@ def render(raw, flow, gate, allowed):
         if gate is None:
             aligned_low = cv2.remap(anchor_low, mx, my, cv2.INTER_LINEAR)
             difference = low_frequency_difference(aligned_low, coarse)
+        structure_delta = None if structure is None else (
+            cv2.remap(anchor_structure, mx, my, cv2.INTER_CUBIC) - structure)
         rgb[i], masks[i] = blend_cached_texture(frame, texture, projected, visible, difference,
-            i, anchor, sent_gate=None if gate is None else gate[i], protected=protected)
+            i, anchor, sent_gate=None if gate is None else gate[i], protected=protected,
+            anchor_end=None if anchors is None else stops[anchor], structure_delta=structure_delta)
     if masks[:, ~allowed].any() or not np.array_equal(rgb[:, ~allowed], raw[:, ~allowed]):
         raise ValueError('A receiver-local foreground protection window was changed')
     return rgb, masks

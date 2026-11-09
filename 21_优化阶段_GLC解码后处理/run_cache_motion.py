@@ -151,6 +151,14 @@ def low_frequency_difference(projected, current):
     return cv2.GaussianBlur(difference, (0, 0), 1.7)
 
 
+def cache_anchors(count, anchors=None):
+    indices = tuple(range(0, count, CACHE_FRAMES) if anchors is None else anchors)
+    if (not indices or indices[0] != 0 or indices[-1] >= count
+            or any(a >= b for a, b in zip(indices, indices[1:]))):
+        raise ValueError('Expected increasing anchor indices starting at frame zero')
+    return indices
+
+
 def gate_components(visible, difference):
     reliable = cv2.erode((visible & (difference < 16)).astype(np.uint8), ERODE)
     feather = cv2.GaussianBlur(reliable.astype(np.float32), (0, 0), 1.4)
@@ -159,19 +167,23 @@ def gate_components(visible, difference):
 
 
 def blend_cached_texture(rgb, texture, projected_texture, visible, difference, index, anchor, *,
-                         sent_gate=None, protected=None):
+                         sent_gate=None, protected=None, anchor_end=None, structure_delta=None):
     if sent_gate is None:
         reliable, feather, tone = gate_components(visible, difference)
     else:
         reliable, feather, tone = visible, sent_gate, 1.0
     texture_energy = cv2.GaussianBlur(np.abs(projected_texture), (0, 0), 1.5)
     texture_confidence = np.clip((texture_energy - 1) / 3, 0, 1)
-    fade = min((index-anchor) / 3, (CACHE_FRAMES - index % CACHE_FRAMES) / 3, 1)
+    until_refresh = CACHE_FRAMES - index % CACHE_FRAMES if anchor_end is None else anchor_end - index
+    fade = min((index-anchor) / 3, until_refresh / 3, 1)
     alpha = .82 * fade * feather * reliable * tone * texture_confidence
     if protected is not None:
         alpha[protected] = 0
     mask = np.rint(alpha * 255).astype(np.uint8)
-    change = np.clip(projected_texture - texture, -46, 46) * (mask.astype(np.float32) / 255)
+    residual = projected_texture - texture
+    if structure_delta is not None:
+        residual += structure_delta
+    change = np.clip(residual, -46, 46) * (mask.astype(np.float32) / 255)
     return np.rint(np.clip(rgb + change[..., None], 0, 255)).astype(np.uint8), mask
 
 

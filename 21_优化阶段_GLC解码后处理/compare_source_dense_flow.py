@@ -14,7 +14,7 @@ from compare_seedvr2 import source_detail
 from coral_reference_sidecar import SCALES, detail, file_sha, gray, load_json, save_json
 from experiment_common import array_sha
 from run_cache_motion import (
-    CACHE_FRAMES, PACKET, blend_cached_texture, homogeneous, low_frequency_difference, render, unpack,
+    CACHE_FRAMES, PACKET, blend_cached_texture, cache_anchors, homogeneous, low_frequency_difference, render, unpack,
 )
 from run_p0 import preview, roi
 from source_raft_flow import CLIP
@@ -24,20 +24,20 @@ from temporal_filter import correspondence
 VARIANTS = ('raft_glc_gate', 'raft_source_gate')
 
 
-def load_flow(output, source, clip=CLIP):
+def load_flow(output, source, clip=CLIP, *, anchors=None):
     receipt = load_json(output/'flow.json')
     shape = (clip.count, HEIGHT, WIDTH, 2)
-    anchors = list(range(clip.start, clip.stop, CACHE_FRAMES))
+    indices = cache_anchors(clip.count, anchors)
     if (receipt['input_source_rgb_sha256'] != array_sha(source) or tuple(receipt['flow_shape']) != shape
             or receipt['source_range'] != [clip.start, clip.stop] or receipt['fps'] != FPS
-            or receipt['anchors'] != anchors or not receipt['offline_source_oracle']):
+            or receipt['anchors'] != [clip.start+i for i in indices] or not receipt['offline_source_oracle']):
         raise ValueError('Expected the source-only RAFT flow for this timeline and cache schedule')
     flows = []
     for filename in ('to_anchor.npy', 'from_anchor.npy'):
         path = output/filename
         flow = np.load(path, mmap_mode='r', allow_pickle=False)
         if (file_sha(path) != receipt['flow_file_sha256'][filename] or flow.shape != shape
-                or flow.dtype != np.float32 or flow[::CACHE_FRAMES].any()):
+                or flow.dtype != np.float32 or flow[list(indices)].any()):
             raise ValueError(f'Invalid flow array: {filename}')
         flows.append(flow)
     return flows
