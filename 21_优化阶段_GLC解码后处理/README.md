@@ -402,6 +402,8 @@ D1、D2 沿用礁壁实验的 RAFT 权重、24 次 FP32 迭代、15 帧锚帧和
 
 表中为各固定背景框整段的细纹跨帧 NCC。最后两秒，A 到 D2 分别是 0.349 到 0.582、0.198 到 0.595、0.682 到 0.818。D2 的背景同帧对源细纹 NCC 仍在 0.028–0.054。C 的三份运动文件均为 1,993 B、1.594 kbps。D1、D2 沿用 24 次 FP32 RAFT 迭代和 15 帧锚点的离线配方。video2 的固定框评价右下珊瑚，8.4 秒的抽查帧里，D2 鱼背的斑点略软。整段晃动、轮廓和拖影用原速左右对照检查。
 
+原速复看时，用户反馈 video1 珊瑚持续扭曲，整体效果一般。video2 的原始 GLC 已经好看，video3 的左右差异不大。补测 video1 固定框的源运动对齐粗尺度亮度误差，A 为 6.22，D2 为 5.98。video2 左栏经回读核对为 25.48 kbps 的 GLC 独立解码。与原片相比，A 的整帧同帧粗尺度亮度 NCC 为 0.989，细尺度为 0.065。鱼体轮廓和尾鳍姿态在抽查帧中已清楚。video2 最后两秒背景细纹对原片的同帧 NCC 从 0.013 变为 0.014，较大的提升集中在跨帧一致性。本机 video2 的同目录另有 `source_vs_glc.mp4`，左边为同尺寸原片，右边为 A。 [原速反馈和补测](evidence_20261109/source_dense_flow_three_clips/visual_review.json)
+
 六个对照均为 150 帧、15 FPS、10 秒。左边是原始 GLC，右边是 D2。每段的全画面 `full_pair.mp4` 和珊瑚放大 `reef_pair.mp4` 在本机 `02_实验数据/优化_GLC后处理/source_dense_flow_three_clips_20261109_01` 各子目录的 `flow/comparison` 中。 [video1](evidence_20261109/source_dense_flow_three_clips/video1/summary.json) · [video2](evidence_20261109/source_dense_flow_three_clips/video2/summary.json) · [video3](evidence_20261109/source_dense_flow_three_clips/video3/summary.json) · [独立核对](evidence_20261109/source_dense_flow_three_clips/verification.json)
 
 ```powershell
