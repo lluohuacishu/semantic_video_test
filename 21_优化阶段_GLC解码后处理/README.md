@@ -336,6 +336,33 @@ foreach ($clip in 'moving_reef', 'holdout_reef') {
 & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_cache_motion.py' --run $cacheRun --ffmpeg $glcFfmpeg --prior-hybrid $hybridRun
 ```
 
+## 原片稠密光流的离线上限对照
+
+2026-11-09。沿用移动礁壁第 585–674 帧、15 FPS、512×288 和固定红珊瑚框。用本机已验证的 RAFT-Things 大模型，在同尺寸的无损源 RGB 上以 FP32 迭代 24 次。每帧直接与当前 15 帧周期的源锚帧做双向匹配，避免逐帧累计变换。共处理 84 个非锚帧的 168 个方向，GPU 推理循环耗时 17.6 秒。原片的像素仅参与估计、可靠性检查和计分，两版输出均复用原先的 GLC 亮度纹理。
+
+- **D1** 把 C 的共享仿射换成原片逐像素映射，沿用 C 的 GLC 低频差门控。
+- **D2** 使用同一映射，改用原片低频差及 1.5 像素双向一致性阈值判定可复用区域。两版保留 C 的锚帧周期、融合强度、渐变和残差限制。提取共用融合函数后，B1、B2、C 在原来两个片段的 RGB 和遮罩均逐位一致。
+
+在相同的珊瑚区和共同未越界像素上，用原片锚帧映射到当前原帧的灰度 MAE 核验几何精度。全段共享仿射为 12.39，RAFT 为 5.96。最后两秒从 18.39 降到 6.87。该对照在遮挡门控前计算。
+
+| 方法 | 珊瑚细纹跨帧 NCC | 最后两秒 | 同帧对原片细纹 NCC |
+| --- | ---: | ---: | ---: |
+| 源 RGB | 0.914 | 0.904 | 1.000 |
+| A 原始 GLC | 0.113 | 0.126 | 0.059 |
+| C 原片共享仿射 | 0.152 | 0.127 | 0.062 |
+| D1 原片 RAFT、GLC 门控 | 0.169 | 0.147 | 0.063 |
+| D2 原片 RAFT、原片门控 | 0.336 | 0.214 | 0.070 |
+| B0 匹配 D2 细纹幅度的模糊 | 0.131 | 0.145 | 0.065 |
+
+逐帧计分沿用上一轮的源 Farnebäck 对齐和固定区域掩码。D2 的细纹幅度 3.034，B0 为 3.031。D2 最后两秒的珊瑚覆盖约 39.6%，平均融合权重 0.147。把几何换成稠密映射有增益，而替换可见性和低频差门控贡献更大。对源细纹的同帧相似度仍低，反映本轮主要收益在时间连续性。此处 RAFT 仍是运动估计，结果是当前 GLC 历史纹理缓存的离线参照。只测试了一个移动镜头，拖影和晃动仍以原速对照验收。
+
+本机 `02_实验数据/优化_GLC后处理/source_dense_flow_limit_20261109_01/comparison` 中有全画面及珊瑚放大的原速四宫格。 [实验汇总](evidence_20261109/source_dense_flow_limit/summary.json) · [光流收据](evidence_20261109/source_dense_flow_limit/flow.json) · [独立核对](evidence_20261109/source_dense_flow_limit/verification.json)
+
+```powershell
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/source_raft_flow.py' --upstream $deflickerSource --output $denseRun
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_source_dense_flow.py' --cache-run $cacheRun --flow-run $denseRun --ffmpeg $glcFfmpeg
+```
+
 ## 评价与复现
 
 使用同源同尺寸的无损 RGB 计算指标。评估光流及有效掩码只用源 RGB，所有方法在同一掩码上计分。时序指标比较两帧经运动补偿后的灰度高频变化与源画面对应变化的绝对误差。珊瑚区高频幅度、空间误差与运动区 PSNR 一起报告。珊瑚和鱼的观看结论以原速对照为准。

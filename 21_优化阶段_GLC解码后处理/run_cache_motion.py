@@ -146,6 +146,24 @@ def unpack(data, clip, base_sha):
     return records
 
 
+def low_frequency_difference(projected, current):
+    difference = np.max(np.abs(projected - current), axis=2)
+    return cv2.GaussianBlur(difference, (0, 0), 1.7)
+
+
+def blend_cached_texture(rgb, texture, projected_texture, visible, difference, index, anchor):
+    reliable = cv2.erode((visible & (difference < 16)).astype(np.uint8), ERODE)
+    feather = cv2.GaussianBlur(reliable.astype(np.float32), (0, 0), 1.4)
+    tone = np.clip((16 - difference) / 9, 0, 1)
+    texture_energy = cv2.GaussianBlur(np.abs(projected_texture), (0, 0), 1.5)
+    texture_confidence = np.clip((texture_energy - 1) / 3, 0, 1)
+    fade = min((index-anchor) / 3, (CACHE_FRAMES - index % CACHE_FRAMES) / 3, 1)
+    alpha = .82 * fade * feather * reliable * tone * texture_confidence
+    mask = np.rint(alpha * 255).astype(np.uint8)
+    change = np.clip(projected_texture - texture, -46, 46) * (mask.astype(np.float32) / 255)
+    return np.rint(np.clip(rgb + change[..., None], 0, 255)).astype(np.uint8), mask
+
+
 def render(frames, records):
     output = np.empty_like(frames)
     masks = np.zeros(frames.shape[:3], np.uint8)
@@ -164,18 +182,9 @@ def render(frames, records):
         projected_low = cv2.warpAffine(ref_low, affine, (WIDTH, HEIGHT))
         projected_texture = cv2.warpAffine(ref_texture, affine, (WIDTH, HEIGHT), flags=cv2.INTER_CUBIC)
         visible = cv2.warpAffine(support, affine, (WIDTH, HEIGHT)) >= .999
-        difference = np.max(np.abs(projected_low - coarse), axis=2)
-        difference = cv2.GaussianBlur(difference, (0, 0), 1.7)
-        reliable = cv2.erode((visible & (difference < 16)).astype(np.uint8), ERODE)
-        feather = cv2.GaussianBlur(reliable.astype(np.float32), (0, 0), 1.4)
-        tone = np.clip((16 - difference) / 9, 0, 1)
-        texture_energy = cv2.GaussianBlur(np.abs(projected_texture), (0, 0), 1.5)
-        texture_confidence = np.clip((texture_energy - 1) / 3, 0, 1)
-        fade = min((i-anchor) / 3, (CACHE_FRAMES - i % CACHE_FRAMES) / 3, 1)
-        alpha = .82 * fade * feather * reliable * tone * texture_confidence
-        masks[i] = np.rint(alpha * 255).astype(np.uint8)
-        change = np.clip(projected_texture - texture, -46, 46) * (masks[i].astype(np.float32) / 255)
-        output[i] = np.rint(np.clip(rgb + change[..., None], 0, 255)).astype(np.uint8)
+        difference = low_frequency_difference(projected_low, coarse)
+        output[i], masks[i] = blend_cached_texture(rgb, texture, projected_texture, visible,
+                                                   difference, i, anchor)
     return output, masks
 
 
