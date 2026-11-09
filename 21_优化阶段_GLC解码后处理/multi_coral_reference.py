@@ -36,13 +36,16 @@ ANCHORS = {
 }
 SIDE = 120
 COVERAGE_TARGET = 14000
+SOURCE_PROFILE = 'glc-multi-coral-v1'
+HYBRID_PROFILE = 'glc-multi-coral-hybrid-v1'
+HYBRID_SOURCE_TILES = 3
 
 
 @dataclass
 class Tile:
     frame: int
     box: tuple
-    image: bytes
+    image: bytes | None
     track: bytes
     support: np.ndarray | None = None
 
@@ -82,7 +85,7 @@ def tile_frames(tile, guard):
         yield i, affine, alpha
 
 
-def candidate(source, boxes, guard, start, x, y):
+def candidate(source, boxes, guard, start, x, y, send_source=True):
     box = (x, y, x+SIDE, y+SIDE)
     video = source[start:]
     tile = video[0, y:y+SIDE, x:x+SIDE]
@@ -102,65 +105,97 @@ def candidate(source, boxes, guard, start, x, y):
     safe_anchor = original.reshape(GRID, SIDE//GRID, GRID, SIDE//GRID).min(axis=(1, 3)).astype(bool)
     mask &= safe_anchor
     records['mask'] = np.packbits(mask.reshape(len(records), -1), axis=1, bitorder='little')
-    ok, data = cv2.imencode('.jpg', gray(tile), [cv2.IMWRITE_JPEG_QUALITY, JPEG_QUALITY])
-    if not ok:
-        raise RuntimeError('Could not encode the luminance reference')
-    item = Tile(start, box, data.tobytes(), records.tobytes())
+    image = None
+    if send_source:
+        ok, data = cv2.imencode('.jpg', gray(tile), [cv2.IMWRITE_JPEG_QUALITY, JPEG_QUALITY])
+        if not ok:
+            raise RuntimeError('Could not encode the luminance reference')
+        image = data.tobytes()
+    item = Tile(start, box, image, records.tobytes())
     item.support = np.zeros((COUNT, HEIGHT, WIDTH), bool)
     for i, _, alpha in tile_frames(item, guard):
         item.support[i] = alpha >= .5
     return item if item.support.any() else None
 
 
-def pack(base_sha, boxes, tiles):
-    meta = dict(profile='glc-multi-coral-v1', base_sha256=base_sha, start=START, offset=START-BASE_START,
-                frames=COUNT, fps=FPS, width=WIDTH, height=HEIGHT,
-                tiles=[dict(frame=tile.frame, box=tile.box) for tile in tiles])
+def pack(base_sha, boxes, tiles, hybrid=False):
+    entries = []
+    for tile in tiles:
+        entry = dict(frame=tile.frame, box=tile.box)
+        if hybrid:
+            entry['luma'] = 'source' if tile.image is not None else 'glc'
+        entries.append(entry)
+    meta = dict(profile=HYBRID_PROFILE if hybrid else SOURCE_PROFILE,
+                base_sha256=base_sha, start=START, offset=START-BASE_START,
+                frames=COUNT, fps=FPS, width=WIDTH, height=HEIGHT, tiles=entries)
     payload = io.BytesIO()
     with ZipFile(payload, 'w') as archive:
         archive.writestr('manifest.json', json.dumps(meta, separators=(',', ':')), ZIP_DEFLATED)
         archive.writestr('fish.bin', boxes.tobytes(), ZIP_DEFLATED)
         for i, tile in enumerate(tiles):
-            archive.writestr(f'{i:02d}.jpg', tile.image, ZIP_STORED)
+            if tile.image is not None:
+                archive.writestr(f'{i:02d}.jpg', tile.image, ZIP_STORED)
             archive.writestr(f'{i:02d}.bin', tile.track, ZIP_DEFLATED)
     return payload.getvalue()
 
 
-def send(workspace, base_run, run):
+def send(workspace, base_run, run, hybrid_from=None):
     spec = baseline(workspace)
     _, reference, _ = open_baseline(workspace, spec, dict(q=0, intra_period=64, reset_interval=32))
     source = load_range(reference, START, STOP, (HEIGHT, WIDTH, 3))
     base_sha = file_sha(base_run / 'base.glcsnd')
+    hybrid = hybrid_from is not None
+    true_tiles = set()
+    if hybrid:
+        previous = load_json(hybrid_from/'send.json')
+        if (previous['base_sha256'] != base_sha
+                or previous['semantic_sha256'] != file_sha(hybrid_from/'coral_multi.glcsem')):
+            raise ValueError('The all-source reference run differs from this GLC base')
+        ranked = sorted(previous['tiles'], key=lambda tile: -tile['mean_added_pixels'])
+        true_tiles = {(tile['anchor_frame']-START, tuple(tile['box']))
+                      for tile in ranked[:HYBRID_SOURCE_TILES]}
+        if len(true_tiles) != HYBRID_SOURCE_TILES:
+            raise ValueError('Expected three source anchors from the all-source run')
     boxes = fish_boxes()
     guard = list(guards(boxes))
     options = [item for start, positions in ANCHORS.items() for x, y in positions
-               if (item := candidate(source, boxes, guard, start, x, y)) is not None]
+               if (item := candidate(source, boxes, guard, start, x, y,
+                   send_source=not hybrid or (start, (x, y, x+SIDE, y+SIDE)) in true_tiles)) is not None]
     chosen = []
     coverage = np.zeros((COUNT, HEIGHT, WIDTH), bool)
-    payload = pack(base_sha, boxes, chosen)
+    source_coverage = np.zeros_like(coverage)
+    payload = pack(base_sha, boxes, chosen, hybrid)
+    target = 22000 if hybrid else COVERAGE_TARGET
+    margin, minimum = (.20, 36) if hybrid else (.15, 48)
     gains = []
     while options:
         best = None
-        remaining = np.maximum(COVERAGE_TARGET - coverage.sum(axis=(1, 2)), 0)
-        for item in options:
-            data = pack(base_sha, boxes, [*chosen, item])
+        remaining = np.maximum(target - coverage.sum(axis=(1, 2)), 0)
+        required = [item for item in options if item.image is not None] if hybrid else []
+        for item in required[:1] or options:
+            data = pack(base_sha, boxes, [*chosen, item], hybrid)
             if len(data) > LIMIT:
                 continue
             added = np.count_nonzero(item.support & ~coverage, axis=(1, 2))
             gain = int(added.sum())
-            score = (np.minimum(added, remaining).sum() + .15*gain) / (len(data) - len(payload))
-            if gain >= 48*COUNT and (best is None or score > best[0]):
+            score = (np.minimum(added, remaining).sum() + margin*gain) / (len(data) - len(payload))
+            if (required or gain >= minimum*COUNT) and (best is None or score > best[0]):
                 best = score, item, data, gain
         if best is None:
             break
         _, item, payload, gain = best
         coverage |= item.support
+        if item.image is not None:
+            source_coverage |= item.support
         chosen.append(item)
         options = [option for option in options if option is not item]
         gains.append(dict(anchor_frame=START+item.frame, box=item.box,
-                          jpeg_bytes=len(item.image), mean_added_pixels=gain/COUNT))
+                          jpeg_bytes=len(item.image or b''), mean_added_pixels=gain/COUNT))
     if not chosen:
         raise RuntimeError('No reliable reference tile fits the budget')
+    source_count = sum(item.image is not None for item in chosen)
+    if hybrid and (source_count != HYBRID_SOURCE_TILES or source_count == len(chosen)):
+        raise ValueError('Expected both transmitted and locally cached references')
     path = run / 'coral_multi.glcsem'
     with path.open('xb') as out:
         out.write(payload)
@@ -169,9 +204,12 @@ def send(workspace, base_run, run):
     ledger['container'] = len(payload) - sum(ledger.values())
     save_json(run/'send.json', dict(tiles=gains, semantic_bytes=len(payload), byte_limit=LIMIT, ledger=ledger,
         semantic_sha256=file_sha(path), base_sha256=base_sha, jpeg_quality=JPEG_QUALITY,
-        mean_effective_pixels=float(coverage.sum()/COUNT), coverage_target_pixels=COVERAGE_TARGET,
+        profile=HYBRID_PROFILE if hybrid else SOURCE_PROFILE, source_tiles=source_count,
+        mean_effective_source_pixels=float(source_coverage.sum()/COUNT),
+        mean_effective_pixels=float(coverage.sum()/COUNT), coverage_target_pixels=target,
         code_sha256=file_sha(__file__)))
-    print(f'Selected {len(chosen)} tiles, {len(payload)} bytes, {coverage.sum()/COUNT:.0f} effective pixels per frame', flush=True)
+    print(f'Selected {len(chosen)} tiles ({source_count} with source JPEG), {len(payload)} bytes, '
+          f'{coverage.sum()/COUNT:.0f} effective pixels per frame', flush=True)
 
 
 def read_package(path, base_sha):
@@ -179,22 +217,37 @@ def read_package(path, base_sha):
         raise ValueError('Semantic stream exceeds its independent byte budget')
     with ZipFile(path) as archive:
         meta = json.loads(archive.read('manifest.json'))
-        expected = ('glc-multi-coral-v1', base_sha, START, START-BASE_START, COUNT, FPS, WIDTH, HEIGHT)
-        if tuple(meta[key] for key in ('profile','base_sha256','start','offset','frames','fps','width','height')) != expected:
+        profile = meta['profile']
+        expected = (base_sha, START, START-BASE_START, COUNT, FPS, WIDTH, HEIGHT)
+        if (profile not in (SOURCE_PROFILE, HYBRID_PROFILE)
+                or tuple(meta[key] for key in ('base_sha256','start','offset','frames','fps','width','height')) != expected):
             raise ValueError('Semantic stream does not match the GLC base')
         boxes = np.frombuffer(archive.read('fish.bin'), '<u2').reshape(COUNT, 4)
         tiles = []
+        entries = ['manifest.json', 'fish.bin']
         for i, item in enumerate(meta['tiles']):
             frame = item['frame']
             x0, y0, x1, y1 = item['box']
-            payload = archive.read(f'{i:02d}.bin')
+            track_name, image_name = f'{i:02d}.bin', f'{i:02d}.jpg'
+            payload = archive.read(track_name)
             records = np.frombuffer(payload, RECORD)
             if not (0 <= x0 < x1 <= WIDTH and 0 <= y0 < y1 <= HEIGHT and
                     x1-x0 == y1-y0 == SIDE and 0 <= frame < frame+len(records) <= COUNT):
                 raise ValueError('Invalid reference tile extent')
-            tiles.append(Tile(frame, tuple(item['box']), archive.read(f'{i:02d}.jpg'), payload))
+            luma = item['luma'] if profile == HYBRID_PROFILE else 'source'
+            if luma not in ('source', 'glc'):
+                raise ValueError('Unknown reference origin')
+            image = archive.read(image_name) if luma == 'source' else None
+            entries.append(track_name)
+            if image is not None:
+                entries.append(image_name)
+            tiles.append(Tile(frame, tuple(item['box']), image, payload))
+        if sorted(entries) != sorted(archive.namelist()):
+            raise ValueError('Unexpected or duplicate semantic entries')
     if not tiles:
         raise ValueError('Empty semantic stream')
+    if profile == HYBRID_PROFILE and not 0 < sum(tile.image is not None for tile in tiles) < len(tiles):
+        raise ValueError('Hybrid semantic stream must contain both reference origins')
     return tiles, boxes
 
 
@@ -222,42 +275,63 @@ def receive(base_run, run):
         raise ValueError('Invalid base RGB geometry')
     package = run/'coral_multi.glcsem'
     tiles, boxes = read_package(package, base_sha)
+    hybrid = any(tile.image is None for tile in tiles)
     guard = list(guards(boxes))
     weight, support = (np.zeros(raw.shape[:3], np.float32) for _ in range(2))
-    totals = [np.zeros(raw.shape[:3], np.float32) for _ in range(2)]
+    local_sum, source_sum = (np.zeros_like(weight) for _ in range(2))
+    source_weight = np.zeros_like(weight) if hybrid else weight
+    source_support = np.zeros_like(support) if hybrid else support
     for tile in tiles:
         x0, y0, x1, y1 = tile.box
-        luma = cv2.imdecode(np.frombuffer(tile.image, np.uint8), cv2.IMREAD_GRAYSCALE)
-        if luma is None or luma.shape != (SIDE, SIDE):
-            raise ValueError('Incorrect compressed luma shape')
-        planes = [detail(image, SIGMA) for image in (gray(raw[tile.frame, y0:y1, x0:x1]), luma)]
+        local = detail(gray(raw[tile.frame, y0:y1, x0:x1]), SIGMA)
+        sent = None
+        if tile.image is not None:
+            luma = cv2.imdecode(np.frombuffer(tile.image, np.uint8), cv2.IMREAD_GRAYSCALE)
+            if luma is None or luma.shape != (SIDE, SIDE):
+                raise ValueError('Incorrect compressed luma shape')
+            sent = detail(luma, SIGMA)
         for i, affine, alpha in tile_frames(tile, guard):
             weight[i] += alpha
             np.maximum(support[i], alpha, out=support[i])
-            for total, plane in zip(totals, planes, strict=True):
-                warped = cv2.warpAffine(plane, affine, (WIDTH, HEIGHT), flags=cv2.INTER_CUBIC)
-                total[i] += alpha * warped
+            local_sum[i] += alpha * cv2.warpAffine(local, affine, (WIDTH, HEIGHT), flags=cv2.INTER_CUBIC)
+            if sent is not None:
+                source_sum[i] += alpha * cv2.warpAffine(sent, affine, (WIDTH, HEIGHT), flags=cv2.INTER_CUBIC)
+                if hybrid:
+                    source_weight[i] += alpha
+                    np.maximum(source_support[i], alpha, out=source_support[i])
     alpha = np.rint(support * 255.).astype(np.uint8)
+    source_alpha = np.rint(source_support * 255.).astype(np.uint8) if hybrid else alpha
     active = alpha >= 128
-    files = {}
-    for name, total in zip(('glc_multi', 'source_multi'), totals, strict=True):
-        video = np.empty_like(raw)
-        for i, frame in enumerate(raw):
-            projected = total[i] / np.maximum(weight[i], 1e-6)
-            correction = np.clip(projected-detail(gray(frame), SIGMA), -54., 54.) * (support[i]*MIX)
-            video[i] = np.rint(frame.astype(np.float32) + correction[..., None]).clip(0,255).astype(np.uint8)
-            x0, y0, x1, y1 = boxes[i]
-            if not np.array_equal(video[i, y0:y1, x0:x1], frame[y0:y1, x0:x1]):
+    enhanced = 'hybrid' if hybrid else 'source_multi'
+    videos = {name: np.empty_like(raw) for name in ('glc_multi', enhanced)}
+    for i, frame in enumerate(raw):
+        local = local_sum[i] / np.maximum(weight[i], 1e-6)
+        sent = source_sum[i] / np.maximum(source_weight[i], 1e-6)
+        if hybrid:
+            # Fade to cached GLC texture at the edge of the transmitted support.
+            share = source_support[i] / np.maximum(support[i], 1e-6)
+            share[source_alpha[i] == 0] = 0.
+            sent = local + share * (sent - local)
+        base_detail = detail(gray(frame), SIGMA)
+        x0, y0, x1, y1 = boxes[i]
+        for name, projected in (('glc_multi', local), (enhanced, sent)):
+            correction = np.clip(projected-base_detail, -54., 54.) * (support[i]*MIX)
+            videos[name][i] = np.rint(frame.astype(np.float32) + correction[..., None]).clip(0,255).astype(np.uint8)
+            if not np.array_equal(videos[name][i, y0:y1, x0:x1], frame[y0:y1, x0:x1]):
                 raise ValueError('Composition changed the excluded fish region')
+    videos['alpha'] = alpha
+    if hybrid:
+        videos['source_alpha'] = source_alpha
+    files = {}
+    for name, video in videos.items():
         path = output/f'{name}.npy'
         np.save(path, video, allow_pickle=False)
         files[name] = file_sha(path)
-    np.save(output/'alpha.npy', alpha, allow_pickle=False)
-    files['alpha'] = file_sha(output/'alpha.npy')
     save_json(output/'result.json', dict(complete=True, files=files, base_sha256=base_sha,
         semantic_sha256=file_sha(package), source_media_reads_forbidden=True, excluded_fish_region_bit_exact=True,
         frames=COUNT, fps=FPS, active_frames=int(active.any(axis=(1,2)).sum()),
-        mean_effective_pixels=float(active.sum()/COUNT), code_sha256=file_sha(__file__)))
+        mean_effective_pixels=float(active.sum()/COUNT),
+        mean_effective_source_pixels=float((source_alpha >= 128).sum()/COUNT), code_sha256=file_sha(__file__)))
     print(f'Source-free composition complete on {COUNT} frames', flush=True)
 
 
@@ -267,12 +341,15 @@ def main():
     parser.add_argument('--workspace', type=Path, default=REPO.parents[2])
     parser.add_argument('--base-run', type=Path, required=True)
     parser.add_argument('--run', type=Path, required=True)
+    parser.add_argument('--hybrid-from', type=Path, help='Select three source tiles from a verified all-source run')
     args = parser.parse_args()
     cv2.setNumThreads(1)
     cv2.ocl.setUseOpenCL(False)
     if args.phase == 'send':
-        send(args.workspace, args.base_run, args.run)
+        send(args.workspace, args.base_run, args.run, args.hybrid_from)
     else:
+        if args.hybrid_from is not None:
+            parser.error('--hybrid-from applies to sending only')
         receive(args.base_run, args.run)
 
 

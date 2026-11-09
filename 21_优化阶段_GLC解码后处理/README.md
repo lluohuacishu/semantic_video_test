@@ -267,6 +267,29 @@ $loader | & $glcPython -B -X utf8 - '21_优化阶段_GLC解码后处理/run_unde
 & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_multi_coral.py' --base-run $tileRun --run $multiRun --ffmpeg $glcFfmpeg
 ```
 
+### 源纹理和接收端缓存混合复用
+
+2026-11-09。沿用同一 6 秒、90 帧、15 FPS 基础流和手标鱼框。取上一版全源包里新增有效面积最大的三块 JPEG，按原字节发送。其余 30 块只发送锚点位置、仿射轨迹和有效网格，从指定 GLC 解码帧取亮度参考。选块以实际 ZIP 字节为成本，优先补足覆盖较少的帧。重叠处按各自的可靠覆盖融合，源参考边缘逐渐过渡到 GLC 缓存。
+
+独立语义文件实测 **29,759 B、39.679 kbps**，三张源 JPEG 合计 8,082 B。接收端以验证过的 GLC 基础层和该语义文件完成 90 帧合成。鱼框内和总遮罩权重为零处的 RGB 与基础层逐位一致。源参考遮罩权重为零处的混合结果与全缓存对照逐位一致。重新回放旧版语义文件后，两个 RGB 对照、遮罩和逐帧评价 CSV 都与既有结果逐位一致。
+
+| 实测覆盖 | 上一版全源 9 块 | 混合 33 块 |
+| --- | ---: | ---: |
+| 全段平均 | 9.7% | 18.3% |
+| 第五秒 | 7.6% | 14.7% |
+| 最后一秒 | 7.0% | 10.7% |
+| 源纹理全段平均 | 9.7% | 6.1% |
+
+在混合版的有效区域内统一计分，后两秒的细纹跨帧 NCC 为原始 GLC 0.423、上一版 0.575、混合版 0.836。按两版共同覆盖区域比较，跨帧 NCC 为 0.873 → 0.867，同帧细纹对源 NCC 为 0.660 → 0.473。源 JPEG 实际生效的区域中，混合版同帧对源 NCC 为 0.656，全缓存控制为 0.102。增量覆盖主要来自缓存，其保真度随 GLC 锚点本身而变化。
+
+本机对照位于 `02_实验数据/优化_GLC后处理/coral_reference_hybrid_20261109_01/comparison`。 `previous_vs_hybrid.mp4` 左边为上一版，右边为混合版。覆盖图中橙色为源 JPEG 生效区域，绿色为其余有效区域。5 份视频均独立核对为 90 帧、15 FPS。 [实验汇总](evidence_20261109/coral_reference_hybrid/summary.json) · [独立核对](evidence_20261109/coral_reference_hybrid/verification.json)
+
+```powershell
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/multi_coral_reference.py' send --base-run $tileRun --run $hybridRun --hybrid-from $multiRun
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/multi_coral_reference.py' receive --base-run $tileRun --run $hybridRun
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_multi_coral.py' --base-run $tileRun --run $hybridRun --prior-multi-run $multiRun --ffmpeg $glcFfmpeg
+```
+
 ## 评价与复现
 
 使用同源同尺寸的无损 RGB 计算指标。评估光流及有效掩码只用源 RGB，所有方法在同一掩码上计分。时序指标比较两帧经运动补偿后的灰度高频变化与源画面对应变化的绝对误差。珊瑚区高频幅度、空间误差与运动区 PSNR 一起报告。珊瑚和鱼的观看结论以原速对照为准。
