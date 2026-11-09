@@ -439,6 +439,8 @@ video1 上方黄珊瑚的原片锚帧对齐误差从接收端 RAFT 的 14.43 降
 
 video1 上方黄珊瑚最后两秒的粗尺度时序误差，A 为 6.97、D 为 6.11、O 为 6.07。D 的两个最大峰落在零基 64 和 128 帧，约 4.27 秒和 8.53 秒，均为 GLC I 帧。两处 I 帧的 D 平均误差为 11.50，普通 P 帧为 3.81，O 在两处 I 帧仍为 11.53。帧型共现可作为结构跳变的定位线索。video2 保护区包含整段主鱼，抽查 8.4 秒四组鱼身表现一致。保护范围以本轮人工窗口为准。
 
+用户复看四宫格，反馈 A 和 D 肉眼近乎无差别。回读全画面预览并核对 A、D 各自对应的无损输出。最后两秒，两段分别有 92.8% 和 94.2% 的全画面时空像素在 A、D 间逐位相同，最大 RGB 通道差达到 8 灰阶的像素分别占 2.9% 和 3.3%。video1 放大的上方黄珊瑚框里仍有 70.1% 的时空像素完全相同。原速验收记为 D 无明确可见增益。 [观看反馈与 A/D 像素核对](evidence_20261109/dense_gate_ablation/visual_review.json)
+
 本机 `02_实验数据/优化_GLC后处理/dense_gate_ablation_20261109_01` 中，每段有四组全画面和固定区原速四宫格，以及原始 GLC、A、D、O 的离线对照。 [video1](evidence_20261109/dense_gate_ablation/video1/summary.json) · [video2](evidence_20261109/dense_gate_ablation/video2/summary.json) · [独立核对](evidence_20261109/dense_gate_ablation/verification.json)
 
 ```powershell
