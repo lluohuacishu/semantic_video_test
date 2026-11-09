@@ -14,13 +14,13 @@ from run_deflicker import FPS, SHAPE, START, STOP
 from run_p0 import REPO, file_sha, load_json, preview, psnr, roi, save_json
 
 
-def source_detail(source, candidates, crop):
+def source_detail(source, candidates, crop, start=START):
     rows = []
     for i, frame in enumerate(source):
         original = bands(frame)
         mask = (cv2.GaussianBlur(np.abs(original[..., 2]), (0, 0), 2) > 2.0)[crop]
         ref = normalized(original[crop][mask, 1:3])
-        row = dict(frame=START + i, valid_pixels=int(mask.sum()))
+        row = dict(frame=start + i, valid_pixels=int(mask.sum()))
         for method, video in candidates.items():
             actual = normalized(bands(video[i])[crop][mask, 1:3])
             middle, fine = (ref * actual).mean(axis=0)

@@ -29,7 +29,7 @@ def baseline(workspace):
     return next(row for row in manifest['baselines'] if row['id'] == 'glc_q0_full15_512_fp32')
 
 
-def cut(workspace, folder):
+def cut(workspace, folder, *, base_start=BASE_START, start=START, stop=STOP):
     spec = baseline(workspace)
     receipt_path = (workspace / spec['rgb']).with_name('result.json')
     receipt = load_json(receipt_path)
@@ -39,12 +39,14 @@ def cut(workspace, folder):
     header, packets, integrity = read_sender_stream(original)
     if (not receipt['reference_verified'] or receipt['reference_checksums'] != integrity['expected_reference_checksums']
             or (header['fps'], header['width'], header['height'], header['q']) != (FPS, WIDTH, HEIGHT, 0)
-            or any(BASE_START % interval for interval in (header['intra_period'], header['reset_interval'], 8))):
+            or not 0 <= base_start <= start < stop <= len(packets)
+            or any(interval and base_start % interval
+                   for interval in (header['intra_period'], header['reset_interval'], 8))):
         raise ValueError('Expected the original GLC stream and an independent I-frame cut')
     path = folder / 'base.glcsnd'
-    writer = SenderWriter(path, dict(header, frames=STOP - BASE_START))
+    writer = SenderWriter(path, dict(header, frames=stop - base_start))
     try:
-        for i in range(BASE_START, STOP):
+        for i in range(base_start, stop):
             record = receipt['records'][i]
             packet = packets[i].copy()
             if record['index'] != i or record['kind'] != packet['kind'] or packet.pop('rgb_sha256') is not None:
@@ -55,7 +57,7 @@ def cut(workspace, folder):
     finally:
         writer.close()
     save_json(folder / 'base_cut.json', dict(
-        source_start=BASE_START, source_stop=STOP, display_start=START, display_stop=STOP,
+        source_start=base_start, source_stop=stop, display_start=start, display_stop=stop,
         bytes=path.stat().st_size, fps=header['fps'], source_stream_sha256=file_sha(original),
         base_stream_sha256=file_sha(path), reference_checksums=writer.references.values(),
         input_receipt_sha256=file_sha(receipt_path)))

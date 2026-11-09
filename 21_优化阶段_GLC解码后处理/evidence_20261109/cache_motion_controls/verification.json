@@ -1,0 +1,55 @@
+{
+  "cases": {
+    "moving_reef": {
+      "base_only_replay_byte_exact": true,
+      "b2_prefix_causal": true,
+      "rejected_motion_packet_cases": [
+        "wrong_base",
+        "truncated",
+        "corrupt",
+        "illegal_status"
+      ],
+      "fixed_roi_csv_reaggregated": true,
+      "csv_sha256": {
+        "full_temporal.csv": "3ce89be6f6b7345c5cf6588f63fa2a392a4b83c848b0e318f3a71f2a9cb45ed0",
+        "full_source_detail.csv": "dca2daa73e12a50e1b8875f1c6fb8958eee871130fbe31ca2e51107147c121eb",
+        "coral_temporal.csv": "a5b1684b9c487de3091b5a2cab4a350e121bd107c64ec03c97569cff81c23cec",
+        "coral_source_detail.csv": "3807f7dc8e19282b689cd179c04d6c44a1c8e520a8b71bb013bb66dde6636535"
+      },
+      "preview_timeline_verified": true,
+      "b0_energy_within_2_percent": true,
+      "h265_within_2_percent_under_target": true
+    },
+    "holdout_reef": {
+      "base_only_replay_byte_exact": true,
+      "b2_prefix_causal": true,
+      "rejected_motion_packet_cases": [
+        "wrong_base",
+        "truncated",
+        "corrupt",
+        "illegal_status"
+      ],
+      "fixed_roi_csv_reaggregated": true,
+      "csv_sha256": {
+        "full_temporal.csv": "5bf3652beb66a10756d5dc8559a4b4cd3594606c817a3ccca9446d4fa5168ba1",
+        "full_source_detail.csv": "9786d2625751a645ea2e5d26194d1989c62d5cd0c917f3bf855d6e5b24d53850",
+        "coral_temporal.csv": "ffb8c6b292368ab19bd9f0008aa8d44521bbf243e0fe8afd382844473cdc336d",
+        "coral_source_detail.csv": "91e3df22cfd052b9b8bc69cf3732c42f64fc0493717b54e1ec102a837104ab0c"
+      },
+      "preview_timeline_verified": true,
+      "b0_energy_within_2_percent": true,
+      "h265_within_2_percent_under_target": true
+    }
+  },
+  "opencv": "4.10.0",
+  "numpy": "1.26.4",
+  "ffmpeg": "ffmpeg version 9.0.1-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "code_sha256": {
+    "cache_motion_inputs.py": "f69b19eaf1d83e898ac7d16627a6fc36b686bcc1d12b5b9f496572c5c367295f",
+    "run_cache_motion.py": "77c2fbd232e842cf69469620cbe32a8facdae17c0214c798defa5ec0325060e1",
+    "cache_hevc_baseline.py": "14c1d6f65bae66966d326035e81c50e7e8ac4c5f1134f89226b4a26d62dfa934",
+    "compare_cache_motion.py": "1fe794f30721a6fef96f22daca322d190f7db69dddda196d0ba3a0a199eabe6f",
+    "coral_reference_sidecar.py": "538d1dfaa71dd7ef6f0ba39dbf83b6aea4f6e34ae55603802bc39cb757fae0ef",
+    "compare_seedvr2.py": "6eaf1216796870cc58f540d1a5a6a436d5b4246a60933b0fd2697744d4ecc977"
+  }
+}

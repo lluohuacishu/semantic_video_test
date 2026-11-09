@@ -1,0 +1,1547 @@
+{
+  "fps": 15,
+  "frame_shape": [
+    288,
+    512,
+    3
+  ],
+  "lane_limit_kbps": 40.0,
+  "motion_test_cap_bytes": 2000,
+  "clips": {
+    "moving_reef": {
+      "source_range": [
+        585,
+        675
+      ],
+      "base_start": 576,
+      "fixed_coral_roi": [
+        360,
+        24,
+        510,
+        272
+      ],
+      "rates": {
+        "base_bytes": 22995,
+        "semantic_bytes": 1213,
+        "base_kbps": 30.66,
+        "semantic_kbps": 1.6173333333333333,
+        "prior_hybrid_bytes": 29759,
+        "prior_hybrid_combined_kbps": 70.33866666666667
+      },
+      "base_sha256": "9f56d02efea041edae3a17f4d98afc6e57a6006f0d6779441bfb8240f714a0fe",
+      "rgb_sha256": "6aa8df5b7ff871b457fe207a334dd9cd82c832034a856c0198b91b4ebabba610",
+      "hevc": {
+        "h265_base": {
+          "target_bytes": 22995,
+          "bytes": 22735,
+          "kbps": 30.313333333333333,
+          "crf": 43.0625,
+          "sha256": "89238405eb6033b217e3ffa8a2dc4c2a54a201f409d2f77b1f25253901bf4a66",
+          "rgb_sha256": "963822132ae301c7feaaaff9202af5210c6031834909e76239a91a2846e44a55",
+          "stream": {
+            "codec_name": "hevc",
+            "width": 512,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "color_space": "bt709",
+            "avg_frame_rate": "15/1",
+            "duration": "6.000000",
+            "nb_read_frames": "90"
+          }
+        },
+        "h265_40": {
+          "target_bytes": 30000,
+          "bytes": 29602,
+          "kbps": 39.46933333333334,
+          "crf": 40.8125,
+          "sha256": "a3ecc61ee23c7b780ffb17bb0859e48fc1dd607d8d5d53c630139b9dd5d06d76",
+          "rgb_sha256": "484e8349b339c44202f31ac9ad3c59b6c2a93f7799bd04c3400f69779fd3ec51",
+          "stream": {
+            "codec_name": "hevc",
+            "width": 512,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "color_space": "bt709",
+            "avg_frame_rate": "15/1",
+            "duration": "6.000000",
+            "nb_read_frames": "90"
+          }
+        },
+        "h265_dual": {
+          "target_bytes": 52754,
+          "bytes": 52641,
+          "kbps": 70.188,
+          "crf": 36.375,
+          "sha256": "d30ccd0a0675ed60186913762169d3c2c298e3785aed368964f524f5f9d7f8f9",
+          "rgb_sha256": "3ae3888cb6ba1100c637b15e977fa1d894309a14a74ef6c83f3dcc83ba7eeb27",
+          "stream": {
+            "codec_name": "hevc",
+            "width": 512,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "color_space": "bt709",
+            "avg_frame_rate": "15/1",
+            "duration": "6.000000",
+            "nb_read_frames": "90"
+          }
+        }
+      },
+      "variants": {
+        "b1": {
+          "accepted_steps": 88,
+          "mean_effective_fraction": 0.43425081983024694,
+          "late_effective_fraction": 0.4132373951099537,
+          "b0": {
+            "sigma": 0.375,
+            "fine_energy": 3.2671658992767334,
+            "target_energy": 3.2753849029541016,
+            "relative_error": 0.0025093245285326207,
+            "rgb_sha256": "d9e5c31ab15f313194080ed2dc190016e4156d3530f3503629b582d8ff94e179"
+          },
+          "rgb_sha256": "70991975a4331ec7608649f4a8acf1350151c551df7a0819583b64db2005e8c0"
+        },
+        "b2": {
+          "accepted_steps": 88,
+          "mean_effective_fraction": 0.4419801311728395,
+          "late_effective_fraction": 0.4136076750578704,
+          "b0": {
+            "sigma": 0.38671875,
+            "fine_energy": 3.2408907413482666,
+            "target_energy": 3.247457504272461,
+            "relative_error": 0.0020221243589961958,
+            "rgb_sha256": "0bca3e90b77db7d54a44937361b21c16f5868e0eb9afe90fd298859576750008"
+          },
+          "rgb_sha256": "d4e97b30c4d45492d28de9f04482a36fe230fbc6af43966b3f90bab5c941244c"
+        },
+        "c": {
+          "accepted_steps": 89,
+          "mean_effective_fraction": 0.4354205096209491,
+          "late_effective_fraction": 0.41048244900173614,
+          "b0": null,
+          "rgb_sha256": "3a669a6a959e8893944d9f0ee2e62c6983bb1a8674e15059a30a81abe418d582"
+        }
+      },
+      "fixed_scopes": {
+        "full": {
+          "pairs": 89,
+          "mean_source_valid_pixels": 61890.25842696629,
+          "scores": {
+            "source": {
+              "full_temporal_mae": 0.0,
+              "fine_temporal_mae": 0.0,
+              "fine_energy": 2.9538536071777344,
+              "middle_ncc": 0.9876035071993998,
+              "middle_normalized_error": 0.0,
+              "fine_ncc": 0.8843170269891717,
+              "fine_normalized_error": 0.0,
+              "middle_ncc_to_source": 1.0000009218050538,
+              "fine_ncc_to_source": 1.000001411579794
+            },
+            "raw": {
+              "full_temporal_mae": 11.016335717370707,
+              "fine_temporal_mae": 6.917509401381532,
+              "fine_energy": 2.968714714050293,
+              "middle_ncc": 0.637474358289094,
+              "middle_normalized_error": 0.558087215074638,
+              "fine_ncc": 0.2450680966449804,
+              "fine_normalized_error": 0.8471342207289912,
+              "middle_ncc_to_source": 0.4058107182840542,
+              "fine_ncc_to_source": 0.06671605676314056,
+              "psnr_db": 23.94217924078739
+            },
+            "b1": {
+              "full_temporal_mae": 9.980616294054736,
+              "fine_temporal_mae": 6.1946474543197425,
+              "fine_energy": 2.7637948989868164,
+              "middle_ncc": 0.6632558598937687,
+              "middle_normalized_error": 0.5171354297211149,
+              "fine_ncc": 0.28538659515192905,
+              "fine_normalized_error": 0.8009168295293813,
+              "middle_ncc_to_source": 0.41478101997657274,
+              "fine_ncc_to_source": 0.06838798676221311,
+              "psnr_db": 24.09260319081723
+            },
+            "b0_b1": {
+              "full_temporal_mae": 10.712773191057822,
+              "fine_temporal_mae": 6.586348999080104,
+              "fine_energy": 2.8358426094055176,
+              "middle_ncc": 0.6413663163478132,
+              "middle_normalized_error": 0.5557448404034552,
+              "fine_ncc": 0.2557533994931247,
+              "fine_normalized_error": 0.846176525953315,
+              "middle_ncc_to_source": 0.4081418429994084,
+              "fine_ncc_to_source": 0.06949438868778467,
+              "psnr_db": 24.053247590516968
+            },
+            "b2": {
+              "full_temporal_mae": 10.05202550323307,
+              "fine_temporal_mae": 6.245102132798304,
+              "fine_energy": 2.754848003387451,
+              "middle_ncc": 0.6632576148283772,
+              "middle_normalized_error": 0.5219409526923903,
+              "fine_ncc": 0.27652663958813634,
+              "fine_normalized_error": 0.8112633864705948,
+              "middle_ncc_to_source": 0.41611183551065234,
+              "fine_ncc_to_source": 0.06896453450874979,
+              "psnr_db": 24.10339305047733
+            },
+            "b0_b2": {
+              "full_temporal_mae": 10.6642485666456,
+              "fine_temporal_mae": 6.532565763376386,
+              "fine_energy": 2.8117291927337646,
+              "middle_ncc": 0.6419424681095044,
+              "middle_normalized_error": 0.5553439591044608,
+              "fine_ncc": 0.25743092030150183,
+              "fine_normalized_error": 0.8452934448826481,
+              "middle_ncc_to_source": 0.4084823878514592,
+              "fine_ncc_to_source": 0.0699280872884505,
+              "psnr_db": 24.069545925654573
+            },
+            "c": {
+              "full_temporal_mae": 9.94128585564554,
+              "fine_temporal_mae": 6.1664792388956675,
+              "fine_energy": 2.7513177394866943,
+              "middle_ncc": 0.6683835273343441,
+              "middle_normalized_error": 0.5161797826665677,
+              "fine_ncc": 0.2882052290695356,
+              "fine_normalized_error": 0.8011074515579759,
+              "middle_ncc_to_source": 0.41620472268044345,
+              "fine_ncc_to_source": 0.06939006480078501,
+              "psnr_db": 24.107779335111104
+            },
+            "h265_base": {
+              "full_temporal_mae": 4.791961156713051,
+              "fine_temporal_mae": 3.1416676920257367,
+              "fine_energy": 1.3425740003585815,
+              "middle_ncc": 0.932425518678207,
+              "middle_normalized_error": 0.23833641590615942,
+              "fine_ncc": 0.7461657954801156,
+              "fine_normalized_error": 0.5295189101804413,
+              "middle_ncc_to_source": 0.787135112896316,
+              "fine_ncc_to_source": 0.34601419977217823,
+              "psnr_db": 27.18066940400253
+            },
+            "h265_40": {
+              "full_temporal_mae": 4.723121147131031,
+              "fine_temporal_mae": 3.1941850867828214,
+              "fine_energy": 1.501596450805664,
+              "middle_ncc": 0.9394289264634619,
+              "middle_normalized_error": 0.22346042119955487,
+              "fine_ncc": 0.7627919947647646,
+              "fine_normalized_error": 0.5077766947119566,
+              "middle_ncc_to_source": 0.8469571199167863,
+              "fine_ncc_to_source": 0.4311117128867646,
+              "psnr_db": 27.915344650797156
+            },
+            "h265_dual": {
+              "full_temporal_mae": 4.304962084710287,
+              "fine_temporal_mae": 3.1790431676319795,
+              "fine_energy": 1.8432260751724243,
+              "middle_ncc": 0.9627064009913137,
+              "middle_normalized_error": 0.17951035409188645,
+              "fine_ncc": 0.8138974771738041,
+              "fine_normalized_error": 0.45463234773157096,
+              "middle_ncc_to_source": 0.9266775628110212,
+              "fine_ncc_to_source": 0.6042466336565591,
+              "psnr_db": 29.49519636262199
+            },
+            "hybrid": {
+              "full_temporal_mae": 9.284494892690633,
+              "fine_temporal_mae": 5.841227270614732,
+              "fine_energy": 2.8010313510894775,
+              "middle_ncc": 0.7157704195040663,
+              "middle_normalized_error": 0.46760681678965693,
+              "fine_ncc": 0.3703031459886317,
+              "fine_normalized_error": 0.7507950229118292,
+              "middle_ncc_to_source": 0.4696472476271745,
+              "fine_ncc_to_source": 0.12502620447030638,
+              "psnr_db": 24.339503021971428
+            }
+          }
+        },
+        "full_last2": {
+          "pairs": 30,
+          "mean_source_valid_pixels": 60880.6,
+          "scores": {
+            "source": {
+              "full_temporal_mae": 0.0,
+              "fine_temporal_mae": 0.0,
+              "fine_energy": 3.0192716121673584,
+              "middle_ncc": 0.9863031222588565,
+              "middle_normalized_error": 0.0,
+              "fine_ncc": 0.8664022238891141,
+              "fine_normalized_error": 0.0,
+              "middle_ncc_to_source": 1.0000034265445708,
+              "fine_ncc_to_source": 1.0000022787150136
+            },
+            "raw": {
+              "full_temporal_mae": 10.831882440109547,
+              "fine_temporal_mae": 6.98482011647936,
+              "fine_energy": 2.9763119220733643,
+              "middle_ncc": 0.6589499977158574,
+              "middle_normalized_error": 0.528177915691471,
+              "fine_ncc": 0.277318946287611,
+              "fine_normalized_error": 0.830673382996609,
+              "middle_ncc_to_source": 0.3945157431122476,
+              "fine_ncc_to_source": 0.05983285121648521,
+              "psnr_db": 23.734414478130557
+            },
+            "b1": {
+              "full_temporal_mae": 9.991017852293396,
+              "fine_temporal_mae": 6.36101189596248,
+              "fine_energy": 2.7735700607299805,
+              "middle_ncc": 0.6728545759710627,
+              "middle_normalized_error": 0.5004123651531118,
+              "fine_ncc": 0.30349359808813764,
+              "fine_normalized_error": 0.7983309948267251,
+              "middle_ncc_to_source": 0.4027104470346658,
+              "fine_ncc_to_source": 0.06217607319005712,
+              "psnr_db": 23.87914562041309
+            },
+            "b0_b1": {
+              "full_temporal_mae": 10.523021017094663,
+              "fine_temporal_mae": 6.646330190432858,
+              "fine_energy": 2.8367044925689697,
+              "middle_ncc": 0.662496421424684,
+              "middle_normalized_error": 0.5259499554150662,
+              "fine_ncc": 0.2884761153994199,
+              "fine_normalized_error": 0.8293595649452411,
+              "middle_ncc_to_source": 0.39683049407711735,
+              "fine_ncc_to_source": 0.06245389584855026,
+              "psnr_db": 23.846414336376217
+            },
+            "b2": {
+              "full_temporal_mae": 10.080349162267344,
+              "fine_temporal_mae": 6.418022257226988,
+              "fine_energy": 2.7693755626678467,
+              "middle_ncc": 0.6694148306784631,
+              "middle_normalized_error": 0.5061135874867922,
+              "fine_ncc": 0.29350247401984786,
+              "fine_normalized_error": 0.807298161497444,
+              "middle_ncc_to_source": 0.40307810083683787,
+              "fine_ncc_to_source": 0.06164244460909731,
+              "psnr_db": 23.881266325438638
+            },
+            "b0_b2": {
+              "full_temporal_mae": 10.474337165698104,
+              "fine_temporal_mae": 6.592248700735538,
+              "fine_energy": 2.8118972778320312,
+              "middle_ncc": 0.6630507929481262,
+              "middle_normalized_error": 0.525561215831364,
+              "fine_ncc": 0.2901952986526411,
+              "fine_normalized_error": 0.8284767380644519,
+              "middle_ncc_to_source": 0.3971608701905759,
+              "fine_ncc_to_source": 0.06286035403137144,
+              "psnr_db": 23.86270970679979
+            },
+            "c": {
+              "full_temporal_mae": 10.017246907608225,
+              "fine_temporal_mae": 6.367517029918671,
+              "fine_energy": 2.7679100036621094,
+              "middle_ncc": 0.6705230553625607,
+              "middle_normalized_error": 0.5030664757913408,
+              "fine_ncc": 0.30062144369239857,
+              "fine_normalized_error": 0.8002708493745485,
+              "middle_ncc_to_source": 0.4030661503790194,
+              "fine_ncc_to_source": 0.06183995841628131,
+              "psnr_db": 23.88248801875261
+            },
+            "h265_base": {
+              "full_temporal_mae": 5.111862159976522,
+              "fine_temporal_mae": 3.414569392110678,
+              "fine_energy": 1.4064884185791016,
+              "middle_ncc": 0.9278043993229375,
+              "middle_normalized_error": 0.23756796819973827,
+              "fine_ncc": 0.7339022991378221,
+              "fine_normalized_error": 0.5429661351399637,
+              "middle_ncc_to_source": 0.7926487987339867,
+              "fine_ncc_to_source": 0.33494346247978835,
+              "psnr_db": 27.072604637986544
+            },
+            "h265_40": {
+              "full_temporal_mae": 4.975620928505961,
+              "fine_temporal_mae": 3.447365955862787,
+              "fine_energy": 1.571213960647583,
+              "middle_ncc": 0.9406956266066508,
+              "middle_normalized_error": 0.21772056219190636,
+              "fine_ncc": 0.7612536806120827,
+              "fine_normalized_error": 0.5171651971263338,
+              "middle_ncc_to_source": 0.8549721064089378,
+              "fine_ncc_to_source": 0.427287228717976,
+              "psnr_db": 27.84236197998913
+            },
+            "h265_dual": {
+              "full_temporal_mae": 4.472975868954971,
+              "fine_temporal_mae": 3.389382814476204,
+              "fine_energy": 1.9304332733154297,
+              "middle_ncc": 0.9654502255786939,
+              "middle_normalized_error": 0.16951184023787982,
+              "fine_ncc": 0.8131516624012495,
+              "fine_normalized_error": 0.4585195182728421,
+              "middle_ncc_to_source": 0.9324187676933158,
+              "fine_ncc_to_source": 0.6036298096725904,
+              "psnr_db": 29.48711136580341
+            },
+            "hybrid": {
+              "full_temporal_mae": 10.105213267855442,
+              "fine_temporal_mae": 6.465427786793604,
+              "fine_energy": 2.8604302406311035,
+              "middle_ncc": 0.6756992051117865,
+              "middle_normalized_error": 0.4968563572027346,
+              "fine_ncc": 0.3112457004964987,
+              "fine_normalized_error": 0.7928022821066982,
+              "middle_ncc_to_source": 0.4245945172894161,
+              "fine_ncc_to_source": 0.08593955302421369,
+              "psnr_db": 23.91994889430545
+            }
+          }
+        },
+        "coral": {
+          "pairs": 89,
+          "mean_source_valid_pixels": 18319.14606741573,
+          "scores": {
+            "source": {
+              "full_temporal_mae": 0.0,
+              "fine_temporal_mae": 0.0,
+              "fine_energy": 3.232114315032959,
+              "middle_ncc": 0.9880397831855349,
+              "middle_normalized_error": 0.0,
+              "fine_ncc": 0.9137575337564198,
+              "fine_normalized_error": 0.0,
+              "middle_ncc_to_source": 1.0000002193054742,
+              "fine_ncc_to_source": 0.9999998010507637
+            },
+            "raw": {
+              "full_temporal_mae": 13.219943521283682,
+              "fine_temporal_mae": 7.403599607252252,
+              "fine_energy": 3.410748243331909,
+              "middle_ncc": 0.4675565461208755,
+              "middle_normalized_error": 0.7108984740538713,
+              "fine_ncc": 0.11298766090691117,
+              "fine_normalized_error": 0.9028529359317325,
+              "middle_ncc_to_source": 0.35233458042366245,
+              "fine_ncc_to_source": 0.05932117802737067,
+              "psnr_db": 22.571124218383723
+            },
+            "b1": {
+              "full_temporal_mae": 12.550812099332436,
+              "fine_temporal_mae": 6.999325440389314,
+              "fine_energy": 3.2753849029541016,
+              "middle_ncc": 0.4891278097368681,
+              "middle_normalized_error": 0.6845332636155659,
+              "fine_ncc": 0.13094290313783744,
+              "fine_normalized_error": 0.8803648895187703,
+              "middle_ncc_to_source": 0.3550649820584222,
+              "fine_ncc_to_source": 0.058353383370768605,
+              "psnr_db": 22.65344254127372
+            },
+            "b0_b1": {
+              "full_temporal_mae": 12.913314813383677,
+              "fine_temporal_mae": 7.064092401522874,
+              "fine_energy": 3.2671658992767334,
+              "middle_ncc": 0.47214189089953706,
+              "middle_normalized_error": 0.7088653837949156,
+              "fine_ncc": 0.12002415197141046,
+              "fine_normalized_error": 0.904788065713376,
+              "middle_ncc_to_source": 0.3545710252436404,
+              "fine_ncc_to_source": 0.06167955649947867,
+              "psnr_db": 22.674106017181387
+            },
+            "b2": {
+              "full_temporal_mae": 12.440876262493836,
+              "fine_temporal_mae": 6.927415900445534,
+              "fine_energy": 3.247457504272461,
+              "middle_ncc": 0.4966984628001424,
+              "middle_normalized_error": 0.6801512969378515,
+              "fine_ncc": 0.13517353185423353,
+              "fine_normalized_error": 0.8786461509302446,
+              "middle_ncc_to_source": 0.35967736277598267,
+              "fine_ncc_to_source": 0.06111100015001135,
+              "psnr_db": 22.68029481030461
+            },
+            "b0_b2": {
+              "full_temporal_mae": 12.863602824821333,
+              "fine_temporal_mae": 7.008079467957022,
+              "fine_energy": 3.2408907413482666,
+              "middle_ncc": 0.47280854122667176,
+              "middle_normalized_error": 0.7084907682651798,
+              "fine_ncc": 0.12115992840433738,
+              "fine_normalized_error": 0.9043191111166311,
+              "middle_ncc_to_source": 0.3549061860946318,
+              "fine_ncc_to_source": 0.062045255299915315,
+              "psnr_db": 22.68929621828675
+            },
+            "c": {
+              "full_temporal_mae": 12.220351769408072,
+              "fine_temporal_mae": 6.776089517153417,
+              "fine_energy": 3.2253336906433105,
+              "middle_ncc": 0.508122929820241,
+              "middle_normalized_error": 0.669386330030658,
+              "fine_ncc": 0.15215977418714324,
+              "fine_normalized_error": 0.8647607859737002,
+              "middle_ncc_to_source": 0.3612201660072803,
+              "fine_ncc_to_source": 0.06156814538597332,
+              "psnr_db": 22.698529544100495
+            },
+            "h265_base": {
+              "full_temporal_mae": 5.357353767359961,
+              "fine_temporal_mae": 2.957677353760939,
+              "fine_energy": 1.4750889539718628,
+              "middle_ncc": 0.8883066446520276,
+              "middle_normalized_error": 0.31485462167135825,
+              "fine_ncc": 0.6170615746238838,
+              "fine_normalized_error": 0.6065833674266975,
+              "middle_ncc_to_source": 0.7436523322807724,
+              "fine_ncc_to_source": 0.3142097211607127,
+              "psnr_db": 25.953112362675906
+            },
+            "h265_40": {
+              "full_temporal_mae": 5.400623985968355,
+              "fine_temporal_mae": 3.114882731902645,
+              "fine_energy": 1.6626063585281372,
+              "middle_ncc": 0.8953607107928806,
+              "middle_normalized_error": 0.30347576030699935,
+              "fine_ncc": 0.6142383035107565,
+              "fine_normalized_error": 0.5926783550993636,
+              "middle_ncc_to_source": 0.808041576835393,
+              "fine_ncc_to_source": 0.3905345297895272,
+              "psnr_db": 26.673809597744373
+            },
+            "h265_dual": {
+              "full_temporal_mae": 4.647528259291869,
+              "fine_temporal_mae": 3.1029218879569114,
+              "fine_energy": 2.021789312362671,
+              "middle_ncc": 0.9449669535493633,
+              "middle_normalized_error": 0.22489549306731996,
+              "fine_ncc": 0.723745993465476,
+              "fine_normalized_error": 0.5039818792142767,
+              "middle_ncc_to_source": 0.9097220905611124,
+              "fine_ncc_to_source": 0.5758129848456937,
+              "psnr_db": 28.36268794021551
+            },
+            "hybrid": {
+              "full_temporal_mae": 10.72190012989112,
+              "fine_temporal_mae": 6.006973755622839,
+              "fine_energy": 3.1724116802215576,
+              "middle_ncc": 0.6129735222940224,
+              "middle_normalized_error": 0.5797831423830138,
+              "fine_ncc": 0.29093922121952054,
+              "fine_normalized_error": 0.7897135992865298,
+              "middle_ncc_to_source": 0.4084247691582938,
+              "fine_ncc_to_source": 0.09705475853163291,
+              "psnr_db": 22.93951767892167
+            }
+          }
+        },
+        "coral_last2": {
+          "pairs": 30,
+          "mean_source_valid_pixels": 17204.166666666668,
+          "scores": {
+            "source": {
+              "full_temporal_mae": 0.0,
+              "fine_temporal_mae": 0.0,
+              "fine_energy": 3.1583852767944336,
+              "middle_ncc": 0.9873125885082059,
+              "middle_normalized_error": 0.0,
+              "fine_ncc": 0.9044123534996881,
+              "fine_normalized_error": 0.0,
+              "middle_ncc_to_source": 1.0000002328649984,
+              "fine_ncc_to_source": 0.9999993289388889
+            },
+            "raw": {
+              "full_temporal_mae": 13.78899894042141,
+              "fine_temporal_mae": 7.518426843666747,
+              "fine_energy": 3.2758216857910156,
+              "middle_ncc": 0.4940379842469235,
+              "middle_normalized_error": 0.6862496012392966,
+              "fine_ncc": 0.12583647952691987,
+              "fine_normalized_error": 0.8969279723079651,
+              "middle_ncc_to_source": 0.38035895072464343,
+              "fine_ncc_to_source": 0.07497952341098797,
+              "psnr_db": 22.102721189350866
+            },
+            "b1": {
+              "full_temporal_mae": 13.572781575441995,
+              "fine_temporal_mae": 7.3928283028578345,
+              "fine_energy": 3.2316482067108154,
+              "middle_ncc": 0.49988877672888116,
+              "middle_normalized_error": 0.6778778294818284,
+              "fine_ncc": 0.12949988345934277,
+              "fine_normalized_error": 0.8900398753502953,
+              "middle_ncc_to_source": 0.3821322198339325,
+              "fine_ncc_to_source": 0.07512234672212989,
+              "psnr_db": 22.127572453358727
+            },
+            "b0_b1": {
+              "full_temporal_mae": 13.491737133688545,
+              "fine_temporal_mae": 7.179787917776701,
+              "fine_energy": 3.139671564102173,
+              "middle_ncc": 0.4983838631939328,
+              "middle_normalized_error": 0.6842248499502597,
+              "fine_ncc": 0.13359529234403617,
+              "fine_normalized_error": 0.898471732173309,
+              "middle_ncc_to_source": 0.3825731061653131,
+              "fine_ncc_to_source": 0.07754875780064974,
+              "psnr_db": 22.19400008761709
+            },
+            "b2": {
+              "full_temporal_mae": 13.57939937030758,
+              "fine_temporal_mae": 7.396828181763139,
+              "fine_energy": 3.2304117679595947,
+              "middle_ncc": 0.4993660439637129,
+              "middle_normalized_error": 0.6783973659554414,
+              "fine_ncc": 0.12865758657412138,
+              "fine_normalized_error": 0.8909371734300633,
+              "middle_ncc_to_source": 0.3821836273782162,
+              "fine_ncc_to_source": 0.0751612419206838,
+              "psnr_db": 22.1281839405183
+            },
+            "b0_b2": {
+              "full_temporal_mae": 13.443040082344393,
+              "fine_temporal_mae": 7.12373943448777,
+              "fine_energy": 3.1147735118865967,
+              "middle_ncc": 0.49904826516422585,
+              "middle_normalized_error": 0.683837977086929,
+              "fine_ncc": 0.13477585444042717,
+              "fine_normalized_error": 0.897941894669601,
+              "middle_ncc_to_source": 0.3829139998479172,
+              "fine_ncc_to_source": 0.07796294040378421,
+              "psnr_db": 22.207499090660235
+            },
+            "c": {
+              "full_temporal_mae": 13.627272493339792,
+              "fine_temporal_mae": 7.420814316420441,
+              "fine_energy": 3.2398810386657715,
+              "middle_ncc": 0.49815710922395035,
+              "middle_normalized_error": 0.6807290654353352,
+              "fine_ncc": 0.12722232153407595,
+              "fine_normalized_error": 0.8928561384601089,
+              "middle_ncc_to_source": 0.38208870582624954,
+              "fine_ncc_to_source": 0.07534220907911196,
+              "psnr_db": 22.123862459583037
+            },
+            "h265_base": {
+              "full_temporal_mae": 6.172761973238072,
+              "fine_temporal_mae": 3.285127512714943,
+              "fine_energy": 1.5850878953933716,
+              "middle_ncc": 0.8862867737254094,
+              "middle_normalized_error": 0.3118646738757288,
+              "fine_ncc": 0.5963619455469956,
+              "fine_normalized_error": 0.6021355293029214,
+              "middle_ncc_to_source": 0.7946831553581177,
+              "fine_ncc_to_source": 0.3517976783597039,
+              "psnr_db": 25.714047223223098
+            },
+            "h265_40": {
+              "full_temporal_mae": 6.0226854262533305,
+              "fine_temporal_mae": 3.3860902836643256,
+              "fine_energy": 1.7685664892196655,
+              "middle_ncc": 0.9083465635453739,
+              "middle_normalized_error": 0.28473454367329176,
+              "fine_ncc": 0.6346688507598144,
+              "fine_normalized_error": 0.5733113881054211,
+              "middle_ncc_to_source": 0.8512288761480648,
+              "fine_ncc_to_source": 0.43214196870322835,
+              "psnr_db": 26.47894552084857
+            },
+            "h265_dual": {
+              "full_temporal_mae": 5.013836628118188,
+              "fine_temporal_mae": 3.324020707193025,
+              "fine_energy": 2.0994091033935547,
+              "middle_ncc": 0.9539540728211952,
+              "middle_normalized_error": 0.20504632864820665,
+              "fine_ncc": 0.7305119283174482,
+              "fine_normalized_error": 0.48910810628858886,
+              "middle_ncc_to_source": 0.9303098422920005,
+              "fine_ncc_to_source": 0.6028988065382527,
+              "psnr_db": 28.205401440451197
+            },
+            "hybrid": {
+              "full_temporal_mae": 13.398583706708646,
+              "fine_temporal_mae": 7.315662963187212,
+              "fine_energy": 3.2482292652130127,
+              "middle_ncc": 0.5115444106180288,
+              "middle_normalized_error": 0.6670614047102444,
+              "fine_ncc": 0.14779196492389662,
+              "fine_normalized_error": 0.8786614089700436,
+              "middle_ncc_to_source": 0.38028263798776607,
+              "fine_ncc_to_source": 0.07445726661098527,
+              "psnr_db": 22.1205345756383
+            }
+          }
+        }
+      },
+      "fine_ncc_deltas_by_second": {
+        "full": [
+          {
+            "source_start_frame": 585,
+            "pairs": 14,
+            "b1_minus_raw": 0.08094198668129703,
+            "b2_minus_raw": 0.07052446020031941,
+            "c_minus_b2": 0.013606225350211667
+          },
+          {
+            "source_start_frame": 600,
+            "pairs": 15,
+            "b1_minus_raw": 0.04222134924677694,
+            "b2_minus_raw": 0.03199239559000881,
+            "c_minus_b2": 0.015209049304656939
+          },
+          {
+            "source_start_frame": 615,
+            "pairs": 15,
+            "b1_minus_raw": 0.04697829207039205,
+            "b2_minus_raw": 0.04584631177319707,
+            "c_minus_b2": 0.014184125297803196
+          },
+          {
+            "source_start_frame": 630,
+            "pairs": 15,
+            "b1_minus_raw": 0.019436854310825064,
+            "b2_minus_raw": 0.007998436300083815,
+            "c_minus_b2": 0.012832271710904472
+          },
+          {
+            "source_start_frame": 645,
+            "pairs": 15,
+            "b1_minus_raw": 0.030404790784827745,
+            "b2_minus_raw": 0.015298857848997182,
+            "c_minus_b2": 0.0028489955670349277
+          },
+          {
+            "source_start_frame": 660,
+            "pairs": 15,
+            "b1_minus_raw": 0.02214066177691952,
+            "b2_minus_raw": 0.017027176013397163,
+            "c_minus_b2": 0.011190947687135319
+          }
+        ],
+        "coral": [
+          {
+            "source_start_frame": 585,
+            "pairs": 14,
+            "b1_minus_raw": 0.02105931662351956,
+            "b2_minus_raw": 0.025107089956151733,
+            "c_minus_b2": 0.02679911265549
+          },
+          {
+            "source_start_frame": 600,
+            "pairs": 15,
+            "b1_minus_raw": 0.04159890270654176,
+            "b2_minus_raw": 0.04738175352853881,
+            "c_minus_b2": 0.031003398672045445
+          },
+          {
+            "source_start_frame": 615,
+            "pairs": 15,
+            "b1_minus_raw": 0.031720865406108786,
+            "b2_minus_raw": 0.04334689478128707,
+            "c_minus_b2": 0.028117900121397806
+          },
+          {
+            "source_start_frame": 630,
+            "pairs": 15,
+            "b1_minus_raw": 0.006926762136526515,
+            "b2_minus_raw": 0.011123453523495096,
+            "c_minus_b2": 0.017528175426523886
+          },
+          {
+            "source_start_frame": 645,
+            "pairs": 15,
+            "b1_minus_raw": 0.004546215026167434,
+            "b2_minus_raw": 0.00266004860592062,
+            "c_minus_b2": -0.0008478467781856445
+          },
+          {
+            "source_start_frame": 660,
+            "pairs": 15,
+            "b1_minus_raw": 0.0028325320826322873,
+            "b2_minus_raw": 0.0029726897878123294,
+            "c_minus_b2": -0.0019881231784292623
+          }
+        ]
+      },
+      "previews": {
+        "cache_comparison": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "1c94ad53454ca43ea702adbcf00928db115a39e2cfcff6c78809c4efb1969f30"
+        },
+        "coral_closeup": {
+          "width": 600,
+          "height": 1044,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "3cd4f1a5a09ddee0aecb5a4d8ab23bc9bbd7269772ec05cdbd5066aba356ae36"
+        },
+        "blur_control": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "a15e00d23536d22b692f9d85a28c656797fd841a687ba46eaaaef0de59375681"
+        },
+        "h265_rates": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "fa4c801e3a29136f7093a11b5e9664d4b7031910654bcb1b38873ba7b805de9e"
+        },
+        "prior_hybrid_vs_h265": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "8d79cab7b27290b93fc34f42e3219c84ad94c10fae07ef24d1ae4b1cf5bafa04"
+        }
+      }
+    },
+    "holdout_reef": {
+      "source_range": [
+        832,
+        922
+      ],
+      "base_start": 832,
+      "fixed_coral_roi": [
+        145,
+        190,
+        510,
+        286
+      ],
+      "rates": {
+        "base_bytes": 18956,
+        "semantic_bytes": 1213,
+        "base_kbps": 25.27466666666667,
+        "semantic_kbps": 1.6173333333333333
+      },
+      "base_sha256": "af8070624284da42201acecfe1ce35f81a5929261257b7ca5658ddd7bbf3cedd",
+      "rgb_sha256": "93e40b2c421145332229b6aad3d6ce6acc5c1fe31a71b023397d1517943bed52",
+      "hevc": {
+        "h265_base": {
+          "target_bytes": 18956,
+          "bytes": 18946,
+          "kbps": 25.261333333333333,
+          "crf": 44.0625,
+          "sha256": "bea3df60d7e653c0478e5a4b579b8105985e94e491e20bdab738397829d53d03",
+          "rgb_sha256": "5dc3c6b15c54ed190772deb2edf97eac2b1d352e504418e9f9afaadf78a1eada",
+          "stream": {
+            "codec_name": "hevc",
+            "width": 512,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "color_space": "bt709",
+            "avg_frame_rate": "15/1",
+            "duration": "6.000000",
+            "nb_read_frames": "90"
+          }
+        },
+        "h265_40": {
+          "target_bytes": 30000,
+          "bytes": 29849,
+          "kbps": 39.79866666666666,
+          "crf": 40.1875,
+          "sha256": "ac79a99a7a3cfff640bcc8f7c77d10a7e429a348e7405187154305a344d0fa3a",
+          "rgb_sha256": "d4f130ec030c1e3e35231bb7cdf58d5f7e2c988d6167bf177115ea1148ea20cc",
+          "stream": {
+            "codec_name": "hevc",
+            "width": 512,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "color_space": "bt709",
+            "avg_frame_rate": "15/1",
+            "duration": "6.000000",
+            "nb_read_frames": "90"
+          }
+        },
+        "h265_dual": {
+          "target_bytes": 52754,
+          "bytes": 52350,
+          "kbps": 69.8,
+          "crf": 35.4375,
+          "sha256": "29a618a6f306a1de32f511061d7640bb74e5db5a6b16c9f46d91aeca856c1c0c",
+          "rgb_sha256": "750787ef09e48becf8c079497c9308ba24f8113e5ef0c4400b0a5ce2e521cec4",
+          "stream": {
+            "codec_name": "hevc",
+            "width": 512,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "color_space": "bt709",
+            "avg_frame_rate": "15/1",
+            "duration": "6.000000",
+            "nb_read_frames": "90"
+          }
+        }
+      },
+      "variants": {
+        "b1": {
+          "accepted_steps": 89,
+          "mean_effective_fraction": 0.2757563084731867,
+          "late_effective_fraction": 0.2923638237847222,
+          "b0": {
+            "sigma": 0.38671875,
+            "fine_energy": 6.847201824188232,
+            "target_energy": 6.828973293304443,
+            "relative_error": 0.0026692930402380495,
+            "rgb_sha256": "340d91c3722d22bd85d2aae88626dc1280214f50166f8adb7a54cd00bc82cdbc"
+          },
+          "rgb_sha256": "33970d79179141bcbe2e6ca98a07a616fe60f3ae0d9966c7cf8a9b53af25b641"
+        },
+        "b2": {
+          "accepted_steps": 89,
+          "mean_effective_fraction": 0.28272810570987655,
+          "late_effective_fraction": 0.30624412254050926,
+          "b0": {
+            "sigma": 0.38671875,
+            "fine_energy": 6.847201824188232,
+            "target_energy": 6.837209701538086,
+            "relative_error": 0.0014614328192827954,
+            "rgb_sha256": "340d91c3722d22bd85d2aae88626dc1280214f50166f8adb7a54cd00bc82cdbc"
+          },
+          "rgb_sha256": "ab095c8f81ac2f5c3b92c597c30652086484fe4e9ba4336ddb70be7458820f93"
+        },
+        "c": {
+          "accepted_steps": 89,
+          "mean_effective_fraction": 0.2860301830150463,
+          "late_effective_fraction": 0.30772388599537037,
+          "b0": null,
+          "rgb_sha256": "1f9440a0915cdc1c064fca92ae4bebf6ed90f7dcf97fd3a1777e46ebd16cfb02"
+        }
+      },
+      "fixed_scopes": {
+        "full": {
+          "pairs": 89,
+          "mean_source_valid_pixels": 50254.247191011236,
+          "scores": {
+            "source": {
+              "full_temporal_mae": 0.0,
+              "fine_temporal_mae": 0.0,
+              "fine_energy": 3.079712152481079,
+              "middle_ncc": 0.991224524936644,
+              "middle_normalized_error": 0.0,
+              "fine_ncc": 0.9535625675107318,
+              "fine_normalized_error": 0.0,
+              "middle_ncc_to_source": 1.0000003380555986,
+              "fine_ncc_to_source": 1.000001114313244
+            },
+            "raw": {
+              "full_temporal_mae": 7.558653572211908,
+              "fine_temporal_mae": 4.859858458075431,
+              "fine_energy": 3.2838284969329834,
+              "middle_ncc": 0.8755017093300076,
+              "middle_normalized_error": 0.28748696538983626,
+              "fine_ncc": 0.7192568758189074,
+              "fine_normalized_error": 0.4546523008788123,
+              "middle_ncc_to_source": 0.3629437245588237,
+              "fine_ncc_to_source": 0.0722318052845395,
+              "psnr_db": 21.774456656515532
+            },
+            "b1": {
+              "full_temporal_mae": 6.854990109422245,
+              "fine_temporal_mae": 4.338331576256733,
+              "fine_energy": 3.126737356185913,
+              "middle_ncc": 0.8864267726443092,
+              "middle_normalized_error": 0.26749597663536917,
+              "fine_ncc": 0.7412185508036884,
+              "fine_normalized_error": 0.4286101969931776,
+              "middle_ncc_to_source": 0.3701226666430548,
+              "fine_ncc_to_source": 0.0760342974499961,
+              "psnr_db": 21.876851612080884
+            },
+            "b0_b1": {
+              "full_temporal_mae": 7.272868759289841,
+              "fine_temporal_mae": 4.554996546493471,
+              "fine_energy": 3.1147284507751465,
+              "middle_ncc": 0.8769988654074851,
+              "middle_normalized_error": 0.28596138938754456,
+              "fine_ncc": 0.7261664962247323,
+              "fine_normalized_error": 0.4515187956588112,
+              "middle_ncc_to_source": 0.36550994339798987,
+              "fine_ncc_to_source": 0.07504823397328397,
+              "psnr_db": 21.882948879882754
+            },
+            "b2": {
+              "full_temporal_mae": 6.909801742957384,
+              "fine_temporal_mae": 4.378326434984086,
+              "fine_energy": 3.125488042831421,
+              "middle_ncc": 0.8864959208044085,
+              "middle_normalized_error": 0.2692867338915301,
+              "fine_ncc": 0.7403955155078014,
+              "fine_normalized_error": 0.43271625514362105,
+              "middle_ncc_to_source": 0.36994333938761687,
+              "fine_ncc_to_source": 0.07575237071900463,
+              "psnr_db": 21.8789886406527
+            },
+            "b0_b2": {
+              "full_temporal_mae": 7.272868759289841,
+              "fine_temporal_mae": 4.554996546493471,
+              "fine_energy": 3.1147284507751465,
+              "middle_ncc": 0.8769988654074851,
+              "middle_normalized_error": 0.28596138938754456,
+              "fine_ncc": 0.7261664962247323,
+              "fine_normalized_error": 0.4515187956588112,
+              "middle_ncc_to_source": 0.36550994339798987,
+              "fine_ncc_to_source": 0.07504823397328397,
+              "psnr_db": 21.882948879882754
+            },
+            "c": {
+              "full_temporal_mae": 6.737398498572875,
+              "fine_temporal_mae": 4.239261009900108,
+              "fine_energy": 3.1303296089172363,
+              "middle_ncc": 0.8881063721280936,
+              "middle_normalized_error": 0.26329213219330944,
+              "fine_ncc": 0.7487608264282202,
+              "fine_normalized_error": 0.41840161356633865,
+              "middle_ncc_to_source": 0.37039126982631415,
+              "fine_ncc_to_source": 0.07559702803582133,
+              "psnr_db": 21.878278065608274
+            },
+            "h265_base": {
+              "full_temporal_mae": 2.1678237372936837,
+              "fine_temporal_mae": 1.4138944858383595,
+              "fine_energy": 1.970616340637207,
+              "middle_ncc": 0.9821886265601735,
+              "middle_normalized_error": 0.08406829287234856,
+              "fine_ncc": 0.9683863550613093,
+              "fine_normalized_error": 0.1651231949661212,
+              "middle_ncc_to_source": 0.8693248927115014,
+              "fine_ncc_to_source": 0.54096629726463,
+              "psnr_db": 26.192471026433854
+            },
+            "h265_40": {
+              "full_temporal_mae": 2.097668165359102,
+              "fine_temporal_mae": 1.4364356845439918,
+              "fine_energy": 2.3315508365631104,
+              "middle_ncc": 0.985141844846487,
+              "middle_normalized_error": 0.07650669303619864,
+              "fine_ncc": 0.9669505852115272,
+              "fine_normalized_error": 0.16071631420149804,
+              "middle_ncc_to_source": 0.9314785347260846,
+              "fine_ncc_to_source": 0.6864501506422584,
+              "psnr_db": 27.700291744418998
+            },
+            "h265_dual": {
+              "full_temporal_mae": 1.8962008487550552,
+              "fine_temporal_mae": 1.3603324632527285,
+              "fine_energy": 2.6344263553619385,
+              "middle_ncc": 0.9878135373583214,
+              "middle_normalized_error": 0.06566442435783915,
+              "fine_ncc": 0.9647003883162162,
+              "fine_normalized_error": 0.1452926812313777,
+              "middle_ncc_to_source": 0.9699519927198003,
+              "fine_ncc_to_source": 0.8193603222557507,
+              "psnr_db": 29.699628969288923
+            }
+          }
+        },
+        "full_last2": {
+          "pairs": 30,
+          "mean_source_valid_pixels": 51188.5,
+          "scores": {
+            "source": {
+              "full_temporal_mae": 0.0,
+              "fine_temporal_mae": 0.0,
+              "fine_energy": 3.1723623275756836,
+              "middle_ncc": 0.990356311736273,
+              "middle_normalized_error": 0.0,
+              "fine_ncc": 0.9455313558432644,
+              "fine_normalized_error": 0.0,
+              "middle_ncc_to_source": 1.0000006901251788,
+              "fine_ncc_to_source": 1.0000007174531587
+            },
+            "raw": {
+              "full_temporal_mae": 8.22870138271617,
+              "fine_temporal_mae": 5.172383292878283,
+              "fine_energy": 3.3532464504241943,
+              "middle_ncc": 0.849599092114939,
+              "middle_normalized_error": 0.31729122055389014,
+              "fine_ncc": 0.6841922727756738,
+              "fine_normalized_error": 0.4887425560317419,
+              "middle_ncc_to_source": 0.34343299085908047,
+              "fine_ncc_to_source": 0.06640997084941642,
+              "psnr_db": 21.590175916444156
+            },
+            "b1": {
+              "full_temporal_mae": 7.4645038884059245,
+              "fine_temporal_mae": 4.625553611488257,
+              "fine_energy": 3.1934781074523926,
+              "middle_ncc": 0.8626051822222023,
+              "middle_normalized_error": 0.29451359246811837,
+              "fine_ncc": 0.7067179680487696,
+              "fine_normalized_error": 0.4604671005168701,
+              "middle_ncc_to_source": 0.35154711819928514,
+              "fine_ncc_to_source": 0.06933322102018687,
+              "psnr_db": 21.69278802629986
+            },
+            "b0_b1": {
+              "full_temporal_mae": 7.9332556282986735,
+              "fine_temporal_mae": 4.858192931110829,
+              "fine_energy": 3.1825220584869385,
+              "middle_ncc": 0.8512282477926381,
+              "middle_normalized_error": 0.31574533975529073,
+              "fine_ncc": 0.6914470640255808,
+              "fine_normalized_error": 0.48555782431824607,
+              "middle_ncc_to_source": 0.3459619723493927,
+              "fine_ncc_to_source": 0.06888059680429313,
+              "psnr_db": 21.696359980930144
+            },
+            "b2": {
+              "full_temporal_mae": 7.512638641980132,
+              "fine_temporal_mae": 4.651944721877635,
+              "fine_energy": 3.1977579593658447,
+              "middle_ncc": 0.8624815493942711,
+              "middle_normalized_error": 0.29601675103119635,
+              "fine_ncc": 0.7082463991517173,
+              "fine_normalized_error": 0.4623487595088639,
+              "middle_ncc_to_source": 0.3507132685315401,
+              "fine_ncc_to_source": 0.06937558144157475,
+              "psnr_db": 21.693845486035155
+            },
+            "b0_b2": {
+              "full_temporal_mae": 7.9332556282986735,
+              "fine_temporal_mae": 4.858192931110829,
+              "fine_energy": 3.1825220584869385,
+              "middle_ncc": 0.8512282477926381,
+              "middle_normalized_error": 0.31574533975529073,
+              "fine_ncc": 0.6914470640255808,
+              "fine_normalized_error": 0.48555782431824607,
+              "middle_ncc_to_source": 0.3459619723493927,
+              "fine_ncc_to_source": 0.06888059680429313,
+              "psnr_db": 21.696359980930144
+            },
+            "c": {
+              "full_temporal_mae": 7.370275997864104,
+              "fine_temporal_mae": 4.535079310619898,
+              "fine_energy": 3.1994123458862305,
+              "middle_ncc": 0.8644641973713851,
+              "middle_normalized_error": 0.2909168747043688,
+              "fine_ncc": 0.7159105236136437,
+              "fine_normalized_error": 0.4507240855572737,
+              "middle_ncc_to_source": 0.3514021880502861,
+              "fine_ncc_to_source": 0.07011436544512416,
+              "psnr_db": 21.695194098145873
+            },
+            "h265_base": {
+              "full_temporal_mae": 2.4107451998801,
+              "fine_temporal_mae": 1.5776137284456795,
+              "fine_energy": 2.028808355331421,
+              "middle_ncc": 0.9812136664345649,
+              "middle_normalized_error": 0.09366430216683211,
+              "fine_ncc": 0.9660826960932015,
+              "fine_normalized_error": 0.18517262064169804,
+              "middle_ncc_to_source": 0.8685107493392632,
+              "fine_ncc_to_source": 0.5491738838930095,
+              "psnr_db": 26.128398404213456
+            },
+            "h265_40": {
+              "full_temporal_mae": 2.3240913155746243,
+              "fine_temporal_mae": 1.5997082461860737,
+              "fine_energy": 2.373913288116455,
+              "middle_ncc": 0.9835448821931035,
+              "middle_normalized_error": 0.08444699161449812,
+              "fine_ncc": 0.9635122936272043,
+              "fine_normalized_error": 0.1801765049871452,
+              "middle_ncc_to_source": 0.9315892458551813,
+              "fine_ncc_to_source": 0.6912898915904145,
+              "psnr_db": 27.66833329127032
+            },
+            "h265_dual": {
+              "full_temporal_mae": 2.081060464885098,
+              "fine_temporal_mae": 1.4974916660663529,
+              "fine_energy": 2.716627836227417,
+              "middle_ncc": 0.9859097693105733,
+              "middle_normalized_error": 0.07176621506028268,
+              "fine_ncc": 0.957236630189434,
+              "fine_normalized_error": 0.15970426876936164,
+              "middle_ncc_to_source": 0.9692070982148239,
+              "fine_ncc_to_source": 0.8206901888468666,
+              "psnr_db": 29.60729916446514
+            }
+          }
+        },
+        "coral": {
+          "pairs": 89,
+          "mean_source_valid_pixels": 28767.08988764045,
+          "scores": {
+            "source": {
+              "full_temporal_mae": 0.0,
+              "fine_temporal_mae": 0.0,
+              "fine_energy": 6.598105430603027,
+              "middle_ncc": 0.9957741011725394,
+              "middle_normalized_error": 0.0,
+              "fine_ncc": 0.9731350654009886,
+              "fine_normalized_error": 0.0,
+              "middle_ncc_to_source": 0.9999994427156509,
+              "fine_ncc_to_source": 1.0000013611528635
+            },
+            "raw": {
+              "full_temporal_mae": 7.849474757139967,
+              "fine_temporal_mae": 4.8977946084613695,
+              "fine_energy": 7.214670181274414,
+              "middle_ncc": 0.887579116620546,
+              "middle_normalized_error": 0.27512832168711326,
+              "fine_ncc": 0.7109050600884571,
+              "fine_normalized_error": 0.44625184868674317,
+              "middle_ncc_to_source": 0.31253733965652314,
+              "fine_ncc_to_source": 0.047227033120100875,
+              "psnr_db": 17.277865155303857
+            },
+            "b1": {
+              "full_temporal_mae": 7.011781595825208,
+              "fine_temporal_mae": 4.31480746294777,
+              "fine_energy": 6.828973293304443,
+              "middle_ncc": 0.9001955440896062,
+              "middle_normalized_error": 0.250759569365817,
+              "fine_ncc": 0.7382704609565202,
+              "fine_normalized_error": 0.4134583201038242,
+              "middle_ncc_to_source": 0.3200518314673328,
+              "fine_ncc_to_source": 0.04949040320090981,
+              "psnr_db": 17.375048438840533
+            },
+            "b0_b1": {
+              "full_temporal_mae": 7.546958176009492,
+              "fine_temporal_mae": 4.578476838059819,
+              "fine_energy": 6.847201824188232,
+              "middle_ncc": 0.8890957846959553,
+              "middle_normalized_error": 0.2734078672856641,
+              "fine_ncc": 0.7202821877039971,
+              "fine_normalized_error": 0.44145939689592845,
+              "middle_ncc_to_source": 0.3151412266641961,
+              "fine_ncc_to_source": 0.049376475674111166,
+              "psnr_db": 17.372327912454697
+            },
+            "b2": {
+              "full_temporal_mae": 7.085503613435844,
+              "fine_temporal_mae": 4.359361474515295,
+              "fine_energy": 6.837209701538086,
+              "middle_ncc": 0.8998918133543866,
+              "middle_normalized_error": 0.2536713017170169,
+              "fine_ncc": 0.7375827615126116,
+              "fine_normalized_error": 0.41744302184221027,
+              "middle_ncc_to_source": 0.3201845994203831,
+              "fine_ncc_to_source": 0.04916918260413329,
+              "psnr_db": 17.376305292685338
+            },
+            "b0_b2": {
+              "full_temporal_mae": 7.546958176009492,
+              "fine_temporal_mae": 4.578476838059819,
+              "fine_energy": 6.847201824188232,
+              "middle_ncc": 0.8890957846959553,
+              "middle_normalized_error": 0.2734078672856641,
+              "fine_ncc": 0.7202821877039971,
+              "fine_normalized_error": 0.44145939689592845,
+              "middle_ncc_to_source": 0.3151412266641961,
+              "fine_ncc_to_source": 0.049376475674111166,
+              "psnr_db": 17.372327912454697
+            },
+            "c": {
+              "full_temporal_mae": 6.92276261050588,
+              "fine_temporal_mae": 4.240542225864469,
+              "fine_energy": 6.845916271209717,
+              "middle_ncc": 0.9014250643066557,
+              "middle_normalized_error": 0.2477346998924434,
+              "fine_ncc": 0.744178065046089,
+              "fine_normalized_error": 0.4056068774960108,
+              "middle_ncc_to_source": 0.3202544434804249,
+              "fine_ncc_to_source": 0.04921433547965531,
+              "psnr_db": 17.37579823024204
+            },
+            "h265_base": {
+              "full_temporal_mae": 1.3926423874538085,
+              "fine_temporal_mae": 1.0061127827370984,
+              "fine_energy": 4.458897113800049,
+              "middle_ncc": 0.995796289089354,
+              "middle_normalized_error": 0.043562276143651345,
+              "fine_ncc": 0.9890487177436137,
+              "fine_normalized_error": 0.11169558774260248,
+              "middle_ncc_to_source": 0.9121220721853975,
+              "fine_ncc_to_source": 0.5868015176762881,
+              "psnr_db": 23.22823541678348
+            },
+            "h265_40": {
+              "full_temporal_mae": 1.4005458152519548,
+              "fine_temporal_mae": 1.0327288107391757,
+              "fine_energy": 5.171262264251709,
+              "middle_ncc": 0.9956201861936202,
+              "middle_normalized_error": 0.041984447162116974,
+              "fine_ncc": 0.98598247840257,
+              "fine_normalized_error": 0.11139289580068838,
+              "middle_ncc_to_source": 0.9564128909015822,
+              "fine_ncc_to_source": 0.7238290665758943,
+              "psnr_db": 24.74967654964713
+            },
+            "h265_dual": {
+              "full_temporal_mae": 1.3002407329542702,
+              "fine_temporal_mae": 0.9783985506014304,
+              "fine_energy": 5.778569221496582,
+              "middle_ncc": 0.9954091269353337,
+              "middle_normalized_error": 0.03809198016673416,
+              "fine_ncc": 0.9816883379963476,
+              "fine_normalized_error": 0.10141162274216518,
+              "middle_ncc_to_source": 0.9810817558213967,
+              "fine_ncc_to_source": 0.8427564266586528,
+              "psnr_db": 26.760348147778362
+            }
+          }
+        },
+        "coral_last2": {
+          "pairs": 30,
+          "mean_source_valid_pixels": 28867.2,
+          "scores": {
+            "source": {
+              "full_temporal_mae": 0.0,
+              "fine_temporal_mae": 0.0,
+              "fine_energy": 6.670648097991943,
+              "middle_ncc": 0.9952323047128794,
+              "middle_normalized_error": 0.0,
+              "fine_ncc": 0.9670179282935785,
+              "fine_normalized_error": 0.0,
+              "middle_ncc_to_source": 0.9999996203703536,
+              "fine_ncc_to_source": 1.000000610011796
+            },
+            "raw": {
+              "full_temporal_mae": 8.604885114709196,
+              "fine_temporal_mae": 5.218623730320802,
+              "fine_energy": 7.303060054779053,
+              "middle_ncc": 0.8623640361729183,
+              "middle_normalized_error": 0.30425243318274375,
+              "fine_ncc": 0.6790500851123927,
+              "fine_normalized_error": 0.4776622688461636,
+              "middle_ncc_to_source": 0.29405293247336484,
+              "fine_ncc_to_source": 0.04317980553089128,
+              "psnr_db": 17.12659791491282
+            },
+            "b1": {
+              "full_temporal_mae": 7.660524549344354,
+              "fine_temporal_mae": 4.5783326995041085,
+              "fine_energy": 6.888248920440674,
+              "middle_ncc": 0.8774314984052972,
+              "middle_normalized_error": 0.276171299150416,
+              "fine_ncc": 0.7081044892601638,
+              "fine_normalized_error": 0.44098259388855515,
+              "middle_ncc_to_source": 0.3033722870558648,
+              "fine_ncc_to_source": 0.0459582775220087,
+              "psnr_db": 17.230300227041827
+            },
+            "b0_b1": {
+              "full_temporal_mae": 8.290963644869148,
+              "fine_temporal_mae": 4.890103665088174,
+              "fine_energy": 6.935065746307373,
+              "middle_ncc": 0.8639936693827892,
+              "middle_normalized_error": 0.3025022118091812,
+              "fine_ncc": 0.6886002652461546,
+              "fine_normalized_error": 0.4729375680113273,
+              "middle_ncc_to_source": 0.2966115787416298,
+              "fine_ncc_to_source": 0.044994706710564894,
+              "psnr_db": 17.219109509562315
+            },
+            "b2": {
+              "full_temporal_mae": 7.774469596982042,
+              "fine_temporal_mae": 4.6397080134778115,
+              "fine_energy": 6.905956745147705,
+              "middle_ncc": 0.876116649651544,
+              "middle_normalized_error": 0.2806421192749364,
+              "fine_ncc": 0.7069169381552599,
+              "fine_normalized_error": 0.4457946569653551,
+              "middle_ncc_to_source": 0.30325534735207693,
+              "fine_ncc_to_source": 0.04679493114211816,
+              "psnr_db": 17.23336391566652
+            },
+            "b0_b2": {
+              "full_temporal_mae": 8.290963644869148,
+              "fine_temporal_mae": 4.890103665088174,
+              "fine_energy": 6.935065746307373,
+              "middle_ncc": 0.8639936693827892,
+              "middle_normalized_error": 0.3025022118091812,
+              "fine_ncc": 0.6886002652461546,
+              "fine_normalized_error": 0.4729375680113273,
+              "middle_ncc_to_source": 0.2966115787416298,
+              "fine_ncc_to_source": 0.044994706710564894,
+              "psnr_db": 17.219109509562315
+            },
+            "c": {
+              "full_temporal_mae": 7.641919153702125,
+              "fine_temporal_mae": 4.545059376068109,
+              "fine_energy": 6.916532516479492,
+              "middle_ncc": 0.8779375793240812,
+              "middle_normalized_error": 0.2755600710241355,
+              "fine_ncc": 0.7128311023690725,
+              "fine_normalized_error": 0.43645316585047705,
+              "middle_ncc_to_source": 0.30366767926626764,
+              "fine_ncc_to_source": 0.047093031357651055,
+              "psnr_db": 17.232936645382697
+            },
+            "h265_base": {
+              "full_temporal_mae": 1.6324672655982972,
+              "fine_temporal_mae": 1.1565507593420257,
+              "fine_energy": 4.497623920440674,
+              "middle_ncc": 0.9942907673597795,
+              "middle_normalized_error": 0.052223616912779394,
+              "fine_ncc": 0.9849059570917832,
+              "fine_normalized_error": 0.13080640449906422,
+              "middle_ncc_to_source": 0.9127226316576055,
+              "fine_ncc_to_source": 0.5953901998609805,
+              "psnr_db": 23.211769748665407
+            },
+            "h265_40": {
+              "full_temporal_mae": 1.5863994720597685,
+              "fine_temporal_mae": 1.1706468882178562,
+              "fine_energy": 5.189390659332275,
+              "middle_ncc": 0.9948470781124723,
+              "middle_normalized_error": 0.0474118641198837,
+              "fine_ncc": 0.9828998756683088,
+              "fine_normalized_error": 0.12763702963782111,
+              "middle_ncc_to_source": 0.9570613701584275,
+              "fine_ncc_to_source": 0.7248258118066484,
+              "psnr_db": 24.742054248837654
+            },
+            "h265_dual": {
+              "full_temporal_mae": 1.4377703731350662,
+              "fine_temporal_mae": 1.089744866416296,
+              "fine_energy": 5.848084449768066,
+              "middle_ncc": 0.9945748100382862,
+              "middle_normalized_error": 0.04180936073701746,
+              "fine_ncc": 0.9759029823520938,
+              "fine_normalized_error": 0.11319755375586016,
+              "middle_ncc_to_source": 0.9806537278679326,
+              "fine_ncc_to_source": 0.8427778433726688,
+              "psnr_db": 26.693550237116057
+            }
+          }
+        }
+      },
+      "fine_ncc_deltas_by_second": {
+        "full": [
+          {
+            "source_start_frame": 832,
+            "pairs": 14,
+            "b1_minus_raw": -0.008150141505688671,
+            "b2_minus_raw": -0.008092031244915171,
+            "c_minus_b2": 0.0024203444391183914
+          },
+          {
+            "source_start_frame": 847,
+            "pairs": 15,
+            "b1_minus_raw": 0.037126074060074774,
+            "b2_minus_raw": 0.030267385446027608,
+            "c_minus_b2": 0.015421946042178454
+          },
+          {
+            "source_start_frame": 862,
+            "pairs": 15,
+            "b1_minus_raw": 0.02625987563775018,
+            "b2_minus_raw": 0.026307663203732203,
+            "c_minus_b2": 0.007902725144419724
+          },
+          {
+            "source_start_frame": 877,
+            "pairs": 15,
+            "b1_minus_raw": 0.029317277755721197,
+            "b2_minus_raw": 0.027929447614963302,
+            "c_minus_b2": 0.008819161093417571
+          },
+          {
+            "source_start_frame": 892,
+            "pairs": 15,
+            "b1_minus_raw": 0.01831040045587019,
+            "b2_minus_raw": 0.021423253625343152,
+            "c_minus_b2": 0.0129092777711702
+          },
+          {
+            "source_start_frame": 907,
+            "pairs": 15,
+            "b1_minus_raw": 0.026661533180895012,
+            "b2_minus_raw": 0.02663540804784445,
+            "c_minus_b2": 0.002517840553161386
+          }
+        ],
+        "coral": [
+          {
+            "source_start_frame": 832,
+            "pairs": 14,
+            "b1_minus_raw": -0.005036772248742553,
+            "b2_minus_raw": -0.005519312242112515,
+            "c_minus_b2": 0.0006612615339526921
+          },
+          {
+            "source_start_frame": 847,
+            "pairs": 15,
+            "b1_minus_raw": 0.042187614361890766,
+            "b2_minus_raw": 0.03563277646213718,
+            "c_minus_b2": 0.014264211919770191
+          },
+          {
+            "source_start_frame": 862,
+            "pairs": 15,
+            "b1_minus_raw": 0.028437215235933126,
+            "b2_minus_raw": 0.03279163641237678,
+            "c_minus_b2": 0.005019945870317541
+          },
+          {
+            "source_start_frame": 877,
+            "pairs": 15,
+            "b1_minus_raw": 0.03849022061873358,
+            "b2_minus_raw": 0.03936628952510065,
+            "c_minus_b2": 0.007500241595940498
+          },
+          {
+            "source_start_frame": 892,
+            "pairs": 15,
+            "b1_minus_raw": 0.02624919707794024,
+            "b2_minus_raw": 0.023413511773984336,
+            "c_minus_b2": 0.007905899062869499
+          },
+          {
+            "source_start_frame": 907,
+            "pairs": 15,
+            "b1_minus_raw": 0.03183761931102012,
+            "b2_minus_raw": 0.03228528157171905,
+            "c_minus_b2": 0.003938043914999534
+          }
+        ]
+      },
+      "previews": {
+        "cache_comparison": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "433c6c0c34155ed288e3b4801177327cf6e29525e4f1d2383724681dc8a96c6f"
+        },
+        "coral_closeup": {
+          "width": 1460,
+          "height": 436,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "5020676c1d07aebb8c3a752c34bcf79c4f6bad54af4018a22bcfb3d7e24325c5"
+        },
+        "blur_control": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "f3e84981df85d1498d86979f27dbee1a434112131828de838f9964566756e382"
+        },
+        "h265_rates": {
+          "width": 1024,
+          "height": 628,
+          "avg_frame_rate": "15/1",
+          "duration": "6.000000",
+          "nb_read_frames": "90",
+          "sha256": "f63a9f781f4f17d9e71aefedb871809496e10c381f6501cd2bb225ecd4f979aa"
+        }
+      }
+    }
+  },
+  "code_sha256": "1fe794f30721a6fef96f22daca322d190f7db69dddda196d0ba3a0a199eabe6f"
+}
