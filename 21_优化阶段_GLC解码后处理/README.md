@@ -380,12 +380,36 @@ foreach ($clip in 'moving_reef', 'holdout_reef') {
 
 D1、D2 沿用礁壁实验的 RAFT 权重、24 次 FP32 迭代、15 帧锚帧和融合参数。D2 在最后两秒的船体覆盖为 60.1%，整段同帧对源细纹 NCC 为 0.133，A 为 0.125。船体的时间一致性改善在新素材上复现，幅度小于上一轮的蓝珊瑚区域。C 有 19 个无效运动步并按原规则重新起锚，因此 C 与 D1 的差异还包含锚帧时序。只在双方锚帧相同的 30 个非锚帧上核验几何，源船体灰度对齐 MAE 从仿射的 6.80 降到稠密光流的 5.76。D1、D2 仍是依赖源视频的离线参照。船体框内也有鱼经过，前景观感可在原速全画面对照中核查。
 
+用户原速复看沉船片段，反馈四个版本几乎看不出区别。船体指标上的提升未达到本段观看要求。
+
 本机 `02_实验数据/优化_GLC后处理/source_dense_flow_shipwreck_20261109_01/flow/comparison` 含全画面及船体放大四宫格。右下为 D2。 [输入收据](evidence_20261109/source_dense_flow_shipwreck/inputs.json) · [实验汇总](evidence_20261109/source_dense_flow_shipwreck/summary.json) · [独立核对](evidence_20261109/source_dense_flow_shipwreck/verification.json)
 
 ```powershell
 & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/dense_transfer_inputs.py' --input $shipSource --ffmpeg $glcFfmpeg --assets $roleAssets --output $shipRun
 & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_dense_transfer.py' flow --run $shipRun --upstream $deflickerSource
 & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_dense_transfer.py' compare --run $shipRun --ffmpeg $glcFfmpeg
+```
+
+## 用户提供的三个水下片段
+
+2026-11-09。读取 `video1.mp4`、`video2.mp4`、`video3.mp4`，统一使用各文件前 10 秒。三个输入均为 1280×720、30 FPS。固定到 512×288、15 FPS 后，每条均为 150 个不同的 RGB 帧。按原片先定礁壁、斑点鱼右下方珊瑚和画面下方彩色珊瑚三个观察框。抽样帧分别与此前长片的约 0、12.7、54 秒起的镜头对应。本次直接使用用户提供的文件新编码，三条 FP32 GLC 基础流均通过独立参考校验。
+
+| 素材 | 基础流 B / kbps | 原始 GLC | C 共享仿射 | D1 稠密光流 | D2 稠密光流和原片门控 | 等细纹幅度模糊 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| video1 气泡与礁壁 | 31,963 / 25.570 | 0.434 | 0.484 | 0.490 | 0.646 | 0.463 |
+| video2 斑点鱼与珊瑚 | 31,849 / 25.479 | 0.302 | 0.522 | 0.547 | 0.641 | 0.321 |
+| video3 鱼群与彩色珊瑚 | 30,995 / 24.796 | 0.713 | 0.749 | 0.754 | 0.831 | 0.727 |
+
+表中为各固定背景框整段的细纹跨帧 NCC。最后两秒，A 到 D2 分别是 0.349 到 0.582、0.198 到 0.595、0.682 到 0.818。D2 的背景同帧对源细纹 NCC 仍在 0.028–0.054。C 的三份运动文件均为 1,993 B、1.594 kbps。D1、D2 沿用 24 次 FP32 RAFT 迭代和 15 帧锚点的离线配方。video2 的固定框评价右下珊瑚，8.4 秒的抽查帧里，D2 鱼背的斑点略软。整段晃动、轮廓和拖影用原速左右对照检查。
+
+六个对照均为 150 帧、15 FPS、10 秒。左边是原始 GLC，右边是 D2。每段的全画面 `full_pair.mp4` 和珊瑚放大 `reef_pair.mp4` 在本机 `02_实验数据/优化_GLC后处理/source_dense_flow_three_clips_20261109_01` 各子目录的 `flow/comparison` 中。 [video1](evidence_20261109/source_dense_flow_three_clips/video1/summary.json) · [video2](evidence_20261109/source_dense_flow_three_clips/video2/summary.json) · [video3](evidence_20261109/source_dense_flow_three_clips/video3/summary.json) · [独立核对](evidence_20261109/source_dense_flow_three_clips/verification.json)
+
+```powershell
+foreach ($case in 'video1', 'video2', 'video3') {
+    & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_dense_batch.py' prepare --case $case --batch $batch --input-dir $media --ffmpeg $glcFfmpeg --assets $roleAssets
+    & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_dense_batch.py' flow --case $case --batch $batch --upstream $deflickerSource
+    & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_dense_batch.py' compare --case $case --batch $batch --ffmpeg $glcFfmpeg
+}
 ```
 
 ## 评价与复现

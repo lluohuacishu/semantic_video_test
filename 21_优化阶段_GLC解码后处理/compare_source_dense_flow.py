@@ -126,7 +126,7 @@ def evaluate(workspace, cache, output, ffmpeg):
 
 
 def compare_clip(clip, sequences, records, c_mask, output, ffmpeg, base_sha, *,
-                 region='coral', expected_scopes=None):
+                 region='coral', expected_scopes=None, pair=False):
     raw, source = sequences['raw'], sequences['source']
     backward, forward = load_flow(output, source, clip)
     background = roi(clip.coral, FRAME_SHAPE)
@@ -175,10 +175,11 @@ def compare_clip(clip, sequences, records, c_mask, output, ffmpeg, base_sha, *,
 
     labels = dict(raw='A / GLC', c='C / Source affine',
         raft_glc_gate='RAFT / GLC gate', raft_source_gate='RAFT / Source gate')
+    keys = ('raw', 'raft_source_gate') if pair else ('raw', 'c', *VARIANTS)
+    full_name = 'full_pair' if pair else 'full_comparison'
+    crop_name = f'{region}_pair' if pair else f'{region}_closeup'
     previews = {}
-    for name, keys, crop in (
-            ('full_comparison', ('raw', 'c', *VARIANTS), None),
-            (f'{region}_closeup', ('raw', 'c', *VARIANTS), background)):
+    for name, crop in ((full_name, None), (crop_name, background)):
         previews[name] = preview(ffmpeg, result/f'{name}.mp4', [sequences[key] for key in keys],
             FPS, clip.start, [labels[key] for key in keys], crop)
     summary = dict(offline_source_oracle=True,

@@ -222,7 +222,7 @@ def preview(ffmpeg, output, panels, fps, start, labels, crop=None):
     title = 26
     row_height = height + title + height % 2
     frame_width = 2 * width
-    frame_height = 2 * row_height
+    frame_height = ((len(panels) + 1) // 2) * row_height
     command = [str(ffmpeg), '-hide_banner', '-loglevel', 'error', '-nostdin', '-f', 'rawvideo',
                '-pixel_format', 'rgb24', '-video_size', f'{frame_width}x{frame_height}',
                '-framerate', str(fps), '-i', 'pipe:0', '-an', '-c:v', 'libx264', '-preset', 'fast',
