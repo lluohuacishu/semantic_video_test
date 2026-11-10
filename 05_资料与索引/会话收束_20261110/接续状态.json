@@ -6,9 +6,9 @@
   "repository": "01_项目/代码/semantic_video_test",
   "experiment_branch": "codex/glc-temporal-stability",
   "main_baseline_commit": "50ed016471aad628e90169bbdf5955d2074a5e3b",
-  "last_experiment_commit": "712eca9ec282ab67e6510fad8d02c56c6c28aa78",
+  "last_experiment_commit": "338c98f00b182153c529bb266a46fcf37711f11d",
   "current_branch_head_check": "git log -1",
-  "new_experiments_uncommitted": true,
+  "new_experiments_uncommitted": false,
   "new_experiment_report": "21_优化阶段_GLC解码后处理/整帧与跨素材结构稳定实验_20261110.md",
   "handoff_repo_path": "交接文档.md",
   "stage_report_repo_path": "21_优化阶段_GLC解码后处理/README.md",
@@ -32,7 +32,8 @@
     "fullframe_refined_run": "02_实验数据/优化_GLC后处理/fullframe_reference_refined_20261110_01",
     "fullframe_final_code": "02_实验数据/优化_GLC后处理/fullframe_reference_refined_20261110_01/source_final",
     "fullframe_verification": "02_实验数据/优化_GLC后处理/fullframe_reference_refined_20261110_01/verification_all_variants.json",
-    "fullframe_transmission_files": "05_成果与观看/GLC_整帧与跨素材_20261110/实验传输文件_F"
+    "fullframe_transmission_files": "05_成果与观看/GLC_整帧与跨素材_20261110/实验传输文件_F",
+    "strategy_diagnosis": "02_实验数据/优化_GLC后处理/fullframe_strategy_diagnosis_20261110_02"
   },
   "budget": {
     "base_fps": 15,
@@ -227,5 +228,23 @@
     "next_focus": "Use the same coral region and frames as the regression constraint for full-frame transfer.",
     "role": "Preserve accepted local U; full-frame F does not supersede it."
   },
-  "previous_local_U_report": "21_优化阶段_GLC解码后处理/video1持续结构10秒与实际辅助流_20261110.md"
+  "previous_local_U_report": "21_优化阶段_GLC解码后处理/video1持续结构10秒与实际辅助流_20261110.md",
+  "experiment_pushed_to": "origin/codex/glc-temporal-stability",
+  "latest_analysis_report": "21_优化阶段_GLC解码后处理/当前瓶颈与优化路线_20261110.md",
+  "latest_diagnosis": {
+    "type": "read-only analysis of archived arrays",
+    "new_candidate_experiments_run": false,
+    "evidence": "21_优化阶段_GLC解码后处理/evidence_20261110/strategy_diagnosis/summary.json",
+    "dense_offline_coral_mae": 1.708165303364552,
+    "U_switch_fraction": 0.014016893111017876,
+    "E_F_switch_fraction": 0.11928500104389635,
+    "interpretation": "Prioritize separating motion compression from block reliability; subgroup associations are not causal proof.",
+    "next_order": [
+      "fixed-blend motion/mask factorial diagnostic",
+      "visibility-aware continuous support state",
+      "per-frame adaptive motion representation",
+      "separate boundary feather and tone controls",
+      "longer and held-out clips plus same-total-byte baseline"
+    ]
+  }
 }
