@@ -1,0 +1,42 @@
+{
+  "reason": "Reject 5fps motion interpolation after reliability coverage oscillated and video1 coral error exceeded raw.",
+  "profiles": [
+    [
+      "g24q2",
+      [
+        24,
+        14
+      ]
+    ],
+    [
+      "g20q2",
+      [
+        20,
+        12
+      ]
+    ],
+    [
+      "g16q2",
+      [
+        16,
+        9
+      ]
+    ]
+  ],
+  "selection": "First shared profile whose E and F complete packets fit 50000 bytes for all cases.",
+  "scale": 2,
+  "every_frame_motion": true,
+  "keys": [
+    0,
+    15,
+    45,
+    75,
+    105,
+    135
+  ],
+  "mask_block": 8,
+  "E": "Per-frame motion, 2px inward feather, no tone correction.",
+  "F": "Same per-frame motion and masks; 8px inward feather and flat-area-only sigma12 tone correction.",
+  "annotation_free": true,
+  "receiver_source_media_forbidden": true
+}

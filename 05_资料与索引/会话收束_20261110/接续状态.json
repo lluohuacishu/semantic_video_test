@@ -8,10 +8,14 @@
   "main_baseline_commit": "50ed016471aad628e90169bbdf5955d2074a5e3b",
   "last_experiment_commit": "712eca9ec282ab67e6510fad8d02c56c6c28aa78",
   "current_branch_head_check": "git log -1",
+  "new_experiments_uncommitted": true,
+  "new_experiment_report": "21_优化阶段_GLC解码后处理/整帧与跨素材结构稳定实验_20261110.md",
   "handoff_repo_path": "交接文档.md",
   "stage_report_repo_path": "21_优化阶段_GLC解码后处理/README.md",
   "workspace_paths": {
-    "viewing": "05_成果与观看/GLC_时序稳定性_20261110/README.md",
+    "viewing": "05_成果与观看/GLC_整帧与跨素材_20261110/README.md",
+    "previous_boundary_viewing": "05_成果与观看/GLC_时序稳定性_20261110/README.md",
+    "persistent_structure_run": "02_实验数据/优化_GLC后处理/video1_persistent_structure_20261110_01",
     "result_index": "02_实验数据/优化_GLC后处理/README.md",
     "source_clips": "01_项目/GLC后处理/素材/20261109_三个片段",
     "base_manifest": "01_项目/GLC后处理/接口与基线.json",
@@ -19,7 +23,16 @@
     "three_clip_run": "02_实验数据/优化_GLC后处理/source_dense_flow_three_clips_20261109_01",
     "gop_run": "02_实验数据/优化_GLC后处理/video1_gop_control_20261110_01",
     "boundary_transition_run": "02_实验数据/优化_GLC后处理/video1_boundary_transition_20261110_01",
-    "independent_deployment": "06_部署包/GLC_Windows_流水线_20261102"
+    "independent_deployment": "06_部署包/GLC_Windows_流水线_20261102",
+    "persistent_long_run": "02_实验数据/优化_GLC后处理/video1_persistent_long_20261110_01",
+    "persistent_auxiliary_run": "02_实验数据/优化_GLC后处理/video1_persistent_aux_20261110_01",
+    "previous_short_viewing": "05_成果与观看/GLC_珊瑚持续结构_20261110/README.md",
+    "previous_local_U_viewing": "05_成果与观看/GLC_珊瑚持续结构10秒_20261110/README.md",
+    "fullframe_initial_run": "02_实验数据/优化_GLC后处理/fullframe_reference_three_clips_20261110_01",
+    "fullframe_refined_run": "02_实验数据/优化_GLC后处理/fullframe_reference_refined_20261110_01",
+    "fullframe_final_code": "02_实验数据/优化_GLC后处理/fullframe_reference_refined_20261110_01/source_final",
+    "fullframe_verification": "02_实验数据/优化_GLC后处理/fullframe_reference_refined_20261110_01/verification_all_variants.json",
+    "fullframe_transmission_files": "05_成果与观看/GLC_整帧与跨素材_20261110/实验传输文件_F"
   },
   "budget": {
     "base_fps": 15,
@@ -28,6 +41,111 @@
     "billing": "complete file bytes / explicit duration"
   },
   "latest_result": {
+    "variant": "F / g24q2 actual full-frame reference auxiliary file",
+    "cases": [
+      "video1",
+      "video2",
+      "video3"
+    ],
+    "start": 0,
+    "stop_exclusive": 150,
+    "frames_per_case": 150,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "billing_seconds": 10,
+    "source_assisted_sender": true,
+    "source_media_at_receiver": false,
+    "actual_auxiliary_stream": true,
+    "manual_edit_region": false,
+    "all_pixels_are_candidates": true,
+    "all_pixels_are_modified": false,
+    "held_out_material": false,
+    "streaming_validated": false,
+    "same_total_bytes_advantage_validated": false,
+    "motion_grid": [
+      24,
+      14
+    ],
+    "motion_precision_pixels": 0.5,
+    "motion_stride_frames": 1,
+    "key_frames": [
+      0,
+      15,
+      45,
+      75,
+      105,
+      135
+    ],
+    "feather_pixels": 8,
+    "tone_match": "sigma12 color correction weighted by decoded low-texture confidence",
+    "user_original_speed_review": {
+      "variant": "F / g24q2",
+      "cases_reviewed": [
+        "video2",
+        "video3"
+      ],
+      "status": "qualified_positive_boundary_review",
+      "quote": "都明显减轻，但2还是能看出来，但实际上我感觉可以接受吧算是",
+      "interpretation": "Film-like boundary visibly reduced in both clips. Video2 boundary remains visible but is considered acceptable. This is not an acceptance of video1 or general deployment."
+    },
+    "initial_A_review": {
+      "variant": "A",
+      "status": "not_accepted",
+      "quote": "感觉video1珊瑚的晃动比之前多了？然后2和3的主要问题就是感觉保护主体和周边有一个膜一样，就是有个边界"
+    },
+    "video1_regression": {
+      "status": "regression_unresolved_against_local_U",
+      "fixed_coral_coarse_mae": {
+        "raw": 4.55809282879483,
+        "local_U": 1.4255694384159472,
+        "A": 3.127160422593518,
+        "E": 3.08422220957094,
+        "F": 3.1915138567012455
+      }
+    },
+    "rejected_sparse_motion": {
+      "variants": [
+        "C",
+        "D"
+      ],
+      "reason": "Temporal interpolation produced rapidly changing reliability support and worse video1 coral temporal error than raw."
+    },
+    "files": {
+      "video1": {
+        "base_bytes": 31963,
+        "auxiliary_bytes": 48874,
+        "base_kbps": 25.5704,
+        "auxiliary_kbps": 39.0992,
+        "output_hash": "df6fba8fc4a56ece3fc5316b927ef9399b8ed78b8a5bb123b1f51535e21cc879",
+        "packet_hash": "b5890176225167c9abaad6a55860fb7a208dbb19fb2774e3a592e4acf8d3f7cd",
+        "total_kbps": 64.6696
+      },
+      "video2": {
+        "base_bytes": 31849,
+        "auxiliary_bytes": 42765,
+        "base_kbps": 25.4792,
+        "auxiliary_kbps": 34.212,
+        "output_hash": "30dc84c03f505e41d92caa69298bd8d1764afd2c6bb6a629818258acba57c788",
+        "packet_hash": "9240c5adbf89b90ddbfa51b64f6a0036cc120a70f8f572cae1b79a18c36824c5",
+        "total_kbps": 59.6912
+      },
+      "video3": {
+        "base_bytes": 30995,
+        "auxiliary_bytes": 24872,
+        "base_kbps": 24.796,
+        "auxiliary_kbps": 19.8976,
+        "output_hash": "136784b1ba455c619997f271e3f61ecfad8635a78abfc416c8fc991957e388fa",
+        "packet_hash": "54b4b3fb4cb53d3c92e362d3e9f2316fcc2d305d4b07ef95eb204707145ecaa6",
+        "total_kbps": 44.6936
+      }
+    },
+    "verification_complete": true,
+    "next_focus": "Controlled diagnosis of time-varying reliability support, motion precision, reference choice and object-boundary blending, preserving accepted local U stability in video1. No unified accepted solution yet."
+  },
+  "previous_boundary_transition_result": {
     "case": "video1",
     "frames": 150,
     "fps": 15,
@@ -53,5 +171,61 @@
     "05_资料与索引/GLVC论文阅读与GLC适用性评估_20261105.md",
     "05_资料与索引/UVID数据集初评_20261028.md"
   ],
-  "archived_scope": "GVC1D"
+  "archived_scope": "GVC1D",
+  "previous_short_structure_result": {
+    "case": "video1",
+    "variant": "C2 expanded persistent GLC RGB reference",
+    "start": 105,
+    "stop_exclusive": 128,
+    "frames": 23,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "source_assisted_offline": true,
+    "actual_auxiliary_stream": false,
+    "user_original_speed_review": "分界改善，整体更稳",
+    "fixed_upper_coarse_mae": {
+      "raw": 6.9751364611444595,
+      "S": 4.898084508534046,
+      "C": 3.1203868972717856,
+      "C2": 1.414839798416425
+    },
+    "next_focus": "Persistent structure across longer video, visibility changes, and reference refresh; then actual auxiliary-file delivery within each lane's 40 kbps budget."
+  },
+  "accepted_video1_local_baseline": {
+    "case": "video1",
+    "variant": "U / g17q4 actual persistent-reference auxiliary file",
+    "start": 0,
+    "stop_exclusive": 150,
+    "frames": 150,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "source_assisted_sender": true,
+    "source_media_at_receiver": false,
+    "actual_auxiliary_stream": true,
+    "source_assisted_offline": false,
+    "user_original_speed_review": "U 与之前的 T 差不多，都比原始 GLC 稳",
+    "offline_T_review": "整体明显更稳，过渡可接受",
+    "base_bytes": 31963,
+    "auxiliary_bytes": 42793,
+    "total_bytes": 74756,
+    "billing_seconds": 10,
+    "base_kbps": 25.5704,
+    "auxiliary_kbps": 34.2344,
+    "total_kbps": 59.8048,
+    "fixed_upper_coarse_mae": {
+      "raw": 4.55809282879483,
+      "S": 3.300989781087558,
+      "T": 1.3908072516961074,
+      "g17q4": 1.4255694384159472
+    },
+    "next_focus": "Use the same coral region and frames as the regression constraint for full-frame transfer.",
+    "role": "Preserve accepted local U; full-frame F does not supersede it."
+  },
+  "previous_local_U_report": "21_优化阶段_GLC解码后处理/video1持续结构10秒与实际辅助流_20261110.md"
 }

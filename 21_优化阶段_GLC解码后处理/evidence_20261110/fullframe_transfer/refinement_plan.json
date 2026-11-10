@@ -1,0 +1,51 @@
+{
+  "profiles": [
+    [
+      "g32b4",
+      [
+        32,
+        18
+      ],
+      4
+    ],
+    [
+      "g32b8",
+      [
+        32,
+        18
+      ],
+      8
+    ],
+    [
+      "g24b4",
+      [
+        24,
+        14
+      ],
+      4
+    ],
+    [
+      "g24b8",
+      [
+        24,
+        14
+      ],
+      8
+    ]
+  ],
+  "selection": "First common profile within 50000 B for all three clips; no metric-based per-case selection.",
+  "common_keys": [
+    0,
+    15,
+    45,
+    75,
+    105,
+    135
+  ],
+  "manual_edit_ROI": false,
+  "temporal_motion": "Every third frame, plus segment endpoints. Interpolate within each reference segment only.",
+  "C": "Denser motion; 2px inward feather; no tone compensation.",
+  "D": "Exact same motion/masks as C; 8px inward feather and sigma12 current-base color matching only in low-texture areas.",
+  "diagnostic_limits": "New schedule, grid, and temporal sampling change together versus A; C versus D isolates the combined blend change.",
+  "latency": "Whole-file pilot; interpolation uses up to two future frames, not an online latency validation."
+}

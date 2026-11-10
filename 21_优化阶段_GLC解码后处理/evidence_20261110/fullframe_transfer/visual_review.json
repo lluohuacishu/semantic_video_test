@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-10",
+  "scope": "Three existing development sources, first 150 frames each at 15 FPS. No blinded or full-length evaluation.",
+  "initial": {
+    "variant": "A",
+    "status": "not_accepted",
+    "quote": "感觉video1珊瑚的晃动比之前多了？然后2和3的主要问题就是感觉保护主体和周边有一个膜一样，就是有个边界"
+  },
+  "final": {
+    "variant": "F / g24q2",
+    "cases_reviewed": [
+      "video2",
+      "video3"
+    ],
+    "status": "qualified_positive_boundary_review",
+    "quote": "都明显减轻，但2还是能看出来，但实际上我感觉可以接受吧算是",
+    "interpretation": "Film-like boundary visibly reduced in both clips. Video2 boundary remains visible but is considered acceptable. This is not an acceptance of video1 or general deployment."
+  },
+  "video1": {
+    "status": "regression_unresolved_against_local_U",
+    "fixed_coral_coarse_mae": {
+      "raw": 4.55809282879483,
+      "local_U": 1.4255694384159472,
+      "A": 3.127160422593518,
+      "E": 3.08422220957094,
+      "F": 3.1915138567012455
+    }
+  },
+  "rejected_sparse_motion": {
+    "variants": [
+      "C",
+      "D"
+    ],
+    "reason": "Temporal interpolation produced rapidly changing reliability support and worse video1 coral temporal error than raw."
+  }
+}

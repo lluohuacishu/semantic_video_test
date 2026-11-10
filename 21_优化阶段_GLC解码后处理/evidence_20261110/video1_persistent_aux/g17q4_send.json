@@ -1,0 +1,106 @@
+{
+  "bytes": 42793,
+  "kbps": 34.2344,
+  "within_budget": true,
+  "file_sha256": "ae40cdc9ef4e4f49b5d58aef8529ff7b5bb7fa5bea41066f9af25196240ef3c4",
+  "header": {
+    "base_sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+    "width": 512,
+    "height": 288,
+    "fps": 15,
+    "start": 0,
+    "frames": 150,
+    "keys": [
+      0,
+      15,
+      45,
+      75,
+      105,
+      135
+    ],
+    "old_weights": [
+      1.0,
+      0.8333333333333334,
+      0.6666666666666666,
+      0.5,
+      0.3333333333333333,
+      0.16666666666666666
+    ],
+    "crop": [
+      240,
+      0,
+      512,
+      144
+    ],
+    "grid": [
+      17,
+      9
+    ],
+    "motion_scale": 4,
+    "contour_epsilon": 1.0,
+    "inward_feather_px": 2.0,
+    "sections": {
+      "new_motion": {
+        "dtype": "<i2",
+        "shape": [
+          150,
+          9,
+          17,
+          2
+        ],
+        "axes": [
+          0,
+          2
+        ],
+        "raw_bytes": 91800,
+        "bytes": 12796
+      },
+      "old_motion": {
+        "dtype": "<i2",
+        "shape": [
+          30,
+          9,
+          17,
+          2
+        ],
+        "axes": [
+          0,
+          2
+        ],
+        "raw_bytes": 18360,
+        "bytes": 3220
+      },
+      "contours": {
+        "dtype": "<u2",
+        "shape": [
+          30462
+        ],
+        "axes": [],
+        "raw_bytes": 60924,
+        "bytes": 23504
+      },
+      "fish": {
+        "dtype": "|u1",
+        "shape": [
+          150,
+          288,
+          64
+        ],
+        "axes": [],
+        "raw_bytes": 2764800,
+        "bytes": 2516
+      }
+    }
+  },
+  "checks": {
+    "quantized_motion_exact": true,
+    "fish_mask_exact": true,
+    "expected_rgb_sha256": "66de9da4dcde3b2f64e079e0f5a456cb3b84d1951badb1c33b7e11dd0ac3470d",
+    "invalid_packets_rejected": {
+      "crc_corruption": true,
+      "wrong_base": true,
+      "truncated": true,
+      "over_budget": true
+    }
+  }
+}

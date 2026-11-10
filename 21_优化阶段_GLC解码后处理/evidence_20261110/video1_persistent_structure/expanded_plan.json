@@ -1,0 +1,85 @@
+{
+  "start": 105,
+  "stop_exclusive": 128,
+  "anchor": 105,
+  "fps": 15,
+  "offline_source_assisted": true,
+  "outline": [
+    [
+      345,
+      0
+    ],
+    [
+      511,
+      0
+    ],
+    [
+      511,
+      57
+    ],
+    [
+      490,
+      70
+    ],
+    [
+      456,
+      85
+    ],
+    [
+      420,
+      98
+    ],
+    [
+      380,
+      110
+    ],
+    [
+      340,
+      123
+    ],
+    [
+      310,
+      132
+    ],
+    [
+      292,
+      131
+    ],
+    [
+      277,
+      123
+    ],
+    [
+      276,
+      107
+    ],
+    [
+      285,
+      89
+    ],
+    [
+      297,
+      71
+    ],
+    [
+      314,
+      47
+    ],
+    [
+      330,
+      23
+    ]
+  ],
+  "feather_pixels": 2.0,
+  "erosion_pixels": 1,
+  "source_cycle_limit": 1.5,
+  "source_low_rgb_difference_limit": 16.0,
+  "orange_fish_exclusion": "source R>1.22G, R-B>25, R>55; x>=380,y<110; >=3px components; dilate7",
+  "change_from_pilot": "Expand to full coral and place feather outside its textured face; retain direct full RGB reference.",
+  "feedback": "User saw a clear reduction in C, but only one central area was clear and the outside looked blurred.",
+  "limitations": [
+    "Existing source RAFT and source masks are untransmitted.",
+    "Unknown/newly revealed and occluded pixels fall back to raw GLC.",
+    "This pilot does not solve long-term reference refresh or entry/exit."
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "profiles": {
+    "g17q4": {
+      "bytes": 42793,
+      "kbps": 34.2344,
+      "within_budget": true,
+      "file_sha256": "ae40cdc9ef4e4f49b5d58aef8529ff7b5bb7fa5bea41066f9af25196240ef3c4",
+      "header": {
+        "base_sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+        "width": 512,
+        "height": 288,
+        "fps": 15,
+        "start": 0,
+        "frames": 150,
+        "keys": [
+          0,
+          15,
+          45,
+          75,
+          105,
+          135
+        ],
+        "old_weights": [
+          1.0,
+          0.8333333333333334,
+          0.6666666666666666,
+          0.5,
+          0.3333333333333333,
+          0.16666666666666666
+        ],
+        "crop": [
+          240,
+          0,
+          512,
+          144
+        ],
+        "grid": [
+          17,
+          9
+        ],
+        "motion_scale": 4,
+        "contour_epsilon": 1.0,
+        "inward_feather_px": 2.0,
+        "sections": {
+          "new_motion": {
+            "dtype": "<i2",
+            "shape": [
+              150,
+              9,
+              17,
+              2
+            ],
+            "axes": [
+              0,
+              2
+            ],
+            "raw_bytes": 91800,
+            "bytes": 12796
+          },
+          "old_motion": {
+            "dtype": "<i2",
+            "shape": [
+              30,
+              9,
+              17,
+              2
+            ],
+            "axes": [
+              0,
+              2
+            ],
+            "raw_bytes": 18360,
+            "bytes": 3220
+          },
+          "contours": {
+            "dtype": "<u2",
+            "shape": [
+              30462
+            ],
+            "axes": [],
+            "raw_bytes": 60924,
+            "bytes": 23504
+          },
+          "fish": {
+            "dtype": "|u1",
+            "shape": [
+              150,
+              288,
+              64
+            ],
+            "axes": [],
+            "raw_bytes": 2764800,
+            "bytes": 2516
+          }
+        }
+      },
+      "checks": {
+        "quantized_motion_exact": true,
+        "fish_mask_exact": true,
+        "expected_rgb_sha256": "66de9da4dcde3b2f64e079e0f5a456cb3b84d1951badb1c33b7e11dd0ac3470d",
+        "invalid_packets_rejected": {
+          "crc_corruption": true,
+          "wrong_base": true,
+          "truncated": true,
+          "over_budget": true
+        }
+      }
+    },
+    "g23q2": {
+      "bytes": 45681,
+      "kbps": 36.5448,
+      "within_budget": true,
+      "file_sha256": "0f30a0d24c678e92948eb19b2f80cbbbe49f12d1ae4848683f121a43008196f5",
+      "header": {
+        "base_sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+        "width": 512,
+        "height": 288,
+        "fps": 15,
+        "start": 0,
+        "frames": 150,
+        "keys": [
+          0,
+          15,
+          45,
+          75,
+          105,
+          135
+        ],
+        "old_weights": [
+          1.0,
+          0.8333333333333334,
+          0.6666666666666666,
+          0.5,
+          0.3333333333333333,
+          0.16666666666666666
+        ],
+        "crop": [
+          240,
+          0,
+          512,
+          144
+        ],
+        "grid": [
+          23,
+          12
+        ],
+        "motion_scale": 2,
+        "contour_epsilon": 1.0,
+        "inward_feather_px": 2.0,
+        "sections": {
+          "new_motion": {
+            "dtype": "<i2",
+            "shape": [
+              150,
+              12,
+              23,
+              2
+            ],
+            "axes": [
+              2
+            ],
+            "raw_bytes": 165600,
+            "bytes": 14856
+          },
+          "old_motion": {
+            "dtype": "<i2",
+            "shape": [
+              30,
+              12,
+              23,
+              2
+            ],
+            "axes": [
+              2
+            ],
+            "raw_bytes": 33120,
+            "bytes": 4048
+          },
+          "contours": {
+            "dtype": "<u2",
+            "shape": [
+              30462
+            ],
+            "axes": [],
+            "raw_bytes": 60924,
+            "bytes": 23504
+          },
+          "fish": {
+            "dtype": "|u1",
+            "shape": [
+              150,
+              288,
+              64
+            ],
+            "axes": [],
+            "raw_bytes": 2764800,
+            "bytes": 2516
+          }
+        }
+      },
+      "checks": {
+        "quantized_motion_exact": true,
+        "fish_mask_exact": true,
+        "expected_rgb_sha256": "ef27492c0cb39b57b6d901c004a946f78c7ea6c9f16ed8cd91f181e978826744",
+        "invalid_packets_rejected": {
+          "crc_corruption": true,
+          "wrong_base": true,
+          "truncated": true,
+          "over_budget": true
+        }
+      }
+    }
+  },
+  "code_sha256": "ae5299cea90989b9c3d673fd596769d73292f9f229f1049d2b4700342c03b404",
+  "codec_sha256": "c24be824428aa567c2d7c0d1d986cd5cbde8337b5cfc01c4382d95d0d24585ca"
+}

@@ -1,0 +1,431 @@
+{
+  "complete": true,
+  "plan": {
+    "start": 105,
+    "stop_exclusive": 128,
+    "anchor": 105,
+    "fps": 15,
+    "offline_source_assisted": true,
+    "outline": [
+      [
+        345,
+        0
+      ],
+      [
+        511,
+        0
+      ],
+      [
+        511,
+        57
+      ],
+      [
+        490,
+        70
+      ],
+      [
+        456,
+        85
+      ],
+      [
+        420,
+        98
+      ],
+      [
+        380,
+        110
+      ],
+      [
+        340,
+        123
+      ],
+      [
+        310,
+        132
+      ],
+      [
+        292,
+        131
+      ],
+      [
+        277,
+        123
+      ],
+      [
+        276,
+        107
+      ],
+      [
+        285,
+        89
+      ],
+      [
+        297,
+        71
+      ],
+      [
+        314,
+        47
+      ],
+      [
+        330,
+        23
+      ]
+    ],
+    "feather_pixels": 2.0,
+    "erosion_pixels": 1,
+    "source_cycle_limit": 1.5,
+    "source_low_rgb_difference_limit": 16.0,
+    "orange_fish_exclusion": "source R>1.22G, R-B>25, R>55; x>=380,y<110; >=3px components; dilate7",
+    "change_from_pilot": "Expand to full coral and place feather outside its textured face; retain direct full RGB reference.",
+    "feedback": "User saw a clear reduction in C, but only one central area was clear and the outside looked blurred.",
+    "limitations": [
+      "Existing source RAFT and source masks are untransmitted.",
+      "Unknown/newly revealed and occluded pixels fall back to raw GLC.",
+      "This pilot does not solve long-term reference refresh or entry/exit."
+    ]
+  },
+  "scores": {
+    "fixed": {
+      "source": {
+        "pairs": 22,
+        "valid_pixels": 187499,
+        "spatial_pixels": 349600,
+        "psnr_db": null,
+        "source_structure_mae": 0.0,
+        "fine_amplitude": 6.515383518664188,
+        "coarse_temporal_mae": 0.0,
+        "fine_temporal_mae": 0.0,
+        "full_temporal_mae": 0.0,
+        "structure_temporal_mae": 0.0,
+        "fine_ncc": 0.972189228783825,
+        "structure_ncc": 0.9990420384203821
+      },
+      "raw": {
+        "pairs": 22,
+        "valid_pixels": 187499,
+        "spatial_pixels": 349600,
+        "psnr_db": 17.063353116322467,
+        "source_structure_mae": 5.926230938036327,
+        "fine_amplitude": 7.586037413293765,
+        "coarse_temporal_mae": 6.9751364611444595,
+        "fine_temporal_mae": 14.658066301353607,
+        "full_temporal_mae": 28.422692587693803,
+        "structure_temporal_mae": 6.473754724608531,
+        "fine_ncc": 0.18940051011646483,
+        "structure_ncc": 0.8786625895885012
+      },
+      "C": {
+        "pairs": 22,
+        "valid_pixels": 187499,
+        "spatial_pixels": 349600,
+        "psnr_db": 17.070053222560404,
+        "source_structure_mae": 6.015324746138444,
+        "fine_amplitude": 7.546281308102117,
+        "coarse_temporal_mae": 3.1203868972717856,
+        "fine_temporal_mae": 7.421457643607432,
+        "full_temporal_mae": 12.45916974057195,
+        "structure_temporal_mae": 2.8262882662457534,
+        "fine_ncc": 0.7869253960585103,
+        "structure_ncc": 0.9685644615072189
+      },
+      "C2": {
+        "pairs": 22,
+        "valid_pixels": 187499,
+        "spatial_pixels": 349600,
+        "psnr_db": 17.06035642088167,
+        "source_structure_mae": 6.120126908431064,
+        "fine_amplitude": 7.4494265544550915,
+        "coarse_temporal_mae": 1.414839798416425,
+        "fine_temporal_mae": 4.765420373908661,
+        "full_temporal_mae": 6.743416923223591,
+        "structure_temporal_mae": 1.2879378091058151,
+        "fine_ncc": 0.9226542109502126,
+        "structure_ncc": 0.9909320565402202
+      },
+      "R2": {
+        "pairs": 22,
+        "valid_pixels": 187499,
+        "spatial_pixels": 349600,
+        "psnr_db": 27.550918637665333,
+        "source_structure_mae": 1.2819436806126645,
+        "fine_amplitude": 6.330631681743421,
+        "coarse_temporal_mae": 1.38189419562321,
+        "fine_temporal_mae": 3.1753988000436,
+        "full_temporal_mae": 4.914889108575245,
+        "structure_temporal_mae": 1.2442531229958227,
+        "fine_ncc": 0.9073229762606794,
+        "structure_ncc": 0.9912273831561128
+      }
+    },
+    "tracked": {
+      "source": {
+        "pairs": 22,
+        "valid_pixels": 332393,
+        "spatial_pixels": 445115,
+        "psnr_db": null,
+        "source_structure_mae": 0.0,
+        "fine_amplitude": 9.944543299203577,
+        "coarse_temporal_mae": 0.0,
+        "fine_temporal_mae": 0.0,
+        "full_temporal_mae": 0.0,
+        "structure_temporal_mae": 0.0,
+        "fine_ncc": 0.9586559210397059,
+        "structure_ncc": 0.9978300106678453
+      },
+      "raw": {
+        "pairs": 22,
+        "valid_pixels": 332393,
+        "spatial_pixels": 445115,
+        "psnr_db": 15.46913711911955,
+        "source_structure_mae": 8.083369290801254,
+        "fine_amplitude": 11.072683077687788,
+        "coarse_temporal_mae": 6.568568658748831,
+        "fine_temporal_mae": 15.56807688865289,
+        "full_temporal_mae": 28.519191326231297,
+        "structure_temporal_mae": 6.079627081120842,
+        "fine_ncc": 0.1738595910211331,
+        "structure_ncc": 0.8825683970839805
+      },
+      "C": {
+        "pairs": 22,
+        "valid_pixels": 332393,
+        "spatial_pixels": 445115,
+        "psnr_db": 15.593134610286173,
+        "source_structure_mae": 8.159300756546061,
+        "fine_amplitude": 10.916174120732844,
+        "coarse_temporal_mae": 3.171642241826693,
+        "fine_temporal_mae": 8.319527943014744,
+        "full_temporal_mae": 13.126486803648092,
+        "structure_temporal_mae": 2.8584476162723793,
+        "fine_ncc": 0.7588664597985795,
+        "structure_ncc": 0.9638688440214825
+      },
+      "C2": {
+        "pairs": 22,
+        "valid_pixels": 332393,
+        "spatial_pixels": 445115,
+        "psnr_db": 15.543593378352412,
+        "source_structure_mae": 8.250113664446266,
+        "fine_amplitude": 10.949001030632534,
+        "coarse_temporal_mae": 1.7388733049526464,
+        "fine_temporal_mae": 5.89383792303087,
+        "full_temporal_mae": 8.05798750462555,
+        "structure_temporal_mae": 1.5568430926456032,
+        "fine_ncc": 0.898521794921303,
+        "structure_ncc": 0.9856163713218151
+      },
+      "R2": {
+        "pairs": 22,
+        "valid_pixels": 332393,
+        "spatial_pixels": 445115,
+        "psnr_db": 23.907191075961286,
+        "source_structure_mae": 2.124463455020051,
+        "fine_amplitude": 9.615752635554857,
+        "coarse_temporal_mae": 1.7205995202309465,
+        "fine_temporal_mae": 4.283761969077267,
+        "full_temporal_mae": 6.20703563345949,
+        "structure_temporal_mae": 1.5174651480890091,
+        "fine_ncc": 0.8799772976258855,
+        "structure_ncc": 0.9871869787351861
+      }
+    }
+  },
+  "original_pilot_tracked_scores": {
+    "source": {
+      "pairs": 22,
+      "valid_pixels": 197384,
+      "spatial_pixels": 217242,
+      "psnr_db": null,
+      "source_structure_mae": 0.0,
+      "fine_amplitude": 13.985392010983142,
+      "coarse_temporal_mae": 0.0,
+      "fine_temporal_mae": 0.0,
+      "full_temporal_mae": 0.0,
+      "structure_temporal_mae": 0.0,
+      "fine_ncc": 0.9670211529611444,
+      "structure_ncc": 0.998386996126516
+    },
+    "raw": {
+      "pairs": 22,
+      "valid_pixels": 197384,
+      "spatial_pixels": 217242,
+      "psnr_db": 13.622569555506916,
+      "source_structure_mae": 10.687477991134312,
+      "fine_amplitude": 15.670745966767475,
+      "coarse_temporal_mae": 7.394436217917866,
+      "fine_temporal_mae": 18.623381486088032,
+      "full_temporal_mae": 34.626617722307785,
+      "structure_temporal_mae": 6.969266304038068,
+      "fine_ncc": 0.16300663631025805,
+      "structure_ncc": 0.8446610244303182
+    },
+    "C": {
+      "pairs": 22,
+      "valid_pixels": 197384,
+      "spatial_pixels": 217242,
+      "psnr_db": 13.789454333257385,
+      "source_structure_mae": 10.847940818879406,
+      "fine_amplitude": 15.351985163722945,
+      "coarse_temporal_mae": 1.7026153652271714,
+      "fine_temporal_mae": 6.417760083137438,
+      "full_temporal_mae": 8.706790246106573,
+      "structure_temporal_mae": 1.5855614880132127,
+      "fine_ncc": 0.9174386198183876,
+      "structure_ncc": 0.9866008245815853
+    },
+    "C2": {
+      "pairs": 22,
+      "valid_pixels": 197384,
+      "spatial_pixels": 217242,
+      "psnr_db": 13.724435893239853,
+      "source_structure_mae": 10.856074137655241,
+      "fine_amplitude": 15.632220094698539,
+      "coarse_temporal_mae": 1.1690036957822378,
+      "fine_temporal_mae": 5.675093148064179,
+      "full_temporal_mae": 7.200267585961881,
+      "structure_temporal_mae": 1.047284818432915,
+      "fine_ncc": 0.9517111942946309,
+      "structure_ncc": 0.9935398929819712
+    },
+    "R2": {
+      "pairs": 22,
+      "valid_pixels": 197384,
+      "spatial_pixels": 217242,
+      "psnr_db": 25.55112811252156,
+      "source_structure_mae": 1.565887010915894,
+      "fine_amplitude": 13.448288659651448,
+      "coarse_temporal_mae": 1.1373394369446106,
+      "fine_temporal_mae": 3.512134698417805,
+      "full_temporal_mae": 4.737697798137134,
+      "structure_temporal_mae": 0.9918052590778001,
+      "fine_ncc": 0.9489360674874492,
+      "structure_ncc": 0.9949684353173202
+    }
+  },
+  "newly_covered_scores": {
+    "source": {
+      "pairs": 22,
+      "valid_pixels": 125745,
+      "spatial_pixels": 227873,
+      "psnr_db": null,
+      "source_structure_mae": 0.0,
+      "fine_amplitude": 6.092213285333278,
+      "coarse_temporal_mae": 0.0,
+      "fine_temporal_mae": 0.0,
+      "full_temporal_mae": 0.0,
+      "structure_temporal_mae": 0.0,
+      "fine_ncc": 0.9310147305455254,
+      "structure_ncc": 0.9969998962561877
+    },
+    "raw": {
+      "pairs": 22,
+      "valid_pixels": 125745,
+      "spatial_pixels": 227873,
+      "psnr_db": 18.52446644266535,
+      "source_structure_mae": 5.6007502157177464,
+      "fine_amplitude": 6.68913440820106,
+      "coarse_temporal_mae": 5.350835815415126,
+      "fine_temporal_mae": 10.803064609924848,
+      "full_temporal_mae": 19.174819326812198,
+      "structure_temporal_mae": 4.765814262619786,
+      "fine_ncc": 0.21910438902193188,
+      "structure_ncc": 0.9317372150371656
+    },
+    "C": {
+      "pairs": 22,
+      "valid_pixels": 125745,
+      "spatial_pixels": 227873,
+      "psnr_db": 18.52446644266535,
+      "source_structure_mae": 5.596094147699596,
+      "fine_amplitude": 6.687307715673862,
+      "coarse_temporal_mae": 5.337563978065728,
+      "fine_temporal_mae": 10.800478429808342,
+      "full_temporal_mae": 19.174819326812198,
+      "structure_temporal_mae": 4.731278595197622,
+      "fine_ncc": 0.21926938899724555,
+      "structure_ncc": 0.9322232883447416
+    },
+    "C2": {
+      "pairs": 22,
+      "valid_pixels": 125745,
+      "spatial_pixels": 227873,
+      "psnr_db": 18.51912549507156,
+      "source_structure_mae": 5.765729618992816,
+      "fine_amplitude": 6.484268786780356,
+      "coarse_temporal_mae": 2.64464298251173,
+      "fine_temporal_mae": 6.240388736256909,
+      "full_temporal_mae": 9.437088639210307,
+      "structure_temporal_mae": 2.3704893599770367,
+      "fine_ncc": 0.6770216201464601,
+      "structure_ncc": 0.9723623098789178
+    },
+    "R2": {
+      "pairs": 22,
+      "valid_pixels": 125745,
+      "spatial_pixels": 227873,
+      "psnr_db": 22.76631809202979,
+      "source_structure_mae": 2.656980481589526,
+      "fine_amplitude": 5.9620163630070255,
+      "coarse_temporal_mae": 2.6451221190454888,
+      "fine_temporal_mae": 5.486700157685196,
+      "full_temporal_mae": 8.530384657441648,
+      "structure_temporal_mae": 2.354770621781681,
+      "fine_ncc": 0.6395267126223568,
+      "structure_ncc": 0.9741946887238097
+    }
+  },
+  "coverage_means": {
+    "target_pixels": 19352.82608695652,
+    "old_active": 8834.521739130434,
+    "new_active": 16125.0,
+    "old_full_weight": 7459.782608695652,
+    "new_full_weight": 15192.826086956522,
+    "old_fractional": 1374.7391304347825,
+    "new_fractional": 932.1739130434783,
+    "fish_locked": 232.3913043478261,
+    "new_mean_weight": 0.8103529759075331
+  },
+  "previews": {
+    "expanded_coral_4way.mp4": {
+      "width": 1048,
+      "height": 580,
+      "avg_frame_rate": "15/1",
+      "duration": "1.533333",
+      "nb_read_frames": "23",
+      "sha256": "09063ee595087da1cf62432c60a40bb4f02541b97702c34c398479a084b47a52"
+    },
+    "expanded_coral_pair.mp4": {
+      "width": 1048,
+      "height": 290,
+      "avg_frame_rate": "15/1",
+      "duration": "1.533333",
+      "nb_read_frames": "23",
+      "sha256": "5f14df0dc5707ff3586b0c4155968943e9df227520d1e563f184bfc633783257"
+    },
+    "expanded_full_pair.mp4": {
+      "width": 1024,
+      "height": 314,
+      "avg_frame_rate": "15/1",
+      "duration": "1.533333",
+      "nb_read_frames": "23",
+      "sha256": "dff8e06f8d2f3c701714195b911ce04d306e6725ef814b039731f693d116a356"
+    }
+  },
+  "verification": {
+    "zero_alpha_bit_exact": true,
+    "source_version_zero_alpha_bit_exact": true,
+    "fish_lock_bit_exact": true,
+    "anchor105_bit_exact": true,
+    "unchanged_inputs": true
+  },
+  "code_sha256": "fd3b78cdb79e5905f391aab35205bfb1232ab527dbab3079a683642ca8bc00e9",
+  "helper_code_sha256": "493b3c7d3e6533297feabc7a63d1c51f1d208647bc7da9abe01afe9e08c4889f",
+  "output_sha256": {
+    "alpha.npy": "4ed18b724919141dcc77631a599588cd991075b664b0e3d6c69a65f6bc61d81b",
+    "C2_rgb.npy": "7c7d64de3fb5d80425718aa5638125df0ec3567c9b656946573b1db650377873",
+    "fish_locks.npy": "a47986babb540ccae17dd7974ded25b6930a11e3e02bf06f4520e3c4f98795ee",
+    "R2_rgb.npy": "af3210caf4ad0218be786c1210f6d2a225326ad73e5f8d842a2b51d3bd9e68a3",
+    "tracked.npy": "25b09b339c5efeefffda1c5081043d3495a77e1558536b8e69f3fffcf219929a"
+  }
+}

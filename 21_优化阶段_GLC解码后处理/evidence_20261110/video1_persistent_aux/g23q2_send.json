@@ -1,0 +1,104 @@
+{
+  "bytes": 45681,
+  "kbps": 36.5448,
+  "within_budget": true,
+  "file_sha256": "0f30a0d24c678e92948eb19b2f80cbbbe49f12d1ae4848683f121a43008196f5",
+  "header": {
+    "base_sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+    "width": 512,
+    "height": 288,
+    "fps": 15,
+    "start": 0,
+    "frames": 150,
+    "keys": [
+      0,
+      15,
+      45,
+      75,
+      105,
+      135
+    ],
+    "old_weights": [
+      1.0,
+      0.8333333333333334,
+      0.6666666666666666,
+      0.5,
+      0.3333333333333333,
+      0.16666666666666666
+    ],
+    "crop": [
+      240,
+      0,
+      512,
+      144
+    ],
+    "grid": [
+      23,
+      12
+    ],
+    "motion_scale": 2,
+    "contour_epsilon": 1.0,
+    "inward_feather_px": 2.0,
+    "sections": {
+      "new_motion": {
+        "dtype": "<i2",
+        "shape": [
+          150,
+          12,
+          23,
+          2
+        ],
+        "axes": [
+          2
+        ],
+        "raw_bytes": 165600,
+        "bytes": 14856
+      },
+      "old_motion": {
+        "dtype": "<i2",
+        "shape": [
+          30,
+          12,
+          23,
+          2
+        ],
+        "axes": [
+          2
+        ],
+        "raw_bytes": 33120,
+        "bytes": 4048
+      },
+      "contours": {
+        "dtype": "<u2",
+        "shape": [
+          30462
+        ],
+        "axes": [],
+        "raw_bytes": 60924,
+        "bytes": 23504
+      },
+      "fish": {
+        "dtype": "|u1",
+        "shape": [
+          150,
+          288,
+          64
+        ],
+        "axes": [],
+        "raw_bytes": 2764800,
+        "bytes": 2516
+      }
+    }
+  },
+  "checks": {
+    "quantized_motion_exact": true,
+    "fish_mask_exact": true,
+    "expected_rgb_sha256": "ef27492c0cb39b57b6d901c004a946f78c7ea6c9f16ed8cd91f181e978826744",
+    "invalid_packets_rejected": {
+      "crc_corruption": true,
+      "wrong_base": true,
+      "truncated": true,
+      "over_budget": true
+    }
+  }
+}

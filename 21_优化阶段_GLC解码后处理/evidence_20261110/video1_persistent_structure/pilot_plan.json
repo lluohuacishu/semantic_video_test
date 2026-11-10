@@ -1,0 +1,101 @@
+{
+  "case": "video1",
+  "start": 105,
+  "stop_exclusive": 128,
+  "anchor": 105,
+  "fps": 15,
+  "frames": 23,
+  "source_assisted_offline": true,
+  "base_codec": {
+    "q": 0,
+    "gop": 64,
+    "reset": 32,
+    "backend": "FP32 eager"
+  },
+  "source_anchor_polygon": [
+    [
+      354,
+      4
+    ],
+    [
+      433,
+      4
+    ],
+    [
+      441,
+      53
+    ],
+    [
+      426,
+      73
+    ],
+    [
+      380,
+      89
+    ],
+    [
+      335,
+      106
+    ],
+    [
+      301,
+      116
+    ],
+    [
+      292,
+      108
+    ],
+    [
+      305,
+      83
+    ],
+    [
+      325,
+      54
+    ],
+    [
+      345,
+      25
+    ]
+  ],
+  "fixed_evaluation_box": [
+    342,
+    10,
+    502,
+    105
+  ],
+  "view_box": [
+    250,
+    0,
+    512,
+    132
+  ],
+  "cycle_limit_px": 1.5,
+  "source_low_rgb_limit": 16.0,
+  "erosion_px": 1,
+  "inward_feather_px": 4.0,
+  "interpolation": "one direct cubic warp",
+  "rendering": "full RGB anchor replacement; unit weight in reliable interior",
+  "illumination_correction": false,
+  "recurrent_resampling": false,
+  "texture_amplitude_gate": false,
+  "periodic_refresh": false,
+  "gate": "source sigma3 RGB difference and bidirectional source RAFT",
+  "evaluation": "independent adjacent source Farneback; same masks for every method",
+  "scopes": [
+    "original fixed box",
+    "tracked polygon, independent of rendering reliability"
+  ],
+  "additional_control": "S structure band combined with L long anchors, original blend and windows",
+  "blur_control": "one spatial sigma matching C tracked-region fine amplitude",
+  "context": [
+    102,
+    133
+  ],
+  "limitations": [
+    "Source motion, source visibility, and manual source polygon are untransmitted.",
+    "R also reads one source RGB anchor; it is not a deployable codec.",
+    "The isolated pilot does not solve entry, exit, refresh, or newly exposed regions.",
+    "Legacy S/SL have different editing support; C versus R is the controlled anchor comparison."
+  ]
+}

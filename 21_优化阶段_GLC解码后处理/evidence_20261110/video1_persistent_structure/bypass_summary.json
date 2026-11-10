@@ -1,0 +1,288 @@
+{
+  "complete": true,
+  "diagnostic_only": true,
+  "bitrate": null,
+  "base_sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+  "source_rgb_sha256": "78ca9c377c6240f8cc7384e5a3dd4a467c3431ce99135295d37ddd7054d33e9d",
+  "profile": {
+    "implementation": "glcv-lab-f32-v1",
+    "torch": "2.5.1+cu124",
+    "cuda": "12.4",
+    "cudnn": 90100,
+    "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "capability": [
+      8,
+      9
+    ],
+    "tf32": false,
+    "deterministic": true
+  },
+  "weights": {
+    "video": {
+      "encoder": {
+        "file": "sender_video.pt",
+        "sha256": "ae1f8ee0d8a4afbaefdbbc7aa6944b7271e94ca6113ed0ff0476e61cc82f6f19",
+        "bytes": 314567920,
+        "parameters": 78603392,
+        "keys": 481,
+        "loaded_keys": 146,
+        "prefix": "vqgan.encoder."
+      },
+      "generator": {
+        "file": "receiver_video.pt",
+        "sha256": "e91cc1f67c03972e5f57642719177aacd2bc089ba025f183d8bdb75d7865f87f",
+        "bytes": 333760370,
+        "parameters": 83406851,
+        "keys": 416,
+        "loaded_keys": 196,
+        "prefix": "vqgan.generator."
+      }
+    },
+    "image": {
+      "encoder": {
+        "file": "sender_image.pt",
+        "sha256": "f1824bb30ea0ac34fa69b925ca186ec524f8603adbfba79fcbb6b5578d129155",
+        "bytes": 248609364,
+        "parameters": 62123520,
+        "keys": 367,
+        "loaded_keys": 146,
+        "prefix": "vqgan.encoder."
+      },
+      "generator": {
+        "file": "receiver_image.pt",
+        "sha256": "79f9ddcd00d17bbbdd4fd51f9b1d5a242d79b17759ec9789ab6b762985015531",
+        "bytes": 284861870,
+        "parameters": 71187587,
+        "keys": 354,
+        "loaded_keys": 196,
+        "prefix": "vqgan.generator."
+      }
+    }
+  },
+  "code_sha256": "a4d7e8176c10b49ed6603eca9c5a53cc36e6ecbe87c33803abbcb3e0d6b8f503",
+  "input_tensor_code_sha256": "0a911a58230843cee113bf16fb9a3b2f6fa8a476ce4ccbd1b5b9cf4c89564b95",
+  "output_sha256": {
+    "fixed_video_rgb.npy": "335651d2b76dace4997a4ca3ccdec77e7d4c790f045707235a25f1ddda9049bf",
+    "switched_IP_rgb.npy": "08701929a23e4b578b919ceecb4adf18e78c1b5e950d71136619569906924813"
+  },
+  "full_fixed_scores": {
+    "source": {
+      "pairs": 149,
+      "valid_pixels": 1499191,
+      "spatial_pixels": 2280000,
+      "psnr_db": null,
+      "source_structure_mae": 0.0,
+      "fine_amplitude": 8.41062128777755,
+      "coarse_temporal_mae": 0.0,
+      "fine_temporal_mae": 0.0,
+      "full_temporal_mae": 0.0,
+      "structure_temporal_mae": 0.0,
+      "fine_ncc": 0.9683699292186323,
+      "structure_ncc": 0.9994202775697747
+    },
+    "raw": {
+      "pairs": 149,
+      "valid_pixels": 1499191,
+      "spatial_pixels": 2280000,
+      "psnr_db": 16.58216980593561,
+      "source_structure_mae": 5.953407093355948,
+      "fine_amplitude": 9.272384927528783,
+      "coarse_temporal_mae": 4.55809282879483,
+      "fine_temporal_mae": 12.717398276504316,
+      "full_temporal_mae": 21.037143200534906,
+      "structure_temporal_mae": 4.1350925001879135,
+      "fine_ncc": 0.43421899061915903,
+      "structure_ncc": 0.9324745543305524
+    },
+    "AE": {
+      "pairs": 149,
+      "valid_pixels": 1499191,
+      "spatial_pixels": 2280000,
+      "psnr_db": 16.59986398896799,
+      "source_structure_mae": 5.1985175451445995,
+      "fine_amplitude": 9.394050470720257,
+      "coarse_temporal_mae": 3.2256936559151423,
+      "fine_temporal_mae": 11.109100684897774,
+      "full_temporal_mae": 18.319706701918737,
+      "structure_temporal_mae": 3.134636047057656,
+      "fine_ncc": 0.5580391034577503,
+      "structure_ncc": 0.9536847227221135
+    },
+    "AE_IP": {
+      "pairs": 149,
+      "valid_pixels": 1499191,
+      "spatial_pixels": 2280000,
+      "psnr_db": 16.568347504181943,
+      "source_structure_mae": 5.233141950640762,
+      "fine_amplitude": 9.407841006630346,
+      "coarse_temporal_mae": 3.428607950111393,
+      "fine_temporal_mae": 11.395537171107513,
+      "full_temporal_mae": 18.980299987105546,
+      "structure_temporal_mae": 3.3146840834665943,
+      "fine_ncc": 0.5425074985721651,
+      "structure_ncc": 0.9497009386447065
+    }
+  },
+  "late_ordinary_p": {
+    "source": {
+      "pairs": 55,
+      "coarse_temporal_mae": 0.0,
+      "fine_ncc": 0.972367935470854
+    },
+    "raw": {
+      "pairs": 55,
+      "coarse_temporal_mae": 5.945088641640313,
+      "fine_ncc": 0.310860374548904
+    },
+    "AE": {
+      "pairs": 55,
+      "coarse_temporal_mae": 4.906515038560284,
+      "fine_ncc": 0.394898115200547
+    },
+    "AE_IP": {
+      "pairs": 55,
+      "coarse_temporal_mae": 4.906515038560284,
+      "fine_ncc": 0.394898115200547
+    }
+  },
+  "pilot_scores": {
+    "fixed": {
+      "source": {
+        "pairs": 22,
+        "valid_pixels": 187499,
+        "spatial_pixels": 349600,
+        "psnr_db": null,
+        "source_structure_mae": 0.0,
+        "fine_amplitude": 6.515383518664188,
+        "coarse_temporal_mae": 0.0,
+        "fine_temporal_mae": 0.0,
+        "full_temporal_mae": 0.0,
+        "structure_temporal_mae": 0.0,
+        "fine_ncc": 0.972189228783825,
+        "structure_ncc": 0.9990420384203821
+      },
+      "raw": {
+        "pairs": 22,
+        "valid_pixels": 187499,
+        "spatial_pixels": 349600,
+        "psnr_db": 17.063353116322467,
+        "source_structure_mae": 5.926230938036327,
+        "fine_amplitude": 7.586037413293765,
+        "coarse_temporal_mae": 6.9751364611444595,
+        "fine_temporal_mae": 14.658066301353607,
+        "full_temporal_mae": 28.422692587693803,
+        "structure_temporal_mae": 6.473754724608531,
+        "fine_ncc": 0.18940051011646483,
+        "structure_ncc": 0.8786625895885012
+      },
+      "AE": {
+        "pairs": 22,
+        "valid_pixels": 187499,
+        "spatial_pixels": 349600,
+        "psnr_db": 17.307694004448177,
+        "source_structure_mae": 5.081266536756293,
+        "fine_amplitude": 7.490987065574942,
+        "coarse_temporal_mae": 5.8037870472809185,
+        "fine_temporal_mae": 13.475454994093301,
+        "full_temporal_mae": 26.18798400258135,
+        "structure_temporal_mae": 5.653174098178524,
+        "fine_ncc": 0.29207920361491463,
+        "structure_ncc": 0.8932886396196548
+      },
+      "AE_IP": {
+        "pairs": 22,
+        "valid_pixels": 187499,
+        "spatial_pixels": 349600,
+        "psnr_db": 17.307694004448177,
+        "source_structure_mae": 5.081266536756293,
+        "fine_amplitude": 7.490987065574942,
+        "coarse_temporal_mae": 5.8037870472809185,
+        "fine_temporal_mae": 13.475454994093301,
+        "full_temporal_mae": 26.18798400258135,
+        "structure_temporal_mae": 5.653174098178524,
+        "fine_ncc": 0.29207920361491463,
+        "structure_ncc": 0.8932886396196548
+      }
+    },
+    "tracked": {
+      "source": {
+        "pairs": 22,
+        "valid_pixels": 197384,
+        "spatial_pixels": 217242,
+        "psnr_db": null,
+        "source_structure_mae": 0.0,
+        "fine_amplitude": 13.985392010983142,
+        "coarse_temporal_mae": 0.0,
+        "fine_temporal_mae": 0.0,
+        "full_temporal_mae": 0.0,
+        "structure_temporal_mae": 0.0,
+        "fine_ncc": 0.9670211529611444,
+        "structure_ncc": 0.998386996126516
+      },
+      "raw": {
+        "pairs": 22,
+        "valid_pixels": 197384,
+        "spatial_pixels": 217242,
+        "psnr_db": 13.622569555506916,
+        "source_structure_mae": 10.687477991134312,
+        "fine_amplitude": 15.670745966767475,
+        "coarse_temporal_mae": 7.394436217917866,
+        "fine_temporal_mae": 18.623381486088032,
+        "full_temporal_mae": 34.626617722307785,
+        "structure_temporal_mae": 6.969266304038068,
+        "fine_ncc": 0.16300663631025805,
+        "structure_ncc": 0.8446610244303182
+      },
+      "AE": {
+        "pairs": 22,
+        "valid_pixels": 197384,
+        "spatial_pixels": 217242,
+        "psnr_db": 13.682945393773894,
+        "source_structure_mae": 9.728166126370592,
+        "fine_amplitude": 15.446064757275296,
+        "coarse_temporal_mae": 6.754125128556519,
+        "fine_temporal_mae": 17.33729684270255,
+        "full_temporal_mae": 33.23797181192498,
+        "structure_temporal_mae": 6.571970336849745,
+        "fine_ncc": 0.25440246309583103,
+        "structure_ncc": 0.8547512781007383
+      },
+      "AE_IP": {
+        "pairs": 22,
+        "valid_pixels": 197384,
+        "spatial_pixels": 217242,
+        "psnr_db": 13.682945393773894,
+        "source_structure_mae": 9.728166126370592,
+        "fine_amplitude": 15.446064757275296,
+        "coarse_temporal_mae": 6.754125128556519,
+        "fine_temporal_mae": 17.33729684270255,
+        "full_temporal_mae": 33.23797181192498,
+        "structure_temporal_mae": 6.571970336849745,
+        "fine_ncc": 0.25440246309583103,
+        "structure_ncc": 0.8547512781007383
+      }
+    }
+  },
+  "repeated_frame105_bit_exact": true,
+  "peak_allocated_mib": 631.94921875,
+  "loading_and_inference_seconds": 26.57583109999905,
+  "total_seconds": 40.20295819999956,
+  "previews": {
+    "bypass_coral_10s.mp4": {
+      "width": 1048,
+      "height": 580,
+      "avg_frame_rate": "15/1",
+      "duration": "10.000000",
+      "nb_read_frames": "150",
+      "sha256": "585b74bfff6618c11ee235c42715aa49f68073be11b1307e12682cba73c9d703"
+    },
+    "bypass_full_10s.mp4": {
+      "width": 1024,
+      "height": 628,
+      "avg_frame_rate": "15/1",
+      "duration": "10.000000",
+      "nb_read_frames": "150",
+      "sha256": "1b21c94251b051446027fa8f76d31baaecf284c6c4a0eeac3b15fc379fb8761c"
+    }
+  }
+}
