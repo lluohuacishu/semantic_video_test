@@ -167,15 +167,16 @@ def gate_components(visible, difference):
 
 
 def blend_cached_texture(rgb, texture, projected_texture, visible, difference, index, anchor, *,
-                         sent_gate=None, protected=None, anchor_end=None, structure_delta=None):
+                         sent_gate=None, protected=None, anchor_end=None, structure_delta=None, fade=None):
     if sent_gate is None:
         reliable, feather, tone = gate_components(visible, difference)
     else:
         reliable, feather, tone = visible, sent_gate, 1.0
     texture_energy = cv2.GaussianBlur(np.abs(projected_texture), (0, 0), 1.5)
     texture_confidence = np.clip((texture_energy - 1) / 3, 0, 1)
-    until_refresh = CACHE_FRAMES - index % CACHE_FRAMES if anchor_end is None else anchor_end - index
-    fade = min((index-anchor) / 3, until_refresh / 3, 1)
+    if fade is None:
+        until_refresh = CACHE_FRAMES - index % CACHE_FRAMES if anchor_end is None else anchor_end - index
+        fade = min((index-anchor) / 3, until_refresh / 3, 1)
     alpha = .82 * fade * feather * reliable * tone * texture_confidence
     if protected is not None:
         alpha[protected] = 0
