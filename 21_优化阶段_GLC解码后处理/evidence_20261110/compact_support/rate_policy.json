@@ -1,0 +1,13 @@
+{
+  "policy": "For each clip and E/F fusion independently, try S24/S20/S16/S12 with fixed B4 T5. Choose the first complete file strictly below that clip base bytes. Use byte counts only; no per-clip metric or ROI choices.",
+  "reason": "video2 uses almost every fine-grid motion node, so dropping unused nodes alone does not meet the preferred below-base target.",
+  "absolute_cap_kbps": 40,
+  "preferred_cap": "below base file",
+  "fixed_grid_order": [
+    24,
+    20,
+    16,
+    12
+  ],
+  "fallback_if_none": "do not approve a candidate; report failure, base-only is available"
+}

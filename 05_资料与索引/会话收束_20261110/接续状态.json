@@ -9,11 +9,11 @@
   "last_experiment_commit": "f30a3b95701d4ab2bab2073fae93755e35cab472",
   "current_branch_head_check": "git log -1",
   "new_experiments_uncommitted": false,
-  "new_experiment_report": "21_优化阶段_GLC解码后处理/整帧运动与可靠区因果消融_20261110.md",
+  "new_experiment_report": "21_优化阶段_GLC解码后处理/低码率可靠区与同总字节对照_20261110.md",
   "handoff_repo_path": "交接文档.md",
   "stage_report_repo_path": "21_优化阶段_GLC解码后处理/README.md",
   "workspace_paths": {
-    "viewing": "05_成果与观看/GLC_整帧与跨素材_20261110/README.md",
+    "viewing": "05_成果与观看/GLC_低码率可靠区_20261110/README.md",
     "previous_boundary_viewing": "05_成果与观看/GLC_时序稳定性_20261110/README.md",
     "persistent_structure_run": "02_实验数据/优化_GLC后处理/video1_persistent_structure_20261110_01",
     "result_index": "02_实验数据/优化_GLC后处理/README.md",
@@ -35,15 +35,319 @@
     "fullframe_transmission_files": "05_成果与观看/GLC_整帧与跨素材_20261110/实验传输文件_F",
     "strategy_diagnosis": "02_实验数据/优化_GLC后处理/fullframe_strategy_diagnosis_20261110_02",
     "latest_factorial_run": "02_实验数据/优化_GLC后处理/fullframe_factorial_20261110_01",
-    "latest_factorial_viewing": "05_成果与观看/GLC_整帧因果消融_20261110/README.md"
+    "latest_factorial_viewing": "05_成果与观看/GLC_整帧因果消融_20261110/README.md",
+    "compact_support_run": "02_实验数据/优化_GLC后处理/compact_support_20261110_01"
   },
   "budget": {
     "base_fps": 15,
     "base_kbps_max": 40,
     "semantic_kbps_max": 40,
-    "billing": "complete file bytes / explicit duration"
+    "billing": "complete file bytes / explicit duration",
+    "semantic_goal": "Lower is better subject to perceptual quality; preferably below corresponding base bitrate. 50000 B per 10 s is a ceiling, never a target.",
+    "clarified_by_user": true
   },
   "latest_result": {
+    "variant": "L / compact support, sparse required motion nodes",
+    "run": "02_实验数据/优化_GLC后处理/compact_support_20261110_01",
+    "report": "21_优化阶段_GLC解码后处理/低码率可靠区与同总字节对照_20261110.md",
+    "frames_per_case": 150,
+    "fps": 15,
+    "billing_seconds": 10,
+    "source_assisted_sender": true,
+    "source_media_at_receiver": false,
+    "actual_auxiliary_stream": true,
+    "manual_edit_region": false,
+    "held_out_material": false,
+    "streaming_validated": false,
+    "selection": {
+      "complete": true,
+      "profiles": {
+        "video1": {
+          "E": {
+            "name": "S24_B4_T5_E",
+            "bytes": 26302,
+            "kbps": 21.0416,
+            "base_bytes": 31963,
+            "base_kbps": 25.5704,
+            "below_base": true,
+            "attempts": [
+              {
+                "name": "S24_B4_T5_E",
+                "bytes": 26302
+              }
+            ],
+            "selection_uses_quality": false
+          },
+          "F": {
+            "name": "S24_B4_T5_F",
+            "bytes": 31518,
+            "kbps": 25.2144,
+            "base_bytes": 31963,
+            "base_kbps": 25.5704,
+            "below_base": true,
+            "attempts": [
+              {
+                "name": "S24_B4_T5_F",
+                "bytes": 31518
+              }
+            ],
+            "selection_uses_quality": false
+          }
+        },
+        "video2": {
+          "E": {
+            "name": "S16_B4_T5_E",
+            "bytes": 25581,
+            "kbps": 20.4648,
+            "base_bytes": 31849,
+            "base_kbps": 25.4792,
+            "below_base": true,
+            "attempts": [
+              {
+                "name": "S24_B4_T5_E",
+                "bytes": 39383
+              },
+              {
+                "name": "S20_B4_T5_E",
+                "bytes": 32351
+              },
+              {
+                "name": "S16_B4_T5_E",
+                "bytes": 25581
+              }
+            ],
+            "selection_uses_quality": false
+          },
+          "F": {
+            "name": "S16_B4_T5_F",
+            "bytes": 26402,
+            "kbps": 21.1216,
+            "base_bytes": 31849,
+            "base_kbps": 25.4792,
+            "below_base": true,
+            "attempts": [
+              {
+                "name": "S24_B4_T5_F",
+                "bytes": 42163
+              },
+              {
+                "name": "S20_B4_T5_F",
+                "bytes": 34407
+              },
+              {
+                "name": "S16_B4_T5_F",
+                "bytes": 26402
+              }
+            ],
+            "selection_uses_quality": false
+          }
+        },
+        "video3": {
+          "E": {
+            "name": "S24_B4_T5_E",
+            "bytes": 19418,
+            "kbps": 15.5344,
+            "base_bytes": 30995,
+            "base_kbps": 24.796,
+            "below_base": true,
+            "attempts": [
+              {
+                "name": "S24_B4_T5_E",
+                "bytes": 19418
+              }
+            ],
+            "selection_uses_quality": false
+          },
+          "F": {
+            "name": "S24_B4_T5_F",
+            "bytes": 20030,
+            "kbps": 16.024,
+            "base_bytes": 30995,
+            "base_kbps": 24.796,
+            "below_base": true,
+            "attempts": [
+              {
+                "name": "S24_B4_T5_F",
+                "bytes": 20030
+              }
+            ],
+            "selection_uses_quality": false
+          }
+        }
+      },
+      "rule": "First below-base file in fixed S24,S20,S16,S12 sequence, fixed B4 T5, no score-based selection."
+    },
+    "verification_complete": true,
+    "visual_review": {
+      "date": "2026-11-10",
+      "status": "qualified_positive_video1_tradeoff_and_video2_video3_boundary_accepted",
+      "comparison": "video1 left low-rate L, right HEVC under same total-byte budget",
+      "quote": "各有优缺点吧算是，h.265的鱼啥的糊成一片了，但是珊瑚的观感比glc好，glc这个整体来看肉眼观感好一点，没那么糊，就是珊瑚确实还在晃动，单比最开始的glc要好",
+      "interpretation": "User prefers L overall because H.265 blurs fish and other details; H.265 coral appearance is better. L coral still deforms but is improved over original GLC. This is not equivalence to U or acceptance of video2/video3.",
+      "cross_clip_boundary_review": {
+        "status": "accepted",
+        "clips": [
+          "video2",
+          "video3"
+        ],
+        "comparison": "left previous F, right new low-rate L; full-frame original-speed",
+        "question": "这两段左旧 F、右低码率 L 中，右侧的主体边界和鱼体运动是否仍可接受？",
+        "quote": "两段右侧都可接受",
+        "interpretation": "L subject boundaries and fish motion are acceptable on these two 10-second development clips. LB was not separately accepted; no claim about unseen or full-length material."
+      },
+      "next_focus": "Keep detail and normal fish motion, reduce coral deformation and auxiliary bytes together; do not judge overall perception using PSNR alone."
+    },
+    "same_total_byte_cap_HEVC_tested": true,
+    "HEVC_metric_advantage_is_not_overall_perceptual_advantage": true,
+    "coral_MAE": 2.6778268570075356,
+    "coral_NCC": 0.756759410267657,
+    "GP_U_not_reached": true,
+    "next_focus": "Use L as low-rate full-frame baseline and preserve U regression; reduce residual coral deformation while protecting detail and fish movement, staying below base bitrate where possible."
+  },
+  "previous_boundary_transition_result": {
+    "case": "video1",
+    "frames": 150,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "frame_events": [
+      56,
+      64,
+      112,
+      128
+    ],
+    "source_assisted_offline": true,
+    "user_original_speed_review": "pending",
+    "fixed_upper_coarse_mae_with_exit": {
+      "raw": 6.9956630205004755,
+      "transition": 5.523341135497951
+    }
+  },
+  "other_local_untracked_repo_paths": [
+    "19_部署阶段_收发端独立打包/",
+    "05_资料与索引/GLVC论文阅读与GLC适用性评估_20261105.md",
+    "05_资料与索引/UVID数据集初评_20261028.md"
+  ],
+  "archived_scope": "GVC1D",
+  "previous_short_structure_result": {
+    "case": "video1",
+    "variant": "C2 expanded persistent GLC RGB reference",
+    "start": 105,
+    "stop_exclusive": 128,
+    "frames": 23,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "source_assisted_offline": true,
+    "actual_auxiliary_stream": false,
+    "user_original_speed_review": "分界改善，整体更稳",
+    "fixed_upper_coarse_mae": {
+      "raw": 6.9751364611444595,
+      "S": 4.898084508534046,
+      "C": 3.1203868972717856,
+      "C2": 1.414839798416425
+    },
+    "next_focus": "Persistent structure across longer video, visibility changes, and reference refresh; then actual auxiliary-file delivery within each lane's 40 kbps budget."
+  },
+  "accepted_video1_local_baseline": {
+    "case": "video1",
+    "variant": "U / g17q4 actual persistent-reference auxiliary file",
+    "start": 0,
+    "stop_exclusive": 150,
+    "frames": 150,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "source_assisted_sender": true,
+    "source_media_at_receiver": false,
+    "actual_auxiliary_stream": true,
+    "source_assisted_offline": false,
+    "user_original_speed_review": "U 与之前的 T 差不多，都比原始 GLC 稳",
+    "offline_T_review": "整体明显更稳，过渡可接受",
+    "base_bytes": 31963,
+    "auxiliary_bytes": 42793,
+    "total_bytes": 74756,
+    "billing_seconds": 10,
+    "base_kbps": 25.5704,
+    "auxiliary_kbps": 34.2344,
+    "total_kbps": 59.8048,
+    "fixed_upper_coarse_mae": {
+      "raw": 4.55809282879483,
+      "S": 3.300989781087558,
+      "T": 1.3908072516961074,
+      "g17q4": 1.4255694384159472
+    },
+    "next_focus": "Use the same coral region and frames as the regression constraint for full-frame transfer.",
+    "role": "Preserve accepted local U; full-frame F does not supersede it."
+  },
+  "previous_local_U_report": "21_优化阶段_GLC解码后处理/video1持续结构10秒与实际辅助流_20261110.md",
+  "experiment_pushed_to": "origin/codex/glc-temporal-stability",
+  "latest_analysis_report": "21_优化阶段_GLC解码后处理/低码率可靠区与同总字节对照_20261110.md",
+  "latest_diagnosis": {
+    "type": "read-only analysis of archived arrays",
+    "new_candidate_experiments_run": false,
+    "evidence": "21_优化阶段_GLC解码后处理/evidence_20261110/strategy_diagnosis/summary.json",
+    "dense_offline_coral_mae": 1.708165303364552,
+    "U_switch_fraction": 0.014016893111017876,
+    "E_F_switch_fraction": 0.11928500104389635,
+    "interpretation": "Prioritize separating lossy motion representation and reliability block decisions; LZMA is lossless. Subgroup associations are not causal proof.",
+    "next_order": [
+      "fixed-blend motion/mask factorial diagnostic",
+      "visibility-aware continuous support state",
+      "per-frame adaptive motion representation",
+      "separate boundary feather and tone controls",
+      "longer and held-out clips plus same-total-byte baseline"
+    ]
+  },
+  "latest_experiment_plan": {
+    "status": "executed_compact_support_and_HEVC",
+    "run": "02_实验数据/优化_GLC后处理/compact_support_20261110_01",
+    "plan": "plan.json",
+    "followups": [
+      "sparse_followup_plan.json",
+      "rate_policy.json"
+    ],
+    "frozen_plans_kept_unchanged": true
+  },
+  "latest_factorial_result": {
+    "report": "21_优化阶段_GLC解码后处理/整帧运动与可靠区因果消融_20261110.md",
+    "run": "02_实验数据/优化_GLC后处理/fullframe_factorial_20261110_01",
+    "viewing": "05_成果与观看/GLC_整帧因果消融_20261110/README.md",
+    "source_assisted_offline": true,
+    "new_transmitted_candidate": false,
+    "E_reproduced_bit_exact": true,
+    "coral_coarse_mae": {
+      "DP": 1.8190828026849408,
+      "DB": 2.971641655106352,
+      "GP": 1.971967780149087,
+      "GB_E": 3.08422220957094
+    },
+    "GP_fine_ncc": 0.8701780745616733,
+    "direct_mask_plus_motion_payload_bytes": 245584,
+    "payload_excludes_header": true,
+    "visual_review": {
+      "date": "2026-11-10",
+      "status": "qualified_positive_small_visual_difference",
+      "shown": [
+        "evaluation/grid_pixel_vs_block_full.mp4",
+        "evaluation/U_vs_grid_pixel_coral.mp4"
+      ],
+      "question": "GP 相比 E 是否减轻，与旧 U 还有多大差距；留意鱼和边界。",
+      "interpretation": "GP was judged slightly better than E in the full-frame pair. U and GP were both considered acceptable in the coral pair. This does not establish perceptual equivalence to U, absence of new fish/boundary artifacts, or a deployable 40 kbps result.",
+      "quote": "第一段视频，左边那个GP好一点，右边的GB=E差了一点点感觉，第二段视频都还可以吧其实"
+    },
+    "next_focus": "Compact boundary/support representation and transmitted continuous states; early same-total-byte conventional baseline before extensive format engineering.",
+    "experiment_commit": "f30a3b95701d4ab2bab2073fae93755e35cab472",
+    "code_and_evidence_in_git": true
+  },
+  "previous_experiment_commit": "338c98f00b182153c529bb266a46fcf37711f11d",
+  "previous_F_result": {
     "variant": "F / g24q2 actual full-frame reference auxiliary file",
     "cases": [
       "video1",
@@ -147,147 +451,5 @@
     },
     "verification_complete": true,
     "next_focus": "Controlled diagnosis of time-varying reliability support, motion precision, reference choice and object-boundary blending, preserving accepted local U stability in video1. No unified accepted solution yet."
-  },
-  "previous_boundary_transition_result": {
-    "case": "video1",
-    "frames": 150,
-    "fps": 15,
-    "size": [
-      512,
-      288
-    ],
-    "frame_events": [
-      56,
-      64,
-      112,
-      128
-    ],
-    "source_assisted_offline": true,
-    "user_original_speed_review": "pending",
-    "fixed_upper_coarse_mae_with_exit": {
-      "raw": 6.9956630205004755,
-      "transition": 5.523341135497951
-    }
-  },
-  "other_local_untracked_repo_paths": [
-    "19_部署阶段_收发端独立打包/",
-    "05_资料与索引/GLVC论文阅读与GLC适用性评估_20261105.md",
-    "05_资料与索引/UVID数据集初评_20261028.md"
-  ],
-  "archived_scope": "GVC1D",
-  "previous_short_structure_result": {
-    "case": "video1",
-    "variant": "C2 expanded persistent GLC RGB reference",
-    "start": 105,
-    "stop_exclusive": 128,
-    "frames": 23,
-    "fps": 15,
-    "size": [
-      512,
-      288
-    ],
-    "source_assisted_offline": true,
-    "actual_auxiliary_stream": false,
-    "user_original_speed_review": "分界改善，整体更稳",
-    "fixed_upper_coarse_mae": {
-      "raw": 6.9751364611444595,
-      "S": 4.898084508534046,
-      "C": 3.1203868972717856,
-      "C2": 1.414839798416425
-    },
-    "next_focus": "Persistent structure across longer video, visibility changes, and reference refresh; then actual auxiliary-file delivery within each lane's 40 kbps budget."
-  },
-  "accepted_video1_local_baseline": {
-    "case": "video1",
-    "variant": "U / g17q4 actual persistent-reference auxiliary file",
-    "start": 0,
-    "stop_exclusive": 150,
-    "frames": 150,
-    "fps": 15,
-    "size": [
-      512,
-      288
-    ],
-    "source_assisted_sender": true,
-    "source_media_at_receiver": false,
-    "actual_auxiliary_stream": true,
-    "source_assisted_offline": false,
-    "user_original_speed_review": "U 与之前的 T 差不多，都比原始 GLC 稳",
-    "offline_T_review": "整体明显更稳，过渡可接受",
-    "base_bytes": 31963,
-    "auxiliary_bytes": 42793,
-    "total_bytes": 74756,
-    "billing_seconds": 10,
-    "base_kbps": 25.5704,
-    "auxiliary_kbps": 34.2344,
-    "total_kbps": 59.8048,
-    "fixed_upper_coarse_mae": {
-      "raw": 4.55809282879483,
-      "S": 3.300989781087558,
-      "T": 1.3908072516961074,
-      "g17q4": 1.4255694384159472
-    },
-    "next_focus": "Use the same coral region and frames as the regression constraint for full-frame transfer.",
-    "role": "Preserve accepted local U; full-frame F does not supersede it."
-  },
-  "previous_local_U_report": "21_优化阶段_GLC解码后处理/video1持续结构10秒与实际辅助流_20261110.md",
-  "experiment_pushed_to": "origin/codex/glc-temporal-stability",
-  "latest_analysis_report": "21_优化阶段_GLC解码后处理/当前瓶颈与优化路线_20261110.md",
-  "latest_diagnosis": {
-    "type": "read-only analysis of archived arrays",
-    "new_candidate_experiments_run": false,
-    "evidence": "21_优化阶段_GLC解码后处理/evidence_20261110/strategy_diagnosis/summary.json",
-    "dense_offline_coral_mae": 1.708165303364552,
-    "U_switch_fraction": 0.014016893111017876,
-    "E_F_switch_fraction": 0.11928500104389635,
-    "interpretation": "Prioritize separating lossy motion representation and reliability block decisions; LZMA is lossless. Subgroup associations are not causal proof.",
-    "next_order": [
-      "fixed-blend motion/mask factorial diagnostic",
-      "visibility-aware continuous support state",
-      "per-frame adaptive motion representation",
-      "separate boundary feather and tone controls",
-      "longer and held-out clips plus same-total-byte baseline"
-    ]
-  },
-  "latest_experiment_plan": {
-    "status": "executed_offline_factorial",
-    "trigger": "user-supplied external evaluation",
-    "report": "21_优化阶段_GLC解码后处理/下一轮因果消融设计_20261110.md",
-    "plan": "21_优化阶段_GLC解码后处理/plan_fullframe_factorial_20261110.json",
-    "new_candidate_experiments_run": true,
-    "first_action": "Reproduce native_GB exactly as archived E, then frozen-grid common-gate factorial plus native-gate bridge.",
-    "frozen_plan_kept_unchanged": true
-  },
-  "latest_factorial_result": {
-    "report": "21_优化阶段_GLC解码后处理/整帧运动与可靠区因果消融_20261110.md",
-    "run": "02_实验数据/优化_GLC后处理/fullframe_factorial_20261110_01",
-    "viewing": "05_成果与观看/GLC_整帧因果消融_20261110/README.md",
-    "source_assisted_offline": true,
-    "new_transmitted_candidate": false,
-    "E_reproduced_bit_exact": true,
-    "coral_coarse_mae": {
-      "DP": 1.8190828026849408,
-      "DB": 2.971641655106352,
-      "GP": 1.971967780149087,
-      "GB_E": 3.08422220957094
-    },
-    "GP_fine_ncc": 0.8701780745616733,
-    "direct_mask_plus_motion_payload_bytes": 245584,
-    "payload_excludes_header": true,
-    "visual_review": {
-      "date": "2026-11-10",
-      "status": "qualified_positive_small_visual_difference",
-      "shown": [
-        "evaluation/grid_pixel_vs_block_full.mp4",
-        "evaluation/U_vs_grid_pixel_coral.mp4"
-      ],
-      "question": "GP 相比 E 是否减轻，与旧 U 还有多大差距；留意鱼和边界。",
-      "interpretation": "GP was judged slightly better than E in the full-frame pair. U and GP were both considered acceptable in the coral pair. This does not establish perceptual equivalence to U, absence of new fish/boundary artifacts, or a deployable 40 kbps result.",
-      "quote": "第一段视频，左边那个GP好一点，右边的GB=E差了一点点感觉，第二段视频都还可以吧其实"
-    },
-    "next_focus": "Compact boundary/support representation and transmitted continuous states; early same-total-byte conventional baseline before extensive format engineering.",
-    "experiment_commit": "f30a3b95701d4ab2bab2073fae93755e35cab472",
-    "code_and_evidence_in_git": true
-  },
-  "previous_experiment_commit": "338c98f00b182153c529bb266a46fcf37711f11d"
+  }
 }

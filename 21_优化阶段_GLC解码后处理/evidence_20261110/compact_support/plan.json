@@ -1,0 +1,74 @@
+{
+  "status": "frozen_before_render",
+  "absolute_cap_kbps": 40,
+  "absolute_cap_bytes_per_10s": 50000,
+  "preferred_auxiliary_bytes": "strictly below each corresponding base file; lower is better if quality acceptable",
+  "billing_seconds": 10,
+  "profiles": {
+    "M24_B8_T1": [
+      [
+        24,
+        14
+      ],
+      8,
+      1
+    ],
+    "M24_B4_T3": [
+      [
+        24,
+        14
+      ],
+      4,
+      3
+    ],
+    "M16_B8_T1": [
+      [
+        16,
+        9
+      ],
+      8,
+      1
+    ],
+    "M16_B4_T3": [
+      [
+        16,
+        9
+      ],
+      4,
+      3
+    ],
+    "M12_B4_T3": [
+      [
+        12,
+        7
+      ],
+      4,
+      3
+    ],
+    "M16_B4_T5": [
+      [
+        16,
+        9
+      ],
+      4,
+      5
+    ],
+    "M12_B4_T5": [
+      [
+        12,
+        7
+      ],
+      4,
+      5
+    ]
+  },
+  "motion_update": "every frame, half-pixel, bilinear resize of frozen E grids, no temporal subsampling",
+  "support": "4 or 8 pixel conservative cells; grouped all-frame intersection, no group crossing new or old anchors",
+  "sender_lookahead": "span minus one frames for mask intersection; whole-segment packaging remains offline",
+  "safety": "zero decoded support outside corresponding represented-motion pixel-safe set",
+  "phase1": "seven video1 E-fusion variants; report all including failures, no ROI-specific edits",
+  "phase2": "common low-rate candidate on video2 and video3; E/F fusion controls; common parameters",
+  "rate_selection": "Pareto tradeoff, prefer below-base actual files, do not fill the cap",
+  "evaluation": "frozen external reliable textured source support; full/quadrants/coral plus source fidelity and uncompressed arrays",
+  "user_rate_clarification": "50k is an absolute bound only, not a target; best below base bitrate"
+}

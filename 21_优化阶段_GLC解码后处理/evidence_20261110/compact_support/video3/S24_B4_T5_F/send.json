@@ -1,0 +1,93 @@
+{
+  "profile": "S24_B4_T5_F",
+  "bytes": 20030,
+  "kbps": 16.024,
+  "base_bytes": 30995,
+  "base_kbps": 24.796,
+  "below_base": true,
+  "within_absolute_cap": true,
+  "header": {
+    "base_sha256": "8670b0dcfba34cc5d15c40c6791a54f96faca5479f890b1bcb58587696f16276",
+    "width": 512,
+    "height": 288,
+    "frames": 150,
+    "start": 0,
+    "fps": 15,
+    "keys": [
+      0,
+      15,
+      45,
+      75,
+      105,
+      135
+    ],
+    "old_weights": [
+      1.0,
+      0.8333333333333334,
+      0.6666666666666666,
+      0.5,
+      0.3333333333333333,
+      0.16666666666666666
+    ],
+    "grid": [
+      24,
+      14
+    ],
+    "scale": 2,
+    "mask_step": 4,
+    "group_span": 5,
+    "fusion": "F",
+    "sections": {
+      "motion": {
+        "axes": [],
+        "layout": "zigzag",
+        "sparse": "median",
+        "raw_bytes": 240084,
+        "bytes": 8540
+      },
+      "support": {
+        "order": [
+          0,
+          1,
+          2
+        ],
+        "xor_last": false,
+        "raw_bytes": 46080,
+        "bytes": 10960
+      }
+    }
+  },
+  "sha256": "3e062a13f277dc68e9158577103f0b6e309a23c3e66b380ccf1b182bdf80731b",
+  "inputs_sha256": {
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video3\\source.npy": "85edc8aa5c039194e48554247a7c0b7a401aeb0695aff2690cccec8b4c6396d6",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video3\\base.glcsnd": "8670b0dcfba34cc5d15c40c6791a54f96faca5479f890b1bcb58587696f16276",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video3\\base_receive\\decoded_rgb.npy": "742ca88ea86b9ada6f3831ab3114b22bf2d485d7b80c02fb0c37d78db12a2023",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video3\\g24q2_E\\fullframe.glcfull": "52815df4cd375c81c1c2da98be59cfdb794d76cebebb9a52374dee6334758d7e",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video3\\flow\\to_anchor.npy": "ef5445d9aa48145dd6ab1c77b4c492d958f7e3be85d1b88e5be89d7068fdc02a",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video3\\transition_flow.npy": "9182a0c48e7c8e0d5407ff75689e1bb545c55e028e25b40370ad690dc8d31c53",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video3\\offline\\alpha.npy": "3592b1a4e796f675e91595079148d92fc0f406217e2d5d5bb3f325f5e7fedb94",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video3\\offline\\shared.npy": "94b51e4cd5906df059e29ccaf07bcc47a3792c14c729de165a8a910790a52d89"
+  },
+  "safety_policy": "All pixels in each spatial cell and all frames of each group must pass the represented-motion safety gate.",
+  "source_assistance_at_sender": true,
+  "no_hand_edit_ROI": true,
+  "lookahead_frames_for_support": 4,
+  "motion_every_frame": true,
+  "needed_node_fraction": 0.9924107142857143,
+  "unused_nodes_omitted": true,
+  "sparse_vs_full_grid_rgb_alpha_exact": true,
+  "sender_expected_rgb_sha256": "e52181d16f9648d1f793589516539a2d2ded72114fc8c110e7b30dd520db37b3",
+  "sender_expected_alpha_sha256": "152b87ef1e65214c19c7f5a483ae191d7653e5930323e034476a51c313c549fd",
+  "unsafe_pixels": 0,
+  "pixel_safe_fraction": 0.7951979648919754,
+  "decoded_safe_fraction": 0.6630340952932099,
+  "decoded_coral_fraction": 0.9641491228070176,
+  "required_motion_roundtrip_exact": true,
+  "support_roundtrip_exact": true,
+  "negative_checks": {
+    "CRC": true,
+    "wrong_base": true,
+    "truncated": true,
+    "over_cap": true
+  }
+}

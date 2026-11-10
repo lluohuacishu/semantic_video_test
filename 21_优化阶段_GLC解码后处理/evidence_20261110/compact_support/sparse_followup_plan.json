@@ -1,0 +1,14 @@
+{
+  "reason": "Uniform 16/12 grids save bytes but lose stability; S variants retain original 24x14 samples on every used bilinear node.",
+  "profiles": [
+    "S24_B4_T3",
+    "S24_B4_T5"
+  ],
+  "fusions": [
+    "E",
+    "F"
+  ],
+  "required_proof": "Lossless RGB and alpha identical to full 24x14 motion for the same masks and fusion; same safety subset; exact transmitted motion on every needed node.",
+  "selection": "Measure both; prefer below-base bytes, assess E/F and whole-frame metrics; no ROI-specific selection.",
+  "F_dependency": "97x97 neighborhood around support before marking bilinear nodes; checked against unpruned F output."
+}
