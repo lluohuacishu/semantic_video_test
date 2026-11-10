@@ -6,10 +6,10 @@
   "repository": "01_项目/代码/semantic_video_test",
   "experiment_branch": "codex/glc-temporal-stability",
   "main_baseline_commit": "50ed016471aad628e90169bbdf5955d2074a5e3b",
-  "last_experiment_commit": "338c98f00b182153c529bb266a46fcf37711f11d",
+  "last_experiment_commit": "f30a3b95701d4ab2bab2073fae93755e35cab472",
   "current_branch_head_check": "git log -1",
   "new_experiments_uncommitted": false,
-  "new_experiment_report": "21_优化阶段_GLC解码后处理/整帧与跨素材结构稳定实验_20261110.md",
+  "new_experiment_report": "21_优化阶段_GLC解码后处理/整帧运动与可靠区因果消融_20261110.md",
   "handoff_repo_path": "交接文档.md",
   "stage_report_repo_path": "21_优化阶段_GLC解码后处理/README.md",
   "workspace_paths": {
@@ -33,7 +33,9 @@
     "fullframe_final_code": "02_实验数据/优化_GLC后处理/fullframe_reference_refined_20261110_01/source_final",
     "fullframe_verification": "02_实验数据/优化_GLC后处理/fullframe_reference_refined_20261110_01/verification_all_variants.json",
     "fullframe_transmission_files": "05_成果与观看/GLC_整帧与跨素材_20261110/实验传输文件_F",
-    "strategy_diagnosis": "02_实验数据/优化_GLC后处理/fullframe_strategy_diagnosis_20261110_02"
+    "strategy_diagnosis": "02_实验数据/优化_GLC后处理/fullframe_strategy_diagnosis_20261110_02",
+    "latest_factorial_run": "02_实验数据/优化_GLC后处理/fullframe_factorial_20261110_01",
+    "latest_factorial_viewing": "05_成果与观看/GLC_整帧因果消融_20261110/README.md"
   },
   "budget": {
     "base_fps": 15,
@@ -248,11 +250,44 @@
     ]
   },
   "latest_experiment_plan": {
-    "status": "planned_not_run",
+    "status": "executed_offline_factorial",
     "trigger": "user-supplied external evaluation",
     "report": "21_优化阶段_GLC解码后处理/下一轮因果消融设计_20261110.md",
     "plan": "21_优化阶段_GLC解码后处理/plan_fullframe_factorial_20261110.json",
-    "new_candidate_experiments_run": false,
-    "first_action": "Reproduce native_GB exactly as archived E, then frozen-grid common-gate factorial plus native-gate bridge."
-  }
+    "new_candidate_experiments_run": true,
+    "first_action": "Reproduce native_GB exactly as archived E, then frozen-grid common-gate factorial plus native-gate bridge.",
+    "frozen_plan_kept_unchanged": true
+  },
+  "latest_factorial_result": {
+    "report": "21_优化阶段_GLC解码后处理/整帧运动与可靠区因果消融_20261110.md",
+    "run": "02_实验数据/优化_GLC后处理/fullframe_factorial_20261110_01",
+    "viewing": "05_成果与观看/GLC_整帧因果消融_20261110/README.md",
+    "source_assisted_offline": true,
+    "new_transmitted_candidate": false,
+    "E_reproduced_bit_exact": true,
+    "coral_coarse_mae": {
+      "DP": 1.8190828026849408,
+      "DB": 2.971641655106352,
+      "GP": 1.971967780149087,
+      "GB_E": 3.08422220957094
+    },
+    "GP_fine_ncc": 0.8701780745616733,
+    "direct_mask_plus_motion_payload_bytes": 245584,
+    "payload_excludes_header": true,
+    "visual_review": {
+      "date": "2026-11-10",
+      "status": "qualified_positive_small_visual_difference",
+      "shown": [
+        "evaluation/grid_pixel_vs_block_full.mp4",
+        "evaluation/U_vs_grid_pixel_coral.mp4"
+      ],
+      "question": "GP 相比 E 是否减轻，与旧 U 还有多大差距；留意鱼和边界。",
+      "interpretation": "GP was judged slightly better than E in the full-frame pair. U and GP were both considered acceptable in the coral pair. This does not establish perceptual equivalence to U, absence of new fish/boundary artifacts, or a deployable 40 kbps result.",
+      "quote": "第一段视频，左边那个GP好一点，右边的GB=E差了一点点感觉，第二段视频都还可以吧其实"
+    },
+    "next_focus": "Compact boundary/support representation and transmitted continuous states; early same-total-byte conventional baseline before extensive format engineering.",
+    "experiment_commit": "f30a3b95701d4ab2bab2073fae93755e35cab472",
+    "code_and_evidence_in_git": true
+  },
+  "previous_experiment_commit": "338c98f00b182153c529bb266a46fcf37711f11d"
 }
