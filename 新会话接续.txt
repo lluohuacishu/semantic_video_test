@@ -1,17 +1,9 @@
-请接续水下视频通信项目。先阅读：
-C:/Users/lenovo/Documents/ChatGPT/语义通信/01_项目/代码/semantic_video_test/交接文档.md
-以及同仓库 05_资料与索引/会话收束_20261107/文件索引.md，再读取工作区 01_项目/GLC后处理/接口与基线.json。
+请接续水下视频通信项目，只看 GLC。GVC1D 已归档。
+工作区为 C:/Users/lenovo/Documents/ChatGPT/语义通信。
+先读 C:/Users/lenovo/Documents/ChatGPT/语义通信/01_项目/代码/semantic_video_test/交接文档.md 和 C:/Users/lenovo/Documents/ChatGPT/语义通信/01_项目/代码/semantic_video_test/05_资料与索引/会话收束_20261110/文件索引.md。
+当前开发在 C:/Users/lenovo/Documents/ChatGPT/语义通信/01_项目/代码/semantic_video_test 的 codex/glc-temporal-stability 分支，main 为加速基线。先用 git status -sb 和 git log -1 核对，保留第19阶段和两份文献的本机未跟踪文件。
 
-最新交接日期2026-11-07。主线已从GVC1D回到GLC，下一阶段针对GLC解码RGB之后做后处理，改善纹理晃动并观察鱼体运动；当前尚未实施后处理算法或训练。先核对状态，按我后续具体任务执行，不自动跑旧实验。
-
-当前提交工程仅为01_项目/代码/semantic_video_test，分支main；不要使用工作区根.git。GitHub仅保留main，GLC加速历史已提升主线；加速证据提交374cdd2、主线README提交8e18d67，本交接另有后续文档提交，以git log -1为准。第19阶段部署源码和GLVC/UVID两份文献仍为本机未跟踪内容，不自动加入提交。保留其余用户修改。
-
-GVC1D已归档到03_历史归档/GVC1D_20261107，源码detached于79440ec，权重、环境和未提交qp3/qp4证据完整。删除分支前全部历史已保存在03_历史归档/GitHub主线整理_20261107/分支历史备份_清理前.bundle。不自动恢复GVC1D、下载权重或运行归档脚本。
-
-GLC已有900帧/30FPS/512×288和1239帧/15FPS/82.6秒两档FP32/TRT无损基线。后处理读取decoded_rgb.npy或decoded_chunks，RGB/uint8/THWC，输出新目录，不回灌熵/参考链。分块末块预分配64帧，必须按存储元数据chunks[].frames截有效帧，不把尾部填充计入900或1239帧。
-
-完整15FPS加速：512×288编码40.89s/解码87.39s/26.2222kbps；640×360编码56.03s/解码122.03s/34.6547kbps。FP32/TRT平均图像指标接近但非无损等价；LPIPS/DISTS不等于闪烁或流畅性验收，观看MP4不作无损指标输入。GVC1D码率只是概率估计，联合前向时间不是独立编解码时间。
-
-当前部署包在06_部署包；观看/PPT资料在05_成果与观看；桌面临时/glc可直接播放。旧实验和包已归档，旧路径是隐藏兼容联接。相同大文件共享硬链接，历史资产按只读使用，新结果另存；不要重跑清理脚本。
-
-环境：C:/Users/lenovo/Desktop/works/work/semantic-video-training/.venv-glc/Scripts/python.exe，现有torch2.5.1+cu124与TRT10.5。生成器全FP16会溢出，保留保护混精和FP32参考链。交接时没有相关推理服务监听；不因换会话启动网页、重建引擎、升级依赖、训练或重跑完整视频。原数据、权重、失败证据和未提交内容继续保留。
+第21阶段已经完成短时序滤波、两种去闪烁／恢复模型、水下观感增强、双流背景复用、运动与可靠区消融，以及 video1 的 I 帧迁移与显示过渡。最新实验提交 712eca9。
+下一轮分开看 I 帧突跳和普通 P 帧持续形变。I 帧过渡的原速验收待反馈。先看 C:/Users/lenovo/Documents/ChatGPT/语义通信/05_成果与观看/GLC_时序稳定性_20261110/README.md，第一段是黄珊瑚放大原速对照。
+15 FPS GLC 做基础流。若做双流实验，基础文件和语义文件分别 ≤40 kbps，按完整封装字节与明确计费时长计算；总字节用于同码率对照。凡合成用到原片运动或门控、又未经实际辅助文件传给接收端的，记为离线参照。
+保留原始解码与参考链，用无损 RGB 计分、新目录写结果，MP4 用于原速观看。接续时先读已有结果，新的实验按我后续指令执行。
