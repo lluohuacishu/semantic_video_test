@@ -38,7 +38,8 @@
     "latest_factorial_viewing": "05_成果与观看/GLC_整帧因果消融_20261110/README.md",
     "compact_support_run": "02_实验数据/优化_GLC后处理/compact_support_20261110_01",
     "quad_viewing": "05_成果与观看/GLC_低码率可靠区_20261110/12_video1_四宫格_原片_H265_原GLC_优化GLC.mp4",
-    "quad_run": "02_实验数据/优化_GLC后处理/quad_comparison_20261110_02"
+    "quad_run": "02_实验数据/优化_GLC后处理/quad_comparison_20261110_02",
+    "latest_retrospective_run": "02_实验数据/优化_GLC后处理/lowrate_retrospective_20261110_01"
   },
   "budget": {
     "base_fps": 15,
@@ -204,7 +205,7 @@
     "coral_MAE": 2.6778268570075356,
     "coral_NCC": 0.756759410267657,
     "GP_U_not_reached": true,
-    "next_focus": "Use L as low-rate full-frame baseline and preserve U regression; reduce residual coral deformation while protecting detail and fish movement, staying below base bitrate where possible.",
+    "next_focus": "Separate spatial and temporal support reductions before choosing one compact continuous-support candidate; preserve accepted fish and boundary quality while reducing auxiliary bytes.",
     "experiment_commit": "80f7914906ebafaa0d5bd35b1aff7e21bdc12fd0",
     "code_and_evidence_in_git": true
   },
@@ -292,22 +293,90 @@
   },
   "previous_local_U_report": "21_优化阶段_GLC解码后处理/video1持续结构10秒与实际辅助流_20261110.md",
   "experiment_pushed_to": "origin/codex/glc-temporal-stability",
-  "latest_analysis_report": "21_优化阶段_GLC解码后处理/低码率可靠区与同总字节对照_20261110.md",
+  "latest_analysis_report": "21_优化阶段_GLC解码后处理/阶段复盘与下一步优先级_20261110.md",
   "latest_diagnosis": {
-    "type": "read-only analysis of archived arrays",
+    "type": "read-only analysis of archived L/GP/U outputs and actual auxiliary packets",
     "new_candidate_experiments_run": false,
-    "evidence": "21_优化阶段_GLC解码后处理/evidence_20261110/strategy_diagnosis/summary.json",
-    "dense_offline_coral_mae": 1.708165303364552,
-    "U_switch_fraction": 0.014016893111017876,
-    "E_F_switch_fraction": 0.11928500104389635,
-    "interpretation": "Prioritize separating lossy motion representation and reliability block decisions; LZMA is lossless. Subgroup associations are not causal proof.",
-    "next_order": [
-      "fixed-blend motion/mask factorial diagnostic",
-      "visibility-aware continuous support state",
-      "per-frame adaptive motion representation",
-      "separate boundary feather and tone controls",
-      "longer and held-out clips plus same-total-byte baseline"
-    ]
+    "evidence": "21_优化阶段_GLC解码后处理/evidence_20261110/lowrate_retrospective/summary.json",
+    "verification": "21_优化阶段_GLC解码后处理/evidence_20261110/lowrate_retrospective/verification.json",
+    "evaluation_pixel_pairs": 1499191,
+    "observed_timing": {
+      "anchor_refresh_with_exit": {
+        "pairs": 35,
+        "pixels": 340922,
+        "pixel_fraction": 0.22740397987981517,
+        "raw_mae": 4.270657020131254,
+        "E_mae": 2.805015026920564,
+        "GP_mae": 2.3515966073022203,
+        "L_mae": 2.469531970128981,
+        "U_mae": 2.109486556973626,
+        "L_minus_GP_sum": 40206.759765625,
+        "image_coordinate_alpha_delta_sum_per_pixel": 0.09702453840648942,
+        "aligned_alpha_delta_sum_per_pixel": 0.10744935933701652,
+        "reference_identity_tv_sum_per_pixel": 0.19260313555358474,
+        "switch_pixels_per_pixel": 0.09936877056922111,
+        "fraction_of_L_error": 0.20971535070618302,
+        "fraction_of_net_L_minus_GP_gap": 0.03799479493093444
+      },
+      "nonrefresh_group_boundary": {
+        "pairs": 19,
+        "pixels": 196874,
+        "pixel_fraction": 0.1313201586722439,
+        "raw_mae": 4.385643253465732,
+        "E_mae": 3.1896691826450545,
+        "GP_mae": 1.9057998861065644,
+        "L_mae": 4.062314924655173,
+        "U_mae": 1.2118182652624188,
+        "L_minus_GP_sum": 424561.74169921875,
+        "image_coordinate_alpha_delta_sum_per_pixel": 0.21702408845568738,
+        "aligned_alpha_delta_sum_per_pixel": 0.21495313888647927,
+        "reference_identity_tv_sum_per_pixel": 0.21495313888647927,
+        "switch_pixels_per_pixel": 0.20222070969249367,
+        "fraction_of_L_error": 0.19921521030619815,
+        "fraction_of_net_L_minus_GP_gap": 0.4012045836425143
+      },
+      "nonrefresh_group_interior": {
+        "pairs": 95,
+        "pixels": 961395,
+        "pixel_fraction": 0.6412758614479409,
+        "raw_mae": 4.6953350949336645,
+        "E_mae": 3.161638988050689,
+        "GP_mae": 1.8508967520711659,
+        "L_mae": 2.4681758869009194,
+        "U_mae": 1.2268162272701713,
+        "L_minus_GP_sum": 593449.0738296509,
+        "image_coordinate_alpha_delta_sum_per_pixel": 0.0,
+        "aligned_alpha_delta_sum_per_pixel": 0.04617529835109602,
+        "reference_identity_tv_sum_per_pixel": 0.046175298319353,
+        "switch_pixels_per_pixel": 0.04326421502088112,
+        "fraction_of_L_error": 0.5910694389876189,
+        "fraction_of_net_L_minus_GP_gap": 0.5608006214265513
+      }
+    },
+    "GP_held_L_not": {
+      "pairs": 149,
+      "pixels": 318110,
+      "pixel_fraction": 0.21218777327238492,
+      "raw_mae": 4.919085885994932,
+      "E_mae": 4.7800733134161275,
+      "GP_mae": 1.98953621261943,
+      "L_mae": 4.862607454377454,
+      "U_mae": 1.1935528823091301,
+      "L_minus_GP_sum": 913952.6927156448,
+      "fraction_of_net_L_minus_GP_gap": 0.863671813862379
+    },
+    "common_interior": {
+      "pairs": 114,
+      "pixels": 175151,
+      "pixel_fraction": 0.11683034383210679,
+      "raw_mae": 4.444654780513214,
+      "E_mae": 0.799361929447096,
+      "GP_mae": 0.7993600604248988,
+      "L_mae": 0.7993600616227701,
+      "U_mae": 0.7352489588587356,
+      "L_minus_GP_sum": 0.000209808349609375
+    },
+    "interpretation": "Spatial reduction and temporal intersection remain coupled. Conditional residual concentration is not causal attribution. Fixed image-coordinate support is not continuous surface tracking."
   },
   "latest_experiment_plan": {
     "status": "executed_compact_support_and_HEVC",
@@ -455,5 +524,27 @@
     },
     "verification_complete": true,
     "next_focus": "Controlled diagnosis of time-varying reliability support, motion precision, reference choice and object-boundary blending, preserving accepted local U stability in video1. No unified accepted solution yet."
+  },
+  "previous_strategy_diagnosis": {
+    "type": "read-only analysis of archived arrays",
+    "new_candidate_experiments_run": false,
+    "evidence": "21_优化阶段_GLC解码后处理/evidence_20261110/strategy_diagnosis/summary.json",
+    "dense_offline_coral_mae": 1.708165303364552,
+    "U_switch_fraction": 0.014016893111017876,
+    "E_F_switch_fraction": 0.11928500104389635,
+    "interpretation": "Prioritize separating lossy motion representation and reliability block decisions; LZMA is lossless. Subgroup associations are not causal proof.",
+    "next_order": [
+      "fixed-blend motion/mask factorial diagnostic",
+      "visibility-aware continuous support state",
+      "per-frame adaptive motion representation",
+      "separate boundary feather and tone controls",
+      "longer and held-out clips plus same-total-byte baseline"
+    ]
+  },
+  "next_experiment_plan": {
+    "status": "planned_not_run",
+    "plan": "21_优化阶段_GLC解码后处理/plan_lowrate_next_20261110.json",
+    "first": "Add spatial-only 4x4 per-frame and temporal-only pixel five-frame controls; reuse GP and L; freeze motion/reference/blend and external evaluation support.",
+    "candidate_budget": "Use current L as initial equal-budget reference, report higher-byte results separately, absolute auxiliary ceiling 40 kbps. Below base is a preference, not another absolute limit."
   }
 }

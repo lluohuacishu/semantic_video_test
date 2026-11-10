@@ -1,0 +1,55 @@
+{
+  "results": {
+    "exclude_known_I_pair_endpoints": {
+      "excluded_pair_indices": [
+        64,
+        65,
+        128,
+        129
+      ],
+      "groups": {
+        "nonrefresh_group_boundary": {
+          "pairs": 18,
+          "pixels": 185019,
+          "L_mae": 4.0144385350710605,
+          "GP_mae": 1.825104836678091
+        },
+        "nonrefresh_group_interior": {
+          "pairs": 92,
+          "pixels": 938573,
+          "L_mae": 2.376632614491211,
+          "GP_mae": 1.814052082078281
+        }
+      }
+    },
+    "exclude_period32_boundary_pair_endpoints": {
+      "excluded_pair_indices": [
+        32,
+        33,
+        64,
+        65,
+        96,
+        97,
+        128,
+        129
+      ],
+      "groups": {
+        "nonrefresh_group_boundary": {
+          "pairs": 18,
+          "pixels": 185019,
+          "L_mae": 4.0144385350710605,
+          "GP_mae": 1.825104836678091
+        },
+        "nonrefresh_group_interior": {
+          "pairs": 88,
+          "pixels": 890098,
+          "L_mae": 2.320984601368596,
+          "GP_mae": 1.818656024380134
+        }
+      }
+    }
+  },
+  "formula": "sum(method_sum)/sum(pixels), filter by recorded timing and excluded pair endpoint index",
+  "period32_check": "Conservative schedule sensitivity only; not proof of an actual reset on each marked boundary.",
+  "source_csv_sha256": "28fa07d713b60a971d7e355cdd700a66a5c2594882def04320fe90c67dc24f09"
+}
