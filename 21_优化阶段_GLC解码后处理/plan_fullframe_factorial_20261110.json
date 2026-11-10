@@ -1,0 +1,193 @@
+{
+  "date": "2026-11-10",
+  "status": "planned_not_run",
+  "reason": "Refined after user-supplied external review; no new candidate rendering or GPU experiment in this turn.",
+  "report": "下一轮因果消融设计_20261110.md",
+  "experiment_commit": "338c98f00b182153c529bb266a46fcf37711f11d",
+  "diagnosis_commit": "6733f32887ba1c8ec46eea5d73b5d841dfa1acb9",
+  "scope": {
+    "case": "video1",
+    "frames": 150,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "render_scope": "full_frame",
+    "primary_diagnostic_box": [
+      342,
+      10,
+      502,
+      105
+    ],
+    "secondary_scores": [
+      "full_frame",
+      "fixed_common_interior",
+      "refresh_vs_non_refresh"
+    ]
+  },
+  "fixed": {
+    "base_rgb": "original independent GLC decode",
+    "keys": [
+      0,
+      15,
+      45,
+      75,
+      105,
+      135
+    ],
+    "old_reference_ramp": [
+      1,
+      0.8333333333333334,
+      0.6666666666666666,
+      0.5,
+      0.3333333333333333,
+      0.16666666666666666
+    ],
+    "inward_feather_pixels": 2,
+    "tone_correction": false,
+    "rgb_interpolation": "INTER_CUBIC",
+    "motion_grid_interpolation": "INTER_LINEAR",
+    "rounding": "reproduce original two clip/rint stages",
+    "refit_motion_when_masks_change": false,
+    "new_reference_gate_source": "offline/alpha.npy > 0",
+    "old_reference_gate_source": "offline/shared.npy > 0 (already shared by dense new and old reliability)"
+  },
+  "motion_factors": {
+    "D": "archived dense current-to-anchor and current-to-old-anchor fields",
+    "G": "unpack E g24q2 packet; freeze quantized values and expand at scale 2"
+  },
+  "gates": {
+    "P_D": "pixel safety under D on archived dense base support",
+    "P_G": "pixel safety under frozen G, reproducing existing pre-block E checks",
+    "C": "P_D AND P_G, separately for new and old references",
+    "B8": "all 64 pixels pass in image-aligned 8x8 block; expand and then feather"
+  },
+  "common_gate_matrix": [
+    {
+      "id": "DP",
+      "motion": "D",
+      "gate": "C"
+    },
+    {
+      "id": "DB",
+      "motion": "D",
+      "gate": "B8(C)"
+    },
+    {
+      "id": "GP",
+      "motion": "G",
+      "gate": "C"
+    },
+    {
+      "id": "GB",
+      "motion": "G",
+      "gate": "B8(C)"
+    }
+  ],
+  "native_bridge": [
+    {
+      "id": "native_DP",
+      "motion": "D",
+      "gate": "P_D",
+      "requirement": "Report difference from archived dense offline; do not substitute its 1.708 score."
+    },
+    {
+      "id": "native_GP",
+      "motion": "G",
+      "gate": "P_G",
+      "requirement": "Compare with native_GB at exactly frozen motion."
+    },
+    {
+      "id": "native_GB",
+      "motion": "G",
+      "gate": "B8(P_G)",
+      "requirement": "Bit-exact E RGB and alpha; halt attribution if mismatch."
+    }
+  ],
+  "evaluation": {
+    "primary_mask": "original shared source reliable textured pixels, independent of output support",
+    "exclude_lost_support_from_main_metric": false,
+    "subgroups": "supplementary only; always state denominator",
+    "metrics": [
+      "coarse temporal MAE",
+      "fine NCC",
+      "fine amplitude",
+      "spatial fidelity",
+      "binary enter/exit",
+      "alpha delta all pixels and conditional always-on mean/P95",
+      "weights by actual anchor frame ID",
+      "rejection reason bits and fixed-order exclusive attrition",
+      "block collateral rejection",
+      "reference-current discrepancy joint with alpha change"
+    ],
+    "turnover_alignment": "source adjacent motion for evaluation only",
+    "interior_control": "exclude refresh and filter/interpolation neighborhoods near support edges; report sample count",
+    "non_refresh_caveat": "contains I/reset; not pure P-to-P"
+  },
+  "packet_budget": {
+    "phase": "offline diagnostic first; actual receiver validation later",
+    "base_max_bytes_per_10s": 50000,
+    "aux_max_bytes_per_10s": 50000,
+    "LZMA_lossless": true,
+    "additional_state_and_motion_must_be_counted": true
+  },
+  "later_motion_separation": [
+    "freeze unquantized 24x14 fit, compare float/quarter/half-pixel rounding",
+    "hold quantization fixed while varying spatial grid density"
+  ],
+  "receiver_constraints": [
+    "current packets carry current-to-anchor flow, not adjacent flow",
+    "source adjacent flow remains evaluation only",
+    "binary safe blocks do not identify soft threshold failure vs hard occlusion",
+    "any confidence/hard-failure signal must be transmitted or reproducibly inferred from receiver-available data",
+    "strong invalidity overrides confidence persistence"
+  ],
+  "candidate_screen": {
+    "video1_coral_mae_max": 1.8,
+    "video1_fine_ncc_min": 0.88,
+    "kind": "engineering screen, not perceptual validation",
+    "required": [
+      "video2/3 boundary and dynamics regression",
+      "original-speed review",
+      "fidelity and texture amplitude",
+      "actual full-byte lane budget",
+      "longer and held-out clips"
+    ]
+  },
+  "fair_baseline_timing": "After mechanism attribution, before extensive format engineering; match total bytes and explicit two-lane delivery assumptions.",
+  "frozen_inputs": {
+    "base_stream": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base.glcsnd",
+      "sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5"
+    },
+    "source_rgb": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\source.npy",
+      "sha256": "97e44a828004587c5d362a45017b8d6cc41ddd8258bc0c7098e9d84bae15a751"
+    },
+    "base_rgb": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\decoded_rgb.npy",
+      "sha256": "66892444a3dac9ab1addbbb6b6239b5990d8cb0981db899295dbeab285fea281"
+    },
+    "dense_new_motion": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video1\\flow\\to_anchor.npy",
+      "sha256": "436fde3d3f223635f8cff61a32ddbd3a3564ac06e550561e8d51b7ee71099b2b"
+    },
+    "dense_transition_motion": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video1\\transition_flow.npy",
+      "sha256": "c8b31129d9fac134991e2e02171d49061d2c2d613362c9f7555f896c47b6ccff"
+    },
+    "dense_alpha": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video1\\offline\\alpha.npy",
+      "sha256": "d5678c0cef6c63bd0676de81ea70bb9720b32b609e89d91c9e97ab1e3a09254b"
+    },
+    "dense_shared": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video1\\offline\\shared.npy",
+      "sha256": "180fe826971296026764a30fddc44c3aeb3c9f143925f45aae8f3ecaf88678eb"
+    },
+    "E_packet": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video1\\g24q2_E\\fullframe.glcfull",
+      "sha256": "0c1b99bada0b36ad103d854782a31ad2f37fca9660403234ae8685e4f9b6c5cc"
+    }
+  }
+}
