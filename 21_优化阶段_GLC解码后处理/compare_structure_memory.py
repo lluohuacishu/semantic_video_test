@@ -84,7 +84,7 @@ def event_scores(output, clip, methods):
     return dict(groups=stats, around_boundaries=events)
 
 
-def strip(path, sequences, crop, forward, frame):
+def strip(path, sequences, crop, forward, frame, *, labels=LABELS, marked=None):
     sample = sequences['source'][0][crop]
     height, width = 2*sample.shape[0], 2*sample.shape[1]
     title = 23
@@ -97,7 +97,8 @@ def strip(path, sequences, crop, forward, frame):
             aligned = cv2.remap(video[i], mx, my, cv2.INTER_LINEAR)[crop]
             canvas[y+title:y+title+height, x:x+width] = cv2.resize(aligned, (width, height),
                 interpolation=cv2.INTER_NEAREST)
-            text = f'{LABELS[name]} | f{i}' + (' I boundary' if i == frame else '')
+            is_boundary = i == frame and (marked is None or name in marked)
+            text = f'{labels[name]} | f{i}' + (' I boundary' if is_boundary else '')
             cv2.putText(canvas, text, (x+8, y+16), cv2.FONT_HERSHEY_SIMPLEX, .46,
                         (240, 244, 250), 1, cv2.LINE_AA)
     ok, encoded = cv2.imencode('.png', cv2.cvtColor(canvas, cv2.COLOR_RGB2BGR))

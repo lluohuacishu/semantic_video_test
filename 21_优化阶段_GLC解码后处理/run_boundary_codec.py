@@ -24,6 +24,35 @@ def reef_inputs(workspace):
     return plan['codec'], clip, baseline
 
 
+def encode_case(codec, frames, header, stream, *, verify_packet=None):
+    import torch
+
+    if header['frames'] != len(frames):
+        raise ValueError('Source and header frame counts differ')
+    codec.dpb = dict(ref_latent=None, ref_y=None)
+    writer = SenderWriter(stream, header)
+    records = []
+    try:
+        for index, rgb in enumerate(frames):
+            tensor = input_tensor(rgb)
+            torch.cuda.synchronize()
+            tick = time.perf_counter()
+            _, packet = codec.frame(header, index, x=tensor, render_rgb=False)
+            torch.cuda.synchronize()
+            elapsed = time.perf_counter() - tick
+            if verify_packet is not None:
+                verify_packet(index, packet)
+            size = writer.add(packet)
+            records.append(dict(index=index, kind=packet['kind'], packet_bytes=size,
+                                seconds=elapsed, latent_sha256=packet['latent_sha256']))
+            if (index+1) % 64 == 0 or index+1 == len(frames):
+                print(f'{stream.parent.name}: sent {index+1}/{len(frames)}', flush=True)
+        writer.finish()
+    finally:
+        writer.close()
+    return records, writer.references.values()
+
+
 def encode(workspace, assets, output):
     import torch
     from role_codec import RoleCodec
@@ -50,6 +79,14 @@ def encode(workspace, assets, output):
     if (codec.profile != header['arithmetic'] or codec.entropy.table_sha256 != header['table_sha256']
             or not torch.are_deterministic_algorithms_enabled()):
         raise ValueError('Sender arithmetic differs from the original')
+
+    def verify_original(index, packet):
+        old = old_packets[index]
+        if old['z'] != packet['z'] or old['y'] != packet['y']:
+            raise ValueError(f'Original compressed packet differs at frame {index}')
+        if index in original_references and packet['latent_sha256'] != original_references[index]:
+            raise ValueError(f'Original recorded reference differs at frame {index}')
+
     with torch.inference_mode():
         for index in range(8):
             codec.frame(header, index, x=input_tensor(frames[index]), render_rgb=False)
@@ -59,35 +96,12 @@ def encode(workspace, assets, output):
             folder.mkdir()
             stream = folder / 'stream.glcsnd'
             settings = dict(header, frames=count, intra_period=gop, reset_interval=reset)
-            codec.dpb = dict(ref_latent=None, ref_y=None)
-            writer = SenderWriter(stream, settings)
-            records = []
             print(f'{identity}: encode {count} frames, q0/FP32', flush=True)
-            try:
-                for index, rgb in enumerate(frames):
-                    tensor = input_tensor(rgb)
-                    torch.cuda.synchronize()
-                    tick = time.perf_counter()
-                    _, packet = codec.frame(settings, index, x=tensor, render_rgb=False)
-                    torch.cuda.synchronize()
-                    elapsed = time.perf_counter() - tick
-                    if identity == 'g64_r32':
-                        old = old_packets[index]
-                        if old['z'] != packet['z'] or old['y'] != packet['y']:
-                            raise ValueError(f'Original compressed packet differs at frame {index}')
-                        if index in original_references and packet['latent_sha256'] != original_references[index]:
-                            raise ValueError(f'Original recorded reference differs at frame {index}')
-                    size = writer.add(packet)
-                    records.append(dict(index=index, kind=packet['kind'], packet_bytes=size,
-                                        seconds=elapsed, latent_sha256=packet['latent_sha256']))
-                    if (index + 1) % 64 == 0 or index + 1 == count:
-                        print(f'{identity}: sent {index+1}/{count}', flush=True)
-                writer.finish()
-            finally:
-                writer.close()
+            records, references = encode_case(codec, frames, settings, stream,
+                verify_packet=verify_original if identity == 'g64_r32' else None)
             save_json(folder / 'sender.json', dict(header=settings, stream_sha256=file_sha(stream),
                                                    bytes=stream.stat().st_size, records=records,
-                                                   reference_checksums=writer.references.values(),
+                                                   reference_checksums=references,
                                                    source_rgb_sha256=array_sha(frames),
                                                    old_packets_verified=identity == 'g64_r32',
                                                    old_frame_references_verified=sum(

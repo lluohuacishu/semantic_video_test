@@ -483,6 +483,30 @@ S 将两处 I 帧的粗尺度误差降低约 22%，普通 P 帧也有下降。�
 & $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_structure_memory.py' --batch $batch --ablation $ablationRun --run $structureRun --ffmpeg $glcFfmpeg
 ```
 
+## video1 的 15 FPS I 帧迁移对照
+
+2026-11-10。沿用用户提供的 video1 前 150 帧的同一无损 RGB 输入。GOP 64 复用已验证的基础流，GOP 56 用相同 q0、FP32 eager、权重和 reset 32 编码，独立进程解码。两个文件头仅 GOP 字段不同，均含三个 I 帧。独立回读核对帧 0–55 的压缩包、参考摘要和 RGB 逐位一致。GOP 64 的完整基础流为 31,963 B、25.570 kbps，GOP 56 为 33,324 B、26.659 kbps，相差 4.26%。评价与原速对照使用两份原始 GLC 解码 RGB。
+
+| 上方黄珊瑚粗尺度时序 MAE ↓ | GOP 64 帧型及误差 | GOP 56 帧型及误差 |
+| --- | ---: | ---: |
+| 第 56 帧，3.73 秒 | P，3.60 | I，9.90 |
+| 第 64 帧，4.27 秒 | I，12.74 | P，2.31 |
+| 第 112 帧，7.47 秒 | P，6.70 | I，11.55 |
+| 第 128 帧，8.53 秒 | I，13.02 | P，8.73 |
+
+四个位置都在成为 I 帧的版本中产生更大的跳变。新 I 帧后的首个 P 也出现误差上升，例如第 113 帧从 9.78 到 12.47。第 65、129 帧在 GOP 56 下属于实际参考重置的 P 帧，单独统计。四处变化支持 I/P 切换是突跳触发因素之一，当前对照定位到整条切换路径。
+
+上方黄珊瑚整段粗尺度 MAE 为 4.56 和 4.54。两组共同的 131 对普通 P→P 为 4.21 和 4.18，6 秒后的 52 对分别为 5.85 和 5.79，高于前两秒共同普通 P 对的 4.60。调整 GOP 后，突跳位置迁移，后段普通 P 的误差仍较高。
+
+本机 `02_实验数据/优化_GLC后处理/video1_gop_control_20261110_01/comparison` 中，原速左右对照左边为 GOP 64、右边为 GOP 56。两个 MP4 均为 150 帧、15 FPS。第 56、64、112、128 帧各有一张前后五帧图，使用原片光流对齐，标明相应的 I 帧。 [实验汇总](evidence_20261110/video1_gop_control/summary.json) · [独立核对](evidence_20261110/video1_gop_control/verification.json)
+
+```powershell
+$case = Join-Path $gopRun 'g56_r32'
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/run_video1_gop.py' --batch $batch --output $case --assets $roleAssets
+& $glcPython -B -X utf8 '17_优化阶段_解码器推理加速/decoder_worker.py' --stream "$case/base.glcsnd" --output "$case/base_receive" --assets $roleAssets --backend eager
+& $glcPython -B -X utf8 '21_优化阶段_GLC解码后处理/compare_video1_gop.py' --batch $batch --output $gopRun --ffmpeg $glcFfmpeg
+```
+
 ## 评价与复现
 
 使用同源同尺寸的无损 RGB 计算指标。评估光流及有效掩码只用源 RGB，所有方法在同一掩码上计分。时序指标比较两帧经运动补偿后的灰度高频变化与源画面对应变化的绝对误差。珊瑚区高频幅度、空间误差与运动区 PSNR 一起报告。珊瑚和鱼的观看结论以原速对照为准。
