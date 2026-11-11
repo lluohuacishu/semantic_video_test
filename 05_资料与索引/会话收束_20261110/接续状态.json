@@ -1,15 +1,15 @@
 {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "timezone": "Asia/Singapore",
   "scope": "GLC",
   "workspace": "C:/Users/lenovo/Documents/ChatGPT/语义通信",
   "repository": "01_项目/代码/semantic_video_test",
   "experiment_branch": "codex/glc-temporal-stability",
   "main_baseline_commit": "50ed016471aad628e90169bbdf5955d2074a5e3b",
-  "last_experiment_commit": "80f7914906ebafaa0d5bd35b1aff7e21bdc12fd0",
+  "last_experiment_commit": "da572712e713493485650bd66a9982ffeef40f3d",
   "current_branch_head_check": "git log -1",
   "new_experiments_uncommitted": false,
-  "new_experiment_report": "21_优化阶段_GLC解码后处理/低码率可靠区与同总字节对照_20261110.md",
+  "new_experiment_report": "21_优化阶段_GLC解码后处理/空间时间可靠区消融与预测编码_20261111.md",
   "handoff_repo_path": "交接文档.md",
   "stage_report_repo_path": "21_优化阶段_GLC解码后处理/README.md",
   "workspace_paths": {
@@ -39,7 +39,10 @@
     "compact_support_run": "02_实验数据/优化_GLC后处理/compact_support_20261110_01",
     "quad_viewing": "05_成果与观看/GLC_低码率可靠区_20261110/12_video1_四宫格_原片_H265_原GLC_优化GLC.mp4",
     "quad_run": "02_实验数据/优化_GLC后处理/quad_comparison_20261110_02",
-    "latest_retrospective_run": "02_实验数据/优化_GLC后处理/lowrate_retrospective_20261110_01"
+    "latest_retrospective_run": "02_实验数据/优化_GLC后处理/lowrate_retrospective_20261110_01",
+    "latest_viewing": "05_成果与观看/GLC_空间时间消融与省码率_20261111/README.md",
+    "latest_support_factorial_run": "02_实验数据/优化_GLC后处理/support_factorial_20261111_01",
+    "latest_support_refinement_run": "02_实验数据/优化_GLC后处理/support_refinement_20261111_01"
   },
   "budget": {
     "base_fps": 15,
@@ -50,6 +53,329 @@
     "clarified_by_user": true
   },
   "latest_result": {
+    "variant": "K / GLCCSP02 lossless repacking of L",
+    "run": "02_实验数据/优化_GLC后处理/support_refinement_20261111_01",
+    "report": "21_优化阶段_GLC解码后处理/空间时间可靠区消融与预测编码_20261111.md",
+    "frames_per_case": 150,
+    "fps": 15,
+    "billing_seconds": 10,
+    "actual_auxiliary_stream": true,
+    "source_assisted_sender": true,
+    "source_media_at_receiver": false,
+    "RGB_alpha_bit_exact_to_L": true,
+    "files": {
+      "video1": {
+        "base_bytes": 31963,
+        "auxiliary_bytes": 24649,
+        "auxiliary_kbps": 19.7192,
+        "packet_sha256": "8ebfb46e5037a0d325584cf0f80623337843af57d65a4b437106779f85ddec1b",
+        "RGB_bit_exact_to_L": true
+      },
+      "video2": {
+        "base_bytes": 31849,
+        "auxiliary_bytes": 23036,
+        "auxiliary_kbps": 18.4288,
+        "packet_sha256": "ef19c74f877030799e4595a01ea58e1b9465b3d5d0cfb1a726b2c19a9a46d2cc",
+        "RGB_bit_exact_to_L": true
+      },
+      "video3": {
+        "base_bytes": 30995,
+        "auxiliary_bytes": 19412,
+        "auxiliary_kbps": 15.5296,
+        "packet_sha256": "94c160fcb0a3fd35814c06a820050a96f2ee1345d7158d821440c428cc943c98",
+        "RGB_bit_exact_to_L": true
+      }
+    },
+    "verification_complete": true,
+    "visual_review": {
+      "date": "2026-11-11",
+      "status": "no_large_visible_difference_both_acceptable",
+      "cases_reviewed": [
+        "video1",
+        "video2"
+      ],
+      "left": "L",
+      "right": "N",
+      "question": "右侧珊瑚稳定性是否有明显改善，鱼体和主体边界是否退步；已明确N辅助更贵。",
+      "quote": "我感觉两段视频都是左右看不出太大差距，目前均可接收的程度",
+      "interpretation": "User could not see a large difference in either pair and found both sides acceptable. This does not establish N superiority, equivalence to local U, or video3 acceptance. K is separately verified RGB/alpha bit-exact to L.",
+      "decision": "Keep K as lower-byte rendering-equivalent baseline. Do not promote global 2x2 N given 42-76% additional auxiliary bytes versus L without visible benefit in reviewed clips."
+    },
+    "N_is_higher_rate_control_not_default": true,
+    "held_out_material": false,
+    "streaming_validated": false
+  },
+  "previous_boundary_transition_result": {
+    "case": "video1",
+    "frames": 150,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "frame_events": [
+      56,
+      64,
+      112,
+      128
+    ],
+    "source_assisted_offline": true,
+    "user_original_speed_review": "pending",
+    "fixed_upper_coarse_mae_with_exit": {
+      "raw": 6.9956630205004755,
+      "transition": 5.523341135497951
+    }
+  },
+  "other_local_untracked_repo_paths": [
+    "19_部署阶段_收发端独立打包/",
+    "05_资料与索引/GLVC论文阅读与GLC适用性评估_20261105.md",
+    "05_资料与索引/UVID数据集初评_20261028.md"
+  ],
+  "archived_scope": "GVC1D",
+  "previous_short_structure_result": {
+    "case": "video1",
+    "variant": "C2 expanded persistent GLC RGB reference",
+    "start": 105,
+    "stop_exclusive": 128,
+    "frames": 23,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "source_assisted_offline": true,
+    "actual_auxiliary_stream": false,
+    "user_original_speed_review": "分界改善，整体更稳",
+    "fixed_upper_coarse_mae": {
+      "raw": 6.9751364611444595,
+      "S": 4.898084508534046,
+      "C": 3.1203868972717856,
+      "C2": 1.414839798416425
+    },
+    "next_focus": "Persistent structure across longer video, visibility changes, and reference refresh; then actual auxiliary-file delivery within each lane's 40 kbps budget."
+  },
+  "accepted_video1_local_baseline": {
+    "case": "video1",
+    "variant": "U / g17q4 actual persistent-reference auxiliary file",
+    "start": 0,
+    "stop_exclusive": 150,
+    "frames": 150,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "source_assisted_sender": true,
+    "source_media_at_receiver": false,
+    "actual_auxiliary_stream": true,
+    "source_assisted_offline": false,
+    "user_original_speed_review": "U 与之前的 T 差不多，都比原始 GLC 稳",
+    "offline_T_review": "整体明显更稳，过渡可接受",
+    "base_bytes": 31963,
+    "auxiliary_bytes": 42793,
+    "total_bytes": 74756,
+    "billing_seconds": 10,
+    "base_kbps": 25.5704,
+    "auxiliary_kbps": 34.2344,
+    "total_kbps": 59.8048,
+    "fixed_upper_coarse_mae": {
+      "raw": 4.55809282879483,
+      "S": 3.300989781087558,
+      "T": 1.3908072516961074,
+      "g17q4": 1.4255694384159472
+    },
+    "next_focus": "Use the same coral region and frames as the regression constraint for full-frame transfer.",
+    "role": "Preserve accepted local U; full-frame F does not supersede it."
+  },
+  "previous_local_U_report": "21_优化阶段_GLC解码后处理/video1持续结构10秒与实际辅助流_20261110.md",
+  "experiment_pushed_to": "origin/codex/glc-temporal-stability",
+  "latest_analysis_report": "21_优化阶段_GLC解码后处理/空间时间可靠区消融与预测编码_20261111.md",
+  "latest_diagnosis": {
+    "type": "completed controlled spatial x temporal intervention",
+    "report": "21_优化阶段_GLC解码后处理/空间时间可靠区消融与预测编码_20261111.md",
+    "evidence": "21_优化阶段_GLC解码后处理/evidence_20261111/support_factorial/summary.json",
+    "new_candidate_experiments_run": true,
+    "coral_coarse_mae": {
+      "P1_GP": 1.971967780149087,
+      "B1": 2.544726302419137,
+      "P5": 2.2405155214233043,
+      "B5_L": 2.6778268570075356
+    },
+    "interpretation": "Spatial cell reduction has greater loss than five-frame intersection under frozen video1 conditions; global 2x2 N gives limited visual benefit at much higher bytes."
+  },
+  "latest_experiment_plan": {
+    "status": "executed_support_factorial_and_K_N_transfer",
+    "factorial_plan": "21_优化阶段_GLC解码后处理/plan_lowrate_next_20261110.json",
+    "refinement_plan": "21_优化阶段_GLC解码后处理/evidence_20261111/support_refinement/plan.json",
+    "frozen_plans_kept_unchanged": true
+  },
+  "latest_factorial_result": {
+    "report": "21_优化阶段_GLC解码后处理/整帧运动与可靠区因果消融_20261110.md",
+    "run": "02_实验数据/优化_GLC后处理/fullframe_factorial_20261110_01",
+    "viewing": "05_成果与观看/GLC_整帧因果消融_20261110/README.md",
+    "source_assisted_offline": true,
+    "new_transmitted_candidate": false,
+    "E_reproduced_bit_exact": true,
+    "coral_coarse_mae": {
+      "DP": 1.8190828026849408,
+      "DB": 2.971641655106352,
+      "GP": 1.971967780149087,
+      "GB_E": 3.08422220957094
+    },
+    "GP_fine_ncc": 0.8701780745616733,
+    "direct_mask_plus_motion_payload_bytes": 245584,
+    "payload_excludes_header": true,
+    "visual_review": {
+      "date": "2026-11-10",
+      "status": "qualified_positive_small_visual_difference",
+      "shown": [
+        "evaluation/grid_pixel_vs_block_full.mp4",
+        "evaluation/U_vs_grid_pixel_coral.mp4"
+      ],
+      "question": "GP 相比 E 是否减轻，与旧 U 还有多大差距；留意鱼和边界。",
+      "interpretation": "GP was judged slightly better than E in the full-frame pair. U and GP were both considered acceptable in the coral pair. This does not establish perceptual equivalence to U, absence of new fish/boundary artifacts, or a deployable 40 kbps result.",
+      "quote": "第一段视频，左边那个GP好一点，右边的GB=E差了一点点感觉，第二段视频都还可以吧其实"
+    },
+    "next_focus": "Compact boundary/support representation and transmitted continuous states; early same-total-byte conventional baseline before extensive format engineering.",
+    "experiment_commit": "f30a3b95701d4ab2bab2073fae93755e35cab472",
+    "code_and_evidence_in_git": true
+  },
+  "previous_experiment_commit": "f30a3b95701d4ab2bab2073fae93755e35cab472",
+  "previous_F_result": {
+    "variant": "F / g24q2 actual full-frame reference auxiliary file",
+    "cases": [
+      "video1",
+      "video2",
+      "video3"
+    ],
+    "start": 0,
+    "stop_exclusive": 150,
+    "frames_per_case": 150,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "billing_seconds": 10,
+    "source_assisted_sender": true,
+    "source_media_at_receiver": false,
+    "actual_auxiliary_stream": true,
+    "manual_edit_region": false,
+    "all_pixels_are_candidates": true,
+    "all_pixels_are_modified": false,
+    "held_out_material": false,
+    "streaming_validated": false,
+    "same_total_bytes_advantage_validated": false,
+    "motion_grid": [
+      24,
+      14
+    ],
+    "motion_precision_pixels": 0.5,
+    "motion_stride_frames": 1,
+    "key_frames": [
+      0,
+      15,
+      45,
+      75,
+      105,
+      135
+    ],
+    "feather_pixels": 8,
+    "tone_match": "sigma12 color correction weighted by decoded low-texture confidence",
+    "user_original_speed_review": {
+      "variant": "F / g24q2",
+      "cases_reviewed": [
+        "video2",
+        "video3"
+      ],
+      "status": "qualified_positive_boundary_review",
+      "quote": "都明显减轻，但2还是能看出来，但实际上我感觉可以接受吧算是",
+      "interpretation": "Film-like boundary visibly reduced in both clips. Video2 boundary remains visible but is considered acceptable. This is not an acceptance of video1 or general deployment."
+    },
+    "initial_A_review": {
+      "variant": "A",
+      "status": "not_accepted",
+      "quote": "感觉video1珊瑚的晃动比之前多了？然后2和3的主要问题就是感觉保护主体和周边有一个膜一样，就是有个边界"
+    },
+    "video1_regression": {
+      "status": "regression_unresolved_against_local_U",
+      "fixed_coral_coarse_mae": {
+        "raw": 4.55809282879483,
+        "local_U": 1.4255694384159472,
+        "A": 3.127160422593518,
+        "E": 3.08422220957094,
+        "F": 3.1915138567012455
+      }
+    },
+    "rejected_sparse_motion": {
+      "variants": [
+        "C",
+        "D"
+      ],
+      "reason": "Temporal interpolation produced rapidly changing reliability support and worse video1 coral temporal error than raw."
+    },
+    "files": {
+      "video1": {
+        "base_bytes": 31963,
+        "auxiliary_bytes": 48874,
+        "base_kbps": 25.5704,
+        "auxiliary_kbps": 39.0992,
+        "output_hash": "df6fba8fc4a56ece3fc5316b927ef9399b8ed78b8a5bb123b1f51535e21cc879",
+        "packet_hash": "b5890176225167c9abaad6a55860fb7a208dbb19fb2774e3a592e4acf8d3f7cd",
+        "total_kbps": 64.6696
+      },
+      "video2": {
+        "base_bytes": 31849,
+        "auxiliary_bytes": 42765,
+        "base_kbps": 25.4792,
+        "auxiliary_kbps": 34.212,
+        "output_hash": "30dc84c03f505e41d92caa69298bd8d1764afd2c6bb6a629818258acba57c788",
+        "packet_hash": "9240c5adbf89b90ddbfa51b64f6a0036cc120a70f8f572cae1b79a18c36824c5",
+        "total_kbps": 59.6912
+      },
+      "video3": {
+        "base_bytes": 30995,
+        "auxiliary_bytes": 24872,
+        "base_kbps": 24.796,
+        "auxiliary_kbps": 19.8976,
+        "output_hash": "136784b1ba455c619997f271e3f61ecfad8635a78abfc416c8fc991957e388fa",
+        "packet_hash": "54b4b3fb4cb53d3c92e362d3e9f2316fcc2d305d4b07ef95eb204707145ecaa6",
+        "total_kbps": 44.6936
+      }
+    },
+    "verification_complete": true,
+    "next_focus": "Controlled diagnosis of time-varying reliability support, motion precision, reference choice and object-boundary blending, preserving accepted local U stability in video1. No unified accepted solution yet."
+  },
+  "previous_strategy_diagnosis": {
+    "type": "read-only analysis of archived arrays",
+    "new_candidate_experiments_run": false,
+    "evidence": "21_优化阶段_GLC解码后处理/evidence_20261110/strategy_diagnosis/summary.json",
+    "dense_offline_coral_mae": 1.708165303364552,
+    "U_switch_fraction": 0.014016893111017876,
+    "E_F_switch_fraction": 0.11928500104389635,
+    "interpretation": "Prioritize separating lossy motion representation and reliability block decisions; LZMA is lossless. Subgroup associations are not causal proof.",
+    "next_order": [
+      "fixed-blend motion/mask factorial diagnostic",
+      "visibility-aware continuous support state",
+      "per-frame adaptive motion representation",
+      "separate boundary feather and tone controls",
+      "longer and held-out clips plus same-total-byte baseline"
+    ]
+  },
+  "next_experiment_plan": {
+    "status": "planned_not_run",
+    "first": "Byte probe for selective mixed-boundary refinement near K auxiliary bytes; retain frozen motion, blending and pixel-safety constraints. No full-frame uniform 2x2 upgrade.",
+    "budget_bytes": {
+      "video1": 24649,
+      "video2": 23036,
+      "video3": 19412
+    },
+    "absolute_auxiliary_kbps_max": 40,
+    "below_base": "Preferred, not another absolute cap",
+    "stop_rule": "Do not promote a candidate that only increases bytes for a visually negligible gain; report rate and perception jointly."
+  },
+  "previous_lowrate_experiment_commit": "80f7914906ebafaa0d5bd35b1aff7e21bdc12fd0",
+  "previous_lowrate_L_result": {
     "variant": "L / compact support, sparse required motion nodes",
     "run": "02_实验数据/优化_GLC后处理/compact_support_20261110_01",
     "report": "21_优化阶段_GLC解码后处理/低码率可靠区与同总字节对照_20261110.md",
@@ -209,92 +535,7 @@
     "experiment_commit": "80f7914906ebafaa0d5bd35b1aff7e21bdc12fd0",
     "code_and_evidence_in_git": true
   },
-  "previous_boundary_transition_result": {
-    "case": "video1",
-    "frames": 150,
-    "fps": 15,
-    "size": [
-      512,
-      288
-    ],
-    "frame_events": [
-      56,
-      64,
-      112,
-      128
-    ],
-    "source_assisted_offline": true,
-    "user_original_speed_review": "pending",
-    "fixed_upper_coarse_mae_with_exit": {
-      "raw": 6.9956630205004755,
-      "transition": 5.523341135497951
-    }
-  },
-  "other_local_untracked_repo_paths": [
-    "19_部署阶段_收发端独立打包/",
-    "05_资料与索引/GLVC论文阅读与GLC适用性评估_20261105.md",
-    "05_资料与索引/UVID数据集初评_20261028.md"
-  ],
-  "archived_scope": "GVC1D",
-  "previous_short_structure_result": {
-    "case": "video1",
-    "variant": "C2 expanded persistent GLC RGB reference",
-    "start": 105,
-    "stop_exclusive": 128,
-    "frames": 23,
-    "fps": 15,
-    "size": [
-      512,
-      288
-    ],
-    "source_assisted_offline": true,
-    "actual_auxiliary_stream": false,
-    "user_original_speed_review": "分界改善，整体更稳",
-    "fixed_upper_coarse_mae": {
-      "raw": 6.9751364611444595,
-      "S": 4.898084508534046,
-      "C": 3.1203868972717856,
-      "C2": 1.414839798416425
-    },
-    "next_focus": "Persistent structure across longer video, visibility changes, and reference refresh; then actual auxiliary-file delivery within each lane's 40 kbps budget."
-  },
-  "accepted_video1_local_baseline": {
-    "case": "video1",
-    "variant": "U / g17q4 actual persistent-reference auxiliary file",
-    "start": 0,
-    "stop_exclusive": 150,
-    "frames": 150,
-    "fps": 15,
-    "size": [
-      512,
-      288
-    ],
-    "source_assisted_sender": true,
-    "source_media_at_receiver": false,
-    "actual_auxiliary_stream": true,
-    "source_assisted_offline": false,
-    "user_original_speed_review": "U 与之前的 T 差不多，都比原始 GLC 稳",
-    "offline_T_review": "整体明显更稳，过渡可接受",
-    "base_bytes": 31963,
-    "auxiliary_bytes": 42793,
-    "total_bytes": 74756,
-    "billing_seconds": 10,
-    "base_kbps": 25.5704,
-    "auxiliary_kbps": 34.2344,
-    "total_kbps": 59.8048,
-    "fixed_upper_coarse_mae": {
-      "raw": 4.55809282879483,
-      "S": 3.300989781087558,
-      "T": 1.3908072516961074,
-      "g17q4": 1.4255694384159472
-    },
-    "next_focus": "Use the same coral region and frames as the regression constraint for full-frame transfer.",
-    "role": "Preserve accepted local U; full-frame F does not supersede it."
-  },
-  "previous_local_U_report": "21_优化阶段_GLC解码后处理/video1持续结构10秒与实际辅助流_20261110.md",
-  "experiment_pushed_to": "origin/codex/glc-temporal-stability",
-  "latest_analysis_report": "21_优化阶段_GLC解码后处理/阶段复盘与下一步优先级_20261110.md",
-  "latest_diagnosis": {
+  "previous_lowrate_diagnosis": {
     "type": "read-only analysis of archived L/GP/U outputs and actual auxiliary packets",
     "new_candidate_experiments_run": false,
     "evidence": "21_优化阶段_GLC解码后处理/evidence_20261110/lowrate_retrospective/summary.json",
@@ -377,174 +618,5 @@
       "L_minus_GP_sum": 0.000209808349609375
     },
     "interpretation": "Spatial reduction and temporal intersection remain coupled. Conditional residual concentration is not causal attribution. Fixed image-coordinate support is not continuous surface tracking."
-  },
-  "latest_experiment_plan": {
-    "status": "executed_compact_support_and_HEVC",
-    "run": "02_实验数据/优化_GLC后处理/compact_support_20261110_01",
-    "plan": "plan.json",
-    "followups": [
-      "sparse_followup_plan.json",
-      "rate_policy.json"
-    ],
-    "frozen_plans_kept_unchanged": true
-  },
-  "latest_factorial_result": {
-    "report": "21_优化阶段_GLC解码后处理/整帧运动与可靠区因果消融_20261110.md",
-    "run": "02_实验数据/优化_GLC后处理/fullframe_factorial_20261110_01",
-    "viewing": "05_成果与观看/GLC_整帧因果消融_20261110/README.md",
-    "source_assisted_offline": true,
-    "new_transmitted_candidate": false,
-    "E_reproduced_bit_exact": true,
-    "coral_coarse_mae": {
-      "DP": 1.8190828026849408,
-      "DB": 2.971641655106352,
-      "GP": 1.971967780149087,
-      "GB_E": 3.08422220957094
-    },
-    "GP_fine_ncc": 0.8701780745616733,
-    "direct_mask_plus_motion_payload_bytes": 245584,
-    "payload_excludes_header": true,
-    "visual_review": {
-      "date": "2026-11-10",
-      "status": "qualified_positive_small_visual_difference",
-      "shown": [
-        "evaluation/grid_pixel_vs_block_full.mp4",
-        "evaluation/U_vs_grid_pixel_coral.mp4"
-      ],
-      "question": "GP 相比 E 是否减轻，与旧 U 还有多大差距；留意鱼和边界。",
-      "interpretation": "GP was judged slightly better than E in the full-frame pair. U and GP were both considered acceptable in the coral pair. This does not establish perceptual equivalence to U, absence of new fish/boundary artifacts, or a deployable 40 kbps result.",
-      "quote": "第一段视频，左边那个GP好一点，右边的GB=E差了一点点感觉，第二段视频都还可以吧其实"
-    },
-    "next_focus": "Compact boundary/support representation and transmitted continuous states; early same-total-byte conventional baseline before extensive format engineering.",
-    "experiment_commit": "f30a3b95701d4ab2bab2073fae93755e35cab472",
-    "code_and_evidence_in_git": true
-  },
-  "previous_experiment_commit": "f30a3b95701d4ab2bab2073fae93755e35cab472",
-  "previous_F_result": {
-    "variant": "F / g24q2 actual full-frame reference auxiliary file",
-    "cases": [
-      "video1",
-      "video2",
-      "video3"
-    ],
-    "start": 0,
-    "stop_exclusive": 150,
-    "frames_per_case": 150,
-    "fps": 15,
-    "size": [
-      512,
-      288
-    ],
-    "billing_seconds": 10,
-    "source_assisted_sender": true,
-    "source_media_at_receiver": false,
-    "actual_auxiliary_stream": true,
-    "manual_edit_region": false,
-    "all_pixels_are_candidates": true,
-    "all_pixels_are_modified": false,
-    "held_out_material": false,
-    "streaming_validated": false,
-    "same_total_bytes_advantage_validated": false,
-    "motion_grid": [
-      24,
-      14
-    ],
-    "motion_precision_pixels": 0.5,
-    "motion_stride_frames": 1,
-    "key_frames": [
-      0,
-      15,
-      45,
-      75,
-      105,
-      135
-    ],
-    "feather_pixels": 8,
-    "tone_match": "sigma12 color correction weighted by decoded low-texture confidence",
-    "user_original_speed_review": {
-      "variant": "F / g24q2",
-      "cases_reviewed": [
-        "video2",
-        "video3"
-      ],
-      "status": "qualified_positive_boundary_review",
-      "quote": "都明显减轻，但2还是能看出来，但实际上我感觉可以接受吧算是",
-      "interpretation": "Film-like boundary visibly reduced in both clips. Video2 boundary remains visible but is considered acceptable. This is not an acceptance of video1 or general deployment."
-    },
-    "initial_A_review": {
-      "variant": "A",
-      "status": "not_accepted",
-      "quote": "感觉video1珊瑚的晃动比之前多了？然后2和3的主要问题就是感觉保护主体和周边有一个膜一样，就是有个边界"
-    },
-    "video1_regression": {
-      "status": "regression_unresolved_against_local_U",
-      "fixed_coral_coarse_mae": {
-        "raw": 4.55809282879483,
-        "local_U": 1.4255694384159472,
-        "A": 3.127160422593518,
-        "E": 3.08422220957094,
-        "F": 3.1915138567012455
-      }
-    },
-    "rejected_sparse_motion": {
-      "variants": [
-        "C",
-        "D"
-      ],
-      "reason": "Temporal interpolation produced rapidly changing reliability support and worse video1 coral temporal error than raw."
-    },
-    "files": {
-      "video1": {
-        "base_bytes": 31963,
-        "auxiliary_bytes": 48874,
-        "base_kbps": 25.5704,
-        "auxiliary_kbps": 39.0992,
-        "output_hash": "df6fba8fc4a56ece3fc5316b927ef9399b8ed78b8a5bb123b1f51535e21cc879",
-        "packet_hash": "b5890176225167c9abaad6a55860fb7a208dbb19fb2774e3a592e4acf8d3f7cd",
-        "total_kbps": 64.6696
-      },
-      "video2": {
-        "base_bytes": 31849,
-        "auxiliary_bytes": 42765,
-        "base_kbps": 25.4792,
-        "auxiliary_kbps": 34.212,
-        "output_hash": "30dc84c03f505e41d92caa69298bd8d1764afd2c6bb6a629818258acba57c788",
-        "packet_hash": "9240c5adbf89b90ddbfa51b64f6a0036cc120a70f8f572cae1b79a18c36824c5",
-        "total_kbps": 59.6912
-      },
-      "video3": {
-        "base_bytes": 30995,
-        "auxiliary_bytes": 24872,
-        "base_kbps": 24.796,
-        "auxiliary_kbps": 19.8976,
-        "output_hash": "136784b1ba455c619997f271e3f61ecfad8635a78abfc416c8fc991957e388fa",
-        "packet_hash": "54b4b3fb4cb53d3c92e362d3e9f2316fcc2d305d4b07ef95eb204707145ecaa6",
-        "total_kbps": 44.6936
-      }
-    },
-    "verification_complete": true,
-    "next_focus": "Controlled diagnosis of time-varying reliability support, motion precision, reference choice and object-boundary blending, preserving accepted local U stability in video1. No unified accepted solution yet."
-  },
-  "previous_strategy_diagnosis": {
-    "type": "read-only analysis of archived arrays",
-    "new_candidate_experiments_run": false,
-    "evidence": "21_优化阶段_GLC解码后处理/evidence_20261110/strategy_diagnosis/summary.json",
-    "dense_offline_coral_mae": 1.708165303364552,
-    "U_switch_fraction": 0.014016893111017876,
-    "E_F_switch_fraction": 0.11928500104389635,
-    "interpretation": "Prioritize separating lossy motion representation and reliability block decisions; LZMA is lossless. Subgroup associations are not causal proof.",
-    "next_order": [
-      "fixed-blend motion/mask factorial diagnostic",
-      "visibility-aware continuous support state",
-      "per-frame adaptive motion representation",
-      "separate boundary feather and tone controls",
-      "longer and held-out clips plus same-total-byte baseline"
-    ]
-  },
-  "next_experiment_plan": {
-    "status": "planned_not_run",
-    "plan": "21_优化阶段_GLC解码后处理/plan_lowrate_next_20261110.json",
-    "first": "Add spatial-only 4x4 per-frame and temporal-only pixel five-frame controls; reuse GP and L; freeze motion/reference/blend and external evaluation support.",
-    "candidate_budget": "Use current L as initial equal-budget reference, report higher-byte results separately, absolute auxiliary ceiling 40 kbps. Below base is a preference, not another absolute limit."
   }
 }
