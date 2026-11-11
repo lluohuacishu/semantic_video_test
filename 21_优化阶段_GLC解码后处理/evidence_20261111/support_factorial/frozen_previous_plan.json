@@ -1,0 +1,71 @@
+{
+  "status": "planned_not_run",
+  "date": "2026-11-10",
+  "scope": "GLC display postprocessing, following low-rate L retrospective",
+  "baseline_experiment_commit": "80f7914906ebafaa0d5bd35b1aff7e21bdc12fd0",
+  "baseline_profile": "S24_B4_T5_E on video1; byte-selected L on video2/video3",
+  "analysis_run": "02_实验数据/优化_GLC后处理/lowrate_retrospective_20261110_01",
+  "authorization_scope_of_current_turn": "Retrospective and analysis; the following new candidate experiments are not executed here.",
+  "budget": {
+    "absolute_auxiliary_kbps_max": 40,
+    "preferred_auxiliary": "Below the corresponding base bitrate; lower is better subject to quality. This preference is not a new absolute cap.",
+    "initial_comparison_budget_bytes": {
+      "video1": 26302,
+      "video2": 25581,
+      "video3": 19418
+    },
+    "billing_seconds": 10,
+    "higher_rate_results": "Report separately with complete bytes; never claim a same-budget gain."
+  },
+  "first_experiment": {
+    "purpose": "Separate spatial 4x4 all-pass reduction from temporal five-frame intersection and their interaction.",
+    "case": "video1",
+    "frames": 150,
+    "fps": 15,
+    "size": [512, 288],
+    "motion": "Original frozen E 24x14 half-pixel grids expanded identically; no refitting when gates change.",
+    "keys": [0, 15, 45, 75, 105, 135],
+    "old_reference_transition_frames": 6,
+    "feather_pixels": 2,
+    "tone_matching": false,
+    "sampling": "Original cubic reference RGB, same two-stage rounding and clipping.",
+    "source_gate": "Frozen new_PG.npy and old_PG.npy from completed factorial run.",
+    "cases": [
+      {"spatial_cell": 1, "group_span": 1, "role": "Reuse GP; assert exact reproduction."},
+      {"spatial_cell": 4, "group_span": 1, "role": "New offline spatial-only control."},
+      {"spatial_cell": 1, "group_span": 5, "role": "New offline temporal-only control."},
+      {"spatial_cell": 4, "group_span": 5, "role": "Reuse L; assert exact reproduction."}
+    ],
+    "old_reference": "Apply each treatment to both new and old supports, including the unchanged shared-support semantics; groups never cross reference identities.",
+    "main_evaluation": "Fixed external source correspondence and texture support, full frame and existing coral box; never restrict main score to output-mask intersection.",
+    "secondary_evaluation": [
+      "Binary and continuous support changes along source motion, and source reference ID weights.",
+      "Group boundaries, group interiors, anchor refresh plus exit; retain I/reset sensitivity checks.",
+      "Actual support coverage and rejection counts; common interiors with filter-neighborhood margin only as secondary diagnostics.",
+      "Source fidelity, texture amplitude, normal fish motion, boundaries, and original-speed video."
+    ],
+    "deployment_status": "Offline controls; do not claim these full masks meet the auxiliary budget."
+  },
+  "next_candidate_selection": {
+    "if_spatial_loss_dominates": "Prioritize compact conservative boundary refinement.",
+    "if_temporal_loss_dominates": "Prioritize motion-predicted support updates with correction, replacing image-coordinate group intersections.",
+    "if_interaction_matters": "Design one combined candidate after observing the controlled effects; report the interaction.",
+    "safety": "Initial candidate keeps the existing pixel-safety constraint. No default extension of rejected content. Any later soft-confidence hysteresis is a separate intervention.",
+    "receiver_dependency": "Current sparse motion requires the decoded mask. A motion-predicted mask must explicitly break this cycle with an independently decodable predictor or shared history plus corrections.",
+    "source_access": "Source RGB and dense motion allowed at sender/evaluator only; receiver reads base and transmitted auxiliary data.",
+    "all_extra_bits_count": true
+  },
+  "independent_byte_probe": {
+    "purpose": "Compare spatial sparse prediction, explicit temporal prediction, and full-grid spatiotemporal difference coding.",
+    "requirements": "Necessary motion samples and RGB/alpha must remain bit-exact; count reset and predictor metadata. No assumed savings."
+  },
+  "later_validation": {
+    "development_regressions": ["video1", "video2", "video3"],
+    "held_out": "Preselect and hash an unused source segment before candidate evaluation; do not retune on it and still label it held out.",
+    "longer_duration": "Evaluate full actual bytes, initialization, refresh and exits on a longer segment.",
+    "midterm_screen": {"video1_coral_mae_max": 1.8, "video1_coral_ncc_min": 0.88},
+    "human_checks": "Preserve fish detail and normal motion, acceptable subject boundaries, less coral deformation. Numeric screens are not substitutes.",
+    "baselines": ["Original GLC", "Current L", "Previous local U for its fixed region", "Offline GP", "H.265 under the same total-byte cap"],
+    "known_limits": "No claim of real-time packetization, loss resilience or broad perceptual superiority."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-11",
+  "status": "frozen_before_prepare",
+  "basis": "Spatial cell loss exceeds temporal intersection loss in support_factorial_20261111_01.",
+  "cases": [
+    "video1",
+    "video2",
+    "video3"
+  ],
+  "variants": {
+    "K": "Bit-exact repacking of L",
+    "N": "2x2 safety cells, same five-frame intersections"
+  },
+  "fixed": "Same selected L motion grid, half-pixel values, keys, blending and existing safety thresholds for each clip; no refitting or score-based grid choice.",
+  "predictor_selection": "Choose complete lossless section plus metadata bytes; necessary motion and renderer output must match unpruned motion.",
+  "budget": "40 kbps absolute cap. Compare against current L bytes; above L must be labeled higher-rate, below base is preferred.",
+  "visual_review": "pending",
+  "no_new_source_rgb_at_receiver": true
+}
