@@ -1,0 +1,28 @@
+{
+  "frozen_before_budget_encode": true,
+  "date": "2026-11-11",
+  "reason": "Initial CRF profiles cost 44.07/54.73 kbps and failed the rate screen before any guide candidate was rendered; preserve initial probes.",
+  "profiles": {
+    "G128_b8": {
+      "size": [
+        128,
+        72
+      ],
+      "HEVC_target_kbps": 8
+    },
+    "G256_b12": {
+      "size": [
+        256,
+        144
+      ],
+      "HEVC_target_kbps": 12
+    }
+  },
+  "encoding": "libx265 two-pass average bitrate, medium, 15 FPS, 150 frames, yuv420p, one GOP; no informational encoder SEI",
+  "target_interpretation": "8 and 12 kbps are experimental HEVC rate targets, not guaranteed whole-file rates or new hard requirements; bill the complete wrapper.",
+  "scope": "video1 pilot; transfer a promising unchanged profile to video2/3 only if pilot quality warrants it",
+  "source_separation": "Receiver only actual base and guide stream, decoded locally; source used by sender/evaluator",
+  "no_quality_search": true,
+  "transfer_screen": "Lower full-file bytes than K and primary video1 coral coarse MAE within 5% of K; screen is not visual acceptance.",
+  "code_sha256": "8a90a6376e7a38cd190bdfdcbaee0a10badf3cf1f800df2482e56f23b84c7c6f"
+}

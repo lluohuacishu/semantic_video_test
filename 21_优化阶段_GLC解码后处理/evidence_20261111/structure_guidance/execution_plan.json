@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-11",
+  "status": "frozen_before_probe",
+  "authorization": "User rejected R0 video1 as nearly unchanged from raw GLC and requested other ideas.",
+  "pilot": "video1, first 150 frames, 15 FPS, 512x288",
+  "temporal_probe": {
+    "degrees": [
+      1,
+      3
+    ],
+    "representation": "Per-grid-node Bernstein trajectory per reference interval; new reference starts at zero; old references have free intercept",
+    "coefficient_unit_pixels": 0.125,
+    "screen": "Compare retained source-safe K support and coefficient/support payload bytes. Payload probes alone are not deployed packet rates."
+  },
+  "guide_profiles": {
+    "G128": {
+      "size": [
+        128,
+        72
+      ],
+      "crf": 24
+    },
+    "G256": {
+      "size": [
+        256,
+        144
+      ],
+      "crf": 30
+    }
+  },
+  "guide_encoding": "Source RGB downsampled by area; libx265 medium, yuv420p, 15 FPS; full wrapper+HEVC+CRC bytes billed",
+  "guide_candidate": "Infer motion and all reliability tests from the decoded transmitted guide; reference RGB remains historical raw GLC; same keys and full-RGB renderer as K dense framework.",
+  "render_selection": "Render both frozen guide profiles if each complete file is below K auxiliary bytes; no parameter search or per-frame selection.",
+  "source_access": "Only sender and independent evaluator; candidate receiver sees base, actual guide packet and preinstalled RAFT weights.",
+  "foreground_limit": "Low-resolution guides may miss thin moving boundaries; full-frame source previews and source-relative temporal diagnostics required, no acceptance from temporal MAE alone.",
+  "comparison": "K and original GLC on fixed external evaluation support; old R0 is a rejected reference",
+  "input_sha256": {
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\source.npy": "97e44a828004587c5d362a45017b8d6cc41ddd8258bc0c7098e9d84bae15a751",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base.glcsnd": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\decoded_rgb.npy": "66892444a3dac9ab1addbbb6b6239b5990d8cb0981db899295dbeab285fea281",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\support_refinement_20261111_01\\video1\\K\\support.glccsp2": "8ebfb46e5037a0d325584cf0f80623337843af57d65a4b437106779f85ddec1b",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\support_refinement_20261111_01\\video1\\K\\receive\\rgb.npy": "ffbde751461cb4a6bdaabb3cee3cc4665e8db8a368dd043ae198699bee07b202",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\support_refinement_20261111_01\\video1\\K\\receive\\alpha.npy": "edfa09eb2211fdd6ecc22da95110769e04cf92c5f1197a7dd19e003dcafa3789",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video1\\g24q2_E\\fullframe.glcfull": "0c1b99bada0b36ad103d854782a31ad2f37fca9660403234ae8685e4f9b6c5cc",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video1\\flow\\to_anchor.npy": "436fde3d3f223635f8cff61a32ddbd3a3564ac06e550561e8d51b7ee71099b2b",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video1\\transition_flow.npy": "c8b31129d9fac134991e2e02171d49061d2c2d613362c9f7555f896c47b6ccff",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video1\\offline\\alpha.npy": "d5678c0cef6c63bd0676de81ea70bb9720b32b609e89d91c9e97ab1e3a09254b",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\fullframe_reference_refined_20261110_01\\video1\\offline\\shared.npy": "180fe826971296026764a30fddc44c3aeb3c9f143925f45aae8f3ecaf88678eb"
+  },
+  "source_code_sha256": {
+    "probe_structure_guidance.py": "ea66c4445b2d15a1da34dd0401670545a31d03744508996e443b47e1baf9bedc",
+    "structure_guide_stream.py": "5379cc4a5bc460e34593cd8e776b1e1993c68c15370ec073dddf039b20354e10"
+  }
+}

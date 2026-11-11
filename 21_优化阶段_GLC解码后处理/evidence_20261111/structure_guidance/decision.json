@@ -1,0 +1,18 @@
+{
+  "complete": true,
+  "completed_cases": [
+    "video1"
+  ],
+  "focus": "G256_b12_T3",
+  "default": "K",
+  "user_acceptance": "pending",
+  "same_packet_texture_revision_verified": true,
+  "initial_scores_reproduced": true,
+  "summary_zh": "本轮完成 video1 的两档实际引导接收和固定低纹理置信 T3 修正。重点保留 G256_b12_T3 作为下一步候选：辅助 16,187 B / 12.9496 kbps，比 K 的 19.7192 kbps 少 34.33%；珊瑚 MAE 2.8034，K 为 2.6778、原 GLC 为 4.5581。相对 K 珊瑚误差高 4.69%、整帧高约 4.64%，不能说画质优于 K。T3 比初始 G256 减少水体复用，但右下区仍比 K 差约 11.41%，动态帧差诊断也略差。该方向提供实际码率/稳定性取舍，原速观感尚待用户判断，不自动升级默认。G128_b8 省 55.35% 辅助但珊瑚回退明显，不作为当前重点。仅完成 video1 10 秒试验，video2/3、留出与长片尚未扩展；下一步优先验证 T3 的观感、运动边界与跨素材表现，保留 K/U 回归。",
+  "limits": [
+    "video1 10s pilot only",
+    "no video2/3 transfer yet",
+    "no new equal-total-byte H265",
+    "not realtime"
+  ]
+}

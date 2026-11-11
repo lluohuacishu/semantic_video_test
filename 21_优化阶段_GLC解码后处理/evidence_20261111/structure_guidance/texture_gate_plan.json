@@ -1,0 +1,14 @@
+{
+  "frozen_before_texture_render": true,
+  "case": "video1",
+  "parent": "G256_b12",
+  "reason": "Initial guide allows more low-texture water reuse; left-quadrant temporal error and full-frame source fidelity regress against K.",
+  "only_candidate": "T3: Gaussian sigma3 local luminance std >=3, current and projected reference; intersect existing guide reliability and feather inward; never increase alpha",
+  "no_ROI": true,
+  "no_threshold_search": true,
+  "no_new_auxiliary_bytes": true,
+  "interpretation": "Fixed receiver software revision, identical transmitted packet for every use; no per-clip mask or threshold provided by sender",
+  "receiver_local_flow_reuse": "Same packet and independent receiver flow, checked by hashes and decoded guide equality",
+  "comparison": "Retain all initial outputs. Reevaluate on unchanged external source support and source-change diagnostic.",
+  "code_sha256": "521d78edbfbfb689ca4ebd1eb6d30930cf8d37c09d1ed7c0b12fd3d5be229bd9"
+}

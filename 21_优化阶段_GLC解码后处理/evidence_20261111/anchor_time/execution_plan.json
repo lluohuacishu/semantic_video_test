@@ -1,0 +1,99 @@
+{
+  "date": "2026-11-11",
+  "frozen_before_any_candidate_run": true,
+  "authorization": "User accepted S8I, identified remaining jumps, and asked to start the next round with more attention to processing time.",
+  "base": "Immutable independently decoded GLC base; no re-encoding.",
+  "auxiliary": "Accepted S8I packet fixed at 8865 B / 7.0920 kbps; no new transmission or sender signal.",
+  "scene": "video1, 150 frames, 15 FPS, 512x288, 10 seconds.",
+  "receiver_fixed": "T3 texture std >=3, six-frame overlap ramp, 2px feather, two rounding stages, historical raw GLC RGB texture.",
+  "matrix": {
+    "CURRENT_I24": {
+      "keys": [
+        0,
+        15,
+        45,
+        75,
+        105,
+        135
+      ],
+      "iterations": 24
+    },
+    "ISYNC_I24": {
+      "keys": [
+        0,
+        64,
+        128
+      ],
+      "iterations": 24
+    },
+    "CURRENT_I12": {
+      "keys": [
+        0,
+        15,
+        45,
+        75,
+        105,
+        135
+      ],
+      "iterations": 12
+    },
+    "ISYNC_I12": {
+      "keys": [
+        0,
+        64,
+        128
+      ],
+      "iterations": 12
+    }
+  },
+  "anchor_logic": {
+    "current": [
+      0,
+      15,
+      45,
+      75,
+      105,
+      135
+    ],
+    "I_synchronized": [
+      0,
+      64,
+      128
+    ],
+    "note": "I-sync schedule tests fewer refreshes at GLC intra frames; it is not a globally fixed single anchor."
+  },
+  "iterations": "24 accepted baseline vs 12 lower-compute candidate; no quality-based rate selection.",
+  "measures": [
+    "exact replay of CURRENT_I24",
+    "lossless source-matched full/coral/quadrant metrics",
+    "separate anchor-window and GLC I-frame score groups",
+    "cold per-worker decode/model/RAFT/render/save/wall times",
+    "original-speed full-frame and coral comparisons"
+  ],
+  "limitations": [
+    "One 10-second clip; no realtime claim.",
+    "A fixed single-anchor candidate is not repeated because the earlier fixed-frame-0 control aged out; current question is fewer synchronized refreshes.",
+    "Temporal grouping is association and cannot prove event causality."
+  ],
+  "inputs_sha256": {
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base.glcsnd": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\decoded_rgb.npy": "66892444a3dac9ab1addbbb6b6239b5990d8cb0981db899295dbeab285fea281",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\result.json": "300d6c065142d8248a912e5d88ffae09381b89ab54da4a10767e524b00fb6e76",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\S8I\\guide.glcguide": "2883c3b13c98bd384b0a896e3f4563d5ae46b8b5a702b1e75998e60435dc987f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\S8I\\receive\\rgb.npy": "ceae9871bfc4ab7f13ef9583782b9df98dca74af38110c41671d5073c1243155",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\S8I\\receive\\alpha.npy": "f3e89e4fa7f40791ccccd70544dd2767f31e3ecc706ab3f3a66f0a8170071d99",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\S8I\\receive\\shared.npy": "292b5df7c22ec5e4418fd95320ee244ccaf042686eda96da19c3a3d29edcdf51",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\S8I\\receive\\receipt.json": "bd4ea4f6eef474ef8c2e6186c3cc9b66e6bc9c4d947d3fd1594665e0580797b2",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\S8I\\flow_receive\\receipt.json": "fdda83d31c88044fa74a8b16420675e8d45e8b060ea498d083174457ce6cdc45",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\source.npy": "97e44a828004587c5d362a45017b8d6cc41ddd8258bc0c7098e9d84bae15a751",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\deflicker_reef80_20261108_01\\upstream\\pretrained_weights\\raft-things.pth": "fcfa4125d6418f4de95d84aec20a3c5f4e205101715a79f193243c186ac9a7e1"
+  },
+  "code_sha256": {
+    "run_anchor_time_experiment.py": "83e18159149e1233f39dbf5b2d3eb210d7ef14cf2c4b5b2bc1b8c5f97e81b7d6",
+    "receiver_structure.py": "07f3d17a5c1de44d41452da182bf5469b954ceda1de44c265865a54d2389e2a8",
+    "receive_guide_texture.py": "521d78edbfbfb689ca4ebd1eb6d30930cf8d37c09d1ed7c0b12fd3d5be229bd9",
+    "structure_guide_stream.py": "5379cc4a5bc460e34593cd8e776b1e1993c68c15370ec073dddf039b20354e10",
+    "evaluate_guide_compression.py": "37d5e49b673926501e72b1de6220074dbfd1b9aa3dcb258c4be0bb30c62f38f0",
+    "evaluate_fullframe_reference.py": "4a8073b279fc7bbd6f11b14fedd576f6d3082393bbfa63648a485537ea9d764f"
+  }
+}

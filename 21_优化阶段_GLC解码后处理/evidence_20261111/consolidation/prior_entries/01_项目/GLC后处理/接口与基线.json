@@ -1,0 +1,105 @@
+{
+  "schema": "glc-postprocessing-baseline-v1",
+  "date": "2026-11-07",
+  "status": "workspace_prepared_no_algorithm_run",
+  "main_repository": "01_项目/代码/semantic_video_test",
+  "branch": "main",
+  "python": "C:\\Users\\lenovo\\Desktop\\works\\work\\semantic-video-training\\.venv-glc\\Scripts\\python.exe",
+  "active_deployment": "06_部署包/GLC_Windows_流水线_20261102",
+  "contract": {
+    "input": "decoded RGB before viewing MP4 encoding",
+    "layout": "THWC or sequential THWC chunks",
+    "dtype": "uint8",
+    "channels": "RGB",
+    "output": "new output directory, same frame order and geometry",
+    "reference_rule": "postprocessed RGB is not fed into GLC entropy or reference state",
+    "chunk_tail_rule": "For chunked-rgb-v1 use chunks[].frames from storage metadata; the last NPY block is allocated to 64 frames and includes unused padding."
+  },
+  "baselines": [
+    {
+      "id": "glc_q0_900_fp32",
+      "frames": 900,
+      "fps": 30,
+      "shape": [
+        900,
+        288,
+        512,
+        3
+      ],
+      "rgb_chunks": "03_历史归档/GVC1D_20261107/实验数据_含环境与权重/long_20261102_01/glc_receiver/decoded_chunks",
+      "metadata": "03_历史归档/GVC1D_20261107/实验数据_含环境与权重/long_20261102_01/glc_receiver/result.json",
+      "source_chunks": "03_历史归档/GVC1D_20261107/实验数据_含环境与权重/long_20261102_01/source_chunks",
+      "source_storage_metadata": "03_历史归档/GVC1D_20261107/实验数据_含环境与权重/long_20261102_01/source_storage.json",
+      "decoded_storage_metadata": {
+        "file": "03_历史归档/GVC1D_20261107/实验数据_含环境与权重/long_20261102_01/glc_receiver/result.json",
+        "key": "decoded_storage"
+      }
+    },
+    {
+      "id": "glc_q0_full15_512_trt",
+      "frames": 1239,
+      "fps": 15,
+      "rgb": "02_实验数据/优化_编解码执行复核/full_video_15fps_20261105_01/width512/receiver/decoded_rgb.npy",
+      "shape": [
+        1239,
+        288,
+        512,
+        3
+      ],
+      "bitstream": "02_实验数据/优化_编解码执行复核/full_video_15fps_20261105_01/width512/sender/stream.glcsnd",
+      "source_chunks": "02_实验数据/优化_编解码执行复核/full_video_15fps_20261105_01/width512/prepare/source_chunks",
+      "source_storage_metadata": "02_实验数据/优化_编解码执行复核/full_video_15fps_20261105_01/width512/prepare/result.json"
+    },
+    {
+      "id": "glc_q0_full15_512_fp32",
+      "frames": 1239,
+      "fps": 15,
+      "rgb": "02_实验数据/优化_编解码执行复核/full_video_15fps_quality_20261105_01/width512/fp32_receiver/decoded_rgb.npy",
+      "shape": [
+        1239,
+        288,
+        512,
+        3
+      ],
+      "source_chunks": "02_实验数据/优化_编解码执行复核/full_video_15fps_20261105_01/width512/prepare/source_chunks",
+      "source_storage_metadata": "02_实验数据/优化_编解码执行复核/full_video_15fps_20261105_01/width512/prepare/result.json"
+    },
+    {
+      "id": "glc_q0_full15_640_trt",
+      "frames": 1239,
+      "fps": 15,
+      "rgb": "02_实验数据/优化_编解码执行复核/full_video_15fps_20261105_01/width640/receiver/decoded_rgb.npy",
+      "shape": [
+        1239,
+        360,
+        640,
+        3
+      ],
+      "bitstream": "02_实验数据/优化_编解码执行复核/full_video_15fps_20261105_01/width640/sender/stream.glcsnd",
+      "source_chunks": "02_实验数据/优化_编解码执行复核/full_video_15fps_20261105_01/width640/prepare/source_chunks",
+      "source_storage_metadata": "02_实验数据/优化_编解码执行复核/full_video_15fps_20261105_01/width640/prepare/result.json"
+    },
+    {
+      "id": "glc_q0_full15_640_fp32",
+      "frames": 1239,
+      "fps": 15,
+      "rgb": "02_实验数据/优化_编解码执行复核/full_video_15fps_quality_20261105_01/width640/fp32_receiver/decoded_rgb.npy",
+      "shape": [
+        1239,
+        360,
+        640,
+        3
+      ],
+      "source_chunks": "02_实验数据/优化_编解码执行复核/full_video_15fps_20261105_01/width640/prepare/source_chunks",
+      "source_storage_metadata": "02_实验数据/优化_编解码执行复核/full_video_15fps_20261105_01/width640/prepare/result.json"
+    }
+  ],
+  "quality_report": "01_项目/代码/semantic_video_test/20_优化阶段_编解码执行复核/完整82秒_15FPS_FP32与加速感知质量对照_20261105.md",
+  "gvc1d_archive": "03_历史归档/GVC1D_20261107",
+  "audit": "03_历史归档/文件整理_20261107",
+  "handoff": "01_项目/代码/semantic_video_test/交接文档.md",
+  "file_index": "01_项目/代码/semantic_video_test/05_资料与索引/会话收束_20261107/文件索引.md",
+  "main_commit_at_readme_promotion": "8e18d672a0f19d1db46f798870b3a0ec501ba6ba",
+  "code_baseline_commit": "374cdd285e88fa9950eb8d039ef7af6573a0c53d",
+  "current_main_instruction": "git -C 01_项目/代码/semantic_video_test log -1"
+}

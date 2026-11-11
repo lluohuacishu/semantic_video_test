@@ -1,0 +1,143 @@
+{
+  "complete": true,
+  "profile": "S8I + CURRENT_I12",
+  "frames": 150,
+  "fps": 15,
+  "seconds": 10,
+  "layout": [
+    "source",
+    "matched_HEVC",
+    "raw_GLC",
+    "CURRENT_I12"
+  ],
+  "headings": [
+    "原视频",
+    "H.265   32.44 kbps",
+    "原始 GLC   25.57 kbps",
+    "当前优化 GLC   32.66 kbps"
+  ],
+  "notes": [
+    "video1 · 15 FPS · 10 秒",
+    "按完整文件匹配优化版总码率",
+    "仅本体码流",
+    "本体 25.57 + 辅助 7.09 kbps | RAFT 12"
+  ],
+  "probe": {
+    "width": 1024,
+    "height": 688,
+    "avg_frame_rate": "15/1",
+    "duration": "10.000000",
+    "nb_read_frames": "150"
+  },
+  "base_bytes": 31963,
+  "auxiliary_bytes": 8865,
+  "total_bytes": 40828,
+  "base_kbps": 25.5704,
+  "auxiliary_kbps": 7.092,
+  "optimized_total_kbps": 32.6624,
+  "matched_hevc": {
+    "target_bytes": 40828,
+    "bytes": 40547,
+    "kbps": 32.4376,
+    "crf": 41.1875,
+    "relative_shortfall": 0.0068825315959635544,
+    "complete_file_billing": true,
+    "padding_added": false,
+    "preset": "medium",
+    "x265_params": "pools=2:frame-threads=1:keyint=64:scenecut=0:log-level=error",
+    "source_rgb_array_sha256": "78ca9c377c6240f8cc7384e5a3dd4a467c3431ce99135295d37ddd7054d33e9d",
+    "sha256": "53c9347b51c1c0b514d7035be84cf82a4dff0ffa3bf6678b7fbacefe0fdaff8a",
+    "decoded_rgb_file_sha256": "e61342255623247dc9b3eaef42170de992b7101529bca6a640458a9bf4cdd314",
+    "stream": {
+      "codec_name": "hevc",
+      "width": 512,
+      "height": 288,
+      "pix_fmt": "yuv420p",
+      "avg_frame_rate": "15/1",
+      "duration": "10.000000",
+      "nb_read_frames": "150"
+    },
+    "candidates": {
+      "28.0": 292391,
+      "39.5": 51050,
+      "40.9375": 41800,
+      "41.0": 41747,
+      "41.0625": 41064,
+      "41.125": 40847,
+      "41.1875": 40547,
+      "41.25": 40163,
+      "41.3125": 40012,
+      "41.375": 39393,
+      "41.4375": 39249,
+      "41.625": 38373,
+      "42.375": 34975,
+      "45.25": 24143,
+      "51.0": 14283
+    }
+  },
+  "pixel_panel_origins": [
+    [
+      0,
+      56
+    ],
+    [
+      512,
+      56
+    ],
+    [
+      0,
+      400
+    ],
+    [
+      512,
+      400
+    ]
+  ],
+  "check_frames": [
+    0,
+    75,
+    149
+  ],
+  "preencode_tiles_exact": true,
+  "panel_mae": [
+    [
+      1.630610704421997,
+      1.841584324836731,
+      1.8874760866165161
+    ],
+    [
+      1.3972326517105103,
+      1.474638819694519,
+      1.5075479745864868
+    ],
+    [
+      2.1909992694854736,
+      2.218313694000244,
+      2.1518373489379883
+    ],
+    [
+      2.079587697982788,
+      2.1503794193267822,
+      2.13983154296875
+    ]
+  ],
+  "inputs_sha256": {
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\source.npy": "97e44a828004587c5d362a45017b8d6cc41ddd8258bc0c7098e9d84bae15a751",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\decoded_rgb.npy": "66892444a3dac9ab1addbbb6b6239b5990d8cb0981db899295dbeab285fea281",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\anchor_time_20261111_02\\CURRENT_I12\\receive\\rgb.npy": "f3db8a4e0a513740f3c6b59d7411678aa8cfc860850b613a276c6f4575da4b8a",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base.glcsnd": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\S8I\\guide.glcguide": "2883c3b13c98bd384b0a896e3f4563d5ae46b8b5a702b1e75998e60435dc987f"
+  },
+  "inputs_unchanged": true,
+  "labels_use_complete_transmission_rates": true,
+  "viewing_encode": "libx264 fast CRF12 YUV420; preview size is not transmission rate",
+  "output": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\quad_current_i12_20261111_01\\video1_四宫格_原片_H265_原GLC_当前优化I12.mp4",
+  "output_sha256": "19190685363e6831125417b58c16666f58c3621eaa53bb9fd0487eed94aefd8d",
+  "code_sha256": "3ef7b5324117fa1166a5d51aafd241ceed374f0012485360ab66e78ffa03413a",
+  "visual_layout_review": {
+    "status": "passed",
+    "method": "Viewed decoded frame 75 at full 1024x688 resolution; Chinese labels legible, all four complete frames visible, requested panel order correct.",
+    "date": "2026-11-11"
+  },
+  "user_perceptual_review": "not yet requested or recorded for this new four-way view"
+}

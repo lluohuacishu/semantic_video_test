@@ -1,0 +1,180 @@
+{
+  "complete": true,
+  "cases": {
+    "video1": {
+      "bytes": 24688,
+      "K_bytes": 24649,
+      "support_identical": true,
+      "necessary_motion_identical": true,
+      "RGB_rerendered": false,
+      "header": {
+        "base_sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+        "width": 512,
+        "height": 288,
+        "frames": 150,
+        "start": 0,
+        "fps": 15,
+        "keys": [
+          0,
+          15,
+          45,
+          75,
+          105,
+          135
+        ],
+        "old_weights": [
+          1.0,
+          0.8333333333333334,
+          0.6666666666666666,
+          0.5,
+          0.3333333333333333,
+          0.16666666666666666
+        ],
+        "grid": [
+          24,
+          14
+        ],
+        "scale": 2,
+        "mask_step": 2,
+        "group_span": 5,
+        "fusion": "E",
+        "sections": {
+          "motion": {
+            "codec": "time_median",
+            "raw_bytes": 118336,
+            "bytes": 15196
+          },
+          "support": {
+            "codec": "quad",
+            "order": [
+              0,
+              1,
+              2
+            ],
+            "raw_bytes": 58552,
+            "bytes": 8988
+          }
+        }
+      }
+    },
+    "video2": {
+      "bytes": 23077,
+      "K_bytes": 23036,
+      "support_identical": true,
+      "necessary_motion_identical": true,
+      "RGB_rerendered": false,
+      "header": {
+        "base_sha256": "4b2e1719856ede21f9dad1e35b6200179481c0b0778d11da8f399e36e6517eeb",
+        "width": 512,
+        "height": 288,
+        "frames": 150,
+        "start": 0,
+        "fps": 15,
+        "keys": [
+          0,
+          15,
+          45,
+          75,
+          105,
+          135
+        ],
+        "old_weights": [
+          1.0,
+          0.8333333333333334,
+          0.6666666666666666,
+          0.5,
+          0.3333333333333333,
+          0.16666666666666666
+        ],
+        "grid": [
+          16,
+          9
+        ],
+        "scale": 2,
+        "mask_step": 2,
+        "group_span": 5,
+        "fusion": "E",
+        "sections": {
+          "motion": {
+            "codec": "time_median",
+            "raw_bytes": 99552,
+            "bytes": 12104
+          },
+          "support": {
+            "codec": "mixed",
+            "order": [
+              0,
+              1,
+              2
+            ],
+            "xor_last": false,
+            "patch_layout": "varint",
+            "patch_count": 0,
+            "raw_bytes": 46080,
+            "bytes": 10412
+          }
+        }
+      }
+    },
+    "video3": {
+      "bytes": 19453,
+      "K_bytes": 19412,
+      "support_identical": true,
+      "necessary_motion_identical": true,
+      "RGB_rerendered": false,
+      "header": {
+        "base_sha256": "8670b0dcfba34cc5d15c40c6791a54f96faca5479f890b1bcb58587696f16276",
+        "width": 512,
+        "height": 288,
+        "frames": 150,
+        "start": 0,
+        "fps": 15,
+        "keys": [
+          0,
+          15,
+          45,
+          75,
+          105,
+          135
+        ],
+        "old_weights": [
+          1.0,
+          0.8333333333333334,
+          0.6666666666666666,
+          0.5,
+          0.3333333333333333,
+          0.16666666666666666
+        ],
+        "grid": [
+          24,
+          14
+        ],
+        "scale": 2,
+        "mask_step": 2,
+        "group_span": 5,
+        "fusion": "E",
+        "sections": {
+          "motion": {
+            "codec": "spatial_median",
+            "raw_bytes": 225012,
+            "bytes": 7928
+          },
+          "support": {
+            "codec": "mixed",
+            "order": [
+              0,
+              1,
+              2
+            ],
+            "xor_last": false,
+            "patch_layout": "varint",
+            "patch_count": 0,
+            "raw_bytes": 46080,
+            "bytes": 10960
+          }
+        }
+      }
+    }
+  },
+  "interpretation": "Same expanded support, necessary motion and unchanged renderer; format-overhead control only."
+}

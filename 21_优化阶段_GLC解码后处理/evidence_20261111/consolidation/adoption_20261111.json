@@ -1,0 +1,211 @@
+{
+  "date": "2026-11-11",
+  "accepted_profile": "S8I + CURRENT_I12",
+  "user_decision_verbatim": "那就暂时不减少锚点了，raft12次和24次无明显肉眼差距，接近无感，可以采用，然后总结目前的情况，整理文件，报告，交接文档，一并分析瓶颈优势劣势，和需要优化的地方",
+  "scope": "video1 / 150 frames / 15 FPS / 512x288 / 10 seconds",
+  "anchor_policy": "Keep six anchors [0,15,45,75,105,135]; do not reduce anchor count for now.",
+  "raft_iterations": 12,
+  "visual_acceptance": "Accepted by user; no obvious visible difference from 24 iterations on reviewed comparisons.",
+  "bit_exact_to_24": false,
+  "historical_exact_replay_profile": "CURRENT_I24 only",
+  "inputs_and_outputs": {
+    "base": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base.glcsnd",
+      "bytes": 31963,
+      "sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5"
+    },
+    "guide": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\S8I\\guide.glcguide",
+      "bytes": 8865,
+      "sha256": "2883c3b13c98bd384b0a896e3f4563d5ae46b8b5a702b1e75998e60435dc987f"
+    },
+    "rgb": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\anchor_time_20261111_02\\CURRENT_I12\\receive\\rgb.npy",
+      "bytes": 66355328,
+      "sha256": "f3db8a4e0a513740f3c6b59d7411678aa8cfc860850b613a276c6f4575da4b8a"
+    },
+    "alpha": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\anchor_time_20261111_02\\CURRENT_I12\\receive\\alpha.npy",
+      "bytes": 88473728,
+      "sha256": "c82da434ac1a89da0cf50a3c17f15a3fc7ac54f40e5ba6ddb608a011a44036b9"
+    },
+    "shared": {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\anchor_time_20261111_02\\CURRENT_I12\\receive\\shared.npy",
+      "bytes": 17694848,
+      "sha256": "cfca55a2f52152502f76d4b69486e7f42b59daaa5588d5cca5a77ae99d2778ec"
+    }
+  },
+  "measurements": {
+    "keys": [
+      0,
+      15,
+      45,
+      75,
+      105,
+      135
+    ],
+    "iterations": 12,
+    "flow_pairs": 174,
+    "times": {
+      "guide_decode_seconds": 0.12232330000188085,
+      "model_load_and_device_seconds": 0.2944635999992897,
+      "flow_seconds": 19.769294600002468,
+      "render_seconds": 5.522867899999255,
+      "output_save_seconds": 0.10797400000228663,
+      "measured_pipeline_seconds": 25.81692340000518,
+      "process_wall_seconds": 27.671755700001086
+    },
+    "scores": {
+      "full": {
+        "pairs": 149,
+        "valid_pixels": 7520410,
+        "coarse_mae": 2.7039641460912702,
+        "fine_mae": 6.722280406129785,
+        "full_mae": 9.799079133069208,
+        "fine_ncc": 0.66227571736308,
+        "fine_amplitude": 3.1109969047263815,
+        "psnr_db": 22.535833980354987
+      },
+      "coral": {
+        "pairs": 149,
+        "valid_pixels": 1499191,
+        "coarse_mae": 2.3791630738163794,
+        "fine_mae": 7.406792766690502,
+        "full_mae": 10.606186908159968,
+        "fine_ncc": 0.8100037537617515,
+        "fine_amplitude": 9.027917954187226,
+        "psnr_db": 16.47352919255709
+      }
+    },
+    "quadrant_MAE_change_percent": {
+      "top_left": -1.127235606149013,
+      "top_right": 0.4999702339976153,
+      "bottom_left": -2.382898060313876,
+      "bottom_right": -0.1813988466189187
+    },
+    "source_change": {
+      "pixels": 2157722,
+      "RGB_delta_error": 29.94988711860626,
+      "change_amplitude_ratio": 0.6434230633182738
+    },
+    "coverage_full": 0.2492421242042824,
+    "coverage_coral": 0.6607530701754386,
+    "timing_groups": {
+      "full": {
+        "anchor_transition_exit": {
+          "pairs": 35,
+          "pixels": 1764692,
+          "coarse_MAE": 2.699016266896716
+        },
+        "outside_anchor_windows": {
+          "pairs": 114,
+          "pixels": 5755718,
+          "coarse_MAE": 2.705481156276897
+        },
+        "base_I_frames": {
+          "pairs": 2,
+          "pixels": 98430,
+          "coarse_MAE": 4.977434629940059
+        }
+      },
+      "coral": {
+        "anchor_transition_exit": {
+          "pairs": 35,
+          "pixels": 340922,
+          "coarse_MAE": 2.5412723807723063
+        },
+        "outside_anchor_windows": {
+          "pairs": 114,
+          "pixels": 1158269,
+          "coarse_MAE": 2.3314482259304143
+        },
+        "base_I_frames": {
+          "pairs": 2,
+          "pixels": 17374,
+          "coarse_MAE": 4.256083083918499
+        }
+      }
+    },
+    "largest_full_error_pairs": [
+      {
+        "frame": 128,
+        "seconds": 8.533333333333333,
+        "coarse_MAE": 5.579046201814059,
+        "base_I_frame": true,
+        "anchor_window": false
+      },
+      {
+        "frame": 129,
+        "seconds": 8.6,
+        "coarse_MAE": 5.029943610711718,
+        "base_I_frame": false,
+        "anchor_window": false
+      },
+      {
+        "frame": 64,
+        "seconds": 4.266666666666667,
+        "coarse_MAE": 4.433302315513505,
+        "base_I_frame": true,
+        "anchor_window": false
+      },
+      {
+        "frame": 104,
+        "seconds": 6.933333333333334,
+        "coarse_MAE": 4.335247405388405,
+        "base_I_frame": false,
+        "anchor_window": false
+      },
+      {
+        "frame": 65,
+        "seconds": 4.333333333333333,
+        "coarse_MAE": 4.26018459251306,
+        "base_I_frame": false,
+        "anchor_window": false
+      },
+      {
+        "frame": 101,
+        "seconds": 6.733333333333333,
+        "coarse_MAE": 4.04062396516754,
+        "base_I_frame": false,
+        "anchor_window": false
+      },
+      {
+        "frame": 134,
+        "seconds": 8.933333333333334,
+        "coarse_MAE": 3.9192374074964462,
+        "base_I_frame": false,
+        "anchor_window": false
+      },
+      {
+        "frame": 131,
+        "seconds": 8.733333333333333,
+        "coarse_MAE": 3.8825620579293516,
+        "base_I_frame": false,
+        "anchor_window": false
+      }
+    ]
+  },
+  "previous_decision": {
+    "complete": true,
+    "accepted_reference": "S8I, unchanged 8865-byte sidecar",
+    "primary_timing_candidate": "CURRENT_I12, current anchor schedule, RAFT 12 iterations",
+    "primary_candidate_visual_acceptance": "pending user original-speed review",
+    "sparse_I_synchronized_anchor": "rejected by numeric regression; not promoted",
+    "bitrate_changed": false,
+    "receiver_default_changed": false,
+    "next": "Review CURRENT_I12 at original speed; if accepted, focus subsequent runtime work on RAFT and T3 CPU gate."
+  },
+  "previous_visual_review": {
+    "date": "2026-11-11",
+    "accepted": "S8I, previously reviewed by user",
+    "pending": [
+      "CURRENT_I12",
+      "ISYNC_I24",
+      "ISYNC_I12"
+    ],
+    "primary_question": "Does CURRENT_I12 retain the accepted S8I appearance while reducing processing time?",
+    "no_candidate_promoted": true
+  },
+  "new_experiments_run": false,
+  "deployment_global_defaults_changed": false
+}

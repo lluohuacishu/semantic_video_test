@@ -1,0 +1,483 @@
+{
+  "bytes": 27414,
+  "kbps": 21.9312,
+  "delta_K_bytes": 2765,
+  "delta_K_percent": 11.217493610288454,
+  "base_bytes": 31963,
+  "K_bytes": 24649,
+  "selected_parent_groups": 1885,
+  "eligible_parent_groups": 15555,
+  "added_2x2_cell_groups": 5015,
+  "fraction": 0.12,
+  "safe_subset_of_N": true,
+  "preserves_all_K_support": true,
+  "required_motion_exact": true,
+  "every_mixed_layout_roundtrip": true,
+  "header": {
+    "base_sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+    "width": 512,
+    "height": 288,
+    "frames": 150,
+    "start": 0,
+    "fps": 15,
+    "keys": [
+      0,
+      15,
+      45,
+      75,
+      105,
+      135
+    ],
+    "old_weights": [
+      1.0,
+      0.8333333333333334,
+      0.6666666666666666,
+      0.5,
+      0.3333333333333333,
+      0.16666666666666666
+    ],
+    "grid": [
+      24,
+      14
+    ],
+    "scale": 2,
+    "mask_step": 2,
+    "group_span": 5,
+    "fusion": "E",
+    "sections": {
+      "motion": {
+        "codec": "time_median",
+        "raw_bytes": 118804,
+        "bytes": 15312
+      },
+      "support": {
+        "codec": "mixed",
+        "order": [
+          0,
+          1,
+          2
+        ],
+        "xor_last": false,
+        "patch_layout": "varint",
+        "patch_count": 1885,
+        "raw_bytes": 50447,
+        "bytes": 11536
+      }
+    }
+  },
+  "probe": {
+    "motion": [
+      {
+        "codec": "spatial_median",
+        "bytes": 16980
+      },
+      {
+        "codec": "spatial_gradient",
+        "bytes": 17928
+      },
+      {
+        "codec": "time_median",
+        "bytes": 15312
+      },
+      {
+        "codec": "time_gradient",
+        "bytes": 16968
+      },
+      {
+        "codec": "velocity_median",
+        "bytes": 19584
+      },
+      {
+        "codec": "time_only",
+        "bytes": 15764
+      },
+      {
+        "codec": "full",
+        "axes": [
+          0
+        ],
+        "layout": "i16",
+        "raw_bytes": 241920,
+        "bytes": 37540
+      },
+      {
+        "codec": "full",
+        "axes": [
+          0
+        ],
+        "layout": "zigzag",
+        "raw_bytes": 241920,
+        "bytes": 37720
+      },
+      {
+        "codec": "full",
+        "axes": [
+          0,
+          2
+        ],
+        "layout": "i16",
+        "raw_bytes": 241920,
+        "bytes": 36832
+      },
+      {
+        "codec": "full",
+        "axes": [
+          0,
+          2
+        ],
+        "layout": "zigzag",
+        "raw_bytes": 241920,
+        "bytes": 33832
+      },
+      {
+        "codec": "full",
+        "axes": [
+          1,
+          2
+        ],
+        "layout": "i16",
+        "raw_bytes": 241920,
+        "bytes": 34180
+      },
+      {
+        "codec": "full",
+        "axes": [
+          1,
+          2
+        ],
+        "layout": "zigzag",
+        "raw_bytes": 241920,
+        "bytes": 30784
+      },
+      {
+        "codec": "full",
+        "axes": [
+          0,
+          1,
+          2
+        ],
+        "layout": "i16",
+        "raw_bytes": 241920,
+        "bytes": 39320
+      },
+      {
+        "codec": "full",
+        "axes": [
+          0,
+          1,
+          2
+        ],
+        "layout": "zigzag",
+        "raw_bytes": 241920,
+        "bytes": 36140
+      }
+    ],
+    "support": [
+      {
+        "codec": "bits",
+        "order": [
+          0,
+          1,
+          2
+        ],
+        "xor_last": false,
+        "raw_bytes": 184320,
+        "bytes": 12952
+      },
+      {
+        "codec": "bits",
+        "order": [
+          0,
+          1,
+          2
+        ],
+        "xor_last": true,
+        "raw_bytes": 184320,
+        "bytes": 13280
+      },
+      {
+        "codec": "quad",
+        "order": [
+          0,
+          1,
+          2
+        ],
+        "raw_bytes": 60673,
+        "bytes": 11736
+      },
+      {
+        "codec": "bits",
+        "order": [
+          1,
+          2,
+          0
+        ],
+        "xor_last": false,
+        "raw_bytes": 184320,
+        "bytes": 15992
+      },
+      {
+        "codec": "bits",
+        "order": [
+          1,
+          2,
+          0
+        ],
+        "xor_last": true,
+        "raw_bytes": 184320,
+        "bytes": 16872
+      },
+      {
+        "codec": "quad",
+        "order": [
+          1,
+          2,
+          0
+        ],
+        "raw_bytes": 60673,
+        "bytes": 13244
+      },
+      {
+        "codec": "bits",
+        "order": [
+          2,
+          1,
+          0
+        ],
+        "xor_last": false,
+        "raw_bytes": 184320,
+        "bytes": 15752
+      },
+      {
+        "codec": "bits",
+        "order": [
+          2,
+          1,
+          0
+        ],
+        "xor_last": true,
+        "raw_bytes": 184320,
+        "bytes": 16556
+      },
+      {
+        "codec": "quad",
+        "order": [
+          2,
+          1,
+          0
+        ],
+        "raw_bytes": 60673,
+        "bytes": 13128
+      }
+    ],
+    "necessary_node_fraction": 0.491087962962963,
+    "mixed_support": [
+      {
+        "bytes": 27553,
+        "support": {
+          "codec": "quad",
+          "order": [
+            0,
+            1,
+            2
+          ],
+          "raw_bytes": 60673,
+          "bytes": 11736
+        }
+      },
+      {
+        "bytes": 27414,
+        "support": {
+          "codec": "mixed",
+          "order": [
+            0,
+            1,
+            2
+          ],
+          "xor_last": false,
+          "patch_layout": "varint",
+          "patch_count": 1885,
+          "raw_bytes": 50447,
+          "bytes": 11536
+        }
+      },
+      {
+        "bytes": 27522,
+        "support": {
+          "codec": "mixed",
+          "order": [
+            0,
+            1,
+            2
+          ],
+          "xor_last": false,
+          "patch_layout": "u32_planes",
+          "patch_count": 1885,
+          "raw_bytes": 55505,
+          "bytes": 11640
+        }
+      },
+      {
+        "bytes": 27601,
+        "support": {
+          "codec": "mixed",
+          "order": [
+            0,
+            1,
+            2
+          ],
+          "xor_last": true,
+          "patch_layout": "varint",
+          "patch_count": 1885,
+          "raw_bytes": 50447,
+          "bytes": 11724
+        }
+      },
+      {
+        "bytes": 27713,
+        "support": {
+          "codec": "mixed",
+          "order": [
+            0,
+            1,
+            2
+          ],
+          "xor_last": true,
+          "patch_layout": "u32_planes",
+          "patch_count": 1885,
+          "raw_bytes": 55505,
+          "bytes": 11832
+        }
+      },
+      {
+        "bytes": 29126,
+        "support": {
+          "codec": "mixed",
+          "order": [
+            1,
+            2,
+            0
+          ],
+          "xor_last": false,
+          "patch_layout": "varint",
+          "patch_count": 1885,
+          "raw_bytes": 50200,
+          "bytes": 13248
+        }
+      },
+      {
+        "bytes": 29178,
+        "support": {
+          "codec": "mixed",
+          "order": [
+            1,
+            2,
+            0
+          ],
+          "xor_last": false,
+          "patch_layout": "u32_planes",
+          "patch_count": 1885,
+          "raw_bytes": 55505,
+          "bytes": 13296
+        }
+      },
+      {
+        "bytes": 29721,
+        "support": {
+          "codec": "mixed",
+          "order": [
+            1,
+            2,
+            0
+          ],
+          "xor_last": true,
+          "patch_layout": "varint",
+          "patch_count": 1885,
+          "raw_bytes": 50200,
+          "bytes": 13844
+        }
+      },
+      {
+        "bytes": 29797,
+        "support": {
+          "codec": "mixed",
+          "order": [
+            1,
+            2,
+            0
+          ],
+          "xor_last": true,
+          "patch_layout": "u32_planes",
+          "patch_count": 1885,
+          "raw_bytes": 55505,
+          "bytes": 13916
+        }
+      },
+      {
+        "bytes": 28882,
+        "support": {
+          "codec": "mixed",
+          "order": [
+            2,
+            1,
+            0
+          ],
+          "xor_last": false,
+          "patch_layout": "varint",
+          "patch_count": 1885,
+          "raw_bytes": 50221,
+          "bytes": 13004
+        }
+      },
+      {
+        "bytes": 28966,
+        "support": {
+          "codec": "mixed",
+          "order": [
+            2,
+            1,
+            0
+          ],
+          "xor_last": false,
+          "patch_layout": "u32_planes",
+          "patch_count": 1885,
+          "raw_bytes": 55505,
+          "bytes": 13084
+        }
+      },
+      {
+        "bytes": 29457,
+        "support": {
+          "codec": "mixed",
+          "order": [
+            2,
+            1,
+            0
+          ],
+          "xor_last": true,
+          "patch_layout": "varint",
+          "patch_count": 1885,
+          "raw_bytes": 50221,
+          "bytes": 13580
+        }
+      },
+      {
+        "bytes": 29537,
+        "support": {
+          "codec": "mixed",
+          "order": [
+            2,
+            1,
+            0
+          ],
+          "xor_last": true,
+          "patch_layout": "u32_planes",
+          "patch_count": 1885,
+          "raw_bytes": 55505,
+          "bytes": 13656
+        }
+      }
+    ]
+  },
+  "sha256": "413a66a4612126775bef508b152dce36609846855793b67f1038652854e07f7e"
+}

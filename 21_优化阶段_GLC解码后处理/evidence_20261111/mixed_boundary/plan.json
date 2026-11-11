@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-11",
+  "status": "frozen_before_probe",
+  "cases": [
+    "video1",
+    "video2",
+    "video3"
+  ],
+  "fractions": [
+    0.01,
+    0.03,
+    0.06,
+    0.12
+  ],
+  "max_render_candidates": 2,
+  "selection": "For each group select the highest scoring 1/3/6/12 percent of mixed 4x4 parents adjoining K. Score is the mean potential alpha gain times absolute sigma3 luminance correction to the same decoded reference. No source RGB, manual ROI or evaluation metrics enter ranking.",
+  "fixed": "K motion grid/values, keys, old-reference transition, 2px feather, five-frame intersection; additions are a subset of already verified N safe support.",
+  "coding": "Existing lossless motion candidates plus finite coarse-bitmask and sparse child-nibble layouts, all header and checksum bytes counted.",
+  "budget": "K actual bytes are the comparison point, not a new hard cap. Report every byte increase separately; 40 kbps absolute cap; below base preferred.",
+  "decision": "Inspect byte frontier first. Render at most two globally consistent fractions. Stop if visible benefit does not justify added bytes. No promotion without human original-speed review.",
+  "source_inputs_unchanged": true,
+  "realtime_validated": false
+}

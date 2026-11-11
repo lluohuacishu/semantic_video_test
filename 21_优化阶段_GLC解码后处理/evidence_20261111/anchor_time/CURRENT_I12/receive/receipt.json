@@ -1,0 +1,59 @@
+{
+  "complete": true,
+  "profile": "CURRENT_I12",
+  "keys": [
+    0,
+    15,
+    45,
+    75,
+    105,
+    135
+  ],
+  "iterations": 12,
+  "frames": 150,
+  "fps": 15,
+  "seconds": 10,
+  "base_sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+  "base_bytes": 31963,
+  "auxiliary_sha256": "2883c3b13c98bd384b0a896e3f4563d5ae46b8b5a702b1e75998e60435dc987f",
+  "auxiliary_bytes": 8865,
+  "auxiliary_kbps": 7.092,
+  "source_reads_blocked": true,
+  "reads": [
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\deflicker_reef80_20261108_01\\upstream\\pretrained_weights\\raft-things.pth",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\S8I\\guide.glcguide",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base.glcsnd",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\decoded_rgb.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\result.json"
+  ],
+  "blocked_inputs": [
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\source.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_cut.json",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\flow\\to_anchor.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\flow\\from_anchor.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\S8I\\send.json",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\S8I\\sender_expected_guide.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\support_refinement_20261111_01\\video1\\K\\support.glccsp2"
+  ],
+  "flow_pairs": 174,
+  "flow_seconds": 19.769294600002468,
+  "guide_decode_seconds": 0.12232330000188085,
+  "model_load_and_device_seconds": 0.2944635999992897,
+  "render_seconds": 5.522867899999255,
+  "output_save_seconds": 0.10797400000228663,
+  "measured_pipeline_seconds": 25.81692340000518,
+  "process_wall_seconds": 27.671755700001086,
+  "peak_allocated_mib": 545.3623046875,
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "torch": "2.5.1+cu124",
+  "zero_weight_unchanged": true,
+  "outputs_sha256": {
+    "alpha.npy": "c82da434ac1a89da0cf50a3c17f15a3fc7ac54f40e5ba6ddb608a011a44036b9",
+    "guide_rgb.npy": "b52f1aa85178ea19cb370bda3b639866df2dbcdfb3912e7a034048da27397857",
+    "rgb.npy": "f3db8a4e0a513740f3c6b59d7411678aa8cfc860850b613a276c6f4575da4b8a",
+    "shared.npy": "cfca55a2f52152502f76d4b69486e7f42b59daaa5588d5cca5a77ae99d2778ec"
+  },
+  "receiver_script_sha256": "83e18159149e1233f39dbf5b2d3eb210d7ef14cf2c4b5b2bc1b8c5f97e81b7d6",
+  "renderer_logic": "fixed S8I T3; parameterized anchor keys only",
+  "timing_note": "Single cold worker per profile. Component sum excludes caller/UI startup; includes guide decode, model load, RAFT, render and result arrays."
+}

@@ -1,0 +1,67 @@
+{
+  "complete": true,
+  "source_reads_blocked": true,
+  "reads": [
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\M8\\flow_receive\\from_anchor.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\M8\\flow_receive\\guide_rgb.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\M8\\flow_receive\\receipt.json",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\M8\\flow_receive\\to_anchor.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\M8\\flow_receive\\transition_flow.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\M8\\guide.glcguide",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base.glcsnd",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\decoded_rgb.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\result.json"
+  ],
+  "blocked_inputs": [
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\source.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_cut.json",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\flow\\to_anchor.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\flow\\from_anchor.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\M8\\send.json",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\M8\\sender_expected_guide.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\support_refinement_20261111_01\\video1\\K\\support.glccsp2"
+  ],
+  "base_sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+  "base_bytes": 31963,
+  "auxiliary_sha256": "4257f2793911dda9bbd56ff91c28996d008e84854941d3a53468187d1eb7dbe7",
+  "auxiliary_bytes": 9806,
+  "auxiliary_kbps": 7.8448,
+  "total_kbps": 33.4152,
+  "guide_header": {
+    "base_sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+    "frames": 150,
+    "fps": 15,
+    "guide_size": [
+      256,
+      144
+    ],
+    "target_size": [
+      512,
+      288
+    ],
+    "codec": "hevc-yuv420p",
+    "color": "RGB decode",
+    "upsample": "cubic",
+    "payload_bytes": 9555
+  },
+  "receiver_revision": "Fixed guide luminance std >=3 at sigma3, at both current and projected reference",
+  "no_per_clip_threshold_or_mask_transmitted": true,
+  "receiver_local_flow_cache": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\M8\\flow_receive",
+  "receiver_local_flow_receipt_sha256": "c68cafc8b3dc37a733781b83293e8780376885c3373d0b4cead2ba60836674b2",
+  "flow_cache_source_free_provenance_verified": true,
+  "zero_weight_unchanged": true,
+  "coverage": 0.24501790364583334,
+  "guide_decode_seconds": 0,
+  "flow_seconds": 33.16946359999929,
+  "render_seconds": 4.920912399997178,
+  "runtime_note": "Flow time inherited from locally computed identical guide flow; not rerun for this CPU gate revision. Decode timing not measured here.",
+  "peak_allocated_mib": 573.8037109375,
+  "outputs_sha256": {
+    "alpha.npy": "57f74e6a701807795d6638b8033a08b6ab0d6c01d38a21f955a8b995f016ca10",
+    "guide_rgb.npy": "caaddda2f07fd7cac38ac1bcb7527184a24f3f9cfab6d108650770048a7d9534",
+    "rgb.npy": "3d1eba8768c01bc021950529d77b6ac9ff51a02640ae1fca950d68d2237cb4f7",
+    "shared.npy": "6197be9b007eafd1d9261401914c6a92f619dbef713d155bc920766652e9eee5"
+  },
+  "code_sha256": "521d78edbfbfb689ca4ebd1eb6d30930cf8d37c09d1ed7c0b12fd3d5be229bd9",
+  "guide_codec_sha256": "5379cc4a5bc460e34593cd8e776b1e1993c68c15370ec073dddf039b20354e10"
+}

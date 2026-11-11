@@ -9,11 +9,11 @@
   "last_experiment_commit": "da572712e713493485650bd66a9982ffeef40f3d",
   "current_branch_head_check": "git log -1",
   "new_experiments_uncommitted": false,
-  "new_experiment_report": "21_优化阶段_GLC解码后处理/空间时间可靠区消融与预测编码_20261111.md",
+  "new_experiment_report": "21_优化阶段_GLC解码后处理/锚点与接收时间联合实验_20261111.md",
   "handoff_repo_path": "交接文档.md",
   "stage_report_repo_path": "21_优化阶段_GLC解码后处理/README.md",
   "workspace_paths": {
-    "viewing": "05_成果与观看/GLC_低码率可靠区_20261110/README.md",
+    "viewing": "05_成果与观看/GLC_接收时间与锚点实验_20261111/README.md",
     "previous_boundary_viewing": "05_成果与观看/GLC_时序稳定性_20261110/README.md",
     "persistent_structure_run": "02_实验数据/优化_GLC后处理/video1_persistent_structure_20261110_01",
     "result_index": "02_实验数据/优化_GLC后处理/README.md",
@@ -40,9 +40,20 @@
     "quad_viewing": "05_成果与观看/GLC_低码率可靠区_20261110/12_video1_四宫格_原片_H265_原GLC_优化GLC.mp4",
     "quad_run": "02_实验数据/优化_GLC后处理/quad_comparison_20261110_02",
     "latest_retrospective_run": "02_实验数据/优化_GLC后处理/lowrate_retrospective_20261110_01",
-    "latest_viewing": "05_成果与观看/GLC_空间时间消融与省码率_20261111/README.md",
+    "latest_viewing": "05_成果与观看/GLC_接收时间与锚点实验_20261111/README.md",
     "latest_support_factorial_run": "02_实验数据/优化_GLC后处理/support_factorial_20261111_01",
-    "latest_support_refinement_run": "02_实验数据/优化_GLC后处理/support_refinement_20261111_01"
+    "latest_support_refinement_run": "02_实验数据/优化_GLC后处理/support_refinement_20261111_01",
+    "receiver_structure_run": "02_实验数据/优化_GLC后处理/receiver_structure_20261111_01",
+    "mixed_boundary_run": "02_实验数据/优化_GLC后处理/mixed_boundary_20261111_01",
+    "structure_guide_run": "02_实验数据/优化_GLC后处理/structure_guidance_20261111_01",
+    "guide_compression_run": "02_实验数据/优化_GLC后处理/guide_compression_20261111_01",
+    "guide_compression_final_code": "02_实验数据/优化_GLC后处理/guide_compression_20261111_01/source_final",
+    "anchor_time_run": "02_实验数据/优化_GLC后处理/anchor_time_20261111_02",
+    "anchor_time_evidence": "01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/evidence_20261111/anchor_time",
+    "current_accepted_rgb": "02_实验数据/优化_GLC后处理/anchor_time_20261111_02/CURRENT_I12/receive/rgb.npy",
+    "current_profile": "01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/当前采用配置.json",
+    "current_report": "01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/当前方案总结与瓶颈路线_20261111.md",
+    "current_fourway": "05_成果与观看/GLC_接收时间与锚点实验_20261111/07_video1_四宫格_原片_H265_原GLC_当前优化I12.mp4"
   },
   "budget": {
     "base_fps": 15,
@@ -53,57 +64,142 @@
     "clarified_by_user": true
   },
   "latest_result": {
-    "variant": "K / GLCCSP02 lossless repacking of L",
-    "run": "02_实验数据/优化_GLC后处理/support_refinement_20261111_01",
-    "report": "21_优化阶段_GLC解码后处理/空间时间可靠区消融与预测编码_20261111.md",
-    "frames_per_case": 150,
-    "fps": 15,
-    "billing_seconds": 10,
-    "actual_auxiliary_stream": true,
-    "source_assisted_sender": true,
-    "source_media_at_receiver": false,
-    "RGB_alpha_bit_exact_to_L": true,
-    "files": {
-      "video1": {
-        "base_bytes": 31963,
-        "auxiliary_bytes": 24649,
-        "auxiliary_kbps": 19.7192,
-        "packet_sha256": "8ebfb46e5037a0d325584cf0f80623337843af57d65a4b437106779f85ddec1b",
-        "RGB_bit_exact_to_L": true
-      },
-      "video2": {
-        "base_bytes": 31849,
-        "auxiliary_bytes": 23036,
-        "auxiliary_kbps": 18.4288,
-        "packet_sha256": "ef19c74f877030799e4595a01ea58e1b9465b3d5d0cfb1a726b2c19a9a46d2cc",
-        "RGB_bit_exact_to_L": true
-      },
-      "video3": {
-        "base_bytes": 30995,
-        "auxiliary_bytes": 19412,
-        "auxiliary_kbps": 15.5296,
-        "packet_sha256": "94c160fcb0a3fd35814c06a820050a96f2ee1345d7158d821440c428cc943c98",
-        "RGB_bit_exact_to_L": true
-      }
-    },
-    "verification_complete": true,
-    "visual_review": {
-      "date": "2026-11-11",
-      "status": "no_large_visible_difference_both_acceptable",
-      "cases_reviewed": [
-        "video1",
-        "video2"
+    "accepted_video1_comparison_baseline": {
+      "name": "S8I + CURRENT_I12",
+      "auxiliary_bytes": 8865,
+      "auxiliary_kbps": 7.092,
+      "total_kbps": 32.6624,
+      "anchor_frames": [
+        0,
+        15,
+        45,
+        75,
+        105,
+        135
       ],
-      "left": "L",
-      "right": "N",
-      "question": "右侧珊瑚稳定性是否有明显改善，鱼体和主体边界是否退步；已明确N辅助更贵。",
-      "quote": "我感觉两段视频都是左右看不出太大差距，目前均可接收的程度",
-      "interpretation": "User could not see a large difference in either pair and found both sides acceptable. This does not establish N superiority, equivalence to local U, or video3 acceptance. K is separately verified RGB/alpha bit-exact to L.",
-      "decision": "Keep K as lower-byte rendering-equivalent baseline. Do not promote global 2x2 N given 42-76% additional auxiliary bytes versus L without visible benefit in reviewed clips."
+      "raft_iterations": 12,
+      "coral_MAE": 2.3791630738163794,
+      "coral_NCC": 0.8100037537617515,
+      "user_feedback": "那就暂时不减少锚点了，raft12次和24次无明显肉眼差距，接近无感，可以采用，然后总结目前的情况，整理文件，报告，交接文档，一并分析瓶颈优势劣势，和需要优化的地方",
+      "scope": "video1 / 150 frames / 15 FPS / 512x288 / 10 seconds",
+      "bit_exact_to_24": false
     },
-    "N_is_higher_rate_control_not_default": true,
-    "held_out_material": false,
-    "streaming_validated": false
+    "alternative_pending_visual_review": {
+      "profile": "S10",
+      "bytes": 12134,
+      "auxiliary_kbps": 9.7072,
+      "base_bytes": 31963,
+      "total_kbps": 35.2776,
+      "auxiliary_saved_percent": 25.038611231234942,
+      "preset": "slower",
+      "chroma_offset": 0,
+      "coral_MAE": 2.1584242991368447,
+      "coral_MAE_change_percent": -23.007549106863646,
+      "coral_NCC": 0.8460246975096061,
+      "full_MAE": 2.5766298334299593,
+      "full_MAE_change_percent": -5.593415284150193,
+      "full_PSNR": 22.54807007967942,
+      "source_change_error": 29.838603397471964,
+      "source_change_error_percent": -0.5782652459559001,
+      "numeric_checks": {
+        "coral_MAE": true,
+        "full_MAE": true,
+        "coral_NCC": true,
+        "full_PSNR": true,
+        "source_change": true
+      },
+      "numeric_screen_pass": true,
+      "visual_acceptance": "pending",
+      "quadrant_MAE_change_percent": {
+        "top_left": -0.02212354499305791,
+        "top_right": -13.27746618361283,
+        "bottom_left": 5.181164918275694,
+        "bottom_right": -0.37932268411451364
+      },
+      "coverage": {
+        "full": 0.2641166178385417,
+        "top_left": 0.07007921006944444,
+        "top_right": 0.46720829716435186,
+        "bottom_left": 0.041279477719907406,
+        "bottom_right": 0.477899486400463,
+        "coral": 0.6893776315789474
+      },
+      "encoder_selected_seconds": 2.6679271000029985,
+      "flow_seconds": 33.098164299997734,
+      "render_seconds": 4.998200999998517
+    },
+    "video2_video3": "Previous K rendering-equivalent-to-L baseline; no guide-compression transfer yet",
+    "previous_accepted_video1_comparison_baseline": {
+      "name": "A12 = G256_b12_T3",
+      "auxiliary_bytes": 16187,
+      "auxiliary_kbps": 12.9496,
+      "coral_MAE": 2.8034232890347717,
+      "user_feedback": "这回的还可以",
+      "scope": "Presented video1 only"
+    },
+    "accepted_S8I_metrics": {
+      "profile": "S8I",
+      "bytes": 8865,
+      "auxiliary_kbps": 7.092,
+      "base_bytes": 31963,
+      "total_kbps": 32.6624,
+      "auxiliary_saved_percent": 45.23382961635881,
+      "preset": "slower",
+      "chroma_offset": 0,
+      "coral_MAE": 2.3780788648801616,
+      "coral_MAE_change_percent": -15.172322560716744,
+      "coral_NCC": 0.8102728671997892,
+      "full_MAE": 2.71218920930674,
+      "full_MAE_change_percent": -0.6265793278564802,
+      "full_PSNR": 22.537316668025916,
+      "source_change_error": 29.945088075912157,
+      "source_change_error_percent": -0.22346005235399646,
+      "numeric_checks": {
+        "coral_MAE": true,
+        "full_MAE": true,
+        "coral_NCC": true,
+        "full_PSNR": true,
+        "source_change": true
+      },
+      "numeric_screen_pass": true,
+      "visual_acceptance": "user_accepted_with_remaining_jump_concern",
+      "quadrant_MAE_change_percent": {
+        "top_left": 2.855380752754666,
+        "top_right": -8.518658519112865,
+        "bottom_left": 7.520507707987822,
+        "bottom_right": 6.879103198253933
+      },
+      "coverage": {
+        "full": 0.24837940357349536,
+        "top_left": 0.057698567708333336,
+        "top_right": 0.44214898003472225,
+        "bottom_left": 0.051565755208333335,
+        "bottom_right": 0.4421043113425926,
+        "coral": 0.6604232456140351
+      },
+      "encoder_selected_seconds": 2.644431100001384,
+      "flow_seconds": 33.00567999999839,
+      "render_seconds": 4.912147700000787,
+      "user_feedback": "右侧这个还可以；仍观察到跳变，询问固定锚。"
+    },
+    "receiver_time_pilot": {
+      "S8I_24_component_seconds": 40.05718830000478,
+      "CURRENT_I12_component_seconds": 25.81692340000518,
+      "CURRENT_I12_process_wall_seconds": 27.671755700001086,
+      "CURRENT_I12_coral_MAE": 2.3791630738163794,
+      "S8I_24_coral_MAE": 2.3780788648801616,
+      "ISYNC_I24_coral_MAE": 3.508627840537856,
+      "sidecar_bytes_all": 8865,
+      "primary_candidate_user_visual_acceptance": "accepted on 2026-11-11"
+    },
+    "previous_S8I24_comparison_baseline": {
+      "name": "S8I",
+      "auxiliary_bytes": 8865,
+      "auxiliary_kbps": 7.092,
+      "coral_MAE": 2.3780788648801616,
+      "user_feedback": "这回的还可以啊，右侧这个，然后就是跳变，是因为锚换了吧，锚可以固定吗，频繁换的话还是会跳变的",
+      "scope": "Presented video1 only; remaining jumps explicitly unresolved"
+    }
   },
   "previous_boundary_transition_result": {
     "case": "video1",
@@ -189,25 +285,47 @@
   },
   "previous_local_U_report": "21_优化阶段_GLC解码后处理/video1持续结构10秒与实际辅助流_20261110.md",
   "experiment_pushed_to": "origin/codex/glc-temporal-stability",
-  "latest_analysis_report": "21_优化阶段_GLC解码后处理/空间时间可靠区消融与预测编码_20261111.md",
+  "latest_analysis_report": "21_优化阶段_GLC解码后处理/当前方案总结与瓶颈路线_20261111.md",
   "latest_diagnosis": {
-    "type": "completed controlled spatial x temporal intervention",
-    "report": "21_优化阶段_GLC解码后处理/空间时间可靠区消融与预测编码_20261111.md",
-    "evidence": "21_优化阶段_GLC解码后处理/evidence_20261111/support_factorial/summary.json",
-    "new_candidate_experiments_run": true,
-    "coral_coarse_mae": {
-      "P1_GP": 1.971967780149087,
-      "B1": 2.544726302419137,
-      "P5": 2.2405155214233043,
-      "B5_L": 2.6778268570075356
+    "actual_bytes_not_nominal_rate": true,
+    "same_cap_not_exact_rate_comparison": true,
+    "S8_integer_kbps_search_gap": "Initial 7/5/9/7 skipped 6; separate predeclared S8I tested 6/7/5 by bytes only.",
+    "chroma_offset_4_added_bytes_vs_S8I": 288,
+    "regional_regressions": {
+      "top_left": 2.855380752754666,
+      "top_right": -8.518658519112865,
+      "bottom_left": 7.520507707987822,
+      "bottom_right": 6.879103198253933
     },
-    "interpretation": "Spatial cell reduction has greater loss than five-frame intersection under frozen video1 conditions; global 2x2 N gives limited visual benefit at much higher bytes."
+    "anchor_events": {
+      "read_only": true,
+      "new_candidate_run": false,
+      "anchor_seconds": [
+        1,
+        3,
+        5,
+        7,
+        9
+      ],
+      "GLC_intra_seconds": [
+        4.266666666666667,
+        8.533333333333333
+      ],
+      "causality_not_proven": true,
+      "report": "21_优化阶段_GLC解码后处理/S8I换锚与跳变诊断_20261111.md"
+    }
   },
   "latest_experiment_plan": {
-    "status": "executed_support_factorial_and_K_N_transfer",
-    "factorial_plan": "21_优化阶段_GLC解码后处理/plan_lowrate_next_20261110.json",
-    "refinement_plan": "21_优化阶段_GLC解码后处理/evidence_20261111/support_refinement/plan.json",
-    "frozen_plans_kept_unchanged": true
+    "status": "executed_2x2_anchor_iteration_matrix",
+    "frozen_plan": "21_优化阶段_GLC解码后处理/evidence_20261111/anchor_time/execution_plan.json",
+    "profiles": [
+      "CURRENT_I24",
+      "ISYNC_I24",
+      "CURRENT_I12",
+      "ISYNC_I12"
+    ],
+    "all_receivers_complete": true,
+    "source_free": true
   },
   "latest_factorial_result": {
     "report": "21_优化阶段_GLC解码后处理/整帧运动与可靠区因果消融_20261110.md",
@@ -363,16 +481,16 @@
     ]
   },
   "next_experiment_plan": {
-    "status": "planned_not_run",
-    "first": "Byte probe for selective mixed-boundary refinement near K auxiliary bytes; retain frozen motion, blending and pixel-safety constraints. No full-frame uniform 2x2 upgrade.",
-    "budget_bytes": {
-      "video1": 24649,
-      "video2": 23036,
-      "video3": 19412
-    },
-    "absolute_auxiliary_kbps_max": 40,
-    "below_base": "Preferred, not another absolute cap",
-    "stop_rule": "Do not promote a candidate that only increases bytes for a visually negligible gain; report rate and perception jointly."
+    "status": "proposed_not_run_after_adoption",
+    "first": "Trustworthy end-to-end and repeated cold/warm timing with fixed six anchors /12 iterations.",
+    "then": "Exact-output T3 caching, then isolated RAFT compute changes; preserve quality and source-free receiver.",
+    "anchor_reduction": "Paused by user; keep [0,15,45,75,105,135].",
+    "unproven": [
+      "Current profile cross-clip and long-video transfer",
+      "Comprehensive metrics/user preference for the newly generated matched-budget H265 control",
+      "Realtime including GLC decode",
+      "Streaming latency and real channel"
+    ]
   },
   "previous_lowrate_experiment_commit": "80f7914906ebafaa0d5bd35b1aff7e21bdc12fd0",
   "previous_lowrate_L_result": {
@@ -618,5 +736,541 @@
       "L_minus_GP_sum": 0.000209808349609375
     },
     "interpretation": "Spatial reduction and temporal intersection remain coupled. Conditional residual concentration is not causal attribution. Fixed image-coordinate support is not continuous surface tracking."
-  }
+  },
+  "observed_git_HEAD": "7f717e5",
+  "latest_experiment": {
+    "name": "S8I fixed-packet anchor x RAFT iteration receiver-time matrix",
+    "complete": true,
+    "cases": [
+      "video1"
+    ],
+    "run": "02_实验数据/优化_GLC后处理/anchor_time_20261111_02",
+    "analysis": "analysis_rerun01",
+    "report": "21_优化阶段_GLC解码后处理/锚点与接收时间联合实验_20261111.md",
+    "accepted_visual_baseline": "S8I + CURRENT_I12, six anchors, 8865 B /7.0920 kbps",
+    "primary_timing_candidate": "CURRENT_I12",
+    "primary_candidate_user_visual_acceptance": "accepted on 2026-11-11",
+    "I_synchronized_three_anchor_rejected_numerically": true,
+    "reference_replay_rgb_alpha_shared_exact": true,
+    "same_sidecar_bytes": 8865,
+    "same_base_stream": true,
+    "full_receiver_pipeline_includes_base_GLC_decode": false,
+    "realtime_validated": false,
+    "new_experiments_uncommitted": false,
+    "adopted_profile": "CURRENT_I12",
+    "reference_replay_exact_profile": "CURRENT_I24 only; CURRENT_I12 is not bit-exact"
+  },
+  "previous_boundary_plan": {
+    "status": "completed_in_mixed_boundary_20261111_01",
+    "first": "Byte probe for selective mixed-boundary refinement near K auxiliary bytes; retain frozen motion, blending and pixel-safety constraints. No full-frame uniform 2x2 upgrade.",
+    "budget_bytes": {
+      "video1": 24649,
+      "video2": 23036,
+      "video3": 19412
+    },
+    "absolute_auxiliary_kbps_max": 40,
+    "below_base": "Preferred, not another absolute cap",
+    "stop_rule": "Do not promote a candidate that only increases bytes for a visually negligible gain; report rate and perception jointly."
+  },
+  "previous_receiver_experiment": {
+    "name": "receiver-only RR and lossless prediction byte probe",
+    "complete": true,
+    "deployed_default": "K",
+    "auxiliary_RR_bytes": [
+      0,
+      0,
+      0
+    ],
+    "main_scope": [
+      "video1 coral",
+      "video2 full",
+      "video3 full"
+    ],
+    "K_coarse_mae": [
+      2.6778268570075356,
+      1.614944,
+      1.283938
+    ],
+    "RR_coarse_mae": [
+      4.600533,
+      2.43069,
+      1.9733
+    ],
+    "K_aux_bytes": [
+      24649,
+      23036,
+      19412
+    ],
+    "prediction_probe_optimistic_bytes": [
+      29424,
+      28752,
+      31429
+    ],
+    "prediction_probe_new_metadata_included": false,
+    "all_RR_source_reads_blocked": true,
+    "SS_archived_bit_exact": true,
+    "K_and_raw_scores_exact": true,
+    "frozen_inputs": 56,
+    "original_speed_previews": 9,
+    "user_visual_acceptance": false,
+    "report": "21_优化阶段_GLC解码后处理/接收端零辅助验证与字节探针_20261111.md",
+    "user_feedback": "video1 R0 nearly no difference from raw GLC; rejected"
+  },
+  "previous_research_direction": {
+    "status": "direction_only_not_run",
+    "priority": "Reduce auxiliary bitrate while retaining useful structure stability; do not add mixed-boundary bytes.",
+    "first": "Design a bounded low-dimensional stable-structure motion / event-refresh / sparse-correction experiment; direct RR and complete motion-residual prediction are already tested.",
+    "K_aux_bytes": [
+      24649,
+      23036,
+      19412
+    ],
+    "absolute_auxiliary_kbps_max": 40,
+    "below_base": "Preference, not another absolute cap",
+    "stop_rule": "Measure full file bytes and lossless RGB on fixed support; reject bitrate reductions that lose useful stability or damage moving subjects.",
+    "unproven": [
+      "unseen data",
+      "long sequences",
+      "real-time",
+      "new equal-total-byte H265"
+    ]
+  },
+  "previous_K_result": {
+    "variant": "K / GLCCSP02 lossless repacking of L",
+    "run": "02_实验数据/优化_GLC后处理/support_refinement_20261111_01",
+    "report": "21_优化阶段_GLC解码后处理/空间时间可靠区消融与预测编码_20261111.md",
+    "frames_per_case": 150,
+    "fps": 15,
+    "billing_seconds": 10,
+    "actual_auxiliary_stream": true,
+    "source_assisted_sender": true,
+    "source_media_at_receiver": false,
+    "RGB_alpha_bit_exact_to_L": true,
+    "files": {
+      "video1": {
+        "base_bytes": 31963,
+        "auxiliary_bytes": 24649,
+        "auxiliary_kbps": 19.7192,
+        "packet_sha256": "8ebfb46e5037a0d325584cf0f80623337843af57d65a4b437106779f85ddec1b",
+        "RGB_bit_exact_to_L": true
+      },
+      "video2": {
+        "base_bytes": 31849,
+        "auxiliary_bytes": 23036,
+        "auxiliary_kbps": 18.4288,
+        "packet_sha256": "ef19c74f877030799e4595a01ea58e1b9465b3d5d0cfb1a726b2c19a9a46d2cc",
+        "RGB_bit_exact_to_L": true
+      },
+      "video3": {
+        "base_bytes": 30995,
+        "auxiliary_bytes": 19412,
+        "auxiliary_kbps": 15.5296,
+        "packet_sha256": "94c160fcb0a3fd35814c06a820050a96f2ee1345d7158d821440c428cc943c98",
+        "RGB_bit_exact_to_L": true
+      }
+    },
+    "verification_complete": true,
+    "visual_review": {
+      "date": "2026-11-11",
+      "status": "no_large_visible_difference_both_acceptable",
+      "cases_reviewed": [
+        "video1",
+        "video2"
+      ],
+      "left": "L",
+      "right": "N",
+      "question": "右侧珊瑚稳定性是否有明显改善，鱼体和主体边界是否退步；已明确N辅助更贵。",
+      "quote": "我感觉两段视频都是左右看不出太大差距，目前均可接收的程度",
+      "interpretation": "User could not see a large difference in either pair and found both sides acceptable. This does not establish N superiority, equivalence to local U, or video3 acceptance. K is separately verified RGB/alpha bit-exact to L.",
+      "decision": "Keep K as lower-byte rendering-equivalent baseline. Do not promote global 2x2 N given 42-76% additional auxiliary bytes versus L without visible benefit in reviewed clips."
+    },
+    "N_is_higher_rate_control_not_default": true,
+    "held_out_material": false,
+    "streaming_validated": false
+  },
+  "previous_structure_guide_experiment": {
+    "name": "GLCGDE01 structural guide, fixed receiver texture confidence T3",
+    "complete": true,
+    "cases": [
+      "video1"
+    ],
+    "candidate": "G256_b12_T3",
+    "default": "A12 for current video1 compression comparisons; K for historical regression and video2/3",
+    "auxiliary_bytes": 16187,
+    "auxiliary_kbps": 12.9496,
+    "K_auxiliary_bytes": 24649,
+    "auxiliary_saving_percent": 34.32999310316849,
+    "coral_MAE": {
+      "raw": 4.55809282879483,
+      "K": 2.6778268570075356,
+      "guide_T3": 2.8034232890347717
+    },
+    "coral_NCC": {
+      "K": 0.756759410267657,
+      "guide_T3": 0.7509032105298636
+    },
+    "source_free_receiver_verified": true,
+    "guide_transmitted_and_billed": true,
+    "texture_revision_additional_bytes": 0,
+    "user_visual_acceptance": "user_accepted_video1_direction",
+    "cross_clip_transfer": "not run",
+    "report": "21_优化阶段_GLC解码后处理/低码率结构引导视频验证_20261111.md"
+  },
+  "previous_support_experiment_plan": {
+    "status": "executed_support_factorial_and_K_N_transfer",
+    "factorial_plan": "21_优化阶段_GLC解码后处理/plan_lowrate_next_20261110.json",
+    "refinement_plan": "21_优化阶段_GLC解码后处理/evidence_20261111/support_refinement/plan.json",
+    "frozen_plans_kept_unchanged": true
+  },
+  "previous_latest_diagnosis": {
+    "type": "completed controlled spatial x temporal intervention",
+    "report": "21_优化阶段_GLC解码后处理/空间时间可靠区消融与预测编码_20261111.md",
+    "evidence": "21_优化阶段_GLC解码后处理/evidence_20261111/support_factorial/summary.json",
+    "new_candidate_experiments_run": true,
+    "coral_coarse_mae": {
+      "P1_GP": 1.971967780149087,
+      "B1": 2.544726302419137,
+      "P5": 2.2405155214233043,
+      "B5_L": 2.6778268570075356
+    },
+    "interpretation": "Spatial cell reduction has greater loss than five-frame intersection under frozen video1 conditions; global 2x2 N gives limited visual benefit at much higher bytes."
+  },
+  "previous_guide_compression_experiment": {
+    "name": "Fixed T3 guide compression, encoder-only video1 pilot",
+    "complete": true,
+    "cases": [
+      "video1"
+    ],
+    "focus_candidate": "S8I",
+    "alternative": "S10",
+    "accepted_reference": "S8I",
+    "new_candidates_visually_accepted": true,
+    "candidates": {
+      "S8C4": {
+        "profile": "S8C4",
+        "bytes": 9153,
+        "auxiliary_kbps": 7.3224,
+        "base_bytes": 31963,
+        "total_kbps": 32.8928,
+        "auxiliary_saved_percent": 43.45462408105269,
+        "preset": "slower",
+        "chroma_offset": 4,
+        "coral_MAE": 2.4195475536498727,
+        "coral_MAE_change_percent": -13.693106456180892,
+        "coral_NCC": 0.8115802669163533,
+        "full_MAE": 2.698168179265658,
+        "full_MAE_change_percent": -1.140303706579049,
+        "full_PSNR": 22.543661096051313,
+        "source_change_error": 29.949411771612223,
+        "source_change_error_percent": -0.20905356953967447,
+        "numeric_checks": {
+          "coral_MAE": true,
+          "full_MAE": true,
+          "coral_NCC": true,
+          "full_PSNR": true,
+          "source_change": true
+        },
+        "numeric_screen_pass": true,
+        "visual_acceptance": "pending",
+        "quadrant_MAE_change_percent": {
+          "top_left": 0.8372034995635103,
+          "top_right": -5.004496446239804,
+          "bottom_left": 3.3622618051464936,
+          "bottom_right": 2.2079954306519545
+        },
+        "coverage": {
+          "full": 0.25223628291377315,
+          "top_left": 0.08436342592592593,
+          "top_right": 0.42728895399305555,
+          "bottom_left": 0.04553855613425926,
+          "bottom_right": 0.45175419560185187,
+          "coral": 0.6537473684210526
+        },
+        "encoder_selected_seconds": 2.5016475999982504,
+        "flow_seconds": 33.78688829999737,
+        "render_seconds": 4.948871099997632
+      },
+      "M10": {
+        "profile": "M10",
+        "bytes": 11598,
+        "auxiliary_kbps": 9.2784,
+        "base_bytes": 31963,
+        "total_kbps": 34.8488,
+        "auxiliary_saved_percent": 28.349910421943537,
+        "preset": "medium",
+        "chroma_offset": 0,
+        "coral_MAE": 3.0416691565077847,
+        "coral_MAE_change_percent": 8.498390821139324,
+        "coral_NCC": 0.7026274157141742,
+        "full_MAE": 2.875302692938284,
+        "full_MAE_change_percent": 5.349827027052445,
+        "full_PSNR": 22.520726656276864,
+        "source_change_error": 30.283391002177297,
+        "source_change_error_percent": 0.9037597224327509,
+        "numeric_checks": {
+          "coral_MAE": false,
+          "full_MAE": false,
+          "coral_NCC": false,
+          "full_PSNR": true,
+          "source_change": true
+        },
+        "numeric_screen_pass": false,
+        "visual_acceptance": "pending",
+        "quadrant_MAE_change_percent": {
+          "top_left": 6.275663266662246,
+          "top_right": 4.87353582772192,
+          "bottom_left": 2.9609199440316036,
+          "bottom_right": 6.681849952473984
+        },
+        "coverage": {
+          "full": 0.24971453631365742,
+          "top_left": 0.0672435619212963,
+          "top_right": 0.46309045862268516,
+          "bottom_left": 0.0403785083912037,
+          "bottom_right": 0.4281456163194444,
+          "coral": 0.655905701754386
+        },
+        "encoder_selected_seconds": 0.32128459999876213,
+        "flow_seconds": 33.344461700002284,
+        "render_seconds": 5.094395100000838
+      },
+      "S10": {
+        "profile": "S10",
+        "bytes": 12134,
+        "auxiliary_kbps": 9.7072,
+        "base_bytes": 31963,
+        "total_kbps": 35.2776,
+        "auxiliary_saved_percent": 25.038611231234942,
+        "preset": "slower",
+        "chroma_offset": 0,
+        "coral_MAE": 2.1584242991368447,
+        "coral_MAE_change_percent": -23.007549106863646,
+        "coral_NCC": 0.8460246975096061,
+        "full_MAE": 2.5766298334299593,
+        "full_MAE_change_percent": -5.593415284150193,
+        "full_PSNR": 22.54807007967942,
+        "source_change_error": 29.838603397471964,
+        "source_change_error_percent": -0.5782652459559001,
+        "numeric_checks": {
+          "coral_MAE": true,
+          "full_MAE": true,
+          "coral_NCC": true,
+          "full_PSNR": true,
+          "source_change": true
+        },
+        "numeric_screen_pass": true,
+        "visual_acceptance": "not_reviewed",
+        "quadrant_MAE_change_percent": {
+          "top_left": -0.02212354499305791,
+          "top_right": -13.27746618361283,
+          "bottom_left": 5.181164918275694,
+          "bottom_right": -0.37932268411451364
+        },
+        "coverage": {
+          "full": 0.2641166178385417,
+          "top_left": 0.07007921006944444,
+          "top_right": 0.46720829716435186,
+          "bottom_left": 0.041279477719907406,
+          "bottom_right": 0.477899486400463,
+          "coral": 0.6893776315789474
+        },
+        "encoder_selected_seconds": 2.6679271000029985,
+        "flow_seconds": 33.098164299997734,
+        "render_seconds": 4.998200999998517
+      },
+      "M8": {
+        "profile": "M8",
+        "bytes": 9806,
+        "auxiliary_kbps": 7.8448,
+        "base_bytes": 31963,
+        "total_kbps": 33.4152,
+        "auxiliary_saved_percent": 39.420522641626,
+        "preset": "medium",
+        "chroma_offset": 0,
+        "coral_MAE": 3.3264837437220307,
+        "coral_MAE_change_percent": 18.65791929221472,
+        "coral_NCC": 0.6713472543853882,
+        "full_MAE": 3.0815545181795274,
+        "full_MAE_change_percent": 12.906803260039702,
+        "full_PSNR": 22.473765551153853,
+        "source_change_error": 30.459351111959744,
+        "source_change_error_percent": 1.4900559082510645,
+        "numeric_checks": {
+          "coral_MAE": false,
+          "full_MAE": false,
+          "coral_NCC": false,
+          "full_PSNR": true,
+          "source_change": true
+        },
+        "numeric_screen_pass": false,
+        "visual_acceptance": "pending",
+        "quadrant_MAE_change_percent": {
+          "top_left": 8.952851125214444,
+          "top_right": 14.434534091153983,
+          "bottom_left": 4.876681593388299,
+          "bottom_right": 15.497289366815249
+        },
+        "coverage": {
+          "full": 0.24501790364583334,
+          "top_left": 0.0884888599537037,
+          "top_right": 0.4385469111689815,
+          "bottom_left": 0.04233615451388889,
+          "bottom_right": 0.41069968894675923,
+          "coral": 0.6468105263157895
+        },
+        "encoder_selected_seconds": 0.2936090000002878,
+        "flow_seconds": 33.16946359999929,
+        "render_seconds": 4.920912399997178
+      },
+      "S8": {
+        "profile": "S8",
+        "bytes": 6114,
+        "auxiliary_kbps": 4.8912,
+        "base_bytes": 31963,
+        "total_kbps": 30.4616,
+        "auxiliary_saved_percent": 62.22894915673072,
+        "preset": "slower",
+        "chroma_offset": 0,
+        "coral_MAE": 3.4919535725656057,
+        "coral_MAE_change_percent": 24.56033971836973,
+        "coral_NCC": 0.6288962773586871,
+        "full_MAE": 3.2387705590519666,
+        "full_MAE_change_percent": 18.667129904071732,
+        "full_PSNR": 22.461596096502298,
+        "source_change_error": 30.61603054826649,
+        "source_change_error_percent": 2.0121092078107417,
+        "numeric_checks": {
+          "coral_MAE": false,
+          "full_MAE": false,
+          "coral_NCC": false,
+          "full_PSNR": true,
+          "source_change": true
+        },
+        "numeric_screen_pass": false,
+        "visual_acceptance": "pending",
+        "quadrant_MAE_change_percent": {
+          "top_left": 5.200182372530637,
+          "top_right": 15.15135066599207,
+          "bottom_left": 5.621958944064898,
+          "bottom_right": 35.23804619857065
+        },
+        "coverage": {
+          "full": 0.20223619249131944,
+          "top_left": 0.05755027488425926,
+          "top_right": 0.37778428819444443,
+          "bottom_left": 0.03978153935185185,
+          "bottom_right": 0.33382866753472223,
+          "coral": 0.5695425438596491
+        },
+        "encoder_selected_seconds": 2.2972339000007196,
+        "flow_seconds": 33.808975399999326,
+        "render_seconds": 4.99319370000012
+      },
+      "S8I": {
+        "profile": "S8I",
+        "bytes": 8865,
+        "auxiliary_kbps": 7.092,
+        "base_bytes": 31963,
+        "total_kbps": 32.6624,
+        "auxiliary_saved_percent": 45.23382961635881,
+        "preset": "slower",
+        "chroma_offset": 0,
+        "coral_MAE": 2.3780788648801616,
+        "coral_MAE_change_percent": -15.172322560716744,
+        "coral_NCC": 0.8102728671997892,
+        "full_MAE": 2.71218920930674,
+        "full_MAE_change_percent": -0.6265793278564802,
+        "full_PSNR": 22.537316668025916,
+        "source_change_error": 29.945088075912157,
+        "source_change_error_percent": -0.22346005235399646,
+        "numeric_checks": {
+          "coral_MAE": true,
+          "full_MAE": true,
+          "coral_NCC": true,
+          "full_PSNR": true,
+          "source_change": true
+        },
+        "numeric_screen_pass": true,
+        "visual_acceptance": "user_accepted_with_remaining_jump_concern",
+        "quadrant_MAE_change_percent": {
+          "top_left": 2.855380752754666,
+          "top_right": -8.518658519112865,
+          "bottom_left": 7.520507707987822,
+          "bottom_right": 6.879103198253933
+        },
+        "coverage": {
+          "full": 0.24837940357349536,
+          "top_left": 0.057698567708333336,
+          "top_right": 0.44214898003472225,
+          "bottom_left": 0.051565755208333335,
+          "bottom_right": 0.4421043113425926,
+          "coral": 0.6604232456140351
+        },
+        "encoder_selected_seconds": 2.644431100001384,
+        "flow_seconds": 33.00567999999839,
+        "render_seconds": 4.912147700000787,
+        "user_feedback": "右侧这个还可以；仍观察到跳变，询问固定锚。",
+        "remaining_jump_issue": "Anchor refresh may contribute; base GLC I frames and ongoing reliability changes are also plausible."
+      }
+    },
+    "report": "21_优化阶段_GLC解码后处理/结构引导继续压码率_20261111.md",
+    "source_free_receiver_verified": true,
+    "fixed_T3_replay_exact": true,
+    "frozen_input_count": 13,
+    "cross_clip_transfer": "not run",
+    "visual_review": {
+      "date": "2026-11-11",
+      "accepted_reference": "S8I, 8865 B /7.0920 kbps, displayed video1 only",
+      "user_quote": "这回的还可以，接下来其实就是两个方向了，一个方向是优化视觉效果，另一个是继续压缩辅助码率，咱们先研究压缩码率，优化视觉最后再整",
+      "priority": "Keep accepted low auxiliary bitrate while analyzing anchor refresh and residual jumps; no new receiver experiment in this follow-up.",
+      "candidates": {
+        "M10": "pending_user_original_speed_review",
+        "S10": "pending_user_original_speed_review",
+        "M8": "pending_user_original_speed_review",
+        "S8": "pending_user_original_speed_review",
+        "S8I": "user_accepted_with_remaining_jump_concern",
+        "S8C4": "pending_user_original_speed_review"
+      },
+      "static_contact_sheets_checked": [
+        "S8I",
+        "S10"
+      ],
+      "candidate_promoted": true,
+      "previous_accepted_reference": "A12 = G256_b12_T3, video1 only",
+      "user_followup_quote": "这回的还可以啊，右侧这个，然后就是跳变，是因为锚换了吧，锚可以固定吗，频繁换的话还是会跳变的",
+      "promotion_scope": "Current video1 comparison baseline only; not cross-clip, foreground certification or deployment acceptance.",
+      "remaining_issue": "User reports visible jumps and asks whether anchors can remain fixed."
+    },
+    "visually_accepted_profiles": [
+      "S8I"
+    ]
+  },
+  "status": "accepted_S8I_CURRENT_I12_consolidated",
+  "current_accepted_profile": "21_优化阶段_GLC解码后处理/当前采用配置.json",
+  "user_latest_decision": "那就暂时不减少锚点了，raft12次和24次无明显肉眼差距，接近无感，可以采用，然后总结目前的情况，整理文件，报告，交接文档，一并分析瓶颈优势劣势，和需要优化的地方",
+  "consolidation": {
+    "date": "2026-11-11",
+    "new_optimization_experiments_run": false,
+    "files_moved_or_deleted": false,
+    "asset_index": "01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/evidence_20261111/consolidation/关键资产索引.json",
+    "adoption_record": "02_实验数据/优化_GLC后处理/anchor_time_20261111_02/adoption_20261111.json",
+    "current_profile_deployed_to_existing_package": false
+  },
+  "publication": {
+    "branch": "codex/glc-temporal-stability",
+    "included_scope": "Related phase21 code/reports/evidence and current handoff; large media remain local",
+    "push_receipt": "02_实验数据/优化_GLC后处理/quad_current_i12_20261111_01/branch_push_receipt.json",
+    "verify_remote_head": true
+  },
+  "current_fourway": {
+    "run": "02_实验数据/优化_GLC后处理/quad_current_i12_20261111_01",
+    "viewing": "05_成果与观看/GLC_接收时间与锚点实验_20261111/07_video1_四宫格_原片_H265_原GLC_当前优化I12.mp4",
+    "report": "01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/当前方案四宫格与同码率H265_20261111.md",
+    "hevc_bytes": 40547,
+    "hevc_kbps": 32.4376,
+    "optimized_kbps": 32.6624,
+    "relative_byte_shortfall": 0.0068825315959635544,
+    "metrics_scope": "viewing control only; no new full quality evaluation"
+  },
+  "current_session_work": "Prior experiments/adoption consolidation plus current-budget HEVC four-way view; related files included in this branch delivery."
 }

@@ -1,0 +1,87 @@
+{
+  "date": "2026-11-11",
+  "frozen_before_encoding": true,
+  "authorization": "User accepted the current video1 guide result and asked to proceed with bitrate compression before visual improvements.",
+  "user_accepted_baseline": "G256_b12_T3: 16187 B, 12.9496 kbps; this is the new rate comparison, keep K as historical regression.",
+  "case": "video1",
+  "frames": 150,
+  "fps": 15,
+  "guide_size": [
+    256,
+    144
+  ],
+  "base_size": [
+    512,
+    288
+  ],
+  "initial_profiles": {
+    "M10": {
+      "preset": "medium",
+      "cap_bytes": 12500,
+      "chroma_offset": 0
+    },
+    "S10": {
+      "preset": "slower",
+      "cap_bytes": 12500,
+      "chroma_offset": 0
+    },
+    "M8": {
+      "preset": "medium",
+      "cap_bytes": 10000,
+      "chroma_offset": 0
+    },
+    "S8": {
+      "preset": "slower",
+      "cap_bytes": 10000,
+      "chroma_offset": 0
+    }
+  },
+  "receiver": "Identical RAFT-Things FP32/24 iterations; same six anchors, same T3 texture std>=3, 2px feather, old-reference transition and RGB reuse.",
+  "unchanged": [
+    "resolution",
+    "frame rate",
+    "source downsampling",
+    "chroma 4:2:0",
+    "receiver gate thresholds",
+    "reference RGB",
+    "blend and rounding",
+    "GLC base"
+  ],
+  "encoder": "libx265 two-pass ABR; medium versus slower as complete presets; 150-frame GOP; no encoder info SEI",
+  "byte_selection": "At most four two-pass encodes per profile to approach but not exceed the complete-file cap. Select largest <=cap using bytes only, without candidate RGB or metrics.",
+  "target_cap_interpretation": "10/8 kbps are experimental operating points, not new user hard limits; all wrapper, HEVC and CRC bytes counted.",
+  "quality_screen": {
+    "reference": "accepted T3",
+    "coral_coarse_MAE_ratio_max": 1.05,
+    "full_coarse_MAE_ratio_max": 1.05,
+    "coral_NCC_drop_max": 0.02,
+    "full_PSNR_drop_max_db": 0.15,
+    "source_change_error_ratio_max": 1.03,
+    "interpretation": "Predeclared candidate prioritization only, never visual acceptance or a newly imposed user requirement."
+  },
+  "followup": "After initial 2x2, one fixed chroma-offset +4 at slower/8kbps may be evaluated as a separate factor if useful; no resolution, frame dropping, smoothing or T3 retuning in this run.",
+  "evaluation": "Fixed external source correspondence; full/quadrants/coral plus source-selected high-change pixels; source only in independent evaluation.",
+  "limits": "Video1 development pilot; no fresh-data, long-video, realtime or equal-total-byte H265 claim.",
+  "inputs_sha256": {
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\source.npy": "97e44a828004587c5d362a45017b8d6cc41ddd8258bc0c7098e9d84bae15a751",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base.glcsnd": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\decoded_rgb.npy": "66892444a3dac9ab1addbbb6b6239b5990d8cb0981db899295dbeab285fea281",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\result.json": "300d6c065142d8248a912e5d88ffae09381b89ab54da4a10767e524b00fb6e76",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\structure_guidance_20261111_01\\video1\\G256_b12_T3\\guide.glcguide": "ca85769d2270b49e531dc423a05e3ce98dcf51333aa1642bfad5e9a9850989e2",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\structure_guidance_20261111_01\\video1\\G256_b12_T3\\receive\\rgb.npy": "1b069d27fa35c17fbdeb766da8becca51226cf9521f53cedddd53dd4b415be8d",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\structure_guidance_20261111_01\\video1\\G256_b12_T3\\receive\\alpha.npy": "f8ff8455e3c21000fbe1483e607d362fcbea49097a81afde09b1d3baff534c93",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\structure_guidance_20261111_01\\video1\\G256_b12_T3\\receive\\receipt.json": "96c1fc4a16e8c2be6ee98872ffeb328a8695c15030aada06e8eae39f71577576",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\structure_guidance_20261111_01\\video1\\evaluation\\summary.json": "e0e46ff0e8e2f6b3644f08c7359dcfbc51662c3fef1e3507af25d4921084d90a",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\support_refinement_20261111_01\\video1\\K\\support.glccsp2": "8ebfb46e5037a0d325584cf0f80623337843af57d65a4b437106779f85ddec1b",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\support_refinement_20261111_01\\video1\\K\\receive\\rgb.npy": "ffbde751461cb4a6bdaabb3cee3cc4665e8db8a368dd043ae198699bee07b202",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\support_refinement_20261111_01\\video1\\K\\receive\\alpha.npy": "edfa09eb2211fdd6ecc22da95110769e04cf92c5f1197a7dd19e003dcafa3789",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\deflicker_reef80_20261108_01\\upstream\\pretrained_weights\\raft-things.pth": "fcfa4125d6418f4de95d84aec20a3c5f4e205101715a79f193243c186ac9a7e1"
+  },
+  "code_sha256": {
+    "compress_structure_guide.py": "688da8b3a8d75caa199658996d7ed9d1590c5d6a7347f21995a8a361debbeb8c",
+    "structure_guide_stream.py": "5379cc4a5bc460e34593cd8e776b1e1993c68c15370ec073dddf039b20354e10",
+    "receive_structure_guide.py": "5adb131bb03e5862b30b0b6e5dff1fad866554631cb8446d747c18365ff43d2a",
+    "receive_guide_texture.py": "521d78edbfbfb689ca4ebd1eb6d30930cf8d37c09d1ed7c0b12fd3d5be229bd9",
+    "receiver_structure.py": "07f3d17a5c1de44d41452da182bf5469b954ceda1de44c265865a54d2389e2a8"
+  }
+}
