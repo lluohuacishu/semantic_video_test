@@ -1,0 +1,76 @@
+{
+  "complete": true,
+  "kind": "known_development_clips_fixed_parameter_transfer",
+  "profile": "S8I + CURRENT_I12 + exact runtime caches",
+  "new_clips": [
+    "video2",
+    "video3"
+  ],
+  "conclusions": {
+    "video2": "Weak average benefit with spatial and high-change regression; not a successful universal transfer",
+    "video3": "Strong texture stability benefit, slight PSNR cost and reduced change amplitude; perceptual acceptance pending"
+  },
+  "heldout_tested": false,
+  "long_video_tested": false,
+  "user_visual_acceptance": "pending",
+  "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\known_video_transfer_20261111_02",
+  "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\当前方案跨素材初筛_video2_video3_20261111.md",
+  "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_跨素材初筛_20261111",
+  "verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\known_video_transfer_20261111_02\\verification\\summary.json",
+  "code_and_adopted_profile_unchanged": true,
+  "new_work_committed_or_pushed": false,
+  "cases": {
+    "video2": {
+      "rates_kbps": {
+        "base": 25.4792,
+        "guide": 5.5112,
+        "current": 30.9904,
+        "K": 43.908,
+        "h265": 30.4328
+      },
+      "full_coarse_mae": {
+        "raw": 2.283172857912614,
+        "current": 2.2615214994385457,
+        "K": 1.6149443240742924
+      },
+      "coarse_mae_reduction_percent": 0.948301325457368,
+      "current_vs_K_error_change_percent": 40.03711866258175,
+      "psnr_db": {
+        "raw": 21.084959417071126,
+        "current": 20.784088747729307
+      },
+      "cached_uncached_exact": {
+        "rgb": true,
+        "alpha": true,
+        "shared": true
+      },
+      "cold_single_seconds": 65.86404709999624
+    },
+    "video3": {
+      "rates_kbps": {
+        "base": 24.796,
+        "guide": 8.296,
+        "current": 33.092,
+        "K": 40.3256,
+        "h265": 32.9472
+      },
+      "full_coarse_mae": {
+        "raw": 1.967673378725994,
+        "current": 1.0493354312772725,
+        "K": 1.2839384611102516
+      },
+      "coarse_mae_reduction_percent": 46.67125943652884,
+      "current_vs_K_error_change_percent": -18.272139743373085,
+      "psnr_db": {
+        "raw": 21.91829137657608,
+        "current": 21.75239972060757
+      },
+      "cached_uncached_exact": {
+        "rgb": true,
+        "alpha": true,
+        "shared": true
+      },
+      "cold_single_seconds": 68.26324880000175
+    }
+  }
+}

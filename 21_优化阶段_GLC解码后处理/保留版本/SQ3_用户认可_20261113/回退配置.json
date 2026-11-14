@@ -1,0 +1,87 @@
+{
+  "name": "SQ3",
+  "status": "user_accepted_preferred_fallback",
+  "feedback": {
+    "date": "2026-11-13",
+    "quote": "嗯，目前这个SQ3我看很不错啊，抖动减轻很多，虽然没那么锐利，但还是可以的，SQ3这个可以留一下，然后先继续优化，后面优化的不好就采用SQ3了",
+    "scope": "Presented SQ3 full 82.6-second four-way and preceding short clips",
+    "interpretation": "User accepts reduced jitter and some loss of sharpness. Preserve SQ3 as preferred fallback while exploring further optimization.",
+    "formal_deployment_change": false,
+    "preferred_fallback": "SQ3",
+    "future_candidate_acceptance": "requires comparative viewing"
+  },
+  "settings": {
+    "weights": [
+      0.5,
+      0.3,
+      0.2
+    ],
+    "maximum_history_frames": 2,
+    "maximum_history_seconds": 0.13333333333333333,
+    "flow_iterations": 12,
+    "precision": "FP32",
+    "cycle_sigma": 1.5,
+    "guide_sigma": 1.0,
+    "guide_difference_sigma": 16.0,
+    "edge_feather_pixels": 2.0,
+    "current_guide_correction": 0.25,
+    "interpolation": "linear",
+    "output_history_feedback": false,
+    "scene_cut_detection": false,
+    "lookahead_frames": 0
+  },
+  "upstream": "Existing Q9_R25 -> GS25 -> nonrecursive guide-aligned SQ3",
+  "short_run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_jitter_20261113_03",
+  "long_run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\sq3_long_fourway_20261113_01",
+  "outputs": {
+    "video1_SQ3.npy": {
+      "original": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_jitter_20261113_03\\video1\\receive\\SQ3\\rgb.npy",
+      "snapshot": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113\\outputs\\video1_SQ3.npy",
+      "sha256": "e87faff7ef626d025c42bf0d1da53829033b66dd4ef26f36e2c76c20df7ba5ad",
+      "bytes": 66355328,
+      "independent_copy": true
+    },
+    "video2_SQ3.npy": {
+      "original": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_jitter_20261113_03\\video2\\receive\\SQ3\\rgb.npy",
+      "snapshot": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113\\outputs\\video2_SQ3.npy",
+      "sha256": "fd0595af8f11480b9155e03fb5235883589e1c7095236180b15962935b702b19",
+      "bytes": 66355328,
+      "independent_copy": true
+    },
+    "video3_SQ3.npy": {
+      "original": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_jitter_20261113_03\\video3\\receive\\SQ3\\rgb.npy",
+      "snapshot": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113\\outputs\\video3_SQ3.npy",
+      "sha256": "5f63bfcfd9996cedb9199b3ab18f377fc7799a7820810208e804966d47c66128",
+      "bytes": 66355328,
+      "independent_copy": true
+    },
+    "video4_SQ3.npy": {
+      "original": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_jitter_20261113_03\\video4\\receive\\SQ3\\rgb.npy",
+      "snapshot": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113\\outputs\\video4_SQ3.npy",
+      "sha256": "14527016d062846149b8659e8fdffcb6ccfdfbc23b9fbe3623b76f5f4c20c744",
+      "bytes": 46006400,
+      "independent_copy": true
+    },
+    "long_SQ3.npy": {
+      "original": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\sq3_long_fourway_20261113_01\\receive\\SQ3.npy",
+      "snapshot": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113\\outputs\\long_SQ3.npy",
+      "sha256": "6318a4883afc29e3eb2662b01a1b1662a958626d529a377786f5428fc4fb4058",
+      "bytes": 548094080,
+      "independent_copy": true
+    },
+    "82秒_四宫格_原片_H265_原GLC_SQ3.mp4": {
+      "original": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_SQ3长片四宫格_20261113\\82秒_四宫格_原片_H265_原GLC_SQ3.mp4",
+      "snapshot": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113\\outputs\\82秒_四宫格_原片_H265_原GLC_SQ3.mp4",
+      "sha256": "095826ff72c51cf169daa1ecaefd39a94eb1d1097b7347b5ef3865584265b3e1",
+      "bytes": 99377597,
+      "independent_copy": true
+    }
+  },
+  "formal_config_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+  "no_new_transmission": true,
+  "source_at_receiver": false,
+  "added_history_frames": 2,
+  "upstream_Q9_long_reference_remains": true,
+  "scene_cut_detection": false,
+  "restore": "Use the independent output copies directly; reproduce with frozen source and provenance execution plans against their hashed inputs. Do not overwrite current deployment automatically."
+}

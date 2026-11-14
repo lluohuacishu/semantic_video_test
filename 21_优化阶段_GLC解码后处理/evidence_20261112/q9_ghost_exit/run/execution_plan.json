@@ -1,0 +1,82 @@
+{
+  "date": "2026-11-12",
+  "frozen_before_candidate_inference": true,
+  "registration_sha256": "c4955b913a1c7d9c58d94fe149ec28c5c4db13274392cd796dd503d8f40743b5",
+  "user_events_sha256": "51f0ffd06782345085cb081bf2fc070e3d07dc2635a060dcbac8651023da1825",
+  "profiles": {
+    "E32": {
+      "sigma3": [
+        12.0,
+        32.0
+      ],
+      "sigma1": null,
+      "dilation": 0
+    },
+    "EL12": {
+      "sigma3": [
+        6.0,
+        12.0
+      ],
+      "sigma1": [
+        12.0,
+        24.0
+      ],
+      "dilation": 1
+    }
+  },
+  "reference": "Unmodified Q9_R25 replay from same received packet and local RAFT cache.",
+  "operation": "Exit weight from final Q9-versus-current-raw sigma3/sigma1 RGB disagreement, applied as one added rounded convex blend toward current raw.",
+  "motivation": "E32 uses prior D25 12..32 sigma3 thresholds but permits full exit. EL12 uses finer localized conflict and both scales, one pixel dilation.",
+  "parameter_status": "Research choices frozen after baseline diagnosis, before candidates; identical across five clips. No threshold search or per-clip settings.",
+  "no_source_or_roi_in_receiver": true,
+  "no_new_flow_or_packet": true,
+  "extra_transmission_bytes": 0,
+  "no_automatic_adoption": true,
+  "subjective_review": "pending",
+  "long_video_not_run": true,
+  "review_boxes": {
+    "reef_old_fish_A": [
+      416,
+      112,
+      452,
+      144
+    ],
+    "reef_old_fish_B": [
+      488,
+      112,
+      512,
+      144
+    ],
+    "video2_tail": [
+      140,
+      145,
+      285,
+      288
+    ]
+  },
+  "review_timing": {
+    "reef_departure": [
+      53,
+      75
+    ],
+    "user_exact_reef_frame": 61,
+    "video2_tail": [
+      45,
+      75
+    ]
+  },
+  "evaluation": "Source errors at preregistered user-event crops plus full/quadrants, old reef ROIs, dynamic amplitude and valid-support temporal metrics. No pixel count is called semantic ghost count.",
+  "negative_control": "Also evaluate originally accepted video1/video3 and seagrass; local gain cannot automatically overrule regression elsewhere.",
+  "code_sha256": {
+    "raw_conflict_exit.py": "c8e30e3fb1e35a175cb2be984592c81a610b39a924449a8b9114b14e0565954f",
+    "run_q9_ghost_exit.py": "03c33e18b0a729d70c1fc3a90cd3e51149244c871c30a29e7d0a405942a25bd8",
+    "mild_reliability_gate.py": "976491361f647de523aa632f72b0fa0588ce13ceb352d5b0dfe30654c9bed72b",
+    "receiver_structure.py": "07f3d17a5c1de44d41452da182bf5469b954ceda1de44c265865a54d2389e2a8",
+    "cached_t3.py": "cde258d865084c5f547220c542393ce606eaa8fcf725ca3736f0fbd6fdfc058f",
+    "receive_guide_texture.py": "521d78edbfbfb689ca4ebd1eb6d30930cf8d37c09d1ed7c0b12fd3d5be229bd9",
+    "runtime_speed_common.py": "27bb0a697be0eea55ef7ff0a08180abe54d785e0f630f005c5029a621557346d",
+    "structure_guide_stream.py": "5379cc4a5bc460e34593cd8e776b1e1993c68c15370ec073dddf039b20354e10",
+    "resume_q9_archive_transfer.py": "f5b68c0e33eb5cb9d0fb6bc8290866d85d555cf4a4b2a2f555019d45ae99b007",
+    "evaluate_structure_guide.py": "6a7f40008bd6ca07d7161226a3c77da81f8f7b9898d7682d23d3bf42a8211eed"
+  }
+}

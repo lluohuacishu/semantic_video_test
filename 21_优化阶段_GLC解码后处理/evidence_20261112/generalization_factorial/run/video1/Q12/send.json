@@ -1,0 +1,53 @@
+{
+  "reused": false,
+  "encode_seconds": 4.004431099999692,
+  "command": [
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\运行环境\\FFmpeg\\ffmpeg.exe",
+    "-v",
+    "error",
+    "-f",
+    "rawvideo",
+    "-pix_fmt",
+    "rgb24",
+    "-s",
+    "256x144",
+    "-r",
+    "15",
+    "-i",
+    "pipe:0",
+    "-an",
+    "-c:v",
+    "libx265",
+    "-preset",
+    "slower",
+    "-b:v",
+    "12k",
+    "-pix_fmt",
+    "yuv420p",
+    "-threads",
+    "2"
+  ],
+  "x265_params": "log-level=error:pools=2:frame-threads=1:keyint=150:min-keyint=150:scenecut=0:repeat-headers=1:info=0:stats=guide_pass.log",
+  "complete": true,
+  "bytes": 16498,
+  "kbps": 13.1984,
+  "total_kbps": 38.7688,
+  "sha256": "134cd981ce1afb3f4d583c4d70e79c25037fa7ee39758363ea8a039d0650ad1a",
+  "header": {
+    "base_sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+    "frames": 150,
+    "fps": 15,
+    "guide_size": [
+      256,
+      144
+    ],
+    "target_size": [
+      512,
+      288
+    ],
+    "codec": "hevc-yuv420p",
+    "color": "RGB decode",
+    "upsample": "cubic",
+    "payload_bytes": 16246
+  }
+}

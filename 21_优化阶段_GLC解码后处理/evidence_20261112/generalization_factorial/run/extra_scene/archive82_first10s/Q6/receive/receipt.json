@@ -1,0 +1,91 @@
+{
+  "complete": true,
+  "case": "archive82_first10s",
+  "quality": "Q6",
+  "base_sha256": "b84d257f1ed8d90f7e64402ec5ab116f38e4638d1ede969a7521e72efd229f1c",
+  "base_decode_verified": true,
+  "auxiliary_sha256": "83fa6999eee6160e79b11f7fd3abe4794d299863c1a5102ad8d4458912bc0e7e",
+  "source_reads_blocked": true,
+  "blocked": [
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_factorial_20261112_01\\registered_extra_source\\source.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\archive82_first10s\\flow\\to_anchor.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\archive82_first10s\\flow\\from_anchor.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_factorial_20261112_01\\extra_scene\\archive82_first10s\\Q6\\send.json",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\support_refinement_20261111_01\\archive82_first10s\\K\\receive\\rgb.npy"
+  ],
+  "reads": [
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\deflicker_reef80_20261108_01\\upstream\\pretrained_weights\\raft-things.pth",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_factorial_20261112_01\\extra_scene\\archive82_first10s\\Q6\\guide.glcguide",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_factorial_20261112_01\\extra_scene\\archive82_first10s\\receive\\decoded_rgb.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_factorial_20261112_01\\extra_scene\\archive82_first10s\\receive\\receipt.json",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_factorial_20261112_01\\extra_scene\\archive82_first10s\\send\\base.glcsnd"
+  ],
+  "flow": {
+    "seconds": 16.58742220000022,
+    "feature_precompute_seconds": 1.214557099999638,
+    "pairs": 174,
+    "peak_gpu_allocated_mib": 1636.9619140625,
+    "peak_gpu_reserved_mib": 1800.0,
+    "cpu_transfer_call_wall_seconds": 1.022413100004087,
+    "transfer_note": "Includes synchronization/backpressure; not exclusive memcpy time",
+    "flow_storage": "Receiver-local RAM; no transmitted sidecar and no flow file writes in this benchmark"
+  },
+  "guide_header": {
+    "base_sha256": "b84d257f1ed8d90f7e64402ec5ab116f38e4638d1ede969a7521e72efd229f1c",
+    "frames": 150,
+    "fps": 15,
+    "guide_size": [
+      256,
+      144
+    ],
+    "target_size": [
+      512,
+      288
+    ],
+    "codec": "hevc-yuv420p",
+    "color": "RGB decode",
+    "upsample": "cubic",
+    "payload_bytes": 8829
+  },
+  "variants": {
+    "T3": {
+      "render_seconds": 5.6444744999998875,
+      "active_fraction": 0.25498435691550925,
+      "mean_alpha": 0.24101634323596954,
+      "outputs_sha256": {
+        "rgb": "a26607ae035ef8d757019fd981e17769eb053da30df018df38cd2a7413538c1c",
+        "alpha": "66db26f90f2f12f97fdc5676caecfc770240cfc7c1d93ddad136051911c83755",
+        "shared": "48781943f7e36d6a5a6eb1f0d785031e51eb814a85c218e06b3bda6d5c6aecd5"
+      }
+    },
+    "F8": {
+      "render_seconds": 5.405152499999986,
+      "active_fraction": 0.25498435691550925,
+      "mean_alpha": 0.17509612441062927,
+      "outputs_sha256": {
+        "rgb": "b3d898f3e356f6ccde1364f2b1d83e597d6d4d08cbe84ed3746575575e2b9acb",
+        "alpha": "cc084c75c58de8da0056e4a00567120cc4bf41512940c80537903e15604fbdc0",
+        "shared": "2a0b8ba90e393442e8ddd7f351e79850318008a8760c3cf4564a50b72e2217e5"
+      }
+    },
+    "C8": {
+      "render_seconds": 6.785788599999705,
+      "active_fraction": 0.2547918023003472,
+      "mean_alpha": 0.17374742031097412,
+      "outputs_sha256": {
+        "rgb": "49fa1a6bdde91fb6bf34ef85aa3877760645019e69b08cbce2fc0c9575dfefd6",
+        "alpha": "4947964a9d73a637799422d18befb6d29add4d4708abffdcb2b7eb8724c16710",
+        "shared": "d5c14d8d253aa95f26bc1810d6abd91c7f983755924e687d05fe635132004c2c"
+      }
+    }
+  },
+  "flow_sha256": {
+    "to_anchor": "563016193d5ecfbfb7cd5cd0cbd9b8c7befbd07e5424c6765397a73cf6160002",
+    "from_anchor": "7d7821a5ad7801cb5490fddbe1909b3adac23e6cd93a6171289d70862c2ddad1",
+    "transition_flow": "701567966d3dcd381f53ed99635bca67669f980c95c4d7d8302f5c7ac3f37085",
+    "guide_rgb": "ab1be8140b612e6563ee66330e42715dcddbf3b98b08ea6bfb1700c5043d3a5a"
+  },
+  "code_sha256": "299f0cbcd636257f6607cb06e1d9103c0953f00683ccd94593a6c92fdfeb1805",
+  "no_per_clip_parameters": true,
+  "no_source_pixels": true
+}

@@ -33,3 +33,14 @@
 21_优化阶段_GLC解码后处理/evidence_20261111/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 # Frozen third-party sources keep upstream whitespace and exact recorded hashes.
 21_优化阶段_GLC解码后处理/evidence_20261111/guide_compression/source_final/upstream/** -text -whitespace
+# Preserve 2026-11-12 frozen evidence byte hashes.
+21_优化阶段_GLC解码后处理/evidence_20261112/** -text whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol
+# Frozen SQ3/U30 evidence and session snapshots retain their recorded bytes.
+21_优化阶段_GLC解码后处理/evidence_20261113/** -text -whitespace
+21_优化阶段_GLC解码后处理/保留版本/** -text -whitespace
+05_资料与索引/会话收束_20261113_SQ3/** -text -whitespace
+# Execution plans hash the live receiver scripts and adopted configuration.
+21_优化阶段_GLC解码后处理/*.py -text whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol
+21_优化阶段_GLC解码后处理/当前采用配置.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Keep hash-bound historical EOF blank lines; still check trailing spaces.
+21_优化阶段_GLC解码后处理/*.md whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol

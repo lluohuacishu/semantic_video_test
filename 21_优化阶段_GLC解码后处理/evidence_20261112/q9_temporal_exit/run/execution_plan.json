@@ -1,0 +1,151 @@
+{
+  "date": "2026-11-12",
+  "frozen_before_candidate_inference": true,
+  "parent": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04",
+  "parent_result_sha256": "7c87c1ecba62064edd5df8839d4c71bd874fb6de1c09bdb3a1904c34a1d889cc",
+  "registration_sha256": "c4955b913a1c7d9c58d94fe149ec28c5c4db13274392cd796dd503d8f40743b5",
+  "user_event_sha256": "51f0ffd06782345085cb081bf2fc070e3d07dc2635a060dcbac8651023da1825",
+  "profiles": {
+    "P3": {
+      "temporal_confirmation": 3,
+      "motion_memory": false,
+      "correction": "current_raw"
+    },
+    "M3": {
+      "temporal_confirmation": 3,
+      "motion_memory": true,
+      "correction": "current_raw"
+    },
+    "ML3": {
+      "temporal_confirmation": 3,
+      "motion_memory": true,
+      "correction": "mean_sigma1_residual"
+    }
+  },
+  "settings": {
+    "sigma3_thresholds": [
+      6.0,
+      12.0
+    ],
+    "sigma1_thresholds": [
+      12.0,
+      24.0
+    ],
+    "signed_coherence_thresholds": [
+      0.75,
+      1.0
+    ],
+    "motion_excess_thresholds": [
+      2.0,
+      6.0
+    ],
+    "rise_per_frame": 0.3333333333333333,
+    "fall_per_frame": 0.16666666666666666,
+    "memory_hold_conflict_min": 0.1,
+    "memory_release_factor": 0.5,
+    "seed_dilation_pixels": 1,
+    "cycle_max": 1.5,
+    "margin": 2,
+    "reset_at": [
+      0,
+      15,
+      45,
+      75,
+      105,
+      135
+    ]
+  },
+  "cases": [
+    "video1",
+    "video2",
+    "video3",
+    "reef_spotted_fish",
+    "seagrass_spotted_fish"
+  ],
+  "new_candidate_outputs": 15,
+  "adaptive_extension": false,
+  "no_per_clip_tuning": true,
+  "reference": "Prior independently reproduced, bit-exact Q9_R25 receiver baseline",
+  "baseline_input_sha256": {
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video1\\receive\\Q9_R25\\rgb.npy": "60f790c192a69de1372b6d6e0a2dee23a9b327f7a01534f492efff9cb843fcfd",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video1\\receive\\Q9_R25\\alpha.npy": "7ce34d563f3fd72539bb468138913352ed0ecb0f0c0f28f2dc97cf7dfe5a604f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video1\\receive\\Q9_R25\\shared.npy": "4f8fcf35f91ed52a495650b6cc5cecee0eb4a74aa02aa48fc9ae464c333f490a",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video1\\receive\\receipt.json": "8e1918b0e94c880d4a1123d85ce0df5afff6f58fbc6e1321b319664fa5600268",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video2\\receive\\Q9_R25\\rgb.npy": "b4f8a466cb2ba9c9c2f441e623e49e75b54008c656b6731ad3f2d07f5e548004",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video2\\receive\\Q9_R25\\alpha.npy": "1ba7af9e21cf9d21904c5fd8d0e20a018732a2ca3abfc432c571030d02703524",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video2\\receive\\Q9_R25\\shared.npy": "f858bcdb03830a83e92f7199f270b9154465e15a0987399c5e64f7bf327f697f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video2\\receive\\receipt.json": "9363348cc1e9d4eb4e0b9bcc289353256a6e5fc1c5bb9062fd4001934a7a7b6a",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video3\\receive\\Q9_R25\\rgb.npy": "ae8d762d947c155e6ee18b7ff0a51a3e5d7565743ee27a1e78de0b9b77ad45d1",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video3\\receive\\Q9_R25\\alpha.npy": "3a3c53bdbc9a99f9daeedb6abb2b973c56140e37e58be593f6a993a30b0bef40",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video3\\receive\\Q9_R25\\shared.npy": "a77cfcb181ae125a66894b0dde62abb919f2a3d933bf989541fceb746170fd51",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video3\\receive\\receipt.json": "5f083aa73af68f52b87cf0afc5333f5a76f01f2327adf9e87f48b951f8b8ec9f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\reef_spotted_fish\\receive\\Q9_R25\\rgb.npy": "59815e8a24d28dcfd1b083cdcbbd764c2aa8e1816a7719ae0c97bcd2195e5930",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\reef_spotted_fish\\receive\\Q9_R25\\alpha.npy": "ec6bb5524ccf1702cc839db06d585e301b8692b0f4445cbc3d62c1467d52de64",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\reef_spotted_fish\\receive\\Q9_R25\\shared.npy": "8da244c3965e0289b69986870afb653c73bf733b978661698b1618b24fcacea6",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\reef_spotted_fish\\receive\\receipt.json": "c20dbd891d86c2f227869d9d5be883fa609c526e8ae7d73036d998a16c0242f9",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\seagrass_spotted_fish\\receive\\Q9_R25\\rgb.npy": "88b54b6a98dfd75bc97c953990d7fcdeeeadaef7c5d2eb2218dd988c215f4849",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\seagrass_spotted_fish\\receive\\Q9_R25\\alpha.npy": "22fb17a204082baed0624faa9165bcec276966d9e908ce0a08892ae2b3e78907",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\seagrass_spotted_fish\\receive\\Q9_R25\\shared.npy": "d00fb231ae91163007fed4f55e2cfe9d6c690e97c0823d3fdd087800e811509f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\seagrass_spotted_fish\\receive\\receipt.json": "c2eeb8285e99af2a7159d5b8683ef7d3c5541c12f08cded715c1f1dc7b294a26"
+  },
+  "current_config_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+  "code_sha256": {
+    "temporal_conflict_exit.py": "ef4685fcb537b24378e4fc9e8d360bb121b2bfbf3dfd3cf6c45bd1d61ab19d5c",
+    "run_temporal_ghost_exit.py": "bae53798e6b2c330687f20ff689060143d7d3fbedbca2130afdc838faaa596fb",
+    "run_q9_ghost_exit.py": "03c33e18b0a729d70c1fc3a90cd3e51149244c871c30a29e7d0a405942a25bd8",
+    "raw_conflict_exit.py": "c8e30e3fb1e35a175cb2be984592c81a610b39a924449a8b9114b14e0565954f",
+    "mild_reliability_gate.py": "976491361f647de523aa632f72b0fa0588ce13ceb352d5b0dfe30654c9bed72b",
+    "receiver_structure.py": "07f3d17a5c1de44d41452da182bf5469b954ceda1de44c265865a54d2389e2a8",
+    "cached_t3.py": "cde258d865084c5f547220c542393ce606eaa8fcf725ca3736f0fbd6fdfc058f",
+    "runtime_speed_common.py": "27bb0a697be0eea55ef7ff0a08180abe54d785e0f630f005c5029a621557346d",
+    "resume_q9_archive_transfer.py": "f5b68c0e33eb5cb9d0fb6bc8290866d85d555cf4a4b2a2f555019d45ae99b007",
+    "evaluate_structure_guide.py": "6a7f40008bd6ca07d7161226a3c77da81f8f7b9898d7682d23d3bf42a8211eed",
+    "finish_q9_ghost_exit.py": "92600a422bef6e782e308b5aa9eb3f4d539a85503fc2ba275b588e8e1a663c09"
+  },
+  "review_boxes": {
+    "reef_old_fish_A": [
+      416,
+      112,
+      452,
+      144
+    ],
+    "reef_old_fish_B": [
+      488,
+      112,
+      512,
+      144
+    ],
+    "video2_tail": [
+      140,
+      145,
+      285,
+      288
+    ]
+  },
+  "review_timing": {
+    "reef_departure": [
+      53,
+      75
+    ],
+    "user_exact_reef_frame": 61,
+    "video2_tail": [
+      45,
+      75
+    ]
+  },
+  "mechanism": "Guide-flow composition aligns the last two received raw/Q9 residuals. Three-frame signed conflict confirmation, bounded rise/fall. M3 gates by latched excess raw change over Q9 change. ML3 applies only the averaged sigma1 residual, channelwise bounded toward current raw.",
+  "ablation": "P3 temporal persistence -> M3 adds motion proxy -> ML3 changes correction bandwidth; all three frozen together.",
+  "memory": "Two historical blurred frames plus one gate/motion memory state; causal, reset at original anchors. No scene-cut detection.",
+  "limitations": [
+    "Motion proxy can respond to decoder instability; not semantic motion.",
+    "Guide-flow misalignment, confirmation delay and anchor resets can miss moving boundaries.",
+    "ML3 preserves high-frequency old texture and may leave fish contours.",
+    "Known historical clips, not independent holdout; no real-time claim."
+  ],
+  "extra_transmission_bytes": 0,
+  "new_flow_model_inference": false,
+  "no_source_or_roi_in_receiver": true,
+  "no_automatic_adoption": true,
+  "subjective_review": "pending",
+  "long_video_not_run": true
+}

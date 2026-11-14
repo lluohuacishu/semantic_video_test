@@ -1,0 +1,123 @@
+{
+  "date": "2026-11-13",
+  "frozen_before_outputs": true,
+  "adaptive_extension": false,
+  "parent": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06",
+  "authorization_sha256": "c40daaa9fff795302bc765cc3c0b4e4d7902433f298899fadaad31b2b8ada44c",
+  "registration_sha256": "4a5eeabf705d49831690d3767b70ee807c199a35fbd0a47ed1fa16dad5ca49bb",
+  "diagnosis_sha256": "0ca91ac1f47303b53c38f6f194be8731bf37dab89985ff7199b3fc5c36e25ad0",
+  "profiles": {
+    "GB25": {
+      "kind": "rgb_blend",
+      "strength": 0.25,
+      "sigma": null
+    },
+    "GS25": {
+      "kind": "low_frequency_residual",
+      "strength": 0.25,
+      "sigma": 1.0
+    },
+    "GS50": {
+      "kind": "low_frequency_residual",
+      "strength": 0.5,
+      "sigma": 1.0
+    }
+  },
+  "cases": [
+    "video1",
+    "video2",
+    "video3"
+  ],
+  "new_outputs": 9,
+  "no_per_clip_tuning": true,
+  "research_change": "Candidate output may contain decoded current guide pixels. This explicitly differs from historical raw-GLC-only pixel reuse. Source images remain forbidden at receiver; old Q9/deployment is unchanged.",
+  "mechanism": "GB25: Q9+.25*(guide-Q9). GS25/GS50: Q9+(.25 or .50)*Gaussian_sigma1(guide-Q9); clip and round once. Fixed current guide, no semantic masks, no source-derived weights.",
+  "design": "GB25 controls direct blend versus same-strength frequency residual GS25; GS50 checks stronger current structure. All registered together.",
+  "reference": "Q9_R25, old CSM50 and received guide itself (not new candidate outputs)",
+  "review_regions": {
+    "video1": {
+      "fish_and_water": [
+        20,
+        20,
+        300,
+        288
+      ]
+    },
+    "video2": {
+      "main_fish": [
+        130,
+        110,
+        430,
+        288
+      ],
+      "tail": [
+        140,
+        145,
+        285,
+        288
+      ]
+    },
+    "video3": {
+      "foreground_fish": [
+        0,
+        160,
+        270,
+        288
+      ]
+    }
+  },
+  "review_frames": [
+    30,
+    61,
+    90,
+    120
+  ],
+  "review_interval": [
+    0,
+    150
+  ],
+  "evaluation_note": "Fixed regions include background; not fish masks or recovery counts. All baseline evaluation uses identical support.",
+  "extra_transmission_bytes": 0,
+  "new_flow_model_inference": false,
+  "no_reencoding": true,
+  "formal_profile_unchanged": true,
+  "long_video_not_run": true,
+  "reef_not_run": true,
+  "video4_deferred": true,
+  "limitations": [
+    "Direct blending may blur texture. Frequency residual may retain false high-frequency texture or ring at boundaries.",
+    "Guide compression blocks and color errors can enter output; clipping is measured.",
+    "Guide may still lack small fish; no guarantee of recovered objects.",
+    "No new scene-cut handling or end-to-end speed claim. Known clips, not independent holdout."
+  ],
+  "input_sha256": {
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\video1\\receive\\Q9_R25\\rgb.npy": "60f790c192a69de1372b6d6e0a2dee23a9b327f7a01534f492efff9cb843fcfd",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\video1\\receive\\Q9_R25\\alpha.npy": "7ce34d563f3fd72539bb468138913352ed0ecb0f0c0f28f2dc97cf7dfe5a604f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\video1\\receive\\Q9_R25\\shared.npy": "4f8fcf35f91ed52a495650b6cc5cecee0eb4a74aa02aa48fc9ae464c333f490a",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\motion_extension\\video1\\receive\\CSM50\\rgb.npy": "42f571055ef952b3449ac38e26e8c10091a1dd8f5c48cc4a015d2ff88c98ef4f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\video1\\receive\\receipt.json": "f2e13de6907c79abc590640758ab2cd06a66b24030514a61ae1c98b7a4232d33",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\video2\\receive\\Q9_R25\\rgb.npy": "b4f8a466cb2ba9c9c2f441e623e49e75b54008c656b6731ad3f2d07f5e548004",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\video2\\receive\\Q9_R25\\alpha.npy": "1ba7af9e21cf9d21904c5fd8d0e20a018732a2ca3abfc432c571030d02703524",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\video2\\receive\\Q9_R25\\shared.npy": "f858bcdb03830a83e92f7199f270b9154465e15a0987399c5e64f7bf327f697f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\motion_extension\\video2\\receive\\CSM50\\rgb.npy": "8ba215d54a1abcaaa14df9da10d213bdb5b64b56fbaf48ad5339c5fe2f53c7bf",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\video2\\receive\\receipt.json": "edd6e94a558650b7c2a47e2f576864d44df26df64ba61125d0f491b1b68c7dba",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\video3\\receive\\Q9_R25\\rgb.npy": "ae8d762d947c155e6ee18b7ff0a51a3e5d7565743ee27a1e78de0b9b77ad45d1",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\video3\\receive\\Q9_R25\\alpha.npy": "3a3c53bdbc9a99f9daeedb6abb2b973c56140e37e58be593f6a993a30b0bef40",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\video3\\receive\\Q9_R25\\shared.npy": "a77cfcb181ae125a66894b0dde62abb919f2a3d933bf989541fceb746170fd51",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\motion_extension\\video3\\receive\\CSM50\\rgb.npy": "020424ec176719c5093afa10ea15e85e3fb7976ac3d9be7077b870a56edafa85",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\video3\\receive\\receipt.json": "d6362d36133acc927b976937d6b1af65bb50e9c1a1a4e72e6ff3480a9020e4af"
+  },
+  "code_sha256": {
+    "received_structure_fusion.py": "25da22a8cd15035d8d912016f0fd16f02092b1d5b0aa57f6f98d9a76232d9991",
+    "run_received_structure.py": "f05539d16273db66f00e33351d0ad9147971a603467261c72e69e61033f0b1df",
+    "structure_guide_stream.py": "5379cc4a5bc460e34593cd8e776b1e1993c68c15370ec073dddf039b20354e10",
+    "runtime_speed_common.py": "27bb0a697be0eea55ef7ff0a08180abe54d785e0f630f005c5029a621557346d",
+    "resume_q9_archive_transfer.py": "f5b68c0e33eb5cb9d0fb6bc8290866d85d555cf4a4b2a2f555019d45ae99b007",
+    "evaluate_structure_guide.py": "6a7f40008bd6ca07d7161226a3c77da81f8f7b9898d7682d23d3bf42a8211eed",
+    "finish_q9_ghost_exit.py": "92600a422bef6e782e308b5aa9eb3f4d539a85503fc2ba275b588e8e1a663c09",
+    "receiver_structure.py": "07f3d17a5c1de44d41452da182bf5469b954ceda1de44c265865a54d2389e2a8"
+  },
+  "current_config_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+  "subjective_review": "pending",
+  "automatic_selection": null
+}

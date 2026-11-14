@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-13",
+  "diagnostic_only": true,
+  "adaptive_postregistration": true,
+  "reason": "First-phase error reductions accompany reduced fine texture and motion amplitude. Compare GS25 with spatial smoothing at matched full-frame fine amplitude.",
+  "first_phase_plan_sha256": "70fb5b93fb021bac5ddc9effc9158e41c02ec4013f59c0325f774a8c604e608b",
+  "first_phase_summary_sha256": "00df6228b0229c8f2e2fb43280984274691f842fc60ca9cb7f7284717d85206b",
+  "first_phase_verification_sha256": "a78f34f37601b632ee282b3cfcf46af6c64a8674684f7a364c50ff008baf1762",
+  "cases": [
+    "video1",
+    "video2",
+    "video3"
+  ],
+  "new_outputs": 3,
+  "new_deployment_candidates": 0,
+  "matching_inputs_only": [
+    "Q9_R25 receiver RGB",
+    "GS25 receiver RGB"
+  ],
+  "target": "150-frame full-image mean abs(gray - Gaussian_sigma1.2(gray)), identical to scoring fine_amplitude",
+  "matching_rule": "Gaussian on float32 Q9 then clip/rint/uint8; endpoints [0,1.5], 12 bisections; minimum absolute amplitude mismatch, lower sigma breaks ties.",
+  "max_relative_matching_error": 0.005,
+  "per_clip_sigma": true,
+  "per_clip_sigma_note": "Diagnostic nuisance matching only, not per-clip source tuning or a deployment profile.",
+  "source_only_used_after_output": true,
+  "extra_transmission_bytes": 0,
+  "main_outputs_and_evidence_unchanged": true,
+  "automatic_selection": null,
+  "current_config_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+  "input_sha256": {
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\11_优化阶段_纹理稳定性\\temporal_filter.py": "ffbb1bf50c94abef50c696d4c72b5495baa5d8a9acd9466be9beeb6411f0bd4c",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_received_structure_20261113_01\\video1\\receive\\Q9_R25\\rgb.npy": "60f790c192a69de1372b6d6e0a2dee23a9b327f7a01534f492efff9cb843fcfd",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_received_structure_20261113_01\\video1\\receive\\GS25\\rgb.npy": "6dc5b12a3421542b49538e489c62b07670bcd1e1edd7fba40cb48e1827dc6aaf",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_received_structure_20261113_01\\video2\\receive\\Q9_R25\\rgb.npy": "b4f8a466cb2ba9c9c2f441e623e49e75b54008c656b6731ad3f2d07f5e548004",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_received_structure_20261113_01\\video2\\receive\\GS25\\rgb.npy": "c19d6a30bc084bd2b4116f44c7a7a24eaede18bcbeadd837d168c1f8f5bcf482",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_received_structure_20261113_01\\video3\\receive\\Q9_R25\\rgb.npy": "ae8d762d947c155e6ee18b7ff0a51a3e5d7565743ee27a1e78de0b9b77ad45d1",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_received_structure_20261113_01\\video3\\receive\\GS25\\rgb.npy": "a812730691dee207d07b823a511646d05265b81dee0fe1d524c126707abad3c3"
+  },
+  "code_sha256": {
+    "audit_received_structure_blur.py": "2048b7d126523a55ada193dd1cd91e0f742c113739ca6c7833eddfb3d428f5db",
+    "probe_reef.py": "9be0db7816a3229ea42e2681831063e4103bfebb7ba4587e28f299da05cc29d4",
+    "resume_q9_archive_transfer.py": "f5b68c0e33eb5cb9d0fb6bc8290866d85d555cf4a4b2a2f555019d45ae99b007",
+    "evaluate_structure_guide.py": "6a7f40008bd6ca07d7161226a3c77da81f8f7b9898d7682d23d3bf42a8211eed",
+    "finish_q9_ghost_exit.py": "92600a422bef6e782e308b5aa9eb3f4d539a85503fc2ba275b588e8e1a663c09",
+    "run_p0.py": "27e0a75af53dbde1c430dbeead340f811fffc43882960a19dff526fbfb03edc0",
+    "runtime_speed_common.py": "27bb0a697be0eea55ef7ff0a08180abe54d785e0f630f005c5029a621557346d"
+  }
+}

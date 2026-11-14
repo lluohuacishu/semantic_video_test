@@ -1,0 +1,141 @@
+{
+  "date": "2026-11-12",
+  "frozen_before_outputs": true,
+  "parent": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05",
+  "feedback_sha256": "5b324ed6dfa825b5e29b76b626bd2d15bb56cc8a32509fa810a21bbc72d5e54f",
+  "registration_sha256": "0703fd284ca2c283c217c745b34ef36976ac95fb6e570ad680e99c4f53592f23",
+  "profiles": {
+    "CSM50": {
+      "base": "CS50",
+      "grid_stride": 8,
+      "minimum_fit_points": 64,
+      "trim_passes": 3,
+      "keep_percentile": 70,
+      "minimum_inlier_radius": 1.5,
+      "local_motion_thresholds": [
+        0.75,
+        3.0
+      ],
+      "weight_blur_sigma": 2.0
+    }
+  },
+  "cases": [
+    "video1",
+    "video2",
+    "video3",
+    "reef_spotted_fish"
+  ],
+  "new_outputs": 4,
+  "no_per_clip_tuning": true,
+  "mechanism": "CS50 correction weighted by local guide flow departure from robust dominant affine frame motion. Deterministic three trimmed least-squares fits on alpha>0.5 grid; fixed .75..3px risk and sigma2 spatial feather.",
+  "rationale": "Prioritize visible current fish and overall watchability; stop optimizing old empty positions. Keep Q9 fine detail while restoring smoothed current raw differences.",
+  "reference": "Q9_R25 and previous ML3 (existing files, not regenerated)",
+  "review_regions": {
+    "video1": {
+      "fish_and_water": [
+        20,
+        20,
+        300,
+        288
+      ]
+    },
+    "video2": {
+      "main_fish": [
+        130,
+        110,
+        430,
+        288
+      ],
+      "tail": [
+        140,
+        145,
+        285,
+        288
+      ]
+    },
+    "video3": {
+      "foreground_fish": [
+        0,
+        160,
+        270,
+        288
+      ]
+    },
+    "reef_spotted_fish": {
+      "main_fish": [
+        190,
+        30,
+        330,
+        245
+      ],
+      "small_fish": [
+        310,
+        90,
+        512,
+        225
+      ]
+    }
+  },
+  "review_frames": [
+    30,
+    61,
+    90,
+    120
+  ],
+  "review_interval": [
+    0,
+    150
+  ],
+  "review_note": "Broad fixed visual regions include background, not fish masks or fish counts. No prior empty-position ROI in current decision.",
+  "no_source_or_roi_in_receiver": true,
+  "new_flow_model_inference": false,
+  "extra_transmission_bytes": 0,
+  "long_video_not_run": true,
+  "video4_deferred": true,
+  "seagrass_excluded": true,
+  "limitations": [
+    "Local residual is not fish segmentation; parallax or faulty flow can trigger.",
+    "Low-rate guide can miss small fish, so this cannot restore missing motion evidence.",
+    "No temporal gate or scene-cut handling; masks may change at anchors.",
+    "A dominant object can bias affine background estimation."
+  ],
+  "input_sha256": {
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video1\\receive\\Q9_R25\\rgb.npy": "60f790c192a69de1372b6d6e0a2dee23a9b327f7a01534f492efff9cb843fcfd",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video1\\receive\\Q9_R25\\alpha.npy": "7ce34d563f3fd72539bb468138913352ed0ecb0f0c0f28f2dc97cf7dfe5a604f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video1\\receive\\Q9_R25\\shared.npy": "4f8fcf35f91ed52a495650b6cc5cecee0eb4a74aa02aa48fc9ae464c333f490a",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video1\\receive\\receipt.json": "7c0a970e8a7a15052e37afa6758eb9c9adddb0ef4d291d898c229920c94c8a17",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video1\\receive\\ML3\\rgb.npy": "32b839f65fe7f6aa8e2f17fc87639fce99e75ee8b5464cc337d26cc80c7c8182",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video2\\receive\\Q9_R25\\rgb.npy": "b4f8a466cb2ba9c9c2f441e623e49e75b54008c656b6731ad3f2d07f5e548004",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video2\\receive\\Q9_R25\\alpha.npy": "1ba7af9e21cf9d21904c5fd8d0e20a018732a2ca3abfc432c571030d02703524",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video2\\receive\\Q9_R25\\shared.npy": "f858bcdb03830a83e92f7199f270b9154465e15a0987399c5e64f7bf327f697f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video2\\receive\\receipt.json": "363f215073e4191e9987624ae755cfbbf44817248336eed346500d335a90c6ca",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video2\\receive\\ML3\\rgb.npy": "e908e5bee021b0e124f1a97d16fb1c30b508bce3302a78819122b211543e1059",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video3\\receive\\Q9_R25\\rgb.npy": "ae8d762d947c155e6ee18b7ff0a51a3e5d7565743ee27a1e78de0b9b77ad45d1",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video3\\receive\\Q9_R25\\alpha.npy": "3a3c53bdbc9a99f9daeedb6abb2b973c56140e37e58be593f6a993a30b0bef40",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video3\\receive\\Q9_R25\\shared.npy": "a77cfcb181ae125a66894b0dde62abb919f2a3d933bf989541fceb746170fd51",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video3\\receive\\receipt.json": "ed81aee040685916f9f7b199e6558801264d96da4ac71f747847eec314fb71e3",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\video3\\receive\\ML3\\rgb.npy": "149698f79e4eace5a9280a02f469f26f84831a7836e6ad06bab05475d703998f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\reef_spotted_fish\\receive\\Q9_R25\\rgb.npy": "59815e8a24d28dcfd1b083cdcbbd764c2aa8e1816a7719ae0c97bcd2195e5930",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\reef_spotted_fish\\receive\\Q9_R25\\alpha.npy": "ec6bb5524ccf1702cc839db06d585e301b8692b0f4445cbc3d62c1467d52de64",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\reef_spotted_fish\\receive\\Q9_R25\\shared.npy": "8da244c3965e0289b69986870afb653c73bf733b978661698b1618b24fcacea6",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\reef_spotted_fish\\receive\\receipt.json": "e782698d74c81eef3700a2fe7eda6617c0e8d18322479dde6840c293d7794e04",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\reef_spotted_fish\\receive\\ML3\\rgb.npy": "22297577183011fb1746ff7802e5e1bfdec894bad79c15d9caf727fa9582c19f"
+  },
+  "code_sha256": {
+    "moving_structure_preservation.py": "0b294d464c29b6c9fd8dce2680354660ad7f033a1ba1be56f8693552b01e2b8f",
+    "run_moving_structure.py": "450870385c3f49b22f23b2cbf5e0e0a134fe510a7b8fd105788f8fe179575b05",
+    "current_structure_preservation.py": "8a5bf3286b870051b695ea874298b23a838745472a297720939bb1f48e069742",
+    "run_current_structure.py": "bc954502bcefe4b97bdba11d22a1e77e0e257098141bccfca03dcfbdeea37673",
+    "mild_reliability_gate.py": "976491361f647de523aa632f72b0fa0588ce13ceb352d5b0dfe30654c9bed72b",
+    "resume_q9_archive_transfer.py": "f5b68c0e33eb5cb9d0fb6bc8290866d85d555cf4a4b2a2f555019d45ae99b007",
+    "evaluate_structure_guide.py": "6a7f40008bd6ca07d7161226a3c77da81f8f7b9898d7682d23d3bf42a8211eed"
+  },
+  "current_config_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+  "subjective_review": "pending",
+  "automatic_selection": null,
+  "adaptive_extension": true,
+  "first_phase_run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06",
+  "first_phase_summary_sha256": "0ca07e00ff6c65f8204307d535ddd770a2d13c89c88338b5465be1830e1cef07",
+  "first_phase_plan_sha256": "39f099dd96c6b4ccf5a4205534a77c307a56833ed39ddae74683863528604920",
+  "motivation": "CS50 reduces current-region source errors but video3/reef temporal regressions remain. Test one spatial motion-support constraint instead of global structure replacement."
+}

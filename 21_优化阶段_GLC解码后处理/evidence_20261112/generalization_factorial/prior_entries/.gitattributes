@@ -1,0 +1,35 @@
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+08_新阶段C_编解码加速与网页展示/native/*.c text eol=lf
+08_新阶段C_编解码加速与网页展示/native/*.h text eol=lf
+*.cmd text eol=crlf
+*.png binary
+*.jpg binary
+# Preserve exact experimental bytes referenced by evidence_checksums.json.
+07_新阶段B_GLC语义保护与传输/evidence_b0_b1_20261018/** -text
+# Raw B2 records retain original CRLF and whitespace; integrity uses SHA-256.
+07_新阶段B_GLC语义保护与传输/evidence_b2_video91_20261018/** -text -whitespace
+07_新阶段B_GLC语义保护与传输/evidence_b3_video91_20261018/** -text -whitespace
+# Keep D0 raw evidence byte-identical to the local frozen records.
+09_新阶段D_语义目标增强/evidence_d0_20261021/** -text -whitespace
+# Preserve the byte hashes in the streaming experiment evidence manifest.
+10_优化阶段_流水线编解码/evidence_20261027/** -text -whitespace
+11_优化阶段_纹理稳定性/evidence_20261027/** -text -whitespace
+# Preserve distillation timing records and the first-run script snapshot.
+05_资料与索引/GLC蒸馏耗时预估_20261029/evidence_20261029/** -text -whitespace
+# Public sender-trial logs have LF byte hashes in their evidence manifest.
+13_优化阶段_发送端免RGB重建/evidence_20261029/*.log text eol=lf
+14_优化阶段_部署精简/evidence_20261029/*.log text eol=lf
+15_优化阶段_算子精确排查/evidence_20261030/*.log text eol=lf
+15_优化阶段_算子精确排查/evidence_20261030/*.csv text eol=lf
+16_优化阶段_输入编码器推理加速/evidence_20261030/*.log text eol=lf
+16_优化阶段_输入编码器推理加速/evidence_20261030/*.csv text eol=lf
+# Preserve the original bytes used by the full-video GLC evidence hashes.
+20_优化阶段_编解码执行复核/evidence_*/** -text -whitespace
+# Preserve the exact CSV and script bytes used by the low-rate retrospective manifest.
+21_优化阶段_GLC解码后处理/evidence_20261110/lowrate_retrospective/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+21_优化阶段_GLC解码后处理/evidence_20261111/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Frozen third-party sources keep upstream whitespace and exact recorded hashes.
+21_优化阶段_GLC解码后处理/evidence_20261111/guide_compression/source_final/upstream/** -text -whitespace

@@ -1,0 +1,3914 @@
+{
+  "date": "2026-11-13",
+  "timezone": "Asia/Singapore",
+  "scope": "GLC",
+  "workspace": "C:/Users/lenovo/Documents/ChatGPT/语义通信",
+  "repository": "01_项目/代码/semantic_video_test",
+  "experiment_branch": "codex/glc-temporal-stability",
+  "main_baseline_commit": "50ed016471aad628e90169bbdf5955d2074a5e3b",
+  "last_experiment_commit": "ae46c91c6820ffc49012714c44659ead0e1fc162",
+  "current_branch_head_check": "git log -1",
+  "new_experiments_uncommitted": true,
+  "new_experiment_report": "21_优化阶段_GLC解码后处理\\U30长片四宫格_原片_U30_GLC_SQ3_20261113.md",
+  "handoff_repo_path": "交接文档.md",
+  "stage_report_repo_path": "21_优化阶段_GLC解码后处理/README.md",
+  "workspace_paths": {
+    "viewing": "05_成果与观看/GLC_接收时间与锚点实验_20261111/README.md",
+    "previous_boundary_viewing": "05_成果与观看/GLC_时序稳定性_20261110/README.md",
+    "persistent_structure_run": "02_实验数据/优化_GLC后处理/video1_persistent_structure_20261110_01",
+    "result_index": "02_实验数据/优化_GLC后处理/README.md",
+    "source_clips": "01_项目/GLC后处理/素材/20261109_三个片段",
+    "base_manifest": "01_项目/GLC后处理/接口与基线.json",
+    "file_verification": "01_项目/GLC后处理/文件整理核验_20261110.json",
+    "three_clip_run": "02_实验数据/优化_GLC后处理/source_dense_flow_three_clips_20261109_01",
+    "gop_run": "02_实验数据/优化_GLC后处理/video1_gop_control_20261110_01",
+    "boundary_transition_run": "02_实验数据/优化_GLC后处理/video1_boundary_transition_20261110_01",
+    "independent_deployment": "06_部署包/GLC_Windows_流水线_20261102",
+    "persistent_long_run": "02_实验数据/优化_GLC后处理/video1_persistent_long_20261110_01",
+    "persistent_auxiliary_run": "02_实验数据/优化_GLC后处理/video1_persistent_aux_20261110_01",
+    "previous_short_viewing": "05_成果与观看/GLC_珊瑚持续结构_20261110/README.md",
+    "previous_local_U_viewing": "05_成果与观看/GLC_珊瑚持续结构10秒_20261110/README.md",
+    "fullframe_initial_run": "02_实验数据/优化_GLC后处理/fullframe_reference_three_clips_20261110_01",
+    "fullframe_refined_run": "02_实验数据/优化_GLC后处理/fullframe_reference_refined_20261110_01",
+    "fullframe_final_code": "02_实验数据/优化_GLC后处理/fullframe_reference_refined_20261110_01/source_final",
+    "fullframe_verification": "02_实验数据/优化_GLC后处理/fullframe_reference_refined_20261110_01/verification_all_variants.json",
+    "fullframe_transmission_files": "05_成果与观看/GLC_整帧与跨素材_20261110/实验传输文件_F",
+    "strategy_diagnosis": "02_实验数据/优化_GLC后处理/fullframe_strategy_diagnosis_20261110_02",
+    "latest_factorial_run": "02_实验数据/优化_GLC后处理/fullframe_factorial_20261110_01",
+    "latest_factorial_viewing": "05_成果与观看/GLC_整帧因果消融_20261110/README.md",
+    "compact_support_run": "02_实验数据/优化_GLC后处理/compact_support_20261110_01",
+    "quad_viewing": "05_成果与观看/GLC_低码率可靠区_20261110/12_video1_四宫格_原片_H265_原GLC_优化GLC.mp4",
+    "quad_run": "02_实验数据/优化_GLC后处理/quad_comparison_20261110_02",
+    "latest_retrospective_run": "02_实验数据/优化_GLC后处理/lowrate_retrospective_20261110_01",
+    "latest_viewing": "05_成果与观看/GLC_Q9跨素材与长片_20261112/README.md",
+    "latest_support_factorial_run": "02_实验数据/优化_GLC后处理/support_factorial_20261111_01",
+    "latest_support_refinement_run": "02_实验数据/优化_GLC后处理/support_refinement_20261111_01",
+    "receiver_structure_run": "02_实验数据/优化_GLC后处理/receiver_structure_20261111_01",
+    "mixed_boundary_run": "02_实验数据/优化_GLC后处理/mixed_boundary_20261111_01",
+    "structure_guide_run": "02_实验数据/优化_GLC后处理/structure_guidance_20261111_01",
+    "guide_compression_run": "02_实验数据/优化_GLC后处理/guide_compression_20261111_01",
+    "guide_compression_final_code": "02_实验数据/优化_GLC后处理/guide_compression_20261111_01/source_final",
+    "anchor_time_run": "02_实验数据/优化_GLC后处理/anchor_time_20261111_02",
+    "anchor_time_evidence": "01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/evidence_20261111/anchor_time",
+    "current_accepted_rgb": "02_实验数据/优化_GLC后处理/anchor_time_20261111_02/CURRENT_I12/receive/rgb.npy",
+    "current_profile": "01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/当前采用配置.json",
+    "current_report": "01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/Q9跨素材与82秒长片验证_20261112.md",
+    "current_fourway": "05_成果与观看/GLC_接收时间与锚点实验_20261111/07_video1_四宫格_原片_H265_原GLC_当前优化I12.mp4",
+    "latest_receiver_speed_run": "02_实验数据\\优化_GLC后处理\\receiver_speed_20261111_01",
+    "known_video_transfer_run": "02_实验数据/优化_GLC后处理/known_video_transfer_20261111_02",
+    "generalization_factorial_run": "02_实验数据\\优化_GLC后处理\\generalization_factorial_20261112_01",
+    "generalization_factorial_viewing": "05_成果与观看\\GLC_泛化改进_20261112\\README.md",
+    "generalization_reliability_run": "02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02",
+    "generalization_reliability_viewing": "05_成果与观看\\GLC_泛化第二轮_20261112\\README.md",
+    "q9_long_transfer_run": "02_实验数据/优化_GLC后处理/q9_long_transfer_20261112_03",
+    "q9_long_transfer_viewing": "05_成果与观看/GLC_Q9跨素材与长片_20261112/README.md",
+    "latest_jitter_run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_jitter_20261113_03",
+    "latest_jitter_viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_video4抖动三帧对照_20261113\\README.md",
+    "latest_SQ3_long_run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\sq3_long_fourway_20261113_01",
+    "latest_SQ3_long_viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_SQ3长片四宫格_20261113\\README.md",
+    "latest_detail_run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\sq3_detail_20261113_02",
+    "latest_detail_viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_SQ3保留与温和锐度实验_20261113\\README.md",
+    "latest_U30_long_viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_U30长片四宫格_20261113\\README.md"
+  },
+  "budget": {
+    "base_fps": 15,
+    "base_kbps_max": 40,
+    "semantic_kbps_max": 40,
+    "billing": "complete file bytes / explicit duration",
+    "semantic_goal": "Lower is better subject to perceptual quality; preferably below corresponding base bitrate. 50000 B per 10 s is a ceiling, never a target.",
+    "clarified_by_user": true
+  },
+  "latest_result": {
+    "accepted_video1_comparison_baseline": {
+      "name": "S8I + CURRENT_I12",
+      "auxiliary_bytes": 8865,
+      "auxiliary_kbps": 7.092,
+      "total_kbps": 32.6624,
+      "anchor_frames": [
+        0,
+        15,
+        45,
+        75,
+        105,
+        135
+      ],
+      "raft_iterations": 12,
+      "coral_MAE": 2.3791630738163794,
+      "coral_NCC": 0.8100037537617515,
+      "user_feedback": "那就暂时不减少锚点了，raft12次和24次无明显肉眼差距，接近无感，可以采用，然后总结目前的情况，整理文件，报告，交接文档，一并分析瓶颈优势劣势，和需要优化的地方",
+      "scope": "video1 / 150 frames / 15 FPS / 512x288 / 10 seconds",
+      "bit_exact_to_24": false
+    },
+    "alternative_pending_visual_review": {
+      "profile": "S10",
+      "bytes": 12134,
+      "auxiliary_kbps": 9.7072,
+      "base_bytes": 31963,
+      "total_kbps": 35.2776,
+      "auxiliary_saved_percent": 25.038611231234942,
+      "preset": "slower",
+      "chroma_offset": 0,
+      "coral_MAE": 2.1584242991368447,
+      "coral_MAE_change_percent": -23.007549106863646,
+      "coral_NCC": 0.8460246975096061,
+      "full_MAE": 2.5766298334299593,
+      "full_MAE_change_percent": -5.593415284150193,
+      "full_PSNR": 22.54807007967942,
+      "source_change_error": 29.838603397471964,
+      "source_change_error_percent": -0.5782652459559001,
+      "numeric_checks": {
+        "coral_MAE": true,
+        "full_MAE": true,
+        "coral_NCC": true,
+        "full_PSNR": true,
+        "source_change": true
+      },
+      "numeric_screen_pass": true,
+      "visual_acceptance": "pending",
+      "quadrant_MAE_change_percent": {
+        "top_left": -0.02212354499305791,
+        "top_right": -13.27746618361283,
+        "bottom_left": 5.181164918275694,
+        "bottom_right": -0.37932268411451364
+      },
+      "coverage": {
+        "full": 0.2641166178385417,
+        "top_left": 0.07007921006944444,
+        "top_right": 0.46720829716435186,
+        "bottom_left": 0.041279477719907406,
+        "bottom_right": 0.477899486400463,
+        "coral": 0.6893776315789474
+      },
+      "encoder_selected_seconds": 2.6679271000029985,
+      "flow_seconds": 33.098164299997734,
+      "render_seconds": 4.998200999998517
+    },
+    "video2_video3": "Previous K rendering-equivalent-to-L baseline; no guide-compression transfer yet",
+    "previous_accepted_video1_comparison_baseline": {
+      "name": "A12 = G256_b12_T3",
+      "auxiliary_bytes": 16187,
+      "auxiliary_kbps": 12.9496,
+      "coral_MAE": 2.8034232890347717,
+      "user_feedback": "这回的还可以",
+      "scope": "Presented video1 only"
+    },
+    "accepted_S8I_metrics": {
+      "profile": "S8I",
+      "bytes": 8865,
+      "auxiliary_kbps": 7.092,
+      "base_bytes": 31963,
+      "total_kbps": 32.6624,
+      "auxiliary_saved_percent": 45.23382961635881,
+      "preset": "slower",
+      "chroma_offset": 0,
+      "coral_MAE": 2.3780788648801616,
+      "coral_MAE_change_percent": -15.172322560716744,
+      "coral_NCC": 0.8102728671997892,
+      "full_MAE": 2.71218920930674,
+      "full_MAE_change_percent": -0.6265793278564802,
+      "full_PSNR": 22.537316668025916,
+      "source_change_error": 29.945088075912157,
+      "source_change_error_percent": -0.22346005235399646,
+      "numeric_checks": {
+        "coral_MAE": true,
+        "full_MAE": true,
+        "coral_NCC": true,
+        "full_PSNR": true,
+        "source_change": true
+      },
+      "numeric_screen_pass": true,
+      "visual_acceptance": "user_accepted_with_remaining_jump_concern",
+      "quadrant_MAE_change_percent": {
+        "top_left": 2.855380752754666,
+        "top_right": -8.518658519112865,
+        "bottom_left": 7.520507707987822,
+        "bottom_right": 6.879103198253933
+      },
+      "coverage": {
+        "full": 0.24837940357349536,
+        "top_left": 0.057698567708333336,
+        "top_right": 0.44214898003472225,
+        "bottom_left": 0.051565755208333335,
+        "bottom_right": 0.4421043113425926,
+        "coral": 0.6604232456140351
+      },
+      "encoder_selected_seconds": 2.644431100001384,
+      "flow_seconds": 33.00567999999839,
+      "render_seconds": 4.912147700000787,
+      "user_feedback": "右侧这个还可以；仍观察到跳变，询问固定锚。"
+    },
+    "receiver_time_pilot": {
+      "S8I_24_component_seconds": 40.05718830000478,
+      "CURRENT_I12_component_seconds": 25.81692340000518,
+      "CURRENT_I12_process_wall_seconds": 27.671755700001086,
+      "CURRENT_I12_coral_MAE": 2.3791630738163794,
+      "S8I_24_coral_MAE": 2.3780788648801616,
+      "ISYNC_I24_coral_MAE": 3.508627840537856,
+      "sidecar_bytes_all": 8865,
+      "primary_candidate_user_visual_acceptance": "accepted on 2026-11-11"
+    },
+    "previous_S8I24_comparison_baseline": {
+      "name": "S8I",
+      "auxiliary_bytes": 8865,
+      "auxiliary_kbps": 7.092,
+      "coral_MAE": 2.3780788648801616,
+      "user_feedback": "这回的还可以啊，右侧这个，然后就是跳变，是因为锚换了吧，锚可以固定吗，频繁换的话还是会跳变的",
+      "scope": "Presented video1 only; remaining jumps explicitly unresolved"
+    }
+  },
+  "previous_boundary_transition_result": {
+    "case": "video1",
+    "frames": 150,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "frame_events": [
+      56,
+      64,
+      112,
+      128
+    ],
+    "source_assisted_offline": true,
+    "user_original_speed_review": "pending",
+    "fixed_upper_coarse_mae_with_exit": {
+      "raw": 6.9956630205004755,
+      "transition": 5.523341135497951
+    }
+  },
+  "other_local_untracked_repo_paths": [
+    "19_部署阶段_收发端独立打包/",
+    "05_资料与索引/GLVC论文阅读与GLC适用性评估_20261105.md",
+    "05_资料与索引/UVID数据集初评_20261028.md"
+  ],
+  "archived_scope": "GVC1D",
+  "previous_short_structure_result": {
+    "case": "video1",
+    "variant": "C2 expanded persistent GLC RGB reference",
+    "start": 105,
+    "stop_exclusive": 128,
+    "frames": 23,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "source_assisted_offline": true,
+    "actual_auxiliary_stream": false,
+    "user_original_speed_review": "分界改善，整体更稳",
+    "fixed_upper_coarse_mae": {
+      "raw": 6.9751364611444595,
+      "S": 4.898084508534046,
+      "C": 3.1203868972717856,
+      "C2": 1.414839798416425
+    },
+    "next_focus": "Persistent structure across longer video, visibility changes, and reference refresh; then actual auxiliary-file delivery within each lane's 40 kbps budget."
+  },
+  "accepted_video1_local_baseline": {
+    "case": "video1",
+    "variant": "U / g17q4 actual persistent-reference auxiliary file",
+    "start": 0,
+    "stop_exclusive": 150,
+    "frames": 150,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "source_assisted_sender": true,
+    "source_media_at_receiver": false,
+    "actual_auxiliary_stream": true,
+    "source_assisted_offline": false,
+    "user_original_speed_review": "U 与之前的 T 差不多，都比原始 GLC 稳",
+    "offline_T_review": "整体明显更稳，过渡可接受",
+    "base_bytes": 31963,
+    "auxiliary_bytes": 42793,
+    "total_bytes": 74756,
+    "billing_seconds": 10,
+    "base_kbps": 25.5704,
+    "auxiliary_kbps": 34.2344,
+    "total_kbps": 59.8048,
+    "fixed_upper_coarse_mae": {
+      "raw": 4.55809282879483,
+      "S": 3.300989781087558,
+      "T": 1.3908072516961074,
+      "g17q4": 1.4255694384159472
+    },
+    "next_focus": "Use the same coral region and frames as the regression constraint for full-frame transfer.",
+    "role": "Preserve accepted local U; full-frame F does not supersede it."
+  },
+  "previous_local_U_report": "21_优化阶段_GLC解码后处理/video1持续结构10秒与实际辅助流_20261110.md",
+  "experiment_pushed_to": "origin/codex/glc-temporal-stability",
+  "latest_analysis_report": "21_优化阶段_GLC解码后处理\\U30长片四宫格_原片_U30_GLC_SQ3_20261113.md",
+  "latest_diagnosis": {
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\SQ3保留与温和锐度实验_20261113.md",
+    "SQ3_user_accepted": true,
+    "new_candidate_review": "pending",
+    "no_true_detail_recovery_claim": true
+  },
+  "latest_experiment_plan": {
+    "status": "completed",
+    "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_diagnosis_20261113_02\\execution_plan.json",
+    "new_post_outputs": 2,
+    "short_length_regression_completed": true
+  },
+  "latest_factorial_result": {
+    "report": "21_优化阶段_GLC解码后处理/整帧运动与可靠区因果消融_20261110.md",
+    "run": "02_实验数据/优化_GLC后处理/fullframe_factorial_20261110_01",
+    "viewing": "05_成果与观看/GLC_整帧因果消融_20261110/README.md",
+    "source_assisted_offline": true,
+    "new_transmitted_candidate": false,
+    "E_reproduced_bit_exact": true,
+    "coral_coarse_mae": {
+      "DP": 1.8190828026849408,
+      "DB": 2.971641655106352,
+      "GP": 1.971967780149087,
+      "GB_E": 3.08422220957094
+    },
+    "GP_fine_ncc": 0.8701780745616733,
+    "direct_mask_plus_motion_payload_bytes": 245584,
+    "payload_excludes_header": true,
+    "visual_review": {
+      "date": "2026-11-10",
+      "status": "qualified_positive_small_visual_difference",
+      "shown": [
+        "evaluation/grid_pixel_vs_block_full.mp4",
+        "evaluation/U_vs_grid_pixel_coral.mp4"
+      ],
+      "question": "GP 相比 E 是否减轻，与旧 U 还有多大差距；留意鱼和边界。",
+      "interpretation": "GP was judged slightly better than E in the full-frame pair. U and GP were both considered acceptable in the coral pair. This does not establish perceptual equivalence to U, absence of new fish/boundary artifacts, or a deployable 40 kbps result.",
+      "quote": "第一段视频，左边那个GP好一点，右边的GB=E差了一点点感觉，第二段视频都还可以吧其实"
+    },
+    "next_focus": "Compact boundary/support representation and transmitted continuous states; early same-total-byte conventional baseline before extensive format engineering.",
+    "experiment_commit": "f30a3b95701d4ab2bab2073fae93755e35cab472",
+    "code_and_evidence_in_git": true
+  },
+  "previous_experiment_commit": "f30a3b95701d4ab2bab2073fae93755e35cab472",
+  "previous_F_result": {
+    "variant": "F / g24q2 actual full-frame reference auxiliary file",
+    "cases": [
+      "video1",
+      "video2",
+      "video3"
+    ],
+    "start": 0,
+    "stop_exclusive": 150,
+    "frames_per_case": 150,
+    "fps": 15,
+    "size": [
+      512,
+      288
+    ],
+    "billing_seconds": 10,
+    "source_assisted_sender": true,
+    "source_media_at_receiver": false,
+    "actual_auxiliary_stream": true,
+    "manual_edit_region": false,
+    "all_pixels_are_candidates": true,
+    "all_pixels_are_modified": false,
+    "held_out_material": false,
+    "streaming_validated": false,
+    "same_total_bytes_advantage_validated": false,
+    "motion_grid": [
+      24,
+      14
+    ],
+    "motion_precision_pixels": 0.5,
+    "motion_stride_frames": 1,
+    "key_frames": [
+      0,
+      15,
+      45,
+      75,
+      105,
+      135
+    ],
+    "feather_pixels": 8,
+    "tone_match": "sigma12 color correction weighted by decoded low-texture confidence",
+    "user_original_speed_review": {
+      "variant": "F / g24q2",
+      "cases_reviewed": [
+        "video2",
+        "video3"
+      ],
+      "status": "qualified_positive_boundary_review",
+      "quote": "都明显减轻，但2还是能看出来，但实际上我感觉可以接受吧算是",
+      "interpretation": "Film-like boundary visibly reduced in both clips. Video2 boundary remains visible but is considered acceptable. This is not an acceptance of video1 or general deployment."
+    },
+    "initial_A_review": {
+      "variant": "A",
+      "status": "not_accepted",
+      "quote": "感觉video1珊瑚的晃动比之前多了？然后2和3的主要问题就是感觉保护主体和周边有一个膜一样，就是有个边界"
+    },
+    "video1_regression": {
+      "status": "regression_unresolved_against_local_U",
+      "fixed_coral_coarse_mae": {
+        "raw": 4.55809282879483,
+        "local_U": 1.4255694384159472,
+        "A": 3.127160422593518,
+        "E": 3.08422220957094,
+        "F": 3.1915138567012455
+      }
+    },
+    "rejected_sparse_motion": {
+      "variants": [
+        "C",
+        "D"
+      ],
+      "reason": "Temporal interpolation produced rapidly changing reliability support and worse video1 coral temporal error than raw."
+    },
+    "files": {
+      "video1": {
+        "base_bytes": 31963,
+        "auxiliary_bytes": 48874,
+        "base_kbps": 25.5704,
+        "auxiliary_kbps": 39.0992,
+        "output_hash": "df6fba8fc4a56ece3fc5316b927ef9399b8ed78b8a5bb123b1f51535e21cc879",
+        "packet_hash": "b5890176225167c9abaad6a55860fb7a208dbb19fb2774e3a592e4acf8d3f7cd",
+        "total_kbps": 64.6696
+      },
+      "video2": {
+        "base_bytes": 31849,
+        "auxiliary_bytes": 42765,
+        "base_kbps": 25.4792,
+        "auxiliary_kbps": 34.212,
+        "output_hash": "30dc84c03f505e41d92caa69298bd8d1764afd2c6bb6a629818258acba57c788",
+        "packet_hash": "9240c5adbf89b90ddbfa51b64f6a0036cc120a70f8f572cae1b79a18c36824c5",
+        "total_kbps": 59.6912
+      },
+      "video3": {
+        "base_bytes": 30995,
+        "auxiliary_bytes": 24872,
+        "base_kbps": 24.796,
+        "auxiliary_kbps": 19.8976,
+        "output_hash": "136784b1ba455c619997f271e3f61ecfad8635a78abfc416c8fc991957e388fa",
+        "packet_hash": "54b4b3fb4cb53d3c92e362d3e9f2316fcc2d305d4b07ef95eb204707145ecaa6",
+        "total_kbps": 44.6936
+      }
+    },
+    "verification_complete": true,
+    "next_focus": "Controlled diagnosis of time-varying reliability support, motion precision, reference choice and object-boundary blending, preserving accepted local U stability in video1. No unified accepted solution yet."
+  },
+  "previous_strategy_diagnosis": {
+    "type": "read-only analysis of archived arrays",
+    "new_candidate_experiments_run": false,
+    "evidence": "21_优化阶段_GLC解码后处理/evidence_20261110/strategy_diagnosis/summary.json",
+    "dense_offline_coral_mae": 1.708165303364552,
+    "U_switch_fraction": 0.014016893111017876,
+    "E_F_switch_fraction": 0.11928500104389635,
+    "interpretation": "Prioritize separating lossy motion representation and reliability block decisions; LZMA is lossless. Subgroup associations are not causal proof.",
+    "next_order": [
+      "fixed-blend motion/mask factorial diagnostic",
+      "visibility-aware continuous support state",
+      "per-frame adaptive motion representation",
+      "separate boundary feather and tone controls",
+      "longer and held-out clips plus same-total-byte baseline"
+    ]
+  },
+  "next_experiment_plan": {
+    "status": "awaiting_U30_long_viewing_feedback",
+    "automatic_next_run": false
+  },
+  "previous_lowrate_experiment_commit": "80f7914906ebafaa0d5bd35b1aff7e21bdc12fd0",
+  "previous_lowrate_L_result": {
+    "variant": "L / compact support, sparse required motion nodes",
+    "run": "02_实验数据/优化_GLC后处理/compact_support_20261110_01",
+    "report": "21_优化阶段_GLC解码后处理/低码率可靠区与同总字节对照_20261110.md",
+    "frames_per_case": 150,
+    "fps": 15,
+    "billing_seconds": 10,
+    "source_assisted_sender": true,
+    "source_media_at_receiver": false,
+    "actual_auxiliary_stream": true,
+    "manual_edit_region": false,
+    "held_out_material": false,
+    "streaming_validated": false,
+    "selection": {
+      "complete": true,
+      "profiles": {
+        "video1": {
+          "E": {
+            "name": "S24_B4_T5_E",
+            "bytes": 26302,
+            "kbps": 21.0416,
+            "base_bytes": 31963,
+            "base_kbps": 25.5704,
+            "below_base": true,
+            "attempts": [
+              {
+                "name": "S24_B4_T5_E",
+                "bytes": 26302
+              }
+            ],
+            "selection_uses_quality": false
+          },
+          "F": {
+            "name": "S24_B4_T5_F",
+            "bytes": 31518,
+            "kbps": 25.2144,
+            "base_bytes": 31963,
+            "base_kbps": 25.5704,
+            "below_base": true,
+            "attempts": [
+              {
+                "name": "S24_B4_T5_F",
+                "bytes": 31518
+              }
+            ],
+            "selection_uses_quality": false
+          }
+        },
+        "video2": {
+          "E": {
+            "name": "S16_B4_T5_E",
+            "bytes": 25581,
+            "kbps": 20.4648,
+            "base_bytes": 31849,
+            "base_kbps": 25.4792,
+            "below_base": true,
+            "attempts": [
+              {
+                "name": "S24_B4_T5_E",
+                "bytes": 39383
+              },
+              {
+                "name": "S20_B4_T5_E",
+                "bytes": 32351
+              },
+              {
+                "name": "S16_B4_T5_E",
+                "bytes": 25581
+              }
+            ],
+            "selection_uses_quality": false
+          },
+          "F": {
+            "name": "S16_B4_T5_F",
+            "bytes": 26402,
+            "kbps": 21.1216,
+            "base_bytes": 31849,
+            "base_kbps": 25.4792,
+            "below_base": true,
+            "attempts": [
+              {
+                "name": "S24_B4_T5_F",
+                "bytes": 42163
+              },
+              {
+                "name": "S20_B4_T5_F",
+                "bytes": 34407
+              },
+              {
+                "name": "S16_B4_T5_F",
+                "bytes": 26402
+              }
+            ],
+            "selection_uses_quality": false
+          }
+        },
+        "video3": {
+          "E": {
+            "name": "S24_B4_T5_E",
+            "bytes": 19418,
+            "kbps": 15.5344,
+            "base_bytes": 30995,
+            "base_kbps": 24.796,
+            "below_base": true,
+            "attempts": [
+              {
+                "name": "S24_B4_T5_E",
+                "bytes": 19418
+              }
+            ],
+            "selection_uses_quality": false
+          },
+          "F": {
+            "name": "S24_B4_T5_F",
+            "bytes": 20030,
+            "kbps": 16.024,
+            "base_bytes": 30995,
+            "base_kbps": 24.796,
+            "below_base": true,
+            "attempts": [
+              {
+                "name": "S24_B4_T5_F",
+                "bytes": 20030
+              }
+            ],
+            "selection_uses_quality": false
+          }
+        }
+      },
+      "rule": "First below-base file in fixed S24,S20,S16,S12 sequence, fixed B4 T5, no score-based selection."
+    },
+    "verification_complete": true,
+    "visual_review": {
+      "date": "2026-11-10",
+      "status": "qualified_positive_video1_tradeoff_and_video2_video3_boundary_accepted",
+      "comparison": "video1 left low-rate L, right HEVC under same total-byte budget",
+      "quote": "各有优缺点吧算是，h.265的鱼啥的糊成一片了，但是珊瑚的观感比glc好，glc这个整体来看肉眼观感好一点，没那么糊，就是珊瑚确实还在晃动，单比最开始的glc要好",
+      "interpretation": "User prefers L overall because H.265 blurs fish and other details; H.265 coral appearance is better. L coral still deforms but is improved over original GLC. This is not equivalence to U or acceptance of video2/video3.",
+      "cross_clip_boundary_review": {
+        "status": "accepted",
+        "clips": [
+          "video2",
+          "video3"
+        ],
+        "comparison": "left previous F, right new low-rate L; full-frame original-speed",
+        "question": "这两段左旧 F、右低码率 L 中，右侧的主体边界和鱼体运动是否仍可接受？",
+        "quote": "两段右侧都可接受",
+        "interpretation": "L subject boundaries and fish motion are acceptable on these two 10-second development clips. LB was not separately accepted; no claim about unseen or full-length material."
+      },
+      "next_focus": "Keep detail and normal fish motion, reduce coral deformation and auxiliary bytes together; do not judge overall perception using PSNR alone."
+    },
+    "same_total_byte_cap_HEVC_tested": true,
+    "HEVC_metric_advantage_is_not_overall_perceptual_advantage": true,
+    "coral_MAE": 2.6778268570075356,
+    "coral_NCC": 0.756759410267657,
+    "GP_U_not_reached": true,
+    "next_focus": "Separate spatial and temporal support reductions before choosing one compact continuous-support candidate; preserve accepted fish and boundary quality while reducing auxiliary bytes.",
+    "experiment_commit": "80f7914906ebafaa0d5bd35b1aff7e21bdc12fd0",
+    "code_and_evidence_in_git": true
+  },
+  "previous_lowrate_diagnosis": {
+    "type": "read-only analysis of archived L/GP/U outputs and actual auxiliary packets",
+    "new_candidate_experiments_run": false,
+    "evidence": "21_优化阶段_GLC解码后处理/evidence_20261110/lowrate_retrospective/summary.json",
+    "verification": "21_优化阶段_GLC解码后处理/evidence_20261110/lowrate_retrospective/verification.json",
+    "evaluation_pixel_pairs": 1499191,
+    "observed_timing": {
+      "anchor_refresh_with_exit": {
+        "pairs": 35,
+        "pixels": 340922,
+        "pixel_fraction": 0.22740397987981517,
+        "raw_mae": 4.270657020131254,
+        "E_mae": 2.805015026920564,
+        "GP_mae": 2.3515966073022203,
+        "L_mae": 2.469531970128981,
+        "U_mae": 2.109486556973626,
+        "L_minus_GP_sum": 40206.759765625,
+        "image_coordinate_alpha_delta_sum_per_pixel": 0.09702453840648942,
+        "aligned_alpha_delta_sum_per_pixel": 0.10744935933701652,
+        "reference_identity_tv_sum_per_pixel": 0.19260313555358474,
+        "switch_pixels_per_pixel": 0.09936877056922111,
+        "fraction_of_L_error": 0.20971535070618302,
+        "fraction_of_net_L_minus_GP_gap": 0.03799479493093444
+      },
+      "nonrefresh_group_boundary": {
+        "pairs": 19,
+        "pixels": 196874,
+        "pixel_fraction": 0.1313201586722439,
+        "raw_mae": 4.385643253465732,
+        "E_mae": 3.1896691826450545,
+        "GP_mae": 1.9057998861065644,
+        "L_mae": 4.062314924655173,
+        "U_mae": 1.2118182652624188,
+        "L_minus_GP_sum": 424561.74169921875,
+        "image_coordinate_alpha_delta_sum_per_pixel": 0.21702408845568738,
+        "aligned_alpha_delta_sum_per_pixel": 0.21495313888647927,
+        "reference_identity_tv_sum_per_pixel": 0.21495313888647927,
+        "switch_pixels_per_pixel": 0.20222070969249367,
+        "fraction_of_L_error": 0.19921521030619815,
+        "fraction_of_net_L_minus_GP_gap": 0.4012045836425143
+      },
+      "nonrefresh_group_interior": {
+        "pairs": 95,
+        "pixels": 961395,
+        "pixel_fraction": 0.6412758614479409,
+        "raw_mae": 4.6953350949336645,
+        "E_mae": 3.161638988050689,
+        "GP_mae": 1.8508967520711659,
+        "L_mae": 2.4681758869009194,
+        "U_mae": 1.2268162272701713,
+        "L_minus_GP_sum": 593449.0738296509,
+        "image_coordinate_alpha_delta_sum_per_pixel": 0.0,
+        "aligned_alpha_delta_sum_per_pixel": 0.04617529835109602,
+        "reference_identity_tv_sum_per_pixel": 0.046175298319353,
+        "switch_pixels_per_pixel": 0.04326421502088112,
+        "fraction_of_L_error": 0.5910694389876189,
+        "fraction_of_net_L_minus_GP_gap": 0.5608006214265513
+      }
+    },
+    "GP_held_L_not": {
+      "pairs": 149,
+      "pixels": 318110,
+      "pixel_fraction": 0.21218777327238492,
+      "raw_mae": 4.919085885994932,
+      "E_mae": 4.7800733134161275,
+      "GP_mae": 1.98953621261943,
+      "L_mae": 4.862607454377454,
+      "U_mae": 1.1935528823091301,
+      "L_minus_GP_sum": 913952.6927156448,
+      "fraction_of_net_L_minus_GP_gap": 0.863671813862379
+    },
+    "common_interior": {
+      "pairs": 114,
+      "pixels": 175151,
+      "pixel_fraction": 0.11683034383210679,
+      "raw_mae": 4.444654780513214,
+      "E_mae": 0.799361929447096,
+      "GP_mae": 0.7993600604248988,
+      "L_mae": 0.7993600616227701,
+      "U_mae": 0.7352489588587356,
+      "L_minus_GP_sum": 0.000209808349609375
+    },
+    "interpretation": "Spatial reduction and temporal intersection remain coupled. Conditional residual concentration is not causal attribution. Fixed image-coordinate support is not continuous surface tracking."
+  },
+  "observed_git_HEAD": "7f717e5",
+  "latest_experiment": {
+    "complete": true,
+    "date": "2026-11-13",
+    "request": "你跑一下长视频我看看呢，还是四宫格对照，但是把右上角的h.265替换成这个U30",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\sq3_u30_long_fourway_20261113_01",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_U30长片四宫格_20261113",
+    "movie": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_U30长片四宫格_20261113\\82秒_四宫格_原片_U30_原GLC_SQ3.mp4",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\U30长片四宫格_原片_U30_GLC_SQ3_20261113.md",
+    "layout": [
+      "source",
+      "SQ3_U30",
+      "raw_GLC",
+      "SQ3"
+    ],
+    "frames": 1239,
+    "fps": 15,
+    "seconds": 82.6,
+    "profile": "SQ3_U30",
+    "user_requested_extension": true,
+    "prior_numeric_failure_preserved": true,
+    "subjective_review": "pending",
+    "selected": null,
+    "automatic_adoption": false,
+    "preferred_fallback": "SQ3",
+    "formal_config_unchanged": true
+  },
+  "previous_boundary_plan": {
+    "status": "completed_in_mixed_boundary_20261111_01",
+    "first": "Byte probe for selective mixed-boundary refinement near K auxiliary bytes; retain frozen motion, blending and pixel-safety constraints. No full-frame uniform 2x2 upgrade.",
+    "budget_bytes": {
+      "video1": 24649,
+      "video2": 23036,
+      "video3": 19412
+    },
+    "absolute_auxiliary_kbps_max": 40,
+    "below_base": "Preferred, not another absolute cap",
+    "stop_rule": "Do not promote a candidate that only increases bytes for a visually negligible gain; report rate and perception jointly."
+  },
+  "previous_receiver_experiment": {
+    "name": "receiver-only RR and lossless prediction byte probe",
+    "complete": true,
+    "deployed_default": "K",
+    "auxiliary_RR_bytes": [
+      0,
+      0,
+      0
+    ],
+    "main_scope": [
+      "video1 coral",
+      "video2 full",
+      "video3 full"
+    ],
+    "K_coarse_mae": [
+      2.6778268570075356,
+      1.614944,
+      1.283938
+    ],
+    "RR_coarse_mae": [
+      4.600533,
+      2.43069,
+      1.9733
+    ],
+    "K_aux_bytes": [
+      24649,
+      23036,
+      19412
+    ],
+    "prediction_probe_optimistic_bytes": [
+      29424,
+      28752,
+      31429
+    ],
+    "prediction_probe_new_metadata_included": false,
+    "all_RR_source_reads_blocked": true,
+    "SS_archived_bit_exact": true,
+    "K_and_raw_scores_exact": true,
+    "frozen_inputs": 56,
+    "original_speed_previews": 9,
+    "user_visual_acceptance": false,
+    "report": "21_优化阶段_GLC解码后处理/接收端零辅助验证与字节探针_20261111.md",
+    "user_feedback": "video1 R0 nearly no difference from raw GLC; rejected"
+  },
+  "previous_research_direction": {
+    "status": "direction_only_not_run",
+    "priority": "Reduce auxiliary bitrate while retaining useful structure stability; do not add mixed-boundary bytes.",
+    "first": "Design a bounded low-dimensional stable-structure motion / event-refresh / sparse-correction experiment; direct RR and complete motion-residual prediction are already tested.",
+    "K_aux_bytes": [
+      24649,
+      23036,
+      19412
+    ],
+    "absolute_auxiliary_kbps_max": 40,
+    "below_base": "Preference, not another absolute cap",
+    "stop_rule": "Measure full file bytes and lossless RGB on fixed support; reject bitrate reductions that lose useful stability or damage moving subjects.",
+    "unproven": [
+      "unseen data",
+      "long sequences",
+      "real-time",
+      "new equal-total-byte H265"
+    ]
+  },
+  "previous_K_result": {
+    "variant": "K / GLCCSP02 lossless repacking of L",
+    "run": "02_实验数据/优化_GLC后处理/support_refinement_20261111_01",
+    "report": "21_优化阶段_GLC解码后处理/空间时间可靠区消融与预测编码_20261111.md",
+    "frames_per_case": 150,
+    "fps": 15,
+    "billing_seconds": 10,
+    "actual_auxiliary_stream": true,
+    "source_assisted_sender": true,
+    "source_media_at_receiver": false,
+    "RGB_alpha_bit_exact_to_L": true,
+    "files": {
+      "video1": {
+        "base_bytes": 31963,
+        "auxiliary_bytes": 24649,
+        "auxiliary_kbps": 19.7192,
+        "packet_sha256": "8ebfb46e5037a0d325584cf0f80623337843af57d65a4b437106779f85ddec1b",
+        "RGB_bit_exact_to_L": true
+      },
+      "video2": {
+        "base_bytes": 31849,
+        "auxiliary_bytes": 23036,
+        "auxiliary_kbps": 18.4288,
+        "packet_sha256": "ef19c74f877030799e4595a01ea58e1b9465b3d5d0cfb1a726b2c19a9a46d2cc",
+        "RGB_bit_exact_to_L": true
+      },
+      "video3": {
+        "base_bytes": 30995,
+        "auxiliary_bytes": 19412,
+        "auxiliary_kbps": 15.5296,
+        "packet_sha256": "94c160fcb0a3fd35814c06a820050a96f2ee1345d7158d821440c428cc943c98",
+        "RGB_bit_exact_to_L": true
+      }
+    },
+    "verification_complete": true,
+    "visual_review": {
+      "date": "2026-11-11",
+      "status": "no_large_visible_difference_both_acceptable",
+      "cases_reviewed": [
+        "video1",
+        "video2"
+      ],
+      "left": "L",
+      "right": "N",
+      "question": "右侧珊瑚稳定性是否有明显改善，鱼体和主体边界是否退步；已明确N辅助更贵。",
+      "quote": "我感觉两段视频都是左右看不出太大差距，目前均可接收的程度",
+      "interpretation": "User could not see a large difference in either pair and found both sides acceptable. This does not establish N superiority, equivalence to local U, or video3 acceptance. K is separately verified RGB/alpha bit-exact to L.",
+      "decision": "Keep K as lower-byte rendering-equivalent baseline. Do not promote global 2x2 N given 42-76% additional auxiliary bytes versus L without visible benefit in reviewed clips."
+    },
+    "N_is_higher_rate_control_not_default": true,
+    "held_out_material": false,
+    "streaming_validated": false
+  },
+  "previous_structure_guide_experiment": {
+    "name": "GLCGDE01 structural guide, fixed receiver texture confidence T3",
+    "complete": true,
+    "cases": [
+      "video1"
+    ],
+    "candidate": "G256_b12_T3",
+    "default": "A12 for current video1 compression comparisons; K for historical regression and video2/3",
+    "auxiliary_bytes": 16187,
+    "auxiliary_kbps": 12.9496,
+    "K_auxiliary_bytes": 24649,
+    "auxiliary_saving_percent": 34.32999310316849,
+    "coral_MAE": {
+      "raw": 4.55809282879483,
+      "K": 2.6778268570075356,
+      "guide_T3": 2.8034232890347717
+    },
+    "coral_NCC": {
+      "K": 0.756759410267657,
+      "guide_T3": 0.7509032105298636
+    },
+    "source_free_receiver_verified": true,
+    "guide_transmitted_and_billed": true,
+    "texture_revision_additional_bytes": 0,
+    "user_visual_acceptance": "user_accepted_video1_direction",
+    "cross_clip_transfer": "not run",
+    "report": "21_优化阶段_GLC解码后处理/低码率结构引导视频验证_20261111.md"
+  },
+  "previous_support_experiment_plan": {
+    "status": "executed_support_factorial_and_K_N_transfer",
+    "factorial_plan": "21_优化阶段_GLC解码后处理/plan_lowrate_next_20261110.json",
+    "refinement_plan": "21_优化阶段_GLC解码后处理/evidence_20261111/support_refinement/plan.json",
+    "frozen_plans_kept_unchanged": true
+  },
+  "previous_latest_diagnosis": {
+    "type": "completed controlled spatial x temporal intervention",
+    "report": "21_优化阶段_GLC解码后处理/空间时间可靠区消融与预测编码_20261111.md",
+    "evidence": "21_优化阶段_GLC解码后处理/evidence_20261111/support_factorial/summary.json",
+    "new_candidate_experiments_run": true,
+    "coral_coarse_mae": {
+      "P1_GP": 1.971967780149087,
+      "B1": 2.544726302419137,
+      "P5": 2.2405155214233043,
+      "B5_L": 2.6778268570075356
+    },
+    "interpretation": "Spatial cell reduction has greater loss than five-frame intersection under frozen video1 conditions; global 2x2 N gives limited visual benefit at much higher bytes."
+  },
+  "previous_guide_compression_experiment": {
+    "name": "Fixed T3 guide compression, encoder-only video1 pilot",
+    "complete": true,
+    "cases": [
+      "video1"
+    ],
+    "focus_candidate": "S8I",
+    "alternative": "S10",
+    "accepted_reference": "S8I",
+    "new_candidates_visually_accepted": true,
+    "candidates": {
+      "S8C4": {
+        "profile": "S8C4",
+        "bytes": 9153,
+        "auxiliary_kbps": 7.3224,
+        "base_bytes": 31963,
+        "total_kbps": 32.8928,
+        "auxiliary_saved_percent": 43.45462408105269,
+        "preset": "slower",
+        "chroma_offset": 4,
+        "coral_MAE": 2.4195475536498727,
+        "coral_MAE_change_percent": -13.693106456180892,
+        "coral_NCC": 0.8115802669163533,
+        "full_MAE": 2.698168179265658,
+        "full_MAE_change_percent": -1.140303706579049,
+        "full_PSNR": 22.543661096051313,
+        "source_change_error": 29.949411771612223,
+        "source_change_error_percent": -0.20905356953967447,
+        "numeric_checks": {
+          "coral_MAE": true,
+          "full_MAE": true,
+          "coral_NCC": true,
+          "full_PSNR": true,
+          "source_change": true
+        },
+        "numeric_screen_pass": true,
+        "visual_acceptance": "pending",
+        "quadrant_MAE_change_percent": {
+          "top_left": 0.8372034995635103,
+          "top_right": -5.004496446239804,
+          "bottom_left": 3.3622618051464936,
+          "bottom_right": 2.2079954306519545
+        },
+        "coverage": {
+          "full": 0.25223628291377315,
+          "top_left": 0.08436342592592593,
+          "top_right": 0.42728895399305555,
+          "bottom_left": 0.04553855613425926,
+          "bottom_right": 0.45175419560185187,
+          "coral": 0.6537473684210526
+        },
+        "encoder_selected_seconds": 2.5016475999982504,
+        "flow_seconds": 33.78688829999737,
+        "render_seconds": 4.948871099997632
+      },
+      "M10": {
+        "profile": "M10",
+        "bytes": 11598,
+        "auxiliary_kbps": 9.2784,
+        "base_bytes": 31963,
+        "total_kbps": 34.8488,
+        "auxiliary_saved_percent": 28.349910421943537,
+        "preset": "medium",
+        "chroma_offset": 0,
+        "coral_MAE": 3.0416691565077847,
+        "coral_MAE_change_percent": 8.498390821139324,
+        "coral_NCC": 0.7026274157141742,
+        "full_MAE": 2.875302692938284,
+        "full_MAE_change_percent": 5.349827027052445,
+        "full_PSNR": 22.520726656276864,
+        "source_change_error": 30.283391002177297,
+        "source_change_error_percent": 0.9037597224327509,
+        "numeric_checks": {
+          "coral_MAE": false,
+          "full_MAE": false,
+          "coral_NCC": false,
+          "full_PSNR": true,
+          "source_change": true
+        },
+        "numeric_screen_pass": false,
+        "visual_acceptance": "pending",
+        "quadrant_MAE_change_percent": {
+          "top_left": 6.275663266662246,
+          "top_right": 4.87353582772192,
+          "bottom_left": 2.9609199440316036,
+          "bottom_right": 6.681849952473984
+        },
+        "coverage": {
+          "full": 0.24971453631365742,
+          "top_left": 0.0672435619212963,
+          "top_right": 0.46309045862268516,
+          "bottom_left": 0.0403785083912037,
+          "bottom_right": 0.4281456163194444,
+          "coral": 0.655905701754386
+        },
+        "encoder_selected_seconds": 0.32128459999876213,
+        "flow_seconds": 33.344461700002284,
+        "render_seconds": 5.094395100000838
+      },
+      "S10": {
+        "profile": "S10",
+        "bytes": 12134,
+        "auxiliary_kbps": 9.7072,
+        "base_bytes": 31963,
+        "total_kbps": 35.2776,
+        "auxiliary_saved_percent": 25.038611231234942,
+        "preset": "slower",
+        "chroma_offset": 0,
+        "coral_MAE": 2.1584242991368447,
+        "coral_MAE_change_percent": -23.007549106863646,
+        "coral_NCC": 0.8460246975096061,
+        "full_MAE": 2.5766298334299593,
+        "full_MAE_change_percent": -5.593415284150193,
+        "full_PSNR": 22.54807007967942,
+        "source_change_error": 29.838603397471964,
+        "source_change_error_percent": -0.5782652459559001,
+        "numeric_checks": {
+          "coral_MAE": true,
+          "full_MAE": true,
+          "coral_NCC": true,
+          "full_PSNR": true,
+          "source_change": true
+        },
+        "numeric_screen_pass": true,
+        "visual_acceptance": "not_reviewed",
+        "quadrant_MAE_change_percent": {
+          "top_left": -0.02212354499305791,
+          "top_right": -13.27746618361283,
+          "bottom_left": 5.181164918275694,
+          "bottom_right": -0.37932268411451364
+        },
+        "coverage": {
+          "full": 0.2641166178385417,
+          "top_left": 0.07007921006944444,
+          "top_right": 0.46720829716435186,
+          "bottom_left": 0.041279477719907406,
+          "bottom_right": 0.477899486400463,
+          "coral": 0.6893776315789474
+        },
+        "encoder_selected_seconds": 2.6679271000029985,
+        "flow_seconds": 33.098164299997734,
+        "render_seconds": 4.998200999998517
+      },
+      "M8": {
+        "profile": "M8",
+        "bytes": 9806,
+        "auxiliary_kbps": 7.8448,
+        "base_bytes": 31963,
+        "total_kbps": 33.4152,
+        "auxiliary_saved_percent": 39.420522641626,
+        "preset": "medium",
+        "chroma_offset": 0,
+        "coral_MAE": 3.3264837437220307,
+        "coral_MAE_change_percent": 18.65791929221472,
+        "coral_NCC": 0.6713472543853882,
+        "full_MAE": 3.0815545181795274,
+        "full_MAE_change_percent": 12.906803260039702,
+        "full_PSNR": 22.473765551153853,
+        "source_change_error": 30.459351111959744,
+        "source_change_error_percent": 1.4900559082510645,
+        "numeric_checks": {
+          "coral_MAE": false,
+          "full_MAE": false,
+          "coral_NCC": false,
+          "full_PSNR": true,
+          "source_change": true
+        },
+        "numeric_screen_pass": false,
+        "visual_acceptance": "pending",
+        "quadrant_MAE_change_percent": {
+          "top_left": 8.952851125214444,
+          "top_right": 14.434534091153983,
+          "bottom_left": 4.876681593388299,
+          "bottom_right": 15.497289366815249
+        },
+        "coverage": {
+          "full": 0.24501790364583334,
+          "top_left": 0.0884888599537037,
+          "top_right": 0.4385469111689815,
+          "bottom_left": 0.04233615451388889,
+          "bottom_right": 0.41069968894675923,
+          "coral": 0.6468105263157895
+        },
+        "encoder_selected_seconds": 0.2936090000002878,
+        "flow_seconds": 33.16946359999929,
+        "render_seconds": 4.920912399997178
+      },
+      "S8": {
+        "profile": "S8",
+        "bytes": 6114,
+        "auxiliary_kbps": 4.8912,
+        "base_bytes": 31963,
+        "total_kbps": 30.4616,
+        "auxiliary_saved_percent": 62.22894915673072,
+        "preset": "slower",
+        "chroma_offset": 0,
+        "coral_MAE": 3.4919535725656057,
+        "coral_MAE_change_percent": 24.56033971836973,
+        "coral_NCC": 0.6288962773586871,
+        "full_MAE": 3.2387705590519666,
+        "full_MAE_change_percent": 18.667129904071732,
+        "full_PSNR": 22.461596096502298,
+        "source_change_error": 30.61603054826649,
+        "source_change_error_percent": 2.0121092078107417,
+        "numeric_checks": {
+          "coral_MAE": false,
+          "full_MAE": false,
+          "coral_NCC": false,
+          "full_PSNR": true,
+          "source_change": true
+        },
+        "numeric_screen_pass": false,
+        "visual_acceptance": "pending",
+        "quadrant_MAE_change_percent": {
+          "top_left": 5.200182372530637,
+          "top_right": 15.15135066599207,
+          "bottom_left": 5.621958944064898,
+          "bottom_right": 35.23804619857065
+        },
+        "coverage": {
+          "full": 0.20223619249131944,
+          "top_left": 0.05755027488425926,
+          "top_right": 0.37778428819444443,
+          "bottom_left": 0.03978153935185185,
+          "bottom_right": 0.33382866753472223,
+          "coral": 0.5695425438596491
+        },
+        "encoder_selected_seconds": 2.2972339000007196,
+        "flow_seconds": 33.808975399999326,
+        "render_seconds": 4.99319370000012
+      },
+      "S8I": {
+        "profile": "S8I",
+        "bytes": 8865,
+        "auxiliary_kbps": 7.092,
+        "base_bytes": 31963,
+        "total_kbps": 32.6624,
+        "auxiliary_saved_percent": 45.23382961635881,
+        "preset": "slower",
+        "chroma_offset": 0,
+        "coral_MAE": 2.3780788648801616,
+        "coral_MAE_change_percent": -15.172322560716744,
+        "coral_NCC": 0.8102728671997892,
+        "full_MAE": 2.71218920930674,
+        "full_MAE_change_percent": -0.6265793278564802,
+        "full_PSNR": 22.537316668025916,
+        "source_change_error": 29.945088075912157,
+        "source_change_error_percent": -0.22346005235399646,
+        "numeric_checks": {
+          "coral_MAE": true,
+          "full_MAE": true,
+          "coral_NCC": true,
+          "full_PSNR": true,
+          "source_change": true
+        },
+        "numeric_screen_pass": true,
+        "visual_acceptance": "user_accepted_with_remaining_jump_concern",
+        "quadrant_MAE_change_percent": {
+          "top_left": 2.855380752754666,
+          "top_right": -8.518658519112865,
+          "bottom_left": 7.520507707987822,
+          "bottom_right": 6.879103198253933
+        },
+        "coverage": {
+          "full": 0.24837940357349536,
+          "top_left": 0.057698567708333336,
+          "top_right": 0.44214898003472225,
+          "bottom_left": 0.051565755208333335,
+          "bottom_right": 0.4421043113425926,
+          "coral": 0.6604232456140351
+        },
+        "encoder_selected_seconds": 2.644431100001384,
+        "flow_seconds": 33.00567999999839,
+        "render_seconds": 4.912147700000787,
+        "user_feedback": "右侧这个还可以；仍观察到跳变，询问固定锚。",
+        "remaining_jump_issue": "Anchor refresh may contribute; base GLC I frames and ongoing reliability changes are also plausible."
+      }
+    },
+    "report": "21_优化阶段_GLC解码后处理/结构引导继续压码率_20261111.md",
+    "source_free_receiver_verified": true,
+    "fixed_T3_replay_exact": true,
+    "frozen_input_count": 13,
+    "cross_clip_transfer": "not run",
+    "visual_review": {
+      "date": "2026-11-11",
+      "accepted_reference": "S8I, 8865 B /7.0920 kbps, displayed video1 only",
+      "user_quote": "这回的还可以，接下来其实就是两个方向了，一个方向是优化视觉效果，另一个是继续压缩辅助码率，咱们先研究压缩码率，优化视觉最后再整",
+      "priority": "Keep accepted low auxiliary bitrate while analyzing anchor refresh and residual jumps; no new receiver experiment in this follow-up.",
+      "candidates": {
+        "M10": "pending_user_original_speed_review",
+        "S10": "pending_user_original_speed_review",
+        "M8": "pending_user_original_speed_review",
+        "S8": "pending_user_original_speed_review",
+        "S8I": "user_accepted_with_remaining_jump_concern",
+        "S8C4": "pending_user_original_speed_review"
+      },
+      "static_contact_sheets_checked": [
+        "S8I",
+        "S10"
+      ],
+      "candidate_promoted": true,
+      "previous_accepted_reference": "A12 = G256_b12_T3, video1 only",
+      "user_followup_quote": "这回的还可以啊，右侧这个，然后就是跳变，是因为锚换了吧，锚可以固定吗，频繁换的话还是会跳变的",
+      "promotion_scope": "Current video1 comparison baseline only; not cross-clip, foreground certification or deployment acceptance.",
+      "remaining_issue": "User reports visible jumps and asks whether anchors can remain fixed."
+    },
+    "visually_accepted_profiles": [
+      "S8I"
+    ]
+  },
+  "status": "U30_long_fourway_complete",
+  "current_accepted_profile": "21_优化阶段_GLC解码后处理/当前采用配置.json",
+  "user_latest_decision": "你跑一下长视频我看看呢，还是四宫格对照，但是把右上角的h.265替换成这个U30",
+  "consolidation": {
+    "date": "2026-11-11",
+    "new_optimization_experiments_run": false,
+    "files_moved_or_deleted": false,
+    "asset_index": "01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/evidence_20261111/consolidation/关键资产索引.json",
+    "adoption_record": "02_实验数据/优化_GLC后处理/anchor_time_20261111_02/adoption_20261111.json",
+    "current_profile_deployed_to_existing_package": false
+  },
+  "publication": {
+    "current_changes_committed": false,
+    "pushed": false,
+    "receipt": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_diagnosis_20261113_02\\publication.json",
+    "scope": "Video4 fixed transfer diagnosis and variable-length regression"
+  },
+  "current_fourway": {
+    "run": "02_实验数据/优化_GLC后处理/quad_current_i12_20261111_01",
+    "viewing": "05_成果与观看/GLC_接收时间与锚点实验_20261111/07_video1_四宫格_原片_H265_原GLC_当前优化I12.mp4",
+    "report": "01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/当前方案四宫格与同码率H265_20261111.md",
+    "hevc_bytes": 40547,
+    "hevc_kbps": 32.4376,
+    "optimized_kbps": 32.6624,
+    "relative_byte_shortfall": 0.0068825315959635544,
+    "metrics_scope": "viewing control only; no new full quality evaluation"
+  },
+  "current_session_work": "User-requested full U30 four-way complete; top-right U30, top-left source, bottom-left raw GLC, bottom-right preserved SQ3.",
+  "latest_runtime_optimization": {
+    "date": "2026-11-11",
+    "status": "verified_bit_exact_research_entry_video1_only",
+    "entrypoint": "receive_current_i12_fast.py",
+    "raft_mode": "feature_cache",
+    "T3_cache": "four-entry RGB blur LRU + coordinates",
+    "bit_exact_to_CURRENT_I12": true,
+    "transmitted_bytes_unchanged": true,
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\receiver_speed_20261111_01",
+    "report": "接收链路计时与精确缓存提速_20261111.md",
+    "complete_file_chain": {
+      "cold": {
+        "original": {
+          "median": 69.38885870000377,
+          "minimum": 68.58521199999814,
+          "maximum": 72.76817149999988,
+          "samples": [
+            72.76817149999988,
+            69.38885870000377,
+            68.58521199999814
+          ]
+        },
+        "optimized": {
+          "median": 65.57327719999739,
+          "minimum": 63.507611299995915,
+          "maximum": 66.85841159999836,
+          "samples": [
+            65.57327719999739,
+            66.85841159999836,
+            63.507611299995915
+          ]
+        },
+        "median_time_reduction_percent": 5.498838821521312
+      },
+      "warm": {
+        "original": {
+          "median": 57.25252919999912,
+          "minimum": 56.43454070000007,
+          "maximum": 57.60043790000054,
+          "samples": [
+            56.43454070000007,
+            57.25252919999912,
+            57.60043790000054
+          ]
+        },
+        "optimized": {
+          "median": 54.4382581999962,
+          "minimum": 53.590412300000025,
+          "maximum": 54.81482130000222,
+          "samples": [
+            53.590412300000025,
+            54.81482130000222,
+            54.4382581999962
+          ]
+        },
+        "median_time_reduction_percent": 4.915540045701528
+      }
+    },
+    "peak_raft_allocated_mib": 1645.4169921875,
+    "memory_tradeoff": "About +1100 MiB peak allocated; all-frame features require bounded redesign for long video",
+    "original_measurements_preserved": true,
+    "deployment_defaults_changed": false
+  },
+  "previous_publication": {
+    "branch": "codex/glc-temporal-stability",
+    "included_scope": "Related phase21 code/reports/evidence and current handoff; large media remain local",
+    "push_receipt": "02_实验数据/优化_GLC后处理/quad_current_i12_20261111_01/branch_push_receipt.json",
+    "verify_remote_head": true
+  },
+  "next_priority": [
+    "Review U30 versus SQ3 simultaneously in the right column at original speed"
+  ],
+  "latest_known_video_transfer": {
+    "complete": true,
+    "kind": "known_development_clips_fixed_parameter_transfer",
+    "profile": "S8I + CURRENT_I12 + exact runtime caches",
+    "new_clips": [
+      "video2",
+      "video3"
+    ],
+    "conclusions": {
+      "video2": "User reports overall perceptual regression, poor appearance, severe boundaries and many jumps; negative transfer case",
+      "video3": "User reports good visual results on this clip; positive feedback, without unseen or long-video validation"
+    },
+    "heldout_tested": false,
+    "long_video_tested": false,
+    "user_visual_acceptance": "reviewed_mixed_video2_negative_video3_positive",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\known_video_transfer_20261111_02",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\当前方案跨素材初筛_video2_video3_20261111.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_跨素材初筛_20261111",
+    "verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\known_video_transfer_20261111_02\\verification\\summary.json",
+    "code_and_adopted_profile_unchanged": true,
+    "new_work_committed_or_pushed": false,
+    "cases": {
+      "video2": {
+        "rates_kbps": {
+          "base": 25.4792,
+          "guide": 5.5112,
+          "current": 30.9904,
+          "K": 43.908,
+          "h265": 30.4328
+        },
+        "full_coarse_mae": {
+          "raw": 2.283172857912614,
+          "current": 2.2615214994385457,
+          "K": 1.6149443240742924
+        },
+        "coarse_mae_reduction_percent": 0.948301325457368,
+        "current_vs_K_error_change_percent": 40.03711866258175,
+        "psnr_db": {
+          "raw": 21.084959417071126,
+          "current": 20.784088747729307
+        },
+        "cached_uncached_exact": {
+          "rgb": true,
+          "alpha": true,
+          "shared": true
+        },
+        "cold_single_seconds": 65.86404709999624
+      },
+      "video3": {
+        "rates_kbps": {
+          "base": 24.796,
+          "guide": 8.296,
+          "current": 33.092,
+          "K": 40.3256,
+          "h265": 32.9472
+        },
+        "full_coarse_mae": {
+          "raw": 1.967673378725994,
+          "current": 1.0493354312772725,
+          "K": 1.2839384611102516
+        },
+        "coarse_mae_reduction_percent": 46.67125943652884,
+        "current_vs_K_error_change_percent": -18.272139743373085,
+        "psnr_db": {
+          "raw": 21.91829137657608,
+          "current": 21.75239972060757
+        },
+        "cached_uncached_exact": {
+          "rgb": true,
+          "alpha": true,
+          "shared": true
+        },
+        "cold_single_seconds": 68.26324880000175
+      }
+    },
+    "user_feedback": {
+      "date": "2026-11-11",
+      "type": "user_perceptual_feedback",
+      "profile": "S8I + CURRENT_I12 + exact runtime caches",
+      "scope": "Known video2/video3, first 10 seconds, 150 frames at 15 FPS",
+      "verbatim_user_feedback": "暂时先记录一下，video2整体是退化的，画面观感较差，边界感严重且有较多画面跳变，video3效果不错，说实话video2是斑点鱼，这个肯定是比较难整的，因为鱼身上的斑点太多了，现在先记录即可，不用下一步实验",
+      "video2": {
+        "status": "rejected_overall_perceptual_regression",
+        "assessment_zh": "整体退化，画面观感较差，边界感严重，画面跳变较多",
+        "subject_zh": "斑点鱼，鱼身密集斑点",
+        "difficulty_hypothesis_zh": "用户认为鱼身斑点太多，增加处理难度",
+        "hypothesis_attribution": "user",
+        "causal_validation": "not_tested"
+      },
+      "video3": {
+        "status": "positive_visual_feedback",
+        "assessment_zh": "效果不错",
+        "scope_limit": "Positive feedback on this clip only; does not validate unseen or long videos"
+      },
+      "instruction": "record_only_no_next_experiments",
+      "further_experiments_authorized_now": false,
+      "metrics_or_outputs_changed": false,
+      "algorithm_or_deployment_changed": false
+    },
+    "user_feedback_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\known_video_transfer_20261111_02\\user_feedback_20261111.json"
+  },
+  "deferred_priority_before_user_feedback": [
+    "Freeze a diagnosis of video2 transfer weakness; retain video3 as a positive regression case",
+    "Independent held-out marine clips; do not tune separately for each clip",
+    "Generalize 150-frame guide/anchor protocol and bound caches before long-video trials"
+  ],
+  "experiment_execution_gate": {
+    "status": "completed_round",
+    "currently_running": false,
+    "automatic_next_run": false
+  },
+  "latest_user_perceptual_feedback": {
+    "date": "2026-11-13",
+    "quote": "嗯，目前这个SQ3我看很不错啊，抖动减轻很多，虽然没那么锐利，但还是可以的，SQ3这个可以留一下，然后先继续优化，后面优化的不好就采用SQ3了",
+    "scope": "Presented SQ3 full 82.6-second four-way and preceding short clips",
+    "interpretation": "User accepts reduced jitter and some loss of sharpness. Preserve SQ3 as preferred fallback while exploring further optimization.",
+    "formal_deployment_change": false,
+    "preferred_fallback": "SQ3",
+    "future_candidate_acceptance": "requires comparative viewing"
+  },
+  "active_experiment_plan": null,
+  "completed_generalization_plan": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_factorial_20261112_01\\execution_plan.json",
+  "previous_experiment_plan_before_generalization": {
+    "status": "executed_2x2_anchor_iteration_matrix",
+    "frozen_plan": "21_优化阶段_GLC解码后处理/evidence_20261111/anchor_time/execution_plan.json",
+    "profiles": [
+      "CURRENT_I24",
+      "ISYNC_I24",
+      "CURRENT_I12",
+      "ISYNC_I12"
+    ],
+    "all_receivers_complete": true,
+    "source_free": true
+  },
+  "previous_next_experiment_plan_before_generalization": {
+    "status": "proposed_not_run_after_adoption",
+    "first": "Trustworthy end-to-end and repeated cold/warm timing with fixed six anchors /12 iterations.",
+    "then": "Exact-output T3 caching, then isolated RAFT compute changes; preserve quality and source-free receiver.",
+    "anchor_reduction": "Paused by user; keep [0,15,45,75,105,135].",
+    "unproven": [
+      "Current profile cross-clip and long-video transfer",
+      "Comprehensive metrics/user preference for the newly generated matched-budget H265 control",
+      "Realtime including GLC decode",
+      "Streaming latency and real channel"
+    ]
+  },
+  "latest_generalization_experiment": {
+    "date": "2026-11-13",
+    "complete": true,
+    "case": "video4",
+    "frames": 104,
+    "fps": 15,
+    "source_video_seconds": 6.9,
+    "billing_seconds": 6.933333333333334,
+    "new_post_outputs": 2,
+    "reference": "Q9_R25",
+    "viewing_candidate": "GS25",
+    "selected": null,
+    "automatic_adoption": false,
+    "fixed_transfer_not_new_parameter_search": true,
+    "development_failure_clip": true,
+    "independent_holdout": false,
+    "base_kbps": 27.18,
+    "guide_kbps": 11.098846153846154,
+    "total_kbps": 38.27884615384615,
+    "extra_GS25_transmission_bytes": 0,
+    "source_archive": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\GLC后处理\\素材\\20261113_video4\\video4.mp4",
+    "source_sha256": "1f44b3e49ef603aa69fead3b98523dc61a19bd806f301cb758c5fe0b41aca92c",
+    "changes": {
+      "Q9_full_temporal_vs_raw_percent": -16.190704941792987,
+      "GS25_full_temporal_vs_Q9_percent": -18.233386512828233,
+      "GS25_coral_temporal_vs_Q9_percent": -18.233546024972934,
+      "GS25_coral_RGB_MAE_vs_Q9_percent": -8.172910485524731,
+      "Q9_coral_coarse_spatial_vs_raw_percent": 11.068919308754378,
+      "GS25_turtle_wide_RGB_MAE_vs_Q9_percent": -7.968877058114288,
+      "GS25_full_PSNR_minus_Q9_db": 0.7947098370025181,
+      "GS25_dynamic_amplitude_vs_Q9_percent": -10.655405837101384
+    },
+    "source_reconstruction_shape_error_precedes_Q9": true,
+    "Q9_temporal_gain_not_same_frame_shape_recovery": true,
+    "guide_texture_insufficient": true,
+    "GS25_motion_amplitude_attenuation": true,
+    "subjective_review": "pending",
+    "no_video4_matched_blur_control": true,
+    "previous_three_clips_regression_exact": true,
+    "formal_adopted_profile_unchanged": true,
+    "full_long_video_not_rerun": true,
+    "conclusion_zh": "video4原GLC已有珊瑚空间形态和主体细节偏差，Q9降低时序误差但未恢复形状；GS25有限修正、仍有动态幅度代价，尚未解决密集珊瑚观感。",
+    "next_focus_zh": "在三片回归约束下区分基础重建空间失真、guide细节不足和历史复用新增形态误差；再检验一个局部结构可靠性假设，不能只加大平滑。",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_diagnosis_20261113_02",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\video4密集珊瑚_Q9与GS25固定参数诊断_20261113.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_video4密集珊瑚_20261113",
+    "verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_diagnosis_20261113_02\\verification.json",
+    "evidence": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\evidence_20261113\\video4_fixed_diagnosis\\manifest.json"
+  },
+  "previous_user_perceptual_feedback_before_clarification": {
+    "date": "2026-11-11",
+    "type": "user_perceptual_feedback",
+    "profile": "S8I + CURRENT_I12 + exact runtime caches",
+    "scope": "Known video2/video3, first 10 seconds, 150 frames at 15 FPS",
+    "verbatim_user_feedback": "暂时先记录一下，video2整体是退化的，画面观感较差，边界感严重且有较多画面跳变，video3效果不错，说实话video2是斑点鱼，这个肯定是比较难整的，因为鱼身上的斑点太多了，现在先记录即可，不用下一步实验",
+    "video2": {
+      "status": "rejected_overall_perceptual_regression",
+      "assessment_zh": "整体退化，画面观感较差，边界感严重，画面跳变较多",
+      "subject_zh": "斑点鱼，鱼身密集斑点",
+      "difficulty_hypothesis_zh": "用户认为鱼身斑点太多，增加处理难度",
+      "hypothesis_attribution": "user",
+      "causal_validation": "not_tested"
+    },
+    "video3": {
+      "status": "positive_visual_feedback",
+      "assessment_zh": "效果不错",
+      "scope_limit": "Positive feedback on this clip only; does not validate unseen or long videos"
+    },
+    "instruction": "record_only_no_next_experiments",
+    "further_experiments_authorized_now": false,
+    "metrics_or_outputs_changed": false,
+    "algorithm_or_deployment_changed": false
+  },
+  "previous_generalization_experiment": {
+    "complete": true,
+    "cases": [
+      "video1",
+      "video2",
+      "video3",
+      "archive82_first10s"
+    ],
+    "variants": [
+      "Q6_T3",
+      "Q6_F8",
+      "Q6_C8",
+      "Q12_T3",
+      "Q12_F8",
+      "Q12_C8"
+    ],
+    "trial_count": 24,
+    "selected": null,
+    "diagnostic_candidate": "Q12_T3",
+    "numeric_screen_passed": false,
+    "current_profile_unchanged": true,
+    "subjective_review": "pending",
+    "independently_heldout": false,
+    "long_video_tested": false,
+    "realtime_tested": false,
+    "source_run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_factorial_20261112_01",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\泛化改进_引导质量与保守混合_20261112.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_泛化改进_20261112",
+    "verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_factorial_20261112_01\\final_verification.json",
+    "video2_full_mae_change_percent": -27.91257481465503,
+    "video2_boundary_proxy_change_percent": -1.0855467030011834,
+    "video3_reef_mae_change_percent": 10.123879458520912,
+    "extra_full_mae_change_percent": -5.135882486564358
+  },
+  "previous_user_perceptual_feedback_before_Q9_review": {
+    "date": "2026-11-12",
+    "verbatim_user_feedback": "那继续下一轮吧，video2的话改善一些就可以，本来也没说特别难看啥的",
+    "interpretation_zh": "继续下一轮；video2以适度改善为目标。用户澄清并非特别难看，当前说明不应夸大其严重程度。历史原话保留但以本次澄清为最新口径。",
+    "not_an_adoption": "未明确采用Q12_T3或其他候选；不视为原速主观验收。",
+    "further_experiments_authorized": true
+  },
+  "preferred_research_reference": {
+    "family": "Q9",
+    "linked_profile": "Q9_R25",
+    "mapping": "From separately provided comparison links; user said Q9 without distinguishing subvariants.",
+    "status": "prior_positive_three_clips_with_localized_ghosting_feedback",
+    "feedback_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\user_feedback_Q9_20261112.json",
+    "official_adopted_config_unchanged": true,
+    "new_failure_feedback_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_long_transfer_20261112_03\\user_feedback_ghosting_20261112.json",
+    "current_focus": "Video1/2/3 and video4 watchability; base spatial errors and current-structure reliability.",
+    "latest_localized_feedback_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\user_event_registration.json",
+    "latest_experiment_report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\video4密集珊瑚_Q9与GS25固定参数诊断_20261113.md",
+    "latest_user_priority_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\user_feedback_20261112.json",
+    "viewing_candidate": "GS25",
+    "viewing_candidate_not_adopted": true,
+    "video4_diagnosis_report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\video4密集珊瑚_Q9与GS25固定参数诊断_20261113.md",
+    "video4_user_original_speed_feedback": "pending"
+  },
+  "previous_latest_experiment_before_Q9_long": {
+    "name": "S8I fixed-packet anchor x RAFT iteration receiver-time matrix",
+    "complete": true,
+    "cases": [
+      "video1"
+    ],
+    "run": "02_实验数据/优化_GLC后处理/anchor_time_20261111_02",
+    "analysis": "analysis_rerun01",
+    "report": "21_优化阶段_GLC解码后处理/锚点与接收时间联合实验_20261111.md",
+    "accepted_visual_baseline": "S8I + CURRENT_I12, six anchors, 8865 B /7.0920 kbps",
+    "primary_timing_candidate": "CURRENT_I12",
+    "primary_candidate_user_visual_acceptance": "accepted on 2026-11-11",
+    "I_synchronized_three_anchor_rejected_numerically": true,
+    "reference_replay_rgb_alpha_shared_exact": true,
+    "same_sidecar_bytes": 8865,
+    "same_base_stream": true,
+    "full_receiver_pipeline_includes_base_GLC_decode": false,
+    "realtime_validated": false,
+    "new_experiments_uncommitted": false,
+    "adopted_profile": "CURRENT_I12",
+    "reference_replay_exact_profile": "CURRENT_I24 only; CURRENT_I12 is not bit-exact"
+  },
+  "previous_generalization_before_Q9_long": {
+    "complete": true,
+    "round": "mild_reliability",
+    "new_outputs": 24,
+    "historical_reference_conditions": 4,
+    "selected": null,
+    "viewing_candidate": "Q9_R25",
+    "subjective_review": "Q9 positive on video1/video2/video3; Q6_D25 flicker remains on video2; other profiles and archive scene not separately reviewed in this message",
+    "automatic_adoption": false,
+    "current_profile_unchanged": true,
+    "independent_holdout": false,
+    "long_video": false,
+    "realtime": false,
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\泛化改进第二轮_温和可靠性与中档引导_20261112.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_泛化第二轮_20261112",
+    "verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\verification.json",
+    "candidate_changes": {
+      "video1": {
+        "total_kbps": 35.9656,
+        "full_mae_change_percent": -5.0384233371703395,
+        "reef_mae_change_percent": -3.452702334743807,
+        "psnr_change_db": 0.09978953441915905
+      },
+      "video2": {
+        "total_kbps": 37.9488,
+        "full_mae_change_percent": -25.381637513992537,
+        "reef_mae_change_percent": -25.390458537080065,
+        "psnr_change_db": 0.1990935454767282
+      },
+      "video3": {
+        "total_kbps": 35.5088,
+        "full_mae_change_percent": 1.2581469865317052,
+        "reef_mae_change_percent": 5.373553108170714,
+        "psnr_change_db": 0.06736346635781487
+      }
+    },
+    "objective": "Modest video2 improvement; do not overstate severity",
+    "previous_viewing_candidate_before_user_feedback": "Q6_R25",
+    "previous_candidate_changes_before_user_feedback": {
+      "video1": {
+        "full_mae_change_percent": -0.8891371934664161,
+        "reef_mae_change_percent": -1.2340996929650405,
+        "psnr_change_db": 0.03563828249431822,
+        "boundary_proxy_change_percent": -0.9109418776923728,
+        "dynamic_error_change_percent": -0.27514745648039574,
+        "current_kbps": 32.6624,
+        "candidate_kbps": 32.6624
+      },
+      "video2": {
+        "full_mae_change_percent": -1.0988835109834394,
+        "reef_mae_change_percent": -0.5504240460977639,
+        "psnr_change_db": 0.03625469304081008,
+        "boundary_proxy_change_percent": -0.7140781992561962,
+        "dynamic_error_change_percent": -0.1941787181975574,
+        "current_kbps": 30.9904,
+        "candidate_kbps": 30.9904
+      },
+      "video3": {
+        "full_mae_change_percent": -0.09508605485842869,
+        "reef_mae_change_percent": 0.1407953801732642,
+        "psnr_change_db": 0.005630115510676603,
+        "boundary_proxy_change_percent": -0.37861868270880894,
+        "dynamic_error_change_percent": -0.09228335409994237,
+        "current_kbps": 33.092,
+        "candidate_kbps": 33.092
+      },
+      "archive82_first10s": {
+        "full_mae_change_percent": -1.0573687667051357,
+        "reef_mae_change_percent": null,
+        "psnr_change_db": 0.039822907554132314,
+        "boundary_proxy_change_percent": -0.9554138083605945,
+        "dynamic_error_change_percent": -0.3163210807660688,
+        "current_kbps": 32.9952,
+        "candidate_kbps": 32.9952
+      }
+    },
+    "candidate_changes_profile": "Q9_R25",
+    "user_feedback_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\user_feedback_Q9_20261112.json",
+    "numeric_selected_unchanged": null,
+    "viewing_variant_inferred_from_links": true
+  },
+  "previous_user_perceptual_feedback_before_ghosting": {
+    "date": "2026-11-12",
+    "type": "user_perceptual_feedback",
+    "verbatim_user_feedback": "目前看下来Q9是比较好的，3段视频都不错，video2即使在Q6D25也有画面闪烁问题，跳变没有解决，但是Q9就很好",
+    "Q9": {
+      "assessment_zh": "用户认为Q9比较好，video1/video2/video3三段视频都不错，video2在Q9下效果很好。",
+      "scope": [
+        "video1",
+        "video2",
+        "video3"
+      ],
+      "status": "positive_user_visual_feedback",
+      "literal_profile_name_from_user": "Q9",
+      "linked_comparison_profile": "Q9_R25",
+      "exact_variant_mapping": "Contextual mapping from the separately provided Q9 pair videos; user did not explicitly distinguish Q9_T3/R25/D25. Do not mark all Q9 subvariants individually accepted."
+    },
+    "Q6_D25": {
+      "scope": [
+        "video2"
+      ],
+      "assessment_zh": "仍有画面闪烁，跳变没有解决。",
+      "status": "flicker_and_jumps_persist_per_user"
+    },
+    "Q6_R25": {
+      "status": "not_separately_assessed_in_this_message"
+    },
+    "interpretation_zh": "后续优先研究Q9方向，以本轮单独展示的Q9_R25作为可追溯参照。平均误差下降不等同解决可见闪烁；原数值筛选和video3局部指标回退继续保留。",
+    "numeric_selected_unchanged": null,
+    "Q9_R25_numeric_screen_passed": false,
+    "known_numeric_tradeoff": "video3 historical reef coarse_mae +5.37%, while user reports good overall appearance.",
+    "independent_holdout_reviewed": false,
+    "extra_archive_scene_reviewed": false,
+    "long_video_reviewed": false,
+    "realtime_reviewed": false,
+    "current_adopted_configuration_changed": false,
+    "deployment_default_changed": false,
+    "new_experiments_run": false,
+    "metrics_for_contextual_Q9_R25": {
+      "video1": {
+        "total_kbps": 35.9656,
+        "full_mae_change_percent": -5.0384233371703395,
+        "reef_mae_change_percent": -3.452702334743807,
+        "psnr_change_db": 0.09978953441915905
+      },
+      "video2": {
+        "total_kbps": 37.9488,
+        "full_mae_change_percent": -25.381637513992537,
+        "reef_mae_change_percent": -25.390458537080065,
+        "psnr_change_db": 0.1990935454767282
+      },
+      "video3": {
+        "total_kbps": 35.5088,
+        "full_mae_change_percent": 1.2581469865317052,
+        "reef_mae_change_percent": 5.373553108170714,
+        "psnr_change_db": 0.06736346635781487
+      }
+    },
+    "verified_contextual_artifacts": {
+      "video1": {
+        "guide_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\guide.glcguide",
+        "guide_sha256": "e14a695bd1f80d2e0268bf563f234481624e8be25b8251662e6a8f7fabe9f719",
+        "outputs": [
+          {
+            "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\receive\\R25\\rgb.npy",
+            "sha256": "60f790c192a69de1372b6d6e0a2dee23a9b327f7a01534f492efff9cb843fcfd"
+          },
+          {
+            "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\receive\\R25\\alpha.npy",
+            "sha256": "7ce34d563f3fd72539bb468138913352ed0ecb0f0c0f28f2dc97cf7dfe5a604f"
+          },
+          {
+            "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\receive\\R25\\shared.npy",
+            "sha256": "4f8fcf35f91ed52a495650b6cc5cecee0eb4a74aa02aa48fc9ae464c333f490a"
+          }
+        ],
+        "preview": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_泛化第二轮_20261112\\video1_current_vs_Q9_R25.mp4",
+        "preview_sha256": "67131f9a258dfc28c24353e8c3eb2f46e6ff1a6ec50cb6c834d879dd53e05abc"
+      },
+      "video2": {
+        "guide_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video2\\Q9\\guide.glcguide",
+        "guide_sha256": "7de40d479e2d0b6a9078974bb2f4412983d4b856dfcfa1030d7cd7a92752c64a",
+        "outputs": [
+          {
+            "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video2\\Q9\\receive\\R25\\rgb.npy",
+            "sha256": "b4f8a466cb2ba9c9c2f441e623e49e75b54008c656b6731ad3f2d07f5e548004"
+          },
+          {
+            "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video2\\Q9\\receive\\R25\\alpha.npy",
+            "sha256": "1ba7af9e21cf9d21904c5fd8d0e20a018732a2ca3abfc432c571030d02703524"
+          },
+          {
+            "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video2\\Q9\\receive\\R25\\shared.npy",
+            "sha256": "f858bcdb03830a83e92f7199f270b9154465e15a0987399c5e64f7bf327f697f"
+          }
+        ],
+        "preview": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_泛化第二轮_20261112\\video2_current_vs_Q9_R25.mp4",
+        "preview_sha256": "f68551f0bcf08c9491ffc6412a1a869c313d431061ad81ca9be7480dbc075a96"
+      },
+      "video3": {
+        "guide_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video3\\Q9\\guide.glcguide",
+        "guide_sha256": "420238703ffbf5ebf87996d6ed7c8cf8e21e6643c72391093ed0c16b7e4b5344",
+        "outputs": [
+          {
+            "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video3\\Q9\\receive\\R25\\rgb.npy",
+            "sha256": "ae8d762d947c155e6ee18b7ff0a51a3e5d7565743ee27a1e78de0b9b77ad45d1"
+          },
+          {
+            "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video3\\Q9\\receive\\R25\\alpha.npy",
+            "sha256": "3a3c53bdbc9a99f9daeedb6abb2b973c56140e37e58be593f6a993a30b0bef40"
+          },
+          {
+            "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video3\\Q9\\receive\\R25\\shared.npy",
+            "sha256": "a77cfcb181ae125a66894b0dde62abb919f2a3d933bf989541fceb746170fd51"
+          }
+        ],
+        "preview": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_泛化第二轮_20261112\\video3_current_vs_Q9_R25.mp4",
+        "preview_sha256": "75f01957878a4df57419c2c616f0914ffa9672bd022e976e2fe517d8cd0d5e49"
+      }
+    }
+  },
+  "previous_next_priority_before_ghosting": [
+    "Review new long and archive clips at original speed; preserve prior Q9 acceptance.",
+    "Isolate guide-block continuity and support changes at fixed Q9; examine reduced seagrass motion.",
+    "Bound total process RAM through chunked output mapping; independently register heldout footage later."
+  ],
+  "previous_next_experiment_plan_before_ghosting": {
+    "status": "proposed_not_run",
+    "reference": "Q9_R25",
+    "focus": [
+      "guide block continuity",
+      "motion preservation",
+      "bounded output residency"
+    ],
+    "deployment_unchanged": true
+  },
+  "previous_fields_before_ghost_exit_round": {
+    "status": "Q9_ghost_exit_experiment_running",
+    "current_session_work": "Run two fixed receiver-only raw-conflict exit candidates on five registered Q9 clips; exact user event reef4.07s and video2 tail.",
+    "latest_analysis_report": "21_优化阶段_GLC解码后处理/Q9残像反馈与后续重点_20261112.md",
+    "latest_diagnosis": {
+      "actual_bytes_not_nominal_rate": true,
+      "same_cap_not_exact_rate_comparison": true,
+      "S8_integer_kbps_search_gap": "Initial 7/5/9/7 skipped 6; separate predeclared S8I tested 6/7/5 by bytes only.",
+      "chroma_offset_4_added_bytes_vs_S8I": 288,
+      "regional_regressions": {
+        "top_left": 2.855380752754666,
+        "top_right": -8.518658519112865,
+        "bottom_left": 7.520507707987822,
+        "bottom_right": 6.879103198253933
+      },
+      "anchor_events": {
+        "read_only": true,
+        "new_candidate_run": false,
+        "anchor_seconds": [
+          1,
+          3,
+          5,
+          7,
+          9
+        ],
+        "GLC_intra_seconds": [
+          4.266666666666667,
+          8.533333333333333
+        ],
+        "causality_not_proven": true,
+        "report": "21_优化阶段_GLC解码后处理/S8I换锚与跳变诊断_20261111.md"
+      }
+    },
+    "latest_experiment_plan": {
+      "status": "completed",
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_long_transfer_20261112_03\\execution_plan.json",
+      "frames": 1239,
+      "archive_cases": 2
+    },
+    "latest_experiment": {
+      "complete": true,
+      "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_long_transfer_20261112_03",
+      "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\Q9跨素材与82秒长片验证_20261112.md",
+      "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_Q9跨素材与长片_20261112",
+      "profile": "Q9_R25",
+      "long": {
+        "frames": 1239,
+        "duration_seconds": 82.6,
+        "full_mae_change_percent": -17.77291984846667,
+        "reset_full_mae_change_percent": -19.86029906631056,
+        "boundary_exact_change_vs_raw_percent": 82.25479331593955,
+        "boundary_exact_change_vs_reset_percent": -13.03455095219862,
+        "total_kbps": 37.77656174334141,
+        "gpu_cache_max_frames": 180,
+        "constant_process_RAM_proven": false
+      },
+      "archive": {
+        "reef_spotted_fish": {
+          "full_mae_change_percent": -50.570597538803106,
+          "psnr_change_db": -0.041173852605780326,
+          "dynamic_error_change_percent": 0.25121319575729384,
+          "change_amplitude_ratio_raw": 0.5910467045850819,
+          "change_amplitude_ratio_Q9": 0.5391723884994168,
+          "total_kbps": 29.0072
+        },
+        "seagrass_spotted_fish": {
+          "full_mae_change_percent": -38.89959423318161,
+          "psnr_change_db": -0.22042246864119264,
+          "dynamic_error_change_percent": -2.5300918042820753,
+          "change_amplitude_ratio_raw": 0.5229334038518405,
+          "change_amplitude_ratio_Q9": 0.32558849680830476,
+          "total_kbps": 31.828
+        }
+      },
+      "independent_holdout": false,
+      "realtime": false,
+      "subjective_review": "Partial user feedback: departed fish image remains; exact clip/time/mode unspecified. No overall acceptance for all new cases.",
+      "previous_Q9_video1_video2_video3_positive_feedback_preserved": true,
+      "automatic_adoption": false,
+      "current_profile_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+      "previous_subjective_review_before_ghosting": "pending_new_cases",
+      "user_feedback_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_long_transfer_20261112_03\\user_feedback_ghosting_20261112.json",
+      "long_video_quality_goal": "Not pursuing strong whole-video scores at this stage per user; keep as stress observation."
+    },
+    "latest_generalization_experiment": {
+      "complete": true,
+      "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_long_transfer_20261112_03",
+      "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\Q9跨素材与82秒长片验证_20261112.md",
+      "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_Q9跨素材与长片_20261112",
+      "profile": "Q9_R25",
+      "long": {
+        "frames": 1239,
+        "duration_seconds": 82.6,
+        "full_mae_change_percent": -17.77291984846667,
+        "reset_full_mae_change_percent": -19.86029906631056,
+        "boundary_exact_change_vs_raw_percent": 82.25479331593955,
+        "boundary_exact_change_vs_reset_percent": -13.03455095219862,
+        "total_kbps": 37.77656174334141,
+        "gpu_cache_max_frames": 180,
+        "constant_process_RAM_proven": false
+      },
+      "archive": {
+        "reef_spotted_fish": {
+          "full_mae_change_percent": -50.570597538803106,
+          "psnr_change_db": -0.041173852605780326,
+          "dynamic_error_change_percent": 0.25121319575729384,
+          "change_amplitude_ratio_raw": 0.5910467045850819,
+          "change_amplitude_ratio_Q9": 0.5391723884994168,
+          "total_kbps": 29.0072
+        },
+        "seagrass_spotted_fish": {
+          "full_mae_change_percent": -38.89959423318161,
+          "psnr_change_db": -0.22042246864119264,
+          "dynamic_error_change_percent": -2.5300918042820753,
+          "change_amplitude_ratio_raw": 0.5229334038518405,
+          "change_amplitude_ratio_Q9": 0.32558849680830476,
+          "total_kbps": 31.828
+        }
+      },
+      "independent_holdout": false,
+      "realtime": false,
+      "subjective_review": "Partial user feedback: departed fish image remains; exact clip/time/mode unspecified. No overall acceptance for all new cases.",
+      "previous_Q9_video1_video2_video3_positive_feedback_preserved": true,
+      "automatic_adoption": false,
+      "current_profile_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+      "previous_subjective_review_before_ghosting": "pending_new_cases",
+      "user_feedback_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_long_transfer_20261112_03\\user_feedback_ghosting_20261112.json",
+      "long_video_quality_goal": "Not pursuing strong whole-video scores at this stage per user; keep as stress observation."
+    },
+    "latest_user_perceptual_feedback": {
+      "date": "2026-11-12",
+      "type": "user_perceptual_feedback_and_priority_change",
+      "verbatim_user_feedback": "现在问题是，他会把鱼的图像留在原地，即使鱼已经走了，像是残像？拖尾？这种的，完整长片的话涉及场景切换，而且有些场景比较复杂，所以先不用追求很好的评价了也就",
+      "observation_zh": "鱼已经离开后，旧位置仍留有鱼的图像。按描述记录为残像/鬼影；是否还包含沿运动轨迹的拖尾需逐帧定位。",
+      "observation_source": "User viewing report; not independently localized to a saved frame in this turn",
+      "scope": {
+        "context_profile": "Q9_R25 long/archive round",
+        "exact_video": null,
+        "exact_timestamp": null,
+        "exact_mode": null,
+        "limitation": "User did not identify which comparison or timestamp shows the artifact. Do not attribute to every clip, both long modes, or a specific source."
+      },
+      "long_video_priority_zh": "用户指出完整长片包含场景切换和复杂场景，现阶段不追求很好的全片评价；保留为压力测试/失效观察材料。",
+      "research_priority_zh": "优先定位鱼离开后的错误历史纹理保留及真实运动保真；背景稳定和整体平均评分不能掩盖可见残像。",
+      "code_confirmed_facts": [
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\receiver_structure.py",
+          "lines": [
+            73,
+            74,
+            80,
+            81,
+            82
+          ],
+          "fact": "Output blends current raw GLC with warped raw anchor; transition also uses previous raw anchor, not recursively enhanced outputs."
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\mild_reliability_gate.py",
+          "lines": [
+            53,
+            54,
+            55
+          ],
+          "fact": "R25 scales accepted alpha by 0.75 to 1.0 of its original value and preserves its nonzero support; existing hard rejections remain."
+        },
+        {
+          "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\run_q9_long_transfer.py",
+          "lines": [
+            73
+          ],
+          "fact": "This long test explicitly has no scene-cut detector."
+        }
+      ],
+      "root_cause_status": "Hypothesis only; no frame-local causal attribution established",
+      "hypotheses_zh": [
+        "原GLC是否已有残像需先分离。",
+        "若光流或门控误把旧鱼纹理视为有效对应，Q9可能把它继续写入；温和降权不能保证退出。",
+        "换锚过渡与镜头切换分别排查，不能认定全部由切镜导致。"
+      ],
+      "next_work_proposed": [
+        "Locate one same-shot fish-departure interval using source/raw/Q9, anchor, guide and alpha/shared diagnostics.",
+        "If added by reuse, test a receiver-only exit from invalid historical texture and return to current raw GLC in that area; protect accepted Q9 background behavior.",
+        "Inspect ghost disappearance, fish motion and background stability together; metrics remain secondary evidence.",
+        "Treat hard cuts separately later; full-length average quality is not the immediate target."
+      ],
+      "no_new_parameter_thresholds": true,
+      "new_experiments_run": false,
+      "inference_changed": false,
+      "formal_adoption_changed": false,
+      "prior_Q9_video1_video2_video3_positive_feedback_preserved": true,
+      "prior_numeric_screen_unchanged": true,
+      "historic_metrics_and_evidence_unchanged": true,
+      "new_case_review_status": "partial_feedback_ghosting_reported_exact_clip_unresolved"
+    },
+    "next_priority": [
+      "Locate fish-departure ghosting in a same-shot interval; separate original GLC artifacts from Q9-added historical reuse.",
+      "Prioritize invalid-history exit and real motion while preserving the previously accepted Q9 appearance.",
+      "Use full long video as scene-cut/complexity stress observation; defer pursuit of strong whole-video quality scores."
+    ],
+    "next_experiment_plan": {
+      "status": "proposed_not_run",
+      "reference": "Q9_R25",
+      "focus": [
+        "fish departure ghosting attribution",
+        "invalid history reuse exit",
+        "same-shot motion preservation"
+      ],
+      "exact_clip_and_timestamp": null,
+      "whole_long_video_quality_priority": "deferred_per_user",
+      "inference_thresholds_not_chosen": true,
+      "deployment_unchanged": true
+    },
+    "publication": {
+      "current_changes_committed": false,
+      "pushed": false,
+      "scope": "Ghosting feedback addendum and research-priority update; experiment results unchanged"
+    },
+    "experiment_execution_gate": {
+      "status": "completed_round_feedback_updated",
+      "date": "2026-11-12",
+      "new_run_started": false,
+      "currently_running": false,
+      "note": "No broad experiment started by this feedback update; future work is proposed, not an explicit global pause."
+    },
+    "active_experiment_plan": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\execution_plan.json",
+    "new_experiment_report": "21_优化阶段_GLC解码后处理/Q9跨素材与82秒长片验证_20261112.md",
+    "user_latest_decision": "那继续推进吧"
+  },
+  "previous_latest_experiment_before_ghost_exit": {
+    "complete": true,
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_long_transfer_20261112_03",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\Q9跨素材与82秒长片验证_20261112.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_Q9跨素材与长片_20261112",
+    "profile": "Q9_R25",
+    "long": {
+      "frames": 1239,
+      "duration_seconds": 82.6,
+      "full_mae_change_percent": -17.77291984846667,
+      "reset_full_mae_change_percent": -19.86029906631056,
+      "boundary_exact_change_vs_raw_percent": 82.25479331593955,
+      "boundary_exact_change_vs_reset_percent": -13.03455095219862,
+      "total_kbps": 37.77656174334141,
+      "gpu_cache_max_frames": 180,
+      "constant_process_RAM_proven": false
+    },
+    "archive": {
+      "reef_spotted_fish": {
+        "full_mae_change_percent": -50.570597538803106,
+        "psnr_change_db": -0.041173852605780326,
+        "dynamic_error_change_percent": 0.25121319575729384,
+        "change_amplitude_ratio_raw": 0.5910467045850819,
+        "change_amplitude_ratio_Q9": 0.5391723884994168,
+        "total_kbps": 29.0072
+      },
+      "seagrass_spotted_fish": {
+        "full_mae_change_percent": -38.89959423318161,
+        "psnr_change_db": -0.22042246864119264,
+        "dynamic_error_change_percent": -2.5300918042820753,
+        "change_amplitude_ratio_raw": 0.5229334038518405,
+        "change_amplitude_ratio_Q9": 0.32558849680830476,
+        "total_kbps": 31.828
+      }
+    },
+    "independent_holdout": false,
+    "realtime": false,
+    "subjective_review": "Partial user feedback: departed fish image remains; exact clip/time/mode unspecified. No overall acceptance for all new cases.",
+    "previous_Q9_video1_video2_video3_positive_feedback_preserved": true,
+    "automatic_adoption": false,
+    "current_profile_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+    "previous_subjective_review_before_ghosting": "pending_new_cases",
+    "user_feedback_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_long_transfer_20261112_03\\user_feedback_ghosting_20261112.json",
+    "long_video_quality_goal": "Not pursuing strong whole-video scores at this stage per user; keep as stress observation."
+  },
+  "previous_generalization_before_ghost_exit": {
+    "complete": true,
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_long_transfer_20261112_03",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\Q9跨素材与82秒长片验证_20261112.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_Q9跨素材与长片_20261112",
+    "profile": "Q9_R25",
+    "long": {
+      "frames": 1239,
+      "duration_seconds": 82.6,
+      "full_mae_change_percent": -17.77291984846667,
+      "reset_full_mae_change_percent": -19.86029906631056,
+      "boundary_exact_change_vs_raw_percent": 82.25479331593955,
+      "boundary_exact_change_vs_reset_percent": -13.03455095219862,
+      "total_kbps": 37.77656174334141,
+      "gpu_cache_max_frames": 180,
+      "constant_process_RAM_proven": false
+    },
+    "archive": {
+      "reef_spotted_fish": {
+        "full_mae_change_percent": -50.570597538803106,
+        "psnr_change_db": -0.041173852605780326,
+        "dynamic_error_change_percent": 0.25121319575729384,
+        "change_amplitude_ratio_raw": 0.5910467045850819,
+        "change_amplitude_ratio_Q9": 0.5391723884994168,
+        "total_kbps": 29.0072
+      },
+      "seagrass_spotted_fish": {
+        "full_mae_change_percent": -38.89959423318161,
+        "psnr_change_db": -0.22042246864119264,
+        "dynamic_error_change_percent": -2.5300918042820753,
+        "change_amplitude_ratio_raw": 0.5229334038518405,
+        "change_amplitude_ratio_Q9": 0.32558849680830476,
+        "total_kbps": 31.828
+      }
+    },
+    "independent_holdout": false,
+    "realtime": false,
+    "subjective_review": "Partial user feedback: departed fish image remains; exact clip/time/mode unspecified. No overall acceptance for all new cases.",
+    "previous_Q9_video1_video2_video3_positive_feedback_preserved": true,
+    "automatic_adoption": false,
+    "current_profile_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+    "previous_subjective_review_before_ghosting": "pending_new_cases",
+    "user_feedback_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_long_transfer_20261112_03\\user_feedback_ghosting_20261112.json",
+    "long_video_quality_goal": "Not pursuing strong whole-video scores at this stage per user; keep as stress observation."
+  },
+  "previous_user_perceptual_feedback_before_localization": {
+    "date": "2026-11-12",
+    "type": "user_perceptual_feedback_and_priority_change",
+    "verbatim_user_feedback": "现在问题是，他会把鱼的图像留在原地，即使鱼已经走了，像是残像？拖尾？这种的，完整长片的话涉及场景切换，而且有些场景比较复杂，所以先不用追求很好的评价了也就",
+    "observation_zh": "鱼已经离开后，旧位置仍留有鱼的图像。按描述记录为残像/鬼影；是否还包含沿运动轨迹的拖尾需逐帧定位。",
+    "observation_source": "User viewing report; not independently localized to a saved frame in this turn",
+    "scope": {
+      "context_profile": "Q9_R25 long/archive round",
+      "exact_video": null,
+      "exact_timestamp": null,
+      "exact_mode": null,
+      "limitation": "User did not identify which comparison or timestamp shows the artifact. Do not attribute to every clip, both long modes, or a specific source."
+    },
+    "long_video_priority_zh": "用户指出完整长片包含场景切换和复杂场景，现阶段不追求很好的全片评价；保留为压力测试/失效观察材料。",
+    "research_priority_zh": "优先定位鱼离开后的错误历史纹理保留及真实运动保真；背景稳定和整体平均评分不能掩盖可见残像。",
+    "code_confirmed_facts": [
+      {
+        "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\receiver_structure.py",
+        "lines": [
+          73,
+          74,
+          80,
+          81,
+          82
+        ],
+        "fact": "Output blends current raw GLC with warped raw anchor; transition also uses previous raw anchor, not recursively enhanced outputs."
+      },
+      {
+        "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\mild_reliability_gate.py",
+        "lines": [
+          53,
+          54,
+          55
+        ],
+        "fact": "R25 scales accepted alpha by 0.75 to 1.0 of its original value and preserves its nonzero support; existing hard rejections remain."
+      },
+      {
+        "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\run_q9_long_transfer.py",
+        "lines": [
+          73
+        ],
+        "fact": "This long test explicitly has no scene-cut detector."
+      }
+    ],
+    "root_cause_status": "Hypothesis only; no frame-local causal attribution established",
+    "hypotheses_zh": [
+      "原GLC是否已有残像需先分离。",
+      "若光流或门控误把旧鱼纹理视为有效对应，Q9可能把它继续写入；温和降权不能保证退出。",
+      "换锚过渡与镜头切换分别排查，不能认定全部由切镜导致。"
+    ],
+    "next_work_proposed": [
+      "Locate one same-shot fish-departure interval using source/raw/Q9, anchor, guide and alpha/shared diagnostics.",
+      "If added by reuse, test a receiver-only exit from invalid historical texture and return to current raw GLC in that area; protect accepted Q9 background behavior.",
+      "Inspect ghost disappearance, fish motion and background stability together; metrics remain secondary evidence.",
+      "Treat hard cuts separately later; full-length average quality is not the immediate target."
+    ],
+    "no_new_parameter_thresholds": true,
+    "new_experiments_run": false,
+    "inference_changed": false,
+    "formal_adoption_changed": false,
+    "prior_Q9_video1_video2_video3_positive_feedback_preserved": true,
+    "prior_numeric_screen_unchanged": true,
+    "historic_metrics_and_evidence_unchanged": true,
+    "new_case_review_status": "partial_feedback_ghosting_reported_exact_clip_unresolved"
+  },
+  "previous_latest_experiment_before_temporal_exit": {
+    "date": "2026-11-12",
+    "complete": true,
+    "reference": "Q9_R25",
+    "first_phase_candidates": [
+      "E32",
+      "EL12"
+    ],
+    "first_phase_new_outputs": 10,
+    "adaptive_extension_candidates": [
+      "C32"
+    ],
+    "adaptive_extension_new_outputs": 5,
+    "new_candidate_outputs": 15,
+    "cases": [
+      "video1",
+      "video2",
+      "video3",
+      "reef_spotted_fish",
+      "seagrass_spotted_fish"
+    ],
+    "selected": null,
+    "automatic_adoption": false,
+    "current_profile_unchanged": true,
+    "current_profile_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+    "user_subjective_review": "pending",
+    "previous_Q9_positive_feedback_preserved": true,
+    "independent_holdout": false,
+    "long_video_rerun": false,
+    "new_packet_or_flow_model_inference": false,
+    "extra_transmission_bytes": 0,
+    "decision_zh": "局部旧鱼位置错误纹理减轻，但三候选均有全帧时序回退；video2尾部改善有限。不替换Q9_R25研究参照，不改变正式采用配置。",
+    "next_direction_zh": "下一轮先检查有时间连续性的运动证据和退出/恢复机制；同镜头用户区间优先，保留背景稳定回归检查。尚未运行。",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\Q9残像定位与局部退出实验_20261112.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_Q9残像退出_20261112",
+    "verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\verification.json",
+    "changes_summary": {
+      "video1": {
+        "E32": {
+          "full_coarse_temporal_mae_change_percent": 19.200598429265693,
+          "psnr_change_db": 0.28527593268803386,
+          "total_kbps": 35.9656
+        },
+        "EL12": {
+          "full_coarse_temporal_mae_change_percent": 33.670157676331634,
+          "psnr_change_db": 0.163309821625365,
+          "total_kbps": 35.9656
+        },
+        "C32": {
+          "full_coarse_temporal_mae_change_percent": 9.567493991222719,
+          "psnr_change_db": 0.052008814468159414,
+          "total_kbps": 35.9656
+        }
+      },
+      "video2": {
+        "E32": {
+          "full_coarse_temporal_mae_change_percent": 6.979313197283843,
+          "psnr_change_db": 0.17368467209581695,
+          "total_kbps": 37.9488
+        },
+        "EL12": {
+          "full_coarse_temporal_mae_change_percent": 37.28761114674333,
+          "psnr_change_db": 0.2882051478805465,
+          "total_kbps": 37.9488
+        },
+        "C32": {
+          "full_coarse_temporal_mae_change_percent": 38.52219537501605,
+          "psnr_change_db": 0.09277128730981588,
+          "total_kbps": 37.9488
+        }
+      },
+      "video3": {
+        "E32": {
+          "full_coarse_temporal_mae_change_percent": 39.79022462996633,
+          "psnr_change_db": 0.20509029002607448,
+          "total_kbps": 35.5088
+        },
+        "EL12": {
+          "full_coarse_temporal_mae_change_percent": 86.24957735313869,
+          "psnr_change_db": 0.17468493640066285,
+          "total_kbps": 35.5088
+        },
+        "C32": {
+          "full_coarse_temporal_mae_change_percent": 24.500648952160418,
+          "psnr_change_db": 0.020500213007455415,
+          "total_kbps": 35.5088
+        }
+      },
+      "reef_spotted_fish": {
+        "E32": {
+          "full_coarse_temporal_mae_change_percent": 3.9995240617383576,
+          "psnr_change_db": 0.04866557443100916,
+          "total_kbps": 29.0072
+        },
+        "EL12": {
+          "full_coarse_temporal_mae_change_percent": 62.51065026151363,
+          "psnr_change_db": 0.16412494417316026,
+          "total_kbps": 29.0072
+        },
+        "C32": {
+          "full_coarse_temporal_mae_change_percent": 54.337730192343244,
+          "psnr_change_db": 0.07398191091392547,
+          "total_kbps": 29.0072
+        }
+      },
+      "seagrass_spotted_fish": {
+        "E32": {
+          "full_coarse_temporal_mae_change_percent": 7.560967144530539,
+          "psnr_change_db": 0.07345450266371145,
+          "total_kbps": 31.828
+        },
+        "EL12": {
+          "full_coarse_temporal_mae_change_percent": 60.70261185667016,
+          "psnr_change_db": 0.2952857744858228,
+          "total_kbps": 31.828
+        },
+        "C32": {
+          "full_coarse_temporal_mae_change_percent": 59.02564738589729,
+          "psnr_change_db": 0.1529917434821364,
+          "total_kbps": 31.828
+        }
+      }
+    },
+    "visual_inspection": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\visual_inspection.json",
+    "evidence": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\evidence_20261112\\q9_ghost_exit\\manifest.json"
+  },
+  "previous_generalization_before_temporal_exit": {
+    "date": "2026-11-12",
+    "complete": true,
+    "reference": "Q9_R25",
+    "first_phase_candidates": [
+      "E32",
+      "EL12"
+    ],
+    "first_phase_new_outputs": 10,
+    "adaptive_extension_candidates": [
+      "C32"
+    ],
+    "adaptive_extension_new_outputs": 5,
+    "new_candidate_outputs": 15,
+    "cases": [
+      "video1",
+      "video2",
+      "video3",
+      "reef_spotted_fish",
+      "seagrass_spotted_fish"
+    ],
+    "selected": null,
+    "automatic_adoption": false,
+    "current_profile_unchanged": true,
+    "current_profile_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+    "user_subjective_review": "pending",
+    "previous_Q9_positive_feedback_preserved": true,
+    "independent_holdout": false,
+    "long_video_rerun": false,
+    "new_packet_or_flow_model_inference": false,
+    "extra_transmission_bytes": 0,
+    "decision_zh": "局部旧鱼位置错误纹理减轻，但三候选均有全帧时序回退；video2尾部改善有限。不替换Q9_R25研究参照，不改变正式采用配置。",
+    "next_direction_zh": "下一轮先检查有时间连续性的运动证据和退出/恢复机制；同镜头用户区间优先，保留背景稳定回归检查。尚未运行。",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\Q9残像定位与局部退出实验_20261112.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_Q9残像退出_20261112",
+    "verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\verification.json",
+    "changes_summary": {
+      "video1": {
+        "E32": {
+          "full_coarse_temporal_mae_change_percent": 19.200598429265693,
+          "psnr_change_db": 0.28527593268803386,
+          "total_kbps": 35.9656
+        },
+        "EL12": {
+          "full_coarse_temporal_mae_change_percent": 33.670157676331634,
+          "psnr_change_db": 0.163309821625365,
+          "total_kbps": 35.9656
+        },
+        "C32": {
+          "full_coarse_temporal_mae_change_percent": 9.567493991222719,
+          "psnr_change_db": 0.052008814468159414,
+          "total_kbps": 35.9656
+        }
+      },
+      "video2": {
+        "E32": {
+          "full_coarse_temporal_mae_change_percent": 6.979313197283843,
+          "psnr_change_db": 0.17368467209581695,
+          "total_kbps": 37.9488
+        },
+        "EL12": {
+          "full_coarse_temporal_mae_change_percent": 37.28761114674333,
+          "psnr_change_db": 0.2882051478805465,
+          "total_kbps": 37.9488
+        },
+        "C32": {
+          "full_coarse_temporal_mae_change_percent": 38.52219537501605,
+          "psnr_change_db": 0.09277128730981588,
+          "total_kbps": 37.9488
+        }
+      },
+      "video3": {
+        "E32": {
+          "full_coarse_temporal_mae_change_percent": 39.79022462996633,
+          "psnr_change_db": 0.20509029002607448,
+          "total_kbps": 35.5088
+        },
+        "EL12": {
+          "full_coarse_temporal_mae_change_percent": 86.24957735313869,
+          "psnr_change_db": 0.17468493640066285,
+          "total_kbps": 35.5088
+        },
+        "C32": {
+          "full_coarse_temporal_mae_change_percent": 24.500648952160418,
+          "psnr_change_db": 0.020500213007455415,
+          "total_kbps": 35.5088
+        }
+      },
+      "reef_spotted_fish": {
+        "E32": {
+          "full_coarse_temporal_mae_change_percent": 3.9995240617383576,
+          "psnr_change_db": 0.04866557443100916,
+          "total_kbps": 29.0072
+        },
+        "EL12": {
+          "full_coarse_temporal_mae_change_percent": 62.51065026151363,
+          "psnr_change_db": 0.16412494417316026,
+          "total_kbps": 29.0072
+        },
+        "C32": {
+          "full_coarse_temporal_mae_change_percent": 54.337730192343244,
+          "psnr_change_db": 0.07398191091392547,
+          "total_kbps": 29.0072
+        }
+      },
+      "seagrass_spotted_fish": {
+        "E32": {
+          "full_coarse_temporal_mae_change_percent": 7.560967144530539,
+          "psnr_change_db": 0.07345450266371145,
+          "total_kbps": 31.828
+        },
+        "EL12": {
+          "full_coarse_temporal_mae_change_percent": 60.70261185667016,
+          "psnr_change_db": 0.2952857744858228,
+          "total_kbps": 31.828
+        },
+        "C32": {
+          "full_coarse_temporal_mae_change_percent": 59.02564738589729,
+          "psnr_change_db": 0.1529917434821364,
+          "total_kbps": 31.828
+        }
+      }
+    },
+    "visual_inspection": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\visual_inspection.json",
+    "evidence": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\evidence_20261112\\q9_ghost_exit\\manifest.json"
+  },
+  "previous_next_plan_before_temporal_exit": {
+    "status": "proposed_not_run",
+    "reference": "Q9_R25",
+    "focus": [
+      "temporal motion evidence",
+      "history exit and recovery"
+    ],
+    "known_user_events": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\user_event_registration.json",
+    "parameters_not_chosen": true,
+    "whole_long_video_quality_priority": "deferred_per_user",
+    "deployment_unchanged": true
+  },
+  "previous_latest_diagnosis_before_temporal_exit": {
+    "report": "21_优化阶段_GLC解码后处理/Q9残像定位与局部退出实验_20261112.md",
+    "attribution": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\diagnosis\\attribution.json",
+    "same_shot_reef_frame61_old_anchor45_reuse_confirmed": true,
+    "not_universal_cause": true,
+    "video2_tail_not_resolved": true,
+    "local_error_improvement_with_temporal_regression": true
+  },
+  "previous_latest_experiment_before_current_structure": {
+    "date": "2026-11-12",
+    "complete": true,
+    "reference": "Q9_R25",
+    "profiles": [
+      "P3",
+      "M3",
+      "ML3"
+    ],
+    "new_outputs": 15,
+    "new_candidate_outputs": 15,
+    "cases": [
+      "video1",
+      "video2",
+      "video3",
+      "reef_spotted_fish",
+      "seagrass_spotted_fish"
+    ],
+    "changes": {
+      "video1": {
+        "P3": {
+          "coarse_temporal_change_percent": 18.640768910634954,
+          "psnr_change_db": 0.3926361646446672
+        },
+        "M3": {
+          "coarse_temporal_change_percent": 17.679704431758324,
+          "psnr_change_db": 0.38621835413014693
+        },
+        "ML3": {
+          "coarse_temporal_change_percent": 8.028373621033435,
+          "psnr_change_db": 0.49266085837103546
+        }
+      },
+      "video2": {
+        "P3": {
+          "coarse_temporal_change_percent": 14.291348797058557,
+          "psnr_change_db": 0.30184269531005725
+        },
+        "M3": {
+          "coarse_temporal_change_percent": 11.902191425072584,
+          "psnr_change_db": 0.2774802933787761
+        },
+        "ML3": {
+          "coarse_temporal_change_percent": 5.490045700639179,
+          "psnr_change_db": 0.2657782563405213
+        }
+      },
+      "video3": {
+        "P3": {
+          "coarse_temporal_change_percent": 53.33687770848074,
+          "psnr_change_db": 0.25135428695520545
+        },
+        "M3": {
+          "coarse_temporal_change_percent": 48.749508381386185,
+          "psnr_change_db": 0.24201886495596625
+        },
+        "ML3": {
+          "coarse_temporal_change_percent": 28.854344399258668,
+          "psnr_change_db": 0.30727777320030825
+        }
+      },
+      "reef_spotted_fish": {
+        "P3": {
+          "coarse_temporal_change_percent": 20.522443560216352,
+          "psnr_change_db": 0.12994484773994586
+        },
+        "M3": {
+          "coarse_temporal_change_percent": 14.265052126602672,
+          "psnr_change_db": 0.10599309683626856
+        },
+        "ML3": {
+          "coarse_temporal_change_percent": 10.373768315377152,
+          "psnr_change_db": 0.10775300301899549
+        }
+      },
+      "seagrass_spotted_fish": {
+        "P3": {
+          "coarse_temporal_change_percent": 25.376765475168984,
+          "psnr_change_db": 0.22973988901429365
+        },
+        "M3": {
+          "coarse_temporal_change_percent": 18.871551402705578,
+          "psnr_change_db": 0.1854799091204633
+        },
+        "ML3": {
+          "coarse_temporal_change_percent": 11.684560184825887,
+          "psnr_change_db": 0.1826922900101735
+        }
+      }
+    },
+    "user_events": {
+      "reef_spotted_fish": {
+        "reef_old_fish_A": {
+          "Q9_R25": {
+            "mean_rgb_mae": 10.069589138031006,
+            "mean_rgb_mae_change_percent": 0.0,
+            "exact_frame61_rgb_mae": 10.245659828186035
+          },
+          "P3": {
+            "mean_rgb_mae": 7.841934941031716,
+            "mean_rgb_mae_change_percent": -22.122592753917292,
+            "exact_frame61_rgb_mae": 8.23524284362793
+          },
+          "M3": {
+            "mean_rgb_mae": 7.9375131563706836,
+            "mean_rgb_mae_change_percent": -21.17341584084955,
+            "exact_frame61_rgb_mae": 8.348090171813965
+          },
+          "ML3": {
+            "mean_rgb_mae": 8.080518700859763,
+            "mean_rgb_mae_change_percent": -19.753243254572183,
+            "exact_frame61_rgb_mae": 8.524016380310059
+          }
+        },
+        "reef_old_fish_B": {
+          "Q9_R25": {
+            "mean_rgb_mae": 10.886817368594082,
+            "mean_rgb_mae_change_percent": 0.0,
+            "exact_frame61_rgb_mae": 10.98741340637207
+          },
+          "P3": {
+            "mean_rgb_mae": 9.29659873789007,
+            "mean_rgb_mae_change_percent": -14.606827476425021,
+            "exact_frame61_rgb_mae": 9.272135734558105
+          },
+          "M3": {
+            "mean_rgb_mae": 9.509410511363637,
+            "mean_rgb_mae_change_percent": -12.6520617605283,
+            "exact_frame61_rgb_mae": 9.53819465637207
+          },
+          "ML3": {
+            "mean_rgb_mae": 9.59396709095348,
+            "mean_rgb_mae_change_percent": -11.87537398551547,
+            "exact_frame61_rgb_mae": 9.65321159362793
+          }
+        }
+      },
+      "video2": {
+        "tail": {
+          "Q9_R25": {
+            "mean_rgb_mae": 23.615363121032715,
+            "mean_rgb_mae_change_percent": 0.0,
+            "exact_frame61_rgb_mae": 23.817506790161133
+          },
+          "P3": {
+            "mean_rgb_mae": 23.198895009358726,
+            "mean_rgb_mae_change_percent": -1.7635473549126424,
+            "exact_frame61_rgb_mae": 23.19300651550293
+          },
+          "M3": {
+            "mean_rgb_mae": 23.249598884582518,
+            "mean_rgb_mae_change_percent": -1.5488401960011888,
+            "exact_frame61_rgb_mae": 23.26009178161621
+          },
+          "ML3": {
+            "mean_rgb_mae": 23.30616137186686,
+            "mean_rgb_mae_change_percent": -1.309324559529923,
+            "exact_frame61_rgb_mae": 23.340791702270508
+          }
+        }
+      }
+    },
+    "selected": null,
+    "automatic_adoption": false,
+    "user_subjective_review": "pending",
+    "prior_Q9_positive_feedback_preserved": true,
+    "current_profile_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+    "current_profile_unchanged": true,
+    "extra_transmission_bytes": 0,
+    "long_video_rerun": false,
+    "independent_holdout": false,
+    "conclusion_zh": "连续帧确认和运动代理仍不足以解决残像；低频有界修正降低部分时序代价，但各片仍有相对Q9的回退。保持研究对照，不自动采用。",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\Q9残像连续帧退出与低频修正实验_20261112.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_Q9连续帧退出_20261112",
+    "verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\verification.json",
+    "evidence": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\evidence_20261112\\q9_temporal_exit\\manifest.json"
+  },
+  "previous_latest_generalization_experiment_before_current_structure": {
+    "date": "2026-11-12",
+    "complete": true,
+    "reference": "Q9_R25",
+    "profiles": [
+      "P3",
+      "M3",
+      "ML3"
+    ],
+    "new_outputs": 15,
+    "new_candidate_outputs": 15,
+    "cases": [
+      "video1",
+      "video2",
+      "video3",
+      "reef_spotted_fish",
+      "seagrass_spotted_fish"
+    ],
+    "changes": {
+      "video1": {
+        "P3": {
+          "coarse_temporal_change_percent": 18.640768910634954,
+          "psnr_change_db": 0.3926361646446672
+        },
+        "M3": {
+          "coarse_temporal_change_percent": 17.679704431758324,
+          "psnr_change_db": 0.38621835413014693
+        },
+        "ML3": {
+          "coarse_temporal_change_percent": 8.028373621033435,
+          "psnr_change_db": 0.49266085837103546
+        }
+      },
+      "video2": {
+        "P3": {
+          "coarse_temporal_change_percent": 14.291348797058557,
+          "psnr_change_db": 0.30184269531005725
+        },
+        "M3": {
+          "coarse_temporal_change_percent": 11.902191425072584,
+          "psnr_change_db": 0.2774802933787761
+        },
+        "ML3": {
+          "coarse_temporal_change_percent": 5.490045700639179,
+          "psnr_change_db": 0.2657782563405213
+        }
+      },
+      "video3": {
+        "P3": {
+          "coarse_temporal_change_percent": 53.33687770848074,
+          "psnr_change_db": 0.25135428695520545
+        },
+        "M3": {
+          "coarse_temporal_change_percent": 48.749508381386185,
+          "psnr_change_db": 0.24201886495596625
+        },
+        "ML3": {
+          "coarse_temporal_change_percent": 28.854344399258668,
+          "psnr_change_db": 0.30727777320030825
+        }
+      },
+      "reef_spotted_fish": {
+        "P3": {
+          "coarse_temporal_change_percent": 20.522443560216352,
+          "psnr_change_db": 0.12994484773994586
+        },
+        "M3": {
+          "coarse_temporal_change_percent": 14.265052126602672,
+          "psnr_change_db": 0.10599309683626856
+        },
+        "ML3": {
+          "coarse_temporal_change_percent": 10.373768315377152,
+          "psnr_change_db": 0.10775300301899549
+        }
+      },
+      "seagrass_spotted_fish": {
+        "P3": {
+          "coarse_temporal_change_percent": 25.376765475168984,
+          "psnr_change_db": 0.22973988901429365
+        },
+        "M3": {
+          "coarse_temporal_change_percent": 18.871551402705578,
+          "psnr_change_db": 0.1854799091204633
+        },
+        "ML3": {
+          "coarse_temporal_change_percent": 11.684560184825887,
+          "psnr_change_db": 0.1826922900101735
+        }
+      }
+    },
+    "user_events": {
+      "reef_spotted_fish": {
+        "reef_old_fish_A": {
+          "Q9_R25": {
+            "mean_rgb_mae": 10.069589138031006,
+            "mean_rgb_mae_change_percent": 0.0,
+            "exact_frame61_rgb_mae": 10.245659828186035
+          },
+          "P3": {
+            "mean_rgb_mae": 7.841934941031716,
+            "mean_rgb_mae_change_percent": -22.122592753917292,
+            "exact_frame61_rgb_mae": 8.23524284362793
+          },
+          "M3": {
+            "mean_rgb_mae": 7.9375131563706836,
+            "mean_rgb_mae_change_percent": -21.17341584084955,
+            "exact_frame61_rgb_mae": 8.348090171813965
+          },
+          "ML3": {
+            "mean_rgb_mae": 8.080518700859763,
+            "mean_rgb_mae_change_percent": -19.753243254572183,
+            "exact_frame61_rgb_mae": 8.524016380310059
+          }
+        },
+        "reef_old_fish_B": {
+          "Q9_R25": {
+            "mean_rgb_mae": 10.886817368594082,
+            "mean_rgb_mae_change_percent": 0.0,
+            "exact_frame61_rgb_mae": 10.98741340637207
+          },
+          "P3": {
+            "mean_rgb_mae": 9.29659873789007,
+            "mean_rgb_mae_change_percent": -14.606827476425021,
+            "exact_frame61_rgb_mae": 9.272135734558105
+          },
+          "M3": {
+            "mean_rgb_mae": 9.509410511363637,
+            "mean_rgb_mae_change_percent": -12.6520617605283,
+            "exact_frame61_rgb_mae": 9.53819465637207
+          },
+          "ML3": {
+            "mean_rgb_mae": 9.59396709095348,
+            "mean_rgb_mae_change_percent": -11.87537398551547,
+            "exact_frame61_rgb_mae": 9.65321159362793
+          }
+        }
+      },
+      "video2": {
+        "tail": {
+          "Q9_R25": {
+            "mean_rgb_mae": 23.615363121032715,
+            "mean_rgb_mae_change_percent": 0.0,
+            "exact_frame61_rgb_mae": 23.817506790161133
+          },
+          "P3": {
+            "mean_rgb_mae": 23.198895009358726,
+            "mean_rgb_mae_change_percent": -1.7635473549126424,
+            "exact_frame61_rgb_mae": 23.19300651550293
+          },
+          "M3": {
+            "mean_rgb_mae": 23.249598884582518,
+            "mean_rgb_mae_change_percent": -1.5488401960011888,
+            "exact_frame61_rgb_mae": 23.26009178161621
+          },
+          "ML3": {
+            "mean_rgb_mae": 23.30616137186686,
+            "mean_rgb_mae_change_percent": -1.309324559529923,
+            "exact_frame61_rgb_mae": 23.340791702270508
+          }
+        }
+      }
+    },
+    "selected": null,
+    "automatic_adoption": false,
+    "user_subjective_review": "pending",
+    "prior_Q9_positive_feedback_preserved": true,
+    "current_profile_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+    "current_profile_unchanged": true,
+    "extra_transmission_bytes": 0,
+    "long_video_rerun": false,
+    "independent_holdout": false,
+    "conclusion_zh": "连续帧确认和运动代理仍不足以解决残像；低频有界修正降低部分时序代价，但各片仍有相对Q9的回退。保持研究对照，不自动采用。",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\Q9残像连续帧退出与低频修正实验_20261112.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_Q9连续帧退出_20261112",
+    "verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\verification.json",
+    "evidence": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\evidence_20261112\\q9_temporal_exit\\manifest.json"
+  },
+  "previous_latest_diagnosis_before_current_structure": {
+    "report": "21_优化阶段_GLC解码后处理/Q9残像连续帧退出与低频修正实验_20261112.md",
+    "prior_reef_frame61_attribution_preserved": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\diagnosis\\attribution.json",
+    "temporal_confirmation_alone_insufficient": true,
+    "low_frequency_correction_reduces_temporal_cost_but_leaves_tradeoffs": true,
+    "video2_tail_not_resolved": true,
+    "not_a_universal_ghosting_fix": true
+  },
+  "previous_next_experiment_plan_before_current_structure": {
+    "status": "proposed_not_run",
+    "reference": "Q9_R25",
+    "focus": [
+      "remaining stale contours",
+      "motion proxy false activation",
+      "reliable correspondence/occlusion evidence"
+    ],
+    "parameters_not_chosen": true,
+    "long_video_quality_priority": "deferred_per_user"
+  },
+  "previous_latest_user_perceptual_feedback_before_current_structure": {
+    "date": "2026-11-12",
+    "type": "user_ghosting_location_clarification",
+    "verbatim_user_feedback": "04礁石斑点鱼4.07s，然后video2也有残像问题，鱼尾巴那里",
+    "preceding_feedback": "现在问题是，他会把鱼的图像留在原地，即使鱼已经走了，像是残像？拖尾？这种的，完整长片的话涉及场景切换，而且有些场景比较复杂，所以先不用追求很好的评价了也就",
+    "scope": {
+      "context_reference": "Q9_R25",
+      "reef_spotted_fish": {
+        "time_seconds": 4.07,
+        "frame_zero_based": 61
+      },
+      "video2": {
+        "region": "fish tail",
+        "time_seconds": null
+      }
+    },
+    "prior_Q9_video1_video2_video3_positive_feedback_preserved": true,
+    "Q9_subvariants_not_individually_accepted": true,
+    "video2_goal": "Modest improvement; do not exaggerate severity",
+    "long_video_priority_zh": "用户指出完整长片包含场景切换和复杂场景，现阶段不追求很好的全片评价；保留为压力测试/失效观察材料。",
+    "new_candidate_user_review": "pending",
+    "localization_record": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\user_event_registration.json",
+    "assistant_attribution_separate_from_user_feedback": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\diagnosis\\attribution.json",
+    "formal_adoption_changed": false
+  },
+  "previous_next_priority_before_current_structure": [
+    "Review original-speed user-event views, preserving prior Q9 positive assessment.",
+    "Inspect remaining old contours and motion-proxy false activations before choosing new correspondence/occlusion evidence.",
+    "Defer whole-long-video score optimization."
+  ],
+  "previous_latest_experiment_before_received_structure": {
+    "date": "2026-11-12",
+    "complete": true,
+    "new_outputs": 12,
+    "new_candidate_outputs": 12,
+    "first_phase_outputs": 8,
+    "adaptive_extension_outputs": 4,
+    "cases": [
+      "video1",
+      "video2",
+      "video3",
+      "reef_spotted_fish"
+    ],
+    "profiles": [
+      "CS50",
+      "CS100",
+      "CSM50"
+    ],
+    "reference": "Q9_R25",
+    "prior_ML3_reference_only": true,
+    "selected": null,
+    "viewing_candidate": "CSM50",
+    "automatic_adoption": false,
+    "current_profile_unchanged": true,
+    "current_profile_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+    "changes": {
+      "video1": {
+        "CS50": {
+          "full_coarse_temporal_change_percent": 0.5404130666476936,
+          "full_psnr_change_db": 0.6520163388032643
+        },
+        "CS100": {
+          "full_coarse_temporal_change_percent": 18.231663134743094,
+          "full_psnr_change_db": 0.6524183344345289
+        },
+        "CSM50": {
+          "full_coarse_temporal_change_percent": -0.06452760027693127,
+          "full_psnr_change_db": 0.14104079259184488
+        }
+      },
+      "video2": {
+        "CS50": {
+          "full_coarse_temporal_change_percent": -1.2691304176789098,
+          "full_psnr_change_db": 0.4796583210983947
+        },
+        "CS100": {
+          "full_coarse_temporal_change_percent": 19.137179608067445,
+          "full_psnr_change_db": 0.5985643634016711
+        },
+        "CSM50": {
+          "full_coarse_temporal_change_percent": 0.7115301160453891,
+          "full_psnr_change_db": 0.1696105341081946
+        }
+      },
+      "video3": {
+        "CS50": {
+          "full_coarse_temporal_change_percent": 22.438995969930176,
+          "full_psnr_change_db": 0.42305614202198427
+        },
+        "CS100": {
+          "full_coarse_temporal_change_percent": 65.31261394523267,
+          "full_psnr_change_db": 0.4256746767217514
+        },
+        "CSM50": {
+          "full_coarse_temporal_change_percent": -0.2376809020035342,
+          "full_psnr_change_db": 0.002239823835363808
+        }
+      },
+      "reef_spotted_fish": {
+        "CS50": {
+          "full_coarse_temporal_change_percent": 26.84591757601784,
+          "full_psnr_change_db": 0.42828219204303153
+        },
+        "CS100": {
+          "full_coarse_temporal_change_percent": 77.30526949546011,
+          "full_psnr_change_db": 0.45720657039425205
+        },
+        "CSM50": {
+          "full_coarse_temporal_change_percent": -1.0523581781175961,
+          "full_psnr_change_db": 0.013271227233698113
+        }
+      }
+    },
+    "user_subjective_review": "pending",
+    "previous_Q9_positive_feedback_preserved": true,
+    "priority": "Current visible fish and overall watchability; reef ghost footprint optimization deprioritized.",
+    "long_video_not_rerun": true,
+    "video4_dense_coral_deferred": true,
+    "seagrass_not_run": true,
+    "independent_holdout": false,
+    "new_flow_model_inference": false,
+    "extra_transmission_bytes": 0,
+    "conclusion_zh": "全画面当前轮廓修正有明显跨片取舍；运动范围限制后的CSM50保住接近Q9的全帧时序，但鱼区改善较小、礁石小鱼基本未恢复。仅作为温和观看候选。",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\Q9当前轮廓保留与运动范围限制_20261112.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_Q9当前轮廓保留_20261112",
+    "verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\verification.json",
+    "extension_verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\motion_extension\\verification.json",
+    "evidence": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\evidence_20261112\\q9_current_structure\\manifest.json"
+  },
+  "previous_latest_generalization_experiment_before_received_structure": {
+    "date": "2026-11-12",
+    "complete": true,
+    "new_outputs": 12,
+    "new_candidate_outputs": 12,
+    "first_phase_outputs": 8,
+    "adaptive_extension_outputs": 4,
+    "cases": [
+      "video1",
+      "video2",
+      "video3",
+      "reef_spotted_fish"
+    ],
+    "profiles": [
+      "CS50",
+      "CS100",
+      "CSM50"
+    ],
+    "reference": "Q9_R25",
+    "prior_ML3_reference_only": true,
+    "selected": null,
+    "viewing_candidate": "CSM50",
+    "automatic_adoption": false,
+    "current_profile_unchanged": true,
+    "current_profile_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+    "changes": {
+      "video1": {
+        "CS50": {
+          "full_coarse_temporal_change_percent": 0.5404130666476936,
+          "full_psnr_change_db": 0.6520163388032643
+        },
+        "CS100": {
+          "full_coarse_temporal_change_percent": 18.231663134743094,
+          "full_psnr_change_db": 0.6524183344345289
+        },
+        "CSM50": {
+          "full_coarse_temporal_change_percent": -0.06452760027693127,
+          "full_psnr_change_db": 0.14104079259184488
+        }
+      },
+      "video2": {
+        "CS50": {
+          "full_coarse_temporal_change_percent": -1.2691304176789098,
+          "full_psnr_change_db": 0.4796583210983947
+        },
+        "CS100": {
+          "full_coarse_temporal_change_percent": 19.137179608067445,
+          "full_psnr_change_db": 0.5985643634016711
+        },
+        "CSM50": {
+          "full_coarse_temporal_change_percent": 0.7115301160453891,
+          "full_psnr_change_db": 0.1696105341081946
+        }
+      },
+      "video3": {
+        "CS50": {
+          "full_coarse_temporal_change_percent": 22.438995969930176,
+          "full_psnr_change_db": 0.42305614202198427
+        },
+        "CS100": {
+          "full_coarse_temporal_change_percent": 65.31261394523267,
+          "full_psnr_change_db": 0.4256746767217514
+        },
+        "CSM50": {
+          "full_coarse_temporal_change_percent": -0.2376809020035342,
+          "full_psnr_change_db": 0.002239823835363808
+        }
+      },
+      "reef_spotted_fish": {
+        "CS50": {
+          "full_coarse_temporal_change_percent": 26.84591757601784,
+          "full_psnr_change_db": 0.42828219204303153
+        },
+        "CS100": {
+          "full_coarse_temporal_change_percent": 77.30526949546011,
+          "full_psnr_change_db": 0.45720657039425205
+        },
+        "CSM50": {
+          "full_coarse_temporal_change_percent": -1.0523581781175961,
+          "full_psnr_change_db": 0.013271227233698113
+        }
+      }
+    },
+    "user_subjective_review": "pending",
+    "previous_Q9_positive_feedback_preserved": true,
+    "priority": "Current visible fish and overall watchability; reef ghost footprint optimization deprioritized.",
+    "long_video_not_rerun": true,
+    "video4_dense_coral_deferred": true,
+    "seagrass_not_run": true,
+    "independent_holdout": false,
+    "new_flow_model_inference": false,
+    "extra_transmission_bytes": 0,
+    "conclusion_zh": "全画面当前轮廓修正有明显跨片取舍；运动范围限制后的CSM50保住接近Q9的全帧时序，但鱼区改善较小、礁石小鱼基本未恢复。仅作为温和观看候选。",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\Q9当前轮廓保留与运动范围限制_20261112.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_Q9当前轮廓保留_20261112",
+    "verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\verification.json",
+    "extension_verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\motion_extension\\verification.json",
+    "evidence": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\evidence_20261112\\q9_current_structure\\manifest.json"
+  },
+  "previous_latest_diagnosis_before_received_structure": {
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\Q9当前轮廓保留与运动范围限制_20261112.md",
+    "fish_presence_priority": true,
+    "reef_ghost_optimization_deprioritized": true,
+    "local_motion_constraint_reduces_global_regression": true,
+    "small_fish_not_restored": true,
+    "base_GLC_loss_not_recoverable_by_simple_exit": true
+  },
+  "previous_next_experiment_plan_before_received_structure": {
+    "status": "proposed_not_run",
+    "reference": "Q9_R25",
+    "viewing_candidate": "CSM50",
+    "focus": [
+      "video1/2/3 watchability",
+      "current fish shape and motion"
+    ],
+    "reef_ghost_priority": "deferred",
+    "video4": {
+      "status": "awaiting_user_clip",
+      "source_path": null,
+      "time_interval": null
+    },
+    "full_long_video_rerun": "not_started",
+    "parameters_not_chosen": true
+  },
+  "previous_next_priority_before_received_structure": [
+    "Review video1/2/3 original-speed Q9/CSM50 for whole-scene watchability and current fish presence.",
+    "Keep reef as secondary reference; do not continue ghost-footprint optimization.",
+    "Separate original GLC reconstruction loss from postprocessing changes.",
+    "Wait for user-supplied video4 dense-coral segment; long-video watchability remains future goal."
+  ],
+  "previous_user_latest_decision_before_received_structure": "礁石斑点鱼那个其实都先不用纠结残像，现在是鱼都快消失了，这个视频先不纠结，咱们主要还是看长视频和video123,先让这几个能看，长视频现在面临的有一个问题是出现大面积珊瑚的话画面会很难看，那段视频到时候我会单独提出来作为video4来进行实验，你先不用管，你先继续研究video123和这个礁石斑点鱼",
+  "latest_continue_authorization": {
+    "date": "2026-11-13",
+    "verbatim": "你先继续吧，研究下一轮。video4等会就整出来了",
+    "cases": [
+      "video1",
+      "video2",
+      "video3"
+    ],
+    "video4": "User preparing; do not assume a file or run yet",
+    "reef_priority": "Deprioritized per previous user; not required in this round",
+    "formal_adoption_unchanged": true
+  },
+  "previous_next_priority_before_strategy_summary_20261113": [
+    "Review GS25 vs Q9 on video1/2/3 at original speed for current fish shape, texture and motion.",
+    "Separate current-structure correction from guide-induced attenuation of dynamic changes.",
+    "Register video4 only after the user provides its file; do not infer a segment.",
+    "Keep whole-long-video watchability as future target; reef ghost footprint is secondary."
+  ],
+  "latest_strategy_summary": {
+    "date": "2026-11-13",
+    "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\现阶段瓶颈_优势劣势与后续路线_20261113.md",
+    "status": "documented_proposed_not_executed",
+    "scope": "Bottlenecks, evidence-backed strengths and limitations, prioritized roadmap.",
+    "new_experiments_started": false,
+    "formal_adoption_unchanged": true,
+    "sequence": [
+      "Review video1/2/3 Q9 vs GS25 at original speed",
+      "Register user-supplied video4 and localize dense-coral failure",
+      "Test a small receiver-only local-structure hypothesis with three-clip regression",
+      "Isolate scene cuts and block boundaries, then frozen-profile long-video and holdout evaluation",
+      "Bound CPU output memory, remeasure full pipeline, then optimize speed"
+    ],
+    "progress_after_summary": {
+      "video4_received": true,
+      "fixed_diagnosis_completed": true,
+      "latest_report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\video4密集珊瑚_Q9与GS25固定参数诊断_20261113.md"
+    }
+  },
+  "previous_latest_experiment_before_video4": {
+    "date": "2026-11-13",
+    "complete": true,
+    "cases": [
+      "video1",
+      "video2",
+      "video3"
+    ],
+    "profiles": [
+      "GB25",
+      "GS25",
+      "GS50"
+    ],
+    "new_outputs": 12,
+    "new_candidate_outputs": 9,
+    "postregistered_diagnostic_outputs": 3,
+    "selected": null,
+    "viewing_candidate": "GS25",
+    "automatic_adoption": false,
+    "current_profile_unchanged": true,
+    "current_profile_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+    "reference": "Q9_R25",
+    "changes": {
+      "video1": {
+        "GB25": {
+          "coarse_temporal_change_percent": -17.899380547105835,
+          "psnr_change_db": 1.4578165510755348
+        },
+        "GS25": {
+          "coarse_temporal_change_percent": -17.237527504926764,
+          "psnr_change_db": 0.9757625148273803
+        },
+        "GS50": {
+          "coarse_temporal_change_percent": -30.267205767917226,
+          "psnr_change_db": 1.8122095376862433
+        }
+      },
+      "video2": {
+        "GB25": {
+          "coarse_temporal_change_percent": -15.665547570547666,
+          "psnr_change_db": 1.0399291326680427
+        },
+        "GS25": {
+          "coarse_temporal_change_percent": -15.128693744597332,
+          "psnr_change_db": 0.5766447161760659
+        },
+        "GS50": {
+          "coarse_temporal_change_percent": -25.953834636455188,
+          "psnr_change_db": 1.0240757019532367
+        }
+      },
+      "video3": {
+        "GB25": {
+          "coarse_temporal_change_percent": -17.43023633288413,
+          "psnr_change_db": 1.597820233574236
+        },
+        "GS25": {
+          "coarse_temporal_change_percent": -16.773637891463387,
+          "psnr_change_db": 1.1703997540460556
+        },
+        "GS50": {
+          "coarse_temporal_change_percent": -28.956984357518333,
+          "psnr_change_db": 2.267685119696278
+        }
+      }
+    },
+    "matched_blur_comparison": {
+      "video1": {
+        "blur_coarse_change_vs_q9_percent": -0.26744068270559973,
+        "gs25_coarse_change_vs_blur_percent": -17.015593441487475,
+        "gs25_psnr_change_vs_blur_db": 0.7978873224519134,
+        "gs25_fine_temporal_change_vs_blur_percent": 2.465623092860314,
+        "gs25_motion_amplitude_vs_blur_percent": -6.991318578595241,
+        "gaussian_sigma": 0.40283203125,
+        "relative_amplitude_match_error": 3.74964159230051e-05
+      },
+      "video2": {
+        "blur_coarse_change_vs_q9_percent": -0.13448883615502227,
+        "gs25_coarse_change_vs_blur_percent": -15.01439759702624,
+        "gs25_psnr_change_vs_blur_db": 0.4442587725806071,
+        "gs25_fine_temporal_change_vs_blur_percent": 1.5279574678191077,
+        "gs25_motion_amplitude_vs_blur_percent": -1.743112737216168,
+        "gaussian_sigma": 0.368408203125,
+        "relative_amplitude_match_error": 0.00015127684547409166
+      },
+      "video3": {
+        "blur_coarse_change_vs_q9_percent": -0.257639565880452,
+        "gs25_coarse_change_vs_blur_percent": -16.558659985284642,
+        "gs25_psnr_change_vs_blur_db": 1.0225837026428444,
+        "gs25_fine_temporal_change_vs_blur_percent": 2.8378546901611346,
+        "gs25_motion_amplitude_vs_blur_percent": -8.511580478025337,
+        "gaussian_sigma": 0.41015625,
+        "relative_amplitude_match_error": 0.0002071238371111822
+      }
+    },
+    "research_pixel_contract_changed": true,
+    "received_guide_rgb_enters_output": true,
+    "source_reads_blocked": true,
+    "extra_transmission_bytes": 0,
+    "new_encoding": false,
+    "new_flow_model_inference": false,
+    "user_subjective_review": "pending",
+    "static_inspection_completed": true,
+    "previous_Q9_positive_feedback_preserved": true,
+    "independent_holdout": false,
+    "reef_not_run": true,
+    "long_video_not_run": true,
+    "video4_awaiting_user": true,
+    "conclusion_zh": "GS25三片低频时序与主体宽框误差改善，等细节高斯模糊不能解释全部收益；但GS25细纹理时序误差高于该控制，运动幅度更低，主体形状偏差仍在。仅作温和观看候选。",
+    "blur_limit_zh": "只匹配全片平均细纹理幅度，未匹配逐像素纹理分布、完整频谱或运动幅度；不能由此宣称排除了所有平滑贡献或已恢复真实鱼形。",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_received_structure_20261113_01",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\Q9已传引导结构融合与纹理对照_20261113.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_Q9引导结构融合_20261113",
+    "verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_received_structure_20261113_01\\verification.json",
+    "control_verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_received_structure_20261113_01\\blur_control\\verification.json",
+    "evidence": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\evidence_20261113\\q9_received_structure\\manifest.json"
+  },
+  "previous_latest_generalization_experiment_before_video4": {
+    "date": "2026-11-13",
+    "complete": true,
+    "cases": [
+      "video1",
+      "video2",
+      "video3"
+    ],
+    "profiles": [
+      "GB25",
+      "GS25",
+      "GS50"
+    ],
+    "new_outputs": 12,
+    "new_candidate_outputs": 9,
+    "postregistered_diagnostic_outputs": 3,
+    "selected": null,
+    "viewing_candidate": "GS25",
+    "automatic_adoption": false,
+    "current_profile_unchanged": true,
+    "current_profile_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+    "reference": "Q9_R25",
+    "changes": {
+      "video1": {
+        "GB25": {
+          "coarse_temporal_change_percent": -17.899380547105835,
+          "psnr_change_db": 1.4578165510755348
+        },
+        "GS25": {
+          "coarse_temporal_change_percent": -17.237527504926764,
+          "psnr_change_db": 0.9757625148273803
+        },
+        "GS50": {
+          "coarse_temporal_change_percent": -30.267205767917226,
+          "psnr_change_db": 1.8122095376862433
+        }
+      },
+      "video2": {
+        "GB25": {
+          "coarse_temporal_change_percent": -15.665547570547666,
+          "psnr_change_db": 1.0399291326680427
+        },
+        "GS25": {
+          "coarse_temporal_change_percent": -15.128693744597332,
+          "psnr_change_db": 0.5766447161760659
+        },
+        "GS50": {
+          "coarse_temporal_change_percent": -25.953834636455188,
+          "psnr_change_db": 1.0240757019532367
+        }
+      },
+      "video3": {
+        "GB25": {
+          "coarse_temporal_change_percent": -17.43023633288413,
+          "psnr_change_db": 1.597820233574236
+        },
+        "GS25": {
+          "coarse_temporal_change_percent": -16.773637891463387,
+          "psnr_change_db": 1.1703997540460556
+        },
+        "GS50": {
+          "coarse_temporal_change_percent": -28.956984357518333,
+          "psnr_change_db": 2.267685119696278
+        }
+      }
+    },
+    "matched_blur_comparison": {
+      "video1": {
+        "blur_coarse_change_vs_q9_percent": -0.26744068270559973,
+        "gs25_coarse_change_vs_blur_percent": -17.015593441487475,
+        "gs25_psnr_change_vs_blur_db": 0.7978873224519134,
+        "gs25_fine_temporal_change_vs_blur_percent": 2.465623092860314,
+        "gs25_motion_amplitude_vs_blur_percent": -6.991318578595241,
+        "gaussian_sigma": 0.40283203125,
+        "relative_amplitude_match_error": 3.74964159230051e-05
+      },
+      "video2": {
+        "blur_coarse_change_vs_q9_percent": -0.13448883615502227,
+        "gs25_coarse_change_vs_blur_percent": -15.01439759702624,
+        "gs25_psnr_change_vs_blur_db": 0.4442587725806071,
+        "gs25_fine_temporal_change_vs_blur_percent": 1.5279574678191077,
+        "gs25_motion_amplitude_vs_blur_percent": -1.743112737216168,
+        "gaussian_sigma": 0.368408203125,
+        "relative_amplitude_match_error": 0.00015127684547409166
+      },
+      "video3": {
+        "blur_coarse_change_vs_q9_percent": -0.257639565880452,
+        "gs25_coarse_change_vs_blur_percent": -16.558659985284642,
+        "gs25_psnr_change_vs_blur_db": 1.0225837026428444,
+        "gs25_fine_temporal_change_vs_blur_percent": 2.8378546901611346,
+        "gs25_motion_amplitude_vs_blur_percent": -8.511580478025337,
+        "gaussian_sigma": 0.41015625,
+        "relative_amplitude_match_error": 0.0002071238371111822
+      }
+    },
+    "research_pixel_contract_changed": true,
+    "received_guide_rgb_enters_output": true,
+    "source_reads_blocked": true,
+    "extra_transmission_bytes": 0,
+    "new_encoding": false,
+    "new_flow_model_inference": false,
+    "user_subjective_review": "pending",
+    "static_inspection_completed": true,
+    "previous_Q9_positive_feedback_preserved": true,
+    "independent_holdout": false,
+    "reef_not_run": true,
+    "long_video_not_run": true,
+    "video4_awaiting_user": true,
+    "conclusion_zh": "GS25三片低频时序与主体宽框误差改善，等细节高斯模糊不能解释全部收益；但GS25细纹理时序误差高于该控制，运动幅度更低，主体形状偏差仍在。仅作温和观看候选。",
+    "blur_limit_zh": "只匹配全片平均细纹理幅度，未匹配逐像素纹理分布、完整频谱或运动幅度；不能由此宣称排除了所有平滑贡献或已恢复真实鱼形。",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_received_structure_20261113_01",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\Q9已传引导结构融合与纹理对照_20261113.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_Q9引导结构融合_20261113",
+    "verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_received_structure_20261113_01\\verification.json",
+    "control_verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_received_structure_20261113_01\\blur_control\\verification.json",
+    "evidence": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\evidence_20261113\\q9_received_structure\\manifest.json"
+  },
+  "previous_latest_diagnosis_before_video4": {
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\Q9已传引导结构融合与纹理对照_20261113.md",
+    "fish_presence_priority": true,
+    "reef_ghost_optimization_deprioritized": true,
+    "guide_current_structure_promising": true,
+    "matched_gaussian_blur_not_full_explanation": true,
+    "fine_temporal_and_dynamic_tradeoff": true,
+    "fish_shape_not_resolved": true
+  },
+  "previous_next_experiment_plan_before_video4": {
+    "status": "proposed_not_run",
+    "reference": "Q9_R25",
+    "viewing_candidate": "GS25",
+    "focus": [
+      "current fish shape",
+      "whole-scene watchability",
+      "fine texture",
+      "motion amplitude"
+    ],
+    "video4": {
+      "status": "awaiting_user_clip",
+      "source_path": null,
+      "time_interval": null
+    },
+    "full_long_video_rerun": "not_started",
+    "parameters_not_chosen": true,
+    "strategy_document": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\现阶段瓶颈_优势劣势与后续路线_20261113.md"
+  },
+  "previous_next_priority_before_video4": [
+    "Review video1/2/3 Q9 vs GS25 at original speed",
+    "Register user-supplied video4 and localize dense-coral failure",
+    "Test a small receiver-only local-structure hypothesis with three-clip regression",
+    "Isolate scene cuts and block boundaries, then frozen-profile long-video and holdout evaluation",
+    "Bound CPU output memory, remeasure full pipeline, then optimize speed"
+  ],
+  "previous_user_latest_decision_before_video4": "你先继续吧，研究下一轮。video4等会就整出来了",
+  "video4_registration": {
+    "status": "fixed_Q9_GS25_diagnosis_complete",
+    "source_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\GLC后处理\\素材\\20261113_video4\\video4.mp4",
+    "original_path": "C:\\Users\\lenovo\\Desktop\\临时\\语义\\data\\video4.mp4",
+    "sha256": "1f44b3e49ef603aa69fead3b98523dc61a19bd806f301cb758c5fe0b41aca92c",
+    "frames": 104,
+    "source_seconds": 6.9,
+    "billing_seconds": 6.933333333333334,
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\video4密集珊瑚_Q9与GS25固定参数诊断_20261113.md",
+    "development_clip": true
+  },
+  "video4_jitter_feedback": {
+    "date": "2026-11-13",
+    "quote": "想想办法处理呢，video4因为珊瑚面积大，效果太差了，整个画面是真的在抖动，不像原始glc那样晃动",
+    "reference_run": "q9_video4_diagnosis_20261113_02",
+    "interpretation": "User reports unacceptable frame-wide jitter in the processed video4, perceptually different from original GLC wobble. Do not treat lower average temporal MAE as visual acceptance.",
+    "exact_affected_variant": "Not specified between Q9 and GS25; inspect both without requiring clarification.",
+    "status": "investigating",
+    "authorized_scope": "Diagnose new jitter, run a small targeted receiver-side experiment, and regress video1/2/3. Preserve prior outputs and accepted configuration.",
+    "automatic_adoption": false
+  },
+  "previous_latest_experiment_before_video4_jitter": {
+    "date": "2026-11-13",
+    "complete": true,
+    "case": "video4",
+    "frames": 104,
+    "fps": 15,
+    "source_video_seconds": 6.9,
+    "billing_seconds": 6.933333333333334,
+    "new_post_outputs": 2,
+    "reference": "Q9_R25",
+    "viewing_candidate": "GS25",
+    "selected": null,
+    "automatic_adoption": false,
+    "fixed_transfer_not_new_parameter_search": true,
+    "development_failure_clip": true,
+    "independent_holdout": false,
+    "base_kbps": 27.18,
+    "guide_kbps": 11.098846153846154,
+    "total_kbps": 38.27884615384615,
+    "extra_GS25_transmission_bytes": 0,
+    "source_archive": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\GLC后处理\\素材\\20261113_video4\\video4.mp4",
+    "source_sha256": "1f44b3e49ef603aa69fead3b98523dc61a19bd806f301cb758c5fe0b41aca92c",
+    "changes": {
+      "Q9_full_temporal_vs_raw_percent": -16.190704941792987,
+      "GS25_full_temporal_vs_Q9_percent": -18.233386512828233,
+      "GS25_coral_temporal_vs_Q9_percent": -18.233546024972934,
+      "GS25_coral_RGB_MAE_vs_Q9_percent": -8.172910485524731,
+      "Q9_coral_coarse_spatial_vs_raw_percent": 11.068919308754378,
+      "GS25_turtle_wide_RGB_MAE_vs_Q9_percent": -7.968877058114288,
+      "GS25_full_PSNR_minus_Q9_db": 0.7947098370025181,
+      "GS25_dynamic_amplitude_vs_Q9_percent": -10.655405837101384
+    },
+    "source_reconstruction_shape_error_precedes_Q9": true,
+    "Q9_temporal_gain_not_same_frame_shape_recovery": true,
+    "guide_texture_insufficient": true,
+    "GS25_motion_amplitude_attenuation": true,
+    "subjective_review": "pending",
+    "no_video4_matched_blur_control": true,
+    "previous_three_clips_regression_exact": true,
+    "formal_adopted_profile_unchanged": true,
+    "full_long_video_not_rerun": true,
+    "conclusion_zh": "video4原GLC已有珊瑚空间形态和主体细节偏差，Q9降低时序误差但未恢复形状；GS25有限修正、仍有动态幅度代价，尚未解决密集珊瑚观感。",
+    "next_focus_zh": "在三片回归约束下区分基础重建空间失真、guide细节不足和历史复用新增形态误差；再检验一个局部结构可靠性假设，不能只加大平滑。",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_diagnosis_20261113_02",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\video4密集珊瑚_Q9与GS25固定参数诊断_20261113.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_video4密集珊瑚_20261113",
+    "verification": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_diagnosis_20261113_02\\verification.json",
+    "evidence": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\evidence_20261113\\video4_fixed_diagnosis\\manifest.json"
+  },
+  "previous_latest_diagnosis_before_video4_jitter": {
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\video4密集珊瑚_Q9与GS25固定参数诊断_20261113.md",
+    "dense_coral_base_shape_error": true,
+    "Q9_temporal_gain_not_shape_recovery": true,
+    "GS25_limited_gain_and_motion_tradeoff": true,
+    "no_generalization_success_claim": true
+  },
+  "previous_next_experiment_plan_before_video4_jitter": {
+    "status": "proposed_not_run",
+    "reference": "Q9_R25",
+    "viewing_candidate": "GS25",
+    "focus": [
+      "dense coral spatial fidelity",
+      "current subject shape",
+      "reliable detail reuse",
+      "motion preservation"
+    ],
+    "video4": {
+      "status": "registered_first_diagnosis_complete",
+      "source_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\GLC后处理\\素材\\20261113_video4\\video4.mp4",
+      "source_sha256": "1f44b3e49ef603aa69fead3b98523dc61a19bd806f301cb758c5fe0b41aca92c",
+      "source_interval": "entire 6.9s clip",
+      "development_case": true
+    },
+    "video123_regression_required": true,
+    "parameters_not_chosen": true,
+    "full_long_video_rerun": "not_started"
+  },
+  "previous_next_priority_before_video4_jitter": [
+    "Review video4 original-speed coral and turtle comparisons alongside existing video1/2/3.",
+    "Separate base spatial reconstruction loss, guide detail loss, and historical texture reuse errors.",
+    "Test one receiver-local structure reliability hypothesis with video1/2/3 regression.",
+    "After freezing quality profile, separately check long-video cuts, block continuity and independent heldout clips.",
+    "Bound CPU memory and remeasure end-to-end speed after quality direction stabilizes."
+  ],
+  "previous_latest_user_perceptual_feedback_before_video4_jitter": {
+    "date": "2026-11-12",
+    "verbatim": "礁石斑点鱼那个其实都先不用纠结残像，现在是鱼都快消失了，这个视频先不纠结，咱们主要还是看长视频和video123,先让这几个能看，长视频现在面临的有一个问题是出现大面积珊瑚的话画面会很难看，那段视频到时候我会单独提出来作为video4来进行实验，你先不用管，你先继续研究video123和这个礁石斑点鱼",
+    "immediate_cases": [
+      "video1",
+      "video2",
+      "video3",
+      "reef_spotted_fish"
+    ],
+    "scope_interpretation": "Follow final explicit case list; prioritize watchability and current fish presence, not reef ghost optimization. Long-video general goal remains, dense-coral segment deferred until user supplies video4.",
+    "reef_observation": "Fish nearly disappears per user; exact compared variant not separately specified.",
+    "not_an_acceptance_of_ML3": true,
+    "previous_Q9_positive_feedback_preserved": true,
+    "dense_coral_video4_deferred": true,
+    "long_video_not_rerun_this_round": true,
+    "adoption_unchanged": true,
+    "type": "user_priority_change",
+    "feedback_path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_current_structure_20261112_06\\user_feedback_20261112.json",
+    "new_candidate_review": "pending"
+  },
+  "SQ3_short_subjective_feedback": {
+    "date": "2026-11-13",
+    "quote": "这次看着倒是还可以，就是确实没有那么锐利了，你跑一下长视频我看看效果，还是四宫格形式比较，原片，h.265,glc，然后是这个sq3",
+    "feedback": "User finds the presented SQ3 short-clip result acceptable, with acknowledged loss of sharpness. This does not establish acceptance of the unseen full-length output.",
+    "requested_output": "Full historical long video, original-speed four-way comparison: source, H.265, raw GLC, SQ3.",
+    "h265_comparison_default": "Match complete H.265 file bytes to complete GLC base + guide packets + required manifest bytes, using the established medium-preset fixed-GOP control.",
+    "scope": "Fixed existing SQ3 settings; extend finite history across processing windows; do not add per-scene tuning or silently change to SR3.",
+    "automatic_deployment_adoption": false
+  },
+  "previous_latest_experiment_before_sq3_long": {
+    "complete": true,
+    "date": "2026-11-13",
+    "cases": [
+      "video4",
+      "video1",
+      "video2",
+      "video3"
+    ],
+    "reference": "GS25",
+    "profiles": [
+      "RG25",
+      "SR3",
+      "SQ3"
+    ],
+    "viewing_candidates": [
+      "SQ3",
+      "SR3"
+    ],
+    "selected": null,
+    "automatic_adoption": false,
+    "current_config_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+    "primary_viewing_candidate": "SQ3",
+    "SR3_universal_replacement_rejected_by_video3_regression": true,
+    "changes": {
+      "video4": {
+        "RG25": {
+          "coarse_percent": 15.18071135096446,
+          "fine_percent": 20.474075259063063,
+          "abrupt_error_percent": 27.474721229239908,
+          "texture_amplitude_percent": 5.256683298240605,
+          "dynamic_amplitude_percent": 2.6269084923558728,
+          "rgb_percent": -1.1152572687154194,
+          "psnr_change_db": 0.0003922826970885751
+        },
+        "SR3": {
+          "coarse_percent": -16.295212270176062,
+          "fine_percent": -21.727757000898883,
+          "abrupt_error_percent": -27.76574738964821,
+          "texture_amplitude_percent": -27.108168196576433,
+          "dynamic_amplitude_percent": -25.186426956664132,
+          "rgb_percent": -8.824408371075243,
+          "psnr_change_db": 0.9732753892992854
+        },
+        "SQ3": {
+          "coarse_percent": -22.993432683209758,
+          "fine_percent": -26.364736950938816,
+          "abrupt_error_percent": -33.40930540251025,
+          "texture_amplitude_percent": -23.25013074215083,
+          "dynamic_amplitude_percent": -20.399827681674275,
+          "rgb_percent": -5.220029774469436,
+          "psnr_change_db": 0.6007724348595502
+        },
+        "BLUR_SQ3": {
+          "coarse_percent": -0.8596346085484763,
+          "fine_percent": -19.859193919854757,
+          "abrupt_error_percent": -13.50253067739554,
+          "texture_amplitude_percent": -23.26010893126764,
+          "dynamic_amplitude_percent": -14.833884673989417,
+          "rgb_percent": -3.7678764690864064,
+          "psnr_change_db": 0.49106713712369654
+        }
+      },
+      "video1": {
+        "RG25": {
+          "coarse_percent": 23.694773966768444,
+          "fine_percent": 29.253310151495725,
+          "abrupt_error_percent": 47.19555252071157,
+          "texture_amplitude_percent": 2.4063129940811168,
+          "dynamic_amplitude_percent": 4.221268843228532,
+          "rgb_percent": -1.375584726610346,
+          "psnr_change_db": 0.04645685754085349
+        },
+        "SR3": {
+          "coarse_percent": -9.247066895812218,
+          "fine_percent": -11.583931080709087,
+          "abrupt_error_percent": -14.202255562451215,
+          "texture_amplitude_percent": -26.1137204341086,
+          "dynamic_amplitude_percent": -25.31039920495014,
+          "rgb_percent": -8.407364554848396,
+          "psnr_change_db": 0.8463546595146489
+        },
+        "SQ3": {
+          "coarse_percent": -21.12949764597434,
+          "fine_percent": -19.601947548236776,
+          "abrupt_error_percent": -26.388321334029275,
+          "texture_amplitude_percent": -18.429167236928457,
+          "dynamic_amplitude_percent": -18.919339545889468,
+          "rgb_percent": -4.136632240085502,
+          "psnr_change_db": 0.37565853966593465
+        },
+        "BLUR_SQ3": {
+          "coarse_percent": -0.5929037988225194,
+          "fine_percent": -14.116002015728235,
+          "abrupt_error_percent": -9.741567117011696,
+          "texture_amplitude_percent": -18.44045907902241,
+          "dynamic_amplitude_percent": -10.858524676261915,
+          "rgb_percent": -3.4043652877525754,
+          "psnr_change_db": 0.37720832822128614
+        }
+      },
+      "video2": {
+        "RG25": {
+          "coarse_percent": 25.625874167568206,
+          "fine_percent": 19.962718768124365,
+          "abrupt_error_percent": 27.868420709077178,
+          "texture_amplitude_percent": 5.247500041034536,
+          "dynamic_amplitude_percent": -3.794888237141225,
+          "rgb_percent": -1.4259471952836167,
+          "psnr_change_db": 0.06096496066007262
+        },
+        "SR3": {
+          "coarse_percent": -5.025263895200371,
+          "fine_percent": -13.620455445114244,
+          "abrupt_error_percent": -19.213267893997067,
+          "texture_amplitude_percent": -26.895042087859757,
+          "dynamic_amplitude_percent": -24.294491312466082,
+          "rgb_percent": -8.176390913708998,
+          "psnr_change_db": 0.8307402146475233
+        },
+        "SQ3": {
+          "coarse_percent": -15.978277655705252,
+          "fine_percent": -16.256501233350605,
+          "abrupt_error_percent": -21.785839213551807,
+          "texture_amplitude_percent": -19.187757060087574,
+          "dynamic_amplitude_percent": -14.685641142264384,
+          "rgb_percent": -3.7581648299846115,
+          "psnr_change_db": 0.41997746056370744
+        },
+        "BLUR_SQ3": {
+          "coarse_percent": -0.44500075271111106,
+          "fine_percent": -12.334346560958942,
+          "abrupt_error_percent": -11.292749338035735,
+          "texture_amplitude_percent": -19.180314833626156,
+          "dynamic_amplitude_percent": -12.993977450965543,
+          "rgb_percent": -3.477604467783768,
+          "psnr_change_db": 0.39747860314221484
+        }
+      },
+      "video3": {
+        "RG25": {
+          "coarse_percent": 74.19619624208396,
+          "fine_percent": 94.01906950984849,
+          "abrupt_error_percent": 156.69900476718902,
+          "texture_amplitude_percent": 1.180794848664024,
+          "dynamic_amplitude_percent": 10.208403998175285,
+          "rgb_percent": -0.9646437986739698,
+          "psnr_change_db": 0.08862003878446245
+        },
+        "SR3": {
+          "coarse_percent": 22.3707466979455,
+          "fine_percent": 28.371162808516036,
+          "abrupt_error_percent": 31.81652722293049,
+          "texture_amplitude_percent": -10.30809102368253,
+          "dynamic_amplitude_percent": -13.444140875411781,
+          "rgb_percent": -3.7217363331439435,
+          "psnr_change_db": 0.3476534899306003
+        },
+        "SQ3": {
+          "coarse_percent": -13.209469404786212,
+          "fine_percent": -13.641443262158337,
+          "abrupt_error_percent": -19.36623864310876,
+          "texture_amplitude_percent": -5.242484382340451,
+          "dynamic_amplitude_percent": -18.479414871404167,
+          "rgb_percent": -1.2074995277448042,
+          "psnr_change_db": 0.07475760153988276
+        },
+        "BLUR_SQ3": {
+          "coarse_percent": -0.15305645017609226,
+          "fine_percent": -4.43174800891093,
+          "abrupt_error_percent": -2.760376150015087,
+          "texture_amplitude_percent": -5.239102843705945,
+          "dynamic_amplitude_percent": -1.942710028153538,
+          "rgb_percent": -0.8787635426015905,
+          "psnr_change_db": 0.09919717362471658
+        }
+      }
+    },
+    "rates": {
+      "video1": {
+        "base_bytes": 31963,
+        "guide_bytes": 12994,
+        "seconds": 10.0,
+        "base_kbps": 25.570400000000003,
+        "guide_kbps": 10.3952,
+        "total_kbps": 35.9656,
+        "extra_bytes": 0
+      },
+      "video2": {
+        "base_bytes": 31849,
+        "guide_bytes": 15587,
+        "seconds": 10.0,
+        "base_kbps": 25.479200000000002,
+        "guide_kbps": 12.4696,
+        "total_kbps": 37.948800000000006,
+        "extra_bytes": 0
+      },
+      "video3": {
+        "base_bytes": 30995,
+        "guide_bytes": 13391,
+        "seconds": 10.0,
+        "base_kbps": 24.796,
+        "guide_kbps": 10.7128,
+        "total_kbps": 35.5088,
+        "extra_bytes": 0
+      },
+      "video4": {
+        "base_bytes": 23556,
+        "guide_bytes": 9619,
+        "seconds": 6.933333333333334,
+        "base_kbps": 27.18,
+        "guide_kbps": 11.098846153846154,
+        "total_kbps": 38.27884615384615,
+        "extra_bytes": 0
+      }
+    },
+    "new_outputs": 16,
+    "includes_ablation_and_matched_blur": true,
+    "user_video4_previous_result": "Frame-wide jitter unacceptable; worse perceptual type than raw GLC wobble.",
+    "visual_acceptance": "pending",
+    "new_jitter_proxy_not_human_rating": true,
+    "conclusion": "Finite aligned three-frame averaging reduces multiple temporal error proxies but removes texture and dynamic amplitude; two watch candidates, not a validated fix.",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_jitter_20261113_03",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\video4抖动_三帧短参考实验_20261113.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_video4抖动三帧对照_20261113",
+    "evidence": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\evidence_20261113\\video4_short_history_jitter\\manifest.json"
+  },
+  "previous_latest_diagnosis_before_sq3_long": {
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\video4抖动_三帧短参考实验_20261113.md",
+    "jitter_visual_failure_recorded": true,
+    "finite_history_candidates_ready": true,
+    "scalar_metrics_not_perceptual_acceptance": true,
+    "texture_and_dynamic_loss": true
+  },
+  "previous_next_experiment_plan_before_sq3_long": {
+    "status": "proposed_not_run",
+    "focus": "Review SQ3/SR3 original-speed jitter versus detail loss; constrain local flow deformation/support switching if needed.",
+    "long_video": "not_started",
+    "automatic_selection": null
+  },
+  "previous_latest_user_perceptual_feedback_before_sq3_long": {
+    "video4": {
+      "date": "2026-11-13",
+      "quote": "想想办法处理呢，video4因为珊瑚面积大，效果太差了，整个画面是真的在抖动，不像原始glc那样晃动",
+      "reference_run": "q9_video4_diagnosis_20261113_02",
+      "interpretation": "User reports unacceptable frame-wide jitter in the processed video4, perceptually different from original GLC wobble. Do not treat lower average temporal MAE as visual acceptance.",
+      "exact_affected_variant": "Not specified between Q9 and GS25; inspect both without requiring clarification.",
+      "status": "recorded_and_followup_experiment_complete",
+      "authorized_scope": "Diagnose new jitter, run a small targeted receiver-side experiment, and regress video1/2/3. Preserve prior outputs and accepted configuration.",
+      "automatic_adoption": false,
+      "new_candidate_review": "pending"
+    },
+    "video123_Q9_positive_feedback_preserved": true
+  },
+  "previous_next_priority_before_sq3_long": [
+    "Original-speed video4 SQ3/SR3 jitter, turtle shape and blur review",
+    "Keep video123 Q9 appearance as regression reference",
+    "Investigate local correspondence/support instability before long-video scaling"
+  ],
+  "previous_feedback_before_sq3_acceptance": {
+    "SQ3_short": "User says looks acceptable but less sharp.",
+    "long_SQ3": "not yet reviewed",
+    "video123_Q9_feedback_preserved": true
+  },
+  "preferred_fallback": {
+    "profile": "SQ3",
+    "archive": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113",
+    "manifest": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113\\manifest.json"
+  },
+  "previous_latest_experiment_before_sq3_detail": {
+    "complete": true,
+    "date": "2026-11-13",
+    "profile": "SQ3",
+    "frames": 1239,
+    "fps": 15,
+    "seconds": 82.6,
+    "total_kbps": 37.77656174334141,
+    "h265_kbps": 37.42634382566586,
+    "h265_shortfall": 0.0092707727096756,
+    "requested_layout": [
+      "source",
+      "H265",
+      "raw_GLC",
+      "SQ3"
+    ],
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\sq3_long_fourway_20261113_01",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\SQ3长片四宫格_原片_H265_GLC_20261113.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_SQ3长片四宫格_20261113",
+    "movie": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_SQ3长片四宫格_20261113\\82秒_四宫格_原片_H265_原GLC_SQ3.mp4",
+    "short_subjective_feedback": {
+      "date": "2026-11-13",
+      "quote": "这次看着倒是还可以，就是确实没有那么锐利了，你跑一下长视频我看看效果，还是四宫格形式比较，原片，h.265,glc，然后是这个sq3",
+      "feedback": "User finds the presented SQ3 short-clip result acceptable, with acknowledged loss of sharpness. This does not establish acceptance of the unseen full-length output.",
+      "requested_output": "Full historical long video, original-speed four-way comparison: source, H.265, raw GLC, SQ3.",
+      "h265_comparison_default": "Match complete H.265 file bytes to complete GLC base + guide packets + required manifest bytes, using the established medium-preset fixed-GOP control.",
+      "scope": "Fixed existing SQ3 settings; extend finite history across processing windows; do not add per-scene tuning or silently change to SR3.",
+      "automatic_deployment_adoption": false
+    },
+    "long_subjective_feedback": "pending",
+    "selected": null,
+    "automatic_adoption": false,
+    "same_SQ3_settings": true,
+    "window_history_verified": true,
+    "scene_cut_detector_added": false,
+    "formal_profile_unchanged": true,
+    "current_config_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+    "evidence": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\evidence_20261113\\sq3_long_fourway\\manifest.json"
+  },
+  "previous_latest_experiment_before_u30_long": {
+    "complete": true,
+    "date": "2026-11-13",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\sq3_detail_20261113_02",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\SQ3保留与温和锐度实验_20261113.md",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_SQ3保留与温和锐度实验_20261113",
+    "baseline": "SQ3",
+    "preferred_fallback_archive": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113",
+    "profiles": [
+      "SQ3_U15",
+      "SQ3_U30"
+    ],
+    "long_viewing_candidate": null,
+    "numeric_pass": {
+      "SQ3_U15": false,
+      "SQ3_U30": false
+    },
+    "long_numeric_pass": null,
+    "subjective_review": "pending",
+    "selected": null,
+    "automatic_adoption": false,
+    "formal_profile_unchanged": true,
+    "next_focus": "Original-speed compare small contrast improvement against temporal cost; use accepted SQ3 if not better."
+  }
+}

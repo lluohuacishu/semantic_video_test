@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-11",
+  "frozen_before_trials": true,
+  "scope": "video1 S8I CURRENT_I12; no generalization or long-video experiments this round",
+  "phases": [
+    "exact T3 cache",
+    "isolated RAFT inference optimization",
+    "cold/warm complete local file chain"
+  ],
+  "user_authorization": "Complete this timing/optimization round; generalization to other marine and long videos is the subsequent direction.",
+  "fixed_input_sha256": {
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\decoded_rgb.npy": "66892444a3dac9ab1addbbb6b6239b5990d8cb0981db899295dbeab285fea281",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\result.json": "300d6c065142d8248a912e5d88ffae09381b89ab54da4a10767e524b00fb6e76",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\deflicker_reef80_20261108_01\\upstream\\pretrained_weights\\raft-things.pth": "fcfa4125d6418f4de95d84aec20a3c5f4e205101715a79f193243c186ac9a7e1",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base.glcsnd": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\guide_compression_20261111_01\\video1\\S8I\\guide.glcguide": "2883c3b13c98bd384b0a896e3f4563d5ae46b8b5a702b1e75998e60435dc987f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\anchor_time_20261111_02\\CURRENT_I12\\receive\\rgb.npy": "f3db8a4e0a513740f3c6b59d7411678aa8cfc860850b613a276c6f4575da4b8a",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\anchor_time_20261111_02\\CURRENT_I12\\receive\\alpha.npy": "c82da434ac1a89da0cf50a3c17f15a3fc7ac54f40e5ba6ddb608a011a44036b9",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\anchor_time_20261111_02\\CURRENT_I12\\receive\\shared.npy": "cfca55a2f52152502f76d4b69486e7f42b59daaa5588d5cca5a77ae99d2778ec",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\anchor_time_20261111_02\\CURRENT_I12\\flow\\to_anchor.npy": "c86c02c2b5c163ffede8dc2cd66767dc90d83c689a496d7e659a9e02f217cc63",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\anchor_time_20261111_02\\CURRENT_I12\\flow\\from_anchor.npy": "e1a5f5f9e204c60f0347861a6c74867812af62d258ae153615f30579cb2e611c",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\anchor_time_20261111_02\\CURRENT_I12\\flow\\transition_flow.npy": "f0152eec9bae082a29b0bb6ba92c6a5b591b8e82a735a7dcb7c3f9a5cb8560ea",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\anchor_time_20261111_02\\CURRENT_I12\\receive\\guide_rgb.npy": "b52f1aa85178ea19cb370bda3b639866df2dbcdfb3912e7a034048da27397857"
+  },
+  "fixed_keys": [
+    0,
+    15,
+    45,
+    75,
+    105,
+    135
+  ],
+  "raft_iterations": 12,
+  "t3_order": [
+    "original",
+    "cached",
+    "cached",
+    "original",
+    "original",
+    "cached"
+  ],
+  "t3_code_sha256": {
+    "run_t3_cache_benchmark.py": "10c8b5aae4cac349d6777436cf8fb30dba6e7e51fc748f24892a97707ed7c39f",
+    "runtime_speed_common.py": "27bb0a697be0eea55ef7ff0a08180abe54d785e0f630f005c5029a621557346d",
+    "cached_t3.py": "cde258d865084c5f547220c542393ce606eaa8fcf725ca3736f0fbd6fdfc058f",
+    "run_anchor_time_experiment.py": "f9488c2df7df36e25eece2431f120d7376eba4d1e53de888859c91f9b4e5052c",
+    "receive_guide_texture.py": "521d78edbfbfb689ca4ebd1eb6d30930cf8d37c09d1ed7c0b12fd3d5be229bd9",
+    "receiver_structure.py": "07f3d17a5c1de44d41452da182bf5469b954ceda1de44c265865a54d2389e2a8"
+  },
+  "exact_rule": "All full-sequence RGB/alpha/shared arrays equal accepted outputs, not only metrics",
+  "memory_policy": "Four-entry LRU RGB blur cache, not an all-frame RGB blur tensor",
+  "next_phase": "Generalization, independent marine clips and long sequences, deferred"
+}

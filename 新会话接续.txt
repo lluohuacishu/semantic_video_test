@@ -1,26 +1,12 @@
-2026-11-11后续更新：用户要求推送分支并制作当前四宫格，已完成视频和核验。视频：C:/Users/lenovo/Documents/ChatGPT/语义通信/05_成果与观看/GLC_接收时间与锚点实验_20261111/07_video1_四宫格_原片_H265_原GLC_当前优化I12.mp4；报告：C:/Users/lenovo/Documents/ChatGPT/语义通信/01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/当前方案四宫格与同码率H265_20261111.md。左上源，右上H26532.4376kbps，左下原GLC25.5704kbps，右下当前I12总32.6624kbps。H265完整MP440547B，比优化两路总40828B少0.688%。当前新H265全面定量评价和主观优劣仍待记录。相关源码/报告/小证据纳入本次分支提交；推送结果见C:/Users/lenovo/Documents/ChatGPT/语义通信/02_实验数据/优化_GLC后处理/quad_current_i12_20261111_01/branch_push_receipt.json；视频与大数组仍在本机。
+请阅读：
+C:/Users/lenovo/Documents/ChatGPT/语义通信/01_项目/代码/semantic_video_test/交接文档.md
+然后按需阅读：
+C:/Users/lenovo/Documents/ChatGPT/语义通信/01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/SQ3阶段总结与后续路线_20261113.md
+C:/Users/lenovo/Documents/ChatGPT/语义通信/01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/运行入口与文件索引.md
 
-GLC 项目接续，更新 2026-11-11。
-工作区：C:/Users/lenovo/Documents/ChatGPT/语义通信
-Git 工程：C:/Users/lenovo/Documents/ChatGPT/语义通信/01_项目/代码/semantic_video_test，分支 codex/glc-temporal-stability，收束时 HEAD 7f717e5；近期实验和整理纳入本次分支交付。只研究 GLC。
-
-用户最新决定：暂时不减少锚点；RAFT 12 与 24 次肉眼差距接近无感，可以采用。当前采用 S8I + CURRENT_I12。请勿再次把 I12 写成待验收，也不要减少六锚点或误记成逐位相同。
-先读：C:/Users/lenovo/Documents/ChatGPT/语义通信/01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/当前方案总结与瓶颈路线_20261111.md
-交接：C:/Users/lenovo/Documents/ChatGPT/语义通信/01_项目/代码/semantic_video_test/交接文档.md
-采用配置：C:/Users/lenovo/Documents/ChatGPT/语义通信/01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/当前采用配置.json
-文件索引：C:/Users/lenovo/Documents/ChatGPT/语义通信/01_项目/代码/semantic_video_test/05_资料与索引/会话收束_20261110/文件索引.md
-
-video1 150帧/15FPS/512×288/10秒；锚点0/15/45/75/105/135；RAFT Things FP32 12次、无TF32；T3、2px羽化、六帧渐退与两次取整保持。
-base.glcsnd 31963 B/25.5704kbps；guide.glcguide 8865 B/7.0920kbps；合计40828 B/32.6624kbps。引导仍是原S8I包。
-接收组件25.8169秒/10秒视频，比24次40.0572秒减少35.5%；RAFT19.7693秒、T35.5229秒。27.6718秒是worker内部计时，初始模块导入之前不计，也未含GLC基础解码；不能说端到端或实时。
-珊瑚MAE2.37916、NCC0.81000；旧24次为2.37808/.81027。仅CURRENT_I24与旧S8I逐位一致，I12只是数值接近且用户认可。跳变尚未解决。
-
-权威运行：C:/Users/lenovo/Documents/ChatGPT/语义通信/02_实验数据/优化_GLC后处理/anchor_time_20261111_02；当前输出CURRENT_I12/receive/rgb.npy；权威评分analysis_rerun01/evaluation_summary.json。
-观看：C:/Users/lenovo/Documents/ChatGPT/语义通信/05_成果与观看/GLC_接收时间与锚点实验_20261111；03全画面/04珊瑚，左旧S8I24、右已采用I12。01/02、05/06是稀疏锚失败对照。
-_01为推理未启动的失败尝试；_02旧根汇总/预览非权威。source_final为最终快照，执行时代码哈希差异见executed_code_note.json。
-
-源只用于发送/独立评价；接收从已传引导算运动和可靠区（不是分割），复用历史原始GLC RGB，不回灌基础参考链。基础流、原始RGB及潜变量链不改。两路各≤40kbps是上限，辅助应尽可能低；完整文件计费，NPY/本地光流/观看MP4不计成传输流。
-前序收束仅整理与采用；本次另完成当前预算H265与四宫格，未重跑GLC/RAFT。下一轮先测可信端到端/冷热重复时间，再缓存T3重复低中尺度模糊并逐位核验，再隔离RAFT提速。六锚数固定；码率、视觉、跨素材、长片、流式和同总码率H265分别验证。
-不要盲目重跑release_anchor_time_experiment.py（会重置pending）；历史receiver_structure.py默认24保持，采用通过显式CURRENT_I12选择，配置JSON尚非自动部署入口。
-旧K/L的video2/3反馈不可转移到当前组合；零辅助R0已被拒绝；全程单锚已老化失败；三锚只省约9.7%组件时间而珊瑚MAE增约47.5%，不采用。
-保留未提交内容；不删除/移动大数组和观看硬链接。第19阶段部署源码及GLVC/UVID文献为无关未跟踪资产，勿混入实验结论。
+当前截至2026-11-13：用户认可SQ3稳定性，接受略软；看完U30完整长片后认为两者差不多，先这样并换会话。
+保留SQ3为研究基准和首选回退版本，U30只保留对照；正式部署配置仍为历史S8I+CURRENT_I12，没有切换。
+四片与完整82.6秒长片均已完成，不需要重跑。video4已提供且已经实验，不再等待素材。
+当前无活动实验，也没有自动下一轮。先了解现状，等我给出下一步要求；不要按旧文档自行续跑。
+数据、视频、代码快照与失败现场保留原路径；旧入口已归档，当前信息以新的交接为准。
+Git交付分支codex/glc-temporal-stability。用户已要求提交推送；实际版本与成功回执按GitHub分支交付说明核验。历史收束快照仍保留提交前状态，不要据此回退。其他无关本地修改不要重置。

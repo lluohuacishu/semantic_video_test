@@ -265,11 +265,10 @@
     "New matched-budget HEVC viewing control exists; comprehensive quantitative comparison and user preference remain unverified"
   ],
   "next_priority": [
-    "End-to-end stage timing with cold/warm repeats",
-    "Cache repeated T3 low/mid image precomputations with exact-output validation",
-    "Isolate further RAFT compute reductions while preserving six anchors",
-    "Cross-clip and long-video validation",
-    "Investigate gate/I-frame transitions and streaming latency"
+    "Fixed-parameter generalization to other marine clips",
+    "Generalize 150-frame protocol and anchor schedule; bound feature/flow memory before long videos",
+    "Known video2/3 transfer, then independent held-out scenes and long sequences",
+    "Evaluate dynamic boundaries, jumps, complete byte budget, latency and failures"
   ],
   "new_experiments_run_during_consolidation": false,
   "current_fourway": {
@@ -281,5 +280,68 @@
     "optimized_kbps": 32.6624,
     "relative_byte_shortfall": 0.0068825315959635544,
     "metrics_scope": "viewing control only; no new full quality evaluation"
+  },
+  "runtime_acceleration": {
+    "date": "2026-11-11",
+    "status": "verified_bit_exact_research_entry_video1_only",
+    "entrypoint": "receive_current_i12_fast.py",
+    "raft_mode": "feature_cache",
+    "T3_cache": "four-entry RGB blur LRU + coordinates",
+    "bit_exact_to_CURRENT_I12": true,
+    "transmitted_bytes_unchanged": true,
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\receiver_speed_20261111_01",
+    "report": "接收链路计时与精确缓存提速_20261111.md",
+    "complete_file_chain": {
+      "cold": {
+        "original": {
+          "median": 69.38885870000377,
+          "minimum": 68.58521199999814,
+          "maximum": 72.76817149999988,
+          "samples": [
+            72.76817149999988,
+            69.38885870000377,
+            68.58521199999814
+          ]
+        },
+        "optimized": {
+          "median": 65.57327719999739,
+          "minimum": 63.507611299995915,
+          "maximum": 66.85841159999836,
+          "samples": [
+            65.57327719999739,
+            66.85841159999836,
+            63.507611299995915
+          ]
+        },
+        "median_time_reduction_percent": 5.498838821521312
+      },
+      "warm": {
+        "original": {
+          "median": 57.25252919999912,
+          "minimum": 56.43454070000007,
+          "maximum": 57.60043790000054,
+          "samples": [
+            56.43454070000007,
+            57.25252919999912,
+            57.60043790000054
+          ]
+        },
+        "optimized": {
+          "median": 54.4382581999962,
+          "minimum": 53.590412300000025,
+          "maximum": 54.81482130000222,
+          "samples": [
+            53.590412300000025,
+            54.81482130000222,
+            54.4382581999962
+          ]
+        },
+        "median_time_reduction_percent": 4.915540045701528
+      }
+    },
+    "peak_raft_allocated_mib": 1645.4169921875,
+    "memory_tradeoff": "About +1100 MiB peak allocated; all-frame features require bounded redesign for long video",
+    "original_measurements_preserved": true,
+    "deployment_defaults_changed": false
   }
 }

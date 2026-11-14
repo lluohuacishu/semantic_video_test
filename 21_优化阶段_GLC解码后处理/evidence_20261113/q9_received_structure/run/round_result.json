@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-13",
+  "complete": true,
+  "cases": [
+    "video1",
+    "video2",
+    "video3"
+  ],
+  "profiles": [
+    "GB25",
+    "GS25",
+    "GS50"
+  ],
+  "new_outputs": 12,
+  "new_candidate_outputs": 9,
+  "postregistered_diagnostic_outputs": 3,
+  "selected": null,
+  "viewing_candidate": "GS25",
+  "automatic_adoption": false,
+  "current_profile_unchanged": true,
+  "current_profile_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+  "reference": "Q9_R25",
+  "changes": {
+    "video1": {
+      "GB25": {
+        "coarse_temporal_change_percent": -17.899380547105835,
+        "psnr_change_db": 1.4578165510755348
+      },
+      "GS25": {
+        "coarse_temporal_change_percent": -17.237527504926764,
+        "psnr_change_db": 0.9757625148273803
+      },
+      "GS50": {
+        "coarse_temporal_change_percent": -30.267205767917226,
+        "psnr_change_db": 1.8122095376862433
+      }
+    },
+    "video2": {
+      "GB25": {
+        "coarse_temporal_change_percent": -15.665547570547666,
+        "psnr_change_db": 1.0399291326680427
+      },
+      "GS25": {
+        "coarse_temporal_change_percent": -15.128693744597332,
+        "psnr_change_db": 0.5766447161760659
+      },
+      "GS50": {
+        "coarse_temporal_change_percent": -25.953834636455188,
+        "psnr_change_db": 1.0240757019532367
+      }
+    },
+    "video3": {
+      "GB25": {
+        "coarse_temporal_change_percent": -17.43023633288413,
+        "psnr_change_db": 1.597820233574236
+      },
+      "GS25": {
+        "coarse_temporal_change_percent": -16.773637891463387,
+        "psnr_change_db": 1.1703997540460556
+      },
+      "GS50": {
+        "coarse_temporal_change_percent": -28.956984357518333,
+        "psnr_change_db": 2.267685119696278
+      }
+    }
+  },
+  "matched_blur_comparison": {
+    "video1": {
+      "blur_coarse_change_vs_q9_percent": -0.26744068270559973,
+      "gs25_coarse_change_vs_blur_percent": -17.015593441487475,
+      "gs25_psnr_change_vs_blur_db": 0.7978873224519134,
+      "gs25_fine_temporal_change_vs_blur_percent": 2.465623092860314,
+      "gs25_motion_amplitude_vs_blur_percent": -6.991318578595241,
+      "gaussian_sigma": 0.40283203125,
+      "relative_amplitude_match_error": 3.74964159230051e-05
+    },
+    "video2": {
+      "blur_coarse_change_vs_q9_percent": -0.13448883615502227,
+      "gs25_coarse_change_vs_blur_percent": -15.01439759702624,
+      "gs25_psnr_change_vs_blur_db": 0.4442587725806071,
+      "gs25_fine_temporal_change_vs_blur_percent": 1.5279574678191077,
+      "gs25_motion_amplitude_vs_blur_percent": -1.743112737216168,
+      "gaussian_sigma": 0.368408203125,
+      "relative_amplitude_match_error": 0.00015127684547409166
+    },
+    "video3": {
+      "blur_coarse_change_vs_q9_percent": -0.257639565880452,
+      "gs25_coarse_change_vs_blur_percent": -16.558659985284642,
+      "gs25_psnr_change_vs_blur_db": 1.0225837026428444,
+      "gs25_fine_temporal_change_vs_blur_percent": 2.8378546901611346,
+      "gs25_motion_amplitude_vs_blur_percent": -8.511580478025337,
+      "gaussian_sigma": 0.41015625,
+      "relative_amplitude_match_error": 0.0002071238371111822
+    }
+  },
+  "research_pixel_contract_changed": true,
+  "received_guide_rgb_enters_output": true,
+  "source_reads_blocked": true,
+  "extra_transmission_bytes": 0,
+  "new_encoding": false,
+  "new_flow_model_inference": false,
+  "user_subjective_review": "pending",
+  "static_inspection_completed": true,
+  "previous_Q9_positive_feedback_preserved": true,
+  "independent_holdout": false,
+  "reef_not_run": true,
+  "long_video_not_run": true,
+  "video4_awaiting_user": true,
+  "conclusion_zh": "GS25三片低频时序与主体宽框误差改善，等细节高斯模糊不能解释全部收益；但GS25细纹理时序误差高于该控制，运动幅度更低，主体形状偏差仍在。仅作温和观看候选。",
+  "blur_limit_zh": "只匹配全片平均细纹理幅度，未匹配逐像素纹理分布、完整频谱或运动幅度；不能由此宣称排除了所有平滑贡献或已恢复真实鱼形。"
+}

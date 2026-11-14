@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-13",
+  "frozen_before_outputs": true,
+  "baseline": "SQ3 user accepted",
+  "hypothesis": "A small bounded luminance-only high-pass boost may recover perceived edge contrast without materially increasing SQ3 temporal error. It cannot restore missing structure.",
+  "profiles": {
+    "sigma": 1.0,
+    "maximum_correction_levels": 3.0,
+    "luminance_weights": [
+      0.299,
+      0.587,
+      0.114
+    ],
+    "border": "reflect101",
+    "profiles": {
+      "SQ3_U15": 0.15,
+      "SQ3_U30": 0.3
+    },
+    "added_history": 0,
+    "source_used": false,
+    "added_transmission_bytes": 0
+  },
+  "short_cases": [
+    "video4",
+    "video1",
+    "video2",
+    "video3"
+  ],
+  "purpose": "Two fixed strengths form one controlled sharpness/stability tradeoff experiment. No per-video settings.",
+  "primary_candidate": "SQ3_U15",
+  "secondary_candidate": "SQ3_U30",
+  "long_extension_rule": "Only the first candidate in fixed order U15 then U30 that passes every short-case/ROI numeric screen is extended to the full long video. This selects a viewing candidate, not adoption.",
+  "screen": {
+    "max_coarse_temporal_increase_percent": 1,
+    "max_full_temporal_increase_percent": 3,
+    "max_fine_temporal_increase_percent": 5,
+    "max_full_acceleration_increase_percent": 5,
+    "max_RGB_error_increase_percent": 1,
+    "max_fine_spatial_error_increase_percent": 1,
+    "min_PSNR_delta_db": -0.1,
+    "min_full_fine_amplitude_gain_percent": 2
+  },
+  "threshold_note": "Engineering screening tolerances frozen for this round, not perceptual just-noticeable-difference thresholds.",
+  "metrics": "Reuse unchanged source-aligned metrics and regions. Check all frames, fine spatial error, dynamics and source-aligned acceleration; source used only in evaluator.",
+  "automatic_adoption": false,
+  "preferred_fallback": "SQ3",
+  "independent_holdout": false,
+  "no_retraining": true,
+  "new_flow_inference": false,
+  "extra_transmission_bytes": 0,
+  "lookahead": 0,
+  "current_config_sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+  "input_sha256": {
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113\\manifest.json": "abe2ccd8e32b2336a9862d8ba0f604bbabac80bc7a3da95056256f6abecee08e",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113\\outputs\\video1_SQ3.npy": "e87faff7ef626d025c42bf0d1da53829033b66dd4ef26f36e2c76c20df7ba5ad",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\source.npy": "97e44a828004587c5d362a45017b8d6cc41ddd8258bc0c7098e9d84bae15a751",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\decoded_rgb.npy": "66892444a3dac9ab1addbbb6b6239b5990d8cb0981db899295dbeab285fea281",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113\\outputs\\video2_SQ3.npy": "fd0595af8f11480b9155e03fb5235883589e1c7095236180b15962935b702b19",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video2\\source.npy": "542933d982b34f221416ca03a86aafdaad3594145b4ba6a64a2ae25a9c03bc8f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video2\\base_receive\\decoded_rgb.npy": "f4a88c910a14501a9db23877af66411de42c22f56b691eb32a7f1cbbecdef473",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113\\outputs\\video3_SQ3.npy": "5f63bfcfd9996cedb9199b3ab18f377fc7799a7820810208e804966d47c66128",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video3\\source.npy": "85edc8aa5c039194e48554247a7c0b7a401aeb0695aff2690cccec8b4c6396d6",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video3\\base_receive\\decoded_rgb.npy": "742ca88ea86b9ada6f3831ab3114b22bf2d485d7b80c02fb0c37d78db12a2023",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113\\outputs\\video4_SQ3.npy": "14527016d062846149b8659e8fdffcb6ccfdfbc23b9fbe3623b76f5f4c20c744",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_diagnosis_20261113_02\\source.npy": "43a02b5d5e21cf8c515fa688d6dbbdee47db346d5e1c41927ec69b5ea60e1aac",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_diagnosis_20261113_02\\video4\\base_receive\\decoded_rgb.npy": "9814a5db18032d5075120d9a2651fa8fed5a233c1b90a03744d019101c423a02",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113\\outputs\\long_SQ3.npy": "6318a4883afc29e3eb2662b01a1b1662a958626d529a377786f5428fc4fb4058",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_long_transfer_20261112_03\\source.npy": "827d315fbc7227c8f7c893cefc81eea17ded2a0ee1c27e8533ea99cef071776f",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_编解码执行复核\\full_video_15fps_20261105_01\\width512\\receiver\\decoded_rgb.npy": "fa6b32c70a4125eaa037d9cc073c90b9e215b57ed515f60075464a56605135b0"
+  },
+  "code_sha256": {
+    "run_sq3_detail.py": "d5701545a0c339dbd5b70d3ff3b09e63e7df11ef2c012c56379f70223b873ba8",
+    "sq3_detail_filter.py": "43ddb63be7bf0841e7b7ca0a7bf094783e240ebc8afb8a3d3bb76cbb876dc867",
+    "evaluate_video4_diagnosis.py": "48491dfb72564cba46cddeff295d88ee2092d0041b745c28ce565098e01215fc",
+    "run_video4_jitter.py": "67e9722da00859b1c980d5de0abf0c459f9b862cf5936333382e031f8b3219ae",
+    "audit_deflicker_texture.py": "7237975e96920dc7588d1bc594034a777deadcc13208d3d3a2d641ab89a85263",
+    "probe_reef.py": "9be0db7816a3229ea42e2681831063e4103bfebb7ba4587e28f299da05cc29d4",
+    "runtime_speed_common.py": "27bb0a697be0eea55ef7ff0a08180abe54d785e0f630f005c5029a621557346d"
+  }
+}

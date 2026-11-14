@@ -1,0 +1,125 @@
+{
+  "complete": true,
+  "case": "video1",
+  "profiles": {
+    "P3": {
+      "temporal_confirmation": 3,
+      "motion_memory": false,
+      "correction": "current_raw"
+    },
+    "M3": {
+      "temporal_confirmation": 3,
+      "motion_memory": true,
+      "correction": "current_raw"
+    },
+    "ML3": {
+      "temporal_confirmation": 3,
+      "motion_memory": true,
+      "correction": "mean_sigma1_residual"
+    }
+  },
+  "settings": {
+    "sigma3_thresholds": [
+      6.0,
+      12.0
+    ],
+    "sigma1_thresholds": [
+      12.0,
+      24.0
+    ],
+    "signed_coherence_thresholds": [
+      0.75,
+      1.0
+    ],
+    "motion_excess_thresholds": [
+      2.0,
+      6.0
+    ],
+    "rise_per_frame": 0.3333333333333333,
+    "fall_per_frame": 0.16666666666666666,
+    "memory_hold_conflict_min": 0.1,
+    "memory_release_factor": 0.5,
+    "seed_dilation_pixels": 1,
+    "cycle_max": 1.5,
+    "margin": 2,
+    "reset_at": [
+      0,
+      15,
+      45,
+      75,
+      105,
+      135
+    ]
+  },
+  "base_sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+  "packet_sha256": "e14a695bd1f80d2e0268bf563f234481624e8be25b8251662e6a8f7fabe9f719",
+  "baseline_sha256": {
+    "rgb": "60f790c192a69de1372b6d6e0a2dee23a9b327f7a01534f492efff9cb843fcfd",
+    "alpha": "7ce34d563f3fd72539bb468138913352ed0ecb0f0c0f28f2dc97cf7dfe5a604f",
+    "shared": "4f8fcf35f91ed52a495650b6cc5cecee0eb4a74aa02aa48fc9ae464c333f490a"
+  },
+  "baseline_reuse_verified": true,
+  "source_reads_blocked": true,
+  "blocked": [
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\source.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\send.json",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_temporal_exit_20261112_05\\user_event_registration.json",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\diagnosis\\user_review_boxes.json",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\diagnosis\\attribution.json"
+  ],
+  "reads": [
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\guide.glcguide",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\receive\\from_anchor.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\receive\\to_anchor.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video1\\receive\\Q9_R25\\alpha.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video1\\receive\\Q9_R25\\rgb.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video1\\receive\\Q9_R25\\shared.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base.glcsnd",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\decoded_rgb.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\result.json"
+  ],
+  "allowed": [
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\guide.glcguide",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\receive\\from_anchor.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\receive\\to_anchor.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video1\\receive\\Q9_R25\\alpha.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video1\\receive\\Q9_R25\\rgb.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_ghost_exit_20261112_04\\video1\\receive\\Q9_R25\\shared.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base.glcsnd",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\decoded_rgb.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\result.json"
+  ],
+  "output_sha256": {
+    "P3": {
+      "rgb": "6101cbf1b0bfe47ee57fd9e28867feda316a3b5f6d353755defa6dcc743f0bc1",
+      "weight": "4901a74d4a3e419848288e928f110902f4e931b44d6a8c8d3ddcb53db698e978"
+    },
+    "M3": {
+      "rgb": "e13ebbc060688313d488534f62e1426134125b761f5e487f177a651904be9d75",
+      "weight": "0e0b23d9cd9a0f92bef407c909e09208e4b0edfcfeb94e2009e4714b5108eca1"
+    },
+    "ML3": {
+      "rgb": "32b839f65fe7f6aa8e2f17fc87639fce99e75ee8b5464cc337d26cc80c7c8182",
+      "weight": "0e0b23d9cd9a0f92bef407c909e09208e4b0edfcfeb94e2009e4714b5108eca1"
+    }
+  },
+  "code_sha256": {
+    "temporal_conflict_exit.py": "ef4685fcb537b24378e4fc9e8d360bb121b2bfbf3dfd3cf6c45bd1d61ab19d5c",
+    "run_temporal_ghost_exit.py": "bae53798e6b2c330687f20ff689060143d7d3fbedbca2130afdc838faaa596fb",
+    "run_q9_ghost_exit.py": "03c33e18b0a729d70c1fc3a90cd3e51149244c871c30a29e7d0a405942a25bd8",
+    "raw_conflict_exit.py": "c8e30e3fb1e35a175cb2be984592c81a610b39a924449a8b9114b14e0565954f",
+    "mild_reliability_gate.py": "976491361f647de523aa632f72b0fa0588ce13ceb352d5b0dfe30654c9bed72b",
+    "receiver_structure.py": "07f3d17a5c1de44d41452da182bf5469b954ceda1de44c265865a54d2389e2a8",
+    "cached_t3.py": "cde258d865084c5f547220c542393ce606eaa8fcf725ca3736f0fbd6fdfc058f",
+    "runtime_speed_common.py": "27bb0a697be0eea55ef7ff0a08180abe54d785e0f630f005c5029a621557346d",
+    "resume_q9_archive_transfer.py": "f5b68c0e33eb5cb9d0fb6bc8290866d85d555cf4a4b2a2f555019d45ae99b007",
+    "evaluate_structure_guide.py": "6a7f40008bd6ca07d7161226a3c77da81f8f7b9898d7682d23d3bf42a8211eed",
+    "finish_q9_ghost_exit.py": "92600a422bef6e782e308b5aa9eb3f4d539a85503fc2ba275b588e8e1a663c09"
+  },
+  "three_profile_component_seconds": 12.47743310000078,
+  "includes_base_decode": false,
+  "includes_flow_inference": false,
+  "output_memory_mapped": true,
+  "causal": true,
+  "automatic_adoption": false
+}

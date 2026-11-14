@@ -1,0 +1,169 @@
+{
+  "date": "2026-11-11",
+  "complete": true,
+  "base_commit": "ae46c91c6820ffc49012714c44659ead0e1fc162",
+  "profile": "S8I + CURRENT_I12 with exact T3/RAFT computation caches",
+  "fixed_keys": [
+    0,
+    15,
+    45,
+    75,
+    105,
+    135
+  ],
+  "iterations": 12,
+  "source_free_receivers": true,
+  "base_bytes": 31963,
+  "guide_bytes": 8865,
+  "total_kbps": 32.6624,
+  "bit_exact_to_accepted_I12": true,
+  "bit_exact_to_I24": false,
+  "t3": {
+    "complete": true,
+    "times": {
+      "original": {
+        "median": 4.9859585000012885,
+        "minimum": 4.90829279999889,
+        "maximum": 5.012982100000954,
+        "samples": [
+          5.012982100000954,
+          4.9859585000012885,
+          4.90829279999889
+        ]
+      },
+      "cached": {
+        "median": 4.110764299999573,
+        "minimum": 4.0405508000039845,
+        "maximum": 4.282963199999358,
+        "samples": [
+          4.282963199999358,
+          4.0405508000039845,
+          4.110764299999573
+        ]
+      }
+    },
+    "median_time_reduction_percent": 17.5531785914682,
+    "full_rgb_alpha_shared_bit_exact": true,
+    "original_and_inputs_unchanged": true,
+    "timing_scope": "Entire render call, including texture std precomputation, lazy blur cache, blend, arrays and zero-weight check; excludes source file reads and output writes",
+    "extra_RGB_blur_cache_limit_frames": 4,
+    "extra_RGB_blur_cache_payload_bytes": 14155776,
+    "outputs_sha256": {
+      "alpha.npy": "c82da434ac1a89da0cf50a3c17f15a3fc7ac54f40e5ba6ddb608a011a44036b9",
+      "rgb.npy": "f3db8a4e0a513740f3c6b59d7411678aa8cfc860850b613a276c6f4575da4b8a",
+      "shared.npy": "cfca55a2f52152502f76d4b69486e7f42b59daaa5588d5cca5a77ae99d2778ec"
+    }
+  },
+  "raft": {
+    "complete": true,
+    "times": {
+      "original": {
+        "median": 19.237561999994796,
+        "minimum": 19.21391179999773,
+        "maximum": 19.79518869999447,
+        "samples": [
+          19.79518869999447,
+          19.21391179999773,
+          19.237561999994796
+        ]
+      },
+      "final_only": {
+        "median": 19.28906840000127,
+        "minimum": 18.661628100002417,
+        "maximum": 19.445249700002023,
+        "samples": [
+          19.445249700002023,
+          19.28906840000127,
+          18.661628100002417
+        ]
+      },
+      "feature_cache": {
+        "median": 16.46567589999904,
+        "minimum": 16.404491000001144,
+        "maximum": 17.060264599997026,
+        "samples": [
+          17.060264599997026,
+          16.404491000001144,
+          16.46567589999904
+        ]
+      }
+    },
+    "selected_exact_candidate": "feature_cache",
+    "exact_candidates": [
+      "original",
+      "final_only",
+      "feature_cache"
+    ],
+    "median_time_reduction_percent": 14.408718214899086,
+    "all_flow_pairs": 174,
+    "all_directions": 348,
+    "precision_or_iterations_changed": false,
+    "input_hashes_unchanged": true,
+    "diagnostic": "diagnostic.json",
+    "selection_scope": "Only this fixed video1; full local chain must still verify selected candidate"
+  },
+  "complete_chain": {
+    "complete": true,
+    "timing": {
+      "cold": {
+        "original": {
+          "median": 69.38885870000377,
+          "minimum": 68.58521199999814,
+          "maximum": 72.76817149999988,
+          "samples": [
+            72.76817149999988,
+            69.38885870000377,
+            68.58521199999814
+          ]
+        },
+        "optimized": {
+          "median": 65.57327719999739,
+          "minimum": 63.507611299995915,
+          "maximum": 66.85841159999836,
+          "samples": [
+            65.57327719999739,
+            66.85841159999836,
+            63.507611299995915
+          ]
+        },
+        "median_time_reduction_percent": 5.498838821521312
+      },
+      "warm": {
+        "original": {
+          "median": 57.25252919999912,
+          "minimum": 56.43454070000007,
+          "maximum": 57.60043790000054,
+          "samples": [
+            56.43454070000007,
+            57.25252919999912,
+            57.60043790000054
+          ]
+        },
+        "optimized": {
+          "median": 54.4382581999962,
+          "minimum": 53.590412300000025,
+          "maximum": 54.81482130000222,
+          "samples": [
+            53.590412300000025,
+            54.81482130000222,
+            54.4382581999962
+          ]
+        },
+        "median_time_reduction_percent": 4.915540045701528
+      }
+    },
+    "selected_raft": "feature_cache",
+    "trial_count": 12,
+    "all_transmission_and_display_artifacts_exact": true,
+    "input_hashes_unchanged": true,
+    "scope": "Complete local offline video-file chain; not network or realtime",
+    "memory": "Per-worker peak torch allocation and Windows process-lifetime peak working set in each trial; not summed nonconcurrent peaks",
+    "raw_trials": "trials.json",
+    "warmup_excluded": true
+  },
+  "original_raft_peak_mib": 545.5029296875,
+  "selected_raft_peak_mib": 1645.4169921875,
+  "next_direction": "Fixed-parameter generalization to other marine clips and long videos; not run in this round",
+  "existing_deployment_defaults_changed": false,
+  "new_work_committed_or_pushed": false
+}

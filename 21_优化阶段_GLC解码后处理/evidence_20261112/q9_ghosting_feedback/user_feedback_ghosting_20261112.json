@@ -1,0 +1,65 @@
+{
+  "date": "2026-11-12",
+  "type": "user_perceptual_feedback_and_priority_change",
+  "verbatim_user_feedback": "现在问题是，他会把鱼的图像留在原地，即使鱼已经走了，像是残像？拖尾？这种的，完整长片的话涉及场景切换，而且有些场景比较复杂，所以先不用追求很好的评价了也就",
+  "observation_zh": "鱼已经离开后，旧位置仍留有鱼的图像。按描述记录为残像/鬼影；是否还包含沿运动轨迹的拖尾需逐帧定位。",
+  "observation_source": "User viewing report; not independently localized to a saved frame in this turn",
+  "scope": {
+    "context_profile": "Q9_R25 long/archive round",
+    "exact_video": null,
+    "exact_timestamp": null,
+    "exact_mode": null,
+    "limitation": "User did not identify which comparison or timestamp shows the artifact. Do not attribute to every clip, both long modes, or a specific source."
+  },
+  "long_video_priority_zh": "用户指出完整长片包含场景切换和复杂场景，现阶段不追求很好的全片评价；保留为压力测试/失效观察材料。",
+  "research_priority_zh": "优先定位鱼离开后的错误历史纹理保留及真实运动保真；背景稳定和整体平均评分不能掩盖可见残像。",
+  "code_confirmed_facts": [
+    {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\receiver_structure.py",
+      "lines": [
+        73,
+        74,
+        80,
+        81,
+        82
+      ],
+      "fact": "Output blends current raw GLC with warped raw anchor; transition also uses previous raw anchor, not recursively enhanced outputs."
+    },
+    {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\mild_reliability_gate.py",
+      "lines": [
+        53,
+        54,
+        55
+      ],
+      "fact": "R25 scales accepted alpha by 0.75 to 1.0 of its original value and preserves its nonzero support; existing hard rejections remain."
+    },
+    {
+      "path": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\run_q9_long_transfer.py",
+      "lines": [
+        73
+      ],
+      "fact": "This long test explicitly has no scene-cut detector."
+    }
+  ],
+  "root_cause_status": "Hypothesis only; no frame-local causal attribution established",
+  "hypotheses_zh": [
+    "原GLC是否已有残像需先分离。",
+    "若光流或门控误把旧鱼纹理视为有效对应，Q9可能把它继续写入；温和降权不能保证退出。",
+    "换锚过渡与镜头切换分别排查，不能认定全部由切镜导致。"
+  ],
+  "next_work_proposed": [
+    "Locate one same-shot fish-departure interval using source/raw/Q9, anchor, guide and alpha/shared diagnostics.",
+    "If added by reuse, test a receiver-only exit from invalid historical texture and return to current raw GLC in that area; protect accepted Q9 background behavior.",
+    "Inspect ghost disappearance, fish motion and background stability together; metrics remain secondary evidence.",
+    "Treat hard cuts separately later; full-length average quality is not the immediate target."
+  ],
+  "no_new_parameter_thresholds": true,
+  "new_experiments_run": false,
+  "inference_changed": false,
+  "formal_adoption_changed": false,
+  "prior_Q9_video1_video2_video3_positive_feedback_preserved": true,
+  "prior_numeric_screen_unchanged": true,
+  "historic_metrics_and_evidence_unchanged": true,
+  "new_case_review_status": "partial_feedback_ghosting_reported_exact_clip_unresolved"
+}

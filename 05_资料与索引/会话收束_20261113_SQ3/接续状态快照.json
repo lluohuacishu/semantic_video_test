@@ -1,0 +1,144 @@
+{
+  "timezone": "Asia/Singapore",
+  "scope": "GLC",
+  "workspace": "C:/Users/lenovo/Documents/ChatGPT/语义通信",
+  "repository": "01_项目/代码/semantic_video_test",
+  "experiment_branch": "codex/glc-temporal-stability",
+  "main_baseline_commit": "50ed016471aad628e90169bbdf5955d2074a5e3b",
+  "last_experiment_commit": "ae46c91c6820ffc49012714c44659ead0e1fc162",
+  "current_branch_head_check": "git log -1",
+  "new_experiments_uncommitted": true,
+  "budget": {
+    "base_fps": 15,
+    "base_kbps_max": 40,
+    "semantic_kbps_max": 40,
+    "billing": "complete file bytes / explicit duration",
+    "semantic_goal": "Lower is better subject to perceptual quality; preferably below corresponding base bitrate. 50000 B per 10 s is a ceiling, never a target.",
+    "clarified_by_user": true
+  },
+  "current_accepted_profile": "21_优化阶段_GLC解码后处理/当前采用配置.json",
+  "other_local_untracked_repo_paths": [
+    "19_部署阶段_收发端独立打包/",
+    "05_资料与索引/GLVC论文阅读与GLC适用性评估_20261105.md",
+    "05_资料与索引/UVID数据集初评_20261028.md"
+  ],
+  "archived_scope": "GVC1D",
+  "schema": "glc_handoff_current_v2",
+  "date": "2026-11-13",
+  "status": "session_closed_experiments_paused_SQ3_retained",
+  "user_latest_decision": "讲真我觉着两个都差不多，算了，先这样，整理一下文件，文档啥的，我要换会话了",
+  "latest_user_perceptual_feedback": {
+    "date": "2026-11-13",
+    "quote": "讲真我觉着两个都差不多，算了，先这样，整理一下文件，文档啥的，我要换会话了",
+    "reviewed_comparison": "82秒_四宫格_原片_U30_原GLC_SQ3.mp4",
+    "interpretation": "用户认为完整长片中的U30与SQ3观感接近，没有表达U30明显更优，决定暂时停在这里并整理交接。",
+    "SQ3_status": "此前已获用户认可，继续保留为研究基准与首选回退版本。",
+    "U30_status": "长片已观看；用户反馈与SQ3差不多，仅保留为对照，不据此替换SQ3。",
+    "pause_new_experiments": true,
+    "automatic_next_run": false,
+    "formal_deployment_change_authorized": false,
+    "requested_work": "整理现有文件索引、当前状态、报告与新会话交接，不启动新实验。",
+    "historical_numeric_results": "保留原结果和比较口径；用户反馈不改写此前U15/U30数值筛查失败或旧selected=null。"
+  },
+  "current_session_work": "Documentation and file-index closeout only. User sees U30 and SQ3 as similar; keep SQ3 and pause experiments for session change.",
+  "active_experiment_plan": null,
+  "latest_experiment_plan": null,
+  "experiment_execution_gate": {
+    "status": "paused_by_user",
+    "currently_running": false,
+    "automatic_next_run": false,
+    "authorization_to_resume": "New explicit user instruction after handoff"
+  },
+  "next_experiment_plan": {
+    "status": "paused_by_user",
+    "parameters_chosen": false,
+    "automatic_next_run": false
+  },
+  "preferred_research_reference": {
+    "profile": "SQ3",
+    "status": "user_accepted_and_preserved",
+    "upstream": "Q9_R25 -> GS25 -> SQ3",
+    "legacy_reference": "Q9_R25"
+  },
+  "preferred_fallback": {
+    "profile": "SQ3",
+    "archive": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113",
+    "manifest": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113\\manifest.json"
+  },
+  "formal_deployment": {
+    "profile": "S8I + CURRENT_I12",
+    "changed": false,
+    "config": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\当前采用配置.json",
+    "sha256": "b5eeb844d0adcdfe97648351a0654a2575a98942e1627c98896ba302555f7b04",
+    "note": "Research baseline SQ3 has not been wired into the formal deployment default."
+  },
+  "latest_experiment": {
+    "complete": true,
+    "date": "2026-11-13",
+    "request": "你跑一下长视频我看看呢，还是四宫格对照，但是把右上角的h.265替换成这个U30",
+    "run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\sq3_u30_long_fourway_20261113_01",
+    "viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_U30长片四宫格_20261113",
+    "movie": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_U30长片四宫格_20261113\\82秒_四宫格_原片_U30_原GLC_SQ3.mp4",
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\U30长片四宫格_原片_U30_GLC_SQ3_20261113.md",
+    "layout": [
+      "source",
+      "SQ3_U30",
+      "raw_GLC",
+      "SQ3"
+    ],
+    "frames": 1239,
+    "fps": 15,
+    "seconds": 82.6,
+    "profile": "SQ3_U30",
+    "user_requested_extension": true,
+    "prior_numeric_failure_preserved": true,
+    "subjective_review": "user_reports_U30_and_SQ3_similar",
+    "selected": null,
+    "automatic_adoption": false,
+    "preferred_fallback": "SQ3",
+    "formal_config_unchanged": true,
+    "feedback_file": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\05_资料与索引\\会话收束_20261113_SQ3\\用户反馈.json"
+  },
+  "latest_analysis_report": "21_优化阶段_GLC解码后处理\\SQ3阶段总结与后续路线_20261113.md",
+  "new_experiment_report": "21_优化阶段_GLC解码后处理\\SQ3阶段总结与后续路线_20261113.md",
+  "latest_diagnosis": {
+    "report": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\SQ3阶段总结与后续路线_20261113.md",
+    "SQ3_user_accepted": true,
+    "U30_subjective_difference": "similar per user",
+    "numerical_failure_preserved": true,
+    "no_sharpening_upgrade_selected": true
+  },
+  "current_fourway": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_U30长片四宫格_20261113\\82秒_四宫格_原片_U30_原GLC_SQ3.mp4",
+  "accepted_SQ3_fourway": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_SQ3长片四宫格_20261113\\82秒_四宫格_原片_H265_原GLC_SQ3.mp4",
+  "workspace_paths": {
+    "source_clips": "01_项目/GLC后处理/素材/20261109_三个片段",
+    "base_manifest": "01_项目/GLC后处理/接口与基线.json",
+    "independent_deployment": "06_部署包/GLC_Windows_流水线_20261102",
+    "current_profile": "01_项目/代码/semantic_video_test/21_优化阶段_GLC解码后处理/当前采用配置.json",
+    "latest_viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_U30长片四宫格_20261113\\README.md",
+    "accepted_SQ3_viewing": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\05_成果与观看\\GLC_SQ3长片四宫格_20261113\\README.md",
+    "sq3_archive": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\保留版本\\SQ3_用户认可_20261113",
+    "short_run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\q9_video4_jitter_20261113_03",
+    "SQ3_long_run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\sq3_long_fourway_20261113_01",
+    "detail_run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\sq3_detail_20261113_02",
+    "U30_long_run": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\sq3_u30_long_fourway_20261113_01",
+    "handoff": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\交接文档.md",
+    "file_index": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\21_优化阶段_GLC解码后处理\\运行入口与文件索引.md"
+  },
+  "handoff_repo_path": "交接文档.md",
+  "stage_report_repo_path": "21_优化阶段_GLC解码后处理/README.md",
+  "next_priority": [
+    "Read the handoff and current file index; do not rerun completed experiments",
+    "Wait for user direction before any new experiment or deployment-default change"
+  ],
+  "future_routes_not_started": [
+    "Scene-cut and cross-block continuity",
+    "Frozen-profile independent ocean clips",
+    "End-to-end runtime and total RAM after quality direction is fixed"
+  ],
+  "history_snapshot": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\05_资料与索引\\会话收束_20261113_SQ3\\历史入口原文\\01_项目\\代码\\semantic_video_test\\05_资料与索引\\会话收束_20261110\\接续状态.json",
+  "history_snapshot_sha256": "a644135649e5f5a8205d8203fd3ee2ac53a7209aef4c884301c59070b676a233",
+  "session_closeout": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\01_项目\\代码\\semantic_video_test\\05_资料与索引\\会话收束_20261113_SQ3",
+  "observed_git_HEAD": "ae46c91c6820ffc49012714c44659ead0e1fc162",
+  "no_commit_or_push_this_closeout": true
+}

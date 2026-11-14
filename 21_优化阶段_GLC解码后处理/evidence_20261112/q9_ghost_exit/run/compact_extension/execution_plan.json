@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-12",
+  "adaptive_extension": true,
+  "frozen_before_extension_outputs": true,
+  "motivation": "Phase1 lowered user-region source errors but broadly degraded temporal stability. Test one compact-support constraint, without altering phase1 outputs.",
+  "parent_summary_sha256": "217f0ddc5aba15fd3ea8f7e1752c87d6a20ed824c58b05c409b1e37d921ee448",
+  "parent_plan_sha256": "63933a3c3b228227c4905ea234508e6db6ac83d8910c3f57107939316aed0813",
+  "profiles": {
+    "C32": {
+      "parent": "EL12",
+      "support_min": 0.1,
+      "seed_min": 0.8,
+      "area_min": 8,
+      "area_max": 1024,
+      "connectivity": 8
+    }
+  },
+  "review_boxes": {
+    "reef_old_fish_A": [
+      416,
+      112,
+      452,
+      144
+    ],
+    "reef_old_fish_B": [
+      488,
+      112,
+      512,
+      144
+    ],
+    "video2_tail": [
+      140,
+      145,
+      285,
+      288
+    ]
+  },
+  "review_timing": {
+    "reef_departure": [
+      53,
+      75
+    ],
+    "user_exact_reef_frame": 61,
+    "video2_tail": [
+      45,
+      75
+    ]
+  },
+  "code_sha256": {
+    "run_compact_ghost_exit.py": "761810807aeb1da85743da19eb4e91e98b31ca94ae2061942a091f290146421b",
+    "raw_conflict_exit.py": "c8e30e3fb1e35a175cb2be984592c81a610b39a924449a8b9114b14e0565954f",
+    "run_q9_ghost_exit.py": "03c33e18b0a729d70c1fc3a90cd3e51149244c871c30a29e7d0a405942a25bd8",
+    "resume_q9_archive_transfer.py": "f5b68c0e33eb5cb9d0fb6bc8290866d85d555cf4a4b2a2f555019d45ae99b007",
+    "evaluate_structure_guide.py": "6a7f40008bd6ca07d7161226a3c77da81f8f7b9898d7682d23d3bf42a8211eed"
+  },
+  "same_parameters_all_five_cases": true,
+  "not_semantic_segmentation": true,
+  "no_source_or_user_ROI": true,
+  "no_new_bytes": true,
+  "mechanism": "Keep only connected raw-conflict supports of 8..1024 pixels with peak>=0.8. Max area is 32x32 pixels at fixed 512x288; masks recomputed per frame; no temporal hysteresis.",
+  "limitations": "May miss larger artifacts and may switch as components merge/split; must retain motion/stability regression checks. No automatic adoption."
+}

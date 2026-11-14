@@ -1,0 +1,121 @@
+{
+  "complete": true,
+  "case": "video1",
+  "quality": "Q9",
+  "base_sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+  "base_decode_verified": true,
+  "auxiliary_sha256": "e14a695bd1f80d2e0268bf563f234481624e8be25b8251662e6a8f7fabe9f719",
+  "guide_header": {
+    "base_sha256": "cf9f519f9dee6918c1dd49bce4c2572c1020425e1bb3789abcf7b06854d60fd5",
+    "frames": 150,
+    "fps": 15,
+    "guide_size": [
+      256,
+      144
+    ],
+    "target_size": [
+      512,
+      288
+    ],
+    "codec": "hevc-yuv420p",
+    "color": "RGB decode",
+    "upsample": "cubic",
+    "payload_bytes": 12742
+  },
+  "source_reads_blocked": true,
+  "blocked": [
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\source.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\send.json",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_factorial_20261112_01\\video1\\Q6\\receive\\T3\\rgb.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\flow\\to_anchor.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\source_mask.npy"
+  ],
+  "reads": [
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\deflicker_reef80_20261108_01\\upstream\\pretrained_weights\\raft-things.pth",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\guide.glcguide",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base.glcsnd",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\decoded_rgb.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\result.json"
+  ],
+  "allowed": [
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base.glcsnd",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\decoded_rgb.npy",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\source_dense_flow_three_clips_20261109_01\\video1\\base_receive\\result.json",
+    "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\guide.glcguide"
+  ],
+  "flow": {
+    "seconds": 16.9851220999999,
+    "feature_precompute_seconds": 1.2021573000001808,
+    "pairs": 174,
+    "peak_gpu_allocated_mib": 1636.9619140625,
+    "peak_gpu_reserved_mib": 1800.0,
+    "cpu_transfer_call_wall_seconds": 1.030817599998045,
+    "transfer_note": "Includes synchronization/backpressure; not exclusive memcpy time",
+    "flow_storage": "Receiver-local RAM; no transmitted sidecar and no flow file writes in this benchmark",
+    "reused_local_cache": false
+  },
+  "flow_paths": {
+    "to_anchor": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\receive\\to_anchor.npy",
+    "from_anchor": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\receive\\from_anchor.npy",
+    "transition_flow": "C:\\Users\\lenovo\\Documents\\ChatGPT\\语义通信\\02_实验数据\\优化_GLC后处理\\generalization_reliability_20261112_02\\video1\\Q9\\receive\\transition_flow.npy"
+  },
+  "flow_sha256": {
+    "to_anchor": "4bdd84b416547be50a024e0f5a973656860b1a2f7d97efaf4a40bbf304cd33e3",
+    "from_anchor": "b62505ba6ede89d7baaf220a64de931dd6f6cba19c74610e57e770794481b471",
+    "transition_flow": "e1a93d6e597f14858f73ee4180962216485fa3c67e95c5624b0e3a20f7502a10"
+  },
+  "guide_rgb_sha256": "ed3b8ed9df4527fff498c6f84001ddd016eee504c7de8a76d368825a85cfa750",
+  "variants": {
+    "T3": {
+      "outputs_sha256": {
+        "rgb": "2b50d09fd742f7a3301481221ff9e4dd2d80d5ad51043da174e5f62f32bc7b6a",
+        "alpha": "a99f5f6bcdc3dde826e58d1ede52ea3c355c1c680433016a30fe33a5b5ff5353",
+        "shared": "c505e43c76e12ea36b784ba6b3a645ee7e1db0bc479ccfed00e960bf8d114a2a"
+      },
+      "render_seconds": 5.272536599999512,
+      "active_fraction": 0.2514210792824074,
+      "mean_alpha": 0.23814211785793304,
+      "diagnostics": null
+    },
+    "R25": {
+      "outputs_sha256": {
+        "rgb": "60f790c192a69de1372b6d6e0a2dee23a9b327f7a01534f492efff9cb843fcfd",
+        "alpha": "7ce34d563f3fd72539bb468138913352ed0ecb0f0c0f28f2dc97cf7dfe5a604f",
+        "shared": "4f8fcf35f91ed52a495650b6cc5cecee0eb4a74aa02aa48fc9ae464c333f490a"
+      },
+      "render_seconds": 8.477096700000402,
+      "active_fraction": 0.2514210792824074,
+      "mean_alpha": 0.23446623980998993,
+      "diagnostics": {
+        "calls": 180,
+        "active_pixels": 6217132,
+        "attenuated_pixels": 1491478,
+        "penalty_sum": 118847.75498199463,
+        "raw_dominant_pixels": 0,
+        "maximum_attenuation": 0.25
+      }
+    },
+    "D25": {
+      "outputs_sha256": {
+        "rgb": "7d2b426df2b6aded29022d91daef457da5c10a5a72d247765f1059bd8711dbc2",
+        "alpha": "a590c8444d171eec781579c4b6f919fc539e7359e2585099e475ed3513bed475",
+        "shared": "85e8771c51aef89997b060aa85d202b921e1fa24cb9e2a72626093bb52a03a9e"
+      },
+      "render_seconds": 9.517988499999774,
+      "active_fraction": 0.2514210792824074,
+      "mean_alpha": 0.2287181317806244,
+      "diagnostics": {
+        "calls": 180,
+        "active_pixels": 6217132,
+        "attenuated_pixels": 2880461,
+        "penalty_sum": 275619.4028930664,
+        "raw_dominant_pixels": 1756340,
+        "maximum_attenuation": 0.25
+      }
+    }
+  },
+  "no_per_clip_parameters": true,
+  "no_source_pixels": true,
+  "code_sha256": "ebace99655716b15e4b5d03b2819419369c8d1ad2982bbeb02e0f7bafefd6641",
+  "gate_code_sha256": "976491361f647de523aa632f72b0fa0588ce13ceb352d5b0dfe30654c9bed72b"
+}
